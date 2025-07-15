@@ -45,4 +45,6 @@ IEX ([System.IO.StreamReader]($r.GetResponseStream())).ReadToEnd()
 
 ❯ Enter-PSSession computername 
 	❯ gpupdate /force 
+
+❯ set username 
 ```
