@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "7.1 PortSwigger/2 XSS/2 DOM XSS.md",
+                "file": "7.1 PortSwigger/1 SQLi/10 Bypass XML Encoding.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "2 DOM XSS"
+              "title": "10 Bypass XML Encoding"
             }
           },
           {
@@ -43,17 +43,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 AD 3/5 Persistence/1 Golden Ticket.md",
+                "file": "8 AD 3/5 Persistence/9 Security Descriptors using ACLs.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "1 Golden Ticket"
+              "title": "9 Security Descriptors using ACLs"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -191,44 +190,44 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "836c92fa7491f10c",
+  "active": "903938a0a68cd1cf",
   "lastOpenFiles": [
-    "2 Ports/Ports DC/0 DC Enumeration.md",
-    "8 AD 3/5 Persistence/1 Golden Ticket.md",
-    "3 Excel.md",
-    "7.1 PortSwigger/2 XSS/2 DOM XSS.md",
-    "README.md",
-    "7.1 PortSwigger/2 XSS/3.md",
-    "8 AD 3/1 Evasión/1 Powershell.md",
-    "8 AD 3/4 Lateral Movement/3 Mimikatz.md",
-    "8 AD 3/4 Lateral Movement/1 Remoting & Tradecraft.md",
-    "8 AD 3/4 Lateral Movement/2 Credential Extraction.md",
-    "3 Tools/Fuzzers.md",
-    "8 AD 2/2 Attacks/6 ACL - Linux/3 GenericAll User.md",
-    "8 AD 3/2 Enumeration/1 Domain PV, PM.md",
-    "8 AD 2/5 Evasión/1 UAC.md",
-    "8 AD 2/5 Evasión/4 AMSI.md",
-    "7.1 PortSwigger/2 XSS/1 XSS Basic Reflected, Stored.md",
-    "7.1 PortSwigger/2 XSS/0 XSS Sudo.co.il.md",
     "7.1 PortSwigger/1 SQLi/9 SQLi Blind OOB Extract Info.md",
-    "7.1 PortSwigger/1 SQLi/1 Where.md",
-    "7.1 PortSwigger/1 SQLi/10 Bypass XML Encoding.md",
     "7.1 PortSwigger/1 SQLi/8 SQLi Blind Time Extract Info.md",
-    "8 AD 2/3 Mov Lateral/1 Fundamentos Mov Lateral.md",
+    "7.1 PortSwigger/1 SQLi/7 SQLi Blind Visible Error-based.md",
+    "7.1 PortSwigger/1 SQLi/6 SQLi Blind Conditional Errors.md",
+    "7.1 PortSwigger/1 SQLi/5 SQLi Blind Conditional Responses.md",
+    "7.1 PortSwigger/2 XSS/2 Practitioner/1 XSS DOM.md",
+    "8 AD 3/5 Persistence/9 Security Descriptors using ACLs.md",
+    "2 Ports/Ports DC/0 DC Enumeration.md",
+    "8 AD 3/5 Persistence/8 Rights Abuse using ACLs.md",
+    "8 AD 3/5 Persistence/7 AdminSDHolder using ACLs.md",
+    "8 AD 3/5 Persistence/6 Custom SSP.md",
+    "8 AD 3/5 Persistence/5 DSRM.md",
+    "8 AD 3/5 Persistence/4 Skeleton Key.md",
+    "1 Com Lin & Win/2 Docker/5 Gestion Contenedores.md",
+    "1 Com Lin & Win/2 Docker/6 Port Forw y Mount.md",
+    "1 Com Lin & Win/2 Docker/4 Contenedor.md",
+    "1 Com Lin & Win/2 Docker/1 Instalacion Linux.md",
+    "7.1 PortSwigger/3 CSRF/Lab 1.md",
+    "7.1 PortSwigger/3 CSRF/Lab 2.md",
+    "7.1 PortSwigger/2 XSS/1 Apprentice/2 DOM XSS Basic.md",
+    "7.1 PortSwigger/2 XSS/1 Apprentice/3 XSS Reflected, Stored with encoded HTML.md",
+    "7.1 PortSwigger/2 XSS/2 Practitioner",
+    "7.1 PortSwigger/2 XSS/4.md",
+    "7.1 PortSwigger/2 XSS/1 Apprentice",
+    "7.1 PortSwigger/29 APIs/1 Conceptos.md",
+    "7.1 PortSwigger/29 APIs",
+    "7.1 PortSwigger/2 XSS/1 Apprentice/1 XSS Reflected, Stored without encoded HTML.md",
+    "7.1 PortSwigger/2 XSS/1 Apprentice/0 XSS Sudo.co.il.md",
+    "7 Hacking Web/1 SQLI.md",
     "8 AD 3/5 Persistence",
-    "8 AD 2/3 Mov Lateral/2 Impersonation.md",
-    "8 AD 2/3 Mov Lateral/3 Pass-The-Hash.md",
-    "8 AD 2/2 Attacks/3 ASREProastable/1 Rubeus.md",
-    "8 AD 2/4 Persistencia, Post-Explotation/3 Silver Ticket.md",
     "7.1 PortSwigger/0 HTTP Conceptos",
     "7.1 PortSwigger/1 SQLi",
     "8 AD 3/4 Lateral Movement",
     "8 AD 3/3 Priv Escalation/Unconfirmed 339358.crdownload",
     "8 AD 3/3 Priv Escalation/Unconfirmed 119874.crdownload",
     "8 AD 3/3 Priv Escalation/Unconfirmed 788700.crdownload",
-    "8 AD 2/2 Attacks/0 LinWinPwn - Tool",
-    "8 AD 2/2 Attacks/6 ACL - Linux",
-    "8 AD 3/3 Priv Escalation",
     "Z Imagenes/Hacking/Piv2.png",
     "Z Imagenes/Hacking/Piv1.png",
     "Z Imagenes/Hacking/SSRF.png",
