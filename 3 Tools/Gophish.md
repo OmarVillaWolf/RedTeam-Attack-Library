@@ -1,7 +1,0 @@
-# Gophish
-
-Tags: #IngenieriaSocial 
-
-```bash 
-❯ 
-```
