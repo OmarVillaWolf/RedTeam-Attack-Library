@@ -100,7 +100,7 @@ A continuación, se proporciona el enlace a la máquina que nos descargamos en e
 ## Recibir información por medio de un 'Alert'  
 
 ```javascript
-// Podemos crear un script en donde nos devuelva el correo o algún dato a nuestra IP. Para mandarlo por la url debemos de 'urlencodear' el codifo Javascript
+// Podemos crear un script en donde nos devuelva el correo o algún dato a nuestra IP. Para mandarlo por la url debemos de 'urlencodear' el código Javascript
 
 <script>
     var email = prompt("Por favor, introduce tu correo electronico para visualizar el post", "example@example.com");
