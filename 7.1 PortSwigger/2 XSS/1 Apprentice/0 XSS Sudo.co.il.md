@@ -2,6 +2,7 @@
 
 Tags: #XSS #Challenges
 
+
 * [sudo.co.il/xss/](https://sudo.co.il/xss/)
 
 ```bash
