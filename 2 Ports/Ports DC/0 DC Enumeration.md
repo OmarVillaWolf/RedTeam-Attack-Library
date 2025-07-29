@@ -43,13 +43,3 @@ Tips:
 	5. Si solo hay usuarios validos se puedo solicitar un TGT con un 'ASREProast attack' donde no se necesita disponer de credenciales validas y muestra el Hash de la password si el usuario tiene 'UF_DONT_REQUIRE_PREAUTH' 
 	6. Si ya hay credenciales validas se puede obtener un TGS con 'Kerberoasting attack'
 ```
-
-```bash 
-Metodología en CRTA
-
-Nota:
-1. Enumeración de la red para comprometer una maquina vulnerable 
-2. Si existe otro segmento de red en la maquina vulnerable hacer 'pivoting' (En caso de aplicar) 
-3. Enumeración local en la segunda maquina vulnerada para obtener permisos de 'Administrator', ademas de, acceder con el usuario que se encuentra en el dominio del DC 
-4. Identificar las maquinas en el dominio con 'Find-WMILocalAdminAccess.ps1 -Verbose'
-```
