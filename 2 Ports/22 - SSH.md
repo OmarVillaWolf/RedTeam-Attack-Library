@@ -2,8 +2,19 @@
 
 Tags: #SSH #Puerto #Pivoting #Proxychains 
 
-SSH es un protocolo de administración remota que permite a los usuarios **controlar** y **modificar** sus servidores remotos a través de Internet mediante un mecanismo de **autenticación seguro**. Como una alternativa más segura al protocolo **Telnet**, que transmite información sin cifrar, SSH utiliza **técnicas criptográficas** para garantizar que todas las comunicaciones hacia y desde el servidor remoto estén cifradas.
+## Descripción 
 
+```bash 
+SSH es un protocolo de administración remota que permite a los usuarios 'controlar' y 'modificar' sus servidores remotos a través de Internet mediante un mecanismo de 'autenticación seguro'. Como una alternativa más segura al protocolo 'Telnet', que transmite información sin cifrar, SSH utiliza 'técnicas criptográficas' para garantizar que todas las comunicaciones hacia y desde el servidor remoto estén cifradas.
+```
+
+```bash 
+- Posible causa / Riesgo: 
+	1. Fuerza bruta, claves débiles.
+
+- Mitigación:
+	1. Limitar IPs, usar autenticación por clave (pública y privada). Copia la clave pública al servidor donde deseas iniciar sesión y configúralo para permitir la autenticación con clave. Finalmente, puedes conectarte al servidor utilizando la clave privada desde tu cliente.
+```
 ## Practicar 
 
 ```bash 
