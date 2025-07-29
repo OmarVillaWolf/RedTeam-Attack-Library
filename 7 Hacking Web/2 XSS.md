@@ -6,11 +6,31 @@ Una vulnerabilidad **XSS** (**Cross-Site Scripting**) es un tipo de vulnerabil
 
 En esencia, un ataque XSS implica la inserción de código malicioso en una página web vulnerable, que luego se ejecuta en el navegador del usuario que accede a dicha página. El código malicioso puede ser cualquier cosa, desde scripts que redirigen al usuario a otra página, hasta secuencias de comandos que registran pulsaciones de teclas o datos de formularios y los envían a un servidor remoto.
 
-Existen varios tipos de vulnerabilidades XSS, incluyendo las siguientes:
+## Tipos de vulnerabilidades XSS:
 
--   **Reflejado** (**Reflected**): Este tipo de XSS se produce cuando los datos proporcionados por el usuario **se reflejan en la respuesta** HTTP sin ser verificados adecuadamente. Esto permite a un atacante inyectar código malicioso en la respuesta, que luego se ejecuta en el navegador del usuario. Este ataque es cuando el atacante da un enlace (link) y la victima al momento de darle click ejecuta el payload XSS en su buscador como parte de la respuesta, ahí se puede acontecer el 'Cookie Stealing'.
--   **Almacenado** (**Stored**): Este tipo de XSS se produce cuando un atacante **es capaz de almacenar código malicioso** en una base de datos o en el servidor web que aloja una página web vulnerable. Este código se ejecuta cada vez que se carga la página.
--   **DOM-Based**: Este tipo de XSS se produce cuando el código malicioso **se ejecuta en el navegador del usuario a través del DOM** (Modelo de Objetos del Documento). Esto se produce cuando el código JavaScript en una página web modifica el DOM en una forma que es vulnerable a la inyección de código malicioso.
+```bash 
+- 'Reflejado' ('Reflected'): Este tipo de XSS se produce cuando los datos proporcionados por el usuario 'se reflejan en la respuesta' HTTP sin ser verificados adecuadamente. Esto permite a un atacante inyectar código malicioso en la respuesta, que luego se ejecuta en el navegador del usuario. Este ataque es cuando el atacante da un enlace (link) y la victima al momento de darle click ejecuta el payload XSS en su buscador como parte de la respuesta, ahí se puede acontecer el 'Cookie Stealing'.
+
+- 'Almacenado' ('Stored'): Este tipo de XSS se produce cuando un atacante es capaz de almacenar código malicioso en una base de datos o en el servidor web que aloja una página web vulnerable. Este código se ejecuta cada vez que se carga la página.
+
+- 'DOM-Based': Este tipo de XSS se produce cuando el código malicioso 'se ejecuta en el navegador del usuario a través del DOM' (Modelo de Objetos del Documento). Esto se produce cuando el código JavaScript en una página web modifica el DOM en una forma que es vulnerable a la inyección de código malicioso.
+```
+
+```bash 
+En puntos donde la entrada del usuario se 'refleja o almacena' y luego se muestra en el navegador 'sin escapar caracteres especiales'.
+
+Ejemplos comunes:
+- Comentarios o mensajes en foros (almacenado)
+- Búsquedas con resultados que muestran tu input (reflejado)
+- Parámetros en la URL que se imprimen en el HTML 
+- Formularios de contacto, nombre de usuario, etc. 
+- Campos en aplicaciones SPA (Single Page Apps) mal protegidas
+
+Mitigación:
+- Escapado de caracteres '(<, >, ", \')' 
+- Content Security Policy (CSP) 
+- Sanitización de HTML si es necesario mostrar contenido del usuario
+```
 
 Los ataques XSS pueden tener graves consecuencias para las empresas y los usuarios individuales. Por esta razón, es esencial que los desarrolladores web implementen medidas de seguridad adecuadas para prevenir vulnerabilidades XSS. Estas medidas pueden incluir la validación de datos de entrada, la eliminación de código HTML peligroso, y la limitación de los permisos de JavaScript en el navegador del usuario.
 
@@ -252,7 +272,7 @@ External JavaScript Source, podemos cargar código desde un servidor externo par
 ❯ nc -nlvp 443      # Nos ponemos en escucha para recibir la cookie
 ```
 
-## Victima cree un post en una web 
+## Víctima cree un post en una web 
 
 ```javascript
 // 1. Esto lo colocaremos en la web de prueba y crearemos la publicación
