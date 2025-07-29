@@ -88,6 +88,8 @@ En Windows:  iss apppool\defaultapppool, User, NT Authority\System
 
 ## Comandos
 
+* [Cyberchef](https://gchq.github.io/CyberChef/)
+
 ```bash 
 ❯ cadaver http://IP/dir/
 
