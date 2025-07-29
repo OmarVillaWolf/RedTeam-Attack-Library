@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0 Metodologías/2 PTES/4 Vulnerability Analysis.md",
+                "file": "0 Metodologías/2 PTES/1 Pre-engagement.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "4 Vulnerability Analysis"
+              "title": "1 Pre-engagement"
             }
           },
           {
@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "7 Hacking Web/2 XSS.md",
+                "file": "7 Hacking Web/17 Abuso de APIs.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "2 XSS"
+              "title": "17 Abuso de APIs"
             }
           },
           {
@@ -50,21 +50,6 @@
               },
               "icon": "lucide-file",
               "title": "0 DC Enumeration"
-            }
-          },
-          {
-            "id": "f1bf06b466c0f2c0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "8 AD 2/2 Attacks/4 Kerberoasting/1 Rubeus.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "1 Rubeus"
             }
           },
           {
@@ -97,8 +82,7 @@
               "title": "80 - HTTP"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -236,12 +220,19 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "9762b93c87d75c58",
+  "active": "903938a0a68cd1cf",
   "lastOpenFiles": [
+    "0 Metodologías/2 PTES/2 Intelligence Gathering.md",
+    "7 Hacking Web/17 Abuso de APIs.md",
+    "2 Ports/80 - HTTP.md",
+    "0 Metodologías/2 PTES/1 Pre-engagement.md",
     "0 Metodologías/2 PTES/4 Vulnerability Analysis.md",
-    "7 Hacking Web/2 XSS.md",
-    "2 Ports/Ports DC/0 DC Enumeration.md",
+    "2.1 Tools/Nmap.md",
     "8 AD 2/2 Attacks/4 Kerberoasting/1 Rubeus.md",
+    "2 Ports/Ports DC/0 DC Enumeration.md",
+    "7.1 PortSwigger/2 XSS/2 Practitioner/2 XSS Reflected.md",
+    "7.1 PortSwigger/2 XSS/1 Apprentice/1 XSS Reflected, Stored without encoded HTML.md",
+    "7 Hacking Web/2 XSS.md",
     "8 AD 2/2 Attacks/3 ASREProastable/1 Rubeus.md",
     "8 AD 2/2 Attacks/6 ACL - Linux/1 WriteOwner Grupo.md",
     "8 AD 2/2 Attacks/7 Abuso de GPO/1 GPO.md",
@@ -254,16 +245,9 @@
     "7 Hacking Web/19 Ataque AXRF - Full Zone Transfer.md",
     "7 Hacking Web/13 NoSQLI.md",
     "7 Hacking Web/14 inyecciones LDAP.md",
-    "2.1 Tools/Nmap.md",
     "0 Metodologías/2 PTES/3 Threat Modeling.md",
     "0 Metodologías/2 PTES/7 Reporting.md",
-    "0 Metodologías/2 PTES/1 Pre-engagement.md",
-    "0 Metodologías/2 PTES/2 Intelligence Gathering.md",
     "0 Metodologías/2 PTES/5 Exploitation.md",
-    "0 Metodologías/2 PTES/6 Post-Exploitation.md",
-    "2 Ports/80 - HTTP.md",
-    "0 Metodologías/2 PTES/0 PTES.md",
-    "0 Metodologías/1 OWASP Top 10 - 2021/1 A01 Broken Access Control/2 IDOR.md",
     "0 Metodologías/2 PTES",
     "0 Metodologías/1 OWASP Top 10/2 PTES",
     "0 Metodologías/1 OWASP Top 10 - 2021/1 A01 Broken Access Control",
