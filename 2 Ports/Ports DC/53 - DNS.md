@@ -51,10 +51,23 @@ DNS (Domain Name System) es crucial para el funcionamiento de Active Directory y
 ```
 
 ```bash 
-❯ nslookup domain.com   # Consulta la configuracion DNS de un dominio y te da su direccion IP
+❯ nslookup domain.com    # Consulta la configuracion DNS de un dominio y te da su direccion IP
+
+❯ nslookup
+	❯ server IP           # Muestra el nombre de dominio 
+	❯ IP
 ```
 
-## DNS Records
+## Dig
+
+```powershell
+1. 'Dig' ayuda a identificar el servidor real detras del dominio 
+	❯ dig domain.com    # Obtener la IP del dominio 
+
+2. Con la IP se puede hacer un escaneo de puertos y servicios con 'Nmap'
+3. Se puede identificar si la infraestrucrura es compartida. Varios subdominios apunten a la misma IP
+4. Ayuda a la evasión por WAF/CDN que estan protegidas por 'Cloudflare' que protegen el dominio pero no la IP directa 
+```
 
 ```bash
 ❯ dig @<IP> <Domain> 
@@ -67,6 +80,8 @@ DNS (Domain Name System) es crucial para el funcionamiento de Active Directory y
 
 	# Dominio = Debemos de conocer el dominio anteriormente, ya que si no no funcionaria
 ```
+
+## DNS Records
 
 ```bash  
 ❯ dnsrecon -d <domain.com>     # Para ver los registros (Servidores) 
@@ -91,13 +106,14 @@ DNS (Domain Name System) es crucial para el funcionamiento de Active Directory y
 ```
 
 ```bash 
-❯ amass enum -d domain.com                  # Enumerar el dominio para encontrar subdominios 
+❯ amass enum -d domain.com                  # # Enumerar subdominios para mirar si existen aplicaciones distintas, tecnologias diferentes, vulnerabilidades propias y credenciales separadas
 ```
 
 ## Subfinder 
 
 ```bash 
-❯ https://github.com/projectdiscovery/subfinder
+# Enumerar subdominios para mirar si existen aplicaciones distintas, tecnologias diferentes, vulnerabilidades propias y credenciales separadas
+❯ https://github.com/projectdiscovery/subfinder   
 ```
 
 ```bash 
