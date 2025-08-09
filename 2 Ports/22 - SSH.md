@@ -22,6 +22,16 @@ SSH es un protocolo de administración remota que permite a los usuarios 'contr
 2. https://launchpad.net/ubuntu
 ```
 
+## Llaves 
+
+```bash 
+# Se encuentran en un archivo escondido en '/home/user/.ssh/' y son:
+
+1. authorized_keys
+2. id_rsa: Clave privada (Llave que se necesita al momento de autenticarse por ssh)
+3. id_rsa.pub: Clave pública 
+```
+
 ## SSH
 
 ```bash
