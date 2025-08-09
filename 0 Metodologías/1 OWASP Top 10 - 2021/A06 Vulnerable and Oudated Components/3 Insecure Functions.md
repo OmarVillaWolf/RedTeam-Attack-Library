@@ -1,0 +1,3 @@
+# Insecure Functions 
+
+Tags: #OWASP 
