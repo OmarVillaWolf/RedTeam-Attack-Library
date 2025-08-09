@@ -43,19 +43,19 @@ Tags: #Nmap #Escaneo #UDP #TCP
 
 ```bash 
 # Hay un sistema de seguridad cuando al momento de escanear salen todo los puertos abiertos 
-❯ nmap -p- -sS -Pn -n --disable-arp-ping --source-port 53 <IP>     # Evadir un WAF 
+❯ nmap -p- -sS -Pn -n --disable-arp-ping --source-port 53 ❮IP❯     # Evadir un WAF 
 
-❯ nmap -D RND:3 -v <IP>                 # Utilizar una IP señuelo 'Decoy'
+❯ nmap -D RND:3 -v ❮IP❯                 # Utilizar una IP señuelo 'Decoy'
 	# D RDN = Numero de 'decoy', en este caso son 3
 
-❯ nmap -sS -Pn --spoof-mac 0 <IP>       # Falsificacion de MAC Address
+❯ nmap -sS -Pn --spoof-mac 0 ❮IP❯      # Falsificacion de MAC Address
 
-❯ nmap --randomize-hosts <IP>           
+❯ nmap --randomize-hosts ❮IP❯           
 
-❯ nmap -g 445 -v <IP>                   # Manipulacion del puerto de origen 
+❯ nmap -g 445 -v ❮IP❯                  # Manipulacion del puerto de origen 
 	# g = Puerto de origen 
 
-❯ nmap -sS -T4 -f -v <IP>               # Fragmentamos el trafico para evadir el Firewall 'Aveces funciona'
+❯ nmap -sS -T4 -f -v ❮IP❯               # Fragmentamos el trafico para evadir el Firewall 'Aveces funciona'
 	# f = Fragmentar 
 	# sS = Aplica un TCP SYN Scan (Rapido, Fiable, Sigiloso)
 	# T = Velocidad 
@@ -80,17 +80,17 @@ Tags: #Nmap #Escaneo #UDP #TCP
 ```
 
 ```bash 
-❯ nmap -Pn <IP>
-❯ nmap -Pn -p443 <IP>
-❯ nmap -Pn -sV -O <IP> -oX Scan    # Importa el resultado en un archivo XML llamado 'Scan' que luego lo podemos utilizar en Metasploit 
+❯ nmap -Pn ❮IP❯
+❯ nmap -Pn -p443 ❮IP❯
+❯ nmap -Pn -sV -O ❮IP❯ -oX Scan    # Importa el resultado en un archivo XML llamado 'Scan' que luego lo podemos utilizar en Metasploit 
 ```
 
 ```bash 
-❯ nmap --top-ports 500 --open -T5 -v -n ❮Target IP❯
+❯ nmap --top-ports 500 --open -T5 -v -n ❮IP❯
 ```
 
 ```bash 
-❯ nmap -n -P0 -p- -sS -g 53 -T5 -vv ❮Target IP❯
+❯ nmap -n -P0 -p- -sS -g 53 -T5 -vv ❮IP❯
 	# n = No aplicar resolucion DNS
 	# P0 = Saltar etapa de 'Host Discovery' 
 	# p = Escaneo de todos los puertos '65535'
@@ -99,7 +99,7 @@ Tags: #Nmap #Escaneo #UDP #TCP
 	# T5 = La velocidad de escaneo 'agresivo'
 	# v = Verbosidad 
 
-❯ nmap -n -P0 -p 22,80 -sV -sS -g 53 -T5 -vv ❮Target IP❯
+❯ nmap -n -P0 -p 22,80 -sV -sS -g 53 -T5 -vv ❮IP❯
 	# sV = Version 
 ```
 
@@ -116,8 +116,8 @@ Tags: #Nmap #Escaneo #UDP #TCP
 ```
 
 ```bash 
-❯ nmap -p- --open -sS --min-rate 500 -vvv -n -Pn  ❮Target IP❯   # Escanear en un entorno real 
-❯ nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn ❮Target IP❯  -oG allPorts     # Escanear
+❯ nmap -p- --open -sS --min-rate 500 -vvv -n -Pn  ❮IP❯   # Escanear en un entorno real 
+❯ nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn ❮IP❯  -oG allPorts     # Escanear
 
 	# Protocolo usado TCP, UDP
 	#  p = Escanea todos los puertos (65535)
@@ -133,7 +133,7 @@ Tags: #Nmap #Escaneo #UDP #TCP
 ```
 
 ```bash
-❯ nmap -sCV -p22,... ❮Target IP❯ -oN targeted
+❯ nmap -sCV -p22,... ❮IP❯ -oN targeted
 
 	#  p22,... = Indica los puertos que se quieren escanear
 	#  sC = Lanza scripts básicos de enumeración
@@ -142,7 +142,7 @@ Tags: #Nmap #Escaneo #UDP #TCP
 	#  oN targeted = Exporta el output en formato Nmap
 
 
-❯ nmap -sCV -p22,... ❮Target IP❯ -oX targeted   # Muestra el recultado en formato XML
+❯ nmap -sCV -p22,... ❮IP❯ -oX targeted   # Muestra el recultado en formato XML
 
 ❯ xsltproc targetedXML > index.html     # Convierte el resultado del escaneo que se obtiene por XML a HTML para poder ver los resultados desde la web 
 
@@ -150,13 +150,13 @@ Tags: #Nmap #Escaneo #UDP #TCP
 ```
 
 ```bash
-❯ nmap -sU --top-ports 100 --open -T5 -v -n ❮Target IP❯     # Escaneo de puertos por UDP
+❯ nmap -sU --top-ports 100 --open -T5 -v -n ❮IP❯     # Escaneo de puertos por UDP
 
 	# sU = Escaneo de UDP
 
-❯ nmap -sU -p1-250 ❮Target IP❯                 # Escaneo por UDP del 1 al 250
-❯ nmap -sUV -p134,177,234 ❮Target IP❯          # Muestra las versiones de los puertos de UDP
-❯ nmap -sUV -p134 ❮Target IP❯ --script=discovery    # Enumerar informacion 
+❯ nmap -sU -p1-250 ❮IP❯                 # Escaneo por UDP del 1 al 250
+❯ nmap -sUV -p134,177,234 ❮IP❯          # Muestra las versiones de los puertos de UDP
+❯ nmap -sUV -p134 ❮IP❯ --script=discovery    # Enumerar informacion 
 ```
 
 ## WordPress
@@ -241,33 +241,35 @@ Tags: #Nmap #Escaneo #UDP #TCP
 ## HTTP
 
 ```bash
-❯ nmap --script http-enum -p80 ❮Target IP❯ -oN WebScan #  http-enum = Aplica Fuzing a HTTP, utiliza un diccionario de 1000 rutas y ver si hay algunas rutas existen
+❯ nmap --script http-enum -p80 web.com -oN WebScan     # Manera de hacerlo sin IP  
+
+❯ nmap --script http-enum -p80 ❮IP❯ -oN WebScan #  http-enum = Aplica Fuzing a HTTP, utiliza un diccionario de 1000 rutas y ver si hay algunas rutas existen
 
 	#  -p80 = Indica el puerto que se quiere escanear
 	#  Target IP = Dirección IP que se quiere escanear
 	#  -oN WebScan = Exporta el output a un fichero en formato nmap con nombre “WebScan”
 
 # Enumeración WampServer
-❯ nmap -p 80, 8080, 3306 -sV ❮Target IP❯    # El output debe mostrar el titulo de 'http-title WampServer' en un Apache, además de usar PHP y tener el puerto 3306 de MySQL 'Web phpMyAdmin'
+❯ nmap -p 80, 8080, 3306 -sV ❮IP❯    # El output debe mostrar el titulo de 'http-title WampServer' en un Apache, además de usar PHP y tener el puerto 3306 de MySQL 'Web phpMyAdmin'
 ❯ nmap --script http-tittle,http-server-header -p 80, 8080 ❮Target IP❯
 
 # Enumeracion de IIS
-❯ nmap --script http-headers -p80 ❮Target IP❯         # Nos trae informacion sobre las cabeceras
+❯ nmap --script http-headers -p80 ❮IP❯         # Nos trae informacion sobre las cabeceras
 
 # Muestra información sobre los métodos soportados
-❯ nmap --script http-methods -p80 ❮Target IP❯ --script-args http-methods.url-path=/webdav/      
+❯ nmap --script http-methods -p80 ❮IP❯ --script-args http-methods.url-path=/webdav/      
 
 # Identifica las instalaciones de Webdav, utilizando opciones y metodos
-❯ nmap --script http-webdav-scan -p80 ❮Target IP❯ --script-args http-methods.url-path=/webdav/ 
+❯ nmap --script http-webdav-scan -p80 ❮IP❯ --script-args http-methods.url-path=/webdav/ 
 
 # Enumeracion de Apache
-❯ nmap --script banner -p80 ❮Target IP❯    # Miras el banner y su informacion principal 
+❯ nmap --script banner -p80 ❮IP❯    # Miras el banner y su informacion principal 
 ```
 
 ## HTTPS
 
 ```bash
-❯ nmap --script ssl-heartbleed -p443 ❮Target IP❯ 	# heartbleed = Verifica si es vulnerable a Heartbleed
+❯ nmap --script ssl-heartbleed -p443 ❮IP❯ 	# heartbleed = Verifica si es vulnerable a Heartbleed
 
 	#  -p8443 o 443 = Indica el puerto que se quiere escanear
 	#  Target IP = Dirección IP que se quiere escanear
@@ -276,120 +278,123 @@ Tags: #Nmap #Escaneo #UDP #TCP
 ## FTP
 
 ```bash
-❯ nmap --script ftp-anon -p21 ❮Target IP❯              # ftp-enum = Escanea y mira si el usuario invitado 'Anonymous' esta habilitado
+❯ nmap --script ftp-anon -p21 ❮IP❯              # ftp-enum = Escanea y mira si el usuario invitado 'Anonymous' esta habilitado
 
 	#  p21 = Indica el puerto que se quiere escanear
 	#  Target IP = Dirección IP que se quiere escanear
 
 
 # Cuando tenemos un usuario valido podemos hacerle fuerza bruta, colocamos la ruta del archivo que contiene al usuario
-❯ nmap ❮Target IP❯ --script ftp-brute --script-args userdb=/root/users.txt -p21
+❯ nmap ❮IP❯ --script ftp-brute --script-args userdb=/root/users.txt -p21
 ```
 
 ## SSH
 
 ```bash 
-❯ nmap --script ssh2-enum-algos -p22 ❮Target IP❯     # Enumeracion del SSH, algos = enumera todos los algoritmos
+❯ nmap --script ssh2-enum-algos -p22 ❮IP❯     # Enumeracion del SSH, algos = enumera todos los algoritmos
 
-❯ nmap --script ssh-hostkey -p22 ❮Target IP❯ --script-args ssh_hostkey=full   # Nos muestra todos los SSH RSA host key
+❯ nmap --script ssh-hostkey -p22 ❮IP❯ --script-args ssh_hostkey=full   # Nos muestra todos los SSH RSA host key
 
-❯ nmap --script ssh-auth-methods -p22 ❮Target IP❯ --script-args="ssh.user=<username>" # Para saber si el usuario tiene metodos de autenticacion como 'publickey, password', de lo contrario podriamos entrar sin passwd
+❯ nmap --script ssh-auth-methods -p22 ❮IP❯ --script-args="ssh.user=<username>" # Para saber si el usuario tiene metodos de autenticacion como 'publickey, password', de lo contrario podriamos entrar sin passwd
 
 # Cuando tenemos un usuario valido podemos hacerle fuerza bruta, colocamos la ruta del archivo que contiene al usuario
-❯ nmap ❮Target IP❯ --script ssh-brute --script-args userdb=/root/users.txt -p22
+❯ nmap ❮IP❯ --script ssh-brute --script-args userdb=/root/users.txt -p22
 ```
 
 ## SNMP
 
 ```bash 
-❯ nmap -sU -p 161 --script=snmp-processes IP    # Enumerar los procesos que se estan ejecutando 
+❯ nmap -sU -p 161 --script=snmp-processes ❮IP❯    # Enumerar los procesos que se estan ejecutando 
 
-❯ nmap -sU --script snmp-brute IP [--scripts-args snmp-brute.communitiesdb=rockyou.txt] # Ataque de diccionario 
+❯ nmap -sU --script snmp-brute ❮IP❯ [--scripts-args snmp-brute.communitiesdb=rockyou.txt] # Ataque de diccionario 
 
-❯ nmap -sU -p 161 --script=snmp-interfaces IP   # Muestra las interfaces del servidor 
+❯ nmap -sU -p 161 --script=snmp-interfaces ❮IP❯   # Muestra las interfaces del servidor 
 ```
 
 ## NetBIOS
 
 ```bash 
-❯ nmap -sV -v --script nbstat.nse IP 
-❯ nmap -sU -p 137 --script nbstat.nse IP 
+❯ nmap -sV -v --script nbstat.nse ❮IP❯ 
+❯ nmap -sU -p 137 --script nbstat.nse ❮IP❯ 
 ```
 
 ## NFS
 
 ```bash 
-❯ nmap -sV --script=nfs-showmount IP 
+❯ nmap -sV --script=nfs-showmount ❮IP❯ 
 ```
 
 ## MYSQL
 
 ```bash 
-❯ nmap ❮Target IP❯ -p 3306 --script=mysql-empty-password     # Nos muestra los usuarios que se pueden loggear sin password 'anonymous login'
+❯ nmap ❮IP❯ -p 3306 --script=mysql-empty-password     # Nos muestra los usuarios que se pueden loggear sin password 'anonymous login'
 
-❯ nmap ❮Target IP❯ -p 3306 --script=mysql-info               # Nos muestra informacion de la base de datos, capabilities 
+❯ nmap ❮IP❯ -p 3306 --script=mysql-info               # Nos muestra informacion de la base de datos, capabilities 
 
 # Colocamos un usuario y su passwd valida, si somos root nos mostrara los usuarios existentes en la DB
-❯ nmap ❮Target IP❯ -p 3306 --script=mysql-users --script-args="mysqluser='root',mysqlpass=''" 
+❯ nmap ❮IP❯ -p 3306 --script=mysql-users --script-args="mysqluser='root',mysqlpass=''" 
 
 # Colocamos un usuario y su passwd valida, si somos root nos mostrara las bases de datos en la DB
-❯ nmap ❮Target IP❯ -p 3306 --script=mysql-databases --script-args="mysqluser='root',mysqlpass=''"
+❯ nmap ❮IP❯ -p 3306 --script=mysql-databases --script-args="mysqluser='root',mysqlpass=''"
 
 # Colocamos un usuario y su passwd valida, si somos root nos mostrara el directorio 'datadir:/var/lib/mysql/'
-❯ nmap ❮Target IP❯ -p 3306 --script=mysql-variables --script-args="mysqluser='root',mysqlpass=''"
+❯ nmap ❮IP❯ -p 3306 --script=mysql-variables --script-args="mysqluser='root',mysqlpass=''"
 
 # Colocamos un usuario y su passwd valida, Si el archivo de privilegios puede ser otorgado a usuarios no admin
-❯ nmap ❮Target IP❯ -p 3306 --script=mysql-audit --script-args="mysql-audit.username='root',mysql-audit.password='',mysql-audit.filename='/usr/share/nmap/nselib/data/mysql-cis.audit'"
+❯ nmap ❮IP❯ -p 3306 --script=mysql-audit --script-args="mysql-audit.username='root',mysql-audit.password='',mysql-audit.filename='/usr/share/nmap/nselib/data/mysql-cis.audit'"
 
 # Colocamos un usuario y su passwd valida, nos muestra los hashes de los usuarios 
-❯ nmap ❮Target IP❯ -p 3306 --script=mysql-dump-hashes --script-args="username='root',password=''"
+❯ nmap ❮IP❯ -p 3306 --script=mysql-dump-hashes --script-args="username='root',password=''"
 
 # Colocamos un usuario y su passwd valida, y asi podremos usar una query para que nos muestre 
-❯ nmap ❮Target IP❯ -p 3306 --script=mysql-query --script-args="query='select count(*) from <dbs.table_name>;',username='root',password=''"
+❯ nmap ❮IP❯ -p 3306 --script=mysql-query --script-args="query='select count(*) from <dbs.table_name>;',username='root',password=''"
 ```
 
 ## MSSQL
 
 ```bash 
-❯ nmap ❮Target IP❯ -p 1433 --script ms-sql-info     # Nos muestra la informacion de la DB
+❯ nmap ❮IP❯ -p 1433 --script ms-sql-info     # Nos muestra la informacion de la DB
 
-❯ nmap ❮Target IP❯ -p 1433 --script ms-sql-ntlm-info --script-args mssql.instance-port=1433   # Nos muestra la informacion de la DB
+❯ nmap ❮IP❯ -p 1433 --script ms-sql-ntlm-info --script-args mssql.instance-port=1433   # Nos muestra la informacion de la DB
 
 # Hacemos fuerza bruta para enumerar usuarios y passwds
-❯ nmap ❮Target IP❯ -p 1433 --script ms-sql-brute --script-args userdb=/root/Descktop/wordlists/common_users.txt,passdb=/root/Desktop/wordlists/100-common-passwords.txt
+❯ nmap ❮IP❯ -p 1433 --script ms-sql-brute --script-args userdb=/root/Descktop/wordlists/common_users.txt,passdb=/root/Desktop/wordlists/100-common-passwords.txt
 
-❯ nmap ❮Target IP❯ -p 1433 --script ms-sql-empty-password     # Nos muestra los usuarios que se pueden loggear sin password 'anonymous login' o 'sa user'
+❯ nmap ❮IP❯ -p 1433 --script ms-sql-empty-password     # Nos muestra los usuarios que se pueden loggear sin password 'anonymous login' o 'sa user'
 
 # Colocamos un usuario y su passwd valida, y asi podremos usar una query para qextraer los 'sysusers'
-❯ nmap ❮Target IP❯ -p 1433 --script ms-sql-query --script-args mssql.username=admin,mssql.password=<password>,ms-sql-query.query="SELECT * FROM <db>.<tablename>" -oN out.txt
+❯ nmap ❮IP❯ -p 1433 --script ms-sql-query --script-args mssql.username=admin,mssql.password=<password>,ms-sql-query.query="SELECT * FROM <db>.<tablename>" -oN out.txt
 
 	# out.txt = Formato de salida del escaneo de Nmap 
 
-❯ nmap ❮Target IP❯ -p 1433 --script ms-sql-dump-hashes --script-args mssql.username=admin,mssql.password=<passwd> # Nos muestra los hashes
+❯ nmap ❮IP❯ -p 1433 --script ms-sql-dump-hashes --script-args mssql.username=admin,mssql.password=<passwd> # Nos muestra los hashes
 
-❯ nmap ❮Target IP❯ -p 1433 --script ms-sql-xp-cmdshell --script-args mssql.username=admin,mssql.password=<passwd>,ms-sql-xp-cmdshell.cmd="ipconfig" # Podemos ejecutar comandos de forma remota usando la base de datos
+❯ nmap ❮IP❯ -p 1433 --script ms-sql-xp-cmdshell --script-args mssql.username=admin,mssql.password=<passwd>,ms-sql-xp-cmdshell.cmd="ipconfig" # Podemos ejecutar comandos de forma remota usando la base de datos
 	# Podemos usar mas comandos como: 'type C:\flag.txt' y nos mostrara el contenido de la flag por consola
 ```
 
 ## LDAP
+
 ```bash
-❯ nmap --script ldap\* -p389 ❮Target IP❯               # Para enumerar LDAP
+❯ nmap --script ldap\* -p389 ❮IP❯               # Para enumerar LDAP
 
 	#  p389 = Indica el puerto que se quiere escanear
 	#  Target IP = Dirección IP que se quiere escanear
 ```
 
 ## Shellshock
+
 ```bash 
 # Ver si es vulnerable a ShellShock, pero antes debemos de buscar la ruta en donde se encuentra el cgi
 
-❯ nmap -p80 <IP> --script=http-shellshock --script-args "http-shelshock.uri=/gettime.cgi" 
-❯ nmap --script http-shellshock --script-args uri=/cgi-bin/user.sh -p80 <IP>
+❯ nmap -p80 ❮IP❯ --script=http-shellshock --script-args "http-shelshock.uri=/gettime.cgi" 
+❯ nmap --script http-shellshock --script-args uri=/cgi-bin/user.sh -p80 ❮IP❯
 ```
 
 ## RPC
+
 ```bash 
-❯ nmap -p111 --script=nfs-ls,nfs-statfs,nfs-showmount <IP>   # Enumerar el servicio RPC, podemos ver las monturas e informacion adicional  
+❯ nmap -p111 --script=nfs-ls,nfs-statfs,nfs-showmount ❮IP❯   # Enumerar el servicio RPC, podemos ver las monturas e informacion adicional  
 ```
 
 ## Opciones de Nmap
@@ -412,7 +417,7 @@ Tags: #Nmap #Escaneo #UDP #TCP
 
 # TCP CONNECT SCAN - Tecnica completa de Scan - SYN Scan, puede ser detectado por los FW
 # SCAN SYN - Abreviado (SYN - SYN ACK - RST) - Silencioso
-❯ nmap <IP>   # Aqui si se completa la sesion en el Three Way Handshake (Demorado, evidencia)
+❯ nmap ❮IP❯   # Aqui si se completa la sesion en el Three Way Handshake (Demorado, evidencia)
 
 # UDP Scan - Escaneo lento
 -sU          # Escaneo por UDP (DHCP - 67 servidor / 68 Cliente)
