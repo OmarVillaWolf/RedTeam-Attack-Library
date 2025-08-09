@@ -33,39 +33,53 @@ Tags: #Web #Reconocimiento #Escaneo  #HTTP #HTTP3 #Metodos
 
 ```bash 
 # Que podemos buscar en una pagina Web
-1. Mirar el codigo fuente 'Ctrl + u'
-2. Inspeccionar el codigo 'Ctrl + Shift + c'
-3. Robots.txt / Sitemap.xml
-4. Métodos permitidos 'Curl'
-5. Listado de directorios 'Fuzzing o Burpsuite'. Buscar directorio, además de buscar archivos con extensiones especificas como: .php, .html, .txt, .asp, .aspx 
-6. Nikto
-7. Rastreo pasivo 'Burpsuite' crawling
-8. SQLMap
-9. XSS con XSSer
-10. HTTP login con Hydra 'WordPress'
-11. Ataque al 'basic auth' con Burpsuite 'Intruder - Sniper' (Cargar diccionario y Payload Processing 'add prefix=admin:' y 'Encode=base64')
-12. Fuerza bruta con 'Burpsuite' al 'login Form' con 'Intruder'
+1. Script de Nmap para 'http'
+2. 'Whatweb / Wappalyzer' Identificar tecnologías 
+3. Mirar el código fuente 'Ctrl + u'
+4. Inspeccionar el código 'Ctrl + Shift + c'
+5. Robots.txt / Sitemap.xml
+6. Métodos permitidos 'Curl'
+7. 'Fuzzing o Burpsuite'
+	1. Directorios
+	2. Subdominios
+	3. Archivos como: .php, .html, .txt, .asp, .aspx 
+8. Nikto (Mirar vulnerabilidades)
+9. Rastreo pasivo 'Burpsuite' crawling
 
 # Subdominios 
-1. Gobuster, Wfuzz, Ffuz
-2. Sublist3r
-3. Dnsrecon
-4. OSINT (crt.sh)
-5. Google Dorks
+1. Sublist3r
+2. Dnsrecon
+3. OSINT (crt.sh)
+4. Google Dorks
 
 # Enumeracion de usuarios 
 1. Ffuf (Agregando cabeceras y contenido cuando encontramos 'username already exists')
 2. Fuerza bruta (Cuando ya tenemos algunos nombres de usuarios)
 
 # Atajos en la Web
-Recargar la pagina 'Ctrl + r'
-Abrir una pagina en otra pestaña 'Ctrl + Click-Izquierdo'
+Recargar la página 'Ctrl + r'
+Abrir una página en otra pestaña 'Ctrl + Click-Izquierdo'
 
 # Data sensible Expuesta
 1. Weak Password Storage 
 2. Information Disclosure in Error Messages (Banner)
 3. Directory Traversal 
 4. Unencrypted Backups
+```
+
+## Si existe un folder '.GIT' 
+
+* [Git_Hacker](https://github.com/rbozburun/git-hacker)
+* [Git_Dump](https://github.com/Jenderal92/git-dump)
+* [GitHack](https://github.com/lijiejie/GitHack)
+
+```bash 
+# Tools para obtener el projecto completo 
+
+❯ git_hacker.py 
+❯ git-dump.py 
+
+❯ python3 GitHack.py http://web.com/.git/     # Extraer todos los recursos del proyecto de GIT
 ```
 
 ## Usuarios por defecto 
