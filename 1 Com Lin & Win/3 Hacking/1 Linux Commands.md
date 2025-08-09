@@ -49,6 +49,10 @@ Variables de entorno:
 ❯ parrot-upgrade         # Actualizar el SO en Parrot 
 ```
 
+```bash 
+❯ pip3 install pwn --break-system-packages    # Instalar las pwntools 
+```
+
 ```bash
 /tmp                     # Directorios con capacidad de lectura y escritura en Linux       
 /var/tmp 
@@ -152,6 +156,7 @@ Variables de entorno:
 
 ```bash
 ❯ find  / -name file.txt 2>/dev/null    # Buscar un archivo desde la raiz
+❯ find . -name \*conf\*             # Buscar todos los archivos que contengan de nombre 'conf' en el dir actual 
 ```
 
 ```bash
