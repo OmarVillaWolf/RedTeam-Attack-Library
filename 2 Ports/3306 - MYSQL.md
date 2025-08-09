@@ -14,12 +14,15 @@ Tags: #MySQL #Servidor #Comandos #DB
 ```
 
 ```bash 
+❯  mysql -u user -p passwd -D database
+
 ❯  mysql -u root -p -h <IP>         # Fuera del server 
 ❯  mysql -u root -p                 # Dentro del server 
 
 	# h = Host
 	# u = User
-	# p= passwd    -> Dar enter, root, admin -> Passwd por defecto
+	# p = passwd    -> Dar enter, root, admin -> Passwd por defecto
+	# D = Especificar una base de datos para conectarse 
 ```
 
 ```bash
