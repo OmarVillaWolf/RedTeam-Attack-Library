@@ -1,0 +1,3 @@
+# Information Disclosure  
+
+Tags: #OWASP 
