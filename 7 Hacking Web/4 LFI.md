@@ -66,6 +66,9 @@ En el LFI podemos usar:
 a) index.php
 b) admin/db_connect.php
 
+Notas:
+	1. Aveces no es necesario colocar el 'php' ya que las páginas lo concatenan automaticamente
+
 
 1. # Este filtro nos ayuda a representar el contenido en base64 el cual su resultado lo guardamos en un archivo llamado 'data'
 ❯ php://filter/convert.base64-encode/resourse=
