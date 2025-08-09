@@ -4,71 +4,26 @@
     "type": "split",
     "children": [
       {
-        "id": "fe83517d0a903b4c",
+        "id": "abbd3dfbbfea8bb5",
         "type": "tabs",
         "children": [
           {
-            "id": "903938a0a68cd1cf",
+            "id": "cef9583cdef94c2a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0 Metodologías/2 PTES/1 Pre-engagement.md",
+                "file": "7.1 PortSwigger/1 SQLi/8 SQLi Blind Time Extract Info.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "1 Pre-engagement"
+              "title": "8 SQLi Blind Time Extract Info"
             }
           },
           {
-            "id": "9762b93c87d75c58",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "7 Hacking Web/17 Abuso de APIs.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "17 Abuso de APIs"
-            }
-          },
-          {
-            "id": "e361e4e09ea06a4d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2 Ports/Ports DC/0 DC Enumeration.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "0 DC Enumeration"
-            }
-          },
-          {
-            "id": "a431e2a1d68fb371",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2.1 Tools/Nmap.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Nmap"
-            }
-          },
-          {
-            "id": "733f07fdb092f1ce",
+            "id": "66cecd570817adf6",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -81,8 +36,39 @@
               "icon": "lucide-file",
               "title": "80 - HTTP"
             }
+          },
+          {
+            "id": "b334a6271f417d09",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2.1 Tools/Fuzzers.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Fuzzers"
+            }
+          },
+          {
+            "id": "33a5ad805141122f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1 Com Lin & Win/3 Hacking/Tratamiento TTY.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Tratamiento TTY"
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -114,7 +100,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "apis ",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -149,7 +135,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 259.50467681884766
+    "width": 345.50467681884766
   },
   "right": {
     "id": "352c47b0cb031926",
@@ -220,44 +206,44 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "903938a0a68cd1cf",
+  "active": "33a5ad805141122f",
   "lastOpenFiles": [
-    "0 Metodologías/2 PTES/2 Intelligence Gathering.md",
-    "7 Hacking Web/17 Abuso de APIs.md",
-    "2 Ports/80 - HTTP.md",
-    "0 Metodologías/2 PTES/1 Pre-engagement.md",
-    "0 Metodologías/2 PTES/4 Vulnerability Analysis.md",
-    "2.1 Tools/Nmap.md",
-    "8 AD 2/2 Attacks/4 Kerberoasting/1 Rubeus.md",
-    "2 Ports/Ports DC/0 DC Enumeration.md",
-    "7.1 PortSwigger/2 XSS/2 Practitioner/2 XSS Reflected.md",
-    "7.1 PortSwigger/2 XSS/1 Apprentice/1 XSS Reflected, Stored without encoded HTML.md",
-    "7 Hacking Web/2 XSS.md",
-    "8 AD 2/2 Attacks/3 ASREProastable/1 Rubeus.md",
-    "8 AD 2/2 Attacks/6 ACL - Linux/1 WriteOwner Grupo.md",
-    "8 AD 2/2 Attacks/7 Abuso de GPO/1 GPO.md",
-    "8 AD 2/1 Enumeration/5 BloodHound.md",
-    "2 Ports/Ports DC/53 - DNS.md",
+    "7.1 PortSwigger/1 SQLi/8 SQLi Blind Time Extract Info.md",
+    "7 Hacking Web/4 LFI.md",
+    "2.1 Tools/Fuzzers.md",
+    "2 Ports/22 - SSH.md",
     "7 Hacking Web/1 SQLI.md",
-    "7 Hacking Web/3 XXE.md",
-    "7 Hacking Web/28 SQL Truncation.md",
-    "7 Hacking Web/23 SQUID Proxies.md",
-    "7 Hacking Web/19 Ataque AXRF - Full Zone Transfer.md",
-    "7 Hacking Web/13 NoSQLI.md",
-    "7 Hacking Web/14 inyecciones LDAP.md",
-    "0 Metodologías/2 PTES/3 Threat Modeling.md",
-    "0 Metodologías/2 PTES/7 Reporting.md",
-    "0 Metodologías/2 PTES/5 Exploitation.md",
-    "0 Metodologías/2 PTES",
-    "0 Metodologías/1 OWASP Top 10/2 PTES",
-    "0 Metodologías/1 OWASP Top 10 - 2021/1 A01 Broken Access Control",
-    "0 Metodologías/1 OWASP Top 10 - 2021",
-    "7.1 PortSwigger/3 CSRF/2 Practitioner",
-    "7.1 PortSwigger/3 CSRF/1 Apprentice",
-    "0 Metodologías",
-    "7.1 PortSwigger/2 XSS/3 Expert",
-    "3 Passive  Reconnaissance",
-    "7.1 PortSwigger/2 XSS/2 Practitioner",
+    "2 Ports/80 - HTTP.md",
+    "2 Ports/25 - SMTP.md",
+    "2 Ports/Ports DC/53 - DNS.md",
+    "7.1 PortSwigger/6 CORS/1 Apprentice/2 CORS trusted null origin.md",
+    "7.1 PortSwigger/6 CORS/2 Practitioner/1 CORS trusted insecure protocols.md",
+    "7.1 PortSwigger/6 CORS/1 Apprentice/1 CORS basic origin reflection.md",
+    "1 Com Lin & Win/3 Hacking/ReverShell.md",
+    "2 Ports/20, 21, 134 - FTP - TFPT.md",
+    "7.1 PortSwigger/5 DOM-based/1 Practitioner/1 DOM XSS web messages.md",
+    "7.1 PortSwigger/3 CSRF/1 Apprentice/1 CSRF no defenses.md",
+    "7.1 PortSwigger/2 XSS/1 Apprentice/2 DOM XSS Basic.md",
+    "2.1 Tools/Nmap.md",
+    "7.1 PortSwigger/2 XSS/1 Apprentice/1 XSS Reflected, Stored without encoded HTML.md",
+    "1 Com Lin & Win/3 Hacking/Transferir Archivos.md",
+    "7.1 PortSwigger/1 SQLi/7 SQLi Blind Visible Error-based.md",
+    "7 Hacking Web/2 XSS.md",
+    "7.1 PortSwigger/1 SQLi/1 Where.md",
+    "7.1 PortSwigger/1 SQLi/0 SQLite.md",
+    "1 Com Lin & Win/3 Hacking/1 Linux Commands.md",
+    "2.1 Tools/Hashcat.md",
+    "7.1 PortSwigger/1 SQLi/9 SQLi Blind OOB Extract Info.md",
+    "7.1 PortSwigger/6 CORS/1 Apprentice",
+    "7.1 PortSwigger/6 CORS/2 Practitioner",
+    "7.1 PortSwigger/6 CORS",
+    "7.1 PortSwigger/5 DOM-based/2 Expert",
+    "7.1 PortSwigger/5 DOM-based/1 Practitioner",
+    "7.1 PortSwigger/5 DOM-based",
+    "7.1 PortSwigger/4 Clickjacking/2 Practitioner",
+    "7.1 PortSwigger/4 Clickjacking/1 Apprentice",
+    "7.1 PortSwigger/4 Clickjacking",
+    "0 Metodologías/1 OWASP Top 10 - 2021/A10 SSRF",
     "Z Imagenes/Hacking/Piv2.png",
     "Z Imagenes/Hacking/Piv1.png",
     "Z Imagenes/Hacking/SSRF.png",
