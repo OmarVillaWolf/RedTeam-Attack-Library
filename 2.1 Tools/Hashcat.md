@@ -90,3 +90,10 @@ Notas:
 	# d = ID de la GPU a usar en 'OpenCL' (1 = GPU Nvidia con memoria de 8064 MB). Varia en cada maquina 
 	# w = Perfil de Workload (1=Low, 2=Default, 3=High, 4=Nightmare). 
 ```
+## Bcrypt
+
+```bash 
+❯ hashcat hashes rockyou.txt -O -m 3200
+
+	# O = Optimización 
+```
