@@ -24,7 +24,7 @@ Tags: #Wfuzz #Gobuster #Ffuf #Fuzzing #SubDomains #Directories #Dirbuster #Dirse
 ```bash
 # Enumeracion de Subdominios. Gobuster trabaja muy bien con sockets y conexiones 
 
-❯ gobuster vhost --append-domain -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --url https://❮IP❯/ -t 200 -k 
+❯ gobuster vhost --append-domain -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --url https://web.com/ -t 200 -k 
 
 	# append-domain = Enumerar los subdominios
 	# vhost = Modo enumeracion VHost Subdominios
@@ -34,7 +34,7 @@ Tags: #Wfuzz #Gobuster #Ffuf #Fuzzing #SubDomains #Directories #Dirbuster #Dirse
 ```
 
 ```bash
-❯ gobuster vhost --append-domain -u https://host.com/ -w /usr/share/Seclists/Discovery/DNS/subdomains-top1million-5000.txt -t 200 | grep -v "403"
+❯ gobuster vhost --append-domain -u https://web.com/ -w /usr/share/Seclists/Discovery/DNS/subdomains-top1million-5000.txt -t 200 | grep -v "403"
 
 	# append-domain = Enumerar los subdominios
 	# vhost = Modo enumeracion VHost Subdominios
@@ -47,7 +47,7 @@ Tags: #Wfuzz #Gobuster #Ffuf #Fuzzing #SubDomains #Directories #Dirbuster #Dirse
 ```bash
 # Enumeración de directorios en una web 
 
-❯ gobuster dir -u http://host.com/ -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 --add-slash -b 403,404
+❯ gobuster dir -u http://web.com/ -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 --add-slash -b 403,404
 
 	# dir = Modo enumeracion directorios y archivos 
 	# u = Colocamos la url
@@ -58,7 +58,7 @@ Tags: #Wfuzz #Gobuster #Ffuf #Fuzzing #SubDomains #Directories #Dirbuster #Dirse
 ```
 
 ```bash
-❯ gobuster dir -u http://host.com/ -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -b 403,404 -x .php,.html,.txt,.xml -r
+❯ gobuster dir -u http://web.com/ -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -b 403,404 -x .php,.html,.txt,.xml -r
 
 	# dir = Modo enumeracion directory/file
 	# u = Colocamos la url
@@ -68,7 +68,7 @@ Tags: #Wfuzz #Gobuster #Ffuf #Fuzzing #SubDomains #Directories #Dirbuster #Dirse
 	# x = Que extensiones queremos buscar (.php,.html,.txt)
 	# r = Para hacer 'Follow Redirect'
 
-❯ gobuster dir -u http://IP -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x asp,txt,html,aspx -f 
+❯ gobuster dir -u http://web.com -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x asp,txt,html,aspx -f 
 
 	# dir = Enumeracion de directorios y archivos
 	# u = URL
@@ -84,7 +84,7 @@ Nota:
 ```
 
 ```bash
-❯ gobuster dir -u https://miwifi.com/ -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -s 200 -x html -b ' '
+❯ gobuster dir -u https://web.com/ -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -s 200 -x html -b ' '
 
 	# Despues de la 'b' colocar una cadena vacia para evitar el error
 	# s = Queremos codigos de estado 200 = OK
@@ -98,7 +98,9 @@ Nota:
 
 ```bash
 # Listar subdominios 
-❯ wfuzz -c --hc=404 --hh=12345 -t 200 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H “Host: FUZZ.❮IP❯” https://❮IP❯/
+❯ wfuzz -c --hc=404 --hh=12345 -t 200 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H “Host: FUZZ.❮IP❯” https://web.com
+
+❯ wfuzz -c --hc=404 --hh=12345 -t 200 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H “Host: preprod-FUZZ.web.com” https://web.com
 
 	# hc = HideCode 404
 	# c = Formato colorido
@@ -110,7 +112,7 @@ Nota:
 ```
 
 ```bash
-❯ wfuzz -c --hc=403 -t 20 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H “Host: FUZZ.tinder.com” https://tinder.com/
+❯ wfuzz -c --hc=403 -t 20 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H “Host: FUZZ.web.com” https://web.com
 
 	# c = Permite meter colores
 	# t = Lanzar tareas en paralelo al mismo tiempo
@@ -121,21 +123,22 @@ Nota:
 ```
 
 ```bash
-❯ wfuzz -c -L --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://miwifi.com/FUZZ
-❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://miwifi.com/FUZZ/
+# Listar directorios 
+❯ wfuzz -c -L --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ
+❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ/
 
 	# L = Te aplica un Follow Redirect al codigo de estado 301, si no nos muestra nada, le quitamos el **-L** y le colocamos una barra al final 
 	# hc = HideCode 403 y 404
 ```
 
 ```bash
-❯ wfuzz -c --sl=216 --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://miwifi.com/FUZZ
+❯ wfuzz -c --sl=216 --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ
 
 	# sl = ShowLine es para me muestre ese numero de lineas (l=ele) especifico
 ```
 
 ```bash
-❯ wfuzz -c --hl=216 --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://miwifi.com/FUZZ
+❯ wfuzz -c --hl=216 --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ
 
 	# hl = HideLine y sirve para ocultar ese numero de lineas
 	# hw = HideWords y sirve para ocultar el numero de palabras
@@ -147,7 +150,7 @@ Nota:
 ```bash
 # Conceptos de listas 
 
-❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://miwifi.com/FUZZ.html
+❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ.html
 
 	# Para enumerar archivos html en una ruta 
 ```
@@ -155,7 +158,7 @@ Nota:
 ```bash
 # Crear un Payload de tipo lista 
 
-❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -z list,html-txt-php https://miwifi.com/FUZZ.FUZ2Z
+❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -z list,html-txt-php https://web.com/FUZZ.FUZ2Z
 
 	# Para enumerar diferentes archivos en una ruta 
 	# z = Crear un payload de tipo lista 
@@ -165,7 +168,7 @@ Nota:
 ```bash
 # Conceptos de Range 
 
-❯ wfuzz -c --hw=6515 -t 200 -z range,1-20000 'https://www.mi.com/shop/buy/detail?product_id=FUZZ'
+❯ wfuzz -c --hw=6515 -t 200 -z range,1-20000 'https://www.web.com/shop/buy/detail?product_id=FUZZ'
 
 	# z = Crear un payload de tipo rango
 	# hw = HideWords y sirve para ocultar el numero de palabras
@@ -174,7 +177,7 @@ Nota:
 ```bash
 # Descubrir si tiene el Plugin de 'gwolle-gb' 
 
-❯ wfuzz -c --hc=404 -t 200 -w wp-plugins.fuzz.txt http://❮IP❯/FUZZ
+❯ wfuzz -c --hc=404 -t 200 -w wp-plugins.fuzz.txt http://web.com/FUZZ
 
 	# hc = HideCode 404
 	# c = Formato colorido
