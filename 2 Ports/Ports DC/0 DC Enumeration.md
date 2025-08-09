@@ -4,25 +4,25 @@ Tags: #AD #Enumeracion #Puerto #DC
 
 ```powershell
 ❯ Puerto 53 DNS:
-	Enumeración: 'Dig'
+	Enumeración: 'Dig' → Consultar servidores DNS y obtener info dobre nombres de dominio 
 
 ❯ Puerto 88 Kerberos: 
-	Enumeración: 'Kerbrute' 
+	Enumeración: 'Kerbrute' → Enumeración de usuarios 
 	
 ❯ Puerto 135 RPC: 
-	Enumeración: 'RPCClient'
+	Enumeración: 'RPCClient' → Enumeración de usuarios, grupos 
 
 ❯ Puerto 389 LDAP:
-	Enumeración: 'Ldapsearch' 'Ldapdomaindump' 'GetADUsers'
+	Enumeración: 'Ldapsearch' 'Ldapdomaindump' 'GetADUsers' → Enumeración de usuarios, grupos
 
 ❯ Puerto 445 SMB:
-	Enumeración: 'Nextec' 'SMBClient' 'SMBMap' 
+	Enumeración: 'Nextec' 'SMBClient' 'SMBMap' → Enumeración de directorios compartidos 
 
 ❯ Puerto 1433 MsSQLServer:
-	Conexión: 'Impacket-mssqlclient'
+	Conexión: 'Impacket-mssqlclient' → Enumeración de la base de datos 
 
 ❯ Puerto 5985, 5986 WinRM:
-	Conexión: 'Evil-winrm'
+	Conexión: 'Evil-winrm' → Conexión a una máquina Windows 
 ```
 
 ## Active Directory 
