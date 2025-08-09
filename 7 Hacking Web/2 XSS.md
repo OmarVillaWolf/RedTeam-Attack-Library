@@ -234,6 +234,7 @@ External JavaScript Source, podemos cargar código desde un servidor externo par
 ```
 
 ## Cookie Hijacking 
+
 ```java 
 // Otra forma de mandar un script por medio de la url para robar la cookie de sesion es con la etiqueta img, cuando en la etiqueta 'HTML' no encuentre el recurso (imagen) ejecutara la parte del error. Esto es funcional cuando prohiben las etiquetas 'Javascript'
 
