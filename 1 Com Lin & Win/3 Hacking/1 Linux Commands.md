@@ -351,7 +351,7 @@ Variables de entorno:
 ```
 
 ```bash 
-❯ https://github.com/pwsafe/pwsafe/releases        # Descargar e instalarl la tool en Kali 
+❯ https://github.com/pwsafe/pwsafe/releases        # Descargar e instalar la tool en Kali 
 ❯ dpkg -i passwordsafe-debian12-1.21-amd64.deb
 
 ❯ pwsafe          # Iniciar la herramienta 
