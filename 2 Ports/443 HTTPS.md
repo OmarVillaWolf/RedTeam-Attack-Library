@@ -2,14 +2,13 @@
 
 Tags: #Web #Reconocimiento #Escaneo  #HTTPS 
 
-## Comandos
 
 ```bash
-❯ openssl s_client -connect ❮dominio.com❯:443   # Para conectarnos al openssl e inspeccionar el certificado
+❯ openssl s_client -connect domain.com:443   # Conectarse a openssl e inspeccionar el certificado
 
-❯ sslyze <dominio.com>                          # Inspeccioanr el certificado SSL
+❯ sslyze domain.com       # Inspeccionar el certificado SSL
 ```
 
 ```bash
-❯ sslscan ❮dominio.com❯:8443                    # Te da informacion del ssl de la maquina y si detecta alguna vulnerabilidad te la representa, podemos colocar el puerto si no es el comun 443
+❯ sslscan domain.com:8443      # Mostrar información del ssl de la máquina y si detecta alguna vulnerabilidad te la representa. Si hay un puerto especifico colocarlo 
 ```
