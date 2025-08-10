@@ -40,7 +40,7 @@ Tags: #Web #Reconocimiento #Escaneo  #HTTP #HTTP3 #Metodos
 5. Robots.txt / Sitemap.xml
 6. Métodos permitidos 'Curl'
 7. 'Fuzzing o Burpsuite'
-	1. Directorios
+	1. Directorios (Si se encuentra un /admin con código '301' agregarlo a la ruta y buscar por extensiones como: '.php')
 	2. Subdominios
 	3. Archivos como: .php, .html, .txt, .asp, .aspx 
 8. Nikto (Mirar vulnerabilidades)
