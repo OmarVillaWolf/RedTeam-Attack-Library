@@ -77,7 +77,14 @@ SSH es un protocolo de administración remota que permite a los usuarios 'contr
 ```bash
 ❯ searchsploit ssh user enumeration (2)      # Exploit en Python2 para la versión <7.7 de SSH
 
-❯ python2 45939.py <IP> <USER> 2/dev/null    # Verificar si un usuario existe en esa IP
+❯ python2 45939.py <IP> <USER>       # Verificar si un usuario existe en esa IP
 ```
 
+```bash 
+# Instalar Paramiko para poder usar el script em python2 
+❯ sudo apt install python2
+❯ curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
+❯ sudo python2 get-pip.py
+❯ pip2 install paramiko
+```
 
