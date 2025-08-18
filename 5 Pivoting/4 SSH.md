@@ -2,6 +2,18 @@
 
 Tags: #Pivoting #SSH #DinamicForwarding 
 
+## Traer un puerto de la máquina víctima 
+
+```bash 
+❯ ssh -i id_rsa user@IP -L 8081:127.0.0.1:8200      
+
+	# 8081 = Puerto en Kali a abrir 
+	# 127.0.0.1 = Dirección loopback en el servidor remoto 
+	# 8200 = Puerto en el servidor remoto a traer   
+
+❯ lsof -i:8081      # Verificar el puerto en Kali 
+```
+
 ## Dinamic Port Forwarding 
 
 ```bash 
