@@ -4,6 +4,9 @@ Tags: #Hydra
 
 Es una herramienta de prueba de penetración que se utiliza para realizar ataques de fuerza bruta, por así decirlo, en servicios de autenticación remotos. Esta herramientas nos ayuda a poder encontrar passwd mediante ataques furtivos. 
 
+* [Hashes.com](https://hashes.com/en/tools/hash_identifier) 
+* [CrackStation](https://crackstation.net/)
+
 ```bash 
 - Soporte de múltiples protocolos: Hydra es compatible con una amplia gama de protocolos de autenticación incluyendo: SSH, Telnet, FTP, HTTP, POP3, SMB, etc...
 * Fuerza bruta avanzada: Hydra es capas de realizar ataques de fuerza bruta avanzados, incluyendo ataques de diccionario y ataques basados en patrones. 
@@ -16,7 +19,6 @@ Es una herramienta de prueba de penetración que se utiliza para realizar ataque
 	- Auditoria de passwd
 	- Recuperación de passwd
 ```
-
 
 ```python 
 # Directorios 'passwords'
