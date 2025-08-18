@@ -4,8 +4,8 @@ Tags: #HashCat #Hash-Identifier #DictionaryAttack #BruteForce
 
 ## Identificar Hash
 
-* Pagina para identificar los hashes: [Identificar_Hashes](https://hashes.com/en/tools/hash_identifier) 
-* Pagina para crackear los hashes: [Crackear_Hashes](https://crackstation.net/)
+* [Hashes.com](https://hashes.com/en/tools/hash_identifier) 
+* [CrackStation](https://crackstation.net/)
 
 ```bash
 ❯ hashid <2b22337f218b2d82dfc3b6f77e7cb8ec>   # Identificar el tipo de hash 
