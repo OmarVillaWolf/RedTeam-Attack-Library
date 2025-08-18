@@ -10,7 +10,15 @@ Tags: #NoSQLI #NodeJs #MongoDB
 - MongoDB: Es una base de datos NoSQL que almacena datos en documentos flexibles, mientras que Node.js es un entorno de ejecución JavaScript que permite construir aplicaciones del lado del servidor
 ```
 
-## Inyecciones 
+## Inyecciones normales 
+
+* [NoSQLMap Tool](https://github.com/codingo/NoSQLMap)
+
+```
+❯ '||'1'=='1        # Acontecer la inyección tipo 'or 1=1' en SQLi
+```
+
+## Inyecciones Json 
 
 * [NoSQL](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/NoSQL%20Injection)
 
@@ -34,3 +42,4 @@ Nota:
 	"password" : {"$ne": "admin"}
 }
 ```
+
