@@ -30,7 +30,8 @@ A continuación, se comparte el enlace al proyecto de Github correspondiente a l
 ```
 
 ```bash
-❯ grep -rnw /usr -e "/home/<user>/<file>"         # Lo debemos de hacer desde la raiz y asi podemos ver donde mas se encuentra el archivo 
+# Hacerlo desde la raiz para ver donde se encuentra el archivo 
+❯ grep -rnw /usr -e "/home/<user>/<file>"   
 ```
 
 ```bash 
@@ -40,11 +41,11 @@ Si no tenemos un editor de texto, podemos hacer lo siguiente, donde haremos que 
 
 	# \n = Salto de linea 
 
-❯ sudo su                       # Cambiamos al usuario root sin proporcionar passwd
+❯ sudo su     # Cambiar al usuario root sin proporcionar passwd
 ```
    
 ```bash 
-# Podemos crearnos un Script llamado 'procmon.sh', le damos privilegios de ejecución para ver las tareas que se están ejecutando, poder ver los procesos nuevos y antiguos. También podemos ver que  tipo de comandos se están ejecutando y ver cual proceso nos puede ayudar a escalar privilegios. 
+# Crear un Script llamado 'procmon.sh', le damos privilegios de ejecución para ver las tareas que se están ejecutando, poder ver los procesos nuevos y antiguos. También podemos ver que  tipo de comandos se están ejecutando y ver cual proceso nos puede ayudar a escalar privilegios. 
 
 El archivo que necesitamos es el que lo esta ejecutando como root, además de que otros usuarios lo puedan modificar.
 
