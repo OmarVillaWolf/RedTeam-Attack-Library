@@ -81,7 +81,7 @@ SSH es un protocolo de administración remota que permite a los usuarios 'contr
 ```
 
 ```bash 
-# Instalar Paramiko para poder usar el script em python2 
+# Instalar Paramiko para poder usar el script en python2 
 ❯ sudo apt install python2
 ❯ curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
 ❯ sudo python2 get-pip.py
