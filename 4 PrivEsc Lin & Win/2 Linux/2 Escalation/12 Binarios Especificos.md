@@ -2,7 +2,7 @@
 
 Tags: #Linux #BinariosEspecificos  #Escalada #Root #Privilegios #Pkexec 
 
-En esta clase, analizaremos cómo elevar nuestros privilegios de usuario mediante la explotación de dos binarios diferentes como ejemplos ilustrativos.
+Se analizará cómo elevar nuestros privilegios de usuario mediante la explotación de dos binarios diferentes como ejemplos ilustrativos.
 
 El primer ejemplo se enfoca en explotar el binario legítimo **exim-4.84-7**, que presenta una vulnerabilidad identificada como **CVE-2016-1531**. Esta vulnerabilidad permite a un atacante ejecutar comandos privilegiados mediante el abuso de ciertas variables de entorno. Estudiaremos cómo aprovechar esta vulnerabilidad para escalar privilegios y acceder a funciones restringidas.
 
@@ -28,15 +28,4 @@ Por último, se os comparte el enlace de descarga al binario el cual estaremos e
 ❯ find / -perm -4000 2>/dev/null                # Buscar archivos con permisos SUID
 
 	# /usr/exim/bin/exim-4.84-7 = Es un agente de transporte de correo, y puede ser utilizado en la malloria de los sistemas UNIX
-```
-
-## Pkexec 
-
-```bash 
-❯ which pkexec | xargs ls -l        # Mirar si esta instalado el binario 'Pkexec'
-❯ git clone https://github.com/berdav/CVE-2021-4034     # Clonar el repo  
-
-# Ingresar el directorio 
-❯ make                     # Crear un compilado del binario 
-❯ ./cve-2021-4034          # Ejecutar el binario 
 ```
