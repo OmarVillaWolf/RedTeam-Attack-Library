@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/1 ACV unprotected admin.md",
+                "file": "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner/4 ACV referer-based access control.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "1 ACV unprotected admin"
+              "title": "4 ACV referer-based access control"
             }
           },
           {
@@ -35,6 +35,21 @@
               },
               "icon": "lucide-file",
               "title": "1 NoSQL"
+            }
+          },
+          {
+            "id": "8f9c5778f183fd33",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/2 Linux/2 Escalation/0 Reconocimiento.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "0 Reconocimiento"
             }
           },
           {
@@ -66,8 +81,24 @@
               "icon": "lucide-file",
               "title": "Transferir Archivos"
             }
+          },
+          {
+            "id": "6f858870fb6987b0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/2 Linux/2 Escalation/3 SUID.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "3 SUID"
+            }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -99,7 +130,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "x-for",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -206,44 +237,44 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "06834e0b6f86d08e",
+  "active": "6f858870fb6987b0",
   "lastOpenFiles": [
-    "1 Com Lin & Win/3 Hacking Commands/ReverShell.md",
-    "1 Com Lin & Win/3 Hacking Commands/Transferir Archivos.md",
-    "8 Active Directory/2 AD/5 Evasión/1 UAC.md",
-    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/1 ACV unprotected admin.md",
-    "7 Hacking Web/2 Intermediate/28 NoSQL/1 NoSQL.md",
-    "2 Ports/80 - HTTP.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/10 Grupos especiales.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/12 Binarios Especificos.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/3 SUID.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/0 Reconocimiento.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/2 Sudoers.md",
+    "7 Hacking Web/2 Intermediate/28 NoSQL/1 NoSQL.md",
+    "2 Ports/22 - SSH.md",
+    "1 Com Lin & Win/3 Hacking Commands/Transferir Archivos.md",
+    "7 Hacking Web/2 Intermediate/1 SQLi/8 SQLi Blind Time Extract Info.md",
+    "2.1 Tools/Fuzzers.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner/4 ACV referer-based access control.md",
+    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner/3 ACV multi-step process.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner/2 ACV method-based access control.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner/1 ACV Url-based access control.md",
+    "7 Hacking Web/1 Basic/6 LFI - RCE.md",
+    "7 Hacking Web/1 Basic/5 RFI.md",
+    "7 Hacking Web/1 Basic/4 LFI.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/4 ACV IDOR.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/3 ACV user ID.md",
+    "2 Ports/80 - HTTP.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/2 ACV user role.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/1 ACV unprotected admin.md",
+    "1 Com Lin & Win/3 Hacking Commands/ReverShell.md",
+    "8 Active Directory/2 AD/5 Evasión/1 UAC.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/10 Grupos especiales.md",
     "1 Com Lin & Win/3 Hacking Commands/Tratamiento TTY.md",
     "1 Kitty.md",
-    "7 Hacking Web/2 Intermediate/12 File Path traversal/6 FPT validation of file extension with null byte.md",
     "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice",
     "7 Hacking Web/2 Intermediate/13 Access Control Vulns",
-    "7 Hacking Web/2 Intermediate/12 File Path traversal/5 FPT validation of start of path.md",
-    "7 Hacking Web/2 Intermediate/12 File Path traversal/4 FPT sequences stripped with superfluous URL-decode.md",
-    "7 Hacking Web/2 Intermediate/12 File Path traversal/3 FPT sequences stripped non-recursively.md",
-    "7 Hacking Web/2 Intermediate/12 File Path traversal/1 FPT Simple case.md",
-    "7 Hacking Web/2 Intermediate/12 File Path traversal/2 FPT sequences blocked.md",
-    "2.1 Tools/Hydra.md",
-    "2.1 Tools/Hashcat.md",
-    "2.1 Tools/SQLite3.md",
-    "7 Hacking Web/2 Intermediate/1 SQLi/0 SQLite.md",
-    "7 Hacking Web/1 Basic/4 LFI.md",
-    "7 Hacking Web/2 Intermediate/11 SSTI/2 Expert/2 SSTI Custom exploit.md",
-    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/2 SSTI Basic (Code context).md",
     "7 Hacking Web/2 Intermediate/12 File Path traversal",
-    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/3 SSTI Using documentation.md",
-    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/1 SSTI Basic.md",
-    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/5 SSTI Information disclosure user-supplier objects.md",
     "7 Hacking Web/2 Intermediate/11 SSTI/2 Expert",
     "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner",
     "7 Hacking Web/2 Intermediate/11 SSTI",
     "7 Hacking Web/2 Intermediate/10 OS Command Injection",
     "7 Hacking Web/2 Intermediate/9 HTTP request smuggling/1 Practitioner",
-    "7 Hacking Web/2 Intermediate/9 HTTP request smuggling",
-    "7 Hacking Web/2 Intermediate/8 SSRF/3 Expert",
     "Z Imagenes/Hacking/Piv2.png",
     "Z Imagenes/Hacking/Piv1.png",
     "Z Imagenes/Hacking/SSRF.png",
