@@ -112,39 +112,30 @@ Nota:
 ```
 
 ```bash
-❯ wfuzz -c --hc=403 -t 20 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H “Host: FUZZ.web.com” https://web.com
-
-	# c = Permite meter colores
-	# t = Lanzar tareas en paralelo al mismo tiempo
-	# w = Ruta del diccionario
-	# FUZZ = Donde va a insertar las palabras el diccionario
-	# H = Para enumerar el subdominio, utilizamos esta cabecera 'Host: '
-	# hc = HideCode 403
-```
-
-```bash
 # Listar directorios 
 ❯ wfuzz -c -L --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ
+
 ❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ/
 
-	# L = Te aplica un Follow Redirect al codigo de estado 301, si no nos muestra nada, le quitamos el **-L** y le colocamos una barra al final 
-	# hc = HideCode 403 y 404
+
+	# L = Te aplica un 'Follow Redirect' al código de estado 301. Si no muestra nada, quitar el parámetro '-L' y colocar una barra al final 
+	# hc = HOculta código 403 y 404
 ```
 
 ```bash
 ❯ wfuzz -c --sl=216 --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ
 
-	# sl = ShowLine es para me muestre ese numero de lineas (l=ele) especifico
+	# sl = ShowLine es para mostrar el número de lineas en específico
 ```
 
 ```bash
 ❯ wfuzz -c --hl=216 --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ
 
-	# hl = HideLine y sirve para ocultar ese numero de lineas
-	# hw = HideWords y sirve para ocultar el numero de palabras
-	# sw = ShowWords y sirve para mostrar el numero de palabras
-	# hh = HideCharacter y sirve para ocultar el numero de caracteres
-	# sh = ShowCharacters y sirve para mostrar el numero de caracteres
+	# hl = HideLine sirve para ocultar el número de lineas
+	# hw = HideWords sirve para ocultar el número de palabras
+	# sw = ShowWords sirve para mostrar el número de palabras
+	# hh = HideCharacter sirve para ocultar el número de caracteres
+	# sh = ShowCharacters sirve para mostrar el número de caracteres
 ```
 
 ```bash
@@ -152,7 +143,7 @@ Nota:
 
 ❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ.html
 
-	# Para enumerar archivos html en una ruta 
+	# Enumerar archivos html en una ruta 
 ```
 
 ```bash
@@ -166,12 +157,12 @@ Nota:
 ```
 
 ```bash
-# Conceptos de Range 
+# Conceptos de rango 
 
-❯ wfuzz -c --hw=6515 -t 200 -z range,1-20000 'https://www.web.com/shop/buy/detail?product_id=FUZZ'
+❯ wfuzz -c --hw=6515 -t 200 -z range,1-20000 'https://web.com/shop/buy/detail?product_id=FUZZ'
 
 	# z = Crear un payload de tipo rango
-	# hw = HideWords y sirve para ocultar el numero de palabras
+	# hw = HideWords sirve para ocultar el número de palabras
 ```
 
 ```bash
@@ -182,7 +173,7 @@ Nota:
 	# hc = HideCode 404
 	# c = Formato colorido
 	# w = Ruta del diccionario
-	# FUZZ = Donde va a insertar las palabras el diccionario
+	# FUZZ = Donde se va a insertar las palabras del diccionario
 	# t = Lanzar tareas en paralelo al mismo tiempo
 ```
 
