@@ -17,8 +17,15 @@ Con el objetivo de reducir las posibilidades de que un atacante lograra explotar
 - Configurar los registros de la tarea cron: se recomienda habilitar la opción de registro para las tareas cron, para poder identificar cualquier actividad sospechosa en las tareas definidas y para poder llevar un registro de las actividades realizadas por cada una de estas.
 ```
 
-A continuación, se comparte el enlace al proyecto de Github correspondiente a la herramienta Pspy:
-- [Pspy](https://github.com/DominicBreuker/pspy)
+## Pspy
+
+```bash 
+❯ git clone https://github.com/DominicBreuker/pspy
+
+❯ cd pspy         # Ir a la carpeta que se ha clonado 
+❯ go build -ldflags "-s -w" .     # Compilar y reducir el tamaño 
+❯ upx pspy        # Aplicar copmpresión al archivo para reducir aun más el tamaño 
+```
 
 ## CRON
 
