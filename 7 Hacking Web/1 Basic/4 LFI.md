@@ -19,19 +19,31 @@ A continuación, se os proporciona el enlace directo a la herramienta que utiliz
 - [Lab-LFI](https://github.com/NetsecExplained/docker-labs)
 
 ```bash 
-LFI  --> Incluyes archivos locales de la maquina como:
-	1. /etc/passwd
-	2. /etc/hosts
-	3. /etc/hostname 
-
-# Debemos de tener un parametro '?page=' para poder ver si existe el LFI
+Encontrar un parametro similar a '?page= o ?file=' para ver si existe el LFI
 
 1. Se encuentran en CMS (Gestores de contenido) como WordPress
 2. Plugins 
 
-En el LFI podemos usar:
+En el LFI se puede usar:
 1. 'Path Traversal' para evadir algunos filtros 
 2. Wrappers
+```
+
+## Archivos importantes 
+
+```bash 
+# Archivos generales 
+1. /etc/passwd
+2. /etc/hosts
+3. /etc/hostname 
+4. /home/user/.ssh/id_rsa      # Mira la llave privada del usuario (Si existe)
+5. /proc/net/fib_trie          # Mirar rangos de IPs en el server 
+6. /proc/net/tcp               # Mirar los puertos internos abiertos 
+
+
+# Si por detras esta Node.js con Mongo 
+1. /var/www/dev/index.js       # Archivo principal en JavaScript (Node.js) que arranca la lógica del servidor backend y se puede encontrar credenciales o configuraciones sensibles de MongoDB
+2. /opt/blog/server.js
 ```
 
 ## Path Traversal 
