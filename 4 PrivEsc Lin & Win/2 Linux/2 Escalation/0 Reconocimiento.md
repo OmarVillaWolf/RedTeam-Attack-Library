@@ -14,6 +14,11 @@ Tags: #PrivEsc
 ❯ id                 # Mirar los grupos 
 ❯ lsb_release -a     # Mirar la versión de Linux 
 ❯ uname -a           # Mirar la versión de kernel 
+❯ netstat -nat       # Mirar los puertos abiertos 
+
+# Si se encuentra una password utilizarla de la siguiente manera ya que muchas veces funciona de una manera o de otra 
+❯ ssh user@IP        # Conectarse por SSH desde Kali 
+❯ su user            # Cambiar de usuario dentro del server víctima 
 ```
 
 ## Reconocimiento específico 
@@ -25,7 +30,8 @@ Tags: #PrivEsc
 ❯ cat /etc/crontab                 # Mirar tareas Cron 
 ❯ getcap -r / 2>/dev/null          # Capabilities 
 ❯ ps -faux                         # Listar procesos 
-❯ ss -nltp                         # Mirar puertos abiertos (Usar SSH, Ligolo, Chisel)
+❯ ps -eo user,command              # Mirar comandos en tiempo real 
+❯ ss -nltp                 # Mirar puertos abiertos (Usar SSH, Ligolo, Chisel para traerlos a Kali)
 
 
 # Si se encuentra un archivo ejecutable 
