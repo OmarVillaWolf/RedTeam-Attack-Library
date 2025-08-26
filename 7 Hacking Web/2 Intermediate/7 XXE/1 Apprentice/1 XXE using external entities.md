@@ -40,7 +40,8 @@ Este lab permite la explotación de una vulnerabilidad XML External Entity (XXE)
 
 
 Notas:
-	1. Hacer una declaración de documento 'DOCTYPE'
-	2. Colocar la ruta abosluta del archivo, File es wrapper similar a 'http://' y sirve para leer contenido de los archivos existentes en el sistema  
-	3. SYSTEM = Cargar una entidad externa, como si fuera una URL de un servidor externo
+	1. Buscar el campo inyectable en donde la respuesta refleje el contenido 
+	2. Hacer una declaración de documento 'DOCTYPE'
+	3. Colocar la ruta abosluta del archivo, File es wrapper similar a 'http://' y sirve para leer contenido de los archivos existentes en el sistema  
+	4. SYSTEM = Cargar una entidad externa, como si fuera una URL de un servidor externo
 ```
