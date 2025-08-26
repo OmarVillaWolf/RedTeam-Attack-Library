@@ -1,6 +1,6 @@
-# LFI
+# Local File Inclusion (LFI)
 
-Tags: #LFI #DirectoryPathTraversal #PHP 
+Tags: #LFI #DirectoryPathTraversal #PHP #OWASP 
 
 La vulnerabilidad **Local File Inclusion (LFI)** ocurre cuando una aplicación **no valida correctamente la entrada del usuario**, lo que permite a un atacante incluir o acceder a **archivos locales** en el servidor.
 
