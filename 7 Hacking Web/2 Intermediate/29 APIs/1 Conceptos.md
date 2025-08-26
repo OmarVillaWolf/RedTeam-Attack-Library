@@ -53,3 +53,9 @@ En 'Web Services' hay parámetros que son datos que le pasas a ese endpoint para
 |`PUT`|Actualizar un recurso completo.|Reemplazar toda la info de un usuario.|
 |`PATCH`|Actualizar parcialmente un recurso.|Cambiar solo el email de un usuario.|
 |`DELETE`|Eliminar un recurso.|Borrar un usuario de la base de datos.|
+
+## Comandos 
+
+```bash 
+curl -s -X TRACE [http://infra.nexustech.com:8000/api/inmemory/usersdb](http://infra.nexustech.com:8000/api/inmemory/usersdb "http://infra.nexustech.com:8000/api/inmemory/usersdb") | jq .
+```
