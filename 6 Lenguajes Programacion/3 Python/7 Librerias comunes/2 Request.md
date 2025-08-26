@@ -30,7 +30,7 @@ La biblioteca se utiliza ampliamente para interactuar con APIs RESTful, automati
 import requests 
 
 response = requests.get("https://google.es")      # Peticion directa con el metodo GET y regresa el codigo de estado
-print(f"\n[+] Cosigo de estado: {response.status_code}")     # Observamos el codigo de estado  
+print(f"\n[+] Código de estado: {response.status_code}")     # Observamos el codigo de estado  
 print(f"\n[+] Mostrando codigo fuente de la respuesta: ")
 
 with open("index.html", "w") as f:                # Almacena la respuesta 'codigo fuente' en el archivo 'index.html'
