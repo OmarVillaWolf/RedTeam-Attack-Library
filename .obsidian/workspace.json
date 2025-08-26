@@ -8,33 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "06834e0b6f86d08e",
+            "id": "9dc35fba4876c7ae",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner/3 Broken brute-force protection IP block.md",
+                "file": "7 Hacking Web/1 Basic/5 RFI.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "3 Broken brute-force protection IP block"
-            }
-          },
-          {
-            "id": "66cecd570817adf6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2 Ports/80 - HTTP.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "80 - HTTP"
+              "title": "5 RFI"
             }
           },
           {
@@ -83,7 +68,7 @@
             }
           },
           {
-            "id": "24545d3a49c8660e",
+            "id": "8b6d966dbdb320b3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -97,8 +82,7 @@
               "title": "ReverShell"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -130,7 +114,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "pspy",
+                "query": "session fixation ",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -165,7 +149,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 298.50467681884766
+    "width": 371.50467681884766
   },
   "right": {
     "id": "352c47b0cb031926",
@@ -237,37 +221,37 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "8f9c5778f183fd33",
+  "active": "9dc35fba4876c7ae",
   "lastOpenFiles": [
-    "1 Com Lin & Win/3 Hacking Commands/ReverShell.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/4 Tareas CRON.md",
-    "7 Hacking Web/2 Intermediate/17 Insecure deserialization/1 Decerialization.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/0 Reconocimiento.md",
-    "2 Ports/80.6 Tomcat.md",
-    "2 Ports/80 - HTTP.md",
-    "1 Com Lin & Win/3 Hacking Commands/Tratamiento TTY.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/9 Kernel.md",
-    "1 Com Lin & Win/3 Hacking Commands/Transferir Archivos.md",
-    "2 Ports/3306 - MYSQL.md",
-    "2 Ports/21017 - Mongo.md",
-    "7 Hacking Web/2 Intermediate/28 NoSQL/1 NoSQL.md",
-    "7 Hacking Web/2 Intermediate/29 APIs/1 Conceptos.md",
+    "7 Hacking Web/1 Basic/5 RFI.md",
     "7 Hacking Web/1 Basic/4 LFI.md",
-    "7 Hacking Web/2 Intermediate/17 Insecure deserialization",
-    "2 Ports/80.5 Apache - Shellshock.md",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner/3 Broken brute-force protection IP block.md",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner/2 Username enumeration via response timing.md",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner/1 Username enumeration via subtly.md",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/1 Apprentice/3 Password reset broken logic.md",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/1 Apprentice/2 2FA simple bypass.md",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/1 Apprentice/1 Username enumeration.md",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/1 Apprentice",
-    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner/4 ACV referer-based access control.md",
+    "7 Hacking Web/1 Basic/3 XXE.md",
+    "1 Com Lin & Win/3 Hacking Commands/ReverShell.md",
+    "1 Com Lin & Win/3 Hacking Commands/Transferir Archivos.md",
+    "7 Hacking Web/2 Intermediate/29 APIs/1 Conceptos.md",
+    "7 Hacking Web/1 Basic/2 XSS.md",
+    "7 Hacking Web/1 Basic/29 Puzzling-Fixation-Overloading.md",
+    "7 Hacking Web/2 Intermediate/7 XXE/3 Expert/1 XXE retrieve data by repurposing local DTD.md",
+    "7 Hacking Web/2 Intermediate/1 SQLi/10 Bypass XML Encoding.md",
+    "7 Hacking Web/2 Intermediate/7 XXE/2 Practitioner/6 XXE via image file upload.md",
+    "2.1 Tools/Hashcat.md",
+    "1 Com Lin & Win/3 Hacking Commands/Tratamiento TTY.md",
+    "2.1 Tools/John the Ripper.md",
     "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/3 SUID.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/2 Sudoers.md",
-    "2.1 Tools/Fuzzers.md",
+    "2.1 Tools/Hydra.md",
+    "7 Hacking Web/2 Intermediate/7 XXE/2 Practitioner/5 Xinclude retrieve files.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/4 ACV IDOR.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/3 ACV user ID.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/2 ACV user role.md",
+    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice/1 ACV unprotected admin.md",
+    "7 Hacking Web/2 Intermediate/17 Insecure deserialization/1 Decerialization.md",
+    "7 Hacking Web/1 Basic/30 Json Web Tokens.md",
+    "2 Ports/80 - HTTP.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/0 Reconocimiento.md",
+    "7 Hacking Web/1 Basic/24 ShellShock.md",
+    "7 Hacking Web/2 Intermediate/17 Insecure deserialization",
+    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner",
+    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/1 Apprentice",
     "7 Hacking Web/2 Intermediate/14 Gestión de autenticación",
     "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner",
     "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice",
