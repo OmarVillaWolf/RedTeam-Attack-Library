@@ -194,6 +194,7 @@
   },
   "active": "ff404188a206a17b",
   "lastOpenFiles": [
+    "8 Active Directory/2 AD/5 Evasión/1 UAC.md",
     "12 Cloud Pentesting/1 Azure/2 Enumeración/2 Con Token/4 RoadTools.md",
     "12 Cloud Pentesting/1 Azure/2 Enumeración/2 Con Token/3 Passwd Spraying.md",
     "12 Cloud Pentesting/1 Azure/2 Enumeración/2 Con Token/2 Microsoft Storage Explorer.md",
@@ -220,7 +221,6 @@
     "1 Com Lin & Win/3 Hacking Commands/Tratamiento TTY.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/0 Reconocimiento.md",
     "2 Ports/Ports DC/389 - LDAP.md",
-    "7 Hacking Web/1 Basic/14 inyecciones LDAP.md",
     "7 Hacking Web/2 Intermediate/17 Insecure deserialization",
     "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner",
     "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/1 Apprentice",
