@@ -3,6 +3,7 @@
 Tags: #APIs 
 
 * [Postman](https://www.postman.com/downloads/)
+* [API Testing](https://portswigger.net/web-security/api-testing)
 
 ## APIS
 
@@ -10,16 +11,17 @@ Tags: #APIs
 Una 'API (Application Programming Interface)' es un conjunto de reglas y rutas (endpoints) que permiten que una aplicación se comunique con otra. Ademas, una API ofrece accesos organizados a diferentes acciones que una app puede hacer, como obtener datos, crear, modificar o eliminar recursos
 ```
 
-| Web APIs           | Web Services         |
-| ------------------ | -------------------- |
-| SOAP               | REST                 |
-| xml                | json, xml, yaml, txt |
+|      Web APIs      |     Web Services     |
+| :----------------: | :------------------: |
+|        SOAP        |         REST         |
+|        xml         | json, xml, yaml, txt |
 | Operación = método | Operación = EndPoint |
-| SOAPUI             | POSTMAN              |
+|       SOAPUI       |       POSTMAN        |
 
 ```bash 
 En 'Web Services' hay parámetros que son datos que le pasas a ese endpoint para afinar la respuesta o acción. Un 'endpoint' es una URL que representa un recurso o acción.
 
+- https://web.com/api/
 - https://web.com/apiv2/login 
 ```
 
@@ -57,5 +59,6 @@ En 'Web Services' hay parámetros que son datos que le pasas a ese endpoint para
 ## Comandos 
 
 ```bash 
-curl -s -X TRACE [http://infra.nexustech.com:8000/api/inmemory/usersdb](http://infra.nexustech.com:8000/api/inmemory/usersdb "http://infra.nexustech.com:8000/api/inmemory/usersdb") | jq .
+curl -s -X TRACE "http://infra.nexustech.com:8000/api/inmemory/usersdb" | jq .
 ```
+
