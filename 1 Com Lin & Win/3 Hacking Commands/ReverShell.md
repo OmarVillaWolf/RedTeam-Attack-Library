@@ -1,4 +1,4 @@
-ce# Tipos de ReverShell
+# Tipos de ReverShell
 
 Tags: #ReverShell #Netcat #BindShell #Powershell #AMSI
 
