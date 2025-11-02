@@ -4,101 +4,25 @@
     "type": "split",
     "children": [
       {
-        "id": "8008147702888165",
+        "id": "0113f09d7f9af9b1",
         "type": "tabs",
         "children": [
           {
-            "id": "5ea5efc94d8fe5a0",
+            "id": "0b74728c2804b821",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "12 Cloud Pentesting/1 Azure/2 Enumeración/2 Con Token/4 RoadRecon.md",
+                "file": "7 Hacking Web/2 Intermediate/22 File Uploads/1 Ejecución remota con web shell subida.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "4 RoadRecon"
-            }
-          },
-          {
-            "id": "b5966510c2c59e8c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "1 Linux Commands"
-            }
-          },
-          {
-            "id": "b675c91524514b58",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "5 Pivoting/2 Ligolo.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "2 Ligolo"
-            }
-          },
-          {
-            "id": "88a7294d1ded26a5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1 Com Lin & Win/3 Hacking Commands/Transferir Archivos.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Transferir Archivos"
-            }
-          },
-          {
-            "id": "1d4ac0bcac65b955",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1 Com Lin & Win/1 Bash/2 Filtros.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "2 Filtros"
-            }
-          },
-          {
-            "id": "f07838614fde3f20",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "7 Hacking Web/2 Intermediate/29 APIs/3 Parameter pollution en query string del servidor.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "3 Parameter pollution en query string del servidor"
+              "title": "1 Ejecución remota con web shell subida"
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -237,20 +161,22 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "f07838614fde3f20",
+  "active": "0b74728c2804b821",
   "lastOpenFiles": [
-    "7 Hacking Web/2 Intermediate/29 APIs/2 Explotación de un endpoint usando la documentación.md",
     "7 Hacking Web/2 Intermediate/29 APIs/3 Parameter pollution en query string del servidor.md",
+    "7 Hacking Web/2 Intermediate/22 File Uploads/1 Ejecución remota con web shell subida.md",
+    "7 Hacking Web/2 Intermediate/22 File Uploads",
+    "7 Hacking Web/2 Intermediate/29 APIs/2 Explotación de un endpoint usando la documentación.md",
     "7 Hacking Web/2 Intermediate/29 APIs/1 Conceptos.md",
-    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/1 SSTI Basic.md",
-    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/2 SSTI Basic (Code context).md",
-    "1 Com Lin & Win/3 Hacking Commands/Transferir Archivos.md",
-    "2 Ports/Ports DC/445, 135 - Psexec.md",
-    "2 Ports/Ports DC/445 - SMB.md",
-    "5 Pivoting/2 Ligolo.md",
-    "1 Com Lin & Win/1 Bash/2 Filtros.md",
     "12 Cloud Pentesting/1 Azure/2 Enumeración/2 Con Token/4 RoadRecon.md",
     "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
+    "5 Pivoting/2 Ligolo.md",
+    "1 Com Lin & Win/3 Hacking Commands/Transferir Archivos.md",
+    "1 Com Lin & Win/1 Bash/2 Filtros.md",
+    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/1 SSTI Basic.md",
+    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/2 SSTI Basic (Code context).md",
+    "2 Ports/Ports DC/445, 135 - Psexec.md",
+    "2 Ports/Ports DC/445 - SMB.md",
     "2.1 Tools/SQLite3.md",
     "2 Ports/3306 - MYSQL.md",
     "1 Com Lin & Win/1 Bash/1 Regex.md",
@@ -265,7 +191,6 @@
     "8 Active Directory/2 AD/2 Attacks/3 ASREProastable/1 Rubeus.md",
     "8 Active Directory/2 AD/2 Attacks/1 Password Spraying/2 Passwd Spraying.md",
     "8 Active Directory/2 AD/2 Attacks/1 Password Spraying/0 Passwd Personalizadas.md",
-    "2 Ports/Ports DC/88 Kerberos.md",
     "14 Mobile Pentesting",
     "7 Hacking Web/2 Intermediate/17 Insecure deserialization",
     "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner",
@@ -274,7 +199,6 @@
     "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner",
     "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice",
     "7 Hacking Web/2 Intermediate/13 Access Control Vulns",
-    "7 Hacking Web/2 Intermediate/12 File Path traversal",
     "Z Imagenes/Hacking/Piv2.png",
     "Z Imagenes/Hacking/Piv1.png",
     "Z Imagenes/Hacking/SSRF.png",
