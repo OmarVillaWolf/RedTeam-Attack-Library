@@ -13,13 +13,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "7 Hacking Web/2 Intermediate/22 File Uploads/1 Ejecución remota con web shell subida.md",
+                "file": "General Hacking/0 OSINT & Passive Recon/9 Web Sites.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "1 Ejecución remota con web shell subida"
+              "title": "9 Web Sites"
+            }
+          },
+          {
+            "id": "fe09cbbd65c617e1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "7 Hacking Web/1 Basic/17 Abuso de APIs.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "17 Abuso de APIs"
             }
           }
         ]
@@ -45,7 +60,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Explorador de archivos"
+              "title": "Files"
             }
           },
           {
@@ -54,7 +69,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "nodejs ",
+                "query": "cew",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -62,7 +77,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Buscar"
+              "title": "Search"
             }
           },
           {
@@ -148,26 +163,33 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:Crear nueva base": false,
-      "switcher:Abrir selector rápido": false,
-      "graph:Abrir vista gráfica": false,
-      "canvas:Crear nuevo lienzo": false,
-      "daily-notes:Abrir la nota de hoy": false,
-      "templates:Insertar plantilla": false,
-      "command-palette:Abrir paleta de comandos": false,
-      "markdown-importer:Abrir el importador de Markdown": false,
-      "workspaces:Gestionar disposiciones de espacio de trabajo": false,
-      "dbfolder:Crear una nueva tabla de base de datos": false,
-      "obsidian42-brat:BRAT": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false,
+      "workspaces:Manage workspace layouts": false,
+      "bases:Create new base": false,
+      "obsidian42-brat:BRAT": false,
+      "dbfolder:Create a new database table": false
     }
   },
-  "active": "0b74728c2804b821",
+  "active": "642b9322c22441ce",
   "lastOpenFiles": [
+    "2.1 Tools/SQLMap.md",
+    "2.1 Tools/Fuzzers.md",
+    "7 Hacking Web/1 Basic/17 Abuso de APIs.md",
     "7 Hacking Web/2 Intermediate/29 APIs/3 Parameter pollution en query string del servidor.md",
-    "7 Hacking Web/2 Intermediate/22 File Uploads/1 Ejecución remota con web shell subida.md",
-    "7 Hacking Web/2 Intermediate/22 File Uploads",
     "7 Hacking Web/2 Intermediate/29 APIs/2 Explotación de un endpoint usando la documentación.md",
     "7 Hacking Web/2 Intermediate/29 APIs/1 Conceptos.md",
+    "7 Hacking Web/2 Intermediate/28 NoSQL/1 NoSQL.md",
+    "2 Ports/80.4 Magento.md",
+    "2.1 Tools/Nmap.md",
+    "7 Hacking Web/1 Basic/30 JWT.md",
+    "7 Hacking Web/2 Intermediate/22 File Uploads/1 Ejecución remota con web shell subida.md",
+    "7 Hacking Web/2 Intermediate/22 File Uploads",
     "12 Cloud Pentesting/1 Azure/2 Enumeración/2 Con Token/4 RoadRecon.md",
     "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
     "5 Pivoting/2 Ligolo.md",
@@ -184,13 +206,6 @@
     "15 LLM",
     "2 Ports/Ports DC/0 DC Enumeration.md",
     "2 Ports/80.7 IIS - Webdav.md",
-    "2 Ports/Ports DC/389 - LDAP.md",
-    "2 Ports/Ports DC/5985 - 5986 - WINRM.md",
-    "8 Active Directory/2 AD/2 Attacks/3 ASREProastable/3 Impacket.md",
-    "8 Active Directory/2 AD/2 Attacks/3 ASREProastable/2 Netexec.md",
-    "8 Active Directory/2 AD/2 Attacks/3 ASREProastable/1 Rubeus.md",
-    "8 Active Directory/2 AD/2 Attacks/1 Password Spraying/2 Passwd Spraying.md",
-    "8 Active Directory/2 AD/2 Attacks/1 Password Spraying/0 Passwd Personalizadas.md",
     "14 Mobile Pentesting",
     "7 Hacking Web/2 Intermediate/17 Insecure deserialization",
     "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner",
