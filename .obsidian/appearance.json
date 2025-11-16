@@ -1,10 +1,1 @@
-{
-  "accentColor": "#a51d58",
-  "cssTheme": "GitHub Theme",
-  "baseFontSize": 19,
-  "interfaceFontFamily": "Calibri",
-  "textFontFamily": "Calibri",
-  "enabledCssSnippets": [
-    "cards"
-  ]
-}
+{}
