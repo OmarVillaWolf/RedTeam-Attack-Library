@@ -1,40 +1,24 @@
 {
   "main": {
-    "id": "31120e3bc2a4d96f",
+    "id": "369e4978bf6bae75",
     "type": "split",
     "children": [
       {
-        "id": "0113f09d7f9af9b1",
+        "id": "0cc05bd6b70855e0",
         "type": "tabs",
         "children": [
           {
-            "id": "0b74728c2804b821",
+            "id": "aeb1505c594d33b0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "General Hacking/0 OSINT & Passive Recon/9 Web Sites.md",
+                "file": "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon.md",
                 "mode": "source",
-                "source": false,
-                "backlinks": false
+                "source": false
               },
               "icon": "lucide-file",
-              "title": "9 Web Sites"
-            }
-          },
-          {
-            "id": "fe09cbbd65c617e1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "7 Hacking Web/1 Basic/17 Abuso de APIs.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "17 Abuso de APIs"
+              "title": "1 Recon"
             }
           }
         ]
@@ -43,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "0160ea3b883182aa",
+    "id": "f3646441bea43028",
     "type": "split",
     "children": [
       {
-        "id": "913d6a7e54b6f5f5",
+        "id": "9911f120c6756968",
         "type": "tabs",
         "children": [
           {
-            "id": "642b9322c22441ce",
+            "id": "10fda6eb60051383",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -64,12 +48,12 @@
             }
           },
           {
-            "id": "fb5561b40ab55cc4",
+            "id": "b4282def75453d72",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "cew",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -81,17 +65,7 @@
             }
           },
           {
-            "id": "835a31b36ce28917",
-            "type": "leaf",
-            "state": {
-              "type": "starred",
-              "state": {},
-              "icon": "lucide-ghost",
-              "title": "starred"
-            }
-          },
-          {
-            "id": "2b0b12d4d284f795",
+            "id": "8aa66275c78b36f8",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -104,43 +78,66 @@
       }
     ],
     "direction": "horizontal",
-    "width": 206.5017547607422
+    "width": 300
   },
   "right": {
-    "id": "352c47b0cb031926",
+    "id": "841aee1fc4a023c5",
     "type": "split",
     "children": [
       {
-        "id": "0b8e63a17edb4e30",
+        "id": "631b2c1005497bdf",
         "type": "tabs",
         "children": [
           {
-            "id": "4c874c1760f33de1",
+            "id": "4482c9a4d7615dcc",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Obsidian/13 Wifi Pentesting/1 WiFi-Academy/1 Redes WiFi/2 IEEE 802.11.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 2 IEEE 802.11"
+            }
+          },
+          {
+            "id": "f0af68256f5aef2e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Obsidian/13 Wifi Pentesting/1 WiFi-Academy/1 Redes WiFi/2 IEEE 802.11.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 2 IEEE 802.11"
+            }
+          },
+          {
+            "id": "a4b19eacd0c97f1f",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-tags",
               "title": "Tags"
             }
           },
           {
-            "id": "95c61d5e4b7ef114",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "8 AD 2/4 Persistencia, Post-Explotation/5 Pass The Ticket.md"
-              },
-              "icon": "lucide-list",
-              "title": "Outline of 5 Pass The Ticket"
-            }
-          },
-          {
-            "id": "7e97871c22240511",
+            "id": "a7430c5370a10b2c",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -152,9 +149,23 @@
               "icon": "lucide-archive",
               "title": "All properties"
             }
+          },
+          {
+            "id": "6149564d93596034",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Obsidian/13 Wifi Pentesting/1 WiFi-Academy/1 Redes WiFi/2 IEEE 802.11.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 2 IEEE 802.11"
+            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -169,60 +180,48 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "markdown-importer:Open format converter": false,
-      "workspaces:Manage workspace layouts": false,
       "bases:Create new base": false,
       "obsidian42-brat:BRAT": false,
       "dbfolder:Create a new database table": false
     }
   },
-  "active": "642b9322c22441ce",
+  "active": "aeb1505c594d33b0",
   "lastOpenFiles": [
-    "2.1 Tools/SQLMap.md",
-    "2.1 Tools/Fuzzers.md",
-    "7 Hacking Web/1 Basic/17 Abuso de APIs.md",
-    "7 Hacking Web/2 Intermediate/29 APIs/3 Parameter pollution en query string del servidor.md",
-    "7 Hacking Web/2 Intermediate/29 APIs/2 Explotación de un endpoint usando la documentación.md",
-    "7 Hacking Web/2 Intermediate/29 APIs/1 Conceptos.md",
-    "7 Hacking Web/2 Intermediate/28 NoSQL/1 NoSQL.md",
-    "2 Ports/80.4 Magento.md",
-    "2.1 Tools/Nmap.md",
-    "7 Hacking Web/1 Basic/30 JWT.md",
-    "7 Hacking Web/2 Intermediate/22 File Uploads/1 Ejecución remota con web shell subida.md",
-    "7 Hacking Web/2 Intermediate/22 File Uploads",
-    "12 Cloud Pentesting/1 Azure/2 Enumeración/2 Con Token/4 RoadRecon.md",
-    "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
-    "5 Pivoting/2 Ligolo.md",
-    "1 Com Lin & Win/3 Hacking Commands/Transferir Archivos.md",
-    "1 Com Lin & Win/1 Bash/2 Filtros.md",
-    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/1 SSTI Basic.md",
-    "7 Hacking Web/2 Intermediate/11 SSTI/1 Practitioner/2 SSTI Basic (Code context).md",
-    "2 Ports/Ports DC/445, 135 - Psexec.md",
-    "2 Ports/Ports DC/445 - SMB.md",
-    "2.1 Tools/SQLite3.md",
-    "2 Ports/3306 - MYSQL.md",
-    "1 Com Lin & Win/1 Bash/1 Regex.md",
-    "15 LLM/1.md",
-    "15 LLM",
-    "2 Ports/Ports DC/0 DC Enumeration.md",
-    "2 Ports/80.7 IIS - Webdav.md",
-    "14 Mobile Pentesting",
-    "7 Hacking Web/2 Intermediate/17 Insecure deserialization",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/2 Practitioner",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación/1 Apprentice",
-    "7 Hacking Web/2 Intermediate/14 Gestión de autenticación",
-    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/2 Practitioner",
-    "7 Hacking Web/2 Intermediate/13 Access Control Vulns/1 Apprentice",
-    "7 Hacking Web/2 Intermediate/13 Access Control Vulns",
-    "Z Imagenes/Hacking/Piv2.png",
-    "Z Imagenes/Hacking/Piv1.png",
-    "Z Imagenes/Hacking/SSRF.png",
-    "Pasted image 20241009091721.png",
-    "Pasted image 20241009094317.png",
-    "Pasted image 20241009093542.png",
-    "Pasted image 20241009092717.png",
-    "Pasted image 20241009091802.png",
-    "8 PortSwigger-OWASP/1 Access Control (IDOR)/Pasted image 20240205130314.png",
-    "8 PortSwigger-OWASP/1 Access Control (IDOR)/Pasted image 20240329162024.png"
+    "Untitled.base",
+    "Obsidian/13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon.md",
+    "General Hacking/17 Cryptography/2 Cifrado disco.md",
+    "General Hacking/17 Cryptography/1 Cifrar.md",
+    "General Hacking/16 Cloud Computing/3 Priv Esc.md",
+    "General Hacking/16 Cloud Computing/2 Exploit S3 Buckets.md",
+    "General Hacking/16 Cloud Computing/1 Enumeration.md",
+    "General Hacking/14 Hacking Mobile/2 Secure Android.md",
+    "General Hacking/14 Hacking Mobile/1 Android Devices.md",
+    "General Hacking/15 IoT Hacking/1 Gather info.md",
+    "General Hacking/13 Wireless Networks/1 Wifi Attacks.md",
+    "General Hacking/12 SQL injection/2 Detect SQLi.md",
+    "General Hacking/12 SQL injection/1 SQL injection.md",
+    "General Hacking/11 Evading IDS, Firewall and Honeypot/2 Evasion Firewall.md",
+    "General Hacking/11 Evading IDS, Firewall and Honeypot/1 Intrusion Detection.md",
+    "General Hacking/10 Session Hijacking/2 Clickhijacking.md",
+    "General Hacking/10 Session Hijacking/1 Perform Session Hijacking.md",
+    "General Hacking/09 Denial of Service/2 Detect Dos & DDoS.md",
+    "General Hacking/09 Denial of Service/1 DoS & DDoS.md",
+    "General Hacking/08 Social Engineering/2 Phishing Detect.md",
+    "General Hacking/08 Social Engineering/1 Ingeniería Social.md",
+    "General Hacking/07 Sniffing/3 Detect network sniffing.md",
+    "General Hacking/07 Sniffing/2 Network Sniffing.md",
+    "General Hacking/07 Sniffing/1 Sniffing activo.md",
+    "General Hacking/06 Malware Threats/4 Dynamic Malware Analysis.md",
+    "General Hacking/06 Malware Threats/3 Static Malware Analysis.md",
+    "General Hacking/17 Cryptography",
+    "General Hacking/16 Cloud Computing",
+    "General Hacking/14 Hacking Mobile",
+    "General Hacking/15 IoT Hacking",
+    "General Hacking/13 Wireless Networks",
+    "General Hacking/12 SQL injection",
+    "General Hacking/11 Evading IDS, Firewall and Honeypot",
+    "General Hacking/10 Session Hijacking",
+    "General Hacking/09 Denial of Service",
+    "General Hacking/08 Social Engineering"
   ]
 }
