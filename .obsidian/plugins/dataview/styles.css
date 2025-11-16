@@ -1,3 +1,8 @@
+/** Live Preview padding fixes, specifically for DataviewJS custom HTML elements. */
+.is-live-preview .block-language-dataviewjs > p, .is-live-preview .block-language-dataviewjs > span {
+    line-height: 1.0;
+}
+
 .block-language-dataview {
     overflow-y: auto;
 }
@@ -18,7 +23,7 @@
 }
 
 .table-view-table > tbody > tr:hover {
-    background-color: var(--table-row-background-hover);
+    background-color: var(--text-selection) !important;
 }
 
 .table-view-table > thead > tr > th {
@@ -69,7 +74,7 @@
     padding-right: 8px;
     font-family: var(--font-monospace);
     background-color: var(--background-primary-alt);
-    color: var(--nav-item-color-selected);
+    color: var(--text-nav-selected);
 }
 
 .dataview.inline-field-value {
@@ -77,7 +82,7 @@
     padding-right: 8px;
     font-family: var(--font-monospace);
     background-color: var(--background-secondary-alt);
-    color: var(--nav-item-color-selected);
+    color: var(--text-nav-selected);
 }
 
 .dataview.inline-field-standalone-value {
@@ -85,7 +90,7 @@
     padding-right: 8px;
     font-family: var(--font-monospace);
     background-color: var(--background-secondary-alt);
-    color: var(--nav-item-color-selected);
+    color: var(--text-nav-selected);
 }
 
 /***************/
