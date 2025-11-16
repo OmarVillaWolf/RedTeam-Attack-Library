@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon.md",
+                "file": "13 Wifi Pentesting/2. Wifi Challenge v2/Challenge 1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 Recon"
+              "title": "Challenge 1"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "841aee1fc4a023c5",
@@ -187,6 +187,10 @@
   },
   "active": "aeb1505c594d33b0",
   "lastOpenFiles": [
+    "13 Wifi Pentesting/2. Wifi Challenge v2/1 Config.md",
+    "13 Wifi Pentesting/2. Wifi Challenge v2/Challenge 1.md",
+    "1 Com Lin & Win/1 Bash/1 Regex.md",
+    "12 Cloud Pentesting/1 Azure/1 Intro/1 Intro.md",
     "Untitled.base",
     "Obsidian/13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon.md",
     "General Hacking/17 Cryptography/2 Cifrado disco.md",
@@ -210,9 +214,6 @@
     "General Hacking/08 Social Engineering/1 Ingeniería Social.md",
     "General Hacking/07 Sniffing/3 Detect network sniffing.md",
     "General Hacking/07 Sniffing/2 Network Sniffing.md",
-    "General Hacking/07 Sniffing/1 Sniffing activo.md",
-    "General Hacking/06 Malware Threats/4 Dynamic Malware Analysis.md",
-    "General Hacking/06 Malware Threats/3 Static Malware Analysis.md",
     "General Hacking/17 Cryptography",
     "General Hacking/16 Cloud Computing",
     "General Hacking/14 Hacking Mobile",
@@ -221,7 +222,6 @@
     "General Hacking/12 SQL injection",
     "General Hacking/11 Evading IDS, Firewall and Honeypot",
     "General Hacking/10 Session Hijacking",
-    "General Hacking/09 Denial of Service",
-    "General Hacking/08 Social Engineering"
+    "General Hacking/09 Denial of Service"
   ]
 }
