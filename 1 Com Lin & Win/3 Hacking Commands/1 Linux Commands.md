@@ -146,7 +146,7 @@ Tags: #Linux #Comandos
 
 ```bash
 ❯ find  / -name file.txt 2>/dev/null    # Buscar un archivo desde la raiz
-❯ find . -name \*conf\*             # Buscar todos los archivos que contengan de nombre 'conf' en el dir actual 
+❯ find . -name \*conf\*                 # Buscar todos los archivos que contengan de nombre 'conf' en el dir actual 
 ```
 
 ```bash
