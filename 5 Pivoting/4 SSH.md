@@ -61,3 +61,9 @@ Siempre se debe colocar 'proxychains' antes de cada comando por lo que hará el 
 
 	# secret = Archivo que contiene la passwd para la conexión
 ```
+
+## X11 Forwarding 
+
+```bash 
+❯ ssh -X user@IP_Remoto
+```
