@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/2. Wifi Challenge v2/0 Cracking/1 Aircrack-ng.md",
+                "file": "13 Wifi Pentesting/2 Wifi Academy/1 Recon/1 Config.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 Aircrack-ng"
+              "title": "1 Config"
+            }
+          },
+          {
+            "id": "5a6e492aae34f10c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/2 Aircrack.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2 Aircrack"
             }
           }
         ]
@@ -187,17 +201,27 @@
   },
   "active": "aeb1505c594d33b0",
   "lastOpenFiles": [
-    "13 Wifi Pentesting/2. Wifi Challenge v2/0 Cracking/2 Pyrit.md",
-    "13 Wifi Pentesting/2. Wifi Challenge v2/0 Cracking/1 Aircrack-ng.md",
-    "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon/1 Config.md",
-    "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon/3 Find hidden network ESSID.md",
-    "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon/2 List all client MACs.md",
-    "13 Wifi Pentesting/2. Wifi Challenge v2/2 Open Networks/1 Access to wifi-guest network.md",
-    "13 Wifi Pentesting/2. Wifi Challenge v2/2 Open Networks",
-    "13 Wifi Pentesting/3. Old academy/1. WPA-WPA2/6 Pyrit.md",
-    "13 Wifi Pentesting/2. Wifi Challenge v2/0 Cracking",
+    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/2 Aircrack.md",
+    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/1 Instalar y conceptos.md",
+    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/1 Config.md",
+    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/4 Airmon-ng.md",
+    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/5 Aireplay-ng.md",
+    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/6 Wireshark.md",
+    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/3 Pyrit.md",
+    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/2 Aircrack-ng.md",
+    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/1 Tools.md",
+    "13 Wifi Pentesting/2 Wifi Academy/3 OWE Networks/1 Conectarse a una red OWE.md",
+    "13 Wifi Pentesting/2 Wifi Academy/2 Open Networks/1 Conectarse a una red OPN.md",
+    "13 Wifi Pentesting/2 Wifi Academy/3 OWE Networks",
+    "13 Wifi Pentesting/2 Wifi Academy/2 Open Networks/2 Access to wifi-guest network.md",
+    "13 Wifi Pentesting/1 Wifi Academy Offsec",
+    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/3 Find hidden network ESSID.md",
+    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/2 List all client MACs.md",
+    "13 Wifi Pentesting/2 Wifi Academy/2 Open Networks",
+    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/6 Pyrit.md",
+    "13 Wifi Pentesting/2 Wifi Academy/0 Tools",
     "2.1 Tools/John the Ripper.md",
-    "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon",
+    "13 Wifi Pentesting/2 Wifi Academy/1 Recon",
     "2.1 Tools/Hashcat.md",
     "5 Pivoting/4 SSH.md",
     "2 Ports/22 - SSH.md",
@@ -208,20 +232,10 @@
     "3 FlipperZero.md",
     "2 NVIM.md",
     "3 Excel.md",
-    "README.md",
-    "8 Active Directory/3 AD/2 Domain Enumeration/2 Bloodhound.md",
     "Untitled.base",
-    "8 Active Directory/3 AD/1 Evasión/1 Powershell.md",
-    "8 Active Directory/2 AD/5 Evasión/1 UAC.md",
-    "8 Active Directory/2 AD/2 Attacks/6 ACL - Windows/2 Powerview.md",
-    "8 Active Directory/2 AD/2 Attacks/4 Kerberoasting/4 Powerview.md",
-    "8 Active Directory/2 AD/1 Enumeration/0 Glosario.md",
-    "8 Active Directory/1 AD/4 Persistence/1 Silver Ticket.md",
     "7 Hacking Web/2 Intermediate/3 CSRF/1 Apprentice",
     "General Hacking/17 Cryptography",
     "General Hacking/16 Cloud Computing",
-    "General Hacking/14 Hacking Mobile",
-    "General Hacking/15 IoT Hacking",
-    "General Hacking/13 Wireless Networks"
+    "General Hacking/14 Hacking Mobile"
   ]
 }
