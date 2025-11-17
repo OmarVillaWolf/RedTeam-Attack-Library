@@ -13,44 +13,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/2. Wifi Challenge v2/2 Find hidden network ESSID.md",
+                "file": "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon/1 Config.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2 Find hidden network ESSID"
-            }
-          },
-          {
-            "id": "f90941905b4f2de8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1 Kitty.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "1 Kitty"
-            }
-          },
-          {
-            "id": "754cd89a5800598a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "3 FlipperZero.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "3 FlipperZero"
+              "title": "1 Config"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -82,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "piryt",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -214,8 +185,25 @@
       "dbfolder:Create a new database table": false
     }
   },
-  "active": "754cd89a5800598a",
+  "active": "aeb1505c594d33b0",
   "lastOpenFiles": [
+    "13 Wifi Pentesting/2. Wifi Challenge v2/0 Cracking/2 Pyrit.md",
+    "13 Wifi Pentesting/2. Wifi Challenge v2/0 Cracking/1 Aircrack-ng.md",
+    "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon/1 Config.md",
+    "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon/3 Find hidden network ESSID.md",
+    "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon/2 List all client MACs.md",
+    "13 Wifi Pentesting/2. Wifi Challenge v2/2 Open Networks/1 Access to wifi-guest network.md",
+    "13 Wifi Pentesting/2. Wifi Challenge v2/2 Open Networks",
+    "13 Wifi Pentesting/3. Old academy/1. WPA-WPA2/6 Pyrit.md",
+    "13 Wifi Pentesting/2. Wifi Challenge v2/0 Cracking",
+    "2.1 Tools/John the Ripper.md",
+    "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon",
+    "2.1 Tools/Hashcat.md",
+    "5 Pivoting/4 SSH.md",
+    "2 Ports/22 - SSH.md",
+    "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
+    "1 Com Lin & Win/3 Hacking Commands/0 OverTheWire.md",
+    "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
     "1 Kitty.md",
     "3 FlipperZero.md",
     "2 NVIM.md",
@@ -229,28 +217,11 @@
     "8 Active Directory/2 AD/2 Attacks/4 Kerberoasting/4 Powerview.md",
     "8 Active Directory/2 AD/1 Enumeration/0 Glosario.md",
     "8 Active Directory/1 AD/4 Persistence/1 Silver Ticket.md",
-    "8 Active Directory/1 AD/3 Lateral Movement/2 Pass The Ticket.md",
-    "8 Active Directory/1 AD/2 Priv Escalation/2 Kerberoasting.md",
-    "7 Hacking Web/2 Intermediate/3 CSRF/1 Apprentice/1 CSRF no defenses.md",
-    "2.1 Tools/Ngrok.md",
     "7 Hacking Web/2 Intermediate/3 CSRF/1 Apprentice",
-    "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
-    "1 Com Lin & Win/3 Hacking Commands/Rever.md",
-    "7 Hacking Web/1 Basic/4 LFI.md",
-    "7 Hacking Web/1 Basic/5 RFI.md",
-    "7 Hacking Web/1 Basic/6 LFI - RCE (Log Poisoning).md",
-    "8 Active Directory/3 AD/3 Local Priv Escalation/2 Feature Abuse.md",
-    "8 Active Directory/3 AD/3 Local Priv Escalation/1 Privilege Escalation - Local.md",
-    "8 Active Directory/2 AD/1 Enumeration/2 PowerView.md",
-    "8 Active Directory/2 AD/1 Enumeration/3 ADPeas.md",
-    "13 Wifi Pentesting/2. Wifi Challenge v2/2 Find hidden network ESSID.md",
     "General Hacking/17 Cryptography",
     "General Hacking/16 Cloud Computing",
     "General Hacking/14 Hacking Mobile",
     "General Hacking/15 IoT Hacking",
-    "General Hacking/13 Wireless Networks",
-    "General Hacking/12 SQL injection",
-    "General Hacking/11 Evading IDS, Firewall and Honeypot",
-    "General Hacking/10 Session Hijacking"
+    "General Hacking/13 Wireless Networks"
   ]
 }
