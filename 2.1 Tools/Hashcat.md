@@ -88,7 +88,7 @@ Notas:
 	# "d?" = Cantidad de digitos a probar. A veces funciona sin comillas 
 	# D = Tipo de dispositivo (2 = GPU)
 	# d = ID de la GPU a usar en 'OpenCL' (1 = GPU Nvidia con memoria de 8064 MB). Varia en cada maquina 
-	# w = Perfil de Workload (1=Low, 2=Default, 3=High, 4=Nightmare). 
+	# w = Perfil de Workload (1=Low, 2=Default, 3=High, 4=Nightmare)
 ```
 ## Bcrypt
 
@@ -96,4 +96,29 @@ Notas:
 ❯ hashcat hashes rockyou.txt -O -m 3200
 
 	# O = Optimización 
+```
+
+## MSCHAPv2
+
+```bash 
+# MSCHAPv2 es un protocolo de autenticación basado en contraseñas ampliamente utilizado en entornos WPA/WPA2/WPA3-Enterprise.
+
+❯ hashcat -m 5500 hash.txt -a 0 -w 3 rockyou.txt
+
+	# m = Tipo de hash a evaluar
+	# a = Tipo de ataque (Microsoft Challenge Handshake Authentication Protocol v2)
+	# w = Perfil de Workload (1=Low, 2=Default, 3=High, 4=Nightmare)
+```
+
+## WPA/WPA2-PSK 
+
+```bash 
+# Crackear redes WPA/WPA2-PSK, utilizando el modo 22000. Este es un método eficiente para crackear Handshake WPA/WPA2 capturados. Para usar Hashcat para crackear WPA/WPA2-PSK, primero necesitas un archivo de Handshake, que se puede capturar usando herramientas como aircrack-ng o Wireshark.
+
+❯ hashcat -m 22000 hash.hccapx -a 0 -w 3 rockyou.txt
+
+	# m = Especifica el modo para WPA/WPA2-PSK.
+	# hash.hccapx = Es el archivo de Handshake en formato hccapx (es posible convertir archivos .cap a .hccapx usando la herramienta cap2hccapx proporcionada por Hashcat).
+	# a = Tipo de ataque (Microsoft Challenge Handshake Authentication Protocol v2)
+	# w = Perfil de Workload (1=Low, 2=Default, 3=High, 4=Nightmare)
 ```
