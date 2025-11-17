@@ -113,6 +113,12 @@ Notas:
 ❯ jhon -w:/usr/share/wordlists/rockyou.txt <Hash>  # Romper el hash obtenido
 ```
 
+## MSCHAPv2
+
+```bash 
+❯ john --format=netntlm hash.txt
+```
+
 ## Fcrackzip
 
 ```bash 
