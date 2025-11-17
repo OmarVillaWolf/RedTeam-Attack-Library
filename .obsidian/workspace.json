@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/2. Wifi Challenge v2/1 Recon/1 Config.md",
+                "file": "13 Wifi Pentesting/2. Wifi Challenge v2/0 Cracking/1 Aircrack-ng.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 Config"
+              "title": "1 Aircrack-ng"
             }
           }
         ]
