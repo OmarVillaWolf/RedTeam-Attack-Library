@@ -13,26 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/2 Wifi Academy/1 Recon/1 Config.md",
+                "file": "13 Wifi Pentesting/2 Wifi Academy/7 MGT/1 Conectarse a redes enterprise.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 Config"
-            }
-          },
-          {
-            "id": "5a6e492aae34f10c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/2 Aircrack.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2 Aircrack"
+              "title": "1 Conectarse a redes enterprise"
             }
           }
         ]
@@ -201,41 +187,41 @@
   },
   "active": "aeb1505c594d33b0",
   "lastOpenFiles": [
-    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/2 Aircrack.md",
-    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/1 Instalar y conceptos.md",
+    "13 Wifi Pentesting/2 Wifi Academy/6 WPA3-SAE/1 Conectarse a una red WPA3-SAE.md",
+    "13 Wifi Pentesting/2 Wifi Academy/5 WPA-WPA2/1 Conectarse a redes WPA-WPA2.md",
+    "13 Wifi Pentesting/2 Wifi Academy/4 WEP/1 Conectarse a una red WEP.md",
+    "13 Wifi Pentesting/2 Wifi Academy/3 OWE/1 Conectarse a una red OWE.md",
+    "13 Wifi Pentesting/2 Wifi Academy/2 OPN/1 Conectarse a una red OPN.md",
+    "13 Wifi Pentesting/2 Wifi Academy/7 MGT/2 Creación de AP.md",
+    "13 Wifi Pentesting/2 Wifi Academy/6 WPA3-SAE/2 Creación de AP.md",
+    "13 Wifi Pentesting/2 Wifi Academy/5 WPA-WPA2/2 Creación de AP.md",
+    "13 Wifi Pentesting/2 Wifi Academy/4 WEP/2 Creación de AP.md",
+    "13 Wifi Pentesting/2 Wifi Academy/3 OWE/2 Creación AP.md",
+    "13 Wifi Pentesting/2 Wifi Academy/2 OPN/2 Creación AP.md",
+    "13 Wifi Pentesting/2 Wifi Academy/2 OPN/3 Acceder a una red Wi-Fi abierta.md",
+    "13 Wifi Pentesting/2 Wifi Academy/7 MGT/1 Conectarse a redes enterprise.md",
+    "13 Wifi Pentesting/2 Wifi Academy/7 MGT",
+    "13 Wifi Pentesting/2 Wifi Academy/6 WPA3-SAE",
+    "13 Wifi Pentesting/2 Wifi Academy/5 WPA-WPA2",
+    "13 Wifi Pentesting/2 Wifi Academy/4 WEP",
+    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/3 Encontrar redes ESSID ocultas.md",
+    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/2 Listar las MAC de los clientes.md",
     "13 Wifi Pentesting/2 Wifi Academy/1 Recon/1 Config.md",
-    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/4 Airmon-ng.md",
     "13 Wifi Pentesting/2 Wifi Academy/0 Tools/5 Aireplay-ng.md",
-    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/6 Wireshark.md",
+    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/4 Airmon-ng.md",
     "13 Wifi Pentesting/2 Wifi Academy/0 Tools/3 Pyrit.md",
     "13 Wifi Pentesting/2 Wifi Academy/0 Tools/2 Aircrack-ng.md",
     "13 Wifi Pentesting/2 Wifi Academy/0 Tools/1 Tools.md",
-    "13 Wifi Pentesting/2 Wifi Academy/3 OWE Networks/1 Conectarse a una red OWE.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 Open Networks/1 Conectarse a una red OPN.md",
-    "13 Wifi Pentesting/2 Wifi Academy/3 OWE Networks",
-    "13 Wifi Pentesting/2 Wifi Academy/2 Open Networks/2 Access to wifi-guest network.md",
+    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/2 Aircrack.md",
+    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/1 Instalar y conceptos.md",
+    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/6 Wireshark.md",
+    "13 Wifi Pentesting/2 Wifi Academy/3 OWE",
     "13 Wifi Pentesting/1 Wifi Academy Offsec",
-    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/3 Find hidden network ESSID.md",
-    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/2 List all client MACs.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 Open Networks",
+    "13 Wifi Pentesting/2 Wifi Academy/2 OPN",
     "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/6 Pyrit.md",
     "13 Wifi Pentesting/2 Wifi Academy/0 Tools",
     "2.1 Tools/John the Ripper.md",
     "13 Wifi Pentesting/2 Wifi Academy/1 Recon",
-    "2.1 Tools/Hashcat.md",
-    "5 Pivoting/4 SSH.md",
-    "2 Ports/22 - SSH.md",
-    "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
-    "1 Com Lin & Win/3 Hacking Commands/0 OverTheWire.md",
-    "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
-    "1 Kitty.md",
-    "3 FlipperZero.md",
-    "2 NVIM.md",
-    "3 Excel.md",
-    "Untitled.base",
-    "7 Hacking Web/2 Intermediate/3 CSRF/1 Apprentice",
-    "General Hacking/17 Cryptography",
-    "General Hacking/16 Cloud Computing",
-    "General Hacking/14 Hacking Mobile"
+    "Untitled.base"
   ]
 }
