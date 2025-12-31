@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
+                "file": "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/1 Instalar y conceptos.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "1 Linux Commands"
+              "title": "1 Instalar y conceptos"
             }
           }
         ]
@@ -194,6 +194,9 @@
   },
   "active": "0b74728c2804b821",
   "lastOpenFiles": [
+    "8 Active Directory/3 AD/2 Domain Enumeration/2 BloodHound.md",
+    "8 Active Directory/2 AD/2 Attacks/6 ACL - Windows/2 PowerView.md",
+    "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
     "General Hacking/0 OSINT & Passive Recon/9 Web Sites.md",
     "8 Active Directory\\3 AD\\2 Domain Enumeration",
     "8 Active Directory\\2 AD\\2 Attacks\\6 ACL - Windows",
@@ -227,9 +230,6 @@
     "15 CRTP/1 Privilege Escalation - Local.md",
     "15 CRTP/1 - NoPAC.md",
     "13 Wifi Pentesting/4 Pineapple/1 Instalar.md",
-    "13 Wifi Pentesting/3 Old Wifi Academy/2. WPS/WPS.md",
-    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/9 Bettercap.md",
-    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/8 Password.md",
     "Z Imagenes/Hacking/Piv2.png",
     "Z Imagenes/Hacking/Piv1.png",
     "Z Imagenes/Hacking/SSRF.png",
