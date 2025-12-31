@@ -1,24 +1,25 @@
 {
   "main": {
-    "id": "369e4978bf6bae75",
+    "id": "31120e3bc2a4d96f",
     "type": "split",
     "children": [
       {
-        "id": "0cc05bd6b70855e0",
+        "id": "0113f09d7f9af9b1",
         "type": "tabs",
         "children": [
           {
-            "id": "aeb1505c594d33b0",
+            "id": "0b74728c2804b821",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/2 Wifi Academy/4 WEP/3 Aireplay-ng.md",
+                "file": "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
                 "mode": "source",
-                "source": false
+                "source": false,
+                "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "3 Aireplay-ng"
+              "title": "1 Linux Commands"
             }
           }
         ]
@@ -27,15 +28,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "f3646441bea43028",
+    "id": "0160ea3b883182aa",
     "type": "split",
     "children": [
       {
-        "id": "9911f120c6756968",
+        "id": "913d6a7e54b6f5f5",
         "type": "tabs",
         "children": [
           {
-            "id": "10fda6eb60051383",
+            "id": "642b9322c22441ce",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,12 +49,12 @@
             }
           },
           {
-            "id": "b4282def75453d72",
+            "id": "fb5561b40ab55cc4",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "cew",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,7 +66,17 @@
             }
           },
           {
-            "id": "8aa66275c78b36f8",
+            "id": "835a31b36ce28917",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "starred"
+            }
+          },
+          {
+            "id": "2b0b12d4d284f795",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -78,66 +89,43 @@
       }
     ],
     "direction": "horizontal",
-    "width": 259.5
+    "width": 206.5017547607422
   },
   "right": {
-    "id": "841aee1fc4a023c5",
+    "id": "352c47b0cb031926",
     "type": "split",
     "children": [
       {
-        "id": "631b2c1005497bdf",
+        "id": "0b8e63a17edb4e30",
         "type": "tabs",
         "children": [
           {
-            "id": "4482c9a4d7615dcc",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "Obsidian/13 Wifi Pentesting/1 WiFi-Academy/1 Redes WiFi/2 IEEE 802.11.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Backlinks for 2 IEEE 802.11"
-            }
-          },
-          {
-            "id": "f0af68256f5aef2e",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "Obsidian/13 Wifi Pentesting/1 WiFi-Academy/1 Redes WiFi/2 IEEE 802.11.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Outgoing links from 2 IEEE 802.11"
-            }
-          },
-          {
-            "id": "a4b19eacd0c97f1f",
+            "id": "4c874c1760f33de1",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
+                "useHierarchy": true
               },
               "icon": "lucide-tags",
               "title": "Tags"
             }
           },
           {
-            "id": "a7430c5370a10b2c",
+            "id": "95c61d5e4b7ef114",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "8 AD 2/4 Persistencia, Post-Explotation/5 Pass The Ticket.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 5 Pass The Ticket"
+            }
+          },
+          {
+            "id": "7e97871c22240511",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,21 +139,40 @@
             }
           },
           {
-            "id": "6149564d93596034",
+            "id": "68a2a4c046c78926",
             "type": "leaf",
             "state": {
-              "type": "outline",
+              "type": "backlink",
               "state": {
-                "file": "Obsidian/13 Wifi Pentesting/1 WiFi-Academy/1 Redes WiFi/2 IEEE 802.11.md",
-                "followCursor": false,
+                "file": "General Hacking/0 OSINT & Passive Recon/9 Web Sites.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
                 "showSearch": false,
-                "searchQuery": ""
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
               },
-              "icon": "lucide-list",
-              "title": "Outline of 2 IEEE 802.11"
+              "icon": "links-coming-in",
+              "title": "Backlinks for 9 Web Sites"
+            }
+          },
+          {
+            "id": "eea6b1fe442951eb",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "General Hacking/0 OSINT & Passive Recon/9 Web Sites.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 9 Web Sites"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -181,49 +188,57 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
-      "obsidian42-brat:BRAT": false,
-      "dbfolder:Create a new database table": false
+      "dbfolder:Create a new database table": false,
+      "obsidian42-brat:BRAT": false
     }
   },
-  "active": "aeb1505c594d33b0",
+  "active": "0b74728c2804b821",
   "lastOpenFiles": [
-    "13 Wifi Pentesting/2 Wifi Academy/4 WEP/4 Besside.md",
-    "13 Wifi Pentesting/2 Wifi Academy/4 WEP/3 Aireplay-ng.md",
-    "13 Wifi Pentesting/2 Wifi Academy/4 WEP/1 Conectarse a una red WEP.md",
-    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/3 Airodump-ng.md",
-    "7 Hacking Web/1 Basic/4 LFI.md",
-    "7 Hacking Web/1 Basic/6 LFI - RCE (Log Poisoning).md",
-    "8 Active Directory/2 AD/5 Evasión/1 UAC.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 OPN/4 Karma attack.md",
-    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/5 Sniffer.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 Cracking/2 Aircrack-ng.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 Cracking/1 MDK4 - redes ocultas.md",
-    "13 Wifi Pentesting/2 Wifi Academy/4 WEP/0 WEP.md",
-    "13 Wifi Pentesting/2 Wifi Academy/3 OWE/1 Conectarse a una red OWE.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 OPN/3 Bypass del Portal Cautivo.md",
-    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/2 Airmon-ng.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 OPN/2 Creación AP.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 OPN/3 Extracción de credenciales.md",
-    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/4 Cambiar MAC.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 OPN/1 Conectarse a una red OPN.md",
-    "13 Wifi Pentesting/2 Wifi Academy/1 Recon/1 Basic.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 Cracking/3 Pyrit.md",
-    "13 Wifi Pentesting/2 Wifi Academy/5 WPA-WPA2/1 Conectarse a redes WPA-WPA2.md",
-    "Pasted image 20251123154541.png",
-    "Pasted image 20251123154556.png",
-    "13 Wifi Pentesting/2 Wifi Academy/6 WPA3-SAE/1 Conectarse a una red WPA3-SAE.md",
-    "13 Wifi Pentesting/2 Wifi Academy/7 MGT/1 Conectarse a redes enterprise.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 OPN/3 Acceder a una red Wi-Fi abierta.md",
-    "13 Wifi Pentesting/2 Wifi Academy/0 Tools/1 Tools.md",
-    "13 Wifi Pentesting/2 Wifi Academy/2 Cracking",
-    "13 Wifi Pentesting/2 Wifi Academy/7 MGT",
-    "13 Wifi Pentesting/2 Wifi Academy/6 WPA3-SAE",
-    "13 Wifi Pentesting/2 Wifi Academy/5 WPA-WPA2",
-    "13 Wifi Pentesting/2 Wifi Academy/4 WEP",
-    "13 Wifi Pentesting/2 Wifi Academy/3 OWE",
-    "13 Wifi Pentesting/1 Wifi Academy Offsec",
-    "13 Wifi Pentesting/2 Wifi Academy/2 OPN",
-    "13 Wifi Pentesting/2 Wifi Academy/0 Tools",
-    "13 Wifi Pentesting/2 Wifi Academy/1 Recon"
+    "General Hacking/0 OSINT & Passive Recon/9 Web Sites.md",
+    "8 Active Directory\\3 AD\\2 Domain Enumeration",
+    "8 Active Directory\\2 AD\\2 Attacks\\6 ACL - Windows",
+    "8 Active Directory/1 AD/3 Lateral Movement/2 Pass The Ticket.md",
+    "8 Active Directory\\1 AD\\3 Lateral Movement",
+    "7 Hacking Web\\2 Intermediate\\3 CSRF\\1 Apprentice",
+    "7 Hacking Web/2 Intermediate/23 JWT/3 Expert/2 Confusión de algoritmo JWT sin clave expuesta.md",
+    "7 Hacking Web/2 Intermediate/23 JWT/3 Expert/1 Bypass de autenticación JWT por confusión de algoritmo.md",
+    "7 Hacking Web/2 Intermediate/23 JWT/3 Expert",
+    "7 Hacking Web\\2 Intermediate\\23 JWT\\3 Expert",
+    "7 Hacking Web/2 Intermediate/23 JWT/2 Practitioner/4 Bypass de autenticación JWT con traversal en kid.md",
+    "7 Hacking Web/2 Intermediate/23 JWT/2 Practitioner/3 Bypass de autenticación JWT por inyección en jku.md",
+    "7 Hacking Web/2 Intermediate/23 JWT/2 Practitioner/2 Bypass de autenticación JWT por inyección en jwk.md",
+    "7 Hacking Web/2 Intermediate/23 JWT/2 Practitioner/1 Bypass de autenticación JWT con clave débil.md",
+    "7 Hacking Web/2 Intermediate/23 JWT/2 Practitioner",
+    "7 Hacking Web\\2 Intermediate\\23 JWT\\2 Practitioner",
+    "7 Hacking Web/2 Intermediate/23 JWT/1 Apprentice/2 Bypass de autenticación JWT por verificación defectuosa.md",
+    "7 Hacking Web/2 Intermediate/23 JWT/1 Apprentice/1 Bypass de autenticación JWT sin verificar la firma.md",
+    "7 Hacking Web/2 Intermediate/23 JWT/1 Apprentice/0 JWT.md",
+    "7 Hacking Web/2 Intermediate/23 JWT/1 Apprentice",
+    "7 Hacking Web/2 Intermediate/23 JWT",
+    "3 FlipperZero.md",
+    "15 CRTP/Crackmapexec.md",
+    "15 CRTP/6 - Abuso de ACL.md",
+    "15 CRTP/5 - Constrained Delegation.md",
+    "15 CRTP/4 - Unconstrained Delegation.md",
+    "15 CRTP/3 Relaying.md",
+    "15 CRTP/3 - DCShadow.md",
+    "15 CRTP/2 Feature Abuse.md",
+    "15 CRTP/2 - Golden Ticket.md",
+    "15 CRTP/1 Privilege Escalation - Local.md",
+    "15 CRTP/1 - NoPAC.md",
+    "13 Wifi Pentesting/4 Pineapple/1 Instalar.md",
+    "13 Wifi Pentesting/3 Old Wifi Academy/2. WPS/WPS.md",
+    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/9 Bettercap.md",
+    "13 Wifi Pentesting/3 Old Wifi Academy/1. WPA-WPA2/8 Password.md",
+    "Z Imagenes/Hacking/Piv2.png",
+    "Z Imagenes/Hacking/Piv1.png",
+    "Z Imagenes/Hacking/SSRF.png",
+    "Pasted image 20241009091721.png",
+    "Pasted image 20241009094317.png",
+    "Pasted image 20241009093542.png",
+    "Pasted image 20241009092717.png",
+    "Pasted image 20241009091802.png",
+    "8 PortSwigger-OWASP/1 Access Control (IDOR)/Pasted image 20240205130314.png",
+    "8 PortSwigger-OWASP/1 Access Control (IDOR)/Pasted image 20240329162024.png"
   ]
 }
