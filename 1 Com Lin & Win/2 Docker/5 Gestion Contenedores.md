@@ -6,8 +6,9 @@ A continuación, se detallan algunos de los comandos vistos en esta clase:
 
 ```bash
 ❯ apt remove docker-compose               # Eliminar Docker-Compose
-❯ curl -L "https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose  # Descarga un binario de Docker-Compose
+❯ curl -L "https://github.com/docker/compose/releases/download/v5.0.1/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose  # Descarga un binario de Docker-Compose
 ❯ chmod +x docker-compose                 # Le damos permisos de ejecucion
+❯ cp docker-compose /usr/libexec/docker/cli-plugins   # Para que funcione al instalar Bloodhound CE
 ❯ mv docker-compose /usr/local/bin        # Movemos el binario a esa ruta para que se ejecute desde cualquier parte 
 ```
 
