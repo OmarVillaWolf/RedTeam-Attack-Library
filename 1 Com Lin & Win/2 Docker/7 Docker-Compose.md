@@ -13,7 +13,7 @@ Desplegaremos una maquina Kibana con su vulnerabilidad
 * **Elastic Stack**  
 
 ```bash 
-❯ svn checkout https://github.com/vulhub/vulhub/trunk/kibana/CVE-2018-17246   # Para clonar una subcarpeta de Github y en donde dice '/tree/master' quitarlo de la url y colocar **/trunk** y el resto de la url
+❯ svn checkout https://github.com/vulhub/vulhub/trunk/kibana/CVE-2018-17246   # Para clonar una subcarpeta de Github y en donde dice '/tree/master' quitarlo de la url y colocar '/trunk' y el resto de la url
 ❯ docker-compose up -d                      # Para poder desplegar el contenerdor una vez descargada
 ❯ docker port cve-2018-17246_kibana_1       # Miramos el puerto que esta usando para ese servicio en especifico
 ```
