@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/2 Tshark.md",
+                "file": "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/2 Conectarse a redes enterprise.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2 Tshark"
+              "title": "2 Conectarse a redes enterprise"
             }
           },
           {
@@ -223,12 +223,14 @@
   "active": "6c10b300b6df8f93",
   "lastOpenFiles": [
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/1 Metodología.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/2 Conectarse a redes enterprise.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/3 Creación de AP.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/0 WPA2 MGT.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/2 Tshark.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/5 Aireplay-ng.md",
     "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/1 Metodología.md",
     "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/5 Aireplay-ng.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/0 WPA2 MGT.md",
     "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/0 WPA2.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/2 Tshark.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/1 Wireshark.md",
     "13 Wifi Pentesting/1 Wifi Academy/1 Recon/3 Airodump-ng.md",
     "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/1 Hashcat.md",
@@ -245,10 +247,8 @@
     "13 Wifi Pentesting/1 Wifi Academy/3 OWE/2 Creación AP.md",
     "13 Wifi Pentesting/1 Wifi Academy/3 OWE/1 Conectarse a una red OWE.md",
     "13 Wifi Pentesting/1 Wifi Academy/3 OWE/0 OWE.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/2 Conectarse a redes enterprise.md",
     "13 Wifi Pentesting/1 Wifi Academy/7 WPA3-SAE/1 Conectarse a una red WPA3-SAE.md",
     "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/2 Conectarse a redes WPA-WPA2.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/3 Conectarse a una red OPN.md",
     "13 Wifi Pentesting/1 Wifi Academy/5 WPS",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2",
     "13 Wifi Pentesting\\3 Old Wifi Academy\\1. WPA-WPA2",
