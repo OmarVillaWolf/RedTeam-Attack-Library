@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/1 Wifi Academy/1 Recon/3 Airodump-ng.md",
+                "file": "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/6 Conectarse a redes enterprise.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3 Airodump-ng"
+              "title": "6 Conectarse a redes enterprise"
             }
           },
           {
@@ -35,8 +35,7 @@
               "title": "4 Radius"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -206,35 +205,35 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "6c10b300b6df8f93",
+  "active": "0b5838345baaaacc",
   "lastOpenFiles": [
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/1 Metodología.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/3 Aireplay-ng.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/5 Evil Twin.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/4 Radius.md",
-    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/3 Airodump-ng.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/6 Conectarse a redes enterprise.md",
-    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/1 Metodología.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/2 Creación de AP.md",
-    "13 Wifi Pentesting/1 Wifi Academy/7 WPA3-SAE/1 Conectarse a una red WPA3-SAE.md",
-    "13 Wifi Pentesting/1 Wifi Academy/7 WPA3-SAE/2 Creación de AP.md",
+    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/6 Evil Twin.md",
     "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/7 Conectarse a redes WPA-WPA2.md",
+    "13 Wifi Pentesting/1 Wifi Academy/7 WPA3-SAE/1 Conectarse a una red WPA3-SAE.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/5 Evil Twin.md",
+    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/4 Evil Twin.md",
     "13 Wifi Pentesting/1 Wifi Academy/4 WEP/2 Conectarse a una red WEP.md",
     "13 Wifi Pentesting/1 Wifi Academy/2 OPN/3 Conectarse a una red OPN.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/0 WPA2 MGT.md",
+    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/6 Tshark.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/6 Bypass del Portal Cautivo.md",
+    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/7 Portal Cautivo.md",
+    "13 Wifi Pentesting/1 Wifi Academy/5 WPS/2 Ataques comunes.md",
+    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/3 Airodump-ng.md",
+    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/2 Airmon-ng.md",
+    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/5 Wireshark.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/2 Tshark.md",
-    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/3 Aireplay-ng.md",
-    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/0 WPA2.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/1 Wireshark.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/3 Cowpatty.md",
     "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/1 Hashcat.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon",
-    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/6 Evil Twin.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/2 Aircrack-ng.md",
     "13 Wifi Pentesting/1 Wifi Academy/1 Recon/4 Cambiar MAC.md",
-    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/6 Besside-ng.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/1 Metodología.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/2 Encontrar redes ocultas.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/0 OPN.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/6 Conectarse a redes enterprise.md",
+    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/4 Airdecap-ng.md",
     "13 Wifi Pentesting/1 Wifi Academy/4 WEP/1 Metodología.md",
+    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/5 Aireplay-ng.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/3 Aireplay-ng.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon",
     "13 Wifi Pentesting/1 Wifi Academy/5 WPS",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2",
     "13 Wifi Pentesting\\3 Old Wifi Academy\\1. WPA-WPA2",
