@@ -5,6 +5,20 @@ Tags: #Linux #Comandos
 ## Comandos terminal Linux
 
 ```bash 
+#  Instalar las 'vmwaretools'
+❯ apt install -y open-vm-tools open-vm-tools-desktop xfce4-clipman  
+❯ systemctl restart open-vm-tools   # Reiniciar el proceso de las 'vmwaretools' en kali vmware por si no funionan correctamente 
+
+# Si aun asi no funciona ejecutar lo siguiente:
+❯ sudo apt update
+❯ sudo apt install --reinstall -y \
+❯ open-vm-tools \
+❯ open-vm-tools-desktop \
+❯ xfce4-clipman \
+❯ xfce4-clipman-plugin
+```
+
+```bash 
 # Activar SSH en Kali 
 
 ❯ sudo update-rc.d -f ssh remove
