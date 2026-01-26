@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/1 Wifi Academy/4 WEP/11 Cracking WEP.md",
+                "file": "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/1 Metodología.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "11 Cracking WEP"
+              "title": "1 Metodología"
             }
           }
         ]
@@ -193,16 +193,17 @@
   },
   "active": "2a2feebd4bd30b7c",
   "lastOpenFiles": [
+    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/2 Conectarse a una red WEP.md",
+    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/6 Fragmentation Attack.md",
+    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/5 ARP Request Replay Attack.md",
     "13 Wifi Pentesting/1 Wifi Academy/4 WEP/9 Attacking WEP without clients.md",
-    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/10 Besside-ng.md",
+    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/8 The Cafe Latte Attack.md",
+    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/7 Korek Chop Chop Attack.md",
     "13 Wifi Pentesting/1 Wifi Academy/4 WEP/11 Cracking WEP.md",
+    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/10 Besside-ng.md",
     "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/2 Aircrack-ng.md",
     "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/5.md",
-    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/6 Fragmentation Attack.md",
-    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/7 Korek Chop Chop Attack.md",
-    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/8 The Cafe Latte Attack.md",
     "13 Wifi Pentesting/1 Wifi Academy/4 WEP/1 Metodología.md",
-    "13 Wifi Pentesting/1 Wifi Academy/4 WEP/5 ARP Request Replay Attack.md",
     "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/3 Aireplay-ng.md",
     "13 Wifi Pentesting/1 Wifi Academy/4 WEP/3 Creación de AP.md",
     "13 Wifi Pentesting/1 Wifi Academy/5 WPS/3 PIN Brute-Forcing.md",
@@ -218,7 +219,6 @@
     "13 Wifi Pentesting/1 Wifi Academy/2 OPN/2 Encontrar redes ocultas.md",
     "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/4 Radius.md",
-    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/6 Tshark.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon",
     "13 Wifi Pentesting/1 Wifi Academy/5 WPS",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2",
