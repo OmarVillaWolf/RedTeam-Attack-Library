@@ -30,12 +30,7 @@ Tags: #Linux #Comandos
 ```
 
 ```bash
-# Activar RDP en Kali
-
-❯ sudo apt install xrdp -y        # Instalamos RDP
-❯ sudo adduser xrdp ssl-cert      # Incluimos el usuario 'xrdp' en el certificado SSL
-❯ sudo systemctl enable xrdp      # Activamos el servicio RDP 
-❯ sudo reboot                     # Reiniciamos Kali
+❯ xfreerdp3 /v:IP /u:user /p:password /dynamic-resolution      # Conectarse por RDP
 ```
 
 ```bash 
