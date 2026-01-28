@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/7 EAP Downgrade Attack (Enumeration).md",
+                "file": "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/1 Metodología.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "7 EAP Downgrade Attack (Enumeration)"
+              "title": "1 Metodología"
             }
           }
         ]
@@ -193,9 +193,10 @@
   },
   "active": "2a2feebd4bd30b7c",
   "lastOpenFiles": [
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/11 Conectarse a redes enterprise.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/8 Enterprise Evil-Twin.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/5 EAP Buster.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/7 EAP Downgrade Attack (Enumeration).md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/11 Conectarse a redes enterprise.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/9 PEAP Relay Attack.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/10 EAP-TLS Authentication.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/4 Radius.md",
@@ -203,7 +204,6 @@
     "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/6 Bruteforce Attacks.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/0 WPA2 MGT.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/5 EAP Buster.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/4 pcapFilter.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/12 EAP-MD5 crack.md",
     "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/1 Hashcat.md",
