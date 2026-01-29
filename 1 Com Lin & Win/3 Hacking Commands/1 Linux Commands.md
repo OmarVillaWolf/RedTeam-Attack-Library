@@ -34,6 +34,21 @@ Tags: #Linux #Comandos
 ```
 
 ```bash 
+❯ sudo apt install libssl-dev libnl-3-dev libnl-genl-3-dev        # Instalar Hostapd-Mana
+❯ git clone https://github.com/sensepost/hostapd-mana.git
+❯ cd hostapd-mana/hostapd
+❯ make
+❯ sudo make install
+```
+
+```bash 
+❯ sudo apt install aircrack-ng    # Instalar Aircrack-ng 
+❯ sudo apt install asleap         # Instalar Asleap
+❯ sudo apt install hashcat        # Instalar Hashcat
+❯ sudo apt install john           # Instalar Joh The Ripper
+```
+
+```bash 
 ❯ service apache2 start           # Iniciamos el servicio de apache
 ❯ service apache2 stop            # Paramos el servicio de apache 
 
