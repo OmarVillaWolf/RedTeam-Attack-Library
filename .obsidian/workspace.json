@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/9 PEAP Relay Attack.md",
+                "file": "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/10 EAP-TLS Authentication.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "9 PEAP Relay Attack"
+              "title": "10 EAP-TLS Authentication"
             }
           }
         ]
@@ -193,10 +193,10 @@
   },
   "active": "2a2feebd4bd30b7c",
   "lastOpenFiles": [
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/8 Ent Evil-Twin.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/9 PEAP Relay Attack.md",
-    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/11 Conectarse a redes enterprise.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/10 EAP-TLS Authentication.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/8 Ent Evil-Twin.md",
+    "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/11 Conectarse a redes enterprise.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/7 EAP Downgrade Attack (Enumeration).md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/1 WPA2/1 Metodología.md",
     "13 Wifi Pentesting/1 Wifi Academy/8 MGT/0 Recon/5 EAP Buster.md",
