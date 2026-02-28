@@ -2,7 +2,6 @@
 
 Tags: #AD #Powershell #PowerView #PowershellModule 
 
-
 ```bash 
 En un entorno de Active Directory (AD), la 'relación de confianza' ('trust') es una relación entre dos dominios o bosques que permite a los usuarios de un dominio o bosque 'acceder a recursos' en el otro dominio o bosque.  
 - La confianza puede ser 'automática' (como entre dominios padre e hijo dentro del mismo bosque) o 'establecida manualmente' (como entre bosques o dominios externos).  
@@ -11,7 +10,9 @@ En un entorno de Active Directory (AD), la 'relación de confianza' ('trust') es
 
 ```bash 
 Direcciones:
-1. 'Confianza unidireccional (One-way trust)' – Es unidireccional. Los usuarios del dominio de confianza (trusted domain) pueden acceder a los recursos del dominio que confía (trusting domain), pero no ocurre lo contrario.
+1. 'Confianza unidireccional (One-way trust)' – Es unidireccional. Los usuarios del dominio de confianza (trusted domain) pueden acceder a los recursos del dominio que confía (trusting domain), pero no ocurre lo contrario. 
+   -->   =   La diección de la flecha significa que dominio confia en quien. No significa quien se puede conectar con quien.
+   Domain A --> Domain B   = El dominio A confía en el dominio B, por lo tanto los usuarios del dominio B se pueden conectar a los servidores del dominio A. 
 
 2. 'Confianza bidireccional (Two-way trust)' – Es bidireccional. Los usuarios de ambos dominios pueden acceder a los recursos del otro dominio.
 ```
@@ -47,22 +48,39 @@ Confianzas predeterminadas/automáticas
 
 ## PowerView 
 
-```powershell 
-❯ Get-DomainTrust      # Obtener una lista de las relaciones de confianza de dominio para el dominio actual 
-❯ Get-DomainTrust -Domain us.dollarcorp.moneycorp.local
+* [PowerView](https://github.com/ZeroDayLab/PowerSploit/blob/master/Recon/PowerView.ps1)
 
-❯ Get-Forest           # Obtener detalles sobre el bosque actual 
-❯ Get-Forest -Forest eurocorp.local
+```powershell 
+❯ . C:\AD\PowerView.ps1               # Cargar PowerView en memoria 
+❯ Import-Module .\PowerView.ps1       # Importar el módulo 
+```
+
+```powershell 
+❯ Get-DomainTrust      # Obtener una lista de los 'trust' para el dominio actual 
+	- El comando muestra los diferentes 'Trust' 
+	- TrustAttributes = WITHIN_FOREST    # Dentro del mismo forest 
+	- TrustAttributes = FILTER_SIDS      # Es un 'trust' externo entre dos forest  
+	- TrustDirection = Bidirectional     # Ambas direcciones 
+
+❯ Get-DomainTrust | ?{$_.TrustAttributes -eq "FILTER_SIDS"}   # Obtener los external trust
+
+❯ Get-DomainTrust -Domain us.domain1.local
 
 ❯ Get-ForestDomain     # Obtener todos los dominios en el bosque actual
-❯ Get-ForestDomain -Forest eurocorp.local
+❯ Get-ForestDomain -Forest domain2.local  # Obtener los dominios en un forest en específico 
+
+# Mostrar todos los trusts existentes en un forest en específico
+❯ Get-ForestDomain -Forest domain2.local | %{Get-DomainTrust -Domain $_.Name} 
+
+❯ Get-Forest           # Obtener detalles sobre el bosque actual 
+❯ Get-Forest -Forest domain2.local
 
 ❯ Get-ForestGlobalCatalog    # Obtener todos los catálogos globales del bosque actual
-❯ Get-ForestGlobalCatalog -Forest eurocorp.local
+❯ Get-ForestGlobalCatalog -Forest domain2.local
 
 # Mapear (o visualizar) las relaciones de confianza de un bosque (sin relaciones de confianza entre bosques en el laboratorio)
 ❯ Get-ForestTrust      
-❯ Get-ForestTrust -Forest eurocorp.local
+❯ Get-ForestTrust -Forest domain2.local
 ```
 
 ## Powershell Module 
