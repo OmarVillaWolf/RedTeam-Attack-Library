@@ -12,17 +12,21 @@ ID de eventos:
 - 4672 = Asignación de privilegios especiales. Un usuario inicia sesión y se le asignan privilegios especiales tipicamente por ser miembro de grupos privilegiados (Administrators, Domain Admins, etc...) 
 ```
 
+## PowerView 
+
 ```powershell 
-❯ Find-LocalAdminAccess -Verbose    # Encontrar todas las maquinas en el dominio actual donde el usuario actual tiene acceso de admin
+❯ Find-LocalAdminAccess -Verbose    # Encontrar todas las máquinas en el dominio actual donde el usuario actual tiene acceso 'admin'
 
 ❯ Get-NetComputer  # Esta función consulta el DC del dominio actual para obtener una lista de computadoras
-❯ Invoke-CheckLocalAdminAccess   # Usar 'multi-threaded' para cada maquina 
+❯ Invoke-CheckLocalAdminAccess   # Usar 'multi-threaded' para cada máquina 
 
 
 Notas:
 	1. Esto tambien se puede hacer con la ayuda de herraminetas de administración remota como WMI y Powershell. Bastante útil en los casos en que los puertos (RPC y SMB) utilizados por 'Find-LocalAdminAccess' son bloqueados
 	2. Mirar 'Find-WMILocalAdminAccess.ps1' y 'Find-PSRemotingLocalAdminAccess.ps1'
 ```
+
+## Comandos 
 
 ```powershell 
 ❯ . Find-PSRemotingLocalAdminAccess.ps1       # Importar el módulo 
@@ -53,9 +57,9 @@ Notas:
 * [Invoke-SessionHunter](https://github.com/Leo4j/Invoke-SessionHunter)
 
 ```powershell 
-No se necesita acceso admin en maquinas remotas. Usa 'Remote Registry y queries HKEY_USERS hive' 
+No se necesita acceso admin en máquinas remotas. Usar 'Remote Registry y queries HKEY_USERS hive' 
 
-❯ Invoke-SessionHunter -FailSafe    # Lista sesiones en maquinas remotas 
+❯ Invoke-SessionHunter -FailSafe    # Listar sesiones en máquinas remotas 
 
 ❯ Invoke-SessionHunter -NoPortScan -Targets C:\AD\Tools\servers.txt   # Comando amigable y evita conectarse a todos los targets y solo especificar objetivos  
 ```
