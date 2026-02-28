@@ -2,28 +2,45 @@
 
 Tags: #AD #Powershell #ACL 
 
-```powershell 
-Listas de control de aceeso (ACL):
+```bash  
+Listas de control de acceso (ACL):
 
-- Es una lista de control de entradas (ACE) - ACE corresponde a los permisos individuales o acceso auditados. Quien tiene permiso y que puede hacer con ese objeto?
+- Es una lista de acceso de control de entradas (ACE) - ACE corresponde a los permisos individuales o acceso auditados. Quien tiene permiso y que puede hacer con ese objeto?
 
 - Existen dos tipos:
 	1. DACL: Define los permisos que los administradores (usuario o grupo) tienen sobre un objeto
-	2. SACL: Registar los mensajes de exito y fracaso cuando se accede a un objeto 
+	2. SACL: Registra los mensajes de éxito y fracaso cuando se accede a un objeto 
 ```
 
 [![ACL-Mindmap.png | 900](https://i.postimg.cc/hPDjWBvz/ACL-Mindmap.png)](https://postimg.cc/z3Q5K4n8)
 
-## PowerView 
+## Enumeración de ACLs con PowerView 
+
+* [PowerView](https://github.com/ZeroDayLab/PowerSploit/blob/master/Recon/PowerView.ps1)
 
 ```powershell 
-❯ Get-DomainObjectAcl -SamAccountName user1 -ResolveGUIDs     # Obtener los ACLs asociados con un objeto especifico 
+❯ . C:\AD\PowerView.ps1               # Cargar PowerView en memoria 
+❯ Import-Module .\PowerView.ps1       # Importar el módulo 
+```
+
+```powershell 
+# Obtener los ACLs asociados con un objeto específico 
+❯ Get-DomainObjectAcl -SamAccountName user1 -ResolveGUIDs
+   
+# Obtener los ACLs asociados con un grupo específico e identificar...
 ❯ Get-DomainObjectAcl -Identity "Domain Admins" -ResolveGUIDs -verbose 
-❯ Get-DomainObjectAcl -SearchBase "LDAP://CN=Domain Admins,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local" -ResolveGUIDs -Verbose     # Obtener los ACLs asociados con un prefijo especifico para ser usado como busqueda 
+	- ObjectDN   :  CN=Domain Admins,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local
+	- ActiveDirectoryRights: Generic All
+	- SecurityIdentifier: s-1-5-18
 
-❯ (Get-Acl 'AD:\CN=Administrator,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local').Access     # Enumerar ACL usando el modulo de AD sin resolver GUIDs
+# Obtener los ACLs asociados con un prefijo específico para ser usado como búsqueda 
+❯ Get-DomainObjectAcl -SearchBase "LDAP://CN=Domain Admins,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local" -ResolveGUIDs -Verbose     
 
-❯ Find-InterestingDomainAcl -ResolveGUIDs       # Buscar ACEs interesantes 
+# Enumerar ACL usando el módulo de AD sin resolver GUIDs
+❯ (Get-Acl 'AD:\CN=Administrator,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local').Access     
 
-❯ Get-PathAcl -Path "\\dcorp-dc.dollarcorp.moneycorp.local\sysvol"     # Obtener ACLs asociados con un path especifico 
+❯ Find-InterestingDomainAcl -ResolveGUIDs      # Buscar ACEs interesantes 
+
+# Obtener ACLs asociados con un path específico 
+❯ Get-PathAcl -Path "\\dcorp-dc.dollarcorp.moneycorp.local\sysvol"     
 ```
