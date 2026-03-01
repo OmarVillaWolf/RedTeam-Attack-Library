@@ -4,7 +4,7 @@ Tags: #AD #Enumeracion #Puerto #DC
 
 ```powershell
 ❯ Puerto 53 DNS:
-	Enumeración: 'Dig' → Consultar servidores DNS y obtener info dobre nombres de dominio 
+	Enumeración: 'Dig' → Consultar servidores DNS y obtener info sobre nombres de dominio 
 
 ❯ Puerto 88 Kerberos: 
 	Enumeración: 'Kerbrute' → Enumeración de usuarios 
