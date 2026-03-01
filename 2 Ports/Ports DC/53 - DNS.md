@@ -1,6 +1,6 @@
 # Ataques de transferencia de zona (AXFR – Full Zone Transfer)
 
-Tags: #TransferZone #OWASP #Explotacion #Amass #Subfinder #Dig #DnsRecon #DnsEnum #Whois #DnsLookup #DC 
+Tags: #TransferZone #OWASP #Explotacion #Subfinder #Dig #DnsRecon #DnsEnum #Whois #DnsLookup #DC 
 
 Los ataques de transferencia de zona, también conocidos como ataques **AXFR**, son un tipo de ataque que se dirige a los servidores **DNS** (**Domain Name System**) y que permite a los atacantes obtener información sensible sobre los dominios de una organización.
 
@@ -97,16 +97,6 @@ DNS (Domain Name System) es crucial para el funcionamiento de Active Directory y
 
 ```bash 
 ❯ ldns-walk @<IP> <Domain>     # Obtener info de la red en un determinado dominio como sus registros 
-```
-
-## Amass 
-
-```bash 
-❯ https://github.com/owasp-amass/amass      # Descargar la tool 
-```
-
-```bash 
-❯ amass enum -d domain.com                  # # Enumerar subdominios para mirar si existen aplicaciones distintas, tecnologias diferentes, vulnerabilidades propias y credenciales separadas
 ```
 
 ## Subfinder 
