@@ -1,6 +1,16 @@
-# Tipos de Fuzzers 
+# Fuzzers 
 
 Tags: #Wfuzz #Gobuster #Ffuf #Fuzzing #SubDomains #Directories #Dirbuster #Dirsearch #Dirb 
+
+## Enumeración 
+
+```bash
+Como enumerar?
+
+1 Enumerar los directorios (rutas)
+2 Enumerar los subdominios 
+3 Enumerar archivos con sus respectivas extensiones 
+```
 
 ```python
 # Modo directorio: Enumerar los directorios y archivos
