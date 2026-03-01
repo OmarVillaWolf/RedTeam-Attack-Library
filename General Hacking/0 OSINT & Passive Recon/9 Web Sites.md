@@ -54,12 +54,6 @@ Tags: #PassiveRecon #OSINT
 ```
 
 ```bash 
-❯ https://github.com/owasp-amass/amass
-
-❯ amass enum -d domain.com                  
-```
-
-```bash 
 ❯ https://github.com/sensepost/gowitness/wiki/Installation
 
 ❯ gowitness file -f ./alive.txt -P ./pics --no-http      # Toma un screen de cada pagina 
