@@ -7,6 +7,7 @@ Tags: #AD #ACL #ACE #DACL
 ```bash 
 Para enumerlas fácilmente es mejor hacerlo con la herramienta de BloodHound.
 ```
+
 ```powershell 
 1 'ForceChangePassword': Permite cambiar la contraseña de un usuario objetivo sin conocer su valor actual. Si un atacante posee este ACE sobre un objeto 'user', puede forzar un password reset y tomar control de la cuenta directamente utilizando funciones como:
 	❯ Set-DomainUserPassword
