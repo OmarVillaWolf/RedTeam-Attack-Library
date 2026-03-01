@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 Ports/Ports DC/0 DC Enumeration.md",
+                "file": "2 Ports/Ports DC/0 Metodología.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "0 DC Enumeration"
+              "title": "0 Metodología"
             }
           }
         ],
@@ -211,7 +211,7 @@
     "8 Active Directory/4 AD - Udemy/3 Descriptores de seguridad y ACLs/3 Explotación ACLs.md",
     "8 Active Directory/4 AD - Udemy/3 Descriptores de seguridad y ACLs/2 Listado ACLs.md",
     "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
-    "2 Ports/Ports DC/0 DC Enumeration.md",
+    "2 Ports/Ports DC/0 Metodología.md",
     "2 Ports/Ports DC/445 - SMB.md",
     "2 Ports/Ports DC/445, 135 - Psexec.md",
     "2 Ports/Ports DC/5985 - 5986 - WINRM.md",
