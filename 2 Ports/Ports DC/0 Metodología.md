@@ -1,8 +1,8 @@
-# Metodología Externa e Interna en un DC
+# Metodología en un DC
 
 Tags: #AD #Enumeracion #Puerto #DC 
 
-## Active Directory External 
+## Active Directory - Metodología Externa 
 
 ```bash 
 Metodología general 
@@ -49,11 +49,19 @@ Tips:
 	Conexión: 'Evil-winrm' → Conexión a una máquina Windows 
 ```
 
-## Active Directory Internal 
+## Active Directory - Metodología Interna 
 
 ```bash 
 Metodología general 
 
-Tips: 
-	1. Utilizar las credenciales 'user:passwd' válidas para hacer una recopilación de datos con 'Sharphound' y mirar las ACLs en 'BlodHound'
+Tips utilizando las credenciales 'user:passwd' válidas:
+	1.  Uyilizar 'PowerView' o 'ADModule' para enumerar:
+	    - SAM Local
+	    - Base de datos 'NTDS.dit' 
+	
+	2.  Recopilación de datos del DC con 'Sharphound' y compartir el archivo .zip a 'BlodHound' para enumerar:
+		- ACLs
+		- Users
+		- GPOs
+		- Grupos 
 ```
