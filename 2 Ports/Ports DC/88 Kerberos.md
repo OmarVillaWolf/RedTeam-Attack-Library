@@ -7,9 +7,7 @@ Tags: #Kerberos #DC #Windows
 ```bash 
 Nota: Antes de iniciar al ataque debemos de sincronizar el reloj de la maquina de atacante con el AD
 
-❯ ntpdate IP     # Sincronizar el reloj 
-
-	# IP = Dirección IP del DC
+❯ ntpdate IP_DC     # Sincronizar el reloj con el DC 
 
 ❯ date -s "2025-01-04 15:30:00"   # Restablecer la fecha y hora
 ```
