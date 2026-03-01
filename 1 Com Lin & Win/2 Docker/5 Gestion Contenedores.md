@@ -2,7 +2,7 @@
 
 Tags: #Docker #Comandos #Linux #DockerCompose
 
-A continuación, se detallan algunos de los comandos vistos en esta clase:
+A continuación, se detallan algunos de los comandos:
 
 ```bash
 ❯ apt remove docker-compose               # Eliminar Docker-Compose
