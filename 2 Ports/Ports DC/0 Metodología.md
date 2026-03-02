@@ -64,4 +64,14 @@ Tips utilizando las credenciales 'user:passwd' válidas:
 		- Users
 		- GPOs
 		- Grupos 
+
+
+Notas:
+	1. Si se ha comprometido un usuario y nos encontramos en un entorno Windows, nos podemos autenticar con ese otro usuario utilizando  runas en 'Powershell'  (Mejor opción)
+	❯ runas /user:domain\user2 /netonly powershell         # Abrir una terminal powershell con autenticación local como el usuario host 'user1' y a manera de servicios de red estar autenticados como 'user2' 
+	
+	2. También, se puede utilizar ese usuario con una 'PowerShell' para hacer una autenticacion de red de la siguiente manera: 
+			- En Windows 11 ir a Menú, buscar 'Powershell' y dar click derecho y seleccionar 'Open File Location'
+			- En el simbolo de 'Powershell' dar 'Shift + click derecho' y seleccionar 'Run as different user'
+			- Colocar las credenciales válidas de otro usuario para obtener una consola 
 ```
