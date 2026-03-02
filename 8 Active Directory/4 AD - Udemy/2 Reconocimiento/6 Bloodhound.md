@@ -30,8 +30,16 @@ Se puede usar la Query en la parte de 'Raw Query' en bloodhound o se puede impor
 	- domain users@corp.local   # Buscar por grupo 
 
 # Busqueda por 'Analysis'
+	- Find Shortest Paths to Domain Admins (Empezar)
 	- Find All Domian Admins
 	- Shortest Paths from Domain Users to High Values Targets 
-	- Find Shortest Paths to Domain Admins 
 	- Shortest Paths to Domain Admins from Owned Principals 
+
+# En los grupos se puede buscar:
+	- Inbound Control Rights   (Quien tiene permisos sobre ti)
+		- Explicit Object Controllers 
+
+# En los usuarios se puede buscar:
+	- Outbound Control Right   (Sobre quien tienes permisos)
+		- First Degree Object Control 
 ```
