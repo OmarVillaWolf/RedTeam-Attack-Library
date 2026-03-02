@@ -31,6 +31,7 @@ Se puede usar la Query en la parte de 'Raw Query' en bloodhound o se puede impor
 
 # Busqueda por 'Analysis'
 	- Find Shortest Paths to Domain Admins (Empezar)
+	- Find Principals with DCSync Rights 
 	- Find All Domian Admins
 	- Shortest Paths from Domain Users to High Values Targets 
 	- Shortest Paths to Domain Admins from Owned Principals 
