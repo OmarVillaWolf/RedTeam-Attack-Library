@@ -45,7 +45,7 @@ Nota:
 ```
 
 ```bash 
-# Desde la maquina victima con Windows llamamos al script que se encuentra almacenado en nuestro Github, esto lo hace a nivel de memoria por lo que es dificil de detectar y sirve como metodo de evasion
+# Desde la maquina victima con Windows llamamos al script que se encuentra almacenado en nuestro Github, esto lo hace a nivel de memoria por lo que es dificil de detectar y sirve como método de evasion
 
 Nota: La url que se coloca es la que nos muestra al momento de darle 'Raw' al script almacenado en 'Github'
 
