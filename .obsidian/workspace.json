@@ -8,35 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "63490dabca21cb5c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "8 Active Directory/4 AD - Udemy/5 Acceso en AD/2 Dump Lsass y SAM.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2 Dump Lsass y SAM"
-            }
-          },
-          {
             "id": "b9d16d2e2ef9198a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/8 PetitPotam.md",
+                "file": "8 Active Directory/4 AD - Udemy/7 Evasión/2 Evasión con C Sharp.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "8 PetitPotam"
+              "title": "2 Evasión con C Sharp"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -68,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "waf",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -208,23 +193,33 @@
   },
   "active": "b9d16d2e2ef9198a",
   "lastOpenFiles": [
-    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/7 NTLM - SMB Relay.md",
-    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/8 PetitPotam.md",
-    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/6 LLMNR - NBTNS Poisoning.md",
-    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/5 Golden y Silver Ticket.md",
-    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/4 ASK TGT - TGS.md",
-    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/3 Pass The Ticket.md",
-    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/2 OPtH - PtK.md",
-    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/1 Pass The Hash.md",
-    "8 Active Directory/4 AD - Udemy/5 Acceso en AD/3 Dump Domain Creds.md",
-    "8 Active Directory/4 AD - Udemy/5 Acceso en AD/2 Dump Lsass y SAM.md",
     "8 Active Directory/4 AD - Udemy/5 Acceso en AD/1 Autenticación y autorización.md",
-    "8 Active Directory/4 AD - Udemy/4 Ataques/3 Kerberoasting Attack.md",
-    "8 Active Directory/4 AD - Udemy/4 Ataques/2 AS-REP Roasting Attack.md",
-    "8 Active Directory/4 AD - Udemy/4 Ataques/1 Kerbrute.md",
-    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/9 Token Impersonation.md",
-    "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/4 DCSync.md",
-    "().md",
+    "8 Active Directory/4 AD - Udemy/5 Acceso en AD/2 Dump Lsass y SAM.md",
+    "8 Active Directory/4 AD - Udemy/5 Acceso en AD/3 Dump Domain Creds.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/1 Pass The Hash.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/2 OPtH - PtK.md",
+    "8 Active Directory/4 AD - Udemy/7 Evasión/2 Evasión con C Sharp.md",
+    "8 Active Directory/4 AD - Udemy/7 Evasión/1 Introducción.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/4 ASK TGT - TGS.md",
+    "7 Hacking Web/1 Basic/12 Type Juggling.md",
+    "7 Hacking Web/2 Intermediate/1 SQLi/10 Bypass XML Encoding.md",
+    "0 Metodologías/1 OWASP Top 10 - 2021/A01 Broken Access Control/0 A01.md",
+    "1 Com Lin & Win/3 Hacking Commands/Rever.md",
+    "2.1 Tools/Nmap.md",
+    "2.1 Tools/Ngrok.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/10 Apagar Defensas basicas.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/9 AppLocker.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/8 Sysinternals.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/7 Políticas.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/6 Base64.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/5 IP Publicas.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/4 AMSI.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/3 LOLBAS.md",
+    "8 Active Directory/2 AD - Spartan/1 Enumeration/3 ADPeas.md",
+    "General Hacking/11 Evading IDS, Firewall and Honeypot/2 Evasion Firewall.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/2 Antivirus.md",
+    "8 Active Directory/2 AD - Spartan/5 Evasión/1 UAC.md",
+    "8 Active Directory/4 AD - Udemy/7 Evasión",
     "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral",
     "8 Active Directory/4 AD - Udemy/5 Acceso en AD",
     "8 Active Directory/4 AD - Udemy/4 Ataques",
@@ -234,16 +229,6 @@
     "8 Active Directory/4 AD - Udemy/Unconfirmed 210081.crdownload",
     "8 Active Directory/4 AD - Udemy/4 Ataques-20260307T044640Z-3-001.zip",
     "8 Active Directory/4 AD - Udemy/Unconfirmed 143383.crdownload",
-    "2.1 Tools/Nmap.md",
-    "2 Ports/Ports DC/445 - SMB.md",
-    "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/5 Password Spraying.md",
-    "8 Active Directory/4 AD - Udemy/4",
-    "8 Active Directory/4 AD - Udemy/2 Reconocimiento/6 Bloodhound.md",
-    "8 Active Directory/2 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
-    "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/3 Explotación ACLs.md",
-    "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/2 Listado ACLs.md",
-    "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/1 Descriptores.md",
-    "8 Active Directory/4 AD - Udemy/2 Reconocimiento/3 Enum Remote - SAM.md",
     "Z Imagenes/Hacking/Piv2.png",
     "Z Imagenes/Hacking/Piv1.png",
     "Z Imagenes/Hacking/SSRF.png",
