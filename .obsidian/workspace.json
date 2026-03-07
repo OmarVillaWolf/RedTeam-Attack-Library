@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "7221d38f50f80d91",
+        "id": "303fd459d3b54437",
         "type": "tabs",
         "children": [
           {
-            "id": "65b790aae55e6d12",
+            "id": "63490dabca21cb5c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/5 Password Spraying.md",
+                "file": "8 Active Directory/4 AD - Udemy/5 Acceso en AD/2 Dump Lsass y SAM.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "5 Password Spraying"
+              "title": "2 Dump Lsass y SAM"
+            }
+          },
+          {
+            "id": "b9d16d2e2ef9198a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/8 PetitPotam.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "8 PetitPotam"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -191,44 +206,44 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "65b790aae55e6d12",
+  "active": "b9d16d2e2ef9198a",
   "lastOpenFiles": [
-    "8 Active Directory/4 AD - Udemy/4 Ataques",
-    "8 Active Directory/4 AD - Udemy/4",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/7 NTLM - SMB Relay.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/8 PetitPotam.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/6 LLMNR - NBTNS Poisoning.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/5 Golden y Silver Ticket.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/4 ASK TGT - TGS.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/3 Pass The Ticket.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/2 OPtH - PtK.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/1 Pass The Hash.md",
+    "8 Active Directory/4 AD - Udemy/5 Acceso en AD/3 Dump Domain Creds.md",
+    "8 Active Directory/4 AD - Udemy/5 Acceso en AD/2 Dump Lsass y SAM.md",
+    "8 Active Directory/4 AD - Udemy/5 Acceso en AD/1 Autenticación y autorización.md",
+    "8 Active Directory/4 AD - Udemy/4 Ataques/3 Kerberoasting Attack.md",
+    "8 Active Directory/4 AD - Udemy/4 Ataques/2 AS-REP Roasting Attack.md",
+    "8 Active Directory/4 AD - Udemy/4 Ataques/1 Kerbrute.md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral/9 Token Impersonation.md",
     "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/4 DCSync.md",
+    "().md",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral",
+    "8 Active Directory/4 AD - Udemy/5 Acceso en AD",
+    "8 Active Directory/4 AD - Udemy/4 Ataques",
+    "8 Active Directory/4 AD - Udemy/6 Movimiento Lateral-20260307T044729Z-3-001.zip",
+    "8 Active Directory/4 AD - Udemy/Unconfirmed 156915.crdownload",
+    "8 Active Directory/4 AD - Udemy/5 Acceso en AD-20260307T044702Z-3-001.zip",
+    "8 Active Directory/4 AD - Udemy/Unconfirmed 210081.crdownload",
+    "8 Active Directory/4 AD - Udemy/4 Ataques-20260307T044640Z-3-001.zip",
+    "8 Active Directory/4 AD - Udemy/Unconfirmed 143383.crdownload",
+    "2.1 Tools/Nmap.md",
+    "2 Ports/Ports DC/445 - SMB.md",
     "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/5 Password Spraying.md",
+    "8 Active Directory/4 AD - Udemy/4",
     "8 Active Directory/4 AD - Udemy/2 Reconocimiento/6 Bloodhound.md",
     "8 Active Directory/2 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
     "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/3 Explotación ACLs.md",
     "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/2 Listado ACLs.md",
     "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync/1 Descriptores.md",
     "8 Active Directory/4 AD - Udemy/2 Reconocimiento/3 Enum Remote - SAM.md",
-    "8 Active Directory/4 AD - Udemy/2 Reconocimiento/4 Enum Remote - NTDS.md",
-    "8 Active Directory/4 AD - Udemy/2 Reconocimiento/5 Enum Remote Kali - NTDS.md",
-    "2 Ports/Ports DC/0 Metodología.md",
-    "8 Active Directory/4 AD - Udemy/2 Reconocimiento/2 Enum Local - SAM.md",
-    "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
-    "2 Ports/Ports DC/445 - SMB.md",
-    "2 Ports/Ports DC/445, 135 - Psexec.md",
-    "2 Ports/Ports DC/5985 - 5986 - WINRM.md",
-    "2 Ports/Ports DC/3389, 3333 - RDP.md",
-    "2 Ports/Ports DC/137-139 NetBIOS.md",
-    "2 Ports/Ports DC/389 - LDAP.md",
-    "2 Ports/Ports DC/135 - RPC.md",
-    "2.1 Tools/RustScan.md",
-    "8 Active Directory/2 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
-    "2 Ports/Ports DC/88 Kerberos.md",
-    "8 Active Directory/2 AD - Spartan/2 Attacks/7 Abuso de GPO/1 GPO.md",
-    "2 Ports/20, 21, 134 - FTP - TFPT.md",
-    "8 Active Directory/4 AD - Udemy/3 ACLs, DCSync",
-    "8 Active Directory/4 AD - Udemy/2 Reconocimiento",
-    "8 Active Directory/4 AD - Udemy/1 Información",
-    "8 Active Directory/4 AD - Udemy",
-    "8 Active Directory/3 AD - CRTP/0 Introduction to AD",
-    "8 Active Directory/3 AD - CRTP/1 Offensive PowerShell and .NET tradecraft",
-    "8 Active Directory/3 AD - CRTP/Lateral Movement",
-    "8 Active Directory/3 AD - CRTP/Persistence",
-    "14 AI Red Teamer/1 Intro Red Teaming AI",
     "Z Imagenes/Hacking/Piv2.png",
     "Z Imagenes/Hacking/Piv1.png",
     "Z Imagenes/Hacking/SSRF.png",
