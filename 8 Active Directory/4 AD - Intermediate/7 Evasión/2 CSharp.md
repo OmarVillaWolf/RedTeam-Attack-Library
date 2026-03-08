@@ -1,8 +1,9 @@
 # Evasión de antivirus con CSharp 
 
-Tags: #AD #CSharp #Windows #Metasploit #Msfvenom 
+Tags: #AD #CSharp #Windows #Metasploit #Msfvenom #Evasion 
 
 * [Bypassing AV by CSharp](https://damonmohammadbagher.github.io/Posts/ebookBypassingAVsByCsharpProgramming/index.htm?page=Chapter%2013.html)
+* [Framework MsfMania](https://github.com/lepotekil/MsfMania)
 
 ## Msfvenom (Crear una Reverse Shell)
 
