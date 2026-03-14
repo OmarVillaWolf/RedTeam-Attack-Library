@@ -11,7 +11,6 @@ WinPEAS es una herramienta de enumeración diseñada para entornos Windows, enfo
 ❯ winPEASany_ofs.exe         # Ejecutamos la version ofuscada
 ```
 
-```bash 
 # Funciones y capacidades de WinPEAS incluyen:
 
 - Información del Sistema y Configuración: WinPEAS recopila información general sobre el sistema operativo, versiones, configuraciones de red, y servicios en ejecución.   
@@ -24,4 +23,3 @@ WinPEAS es una herramienta de enumeración diseñada para entornos Windows, enfo
 - Vulnerabilidades Conocidas: Comprueba contra una base de datos de vulnerabilidades conocidas que podrían estar presentes en el sistema basándose en la versión del software instalado.
 - Escaneo de Red: Recopila información sobre recursos compartidos de red y conexiones establecidas.
 - Auditoría de Seguridad: Incluye chequeos para muchas configuraciones de seguridad, como la configuración de UAC (User Account Control), firewalls y políticas de seguridad.
-```
