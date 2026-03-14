@@ -4,8 +4,7 @@ Tags: #LocalEnumeration #PrivEsc #Windows #Meterpreter
 
 ## Enumeración de la información de la red local 
 
-```bash 
-# Que estamos buscando?
+### Que estamos buscando?
 
 1. Actual IP Address y adaptador de red 
 2. Redes internas 
@@ -13,11 +12,10 @@ Tags: #LocalEnumeration #PrivEsc #Windows #Meterpreter
 4. Otros host en la red
 5. Tablas de ruteo
 6. Estado del Firewall de Windows 
-```
+
+## Comandos Windows 
 
 ```bash 
-# Comandos Windows 
-
 ❯ ipconfig                              # Muestra la dirección IP y los adaptadores de red 
 ❯ ipconfig /all                         # Muestra mas detalles de los adaptadores, MAC, DHCP
 
