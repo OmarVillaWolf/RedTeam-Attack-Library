@@ -13,12 +13,11 @@ PowerUp.ps1 es un script desarrollado en PowerShell que pertenece a la suite Pow
 ❯ Get-ModifiableService             # lista los servicios los cuales pueden ser configurados 
 ❯ Get-ServiceUnquoted               # Unquoted Service Path 
 
+
 Nota:
 	1. Si quieres ofuscar el 'PowerUp.ps1' ir a la linea '2640' y eliminar el contenido de la variable '$B64Binary = ""'
 ```
 
-
-```bash
 Entre las características y capacidades de 'PowerUp.ps1', se incluyen:
 
 - Enumeración de servicios con rutas no citadas: Identifica servicios donde la ruta del ejecutable no está entre comillas y contiene espacios, lo que podría permitir la inserción de ejecutables maliciosos en la ruta.
@@ -51,5 +50,5 @@ Entre las características y capacidades de 'PowerUp.ps1', se incluyen:
 - Encrypted application pool and virtual directory passwords
 - Plaintext passwords in McAfee SiteList.xml
 - Cached Group Policy Preferences .xml files
-```
+
 
