@@ -2,21 +2,33 @@
 
 Tags: #LocalEnumeration #Windows #PrivEsc #Meterpreter
 
+## Enumeración general 
+
+1. Enumerar todos los directorios por si se encuentra un archivo interesante 
+
 ## Enumeración de la información del sistema 
 
-```bash 
-# Que estamos buscando?
+### Que estamos buscando?
 
 1. Hostname 
 2. OS name (Windows 7, 8, etc...)
 3. OS build & Service Pack (Windows 7 SP1 7600)
 4. OS Architecture (x64/x86)
 5. Installed updates/Hotfixes
-```
+
+# Comandos Windows 
 
 ```bash 
+❯ hostname      # Muestar el nombre del usuario 
+
+❯ systeminfo    # Despliega toda la información del SO como (Hotfix)
+
+❯ wmic qfe get Caption,Description,HotfixID,InstalledOn     # Muestra información adicional 
+	# Buscar los security Update para ver cuando fue instalado 
+```
 # Comandos de Meterpreter
 
+```bash 
 ❯ getuid                      # Muestra el nombre del usuario servidor  
 
 ❯ sysinfo                     # Muestra el hostname, SO, build service pack, arquitectura, dominio  
@@ -29,13 +41,3 @@ Tags: #LocalEnumeration #Windows #PrivEsc #Meterpreter
 ❯ shell                       # Generas una consola para comandos Windows 
 ```
 
-```bash 
-# Comandos Windows 
-
-❯ hostname      # Muestar el nombre del usuario 
-
-❯ systeminfo    # Despliega toda la información del SO como (Hotfix)
-
-❯ wmic qfe get Caption,Description,HotfixID,InstalledOn     # Muestra información adicional 
-	# Buscar los security Update para ver cuando fue instalado 
-```
