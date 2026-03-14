@@ -11,7 +11,7 @@ Los tokens de acceso en Windows son estructuras de datos que almacenan la inform
 
 A continuación, se presentan detalles clave sobre los tokens de acceso en Windows:
 
-```bash 
+
 1. Tipos de Tokens: Hay dos tipos principales de tokens en Windows:
     
     - Token de usuario: Representa a un usuario que se ha autenticado con éxito. Está asociado con todos los procesos iniciados por ese usuario.
@@ -36,7 +36,7 @@ A continuación, se presentan detalles clave sobre los tokens de acceso en Windo
 5. Creación de Tokens: Los tokens de acceso se crean durante el proceso de autenticación. Cuando un usuario inicia sesión en una máquina Windows, el sistema genera un token de acceso que representa al usuario y a todos sus grupos y privilegios asociados.
     
 6. Modificación de Tokens: A través de APIs específicas, es posible modificar tokens, aunque generalmente esto requiere privilegios elevados. Esta capacidad puede ser abusada por malware o atacantes para alterar los derechos y permisos de un token.
-```
+
 
 Los tokens de acceso desempeñan un papel fundamental en la infraestructura de seguridad de Windows. Brindan una notable flexibilidad para la gestión de identidades y accesos, aunque también pueden convertirse en un posible punto de ataque si no se manejan y protegen de forma adecuada. Por ello, es esencial que los administradores y expertos en seguridad entiendan su funcionamiento y las medidas necesarias para prevenir su uso indebido.
 
@@ -46,7 +46,7 @@ Los tokens de acceso desempeñan un papel fundamental en la infraestructura de s
 
 En los sistemas operativos Windows, los privilegios son permisos otorgados a las cuentas de usuario y servicios, los cuales determinan las acciones que pueden ejecutarse en el sistema. Estos privilegios regulan aspectos clave de la seguridad y la administración del sistema, permitiendo desde la modificación del reloj del sistema hasta la gestión de registros y configuraciones de seguridad. A continuación, te presento una lista de los privilegios disponibles en Windows, aunque es importante tener en cuenta que esta lista puede variar ligeramente según la versión del sistema operativo.
 
-```bash 
+
 1. SeAssignPrimaryTokenPrivilege: Asignar un token primario a un proceso.
 2. SeAuditPrivilege: Generar eventos de auditoría de seguridad.
 3. SeBackupPrivilege: Omitir comprobaciones de permisos para realizar operaciones de respaldo.
@@ -82,7 +82,6 @@ En los sistemas operativos Windows, los privilegios son permisos otorgados a las
 33. SeTrustedCredManAccessPrivilege: Acceder a credenciales guardadas de manera segura.
 34. SeUndockPrivilege: Desacoplar el sistema de la base.
 35. SeUnsolicitedInputPrivilege: Leer la entrada no solicitada del terminal interactivo.
-```  
 
 Cada uno de estos privilegios otorga la capacidad de realizar acciones concretas en el sistema que pueden influir en su configuración, seguridad y funcionamiento general. Los administradores del sistema deben gestionar y asignar estos privilegios con cuidado para garantizar la seguridad y el correcto desempeño de los sistemas Windows.
 
