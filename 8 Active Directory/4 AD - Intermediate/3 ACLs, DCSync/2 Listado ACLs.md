@@ -4,9 +4,7 @@ Tags: #AD #ACL #ACE #DACL
 
 ## Identificar ACEs
 
-```bash 
-Para enumerlas fácilmente es mejor hacerlo con la herramienta de BloodHound.
-```
+Para enumerarlas fácilmente es mejor hacerlo con la herramienta de BloodHound.
 
 ```powershell 
 1 'ForceChangePassword': Permite cambiar la contraseña de un usuario objetivo sin conocer su valor actual. Si un atacante posee este ACE sobre un objeto 'user', puede forzar un password reset y tomar control de la cuenta directamente utilizando funciones como:
@@ -37,9 +35,7 @@ Para enumerlas fácilmente es mejor hacerlo con la herramienta de BloodHound.
 
 * [PowerView](https://github.com/ZeroDayLab/PowerSploit/blob/master/Recon/PowerView.ps1)
 
-```bash 
 El módulo de PowerView puede llegar a generar alertas inofensivas en los sistemas de seguridad 
-```
 
 ```powershell 
 ❯ . .\PowerView.ps1                   # Cargar PowerView en memoria 
