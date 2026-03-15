@@ -2,10 +2,7 @@
 
 Tags: #AD #SAM #PowerView  #RemoteEnumeration #Kali #RPCClient #Impacket 
 
-
-```bash 
 La enumeración remota funciona sin permisos de administración en caso de encontrarnos en un Windows 7 o una versión inferior al server 2016 
-```
 
 ```powershell 
 # Enumeración de grupos de otra máquina, se necesita privilegios de Admin de dominio 
@@ -16,52 +13,45 @@ La enumeración remota funciona sin permisos de administración en caso de encon
 
 * [PowerView](https://github.com/ZeroDayLab/PowerSploit/blob/master/Recon/PowerView.ps1)
 
-```bash 
 El módulo de PowerView puede llegar a generar alertas inofensivas en los sistemas de seguridad 
-```
 
 ```powershell 
-❯ . .\PowerView.ps1                    # Cargar PowerView en memoria 
 ❯ Import-Module .\PowerView.ps1        # Importar el módulo 
 ```
 
 ```powershell 
+! Usuario de dominio (AD) con permisos de administrador 
+
 # Enumeración de grupos de otra máquina, se necesita privilegios de Admin de dominio 
 ❯ Get-NetLocalGroup -ComputerName WS02  
 ```
 
 ```powershell
-# Enumerar que usuario se encuentra loggeado en un sistema 
+! Usuario local 
+
+# Enumerar usuarios que están actualmente logueados en una máquina 
 ❯ Get-NetLoggedon 
 
-# Mirar las conexiones que hay hacía mi máquina. Esto se mira cuando hay conexiones hacía nuestra carpeta compartida '\\WS01\C$' 
+# Mirar las sesiones SMB activas en el host, es decir, usuarios conectados a la máquina a través de la red. '\\WS01\C$' 
 ❯ Get-NetSession    # Mirar usuarios e IPs 
 ```
 
-## RPCCLIENT
+## Kali - RPCCLIENT
 
-```bash 
 Esta forma de enumeración remota de la SAM se hará desde Kali Linux 
 
-Es recomendable agregar la IP del DC de la siguiente manera:
-	- Ir a 'Network Configuration > Wired Connection > Settings'
-	- En 'IPv4 > Automatic (DHCP) addresses only'
-	- Colocar la IP del servidor DNS que en este caso es la IP del DC 
-	- Dar click en 'Save'
-	- Nos desconectamos de la red y nos volvemos a conectar o el comando 'sudo dhclient -v'
-```
-
 ```bash 
+! Usuario de dominio (AD) con permisos de administrador 
+
 ❯ rpcclient -U "corp\Administrator%Password" WS01.corp.local 
 	# U = Usuario de dominio y contraseña 
-	# WS01 = Equipo al que se quiere logear 
+	# WS01 = Equipo al que se quiere logear (Se puede colocar la IP)
 	
-	❯ tap + Y          # Mirar todas las funciones disponibles 
-	❯ enumprivs        # Mirar los privilegios del usuario en el sistema 
+	❯ ? o help         # Mirar todas las funciones disponibles 
+	❯ enumprivs        # Mirar los privilegios que existen en el host 
 	❯ enumdomusers     # Enumeración de usuarios 
-	❯ enumalsgroups builtin    
-	❯ queryaliasmem builtin rid   # Consultar un grupo para identificar usuarios (sid)
-		# rid = Es el número del grupo en este caso 'administrators 0x220' 
+	❯ enumalsgroups builtin         # Enumerar grupos locales integrados (builtin groups) del sistema y su RID
+	❯ queryaliasmem builtin <rid>   # Mostrar los miembros de un grupo local usando su RID = 0x220 = Administrators
 	❯ lookupsids S-1-5-21-27432511...-500     # Conocer el nombre del usuario desde su sid 
 ``` 
 
@@ -70,9 +60,11 @@ Es recomendable agregar la IP del DC de la siguiente manera:
 * [Impacket-Github](https://github.com/fortra/impacket)
 
 ```bash 
-# Enumerar remotamente la SAM de la máquina WS01  
-❯ impacket-samrdump corp/administrator:'Password'%WS01.corp.local   
+! Usuario de dominio (AD) con permisos de administrador 
 
-# Se quedará escuchando sesiones de red que se establezcan a la máquina WS01, se necesitan privilegios de admin 
+# Enumerar remotamente la SAM de la máquina WS01  
+❯ impacket-samrdump corp/administrator:'Password'@WS01.corp.local   
+
+# Se quedará escuchando sesiones de red que se establezcan a la máquina WS01
 ❯ impacket-netview corp/administrator:'Password' -target WS01.corp.local
 ```
