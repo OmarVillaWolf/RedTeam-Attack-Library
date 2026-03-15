@@ -8,11 +8,13 @@ Tags: #AD #SAM #LocalEnumeration #PowerView
 ❯ $env:UserDomain      # Identificar el dominio 
 
 ❯ $env:ComputerName    # Identificar el nombre del computador 
-❯ whoami 
+❯ whoami               # Mostrar el dominio\usuario actual 
 ```
 
 ```powershell
-# Enumeración de grupos locales
+! Usuario local 
+
+# Enumeración de grupos locales en la máquina actual 
 ❯ Get-LocalGroup | select Name, ObjectClass, Principalsource, sid 
 
 # Identificar usuarios (miembros) en el grupo 'Administrators' de forma local
@@ -28,16 +30,19 @@ El módulo de PowerView puede llegar a generar alertas inofensivas en los sistem
 ```
 
 ```powershell 
-❯ . .\PowerView.ps1                   # Cargar PowerView en memoria 
 ❯ Import-Module .\PowerView.ps1       # Importar el módulo 
 ```
 
 ```powershell 
+! Usuario de dominio (AD)
+
 # Enumeración de grupos locales 
 ❯ Get-NetLocalGroup       # Mirar los grupos locales de la máquina 
 
-❯ Get-NetGroup -UserName "user" | select name   # Saber que grupos se tiene permiso localmente
-	- grupo 'usuarios del dominio' = Administrar tu propio equipo 
+# Obtener los grupos de AD a los que pertenece el usuario especificado
+❯ Get-NetGroup -UserName "user" | select name  
+	# user = Usuario actual que pertenece al AD 
 
-❯ Get-NetLocalGroupMember -GroupName Administrators | select-Object MemberName, IsGroup, IsDomain  # Identificar usuarios (miembros) en el grupo 'Administrators' de forma local
+# Listar los miembros del grupo local Administrators, indicando si son grupos y si pertenecen al dominio
+❯ Get-NetLocalGroupMember -GroupName Administrators | select-Object MemberName, IsGroup, IsDomain
 ```
