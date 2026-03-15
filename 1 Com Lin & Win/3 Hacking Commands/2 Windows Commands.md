@@ -8,6 +8,11 @@ Tags: #Windows #Comandos
 ❯ icacls file.exe     # Verificar permisos sobre el ejecutable
 ```
 
+```powershell 
+❯ tasklist         # Mirar los procesos PID, nombre del proceso 
+❯ netstat -ano     # Mirar las conexiones activas, dirección local, PID y puerto 
+```
+
 ```powershell
 ❯ del /s /q "file"          # Eliminar un archivo 
 ❯ rmdir /s /q "C:/dir/"     # Eliminar una carpeta 
