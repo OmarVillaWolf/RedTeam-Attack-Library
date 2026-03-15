@@ -6,16 +6,16 @@ Tags: #Hacking #Enumeration #LDAP #DC
 
 ```bash 
 # Kali Tool 
-❯ ldapsearch -h IP -x -s base namingcontexts 
+❯ ldapsearch -H ldap:// -x -s base namingcontexts 
 	# x = Autenticación simple 
 	# h = Host 
 	# s = Scope  
 
-❯ ldapsearch -h IP -x -b "DC=domain,DC=com" 
+❯ ldapsearch -H ldap://IP_DC -x -b "DC=domain,DC=com" 
 
-❯ ldapsearch -x -h IP -b "DC=domain,DC=com" "objectclass=*"
+❯ ldapsearch -x -H ldap://IP_DC -b "DC=domain,DC=com" "objectclass=*"
 
-❯ ldapsearch -x -h IP -b "DC=domain,DC=com" "objectclass=user" enm    # Identificar las cuentas de usuarios asociadas al dominio, no se cuentan los que no tengan 'CN=Users', ademas muestra la versión de LDAP
+❯ ldapsearch -x -H ldap://IP_DC -b "DC=domain,DC=com" "objectclass=user" enm    # Identificar las cuentas de usuarios asociadas al dominio, no se cuentan los que no tengan 'CN=Users', ademas muestra la versión de LDAP
 ```
 
 ## AD Explorer 
