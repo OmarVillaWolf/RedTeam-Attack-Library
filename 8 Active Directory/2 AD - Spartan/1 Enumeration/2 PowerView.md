@@ -5,8 +5,6 @@ Tags: #AD #PowerView #Powershell
 PowerView fue desarrollado por Will Schroeder y es una herramienta que utiliza la función de dominio de Windows para recopilar información sobre una red y sus usuarios. Todas las opciones de la herramienta envían solicitudes legítimas que pueden ejecutarse en el contexto de los derechos de un usuario de dominio.
 
 * [Powershell Ofensivo](https://book.hacktricks.wiki/en/windows-hardening/basic-powershell-for-pentesters/index.html)
-
-```bash 
 # Enumeracion con PowerView
 
 - Al enumerar usuarios, un atacante podría descubrir un usuario llamado "backupadmin" y decidir que es un objetivo valioso debido a su posible acceso a backups críticos.
@@ -18,11 +16,9 @@ PowerView fue desarrollado por Will Schroeder y es una herramienta que utiliza l
 - Al revisar GPOs, un atacante podría identificar scripts de inicio que están mal configurados y que podrían ser explotados para ejecutar código malicioso.
     
 - Al inspeccionar ACLs, podrían descubrirse configuraciones que otorgan permisos de escritura a usuarios normales en directorios que no deberían, permitiendo posibles ataques de escalada de privilegios.
-```
 
 ## Distinguished Name o DN
 
-```bash 
 El término `'CN=Users,DC=domain1,DC=corp'` es un Nombre Distinguido (Distinguished Name o DN) en Active Directory (AD) de Microsoft, usado para identificar de manera única objetos dentro del directorio. Cada componente tiene un propósito específico:
 
 1. CN=Users
@@ -34,9 +30,6 @@ El término `'CN=Users,DC=domain1,DC=corp'` es un Nombre Distinguido (Distinguis
     - 'domain1.corp' representa el nombre del dominio en el que se encuentra el objeto 'Users'. Este nombre de dominio está dividido en dos partes:
         - `spartancybersec`: Sería el primer nivel o nombre distintivo del dominio. 
         - `corp`: Es el sufijo del dominio, que suele indicar el tipo de organización o la naturaleza comercial del dominio (`corp` para corporativo, `com` para comercial, etc.).
-```
-
-```bash 
 # Uso y Significado en Active Directory
 
 - Identificación Única: En AD, cada objeto debe tener un DN único. Este DN proporciona una ruta clara para ubicar y gestionar el objeto dentro de la estructura jerárquica del directorio.
@@ -46,7 +39,6 @@ El término `'CN=Users,DC=domain1,DC=corp'` es un Nombre Distinguido (Distinguis
 - Búsqueda y Consulta LDAP: En operaciones de consulta LDAP (Lightweight Directory Access Protocol), los DNs son esenciales para localizar y manipular objetos dentro del directorio. Por ejemplo, al realizar búsquedas o aplicar configuraciones a través de scripts o herramientas de administración.
     
 - Importancia en la Seguridad: Para un profesional de la ciberseguridad o un pentester, entender la estructura de DN es vital para la exploración y evaluación de la seguridad de un dominio de AD. Por ejemplo, al buscar cuentas de usuario con configuraciones inseguras o permisos excesivos.
-```
 
 ## PowerView
 
