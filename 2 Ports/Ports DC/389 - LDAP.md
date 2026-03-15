@@ -49,11 +49,11 @@ Este es el puerto estándar para LDAP (Lightweight Directory Access Protocol), q
 ```
 
 ```bash 
-❯ ldapsearch -x -H <IP> -s base namingcontexts         # Enumerar con una autenticación simple
-❯ ldapsearch -x -H <IP> -b 'DC=Domain.corp'            # Enumerar el dominio 
+❯ ldapsearch -x -H ldap://IP_DC -s base namingcontexts         # Enumerar con una autenticación simple
+❯ ldapsearch -x -H ldap://IP_DC -b 'DC=Domain.corp'            # Enumerar el dominio 
 
 
-❯ ldapsearch -x -H ldap://localhost -b dc=example,dc=org -D "cn=admin,dc=Domain,dc=corp" -w admin 'cn=admin'   # Mirar la información del usuario admin 
+❯ ldapsearch -x -H ldap://IP_DC -b dc=example,dc=org -D "cn=admin,dc=Domain,dc=corp" -w admin 'cn=admin'   # Mirar la información del usuario admin 
 
 	# b,dc,dc = Base de busqueda
 	# D = Nombre distinguido
@@ -64,10 +64,10 @@ Este es el puerto estándar para LDAP (Lightweight Directory Access Protocol), q
 
 
 # Enumerar un usuario en especifico 
-❯ ldapsearch -x -H ldap://localhost -b dc=example,dc=org -D "cn=admin,dc=Domain,dc=org" -w admin 'cn=omar'
+❯ ldapsearch -x -H ldap://IP_DC -b dc=example,dc=org -D "cn=admin,dc=Domain,dc=org" -w admin 'cn=omar'
 
 
-❯ ldapsearch -x -H ldap://localhost -b dc=example,dc=org -D "cn=admin,dc=Domain,dc=org" -w admin '(&(cn=omar)(description=LDAP*))'
+❯ ldapsearch -x -H ldap://IP_DC -b dc=example,dc=org -D "cn=admin,dc=Domain,dc=org" -w admin '(&(cn=omar)(description=LDAP*))'
 
 	# (&(cn=omar)(description=LDAP*)) = El usuario a buscar es 'omar' y su descripción es LDAP 
 	# * = Mostrar más contenido 
@@ -76,5 +76,5 @@ Este es el puerto estándar para LDAP (Lightweight Directory Access Protocol), q
 
 ```bash
 # Crea un usuario en base a un archivo dado 
-❯ ldapadd -x -H ldap://localhost -D "cn=admin,dc=example,dc=org" -w admin -f newuser.ldif  
+❯ ldapadd -x -H ldap://IP_DC -D "cn=admin,dc=example,dc=org" -w admin -f newuser.ldif  
 ```
