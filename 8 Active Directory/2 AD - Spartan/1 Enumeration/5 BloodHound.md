@@ -4,7 +4,6 @@ Tags: #AD #BloodHound #SharpHound #Kali #Parrot #SOAPHound
 
 **BloodHound** es una herramienta especializada en analizar y mapear relaciones dentro de Active Directory (AD). Su capacidad para identificar rutas de ataque y relaciones complejas la ha convertido en una herramienta esencial tanto para pentesters como para atacantes. A través de la recopilación y visualización de datos, permite descubrir configuraciones inseguras, privilegios excesivos y posibles vectores de escalación de privilegios o movimiento lateral en entornos AD, lo que la hace invaluable en auditorías de seguridad y pruebas de penetración.
 
-```bash 
 1. Visualización de Relaciones: BloodHound utiliza gráficos para mostrar las relaciones entre usuarios, grupos, computadoras y otros componentes en un AD. Estas visualizaciones hacen que sea más fácil para un atacante o pentester entender rápidamente las relaciones complejas y encontrar potenciales caminos de ataque.
     
 2. Identificación de Caminos de Ataque: Uno de los principales valores de BloodHound es su capacidad para identificar caminos de escalada de privilegios y movimiento lateral. Al alimentar a BloodHound con datos recopilados, la herramienta puede identificar caminos específicos que un atacante puede seguir para escalar privilegios o moverse lateralmente a través de una red.
@@ -16,11 +15,10 @@ Tags: #AD #BloodHound #SharpHound #Kali #Parrot #SOAPHound
 5. Capacidades de Análisis Avanzado: Aparte de identificar caminos obvios, BloodHound puede ayudar a identificar relaciones no evidentes que podrían ser explotadas. Por ejemplo, un usuario podría no tener privilegios directos sobre un recurso, pero a través de una serie de relaciones y delegaciones, podría tener una ruta de acceso indirecto.
     
 6. Capacitación y Conciencia: Para defensores y equipos de seguridad, BloodHound también puede ser una herramienta valiosa. Al visualizar la estructura de permisos y las relaciones dentro de AD, los defensores pueden anticiparse a potenciales vías de ataque y tomar medidas para mitigar los riesgos.
-```
+
 
 ## Grupos predeterminados de Active Directory:
 
-```bash 
 1. 'Domain Admins': Este grupo tiene control total sobre todos los dominios en el bosque. Cualquier usuario que sea miembro de este grupo puede realizar cualquier cambio en el dominio, como crear o eliminar otros usuarios, grupos y modificar políticas de seguridad.
 2. 'Enterprise Admins': Los miembros de este grupo tienen permisos para realizar cambios a nivel de toda la empresa, incluidos todos los dominios y bosques.
 3. 'Schema Admins': Los usuarios en este grupo pueden hacer cambios en el esquema de AD, que es la definición de objetos y atributos que pueden ser creados y almacenados en AD.
@@ -35,11 +33,10 @@ Tags: #AD #BloodHound #SharpHound #Kali #Parrot #SOAPHound
 11. 'Domain Computers': Este grupo incluye todas las estaciones de trabajo y servidores unidos al dominio.
 12. 'Domain Controllers': Este grupo incluye todos los controladores de dominio en un dominio. Es esencial garantizar que sólo las máquinas confiables sean parte de este grupo.
 13. 'Read-Only Domain Controllers - RODC': Si la organización utiliza RODCs, es esencial garantizar que estén configurados correctamente.
-```
+
 
 ## Tipos de ActiveDirectoryRights
 
-```bash 
 Los 'ActiveDirectoryRights' incluyen, pero no se limitan a:
 
 1. Read/Write: Leer y escribir información en objetos de AD.
@@ -51,7 +48,6 @@ Los 'ActiveDirectoryRights' incluyen, pero no se limitan a:
 7. WriteDacl: Modificar la lista de control de acceso discrecional (DACL).  
 8. WriteOwner: Cambiar el propietario de un objeto.
 9. GetChangesAll: Es un permiso en Active Directory que permite replicar todos los datos, incluso contraseñas; es clave para ataques como 'DCSync'.
-```
 
 ## BloodHound Community Edition 
 
@@ -71,8 +67,7 @@ Los 'ActiveDirectoryRights' incluyen, pero no se limitan a:
 Notas: 
 	1. La instalción es por Docker por lo que al iniciar el sistema se debe de volver a iniciar 'BloodHound'
 ```
-
-```bash  
+ 
 Enumerar lo siguiente en BloodHound usando la pestaña de 'CYPHER':
 	1. 'All Domain Admins'
 	2. 'Map domains trusts'
@@ -87,7 +82,6 @@ Una vez obtenido un usuario:
 	1. Agregar la opción 'Mark User as Owned'
 		- Seleccionar el usuario y dar click en 'Inbound Object Control' para mostrar quien tiene control sobre el objeto seleccionado 
 		- Seleccionar el usuario y dar click en 'Outbound Object Control' para mostrar sobre que objetos tiene control el usuario comprometido 
-```
 
 ## BloodHound-Python Recolector
 
@@ -103,8 +97,7 @@ Notas:
 
 ## SharpHound 
 
-* [SharpHound](https://github.com/SpecterOps/BloodHound-Legacy/blob/master/Collectors/SharpHound.ps1)
-* [SharpHound](https://github.com/puckiestyle/powershell/blob/master/SharpHound.ps1)
+Para descargar Sharphound se puede hacer desde la consola de Bloodhound Community Edition.
 
 ```powershell 
 ❯ Import-Module .\SharpHound.ps1       # Importar el modulo, tambien se puede hacer con el '.exe'
