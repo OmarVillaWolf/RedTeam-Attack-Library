@@ -2,7 +2,6 @@
 
 Tags: #AD #Enumeracion #Powershell 
 
-```bash 
 Active Directory (AD) es una base de datos y un conjunto de servicios que conectan usuarios con los recursos de red que necesitan para hacer su trabajo. Aquí están algunas de las funcionalidades más importantes del Active Directory y cómo acceder a ellas a través del comando "Ejecutar" en Windows 'Win + R':
 
 1. Usuarios y Equipos de Active Directory (ADUC) - 'dsa.msc'
@@ -28,11 +27,9 @@ Active Directory (AD) es una base de datos y un conjunto de servicios que conect
 6. DNS - 'dnsmgmt.msc'
     - Acceso: Escribe 'dnsmgmt.msc' en el comando "Ejecutar".
     - Función: Administra el servidor de DNS del dominio, lo cual es crucial para la funcionalidad de AD, ya que AD depende en gran medida de una configuración de DNS correcta para resolver nombres y localizar servicios y servidores.
-```
 
 ## Otras funcionalidades esenciales de Active Directory incluyen:
 
-```bash 
 7. Control de Servicios - 'services.msc'
     - Acceso: Escribe `services.msc` en el comando "Ejecutar".  
     - Función: Gestiona los servicios en ejecución en un servidor, lo cual incluye los servicios de Active Directory como el servicio de Directorio de Active Directory (NTDS) o el servicio de replicación de File Replication Service (FRS) o Distributed File System (DFS).
@@ -55,4 +52,3 @@ Active Directory (AD) es una base de datos y un conjunto de servicios que conect
         
 12. Servicios de Escritorio Remoto - 'tsadmin.msc'
     - Acceso: Escribe 'tsadmin.msc' en el comando "Ejecutar" (solo disponible en versiones anteriores de Windows Server
-```
