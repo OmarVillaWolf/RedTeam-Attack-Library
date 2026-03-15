@@ -15,6 +15,10 @@ Es una colección de módulos de PowerShell que puedes usar para asistirte duran
 El módulo de PowerView puede llegar a generar alertas inofensivas en los sistemas de seguridad 
 ```
 
+```powershell
+❯ powershell -ep bypass        # Permirit la ejecución de scripts en Powershell 
+```
+
 ```powershell 
 # Una forma de evadir la detección al ejecutar el script desde Windows es eliminando los comentarios del script desde Kali
 ❯ sed '/<#/,/#>/d' PowerView.ps1 > new_PowerView.ps1  
