@@ -13,11 +13,14 @@ Como enumerar?
 ```
 
 ```python
-# Modo directorio: Enumerar los directorios y archivos
+# Modo directorio: Enumerar los subdirectorios y archivos
 ❯ /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 ❯ /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
 ❯ /usr/share/dirb/wordlists/common.txt
 ❯ /usr/share/metasploit-framework/data/wordlists/directory.txt
+
+# Subdirectorios ocultos (Windows)
+❯ /usr/share/Seclists/Discovery/Web-Content/raft-medium-directories.txt
 
 # Modo DNS: Enumerar Subdominios 
 ❯ /usr/share/Seclists/Discovery/DNS/subdomains-top1million-5000.txt
