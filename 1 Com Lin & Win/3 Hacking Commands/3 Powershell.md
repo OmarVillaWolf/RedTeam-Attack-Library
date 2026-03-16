@@ -5,7 +5,7 @@ Tags: #Windows #Powershell #Comandos
 ## Comandos 
 
 ```powershell 
-❯ Get-Host      # Mirar la versión de PS
+❯ Get-Host      # Mirar la versión de PowerShell
 ```
 
 ```powershell
@@ -13,22 +13,16 @@ Tags: #Windows #Powershell #Comandos
 ```
 
 ```powershell
-# Obtener las llaves de registro 
+# Leer las llaves de registro 
 ❯ Get-Item -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\windows\CurrentVersion | Select-Object -ExpandProperty Property 
 ```
 
 ```powershell 
 ❯ cmd /c dir /r /s file.txt      # Buscar de manera recursiva un archivo 
-❯ dir -Force                     # Buscar un archivo 
+❯ dir -Force                     # Buscar un archivo oculto 
 ```
 
 ## Enumeración
-
-```powershell
-❯ net user /domain                   # Mirar los usuarios del dominio 
-❯ net user                           # Mirar los usuarios locales 
-❯ net localgroup administrators      # Muestra los miebros del grupo local de administradores
-```
 
 ```powershell 
 ❯ Find-WMILocalAdminAccess.ps1 -Verbose  # Enumeración de otras máquinas donde el usuario actual tiene acceso 
