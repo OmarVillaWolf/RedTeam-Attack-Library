@@ -293,12 +293,13 @@ Tags: #Linux #Comandos
 ```
 
 ```python
-❯ 7z l <file.zip>              # Podemos ver el contenido interno del archivo zip, gz, bzip2, etc... (l=ele)
-❯ 7z x <file.gz>               # Podemos extraer el contenido interno del archivo zip, gz, bzip2, etc...
-❯ tar -xf <file.tar.gz>        # Descomprimimos el archivo tar.gz
+❯ 7z l <file.zip>              # Mirar el contenido
+❯ 7z l <file.jar>              # Mirar el contenido 
+❯ 7z x <file.gz>               # Extraer el contenido interno del archivo
+❯ tar -xf <file.tar.gz>        # Descomprimir el archivo tar.gz
 ❯ gzip -d <file.txt.gz>        # Descomprimir archivos gz
 ❯ unzip <file.zip>             # Descomprimir un archivo zip 
-❯ gunzip <file.gz>             # Para descompirmir archivos gzip
+❯ gunzip <file.gz>             # Descomprimir archivos gzip
 ```
 
 ```bash
