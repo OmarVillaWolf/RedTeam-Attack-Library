@@ -59,8 +59,6 @@ Notas:
 
 ❯ dir /r /s File.txt     # Busca de forma recursiva el archivo '.txt'
 ❯ dir /r /s              # Listar archivos con ADS 'Alternative Data Streams' ocultos 
-
-❯ dir -Force             # Lista todos los archivos hasta los ocultos
 ```
 
 ```powershell
@@ -85,7 +83,8 @@ Notas:
 ```
 
 ```powershell
-❯ net user                             # Mirar todos los usuarios existentes y sus grupos de forma local
+❯ net user /domain                   # Mirar los usuarios del dominio 
+❯ net user                           # Mirar los usuarios locales 
 ❯ net user <User>                      # Mirar los grupos de un usuario especifico como 'administrator' de forma local
 ❯ net user admin password123           # Cambiar la passwd al usuario admin siendo NT Authority\System de forma local  
 ❯ net user admin password123 /domain   # Cambiar la passwd a un usuario admin siendo un usuario que pertenece a un grupo con privilegios para hacerlo en el dominio 
