@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1 Com Lin & Win/3 Hacking Commands/Rever.md",
+                "file": "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Rever"
+              "title": "Transfer"
+            }
+          },
+          {
+            "id": "edc4fefb54aaf672",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 Token-Priv, Groups.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "3 Token-Priv, Groups"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -191,19 +206,23 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "1eac434e5d1b2e89",
+  "active": "edc4fefb54aaf672",
   "lastOpenFiles": [
+    "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
+    "1 Com Lin & Win/3 Hacking Commands/3 Powershell.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 Token-Priv, Groups.md",
+    "1 Com Lin & Win/3 Hacking Commands/Rever.md",
+    "1 Com Lin & Win/3 Hacking Commands/2 Windows Commands.md",
+    "2 Ports/80.7 IIS - Web.config.md",
+    "7 Hacking Web/1 Basic/4 LFI.md",
     "2.1 Tools/Fuzzers.md",
     "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
     "8 Active Directory/2 AD - Spartan/5 Evasión/1 UAC.md",
-    "2 Ports/80.7 IIS - Web.config.md",
-    "1 Com Lin & Win/3 Hacking Commands/Rever.md",
     "2 Ports/80.7 IIS - Webdav.md",
     "2 Ports/80 - HTTP.md",
     "2 Ports/80.5 Apache - Shellshock.md",
     "2 Ports/80.6 Tomcat.md",
     "2.1 Tools/RustScan.md",
-    "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
     "2.1 Tools/Nmap.md",
     "8 Active Directory/3 AD - CRTP/Lateral Movement/Mimikatz.md",
     "8 Active Directory/3 AD - CRTP/Lateral Movement/Credential Extraction.md",
@@ -215,10 +234,6 @@
     "8 Active Directory/2 AD - Spartan/2 Attacks/8 DnsAdmins/1 DNSAdmins.md",
     "2 Ports/Ports DC/0 Metodología.md",
     "2.1 Tools/jd-gui - jar.md",
-    "1 Com Lin & Win/3 Hacking Commands/2 Windows Commands.md",
-    "7 Hacking Web/1 Basic/36 Log4j.md",
-    "7 Hacking Web/1 Basic/35 GraphQL.md",
-    "8 Active Directory/4 AD - Intermediate/3 ACLs, DCSync/2 Listado ACLs.md",
     "Ligolo.png",
     "Pasted image 20260314184559.png",
     "8 Active Directory/4 AD - Intermediate/7 Evasión",
