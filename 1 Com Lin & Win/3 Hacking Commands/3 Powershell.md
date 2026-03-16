@@ -2,45 +2,6 @@
 
 Tags: #Windows #Powershell #Comandos 
 
-```bash 
-Extensiones en Powershell:
-- .ps1
-- .psm1
-- .psd1
-```
-
-## Variables 
-
-```powershell 
-$var = "Hola"                                 # Definir una variable 
-Write-Host -ForegroundColor Yellow $var       # Imprimir la variable y colocarle un color
-```
-
-## Funciones 
-
-```powershell
-# Validación de las reglas en la maquina en donde se esta
-
-function verificarFirewall(){
-	$fw = New-Object -ComObject hnetcfg.fwpolicy2
-	$reglas = $fw.rules | Where-Object {$_.Enabled -eq "True" -and $_.Direction -eq "1" -and $_.Name -like "*SMB*" } | Select-Object Name, LocalPorts, RemoteAddresses 
-	return $reglas
-}
-
-verificarFirewall   # Llamar a la función
-```
-
-```powershell 
-# Muestra los nombres de los servicios de la maquina 
-
-function llamarServicio(){
-	$servicio = Get-WmiObject win32_service | Format-Table name 
-	return $servicio
-}
-
-llamarServicio      # Llamar a la función
-```
-
 ## Comandos 
 
 ```powershell 
@@ -56,6 +17,11 @@ llamarServicio      # Llamar a la función
 ❯ Get-Item -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\windows\CurrentVersion | Select-Object -ExpandProperty Property 
 ```
 
+```powershell 
+❯ cmd /c dir /r /s file.txt      # Buscar de manera recursiva un archivo 
+❯ dir -Force                     # Buscar un archivo 
+```
+
 ## Enumeración
 
 ```powershell
@@ -65,7 +31,7 @@ llamarServicio      # Llamar a la función
 ```
 
 ```powershell 
-❯ Find-WMILocalAdminAccess.ps1 -Verbose  # Enumeración de otras maquinas donde el usuario actual tiene acceso 
+❯ Find-WMILocalAdminAccess.ps1 -Verbose  # Enumeración de otras máquinas donde el usuario actual tiene acceso 
 ```
 
 ```powershell
