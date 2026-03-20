@@ -4,8 +4,7 @@ Tags: #Pivoting #Ligolo
 
 ## Ejemplo de red 
 
-![[Ligolo.png | 800]]
-
+[![Ligolo.png | 800](https://i.postimg.cc/5NdP2MyL/Ligolo.png)](https://postimg.cc/8s4dZ9hz)
 ## Conectar agente y proxy 
 
 * [Ligolo-ng](https://github.com/nicocha30/ligolo-ng/releases)
