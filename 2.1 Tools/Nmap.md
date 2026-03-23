@@ -64,7 +64,10 @@ Tags: #Nmap #Escaneo #UDP #TCP
 ## Active Directory 
 
 ```bash 
-❯ nmap -n --disable-arp-ping -p 88,389,53 --open -T5 -vvv ❮IP/24❯
+❯ nmap --script dns-srv-enum --script-args "dns-srv-enum.domain='domain1.local'" IP   
+
+❯ nmap -p- -sCV -O -oN namp.txt IP
+	# -A = Es como si se hace (-sCV -O --traceroute) 
 ```
 
 ## Port Scanning 
