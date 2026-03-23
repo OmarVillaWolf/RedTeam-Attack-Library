@@ -44,18 +44,28 @@ Registros DNS
 * PTR        -      Resuelve una dirección IP de un hostname 
 
 DNS (Domain Name System) es crucial para el funcionamiento de Active Directory ya que se utiliza para localizar controladores de dominio y otros servicios críticos. Un servidor DC suele ser también un servidor DNS en entornos de AD.
-## Whois y DNS Dumping 
+
+## Whois
 
 ```bash 
 ❯ whois domain.com      # Busca info sobre el dominio 
 ```
 
+## NSLookup
+
 ```bash 
-❯ nslookup domain.com    # Consulta la configuracion DNS de un dominio y te da su direccion IP
+❯ nslookup domain.com    # Consulta la configuración DNS de un dominio y te muestra su dirección IP
 
 ❯ nslookup
-	❯ server IP           # Muestra el nombre de dominio 
-	❯ IP
+	❯ server <IP>           # Muestra el nombre de dominio 
+	❯ <IP>
+```
+
+```bash 
+# Enumeración del dominio 
+
+❯ nslookup -type=srv _ldap._tcp.dc._msdcs.domain1.local <IP>     # Mostrar la IP del nombre del dominio y su DNS
+	# domain1.local = Es el dominio 
 ```
 
 ## Dig
@@ -67,6 +77,13 @@ DNS (Domain Name System) es crucial para el funcionamiento de Active Directory y
 2. Con la IP se puede hacer un escaneo de puertos y servicios con 'Nmap'
 3. Se puede identificar si la infraestrucrura es compartida. Varios subdominios apunten a la misma IP
 4. Ayuda a la evasión por WAF/CDN que estan protegidas por 'Cloudflare' que protegen el dominio pero no la IP directa 
+```
+
+```bash 
+# Enumeración de servicio SRV 
+
+❯ dig -t srv _ldap._tcp.domain1.local @IP          # Mostrar el puerto LDAP (389)  
+❯ dig -t srv _kerberos._tcp.domain1.local @IP      # Mostrar el puerto Kerberos (88)  
 ```
 
 ```bash
