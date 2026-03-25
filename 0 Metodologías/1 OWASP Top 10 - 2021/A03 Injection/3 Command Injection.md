@@ -1,3 +1,0 @@
-# Command Injection  
-
-Tags: #OWASP 
