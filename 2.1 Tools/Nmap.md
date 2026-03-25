@@ -11,8 +11,8 @@ Tags: #Nmap #Escaneo #UDP #TCP
 ## Host Discovery 
 
 ```bash 
-❯ man nmap                          # Despliega el manual de nmap 
-/usr/share/nmap/scripts             # Ruta que contiene los scripts de Nmap
+❯ man nmap                        # Despliega el manual de nmap 
+/usr/share/nmap/scripts           # Ruta que contiene los scripts de Nmap
 ```
 
 ```bash 
