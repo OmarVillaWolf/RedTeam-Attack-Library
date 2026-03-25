@@ -1,3 +1,0 @@
-# Json Injection 
-
-Tags: #OWASP 
