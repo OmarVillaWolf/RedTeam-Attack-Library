@@ -1,3 +1,0 @@
-# Blind SQLi 
-
-Tags: #OWASP 
