@@ -1,3 +1,0 @@
-# Insecure Dependency 
-
-Tags: #OWASP 
