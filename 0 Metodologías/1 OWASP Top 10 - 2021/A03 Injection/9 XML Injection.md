@@ -1,3 +1,0 @@
-# XML Injection 
-
-Tags: #OWASP 
