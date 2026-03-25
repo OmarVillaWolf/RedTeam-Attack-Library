@@ -1,3 +1,0 @@
-# Email Injection 
-
-Tags: #OWASP 
