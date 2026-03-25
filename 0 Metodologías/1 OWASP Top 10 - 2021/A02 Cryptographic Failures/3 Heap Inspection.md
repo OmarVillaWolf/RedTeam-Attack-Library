@@ -1,3 +1,0 @@
-# Heap Inspection 
-
-Tags: #OWASP 
