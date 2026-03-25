@@ -1,3 +1,0 @@
-# Insecure Deserealization 
-
-Tags: #OWASP 
