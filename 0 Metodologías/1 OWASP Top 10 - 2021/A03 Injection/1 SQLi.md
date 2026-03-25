@@ -1,3 +1,0 @@
-# SQLi 
-
-Tags: #OWASP 
