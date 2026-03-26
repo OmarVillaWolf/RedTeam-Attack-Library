@@ -1,319 +1,350 @@
-# Fuzzers 
+# Fuzzers Web 
 
-Tags: #Wfuzz #Gobuster #Ffuf #Fuzzing #SubDomains #Directories #Dirbuster #Dirsearch #Dirb 
+Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #Subdominios #Directorios #Vhost #Parametros #Extensions
 
-## Enumeración 
+## OBJETIVO
+- Descubrir directorios y archivos ocultos en aplicaciones web
+- Enumerar subdominios y virtual hosts
+- Encontrar usuarios válidos y contraseñas en formularios web
+- Identificar parámetros, extensiones y endpoints ocultos
 
-```bash
-Como enumerar?
+## TIPS
+1. **ffuf es el más rápido y flexible → úsalo como primera opción**
+2. **Siempre filtrar por tamaño (-fs) o código (-fc) → reduce falsos positivos**
+3. **Windows → asp, aspx, html, txt | Linux → php, php5, html, txt**
+4. **Empezar con common.txt → confirmar que funciona → luego usar medium**
+5. **301 sin contenido → agregar / al final de FUZZ o usar -r para follow redirect**
+6. **Gobuster → más estable en conexiones lentas por manejo de sockets**
+7. **Hacer una petición base primero → anotar tamaño/código → usarlo como filtro**
+8. **Si encuentras un directorio → fuzzearlo también con recursión o manualmente**
 
-1 Enumerar los directorios (rutas)
-2 Enumerar los subdominios 
-3 Enumerar archivos con sus respectivas extensiones 
-```
+---
 
-```python
-# Modo directorio: Enumerar los subdirectorios y archivos
-❯ /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
-❯ /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
-❯ /usr/share/dirb/wordlists/common.txt
-❯ /usr/share/metasploit-framework/data/wordlists/directory.txt
-
-# Subdirectorios ocultos (Windows)
-❯ /usr/share/Seclists/Discovery/Web-Content/raft-medium-directories.txt
-
-# Modo DNS: Enumerar Subdominios 
-❯ /usr/share/Seclists/Discovery/DNS/subdomains-top1million-5000.txt
-
-# Modo vhost: Enumerar host virtuales que estén configurados en el servidor
-❯ /usr/share/Seclists/Discovery/DNS/subdomains-top1million-5000.txt
-
-# Enumeracion a un CMS
-❯ /usr/share/Seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt
-```
-
-## Gobuster
+## WORDLISTS DE REFERENCIA RÁPIDA
 
 ```bash
-# Enumeracion de Subdominios. Gobuster trabaja muy bien con sockets y conexiones 
+# Directorios y archivos — General
+/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt     # Más completa → usar siempre
+/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt      # Más rápida
+/usr/share/dirb/wordlists/common.txt                             # Prueba inicial rápida
+/usr/share/seclists/Discovery/Web-Content/big.txt                # Alternativa grande
+/usr/share/metasploit-framework/data/wordlists/directory.txt     # Apps empresariales
 
-❯ gobuster vhost --append-domain -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --url https://web.com/ -t 200 -k 
+# Directorios y archivos — Raft (muy buenas para archivos)
+/usr/share/seclists/Discovery/Web-Content/raft-medium-files-lowercase.txt
+/usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt
+/usr/share/seclists/Discovery/Web-Content/raft-large-files.txt
+/usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt
 
-	# append-domain = Enumerar los subdominios
-	# vhost = Modo enumeracion VHost Subdominios
-	# w = Ruta del diccionario
-	# t = Lanzar tareas en paralelo al mismo tiempo
-	# k = Para certificados autofirmados para el puerto 443
+# Subdominios y VHosts
+/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt    # Rápida
+/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt   # Más completa
+/usr/share/seclists/Discovery/DNS/namelist.txt                       # Alternativa
+
+# Parámetros GET/POST
+/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt
+/usr/share/seclists/Discovery/Web-Content/api/api-endpoints.txt
+
+# CMS específicos
+/usr/share/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt
+/usr/share/seclists/Discovery/Web-Content/CMS/joomla.txt
+/usr/share/seclists/Discovery/Web-Content/CMS/drupal.txt
+
+# Usuarios
+/usr/share/seclists/Usernames/Names/names.txt
+/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+
+# Contraseñas
+/usr/share/wordlists/rockyou.txt
+/usr/share/seclists/Passwords/Common-Credentials/10-million-password-list-top-100.txt
+/usr/share/seclists/Passwords/Common-Credentials/best110.txt
 ```
+
+---
+
+## 1. ENUMERACIÓN DE DIRECTORIOS Y ARCHIVOS
+
+### ffuf
+```bash
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/dirb/wordlists/common.txt
+# Prueba inicial → confirmar que el fuzzing funciona antes de wordlists grandes
+
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+# Enumeración completa de directorios
+
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files-lowercase.txt
+# Enfocado en archivos → mejor que directory-list para encontrar archivos sueltos
+
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -e .php,.txt,.html
+# Buscar extensiones específicas junto con la wordlist
+# Linux: .php,.php5,.html,.txt | Windows: .asp,.aspx,.html,.txt,.config
+
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -recursion -recursion-depth 2
+# Enumeración recursiva → entra en los directorios encontrados automáticamente
+# -recursion-depth 2 → evita loops infinitos
+
+❯ ffuf -c -t 200 -u https://<IP>/FUZZ/ -v   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt --mc=200
+# -c → colores | -t 200 → 200 hilos | -v → verbose con redirecciones
+# --mc=200 → solo mostrar 200 | / al final → follow redirect 301
+
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -fs 0 -fc 404,403
+# -fs 0 → filtrar respuestas vacías | -fc → filtrar códigos
+```
+
+### gobuster
+```bash
+❯ gobuster dir -u http://<IP>/   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -t 50 -b 403,404
+# -b → blacklist de códigos a ocultar
+
+❯ gobuster dir -u http://<IP>/   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -t 50 -b 403,404 -x .php,.html,.txt,.xml -r
+# -x → extensiones | -r → follow redirect
+
+❯ gobuster dir -u http://<IP>/   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -x asp,aspx,html,txt -f
+# -f / --add-slash → agrega / al final → código real en vez de 301
+# Windows: asp,aspx,html,txt | Linux: php,html,txt,php5
+
+❯ gobuster dir -u https://<IP>/   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -t 200 -s 200 -x html -b " "
+# -s 200 → solo mostrar 200 | -b " " → evitar error de blacklist en HTTPS
+```
+
+### wfuzz
+```bash
+❯ wfuzz -c --hc=404,403 -t 200   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ
+
+❯ wfuzz -c -L --hc=404,403 -t 200   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ
+# -L → follow redirect 301 | Si no muestra nada → quitar -L y agregar / al final
+
+❯ wfuzz -c --hc=404,403 -t 200   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ.html
+# Buscar extensión específica
+
+❯ wfuzz -c --hc=404,403 -t 200   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -z list,html-txt-php https://<IP>/FUZZ.FUZ2Z
+# -z list → payload de extensiones | FUZ2Z → segunda posición de fuzzing
+```
+
+### Filtros de wfuzz — referencia
+```bash
+--hc=404,403   # HideCode → ocultar por código de estado
+--hl=216       # HideLine → ocultar por número de líneas
+--hw=6515      # HideWords → ocultar por número de palabras
+--hh=12345     # HideCharacters → ocultar por número de caracteres
+--sc=200       # ShowCode → mostrar solo ese código
+--sl=216       # ShowLine → mostrar solo ese número de líneas
+--sw=6515      # ShowWords → mostrar solo ese número de palabras
+--sh=12345     # ShowCharacters → mostrar solo ese número de caracteres
+```
+
+### feroxbuster
+```bash
+❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -d 2
+# -d 2 → profundidad de recursión | Mejor para recursión que gobuster
+
+❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 -x php,html,txt -t 100
+# -x → extensiones | -t → hilos
+
+❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 --filter-status 404,403 --filter-size 0
+# --filter-status → equivalente a -b en gobuster
+# --filter-size → filtrar respuestas vacías
+```
+
+### dirb
+```bash
+❯ dirb http://<IP>/
+# Wordlist interna → prueba inicial muy rápida
+
+❯ dirb http://<IP>/   /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -X .php
+# -X → extensión específica
+
+❯ dirb http://<IP> /usr/share/metasploit-framework/data/wordlists/directory.txt
+# Wordlist de Metasploit → buena para apps empresariales
+
+❯ dirb https://<IP>/
+# Puerto 443 → HTTPS
+```
+
+### dirsearch
+```bash
+❯ dirsearch -u http://<IP>/ -t 30 -e txt,html,php   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+# -e → extensiones | -t → hilos
+
+❯ dirsearch -u http://<IP>/ -t 30   -e txt,html,php,jsp,asp,aspx,rar,zip -f   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+# -f → forzar extensiones en cada palabra → más completo pero más lento
+
+❯ dirsearch -u http://<IP>/ -t 30 -e php,html,txt --exclude-status 403,404
+# --exclude-status → equivalente a -b en gobuster
+```
+
+### dirbuster (gráfico)
+```bash
+❯ dirbuster &
+# URL → http://IP/ (seguir sintaxis exacta con http://)
+# Go Faster → activar para escaneo más rápido
+# File extension → pdf,docx,rar,php,zip,txt (más extensiones = más lento)
+# Browse → /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
+```
+
+---
+
+## 2. ENUMERACIÓN DE SUBDOMINIOS Y VHOSTS
+
+### ffuf
+```bash
+# PASO 1 → Hacer petición base para obtener tamaño a filtrar
+❯ curl -s http://<IP>/ -H "Host: nonexistent.domain.com" | wc -c
+# Anotar el número → usarlo en -fs
+
+❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base>
+# -fs → filtrar tamaño base → ajustar al número obtenido arriba
+
+❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base> -mc all
+# -mc all → ver todos los códigos → útil para calibrar filtros
+
+❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: preprod-FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base>
+# Probar prefijos comunes: preprod-, dev-, staging-, test-, admin-, api-
+```
+
+### gobuster
+```bash
+❯ gobuster vhost --append-domain   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   --url https://<domain.com>/ -t 200 -k
+# --append-domain → añade dominio base | -k → ignorar errores SSL
+
+❯ gobuster vhost --append-domain   -u https://<domain.com>/   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -t 200 | grep -v "403"
+```
+
+### wfuzz
+```bash
+❯ wfuzz -c --hc=404 --hh=<tamaño_base> -t 200   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: FUZZ.<domain.com>" https://<domain.com>
+# --hh → ajustar al tamaño de respuesta base
+
+❯ wfuzz -c --hc=404 --hh=<tamaño_base> -t 200   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: preprod-FUZZ.<domain.com>" https://<domain.com>
+```
+
+### Insight
+- Subdominio encontrado → agregar al /etc/hosts → escanear puertos completos
+- Si hay muchos resultados → el filtro está mal calibrado → ajustar -fs o --hh
+
+---
+
+## 3. FUZZING DE PARÁMETROS GET
 
 ```bash
-❯ gobuster vhost --append-domain -u https://web.com/ -w /usr/share/Seclists/Discovery/DNS/subdomains-top1million-5000.txt -t 200 | grep -v "403"
+❯ ffuf -u "http://<IP>/page?FUZZ=value"   -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt   -fs <tamaño_base>
+# Descubrir nombres de parámetros GET ocultos
 
-	# append-domain = Enumerar los subdominios
-	# vhost = Modo enumeracion VHost Subdominios
-	# u = Colocamos la url
-	# t = Lanzar peticiones en paralelo al mismo tiempo
-	# w = Ruta del diccionario
-	# grep -v = Quitamos los que salgan en codigo de estado 403
+❯ ffuf -u "http://<IP>/page?id=FUZZ"   -w /usr/share/seclists/Fuzzing/Integers/Integers.txt   -fs <tamaño_base>
+# Fuzzear valores de parámetros numéricos → IDOR
+
+❯ wfuzz -c --hw=<palabras_base> -t 200   -z range,1-20000 "https://<IP>/shop/detail?product_id=FUZZ"
+# Rango numérico → útil para IDOR y enumeración de objetos
 ```
+
+---
+
+## 4. FUZZING DE PARÁMETROS POST
 
 ```bash
-# Enumeración de directorios en una web 
+❯ ffuf -u http://<IP>/api/endpoint   -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt   -X POST -d "FUZZ=test"   -H "Content-Type: application/x-www-form-urlencoded"   -fs <tamaño_base>
+# Descubrir parámetros POST ocultos en endpoints
 
-❯ gobuster dir -u http://web.com/ -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 --add-slash -b 403,404
-
-	# dir = Modo enumeracion directorios y archivos 
-	# u = Colocamos la url
-	# t = Lanzar peticiones en paralelo al mismo tiempo
-	# w = Ruta del diccionario
-	# add-slash = Ta agrega una barra al final '/' y podremos ver el codigo de estado correspondiente en lugar de 301
-	# b = Para hacer Blacklist a un codigo de estado (403,404) y que no nos lo muestre
+❯ ffuf -u http://<IP>/api/endpoint   -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt   -X POST -d "FUZZ=test"   -H "Content-Type: application/json"   -fs <tamaño_base>
+# Mismo pero con JSON → cambiar Content-Type
 ```
+
+---
+
+## 5. ENUMERACIÓN DE USUARIOS EN FORMULARIOS WEB
 
 ```bash
-❯ gobuster dir -u http://web.com/ -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -b 403,404 -x .php,.html,.txt,.xml -r
+❯ ffuf -w /usr/share/seclists/Usernames/Names/names.txt   -X POST   -d "username=FUZZ&email=x&password=x&cpassword=x"   -H "Content-Type: application/x-www-form-urlencoded"   -u http://<IP>/customers/signup   -mr "username already exists"
+# -mr → match response → texto que confirma usuario válido
+# Ajustar -d a los campos reales del formulario
+# Ajustar -mr al mensaje de error/éxito de la app
 
-	# dir = Modo enumeracion directory/file
-	# u = Colocamos la url
-	# t = Lanzar peticiones en paralelo al mismo tiempo
-	# w = Ruta del diccionario
-	# b = Para hacer Blacklist a un codigo de estado (403,404) y que no nos lo muestre
-	# x = Que extensiones queremos buscar (.php,.html,.txt)
-	# r = Para hacer 'Follow Redirect'
-
-❯ gobuster dir -u http://web.com -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x asp,txt,html,aspx -f 
-
-	# dir = Enumeracion de directorios y archivos
-	# u = URL
-	# w = Diccionario a usar
-	# x = Extensiones a buscar 
-	# --add-slash = Hace la misma funcion que 'f'
-
-Nota: 
-	1. Crear diccionarios propios para ser mas efectivos 
-	2. En los archivos que se encuentren, mirar cada una de las rutas y observar su código fuente para ver si existe algo importante ahí 
-	3. Si la aplicación web es Windows usar las siguientes extensiones: asp, aspx, html, txt...
-	4. Si la aplicación web es Linux usar las siguientes extensiones: php, html, txt php5...
+❯ ffuf -w /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt   -X POST   -d "username=FUZZ&password=x"   -H "Content-Type: application/x-www-form-urlencoded"   -u http://<IP>/login   -mr "Invalid password" -mc all
+# -mr "Invalid password" → si el error es diferente entre usuario válido e inválido
+# -mc all → ver todos los códigos para calibrar
 ```
+
+---
+
+## 6. FUERZA BRUTA DE CONTRASEÑAS EN FORMULARIOS WEB
 
 ```bash
-❯ gobuster dir -u https://web.com/ -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -s 200 -x html -b ' '
-
-	# Despues de la 'b' colocar una cadena vacia para evitar el error
-	# s = Queremos codigos de estado 200 = OK
-	# dir = Modo enumeracion directory/file
-	# u = Colocamos la url
-	# t = Lanzar peticiones en paralelo al mismo tiempo
-	# w = Ruta del diccionario
+❯ ffuf   -w valid_usernames.txt:W1,/usr/share/seclists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2   -X POST   -d "username=W1&password=W2"   -H "Content-Type: application/x-www-form-urlencoded"   -u http://<IP>/customers/login   -fc 200
+# W1 → usuarios válidos | W2 → wordlist de passwords
+# -fc 200 → filtrar 200 (login fallido) → mostrar lo diferente (302 = login ok)
+# Ajustar -fc al código de respuesta del login fallido de la app
 ```
 
-## Wfuzz 
+---
+
+## 7. FUZZING DE EXTENSIONES
 
 ```bash
-# Listar subdominios 
-❯ wfuzz -c --hc=404 --hh=12345 -t 200 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H “Host: FUZZ.❮IP❯” https://web.com
+❯ ffuf -u http://<IP>/indexFUZZ   -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt   -fs <tamaño_base>
+# Descubrir extensión de un archivo conocido
 
-❯ wfuzz -c --hc=404 --hh=12345 -t 200 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H “Host: preprod-FUZZ.web.com” https://web.com
-
-	# hc = HideCode 404
-	# c = Formato colorido
-	# hh = HideCharacters 12345
-	# w = Ruta del diccionario
-	# FUZZ = Donde va a insertar las palabras el diccionario
-	# t = Lanzar tareas en paralelo al mismo tiempo
-	# H = Para enumerar el subdominio, utilizamos esta cabecera 'Host: '
+❯ gobuster dir -u http://<IP>/   -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files-lowercase.txt   -x php,php5,php7,html,htm,asp,aspx,txt,xml,json,bak,old,conf,config,ini,log   -t 50 -b 403,404
+# Buscar múltiples extensiones en todos los archivos
 ```
+
+---
+
+## 8. FUZZING EN CMS
+
+### WordPress
+```bash
+❯ wfuzz -c --hc=404 -t 200   -w /usr/share/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt   http://<IP>/FUZZ
+# Descubrir plugins y temas de WordPress
+
+❯ gobuster dir -u http://<IP>/wp-content/plugins/   -w /usr/share/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt   -t 50 -b 403,404
+# Enumeración directa de plugins
+```
+
+### Joomla
+```bash
+❯ ffuf -u http://<IP>/FUZZ   -w /usr/share/seclists/Discovery/Web-Content/CMS/joomla.txt   -fc 404,403
+```
+
+### Drupal
+```bash
+❯ ffuf -u http://<IP>/FUZZ   -w /usr/share/seclists/Discovery/Web-Content/CMS/drupal.txt   -fc 404,403
+```
+
+---
+
+## FILTROS DE REFERENCIA RÁPIDA
+
+| Herramienta | Filtrar tamaño | Filtrar código | Filtrar palabras | Follow redirect |
+|---|---|---|---|---|
+| ffuf | -fs <size> | -fc <code> | -fw <words> | -r |
+| gobuster | — | -b <code> | — | -r |
+| wfuzz | --hh <chars> | --hc <code> | --hw <words> | -L |
+| feroxbuster | --filter-size <size> | --filter-status <code> | --filter-words <n> | -r |
+| dirsearch | --exclude-sizes | --exclude-status | — | — |
+
+---
+
+## EXTENSIONES POR OS
 
 ```bash
-# Listar directorios 
-❯ wfuzz -c -L --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ
+# Linux
+.php .php5 .php7 .html .htm .txt .xml .json .bak .old .conf .log .sh
 
-❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ/
+# Windows
+.asp .aspx .html .htm .txt .xml .config .bak .old .log .ps1
 
-
-	# L = Te aplica un 'Follow Redirect' al código de estado 301. Si no muestra nada, quitar el parámetro '-L' y colocar una barra al final 
-	# hc = HOculta código 403 y 404
+# APIs / Genéricas
+.json .xml .yaml .yml .api .graphql
 ```
 
-```bash
-❯ wfuzz -c --sl=216 --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ
+---
 
-	# sl = ShowLine es para mostrar el número de lineas en específico
-```
-
-```bash
-❯ wfuzz -c --hl=216 --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ
-
-	# hl = HideLine sirve para ocultar el número de lineas
-	# hw = HideWords sirve para ocultar el número de palabras
-	# sw = ShowWords sirve para mostrar el número de palabras
-	# hh = HideCharacter sirve para ocultar el número de caracteres
-	# sh = ShowCharacters sirve para mostrar el número de caracteres
-```
-
-```bash
-# Conceptos de listas 
-
-❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://web.com/FUZZ.html
-
-	# Enumerar archivos html en una ruta 
-```
-
-```bash
-# Crear un Payload de tipo lista 
-
-❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -z list,html-txt-php https://web.com/FUZZ.FUZ2Z
-
-	# Para enumerar diferentes archivos en una ruta 
-	# z = Crear un payload de tipo lista 
-	# FUZ2Z = Ahi es donde se colocaran las extensiones que hemos definido (html,php,txt)
-```
-
-```bash
-# Conceptos de rango 
-
-❯ wfuzz -c --hw=6515 -t 200 -z range,1-20000 'https://web.com/shop/buy/detail?product_id=FUZZ'
-
-	# z = Crear un payload de tipo rango
-	# hw = HideWords sirve para ocultar el número de palabras
-```
-
-```bash
-# Descubrir si tiene el Plugin de 'gwolle-gb' 
-
-❯ wfuzz -c --hc=404 -t 200 -w wp-plugins.fuzz.txt http://web.com/FUZZ
-
-	# hc = HideCode 404
-	# c = Formato colorido
-	# w = Ruta del diccionario
-	# FUZZ = Donde se va a insertar las palabras del diccionario
-	# t = Lanzar tareas en paralelo al mismo tiempo
-```
-
-## Dirbuster gráfico 
-
-Esta herramienta sirve para enumerar directorios 
-```python
-❯ dirbuster &                                   # Ejecutamos el programa y nos saldra una interface como la siguiente:
-```
-
-[![Dirbuster.png](https://i.postimg.cc/XN1zQ39m/Dirbuster.png)](https://postimg.cc/LhfD8cC3)
-
-```bash 
-1. Ahí colocamos la url empezando por 'http://' y debemos de seguir la sintaxis como la de la imagen
-2. Podemos activar la casilla de 'Go Faster' para que el escaneo sea mas rápido 
-3. File extension: Para colocar las diferentes extensiones que queremos encontrar, a mayor extensiones, tardara mas 'pdf,docx,rar,php,zip,txt,etc...'
-4. Browse: Podemos buscar el diccionario de fuerza bruta '/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt'
-```
-
-## Dirb 
-
-```bash 
-❯ man dirb                      # Mirar las opciones del comando 'dirb'
-```
-
-```python
-❯ dirb http://<IP>/             # Enumerar directorios en la web por el puerto 80 
-❯ dirb http://<IP>/ -f 
-
-❯ dirb https://<IP>/            # Enumerar directorios en la web por el puerto 443
-```
-
-```python
-❯ dirb http://<IP> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -X .php # Buscar archivos 
-
-	# X = Buscar por una extencion especifica
-	# Ruta del diccionario 
-	# IP = Maquina a fuzear
-
-# Enumeracion de directorios con un diccionario especifico 
-❯ dirb http://<IP> /usr/share/metasploit-framework/data/wordlists/directory.txt 
-```
-
-## Dirsearch 
-
-```bash 
-❯ dirsearch -u http://IP/ -t 30 -e txt,html,php -f -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
-
-	# u = URL 
-	# t = Numero de peticiones 
-	# e = Extensiones a buscar 'txt,html,php,jsp,asp,aspx,rar,zip'
-	# f = Forzar la busqueda de extensiones 
-	# w = Diccionario a utilizar 
-```
-
-## Ffuf 
-
-```bash
-❯ ffuf -h                   # Despliega el panel de ayuda
-```
-
-```bash 
-❯ ffuf -w /usr/share/Seclists/Discovery/DNS/namelist.txt -H "Host: FUZZ.acmeit.com" -u http://IP/ -fs 123
-
-	# w = Ruta absoluta de la wordlist a usar 
-	# H = Encabezado adicional y el server sabra que estamos enviando datos al server
-	# u = Url con la ruta que se va a usar
-	# fs = Palabras con el tamaño que no queremos que se muestre aunque tenga un codigo de estado de 200
-```
-
-```bash 
-# Fuzzing para encontrar usuarios validos en una web 
-
-❯ ffuf -w /usr/share/wordlists/SecLists/Usernames/Names/names.txt -X POST -d "username=FUZZ&email=x&password=x&cpassword=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://10.10.186.98/customers/signup -mr "username already exists"
-
-	# POST = Metodo a usar porque mandamos data en la peticion 
-	# d = Datos a enviar (Esto dependera de los campos a llenar)
-	# H = Encabezado adicional para que el server sepa que le estamos enviando datos
-	# u = Url con la ruta en donde se encuentra el formulario o campos a llenar 
-	# mr = Texto que buscamos validar y que hemos encontrado como usuario valido
-```
-
-```bash 
-# Hacer fuerza bruta con usuarios recopilados para encontrar su password
-
-❯ ffuf -w valid_usernames.txt:W1,/usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://10.10.186.98/customers/login -fc 200
-
-	# W1 = Lista de usuarios recopilados 
-	# W2 = Lista de diccionario a usar con las passwords 
-	# X = Metodo a usar porque mandamos data a la peticion 
-	# d = Datos a enviar (Esto dependera de los campos a llenar)
-	# H = Encabezado adicional para que el server sepa que le estamos enviando datos
-	# u = Url con la ruta en donde se encuentra el formulario o campos a llenar 
-	# fc = Verificar si hay un codigo de estado HTTP distinto de '200'
-```
-
-```bash
-❯ ffuf -c -t 200 -w /usr/share/Seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -u https://miwifi.com/FUZZ/ -v --mc=200 
-
-	# Si queremos hacer el Follow Redirect para el codigo 301 lo mejor es colocarle una '/' al final de FUZZ
-	# c = Permite meter colores
-	# u = Colocamos la url
-	# w = Ruta del diccionario
-	# t = Lanzar peticiones en paralelo al mismo tiempo
-	# v = Verbose, te dice a donde te redirige el codigo 301 y los demas
-	# mc = MatchCode y sirve para filtrar por el codigo de estado 200
-	# FUZZ = Ahi se van a sustituir las palabras del diccionario
-```
-
-```bash
-❯ ffuf -u http://❮IP❯/FUZZ -w /usr/share/seclists/Discovery/Web-Content/big.txt 
-
-	# u = url 
-	# w = ruta del diccionario 
-	# FUZZ = Ahi se van a sustituir las palabras del diccionario
-	# /usr/share/wordlists/dirb/big.txt 
-```
-
-```bash
-# Para encontrar diferentes archivos 
-❯ ffuf -u http://❮IP❯/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files-lowercase.tx
-
-# Buscamos por extenciones especificas
-❯ ffuf -u http://❮IP❯/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e .php,.txt,.html
-
-# Para fuzzear los directorios en la pagina web
-❯ ffuf -u http://❮IP❯/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt
-```
-
-
+## ONE-LINERS MENTALES
+- Primera enumeración → ffuf con common.txt → confirmar antes de wordlist grande
+- Recursión → feroxbuster -d 2 → más completo en una sola ejecución
+- Subdominios → curl base primero para tamaño → ffuf con Host header + -fs
+- Login usuarios → ffuf -mr con texto que confirma usuario válido
+- Login passwords → ffuf W1:W2 con -fc del código de login fallido
+- Windows → .asp,.aspx,.config | Linux → .php,.php5
+- 301 vacío → / al final de FUZZ o -r
+- Muchos falsos positivos → calibrar filtro con petición base primero
