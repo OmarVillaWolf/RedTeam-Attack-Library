@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4 PrivEsc Lin & Win/2 Linux/0 Metodología Linux PrivEsc.md",
+                "file": "2.1 Tools/KeePass KDBX.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "0 Metodología Linux PrivEsc"
+              "title": "KeePass KDBX"
             }
           }
         ]
@@ -193,20 +193,20 @@
   },
   "active": "b70d933dfe4f712a",
   "lastOpenFiles": [
+    "2.1 Tools/Password Cracking.md",
+    "2.1 Tools/Fuzzers.md",
+    "2.1 Tools/Hydra.md",
+    "4 PrivEsc Lin & Win/2 Linux/0 Metodología Linux PrivEsc.md",
     "2 Ports/Ports DC/1433 mssql.md",
     "2 Ports/Ports DC/464 kpasswd.md",
     "3 Passive  Reconnaissance/3 Creds.md",
     "2 Ports/Ports DC/464 - kpasswd.md",
     "2.1 TEMPLATE - MACHINE.md",
     "Unconfirmed 224289.crdownload",
-    "2.1 Tools/KeePass_KDBX.md",
+    "2.1 Tools/KeePass KDBX.md",
     "2.1 Tools/Unconfirmed 739664.crdownload",
-    "2.1 Tools/Password Cracking.md",
     "2.1 Tools/Unconfirmed 374836.crdownload",
-    "2.1 Tools/Fuzzers.md",
     "2.1 Tools/Unconfirmed 404989.crdownload",
-    "2.1 Tools/Hydra.md",
-    "4 PrivEsc Lin & Win/2 Linux/0 Metodología Linux PrivEsc.md",
     "4 PrivEsc Lin & Win/2 Linux/Unconfirmed 990891.crdownload",
     "2 Ports/80 HTTP.md",
     "2 Ports/Unconfirmed 85815.crdownload",
