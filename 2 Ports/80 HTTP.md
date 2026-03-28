@@ -47,10 +47,10 @@ Tags: #Web #HTTP #HTTPS #Reconocimiento #Enumeracion #BannerGrabbing #Fuzzing
 # WebApp Information Gatherer → CMS, versiones, vulnerabilidades conocidas
 # Complementa whatweb → a veces detecta lo que whatweb no ve
 
-❯ git clone https://github.com/projectdiscovery/nuclei-templates.git ~/.local/nuclei-templates   # Descargar las plantillas 
 ❯ nuclei -u http://<IP> -tags tech -t ~/.local/nuclei-templates
 ❯ nuclei -u http://<IP> -tags misconfig
 ❯ nuclei -u http://<IP> -tags cves
+❯ git clone https://github.com/projectdiscovery/nuclei-templates.git ~/.local/nuclei-templates   # Descargar las plantillas 
 # Scanner de vulnerabilidades basado en templates (CVEs, misconfig, exposiciones)
 
 ❯ httpx http://<IP>
