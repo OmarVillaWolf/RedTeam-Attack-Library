@@ -49,6 +49,9 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 ## 1. RECONOCIMIENTO / ENUMERACIÓN INICIAL (SIN CREDENCIALES)
 
 ```bash
+❯ nxc smb <IP/rango>
+# Mapear toda la red 
+
 ❯ nxc smb <IP> -u '' -p '' --shares --users --pass-pol
 # Todo en un solo comando con null session
 
