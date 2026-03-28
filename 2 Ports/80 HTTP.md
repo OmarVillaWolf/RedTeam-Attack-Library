@@ -43,10 +43,6 @@ Tags: #Web #HTTP #HTTPS #Reconocimiento #Enumeracion #BannerGrabbing #Fuzzing
 # -v → ver cabeceras completas de la respuesta
 # Más detalle sobre tecnologías y versiones
 
-❯ wig http://<IP>
-# WebApp Information Gatherer → CMS, versiones, vulnerabilidades conocidas
-# Complementa whatweb → a veces detecta lo que whatweb no ve
-
 ❯ nuclei -u http://<IP> -tags tech -t ~/.local/nuclei-templates
 ❯ nuclei -u http://<IP> -tags misconfig
 ❯ nuclei -u http://<IP> -tags cves
