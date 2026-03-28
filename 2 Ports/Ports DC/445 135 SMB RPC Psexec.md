@@ -52,6 +52,12 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 ❯ nxc smb <IP/rango>
 # Mapear toda la red 
 
+❯ nxc smb <IP>  
+# No requiere creds → muestra dominio, OS y SMB signing (clave para relay)  
+  
+❯ nxc smb <IP/rango> --gen-relay-list relay.txt  
+# Requiere SMB signing OFF → genera lista de hosts vulnerables a NTLM relay
+
 ❯ nxc smb <IP> -u '' -p '' --shares --users --pass-pol
 # Todo en un solo comando con null session
 
@@ -75,12 +81,6 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
   
 ❯ smbmap -H <IP> -u 'guest' -p ''  
 # Prueba usuario guest → a veces tiene más permisos que null  
-  
-❯ nxc smb <IP>  
-# No requiere creds → muestra dominio, OS y SMB signing (clave para relay)  
-  
-❯ nxc smb <IP> --gen-relay-list relay.txt  
-# Requiere SMB signing OFF → genera lista de hosts vulnerables a NTLM relay
 ```
 ### Insight importante
 - Si **null session funciona → PRIORIDAD ALTA**
