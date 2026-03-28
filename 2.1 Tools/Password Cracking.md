@@ -34,7 +34,7 @@ Tags: #Hashcat #JohnTheRipper #PasswordCracking #HashIdentifier #Fcrackzip #Crac
 # Herramienta interactiva → pegar el hash y muestra el tipo
 # Alternativa cuando hashid no es concluyente
 
-❯ echo -n "hash" | wc -c
+❯ echo -n 'hash' | wc -c
 # Contar caracteres del hash → ayuda a identificar el tipo
 # MD5 = 32 chars | SHA1 = 40 | SHA256 = 64 | SHA512 = 128
 
@@ -64,6 +64,7 @@ Tags: #Hashcat #JohnTheRipper #PasswordCracking #HashIdentifier #Fcrackzip #Crac
 32  chars → MD5
 40  chars → SHA1
 56  chars → SHA224
+60  chars → bcrypt
 64  chars → SHA256
 96  chars → SHA384
 128 chars → SHA512
@@ -175,7 +176,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 5500 hash.txt /usr/share/wordlists/rockyou.txt --force
 ```
 
-### AS-REP Roasting ($krb5asrep$)
+### AS-REP Roasting (\$krb5asrep$)
 ```bash
 # hashcat
 ❯ hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt
@@ -189,7 +190,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 18200 hash.txt --show
 ```
 
-### Kerberoasting ($krb5tgs$)
+### Kerberoasting (\$krb5tgs$)
 ```bash
 # hashcat
 ❯ hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt
