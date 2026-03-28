@@ -159,7 +159,7 @@ Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 # Todo después de -- son flags de nmap
 # RustScan descubre → nmap enumera → el mejor flujo combinado
 
-❯ rustscan -a <IP> --ulimit 5000 -- -sCV -oN targeted
+❯ rustscan -a <IP> --ulimit 5000 -- -sCV -oA targeted
 # Mismo pero guardando en todos los formatos
 
 # Convertir resultado XML a HTML para visualizar
