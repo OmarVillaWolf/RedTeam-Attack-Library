@@ -60,6 +60,34 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 /usr/share/seclists/Passwords/Common-Credentials/best110.txt
 ```
 
+
+---
+
+## FILTROS DE REFERENCIA RÁPIDA
+
+| Herramienta | Filtrar tamaño        | Filtrar código          | Filtrar palabras    | Follow redirect |
+| ----------- | --------------------- | ----------------------- | ------------------- | --------------- |
+| ffuf        | -fs \<size>           | -fc \<code>             | -fw \<words>        | -r              |
+| gobuster    | —                     | -b \<code>              | —                   | -r              |
+| wfuzz       | --hh \<chars>         | --hc \<code>            | --hw \<words>       | -L              |
+| feroxbuster | --filter-size \<size> | --filter-status \<code> | --filter-words \<n> | -r              |
+| dirsearch   | --exclude-sizes       | --exclude-status        | —                   | —               |
+
+---
+
+## EXTENSIONES POR OS
+
+```bash
+# Linux
+.php .php5 .php7 .html .htm .txt .xml .json .bak .old .conf .log .sh
+
+# Windows
+.asp .aspx .html .htm .txt .xml .config .bak .old .log .ps1
+
+# APIs / Genéricas
+.json .xml .yaml .yml .api .graphql
+```
+
 ---
 
 ## 1. ENUMERACIÓN DE DIRECTORIOS Y ARCHIVOS
@@ -308,33 +336,6 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 ### Drupal
 ```bash
 ❯ ffuf -u http://<IP>/FUZZ -w /usr/share/seclists/Discovery/Web-Content/CMS/drupal.txt -fc 404,403
-```
-
----
-
-## FILTROS DE REFERENCIA RÁPIDA
-
-| Herramienta | Filtrar tamaño | Filtrar código | Filtrar palabras | Follow redirect |
-|---|---|---|---|---|
-| ffuf | -fs <size> | -fc <code> | -fw <words> | -r |
-| gobuster | — | -b <code> | — | -r |
-| wfuzz | --hh <chars> | --hc <code> | --hw <words> | -L |
-| feroxbuster | --filter-size <size> | --filter-status <code> | --filter-words <n> | -r |
-| dirsearch | --exclude-sizes | --exclude-status | — | — |
-
----
-
-## EXTENSIONES POR OS
-
-```bash
-# Linux
-.php .php5 .php7 .html .htm .txt .xml .json .bak .old .conf .log .sh
-
-# Windows
-.asp .aspx .html .htm .txt .xml .config .bak .old .log .ps1
-
-# APIs / Genéricas
-.json .xml .yaml .yml .api .graphql
 ```
 
 ---
