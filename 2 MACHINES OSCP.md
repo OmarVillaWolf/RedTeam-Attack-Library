@@ -12,7 +12,7 @@
 
 ```
 1.  Lun | HTB | Sea           | Linux   | Easy   — Enumeración web, CMS
-2.  Mar | HTB | Markup        | Windows | Easy   — XXE, scheduled task
+2.  Mar | HTB | Headless      | Linux   | Easy   — XSS, OS Injection 
 3.  Mié | HTB | Nibbles       | Linux   | Easy   — Web, sudo abuse
 4.  Jue | HTB | Jerry         | Windows | Easy   — Tomcat default creds
 5.  Vie | HTB | Return        | Win/AD  | Easy   — Printer spooler, AD intro
