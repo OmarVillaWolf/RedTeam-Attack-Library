@@ -1,450 +1,611 @@
-# Nmap 
+# Reconocimiento de Red y Puertos
 
-Tags: #Nmap #Escaneo #UDP #TCP 
+Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 
-* [NSEDocs](https://nmap.org/nsedoc/)
+## OBJETIVO
+- Descubrir hosts activos en la red
+- Identificar puertos abiertos y servicios corriendo
+- Detectar versiones, OS y banners
+- Ejecutar scripts NSE para enumeración y detección de vulnerabilidades
+- Evadir firewalls e IDS cuando sea necesario
 
-```bash 
-❯ zenmap                           # Es la version GUI de nmap
-```
+## TIPS
+1. **Flujo siempre en dos pasos: descubrir puertos rápido → luego versión + scripts en los encontrados**
+2. **RustScan para descubrir puertos → nmap para enumerar servicios → son complementarios**
+3. **-sS (SYN scan) → más rápido y sigiloso → requiere root**
+4. **-Pn → Windows casi siempre bloquea ICMP → agregar si no responde al ping**
+5. **--min-rate 5000 → laboratorios | --min-rate 500 → entornos reales**
+6. **-n → no resolver DNS → acelera considerablemente el escaneo**
+7. **UDP es lento → escanear solo los puertos más comunes**
+8. **-oA → guardar en los 3 formatos a la vez → siempre hacerlo**
 
-## Host Discovery 
-
-```bash 
-❯ man nmap                        # Despliega el manual de nmap 
-/usr/share/nmap/scripts           # Ruta que contiene los scripts de Nmap
-```
-
-```bash 
-❯ nmap -sn ❮IP/24❯             # Usara 'Ping Scan' para escanear la red y descubir los diferentes dispositivos en la red
-❯ nmap -sn -PR ❮IP/24❯         # Usara 'ARP' con 'Ping Scan' para escanear la red y descubrirá hosts vivos
-
-	# sn = No escanea los puertos despues de descubir un host 'Se refiere a un escaneo de PING', es un ICMP, TCP SYNC
-
-❯ nmap -sn -PU IP            # Escaneo UDP ping 
-❯ nmap -sn -PE IP-255        # Escaneo ICMP echo 
-❯ nmap -sn -PM IP-255        # Escaneo Mask ping (Se usa si el ICMP esta bloqueado)
-❯ nmap -sn -PP IP-255        # Escaneo ICMP timestamp 
-❯ nmap -sn -PS IP-255        # Escaneo TCP Syn ping 
-❯ nmap -sn -PO IP-255        # Usa diferentes protocolos para testear la conectividad 
-```
-+
-```bash
-❯ nmap ❮IP/24❯                      # Para escanear toda la red
-❯ nmap ❮IP/24❯ --reason <IP.1>      # Escanea toda la red pero trae informacion detallada de esa IP especifica 
-
-	# Escaneo TCP Completo de los 1000 puertos mas frecuentes 
-	# Protocolo usado Ping ARP y mira si el host esta activo o no
-	# Target IP = El rango de direccion a escanear 1.1.1.0/24 (Debe terminar en 0 con /24)
-	# reason = Ademas nos ayuda a saber que host tenemos up o down 
-```
-
-## Evadir IDS o Firewall
-
-```bash 
-# Hay un sistema de seguridad cuando al momento de escanear salen todo los puertos abiertos 
-❯ nmap -p- -sS -Pn -n --disable-arp-ping --source-port 53 ❮IP❯     # Evadir un WAF 
-
-❯ nmap -D RND:3 -v ❮IP❯                 # Utilizar una IP señuelo 'Decoy'
-	# D RDN = Numero de 'decoy', en este caso son 3
-
-❯ nmap -sS -Pn --spoof-mac 0 ❮IP❯      # Falsificacion de MAC Address
-
-❯ nmap --randomize-hosts ❮IP❯           
-
-❯ nmap -g 445 -v ❮IP❯                  # Manipulacion del puerto de origen 
-	# g = Puerto de origen 
-
-❯ nmap -sS -T4 -f -v ❮IP❯               # Fragmentamos el trafico para evadir el Firewall 'Aveces funciona'
-	# f = Fragmentar 
-	# sS = Aplica un TCP SYN Scan (Rapido, Fiable, Sigiloso)
-	# T = Velocidad 
-```
-
-## Active Directory 
-
-```bash 
-❯ nmap --script dns-srv-enum --script-args "dns-srv-enum.domain='domain1.local'" IP   
-
-❯ nmap -p- -sCV -O -oN namp.txt IP
-	# -A = Es como si se hace (-sCV -O --traceroute) 
-```
-
-## Port Scanning 
-
-* [Nmap-book-scripting-engine](https://nmap.org/book/nse.html)
-
-```bash 
-❯ rustscan -a IP --ulimit 5000 -g  # Escaneo de puertos en la dirección IP
-```
+## RECURSOS
+* [NSEDocs](https://nmap.org/nsedoc/) → documentación de todos los scripts NSE
+* Zenmap → versión GUI de nmap
 
 ```bash
-❯ nmap -iL <IP_File> -sV -O        # Escanear un archivo con varias IP, Version y Sistema Operativo
+/usr/share/nmap/scripts    # Ruta de todos los scripts NSE disponibles
 ```
 
-```bash 
-❯ nmap -Pn ❮IP❯
-❯ nmap -Pn -p443 ❮IP❯
-❯ nmap -Pn -sV -O ❮IP❯ -oX Scan    # Importa el resultado en un archivo XML llamado 'Scan' que luego lo podemos utilizar en Metasploit 
-```
+---
 
-```bash 
-❯ nmap --top-ports 500 --open -T5 -v -n ❮IP❯
-```
-
-```bash 
-❯ nmap -n -P0 -p- -sS -g 53 -T5 -vv ❮IP❯
-	# n = No aplicar resolucion DNS
-	# P0 = Saltar etapa de 'Host Discovery' 
-	# p = Escaneo de todos los puertos '65535'
-	# sS = Aplica un TCP SYN Scan (Rapido, Fiable, Sigiloso)
-	# g = Puerto de origen 
-	# T5 = La velocidad de escaneo 'agresivo'
-	# v = Verbosidad 
-
-❯ nmap -n -P0 -p 22,80 -sV -sS -g 53 -T5 -vv ❮IP❯
-	# sV = Version 
-```
-
-```bash 
-# Windows siempre bloquea los PING ICMP, por lo que debemos de agregar la sig. bandera
-❯ nmap -Pn -F -sVC -O ❮IP/24❯ -v                
-	# Pn = Identifica si el host esta activo 
-	# F = Escanea los 100 puertos mas usados 
-	# sV = Version 
-	# O = Sistema operativo 
-	# v = Verbose
-	# sC = Ejecuta una lista de scipts de Nmap
-
-```
-
-```bash 
-❯ nmap -p- --open -sS --min-rate 500 -vvv -n -Pn  ❮IP❯   # Escanear en un entorno real 
-❯ nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn ❮IP❯  -oG allPorts     # Escanear
-
-	# Protocolo usado TCP, UDP
-	#  p = Escanea todos los puertos (65535)
-	#  open = Muestra solo los puertos con un estatus “open”
-	#  sS = Aplica un TCP SYN Scan (Rapido, Fiable, Sigiloso)
-	#  min-rate 5000 = Indica que quiero emitir paquetes no más lentos que 5000 paquetes por segundo
-	#  vvv = Muestra la información en pantalla a medida que se descubre
-	#  n = Indica que no aplique resolución DNS
-	#  Pn = Indica que no aplique el protocolo ARP
-	#  Target IP = Dirección IP que se quiere escanear
-	#  oG allPorts = Exporta el output a un fichero grepeable con nombre “allPorts”
-	#  oX = Exporta el output a un fichero XML con nombre 'allPorts.xml' para Metasploit
-```
+## FLUJO RECOMENDADO EN EL EXAMEN
 
 ```bash
-❯ nmap -sCV -p22,... ❮IP❯ -oN targeted
+# PASO 1 → Descubrir todos los puertos abiertos (elegir uno)
 
-	#  p22,... = Indica los puertos que se quieren escanear
-	#  sC = Lanza scripts básicos de enumeración
-	#  sV = Enumera la versión y servicio que está corriendo en los puertos
-	#  Target IP = Dirección IP que se quiere escanear
-	#  oN targeted = Exporta el output en formato Nmap
+# Opción A — RustScan (más rápido)
+❯ rustscan -a <IP> --ulimit 5000 -g
+# --ulimit 5000 → necesario para máxima velocidad | -g → grepeable
 
+# Opción B — Nmap
+❯ nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn <IP> -oG allPorts
+# -p- → todos los 65535 puertos | --open → solo abiertos
+# -sS → SYN scan | --min-rate 5000 → velocidad alta
 
-❯ nmap -sCV -p22,... ❮IP❯ -oX targeted   # Muestra el recultado en formato XML
+# PASO 2 → Versión y scripts en los puertos encontrados
+❯ nmap -sCV -p<puertos> <IP> -oN targeted
+# -sC → scripts por defecto | -sV → versión | -oN → output legible
 
-❯ xsltproc targetedXML > index.html     # Convierte el resultado del escaneo que se obtiene por XML a HTML para poder ver los resultados desde la web 
-
-❯ python3 -m http.server 80             # Iniciamos un servidor HTTP para ver el archivo anterior
+# PASO 3 → UDP en los más comunes (si aplica)
+❯ nmap -sU --top-ports 100 --open -T5 -v -n <IP>
 ```
+
+---
+
+## 1. DESCUBRIMIENTO DE HOSTS
 
 ```bash
-❯ nmap -sU --top-ports 100 --open -T5 -v -n ❮IP❯     # Escaneo de puertos por UDP
+# Descubrir hosts activos en una red
+❯ nmap -sn <IP/24>
+# Ping scan → ICMP + TCP → sin escanear puertos
 
-	# sU = Escaneo de UDP
+❯ nmap -sn -PR <IP/24>
+# ARP ping → más fiable en redes locales → detecta hosts que bloquean ICMP
 
-❯ nmap -sU -p1-250 ❮IP❯                 # Escaneo por UDP del 1 al 250
-❯ nmap -sUV -p134,177,234 ❮IP❯          # Muestra las versiones de los puertos de UDP
-❯ nmap -sUV -p134 ❮IP❯ --script=discovery    # Enumerar informacion 
+❯ nmap -sn -PS <IP>-255
+# TCP SYN ping → fiable en hosts que bloquean ICMP
+
+❯ nmap -sn -PE <IP>-255
+# ICMP echo → ping clásico
+
+❯ nmap -sn -PM <IP>-255
+# ICMP mask ping → útil si ICMP echo está bloqueado
+
+❯ nmap -sn -PP <IP>-255
+# ICMP timestamp
+
+❯ nmap -sn -PU <IP>
+# UDP ping scan
+
+❯ nmap -sn -PO <IP>-255
+# Múltiples protocolos para testear conectividad
+
+❯ nmap <IP/24>
+# Escaneo básico de toda la red → top 1000 puertos
+
+❯ nmap <IP/24> --reason <IP>
+# Información detallada de host específico + razón del estado
+
+# Identificar DCs en la red
+❯ nmap -n --disable-arp-ping -p 88,389,53 --open -T5 -vvv <IP/24>
+# Puertos Kerberos, LDAP, DNS → confirman DC
 ```
 
-## WordPress
+---
 
-```bash 
-❯ nmap -sS -sV --script=http-wordpress-enum ❮IP❯     # Enumeracion de WordPress 
-
-❯ nmap -sS -sV --script=http-wordpress-enum --script-args type="themes" ❮IP❯
-❯ nmap -sS -sV --script=http-wordpress-enum --script-args type="plugins" ❮IP❯
-
-❯ nmap -sS -sV -p80,443 --script=http-wordpress-users ❮IP❯
-```
-
-## SMB / SAMBA
+## 2. DESCUBRIMIENTO DE PUERTOS ABIERTOS
 
 ```bash
-❯ locate -r '\.nse$' | xargs grep categories | grep 'default\|version\|safe' | grep smb  # Filtrar los scripts por la categoria 'safe, default o version' que pertenecen al protocolo SMB
+# RustScan → más rápido que nmap para descubrir puertos
+❯ rustscan -a <IP> --ulimit 5000
+# Descubrimiento básico → lista puertos abiertos
 
-❯ nmap -p445 -sS -A ❮IP❯                   # Escaneo comprensivo 
+❯ rustscan -a <IP> --ulimit 5000 -g
+# -g → formato grepeable → para parsear
 
-❯ nmap -p445 -sCV ❮IP❯                     # Enumeración exaustiva al SMB 
+❯ rustscan -a <IP> -p 1-65535 --ulimit 5000
+# Especificar rango explícitamente
 
-❯ nmap -p445 --script safe ❮Target IP❯     # Ejecutar todos los scripts de Nmap que tengan la categoria 'Safe' 
+❯ rustscan -a <IP/24> --ulimit 5000
+# Escanear toda una subred
 
-❯ nmap -p445 --script='smb-vul-*' ❮IP❯     # Ejecutar todos los scripts de Nmap que empiecen con 'smb-vuln'
+# Nmap → todos los puertos TCP
+❯ nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn <IP> -oG allPorts
+# Laboratorios → velocidad alta
 
-❯ nmap -p445 --script smb-protocols ❮Target IP❯          # Mirar los protocolos que se estan usando
+❯ nmap -p- --open -sS --min-rate 500 -vvv -n -Pn <IP> -oG allPorts
+# Entornos reales → más cuidadoso
 
-❯ nmap -p445 --script smb-security-mode ❮Target IP❯      # Mirar si permite la autenticación de usuarios anonymous
+❯ nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn <IP> -oA allPorts
+# -oA → guardar en los 3 formatos a la vez
 
-❯ nmap -p445 --script smb-enum-sessions ❮Target IP❯      # Mirar si hay sesiones activas
-❯ nmap -p445 --script smb-enum-sessions --script-args smbusername=administrator,smbpassword=smbserver ❮Target IP❯        
-# Ver si hay sesiones activas, con un usuario y su passwd validos 'smbserver_771'
+❯ nmap -n -P0 -p- -sS -g 53 -T5 -vv <IP>
+# -g 53 → usar puerto origen 53 → evadir algunos firewalls
+# -P0 → saltar host discovery
 
-❯ nmap -p445 --script smb-enum-shares ❮Target IP❯         # Ver si hay directorios 
-❯ nmap -p445 --script smb-enum-shares --script-args smbusername=administrator,smbpassword=smbserver ❮Target IP❯          
-# Ver si hay directorios con un usuario y passwd validos 
+❯ nmap --top-ports 500 --open -T5 -v -n <IP>
+# Top 500 puertos más comunes → más rápido que -p-
 
-❯ nmap -p445 --script smb-enum-users ❮Target IP❯          # Ver si hay usuarios 
-❯ nmap -p445 --script smb-enum-users --script-args smbusername=administrator,smbpassword=smbserver ❮IP❯          
-# Ver si hay usuarios con un usuario y passwd validos 
-
-❯ nmap -p445 --script smb-server-stats --script-args smbusername=administrator,smbpassword=smbserver ❮Target IP❯
-# Ver las estadisticas del servidor, se observa cuanta data es enviada y recibida
-
-❯ nmap -p445 --script smb-enum-domains --script-args smbusername=administrator,smbpassword=smbserver ❮Target IP❯
-# Ver los dominios existentes
-
-❯ nmap -p445 --script smb-enum-groups --script-args smbusername=administrator,smbpassword=smbserver ❮Target IP❯
-# Ver los grupos existentes 
-
-❯ nmap -p445 --script smb-enum-services ❮Target IP❯ -d 
-❯ nmap -p445 --script smb-enum-services --script-args smbusername=administrator,smbpassword=smbserver ❮Target IP❯
-# Mirar los servicios que estan corriendo
-
-❯ nmap -p445 --script smb-enum-shares,smb-ls --script-args smbusername=administrator,smbpassword=smbserver ❮Target IP❯
-# Conectarse al SMB y ejecutar 'ls'
-
-❯ nmap -p445 --script smb-os-discovery ❮Target IP❯    # Mirar la versión del SO, FQDN, Domain, NetBIOS, Computer name, System time
+❯ nmap -Pn -F -sVC -O <IP> -v
+# -F → top 100 puertos | rápido para Windows
 ```
 
-```bash 
-# Hay puertos por UDP que pertenecen al Samba como 137,138
+---
 
-❯ nmap ❮Target IP❯ -sU --top-port 25 --open             # Escaneo de puertos UDP, encontramos el 137,138
-❯ nmap ❮Target IP❯ -sU --top-port 25 --open -sV         # Mirar la version de los puertos encontrados para SMB
-```
-
-## EternalBlue 'MS17-010' Windows7
-
-```bash 
-❯ nmap -sV -p445 --script=smb-vuln-ms17-010 ❮Target IP❯             # Para ver si es vulnerable al EternalBlue
-
-❯ nmap --script "vuln and safe" -p445 ❮Target IP❯ -oN smbVulnScan   # Para ver si este servicio es vulnerable al EternalBlue (ms17-010) en Windows 7.
-
-	#  p445 = Indica el puerto que se quiere escanear
-	#  Target IP = Dirección IP que se quiere escanear
-	#  oN smbVulnScan = Exporta el output a un fichero en formato nmap con nombre “smbVulnScan”
-	#  vuln and safe = Detecta vulnerabilidades de forma segura, sin experimentar un DoS
-```
-
-## HTTP
+## 3. ENUMERACIÓN DE SERVICIOS Y VERSIONES
 
 ```bash
-❯ nmap --script http-enum -p80 web.com -oN WebScan     # Manera de hacerlo sin IP  
+# Segundo escaneo → solo en puertos encontrados en el paso anterior
 
-❯ nmap --script http-enum -p80 ❮IP❯ -oN WebScan #  http-enum = Aplica Fuzing a HTTP, utiliza un diccionario de 1000 rutas y ver si hay algunas rutas existen
+❯ nmap -sCV -p22,80,443 <IP> -oN targeted
+# -sC → scripts por defecto | -sV → versión | -oN → output legible
+# → el más usado en el examen
 
-	#  -p80 = Indica el puerto que se quiere escanear
-	#  Target IP = Dirección IP que se quiere escanear
-	#  -oN WebScan = Exporta el output a un fichero en formato nmap con nombre “WebScan”
+❯ nmap -sCV -p22,80,443 <IP> -oX targeted.xml
+# -oX → formato XML → importar en Metasploit
 
-# Enumeración WampServer
-❯ nmap -p 80, 8080, 3306 -sV ❮IP❯    # El output debe mostrar el titulo de 'http-title WampServer' en un Apache, además de usar PHP y tener el puerto 3306 de MySQL 'Web phpMyAdmin'
-❯ nmap --script http-tittle,http-server-header -p 80, 8080 ❮Target IP❯
+❯ nmap -sCV -p22,80,443 <IP> -oA targeted
+# -oA → los 3 formatos a la vez → recomendado siempre
 
-# Enumeracion de IIS
-❯ nmap --script http-headers -p80 ❮IP❯         # Nos trae informacion sobre las cabeceras
+❯ nmap -iL <IP_File> -sV -O
+# Escanear lista de IPs desde archivo
 
-# Muestra información sobre los métodos soportados
-❯ nmap --script http-methods -p80 ❮IP❯ --script-args http-methods.url-path=/webdav/      
+❯ nmap -Pn -sV -O <IP> -oX Scan
+# -O → detección de OS | -oX → XML para Metasploit
 
-# Identifica las instalaciones de Webdav, utilizando opciones y metodos
-❯ nmap --script http-webdav-scan -p80 ❮IP❯ --script-args http-methods.url-path=/webdav/ 
+# Pasar resultado de RustScan directamente a nmap
+❯ rustscan -a <IP> --ulimit 5000 -- -sCV -oN targeted
+# Todo después de -- son flags de nmap
+# RustScan descubre → nmap enumera → el mejor flujo combinado
 
-# Enumeracion de Apache
-❯ nmap --script banner -p80 ❮IP❯    # Miras el banner y su informacion principal 
+❯ rustscan -a <IP> --ulimit 5000 -- -sCV -oA targeted
+# Mismo pero guardando en todos los formatos
+
+# Convertir resultado XML a HTML para visualizar
+❯ xsltproc targeted.xml > targeted.html
+❯ python3 -m http.server 80
+# Ver en navegador → más cómodo para leer resultados largos
 ```
 
-## HTTPS
+---
+
+## 4. ESCANEO UDP
 
 ```bash
-❯ nmap --script ssl-heartbleed -p443 ❮IP❯ 	# heartbleed = Verifica si es vulnerable a Heartbleed
+❯ nmap -sU --top-ports 100 --open -T5 -v -n <IP>
+# Top 100 UDP más comunes → balance velocidad/cobertura
 
-	#  -p8443 o 443 = Indica el puerto que se quiere escanear
-	#  Target IP = Dirección IP que se quiere escanear
+❯ nmap -sU -p 53,69,123,161,500 <IP>
+# Puertos UDP clave: DNS, TFTP, NTP, SNMP, IPSec
+
+❯ nmap -sU -p1-250 <IP>
+# UDP del 1 al 250
+
+❯ nmap -sUV -p 69,161,162 <IP>
+# Versión de puertos UDP específicos
+
+❯ nmap -sUV -p161 <IP> --script=discovery
+# Enumerar información SNMP con detección de versión
+
+# UDP junto con TCP en un solo escaneo
+❯ nmap -sS -sU -p T:22,80,443,U:53,161 <IP>
+# T: → puertos TCP | U: → puertos UDP
 ```
 
-## FTP
+### Puertos UDP más importantes
+```
+53  → DNS
+69  → TFTP (sin autenticación)
+123 → NTP
+161 → SNMP
+500 → IPSec/IKE
+```
+
+---
+
+## 5. EVASIÓN DE FIREWALL / IDS
 
 ```bash
-❯ nmap --script ftp-anon -p21 ❮IP❯              # ftp-enum = Escanea y mira si el usuario invitado 'Anonymous' esta habilitado
+❯ nmap -p- -sS -Pn -n --disable-arp-ping --source-port 53 <IP>
+# --source-port 53 → simular tráfico DNS → evadir algunos WAF
 
-	#  p21 = Indica el puerto que se quiere escanear
-	#  Target IP = Dirección IP que se quiere escanear
+❯ nmap -D RND:3 -v <IP>
+# -D RND:3 → 3 IPs señuelo (decoy) → ocultar IP real
 
+❯ nmap -sS -Pn --spoof-mac 0 <IP>
+# --spoof-mac 0 → falsificar MAC address aleatoria
 
-# Cuando tenemos un usuario valido podemos hacerle fuerza bruta, colocamos la ruta del archivo que contiene al usuario
-❯ nmap ❮IP❯ --script ftp-brute --script-args userdb=/root/users.txt -p21
+❯ nmap --randomize-hosts <IP>
+# Aleatorizar orden de escaneo
+
+❯ nmap -g 445 -v <IP>
+# -g → puerto de origen → simular tráfico SMB
+
+❯ nmap -sS -T4 -f -v <IP>
+# -f → fragmentar paquetes → evadir inspección profunda
+
+❯ nmap -sN <IP>
+# NULL scan → sin flags TCP → evadir algunos firewalls
+
+❯ nmap -sX <IP>
+# XMAS scan → FIN+PSH+URG → evadir algunos IDS
+
+❯ nmap -sF <IP>
+# FIN scan → engañar honeypots
+
+❯ nmap -sA <IP>
+# ACK scan → mapear reglas del firewall (no detecta servicios)
 ```
 
-## SSH
+---
 
-```bash 
-❯ nmap --script ssh2-enum-algos -p22 ❮IP❯     # Enumeracion del SSH, algos = enumera todos los algoritmos
+## 6. SCRIPTS NSE POR SERVICIO
 
-❯ nmap --script ssh-hostkey -p22 ❮IP❯ --script-args ssh_hostkey=full   # Nos muestra todos los SSH RSA host key
+### SMB (445)
+```bash
+❯ nmap -p445 -sCV <IP>
+# Enumeración exhaustiva de SMB
 
-❯ nmap --script ssh-auth-methods -p22 ❮IP❯ --script-args="ssh.user=<username>" # Para saber si el usuario tiene metodos de autenticacion como 'publickey, password', de lo contrario podriamos entrar sin passwd
+❯ nmap -p445 --script safe <IP>
+# Todos los scripts "safe" → sin riesgo de DoS
 
-# Cuando tenemos un usuario valido podemos hacerle fuerza bruta, colocamos la ruta del archivo que contiene al usuario
-❯ nmap ❮IP❯ --script ssh-brute --script-args userdb=/root/users.txt -p22
+❯ nmap -p445 --script='smb-vuln-*' <IP>
+# Todos los scripts de vulnerabilidades SMB
+
+❯ nmap -p445 --script smb-protocols <IP>
+# Versiones SMB habilitadas → detectar SMBv1
+
+❯ nmap -p445 --script smb-security-mode <IP>
+# Permite autenticación anónima
+
+❯ nmap -p445 --script smb-enum-sessions <IP>
+# Sesiones activas sin creds
+
+❯ nmap -p445 --script smb-enum-sessions   --script-args smbusername=administrator,smbpassword=smbserver <IP>
+# Sesiones activas con creds
+
+❯ nmap -p445 --script smb-enum-shares <IP>
+# Shares disponibles
+
+❯ nmap -p445 --script smb-enum-shares   --script-args smbusername=administrator,smbpassword=smbserver <IP>
+# Shares con creds
+
+❯ nmap -p445 --script smb-enum-users <IP>
+# Usuarios del dominio
+
+❯ nmap -p445 --script smb-enum-users   --script-args smbusername=administrator,smbpassword=smbserver <IP>
+
+❯ nmap -p445 --script smb-enum-domains   --script-args smbusername=administrator,smbpassword=smbserver <IP>
+# Dominios existentes
+
+❯ nmap -p445 --script smb-enum-groups   --script-args smbusername=administrator,smbpassword=smbserver <IP>
+# Grupos del dominio
+
+❯ nmap -p445 --script smb-server-stats   --script-args smbusername=administrator,smbpassword=smbserver <IP>
+# Estadísticas del servidor
+
+❯ nmap -p445 --script smb-enum-services   --script-args smbusername=administrator,smbpassword=smbserver <IP>
+# Servicios corriendo
+
+❯ nmap -p445 --script smb-enum-shares,smb-ls   --script-args smbusername=administrator,smbpassword=smbserver <IP>
+# Shares + listar contenido
+
+❯ nmap -p445 --script smb-os-discovery <IP>
+# OS, FQDN, dominio, NetBIOS, hostname, tiempo del sistema
+
+❯ locate -r '\.nse$' | xargs grep categories | grep 'default\|version\|safe' | grep smb
+# Filtrar scripts SMB disponibles por categoría
 ```
 
-## SNMP
+### EternalBlue — MS17-010
+```bash
+❯ nmap -sV -p445 --script=smb-vuln-ms17-010 <IP>
+# Verificar si es vulnerable a EternalBlue
 
-```bash 
-❯ nmap -sU -p 161 --script=snmp-processes ❮IP❯    # Enumerar los procesos que se estan ejecutando 
-
-❯ nmap -sU --script snmp-brute ❮IP❯ [--scripts-args snmp-brute.communitiesdb=rockyou.txt] # Ataque de diccionario 
-
-❯ nmap -sU -p 161 --script=snmp-interfaces ❮IP❯   # Muestra las interfaces del servidor 
+❯ nmap --script "vuln and safe" -p445 <IP> -oN smbVulnScan
+# Detectar vulnerabilidades SMB de forma segura
 ```
 
-## NetBIOS
+### HTTP (80 / 443 / 8080)
+```bash
+❯ nmap --script http-enum -p80 <IP> -oN WebScan
+# Fuzzing básico → 1000 rutas comunes
 
-```bash 
-❯ nmap -sV -v --script nbstat.nse ❮IP❯ 
-❯ nmap -sU -p 137 --script nbstat.nse ❮IP❯ 
+❯ nmap --script http-headers -p80 <IP>
+# Cabeceras HTTP → tecnologías y versiones
+
+❯ nmap --script http-methods -p80 <IP>   --script-args http-methods.url-path=/webdav/
+# Métodos HTTP permitidos en ruta específica
+
+❯ nmap --script http-webdav-scan -p80 <IP>   --script-args http-methods.url-path=/webdav/
+# Identificar WebDAV
+
+❯ nmap --script banner -p80 <IP>
+# Banner del servidor
+
+❯ nmap --script http-title,http-server-header -p80,8080 <IP>
+# Título de la página y cabecera del servidor
+
+❯ nmap -p80,8080,3306 -sV <IP>
+# Enumeración WampServer → Apache + PHP + MySQL
+
+# IIS
+❯ nmap --script http-iis-webdav-vuln -p80,8080 <IP>
+# Vulnerabilidades IIS WebDAV
+
+❯ nmap --script http-auth-finder -p80 <IP>
+# Identificar métodos de autenticación HTTP
 ```
 
-## NFS
+### HTTPS (443)
+```bash
+❯ nmap --script ssl-heartbleed -p443 <IP>
+# Heartbleed (CVE-2014-0160)
 
-```bash 
-❯ nmap -sV --script=nfs-showmount ❮IP❯ 
+❯ nmap --script ssl-cert -p443 <IP>
+# Certificado SSL → organización, dominio, fechas
+
+❯ nmap --script ssl-enum-ciphers -p443 <IP>
+# Cifrados SSL/TLS soportados → detectar cifrados débiles
+
+❯ nmap --script ssl-poodle -p443 <IP>
+# Vulnerabilidad POODLE (SSLv3)
+
+❯ nmap --script ssl-dh-params -p443 <IP>
+# Parámetros Diffie-Hellman → detectar Logjam
 ```
 
-## MYSQL
+### WordPress (80)
+```bash
+❯ nmap -sS -sV --script=http-wordpress-enum <IP>
+# Enumeración general de WordPress
 
-```bash 
-❯ nmap ❮IP❯ -p 3306 --script=mysql-empty-password     # Nos muestra los usuarios que se pueden loggear sin password 'anonymous login'
+❯ nmap -sS -sV --script=http-wordpress-enum   --script-args type="themes" <IP>
+# Temas instalados
 
-❯ nmap ❮IP❯ -p 3306 --script=mysql-info               # Nos muestra informacion de la base de datos, capabilities 
+❯ nmap -sS -sV --script=http-wordpress-enum   --script-args type="plugins" <IP>
+# Plugins instalados
 
-# Colocamos un usuario y su passwd valida, si somos root nos mostrara los usuarios existentes en la DB
-❯ nmap ❮IP❯ -p 3306 --script=mysql-users --script-args="mysqluser='root',mysqlpass=''" 
-
-# Colocamos un usuario y su passwd valida, si somos root nos mostrara las bases de datos en la DB
-❯ nmap ❮IP❯ -p 3306 --script=mysql-databases --script-args="mysqluser='root',mysqlpass=''"
-
-# Colocamos un usuario y su passwd valida, si somos root nos mostrara el directorio 'datadir:/var/lib/mysql/'
-❯ nmap ❮IP❯ -p 3306 --script=mysql-variables --script-args="mysqluser='root',mysqlpass=''"
-
-# Colocamos un usuario y su passwd valida, Si el archivo de privilegios puede ser otorgado a usuarios no admin
-❯ nmap ❮IP❯ -p 3306 --script=mysql-audit --script-args="mysql-audit.username='root',mysql-audit.password='',mysql-audit.filename='/usr/share/nmap/nselib/data/mysql-cis.audit'"
-
-# Colocamos un usuario y su passwd valida, nos muestra los hashes de los usuarios 
-❯ nmap ❮IP❯ -p 3306 --script=mysql-dump-hashes --script-args="username='root',password=''"
-
-# Colocamos un usuario y su passwd valida, y asi podremos usar una query para que nos muestre 
-❯ nmap ❮IP❯ -p 3306 --script=mysql-query --script-args="query='select count(*) from <dbs.table_name>;',username='root',password=''"
+❯ nmap -sS -sV -p80,443 --script=http-wordpress-users <IP>
+# Usuarios de WordPress
 ```
 
-## MSSQL
+### FTP (21)
+```bash
+❯ nmap --script ftp-anon -p21 <IP>
+# Verificar anonymous login
 
-```bash 
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-info     # Nos muestra la informacion de la DB
+❯ nmap --script ftp-syst -p21 <IP>
+# OS del servidor FTP
 
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-ntlm-info --script-args mssql.instance-port=1433   # Nos muestra la informacion de la DB
+❯ nmap --script ftp-bounce -p21 <IP>
+# Vulnerabilidad FTP bounce
 
-# Hacemos fuerza bruta para enumerar usuarios y passwds
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-brute --script-args userdb=/root/Descktop/wordlists/common_users.txt,passdb=/root/Desktop/wordlists/100-common-passwords.txt
-
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-empty-password     # Nos muestra los usuarios que se pueden loggear sin password 'anonymous login' o 'sa user'
-
-# Colocamos un usuario y su passwd valida, y asi podremos usar una query para qextraer los 'sysusers'
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-query --script-args mssql.username=admin,mssql.password=<password>,ms-sql-query.query="SELECT * FROM <db>.<tablename>" -oN out.txt
-
-	# out.txt = Formato de salida del escaneo de Nmap 
-
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-dump-hashes --script-args mssql.username=admin,mssql.password=<passwd> # Nos muestra los hashes
-
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-xp-cmdshell --script-args mssql.username=admin,mssql.password=<passwd>,ms-sql-xp-cmdshell.cmd="ipconfig" # Podemos ejecutar comandos de forma remota usando la base de datos
-	# Podemos usar mas comandos como: 'type C:\flag.txt' y nos mostrara el contenido de la flag por consola
+❯ nmap <IP> --script ftp-brute   --script-args userdb=/root/users.txt -p21
+# Fuerza bruta FTP
 ```
 
-## LDAP
+### SSH (22)
+```bash
+❯ nmap --script ssh2-enum-algos -p22 <IP>
+# Algoritmos de cifrado SSH soportados
+
+❯ nmap --script ssh-hostkey -p22 <IP>   --script-args ssh_hostkey=full
+# SSH RSA host key completa
+
+❯ nmap --script ssh-auth-methods -p22 <IP>   --script-args="ssh.user=<username>"
+# Métodos de autenticación → si devuelve "none" → entrar sin creds
+
+❯ nmap <IP> --script ssh-brute   --script-args userdb=/root/users.txt -p22
+# Fuerza bruta SSH
+```
+
+### SNMP (161 UDP)
+```bash
+❯ nmap -sU -p161 --script=snmp-processes <IP>
+# Procesos en ejecución
+
+❯ nmap -sU -p161 --script=snmp-interfaces <IP>
+# Interfaces de red
+
+❯ nmap -sU -p161 --script=snmp-sysdescr <IP>
+# Descripción del sistema → OS, versión
+
+❯ nmap -sU -p161 --script=snmp-win32-users <IP>
+# Usuarios Windows vía SNMP
+
+❯ nmap -sU --script snmp-brute <IP>   --script-args snmp-brute.communitiesdb=/usr/share/wordlists/rockyou.txt
+# Fuerza bruta de community strings
+```
+
+### NetBIOS (137 UDP / 139)
+```bash
+❯ nmap -sV -v --script nbstat.nse <IP>
+# Enumeración NetBIOS
+
+❯ nmap -sU -p137 --script nbstat.nse <IP>
+# NetBIOS vía UDP 137
+```
+
+### MySQL (3306)
+```bash
+❯ nmap <IP> -p3306 --script=mysql-empty-password
+# Usuarios sin contraseña
+
+❯ nmap <IP> -p3306 --script=mysql-info
+# Información y capabilities
+
+❯ nmap <IP> -p3306 --script=mysql-users   --script-args="mysqluser='root',mysqlpass=''"
+# Usuarios de la DB
+
+❯ nmap <IP> -p3306 --script=mysql-databases   --script-args="mysqluser='root',mysqlpass=''"
+# Bases de datos disponibles
+
+❯ nmap <IP> -p3306 --script=mysql-variables   --script-args="mysqluser='root',mysqlpass=''"
+# Variables del servidor → datadir y configs
+
+❯ nmap <IP> -p3306 --script=mysql-audit   --script-args="mysql-audit.username='root',mysql-audit.password='',mysql-audit.filename='/usr/share/nmap/nselib/data/mysql-cis.audit'"
+# Auditoría de privilegios
+
+❯ nmap <IP> -p3306 --script=mysql-dump-hashes   --script-args="username='root',password=''"
+# Dump de hashes de usuarios
+
+❯ nmap <IP> -p3306 --script=mysql-query   --script-args="query='select count(*) from <db.tabla>;',username='root',password=''"
+# Ejecutar query SQL
+```
+
+### MSSQL (1433)
+```bash
+❯ nmap <IP> -p1433 --script ms-sql-info
+# Información del servidor
+
+❯ nmap <IP> -p1433 --script ms-sql-ntlm-info   --script-args mssql.instance-port=1433
+# Información adicional vía NTLM
+
+❯ nmap <IP> -p1433 --script ms-sql-brute   --script-args userdb=/root/users.txt,passdb=/root/passwords.txt
+# Fuerza bruta MSSQL
+
+❯ nmap <IP> -p1433 --script ms-sql-empty-password
+# Usuarios sin contraseña (sa user)
+
+❯ nmap <IP> -p1433 --script ms-sql-query   --script-args mssql.username=admin,mssql.password=<pass>,ms-sql-query.query="SELECT * FROM <db.tabla>" -oN out.txt
+# Ejecutar query SQL
+
+❯ nmap <IP> -p1433 --script ms-sql-dump-hashes   --script-args mssql.username=admin,mssql.password=<pass>
+# Dump de hashes
+
+❯ nmap <IP> -p1433 --script ms-sql-xp-cmdshell   --script-args mssql.username=admin,mssql.password=<pass>,ms-sql-xp-cmdshell.cmd="whoami"
+# RCE vía xp_cmdshell → cambiar el comando según necesidad
+```
+
+### LDAP (389)
+```bash
+❯ nmap --script ldap* -p389 <IP>
+# Todos los scripts LDAP
+
+❯ nmap --script ldap-rootdse -p389 <IP>
+# Información base del servidor LDAP → naming contexts
+
+❯ nmap --script ldap-search -p389 <IP>   --script-args ldap.base='"dc=domain,dc=com"'
+# Búsqueda LDAP con base específica
+```
+
+### NFS (111 / 2049)
+```bash
+❯ nmap -sV --script=nfs-showmount <IP>
+# Shares NFS disponibles
+
+❯ nmap -p111 --script=nfs-ls,nfs-statfs,nfs-showmount <IP>
+# Enumeración completa → listar, estadísticas y monturas
+```
+
+### RPC (111)
+```bash
+❯ nmap -p111 --script=nfs-ls,nfs-statfs,nfs-showmount <IP>
+# Enumerar monturas RPC/NFS
+
+❯ nmap -p111 --script=rpcinfo <IP>
+# Listar todos los servicios RPC registrados
+```
+
+### Shellshock (Apache CGI)
+```bash
+❯ nmap -p80 <IP> --script=http-shellshock   --script-args "http-shellshock.uri=/gettime.cgi"
+# Verificar Shellshock en CGI específico
+
+❯ nmap --script http-shellshock   --script-args uri=/cgi-bin/user.sh -p80 <IP>
+# Shellshock en cgi-bin
+```
+
+---
+
+## 7. OUTPUT Y FORMATOS
 
 ```bash
-❯ nmap --script ldap\* -p389 ❮IP❯               # Para enumerar LDAP
+❯ nmap -p- <IP> -oN output.txt
+# Formato legible por humanos
 
-	#  p389 = Indica el puerto que se quiere escanear
-	#  Target IP = Dirección IP que se quiere escanear
+❯ nmap -p- <IP> -oG output.gnmap
+# Formato grepeable → para parsear con scripts
+
+❯ nmap -p- <IP> -oX output.xml
+# Formato XML → importar en Metasploit
+
+❯ nmap -p- <IP> -oA output
+# Los 3 formatos a la vez → usar siempre
+
+❯ xsltproc output.xml > output.html
+❯ python3 -m http.server 80
+# Convertir XML a HTML y visualizar en navegador
 ```
 
-## Shellshock
+---
 
-```bash 
-# Ver si es vulnerable a ShellShock, pero antes debemos de buscar la ruta en donde se encuentra el cgi
+## 8. REFERENCIA DE FLAGS
 
-❯ nmap -p80 ❮IP❯ --script=http-shellshock --script-args "http-shelshock.uri=/gettime.cgi" 
-❯ nmap --script http-shellshock --script-args uri=/cgi-bin/user.sh -p80 ❮IP❯
+```bash
+# Descubrimiento de hosts
+-sn          # Ping scan → sin escaneo de puertos
+-Pn          # Sin ping → asumir host activo
+-n           # Sin resolución DNS
+
+# Tipos de escaneo TCP
+-sS          # SYN scan → rápido, sigiloso (root)
+-sT          # TCP connect → sin root, más detectable
+-sA          # ACK scan → mapear reglas de firewall
+-sN          # NULL scan → evadir firewalls
+-sF          # FIN scan → evadir firewalls/honeypots
+-sX          # XMAS scan → evadir firewalls/IDS
+-sW          # Window scan → estudiar firewall Windows
+
+# UDP
+-sU          # UDP scan
+
+# Detección
+-sV          # Versión de servicios
+-sC          # Scripts por defecto
+-O           # Sistema operativo
+-A           # Agresivo: -sV -sC -O + traceroute
+
+# Puertos
+-p-          # Todos los puertos (65535)
+-p 22,80,443 # Puertos específicos
+-p 1-1000    # Rango
+-F           # Top 100 más comunes
+--top-ports N # N puertos más comunes
+--open        # Solo puertos abiertos
+
+# Velocidad y timing
+-T0 / T1     # Paranoid / Sneaky → evasión máxima
+-T2 / T3     # Polite / Normal → default
+-T4 / T5     # Aggressive / Insane → laboratorios
+--min-rate N  # Mínimo de paquetes por segundo
+
+# Output
+-v / -vv / -vvv   # Verbosidad incremental
+-oN <file>        # Formato normal
+-oG <file>        # Formato grepeable
+-oX <file>        # Formato XML
+-oA <file>        # Los 3 formatos
+
+# Evasión
+-D RND:N          # N decoys → IPs señuelo
+-f                # Fragmentar paquetes
+-g / --source-port # Puerto de origen
+--spoof-mac 0     # Falsificar MAC aleatoria
+--randomize-hosts  # Aleatorizar orden
+--disable-arp-ping # Sin ARP ping
 ```
 
-## RPC
+---
 
-```bash 
-❯ nmap -p111 --script=nfs-ls,nfs-statfs,nfs-showmount ❮IP❯   # Enumerar el servicio RPC, podemos ver las monturas e informacion adicional  
-```
-
-## Opciones de Nmap
-
-```python
-# SYN        -> TCP envia 1 paquete 
-# ACK        -> Confirmacion
-# FIN        -> Origen (acaba)
-# RST        -> Error (Politica de seguridad) no permite ICMP (Ping) -  IP Tables - Logs
-# PSH        -> No se almacena en un Buffer, los paquetes que llegan los va procesando (Cache - Running - Real Time Apps)
-# URG        -> Macht a x segmentos y da prioridad
-
-
-# OPEN       -> Podemos interactuar con ese puerto abierto (Servicio)
-# CLOSED     -> Nmap con el TWH muestra el puerto cerrado (politicas), pero con tecnicas de evasion podriamos vulnerarlo
-# FILTERED   -> Existe una herramienta de seguridad intermediaria (FW, IDS, IPS) que filtra los paquetes, reglas de ruteo o que el puerto es de un host basado en un software de Firewall
-# OPEN FILTERED -> Nmap no sabe si el puerto esta abierto o filtrado, cuando envia el SYN lo detecta y detecta una herramienta 
-# CLOSED FILTERED -> Nmap no sabe si esta cerrado, filtrado o lo estan usando para escaneo de la IP
-
-
-# TCP CONNECT SCAN - Tecnica completa de Scan - SYN Scan, puede ser detectado por los FW
-# SCAN SYN - Abreviado (SYN - SYN ACK - RST) - Silencioso
-❯ nmap ❮IP❯   # Aqui si se completa la sesion en el Three Way Handshake (Demorado, evidencia)
-
-# UDP Scan - Escaneo lento
--sU          # Escaneo por UDP (DHCP - 67 servidor / 68 Cliente)
-
-# NULL, FIN, XMAS Scan - paquetes = 0 - Para evasion de Firewall, ya que los Firewall no examinan paquetes con flag apagados
--sN          # Evasion de Firewall o IDS
--sX          # Evasion de Firewall un XMAS
--sF          # Escaneo NULL, escaneo FIN (Inicie el escaneo y finalicelo), cuando queremos engañar HonneyPots
-
--sT          # Sirve para cerrar la conexion (Menos eficiente en el escaneo), sirve para el Firewall 
--sW          # Estudia el Firewall de Windows (Mira la sintaxis, politicas, etc... bloquea), trata de alcanzar los puertos y conectar (Tarda mucho tiempo)
-
-# Flags
--A           # Escaneo agresivo, traer mas informacion ya que combina -O, -sC, -sV
--sA          # Escaneo tipo TCP ACK, forzara a que el destino envie el ACK (Agresivo)
--O           # Sistema Operativo
--v           # Verbose, cada que encuentre algo que nos lo reporte por consola, podemos tener hasta (-vvv)
--n           # Evita la resolucion de DNS inverso por ende, aceleras el proceso
--sS          # Aplican un escaneo TCP SYN Scan (Rapido, Fiable, Sigiloso), pero no se completa la session de TWH
--sT          # Sirve para cerrar la conexion (Menos eficiente en el escaneo), sirve para el Firewall 
--p           # Escaneo a puertos, -p- Todos los puertos, -p-65535, -p 1-500 Ciertos puertos
--T4          # Temporizador (0, 1, 2, 3, 4, 5) la velocidad el escaneo
--PE          # Peticiones ICMP de modo 'echo', solo se envia cuando haga ping a un host 
--PP          # Utiliza peticiones tipe stand, nos trae las librerias que tengan esos puertos, aveces trae algoritmos criptograficos
--PM          # 
--PS          # Enviamos paquetes con el bit de control SYN y que nos diga si hay o no respuesta 
-```
+## ONE-LINERS MENTALES
+- Siempre dos fases: RustScan/nmap rápido → nmap -sCV en puertos encontrados
+- Windows → siempre -Pn → bloquea ICMP
+- Guardar siempre con -oA → nunca perder resultados
+- Laboratorio → --min-rate 5000 | Entorno real → --min-rate 500
+- UDP clave → 53 (DNS), 69 (TFTP), 161 (SNMP)
+- SMB → script smb-vuln-* primero → EternalBlue y otros CVEs
+- SSH sin creds → ssh-auth-methods → si devuelve "none" → entrar directo
+- Scripts disponibles → locate .nse | grep <servicio>
