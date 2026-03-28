@@ -146,7 +146,7 @@ Nota:
 # Diseñado para evadir AMSI y soluciones AV
 ```
 
-### PowerShell indetectable (ofuscado)
+### PowerShell indetectable
 ```powershell
 # Funcion encargada de convertir un arreglo de bytes y lo convierte en una cadena utilizando la codificacion especificada, como UTF-8
 function ConvertFrom-ByteArray {
