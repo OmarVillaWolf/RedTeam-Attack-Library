@@ -66,13 +66,13 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ### feroxbuster
 ```bash
-❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -d 2
+❯ feroxbuster -u http://<IP> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -d 2
 # -d 2 → profundidad de recursión | Mejor para recursión que gobuster
 
-❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 -x php,html,txt -t 100
+❯ feroxbuster -u http://<IP> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 -x php,html,txt -t 100
 # -x → extensiones | -t → hilos
 
-❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 --filter-status 404,403 --filter-size 0
+❯ feroxbuster -u http://<IP> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 --filter-status 404,403 --filter-size 0
 # --filter-status → equivalente a -b en gobuster
 # --filter-size → filtrar respuestas vacías
 ```
@@ -106,31 +106,31 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ### gobuster
 ```bash
-❯ gobuster dir -u http://<IP>/   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -t 50 -b 403,404
+❯ gobuster dir -u http://<IP>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -t 50 -b 403,404
 # -b → blacklist de códigos a ocultar
 
-❯ gobuster dir -u http://<IP>/   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -t 50 -b 403,404 -x .php,.html,.txt,.xml -r
+❯ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -t 50 -b 403,404 -x .php,.html,.txt,.xml -r
 # -x → extensiones | -r → follow redirect
 
-❯ gobuster dir -u http://<IP>/   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -x asp,aspx,html,txt -f
+❯ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -x asp,aspx,html,txt -f
 # -f / --add-slash → agrega / al final → código real en vez de 301
 # Windows: asp,aspx,html,txt | Linux: php,html,txt,php5
 
-❯ gobuster dir -u https://<IP>/   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -t 200 -s 200 -x html -b " "
+❯ gobuster dir -u https://<IP>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -t 200 -s 200 -x html -b " "
 # -s 200 → solo mostrar 200 | -b " " → evitar error de blacklist en HTTPS
 ```
 
 ### wfuzz
 ```bash
-❯ wfuzz -c --hc=404,403 -t 200   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ
+❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ
 
-❯ wfuzz -c -L --hc=404,403 -t 200   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ
+❯ wfuzz -c -L --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ
 # -L → follow redirect 301 | Si no muestra nada → quitar -L y agregar / al final
 
-❯ wfuzz -c --hc=404,403 -t 200   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ.html
+❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ.html
 # Buscar extensión específica
 
-❯ wfuzz -c --hc=404,403 -t 200   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -z list,html-txt-php https://<IP>/FUZZ.FUZ2Z
+❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -z list,html-txt-php https://<IP>/FUZZ.FUZ2Z
 # -z list → payload de extensiones | FUZ2Z → segunda posición de fuzzing
 ```
 
@@ -151,7 +151,7 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 ❯ dirb http://<IP>/
 # Wordlist interna → prueba inicial muy rápida
 
-❯ dirb http://<IP>/   /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -X .php
+❯ dirb http://<IP>/  /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -X .php
 # -X → extensión específica
 
 ❯ dirb http://<IP> /usr/share/metasploit-framework/data/wordlists/directory.txt
@@ -163,10 +163,10 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ### dirsearch
 ```bash
-❯ dirsearch -u http://<IP>/ -t 30 -e txt,html,php   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+❯ dirsearch -u http://<IP>/ -t 30 -e txt,html,php -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
 # -e → extensiones | -t → hilos
 
-❯ dirsearch -u http://<IP>/ -t 30   -e txt,html,php,jsp,asp,aspx,rar,zip -f   -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+❯ dirsearch -u http://<IP>/ -t 30 -e txt,html,php,jsp,asp,aspx,rar,zip -f -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
 # -f → forzar extensiones en cada palabra → más completo pero más lento
 
 ❯ dirsearch -u http://<IP>/ -t 30 -e php,html,txt --exclude-status 403,404
@@ -192,30 +192,30 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 ❯ curl -s http://<IP>/ -H "Host: nonexistent.domain.com" | wc -c
 # Anotar el número → usarlo en -fs
 
-❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base>
+❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H "Host: FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base>
 # -fs → filtrar tamaño base → ajustar al número obtenido arriba
 
-❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base> -mc all
+❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H "Host: FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base> -mc all
 # -mc all → ver todos los códigos → útil para calibrar filtros
 
-❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: preprod-FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base>
+❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H "Host: preprod-FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base>
 # Probar prefijos comunes: preprod-, dev-, staging-, test-, admin-, api-
 ```
 
 ### gobuster
 ```bash
-❯ gobuster vhost --append-domain   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   --url https://<domain.com>/ -t 200 -k
+❯ gobuster vhost --append-domain   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --url https://<domain.com>/ -t 200 -k
 # --append-domain → añade dominio base | -k → ignorar errores SSL
 
-❯ gobuster vhost --append-domain   -u https://<domain.com>/   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -t 200 | grep -v "403"
+❯ gobuster vhost --append-domain   -u https://<domain.com>/ -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -t 200 | grep -v "403"
 ```
 
 ### wfuzz
 ```bash
-❯ wfuzz -c --hc=404 --hh=<tamaño_base> -t 200   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: FUZZ.<domain.com>" https://<domain.com>
+❯ wfuzz -c --hc=404 --hh=<tamaño_base> -t 200 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H "Host: FUZZ.<domain.com>" https://<domain.com>
 # --hh → ajustar al tamaño de respuesta base
 
-❯ wfuzz -c --hc=404 --hh=<tamaño_base> -t 200   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: preprod-FUZZ.<domain.com>" https://<domain.com>
+❯ wfuzz -c --hc=404 --hh=<tamaño_base> -t 200 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H "Host: preprod-FUZZ.<domain.com>" https://<domain.com>
 ```
 
 ### Insight
@@ -227,13 +227,13 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 ## 3. FUZZING DE PARÁMETROS GET
 
 ```bash
-❯ ffuf -u "http://<IP>/page?FUZZ=value"   -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt   -fs <tamaño_base>
+❯ ffuf -u "http://<IP>/page?FUZZ=value" -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -fs <tamaño_base>
 # Descubrir nombres de parámetros GET ocultos
 
-❯ ffuf -u "http://<IP>/page?id=FUZZ"   -w /usr/share/seclists/Fuzzing/Integers/Integers.txt   -fs <tamaño_base>
+❯ ffuf -u "http://<IP>/page?id=FUZZ"   -w /usr/share/seclists/Fuzzing/Integers/Integers.txt -fs <tamaño_base>
 # Fuzzear valores de parámetros numéricos → IDOR
 
-❯ wfuzz -c --hw=<palabras_base> -t 200   -z range,1-20000 "https://<IP>/shop/detail?product_id=FUZZ"
+❯ wfuzz -c --hw=<palabras_base> -t 200 -z range,1-20000 "https://<IP>/shop/detail?product_id=FUZZ"
 # Rango numérico → útil para IDOR y enumeración de objetos
 ```
 
@@ -242,10 +242,10 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 ## 4. FUZZING DE PARÁMETROS POST
 
 ```bash
-❯ ffuf -u http://<IP>/api/endpoint   -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt   -X POST -d "FUZZ=test"   -H "Content-Type: application/x-www-form-urlencoded"   -fs <tamaño_base>
+❯ ffuf -u http://<IP>/api/endpoint -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -X POST -d "FUZZ=test"   -H "Content-Type: application/x-www-form-urlencoded" -fs <tamaño_base>
 # Descubrir parámetros POST ocultos en endpoints
 
-❯ ffuf -u http://<IP>/api/endpoint   -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt   -X POST -d "FUZZ=test"   -H "Content-Type: application/json"   -fs <tamaño_base>
+❯ ffuf -u http://<IP>/api/endpoint -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -X POST -d "FUZZ=test"   -H "Content-Type: application/json" -fs <tamaño_base>
 # Mismo pero con JSON → cambiar Content-Type
 ```
 
@@ -254,12 +254,12 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 ## 5. ENUMERACIÓN DE USUARIOS EN FORMULARIOS WEB
 
 ```bash
-❯ ffuf -w /usr/share/seclists/Usernames/Names/names.txt   -X POST   -d "username=FUZZ&email=x&password=x&cpassword=x"   -H "Content-Type: application/x-www-form-urlencoded"   -u http://<IP>/customers/signup   -mr "username already exists"
+❯ ffuf -w /usr/share/seclists/Usernames/Names/names.txt -X POST -d "username=FUZZ&email=x&password=x&cpassword=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://<IP>/customers/signup -mr "username already exists"
 # -mr → match response → texto que confirma usuario válido
 # Ajustar -d a los campos reales del formulario
 # Ajustar -mr al mensaje de error/éxito de la app
 
-❯ ffuf -w /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt   -X POST   -d "username=FUZZ&password=x"   -H "Content-Type: application/x-www-form-urlencoded"   -u http://<IP>/login   -mr "Invalid password" -mc all
+❯ ffuf -w /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt -X POST -d "username=FUZZ&password=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://<IP>/login -mr "Invalid password" -mc all
 # -mr "Invalid password" → si el error es diferente entre usuario válido e inválido
 # -mc all → ver todos los códigos para calibrar
 ```
@@ -269,7 +269,7 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 ## 6. FUERZA BRUTA DE CONTRASEÑAS EN FORMULARIOS WEB
 
 ```bash
-❯ ffuf   -w valid_usernames.txt:W1,/usr/share/seclists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2   -X POST   -d "username=W1&password=W2"   -H "Content-Type: application/x-www-form-urlencoded"   -u http://<IP>/customers/login   -fc 200
+❯ ffuf   -w valid_usernames.txt:W1,/usr/share/seclists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://<IP>/customers/login -fc 200
 # W1 → usuarios válidos | W2 → wordlist de passwords
 # -fc 200 → filtrar 200 (login fallido) → mostrar lo diferente (302 = login ok)
 # Ajustar -fc al código de respuesta del login fallido de la app
@@ -280,10 +280,10 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 ## 7. FUZZING DE EXTENSIONES
 
 ```bash
-❯ ffuf -u http://<IP>/indexFUZZ   -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt   -fs <tamaño_base>
+❯ ffuf -u http://<IP>/indexFUZZ -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt -fs <tamaño_base>
 # Descubrir extensión de un archivo conocido
 
-❯ gobuster dir -u http://<IP>/   -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files-lowercase.txt   -x php,php5,php7,html,htm,asp,aspx,txt,xml,json,bak,old,conf,config,ini,log   -t 50 -b 403,404
+❯ gobuster dir -u http://<IP>/ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files-lowercase.txt -x php,php5,php7,html,htm,asp,aspx,txt,xml,json,bak,old,conf,config,ini,log -t 50 -b 403,404
 # Buscar múltiples extensiones en todos los archivos
 ```
 
@@ -293,21 +293,21 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ### WordPress
 ```bash
-❯ wfuzz -c --hc=404 -t 200   -w /usr/share/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt   http://<IP>/FUZZ
+❯ wfuzz -c --hc=404 -t 200 -w /usr/share/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt   http://<IP>/FUZZ
 # Descubrir plugins y temas de WordPress
 
-❯ gobuster dir -u http://<IP>/wp-content/plugins/   -w /usr/share/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt   -t 50 -b 403,404
+❯ gobuster dir -u http://<IP>/wp-content/plugins/ -w /usr/share/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt -t 50 -b 403,404
 # Enumeración directa de plugins
 ```
 
 ### Joomla
 ```bash
-❯ ffuf -u http://<IP>/FUZZ   -w /usr/share/seclists/Discovery/Web-Content/CMS/joomla.txt   -fc 404,403
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/seclists/Discovery/Web-Content/CMS/joomla.txt -fc 404,403
 ```
 
 ### Drupal
 ```bash
-❯ ffuf -u http://<IP>/FUZZ   -w /usr/share/seclists/Discovery/Web-Content/CMS/drupal.txt   -fc 404,403
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/seclists/Discovery/Web-Content/CMS/drupal.txt -fc 404,403
 ```
 
 ---
