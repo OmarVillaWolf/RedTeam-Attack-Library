@@ -64,6 +64,19 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ## 1. ENUMERACIÓN DE DIRECTORIOS Y ARCHIVOS
 
+### feroxbuster
+```bash
+❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -d 2
+# -d 2 → profundidad de recursión | Mejor para recursión que gobuster
+
+❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 -x php,html,txt -t 100
+# -x → extensiones | -t → hilos
+
+❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 --filter-status 404,403 --filter-size 0
+# --filter-status → equivalente a -b en gobuster
+# --filter-size → filtrar respuestas vacías
+```
+
 ### ffuf
 ```bash
 ❯ ffuf -u http://<IP>/FUZZ -w /usr/share/dirb/wordlists/common.txt
@@ -131,19 +144,6 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 --sl=216       # ShowLine → mostrar solo ese número de líneas
 --sw=6515      # ShowWords → mostrar solo ese número de palabras
 --sh=12345     # ShowCharacters → mostrar solo ese número de caracteres
-```
-
-### feroxbuster
-```bash
-❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -d 2
-# -d 2 → profundidad de recursión | Mejor para recursión que gobuster
-
-❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 -x php,html,txt -t 100
-# -x → extensiones | -t → hilos
-
-❯ feroxbuster -u http://<IP>   -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 --filter-status 404,403 --filter-size 0
-# --filter-status → equivalente a -b en gobuster
-# --filter-size → filtrar respuestas vacías
 ```
 
 ### dirb
