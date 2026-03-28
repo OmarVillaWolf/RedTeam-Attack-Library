@@ -47,6 +47,15 @@ Tags: #Web #HTTP #HTTPS #Reconocimiento #Enumeracion #BannerGrabbing #Fuzzing
 # WebApp Information Gatherer → CMS, versiones, vulnerabilidades conocidas
 # Complementa whatweb → a veces detecta lo que whatweb no ve
 
+❯ git clone https://github.com/projectdiscovery/nuclei-templates.git ~/.local/nuclei-templates   # Descargar las plantillas 
+❯ nuclei -u http://<IP> -tags tech -t ~/.local/nuclei-templates
+❯ nuclei -u http://<IP> -tags misconfig
+❯ nuclei -u http://<IP> -tags cves
+# Scanner de vulnerabilidades basado en templates (CVEs, misconfig, exposiciones)
+
+❯ httpx http://<IP>
+# Herramienta de enumeración HTTP para detectar servicios web y tecnologías
+
 ❯ curl -s -X GET http://<IP> -I
 # Banner grabbing → obtener cabeceras HTTP (Server, ETag, X-Powered-By, etc.)
 # Sin creds → siempre ejecutar al inicio
@@ -313,6 +322,9 @@ INDICIOS → VECTOR POSIBLE
 ─────────────────────────────────────────────────────────────
 Ingresar <script>alert(1)</script> y se ejecuta en el navegador
   → XSS Reflejado → ver nota XSS.md
+
+En un formulario hay un campo de website y alguien válida la url
+  → posible robo de cookie de sesión o uso de algun exploit mediante XSS → ver nota XSS.md
 
 El input ingresado aparece guardado y se ejecuta después al visitar la página
   → XSS Almacenado (más peligroso) → ver nota XSS.md
