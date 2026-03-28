@@ -22,6 +22,7 @@ Los comandos están en las notas individuales de cada técnica.
 Sigue este orden — los más rápidos y frecuentes primero:
 
 ```
+ 0. foothold (www-data)  → buscar credenciales / reutilización / pivot a usuario real
  1. sudo -l              → más rápido y más común en el examen
  2. Grupos especiales    → docker/lxd = root casi seguro
  3. SUID / SGID          → find + GTFObins
@@ -119,6 +120,28 @@ Antes de buscar vectores, establece el contexto básico:
 - No confiar ciegamente → complementar con enumeración manual
 
 **→ Ver nota: 04 LinPEAS.md**
+
+---
+### FASE 2.1 - ENUMERACIÓN DE CREDENCIALES  
+
+**Objetivo:** Si se ingresa al server con el usuario www-data, lo ideal es buscar un archivo de configuración con credenciales para pivotear a un usuario real en el server. 
+
+```bash 
+# Archivos clave
+
+- '.env'
+- 'config.php'
+- 'settings.py'
+- 'web.config'
+- 'database.yml'
+
+# Credenciales típicas
+
+- DB (MySQL, PostgreSQL)
+- APIs
+- Redis
+- SMTP
+```
 
 ---
 
@@ -439,6 +462,7 @@ Vectores de escape:
 ⚠️ Puede crashear el sistema → usar solo si no hay otra opción
 
 CVEs frecuentes en el examen:
+
 | CVE | Nombre | Versión afectada |
 |---|---|---|
 | CVE-2021-4034 | PwnKit | pkexec en casi todos → siempre intentar |
