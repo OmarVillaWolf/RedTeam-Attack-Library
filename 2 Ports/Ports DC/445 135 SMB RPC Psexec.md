@@ -58,6 +58,11 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 ❯ nxc smb <IP/rango> --gen-relay-list relay.txt  
 # Requiere SMB signing OFF → genera lista de hosts vulnerables a NTLM relay
 
+❯ nxc smb <IP> -u 'a' -p '' --shares 
+❯ nxc smb <IP> -u 'guest' -p '' --shares
+❯ nxc smb <IP> -u 'null' -p '' --shares
+# Enumerar con null session al SMBv1/SMBv2 
+
 ❯ nxc smb <IP> -u '' -p '' --shares --users --pass-pol
 # Todo en un solo comando con null session
 
@@ -544,14 +549,31 @@ Jerarquía de preferencia para ejecución remota:
 ❯ nxc winrm <IP> -u 'user' -p 'pass' -d domain -x 'whoami'
 # Ejecución remota vía WinRM
 
+❯ nxc mssql <IP> -u 'sa' -p '' 
+❯ nxc mssql <IP> -u 'sa' -p 'sa' 
+❯ nxc mssql <IP> -u 'sa' -p 'admin'
+# Verificar si sa está habilitado y sin contraseña
+
+❯ nxc mssql <IP> -u 'sa' -p /usr/share/wordlists/rockyou.txt
+# Fuerza bruta al usuario sa
+
 ❯ nxc mssql <IP> -u sa -p passwd.txt --local-auth
 # Ataque MSSQL local
+
+❯ nxc mssql <IP> -u users.txt -p passwords.txt --continue-on-success
+# Verificar varios usuarios clásicos de MSSQL de una vez 
 
 ❯ nxc mssql <IP> -u user.txt -p passwd.txt --continue-on-success --local-auth
 # Fuerza bruta MSSQL
 
 ❯ nxc ldap <IP> 'user' -p 'pass'
 # Enumeración LDAP
+
+
+NOTA: Los usuarios por defecto de MSSQL que siempre vale probar:
+	sa → System Administrator → el más importante 
+	admin → común en instalaciones antiguas 
+	administrator
 ```
 
 ---
