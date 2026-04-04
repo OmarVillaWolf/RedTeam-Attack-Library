@@ -88,7 +88,8 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 0 hash.txt /usr/share/wordlists/rockyou.txt
 # -m 0 → MD5
 
-❯ hashcat -m 0 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best64.rule
+❯ hashcat -m 0 hash.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule
+❯ hashcat -m 0 hash.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule
 # Con reglas → más variantes
 
 # john
@@ -154,7 +155,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 1000 hash.txt /usr/share/wordlists/rockyou.txt
 # -m 1000 → NTLM (hash NT puro)
 
-❯ hashcat -m 1000 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best64.rule
+❯ hashcat -m 1000 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best66.rule
 
 # john
 ❯ john --format=NT -w=/usr/share/wordlists/rockyou.txt hash.txt
@@ -167,7 +168,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --force -O
 # -m 5600 → NetNTLMv2 | --force → ignorar warnings | -O → optimizar
 
-❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best64.rule --force
+❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best66.rule --force
 
 # john
 ❯ john --format=netntlmv2 -w=/usr/share/wordlists/rockyou.txt hash.txt
@@ -180,8 +181,9 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ```bash
 # hashcat
 ❯ hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt
-❯ hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best64.rule
+❯ hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best66.rule
 ❯ hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt   --rules /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule --force
+❯ hashcat -m 18200 hash_brandon /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule -r /usr/share/hashcat/rules/rockyou-30000.rule
 
 # john
 ❯ john --format=krb5asrep -w=/usr/share/wordlists/rockyou.txt hash.txt
@@ -199,7 +201,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 19700 hash.txt /usr/share/wordlists/rockyou.txt
 # AES256 → más lento
 
-❯ hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best64.rule
+❯ hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best66.rule
 ❯ hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt   --rules /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule --force
 
 # john
@@ -380,7 +382,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # Las reglas generan variantes de cada palabra del diccionario
 # Mayúsculas, números al final, caracteres especiales, etc.
 
-❯ hashcat -m <modo> hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best64.rule
+❯ hashcat -m <modo> hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best66.rule
 # best64 → las 64 mejores reglas → primer intento con reglas
 
 ❯ hashcat -m <modo> hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule
