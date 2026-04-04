@@ -99,7 +99,7 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 
 ```bash
 # Autenticación Windows (dominio) → más común en AD
-❯ impacket-mssqlclient domain.corp/'user:passwd'@<IP❯ -windows-auth
+❯ impacket-mssqlclient domain01.corp/'user:passwd'@<IP❯ -windows-auth
 
 # Autenticación SQL local → sa u otros usuarios SQL
 ❯ impacket-mssqlclient 'sa:passwd'@<IP❯
@@ -139,6 +139,8 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 
 ❯ SELECT name, type_desc, is_disabled FROM sys.server_principals
 # Todos los logins → usuarios locales, de dominio, sa
+
+❯ SELECT name, type_desc FROM sys.server_principals WHERE type IN ('S','U','G');
 
 ❯ SELECT name, is_disabled FROM sys.server_principals WHERE type = 'S'
 # Solo logins SQL (no Windows)
