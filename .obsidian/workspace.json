@@ -8,6 +8,20 @@
         "type": "tabs",
         "children": [
           {
+            "id": "903e67b6f37aafe6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "1 Linux Commands"
+            }
+          },
+          {
             "id": "15e893482e052e17",
             "type": "leaf",
             "state": {
@@ -27,26 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 Ports/80 HTTP.md",
+                "file": "2.1 Tools/Nmap - Rustscan.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "80 HTTP"
-            }
-          },
-          {
-            "id": "573e998e079c95ab",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2 Ports/Ports DC/445 135 SMB RPC Psexec.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "445 135 SMB RPC Psexec"
+              "title": "Nmap - Rustscan"
             }
           },
           {
@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2.1 Tools/Fuzzers.md",
+                "file": "2 Ports/Ports DC/1433 mssql.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Fuzzers"
+              "title": "1433 mssql"
             }
           },
           {
@@ -78,17 +78,31 @@
             }
           },
           {
+            "id": "573e998e079c95ab",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2 Ports/Ports DC/445 135 SMB RPC Psexec.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "445 135 SMB RPC Psexec"
+            }
+          },
+          {
             "id": "d0331014b9ae2c9c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 Token-Priv, Groups.md",
+                "file": "2 Ports/Ports DC/88 Kerberos.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3 Token-Priv, Groups"
+              "title": "88 Kerberos"
             }
           },
           {
@@ -97,12 +111,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 Ports/Ports DC/1433 mssql.md",
+                "file": "4 PrivEsc Lin & Win/1 Windows/0 Win PrivEsc Standalone.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1433 mssql"
+              "title": "0 Win PrivEsc Standalone"
             }
           },
           {
@@ -111,16 +125,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/2.1 Users Win y AD.md",
+                "file": "8 Active Directory/4 AD - Lab AD/2 DC 11.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2.1 Users Win y AD"
+              "title": "2 DC 11"
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -152,8 +166,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "mimikatz.ps1",
-                "matchingCase": false,
+                "query": "password spraying ",
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -290,34 +304,36 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "642b9322c22441ce",
+  "active": "6f727ecff36afe08",
   "lastOpenFiles": [
-    "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/2.1 Users Win y AD.md",
-    "4 PrivEsc Lin & Win/1 Windows/0 Win PrivEsc Standalone.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 Token-Priv, Groups.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Persistencia/2 Mimikatz.md",
-    "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
-    "4 PrivEsc Lin & Win/1 Windows/1 Win PrivEsc Dominio.md",
-    "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/2 Users, Groups.md",
-    "2 Ports/Ports DC/1433 mssql.md",
     "2 Ports/Ports DC/445 135 SMB RPC Psexec.md",
-    "1 Com Lin & Win/3 Hacking Commands/2 Windows Commands.md",
-    "8 Active Directory/3 AD - Intermediate/7 Evasión/3 AMSI.md",
-    "8 Active Directory/3 AD - Intermediate/3 ACLs, DCSync/5 Password Spraying.md",
-    "8 Active Directory/3 AD - Intermediate/3 ACLs, DCSync/4 DCSync.md",
-    "8 Active Directory/3 AD - Intermediate/3 ACLs, DCSync/3 Explotación ACLs.md",
-    "8 Active Directory/3 AD - Intermediate/3 ACLs, DCSync/2 Listado ACLs.md",
-    "8 Active Directory/3 AD - Intermediate/3 ACLs, DCSync/1 Descriptores.md",
-    "8 Active Directory/1 AD - Spartan/3 Mov Lateral/3 Pass-The-Hash.md",
-    "8 Active Directory/1 AD - Spartan/3 Mov Lateral/2 Impersonation.md",
-    "8 Active Directory/1 AD - Spartan/3 Mov Lateral/1 Fundamentos Mov Lateral.md",
-    "8 Active Directory/3 AD - Intermediate/5 Acceso en AD/2 Dump Lsass y SAM.md",
-    "8 Active Directory/3 AD - Intermediate/6 Movimiento Lateral/7 NTLM - SMB Relay.md",
-    "8 Active Directory/3 AD - Intermediate/6 Movimiento Lateral/6 LLMNR - NBTNS Poisoning.md",
-    "8 Active Directory/3 AD - Intermediate/6 Movimiento Lateral/5 Golden y Silver Ticket.md",
-    "8 Active Directory/3 AD - Intermediate/2 Reconocimiento/5 Enum Remote Kali - NTDS.md",
+    "2 Ports/Ports DC/88 Kerberos.md",
+    "4 PrivEsc Lin & Win/1 Windows/0 Win PrivEsc Standalone.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/1 Password Spraying/0 Passwd Personalizadas.md",
+    "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/2.1 Users Win y AD.md",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/1 Enumeration Tools.md",
+    "2 Ports/Ports DC/0.1 Metodología AD - Escenarios Ataque.md",
+    "2 Ports/Ports DC/0 Metodología AD.md",
+    "7 Hacking Web/2 Intermediate/29 APIs/1 Conceptos.md",
+    "8 Active Directory/4 AD - Lab AD/2 DC 11.md",
     "2.1 Tools/Nmap - Rustscan.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/2 WinPEAS.md",
+    "2 Ports/80 HTTP.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
+    "8 Active Directory/4 AD - Lab AD/1 Server 01.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/2 Netexec.md",
+    "2.1 Tools/Password Cracking.md",
+    "1 Com Lin & Win/1 Bash/1 Regex.md",
+    "2 Ports/Ports DC/1433 mssql.md",
+    "2.1 Tools/Fuzzers.md",
+    "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
+    "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
+    "7 Hacking Web/2 Intermediate/0 HTTP Conceptos/1 Basic HTTP.md",
+    "1 Com Lin & Win/3 Hacking Commands/Searchsploit.md",
+    "2 Ports/80 WordPress.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 Token-Priv, Groups.md",
+    "2 Ports/Ports DC/5985 5986 WINRM.md",
+    "8 Active Directory/4 AD - Lab AD/Server1 - Admin",
+    "8 Active Directory/4 AD - Lab AD",
     "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/Unconfirmed 282901.crdownload",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/Unconfirmed 459131.crdownload",
     "4 PrivEsc Lin & Win/1 Windows/Unconfirmed 755369.crdownload",
@@ -326,8 +342,6 @@
     "2 Ports/Unconfirmed 427466.crdownload",
     "1 Com Lin & Win/3 Hacking Commands/Unconfirmed 949574.crdownload",
     "1 Com Lin & Win/3 Hacking Commands/Unconfirmed 807682.crdownload",
-    "1 Com Lin & Win/3 Hacking Commands/Unconfirmed 896824.crdownload",
-    "2.1 Tools/Unconfirmed 916969.crdownload",
     "Ligolo.png",
     "Pasted image 20260314184559.png",
     "Z Imagenes/Hacking/Piv2.png",
