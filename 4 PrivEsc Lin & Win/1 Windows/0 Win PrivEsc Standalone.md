@@ -66,6 +66,7 @@ Los comandos están en las notas individuales de cada técnica.
 ❯ hostname → ¿nombre de la máquina?
 ❯ net user → ¿qué usuarios hay?
 ❯ net localgroup administrators → ¿quién es admin?
+❯ wmic useraccount get name,domain → Enumeración local 
 ```
 
 **→ Ver nota: 2 Windows Commands.md**
