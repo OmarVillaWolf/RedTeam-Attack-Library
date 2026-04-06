@@ -36,7 +36,7 @@
 20. Vie | HTB | Forest        | Win/AD  | Med    — AS-REP Roasting, DCSync
 ─────────────────────────────────────────────────────────────────────
 Sábado → Repaso sin writeups de las 5 de esa semana
-Domingo → GOAD: BloodHound + Kerberoasting
+Domingo → Practicar GOAD
 ```
 
 ---
