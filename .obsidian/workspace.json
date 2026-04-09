@@ -125,12 +125,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 Ports/25 - SMTP.md",
+                "file": "3 FlipperZero.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "25 - SMTP"
+              "title": "3 FlipperZero"
             }
           }
         ],
@@ -306,6 +306,9 @@
   },
   "active": "6f727ecff36afe08",
   "lastOpenFiles": [
+    "Ligolo.png",
+    "2 Ports/25 - SMTP.md",
+    "5 Gemini Cli.md",
     "8 Active Directory/4 AD - Lab AD/DC 11.md",
     "8 Active Directory/4 AD - Lab AD/DC 12.md",
     "8 Active Directory/4 AD - Lab AD/DC 10.md",
@@ -329,9 +332,6 @@
     "1 Com Lin & Win/1 Bash/1 Regex.md",
     "2 Ports/Ports DC/1433 mssql.md",
     "2.1 Tools/Fuzzers.md",
-    "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
-    "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
-    "7 Hacking Web/2 Intermediate/0 HTTP Conceptos/1 Basic HTTP.md",
     "8 Active Directory/4 AD - Lab AD/Server1 - Admin",
     "8 Active Directory/4 AD - Lab AD",
     "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/Unconfirmed 282901.crdownload",
@@ -342,7 +342,6 @@
     "2 Ports/Unconfirmed 427466.crdownload",
     "1 Com Lin & Win/3 Hacking Commands/Unconfirmed 949574.crdownload",
     "1 Com Lin & Win/3 Hacking Commands/Unconfirmed 807682.crdownload",
-    "Ligolo.png",
     "Pasted image 20260314184559.png",
     "Z Imagenes/Hacking/Piv2.png",
     "Z Imagenes/Hacking/Piv1.png",
