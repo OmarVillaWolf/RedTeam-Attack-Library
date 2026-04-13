@@ -112,7 +112,6 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 # Requiere READ → enum de un directorio específico
 
 ❯ smbmap -H <IP> -r sysvol
-❯ smbmap -H <IP> -R sysvol
 # SYSVOL (AD) → scripts/GPP → alto valor para credenciales
 
 ❯ smbclient //<IP>/<share> -N
@@ -152,7 +151,7 @@ Notas:
 ❯ smbmap -H <IP> --download anonymous/file.txt
 # Requiere READ → descarga archivo específico
 
-❯ smbmap -H <IP> -R sysvol -A file.txt -q
+❯ smbmap -H <IP> -r sysvol -A file.txt -q
 # Requiere READ → busca patrones y descarga coincidencias (ej: passwords)
 
 ❯ smbmap -H <IP> --download 'C$\flag.txt'
@@ -211,8 +210,9 @@ Notas:
 # GPP — si tienes acceso a SYSVOL
 ❯ find /tmp/mnt -name "Groups.xml" 2>/dev/null
 ❯ grep -ri "cpassword" /tmp/mnt/ 2>/dev/null
+
 # Si encuentras cpassword → desencriptar con:
-❯ gpp-decryp
+❯ gpp-decryp "cpassword"
 ```
 ### Insight
 - `.config` y `.xml` → credenciales de servicios/apps
