@@ -97,6 +97,8 @@ Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 ## 2. DESCUBRIMIENTO DE PUERTOS ABIERTOS
 
 ```bash
+❯ nmap -p- --open -sS -n -Pn -vvv --scan-delay 3 --min-rate 300 <IP> -oG allPorts
+
 # RustScan → más rápido que nmap para descubrir puertos
 ❯ rustscan -a <IP> --ulimit 5000
 # Descubrimiento básico → lista puertos abiertos
