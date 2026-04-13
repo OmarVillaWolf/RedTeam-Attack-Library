@@ -67,6 +67,8 @@ Tags: #FTP #TFTP #Anonymous #FileTransfer #Reconocimiento #Credenciales
 # Cuando pida password: anonymous o dejar vacío o cualquier email
 # Si dice "230 Login successful" → acceso anónimo habilitado
 
+❯ ftp anonymous@IP   # Otra forma de conexión 
+
 ❯ ftp <IP>
   Name: anonymous
   Password: anonymous@domain.com
