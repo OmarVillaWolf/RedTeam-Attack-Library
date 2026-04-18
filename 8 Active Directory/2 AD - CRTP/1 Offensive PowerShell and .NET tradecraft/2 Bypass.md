@@ -68,10 +68,10 @@ Nota:
 ❯ .\DefenderCheck.exe PowerUp.ps1
 
 
+
 Nota:
 	1. Si quieres ofuscar el 'PowerUp.ps1' ir a la linea '2640' y eliminar el contenido de la variable '$B64Binary = ""'
 ```
-
 ## Bypassing AV Signatures for Powershell 
 
 ```bash 
