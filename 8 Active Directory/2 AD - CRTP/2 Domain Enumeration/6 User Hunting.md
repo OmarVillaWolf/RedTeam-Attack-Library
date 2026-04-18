@@ -61,5 +61,5 @@ No se necesita acceso admin en máquinas remotas. Usar 'Remote Registry y querie
 
 ❯ Invoke-SessionHunter -FailSafe    # Listar sesiones en máquinas remotas 
 
-❯ Invoke-SessionHunter -NoPortScan -Targets C:\AD\Tools\servers.txt   # Comando amigable y evita conectarse a todos los targets y solo especificar objetivos  
+❯ Invoke-SessionHunter -NoPortScan -Targets C:\AD\Tools\servers.txt   # Buscar sesiones activas de usuarios en los servidores listados en servers.txt
 ```
