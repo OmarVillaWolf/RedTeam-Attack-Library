@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/2 Examen.md",
+                "file": "8 Active Directory/2 AD - CRTP/6 Domain Persistence/1 Golden Ticket.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2 Examen"
+              "title": "1 Golden Ticket"
             }
           }
         ]
@@ -193,10 +193,13 @@
   },
   "active": "1c5e7d771c3d85d8",
   "lastOpenFiles": [
+    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/3 Diamont Ticket.md",
+    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/1 Golden Ticket.md",
+    "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/2 Lab Casero.md",
+    "1 Com Lin & Win/3 Hacking Commands/Reverse Shells.md",
     "8 Active Directory/2 AD - CRTP/0 Introduction to AD/3 Funcionamiento Kerberos.md",
     "kerberos_flow.png",
     "Unconfirmed 805731.crdownload",
-    "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/2 Examen.md",
     "kerberos_attacks.png",
     "Ligolo.png",
     "Unconfirmed 106480.crdownload",
@@ -210,10 +213,8 @@
     "8 Active Directory/2 AD - CRTP/6 Domain Persistence/7 AdminSDHolder using ACLs.md",
     "8 Active Directory/2 AD - CRTP/6 Domain Persistence/6 Custom SSP.md",
     "8 Active Directory/2 AD - CRTP/6 Domain Persistence/5 DSRM.md",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/1 Golden Ticket.md",
     "8 Active Directory/2 AD - CRTP/4 Lateral Movement/3 Credential Extraction.md",
     "8 Active Directory/2 AD - CRTP/6 Domain Persistence/4 Skeleton Key.md",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/3 Diamont Ticket.md",
     "8 Active Directory/2 AD - CRTP/6 Domain Persistence/2 Silver Ticket.md",
     "8 Active Directory/2 AD - CRTP/4 Lateral Movement/4 Mimikatz.md",
     "8 Active Directory/2 AD - CRTP/4 Lateral Movement/1 GPO Abuse.md",
