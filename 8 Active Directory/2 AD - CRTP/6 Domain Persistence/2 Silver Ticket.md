@@ -38,4 +38,3 @@ Notes:
 	2. Similar command can be used for any other service on a machine. Which services? HOST, RPCSS, CIFS and many more.
 ```
 
-[![Silver-Ticket.png](https://i.postimg.cc/nVm94P6N/Silver-Ticket.png)](https://postimg.cc/0r8Nxc5C)
