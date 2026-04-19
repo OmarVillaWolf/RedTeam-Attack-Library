@@ -28,7 +28,8 @@ Piensa en Powershell Remoting (PSRemoting) como 'psexec' con esteroides pero muc
 ```powershell 
 ! Usuario de dominio (AD) con permisos de administrador 
 
-❯ Invoke-Command -ScriptBlock {$env:computername;$env:username} -ComputerName hostname  # Runs a command or script block 'remotely' on one or more computers via 'PowerShell Remoting and specifies the 'target machine' (replace `hostname` with the actual name or IP)
+❯ Invoke-Command -ScriptBlock {$env:computername;$env:username} -ComputerName hostname
+# Ejecutar un bloque de comandos en un equipo remoto vía WinRM, imprimir el nombre del equipo y usuario actual para verificar el contexto de ejecución remota.
 
 ❯ Invoke-Command -ScriptBlock {$env:computername;$env:username} -ComputerName (cat C:\AD\servers.txt)  # The `Invoke-Command` reads the file (`servers.txt`) locally, then runs the script block remotely on each computer listed.
 
