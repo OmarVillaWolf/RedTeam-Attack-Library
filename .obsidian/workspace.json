@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/2 AD - CRTP/6 Domain Persistence/2 Silver Ticket.md",
+                "file": "8 Active Directory/2 AD - CRTP/6 Domain Persistence/3 Diamont Ticket.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2 Silver Ticket"
+              "title": "3 Diamont Ticket"
             }
           }
         ]
@@ -193,8 +193,8 @@
   },
   "active": "1c5e7d771c3d85d8",
   "lastOpenFiles": [
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/3 Diamont Ticket.md",
     "8 Active Directory/2 AD - CRTP/6 Domain Persistence/2 Silver Ticket.md",
+    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/3 Diamont Ticket.md",
     "Silver Attack 1.png",
     "8 Active Directory/2 AD - CRTP/6 Domain Persistence/1 Golden Ticket.md",
     "image.png",
