@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/7 MSSQL Linked.md",
+                "file": "14 Red Teaming IA/1 Intro Red Team IA/1 ML OWASP Top 10.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "7 MSSQL Linked"
+              "title": "1 ML OWASP Top 10"
             }
           },
           {
@@ -221,9 +221,12 @@
   },
   "active": "187c2fa882500074",
   "lastOpenFiles": [
+    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/7 MSSQL Linked.md",
+    "14 Red Teaming IA/1 Intro Red Team IA/1 ML OWASP Top 10.md",
+    "14 Red Teaming IA/1 Intro Red Team IA",
+    "14 Red Teaming IA",
     "8 Active Directory/2 AD - CRTP/8 Bypassing Defenses (MDE and MDI)/1 Introducción a EDR - MDE.md",
     "8 Active Directory/4 AD - Lab AD/2 DC02 - .11 North.md",
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/7 MSSQL Linked.md",
     "8 Active Directory/2 AD - CRTP/8 Bypassing Defenses (MDE and MDI)",
     "8 Active Directory/2 AD - CRTP/6 Domain Persistence/11 PrivEsc - ASREPRoasting.md",
     "8 Active Directory/2 AD - CRTP/6 Domain Persistence/10 PrivEsc - Kerberoasting.md",
@@ -256,15 +259,11 @@
     "2.1 Tools/Password Cracking.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/3 Impacket-ntlmrelayx.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/2 NTLM.md",
-    "8 Active Directory/3 AD - Intermediate/6 Movimiento Lateral/7 NTLM - SMB Relay.md",
-    "8 Active Directory/3 AD - Intermediate/6 Movimiento Lateral/6 LLMNR - NBTNS Poisoning.md",
     "kerberos_attacks.png",
     "kerberos_flow.png",
     "Ligolo.png",
     "Unconfirmed 805731.crdownload",
     "Unconfirmed 106480.crdownload",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence",
-    "8 Active Directory/2 AD - CRTP/4 Lateral Movement",
     "Pasted image 20260314184559.png",
     "Z Imagenes/Hacking/Piv2.png"
   ]
