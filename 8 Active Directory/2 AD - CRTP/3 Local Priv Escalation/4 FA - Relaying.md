@@ -2,6 +2,12 @@
 
 Tags: #AD #Windows #Relay  #PrivEsc 
 
+
+## Buscar shares compartidos 
+
+```powershell 
+❯ Find-DomainShare -CheckShareAccess       # Buscar shares accesibles en el dominio 
+```
 ## Relaying 
 
 ```bash 
