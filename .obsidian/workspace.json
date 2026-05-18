@@ -8,17 +8,31 @@
         "type": "tabs",
         "children": [
           {
+            "id": "5098354e46d21d83",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "5 BloodHound"
+            }
+          },
+          {
             "id": "187c2fa882500074",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "14 Red Teaming IA/1 Intro Red Team IA/1 ML OWASP Top 10.md",
+                "file": "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 ML OWASP Top 10"
+              "title": "1 Entorno IA"
             }
           },
           {
@@ -36,20 +50,49 @@
             }
           },
           {
-            "id": "47a1e5d99e23f1f7",
+            "id": "323c580bee69645b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
+                "file": "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/1 Enumeration Tools.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3 Impacket"
+              "title": "1 Enumeration Tools"
+            }
+          },
+          {
+            "id": "7341eccbf43cea9d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/3 .NET - Obfuscation.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "3 .NET - Obfuscation"
+            }
+          },
+          {
+            "id": "b0170ebc288ee96f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "8 Active Directory/2 AD - CRTP/4 Lateral Movement/4 Mimikatz - OPTH - PTH.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "4 Mimikatz - OPTH - PTH"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -219,52 +262,53 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "187c2fa882500074",
+  "active": "7341eccbf43cea9d",
   "lastOpenFiles": [
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/7 MSSQL Linked.md",
-    "14 Red Teaming IA/1 Intro Red Team IA/1 ML OWASP Top 10.md",
-    "14 Red Teaming IA/1 Intro Red Team IA",
-    "14 Red Teaming IA",
-    "8 Active Directory/2 AD - CRTP/8 Bypassing Defenses (MDE and MDI)/1 Introducción a EDR - MDE.md",
-    "8 Active Directory/4 AD - Lab AD/2 DC02 - .11 North.md",
-    "8 Active Directory/2 AD - CRTP/8 Bypassing Defenses (MDE and MDI)",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/11 PrivEsc - ASREPRoasting.md",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/10 PrivEsc - Kerberoasting.md",
-    "8 Active Directory/4 AD - Lab AD/2 Server 02 - .22 - North.md",
-    "Pasted image 20260419131809.png",
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/5 Across Domain Trust - AD CS.md",
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/6 AD CS - ESC.md",
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/4 Krbtgt Secret Abuse.md",
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/3 Across Attacks - Trust Key Abuse.md",
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/1 Constrained Delegation.md",
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks/2 RBCD.md",
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks",
-    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks-20260425T173458Z-3-001.zip",
-    "8 Active Directory/2 AD - CRTP/Unconfirmed 775956.crdownload",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/12 PrivEsc - Set SPN.md",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/14 Unconstrained Delegation Coercion.md",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/13 Unconstrained Delegation.md",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/drive-download-20260425T173359Z-3-001.zip",
-    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/Unconfirmed 652710.crdownload",
-    "8 Active Directory/4 AD - Lab AD/1 General.md",
-    "8 Active Directory/4 AD - Lab AD/Server 03 - .23.md",
-    "8 Active Directory/4 AD - Lab AD/DC03 - .12.md",
-    "8 Active Directory/4 AD - Lab AD/DC01 - .10.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
-    "Pasted image 20260419215124.png",
-    "Silver Attack 1.png",
-    "image.png",
-    "Silver Attack.png",
-    "2 Ports/Ports DC/445 135 SMB RPC Psexec.md",
-    "2.1 Tools/Password Cracking.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/3 Impacket-ntlmrelayx.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/2 NTLM.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/1 Powershell.md",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/2 BloodHound.md",
+    "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/2 Lab Casero.md",
+    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/4 Mimikatz - OPTH - PTH.md",
+    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/3 Credential Extraction.md",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/6 User Hunting.md",
+    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/2 Remoting & Tradecraft.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/4 Transferir archivos.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/5 Revershell.md",
+    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/2 PrivEsc - Tools.md",
+    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/1 PriEsc - Manual.md",
+    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/3 FA - Jenkins.md",
+    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/4 FA - Relaying.md",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/3 ACLs.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/2 Bypass.md",
+    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/1 GPO Abuse.md",
+    "Pasted image 20260515195214.png",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/4 GPOs.md",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/1 Enumeration Tools.md",
+    "8 Active Directory/2 AD - CRTP/0 Introduction to AD/3 Funcionamiento Kerberos.md",
+    "8 Active Directory/2 AD - CRTP/0 Introduction to AD/2 Methodology.md",
+    "8 Active Directory/2 AD - CRTP/0 Introduction to AD/1 AD.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/3 .NET - Obfuscation.md",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/5 Trusts.md",
+    "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/3 Lab.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
     "kerberos_attacks.png",
     "kerberos_flow.png",
+    "Silver Attack 1.png",
+    "Pasted image 20260419131809.png",
+    "Pasted image 20260419215124.png",
     "Ligolo.png",
+    "14 Red Teaming IA/0 IA Models",
+    "14 Red Teaming IA/1 Intro Red Team IA",
+    "14 Red Teaming IA",
+    "8 Active Directory/2 AD - CRTP/7 Bypassing Defenses (MDE and MDI)",
+    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks",
+    "8 Active Directory/2 AD - CRTP/7 Cross Trust Attacks-20260425T173458Z-3-001.zip",
+    "8 Active Directory/2 AD - CRTP/Unconfirmed 775956.crdownload",
+    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/drive-download-20260425T173359Z-3-001.zip",
+    "8 Active Directory/2 AD - CRTP/6 Domain Persistence/Unconfirmed 652710.crdownload",
+    "image.png",
+    "Silver Attack.png",
     "Unconfirmed 805731.crdownload",
-    "Unconfirmed 106480.crdownload",
-    "Pasted image 20260314184559.png",
-    "Z Imagenes/Hacking/Piv2.png"
+    "Pasted image 20260314184559.png"
   ]
 }
