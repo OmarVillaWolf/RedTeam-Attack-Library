@@ -26,15 +26,30 @@ Notas:
 	2. Mirar 'Find-WMILocalAdminAccess.ps1' y 'Find-PSRemotingLocalAdminAccess.ps1'
 ```
 
-## Comandos 
+## Desde afuera 
 
 ```powershell 
 ❯ . Find-PSRemotingLocalAdminAccess.ps1       # Importar el módulo 
-❯ Find-PSRemotingLocalAdminAccess -Verbose    # Listar servidores del DC donde se tiene acceso administrativo local 
+❯ Find-PSRemotingLocalAdminAccess -Verbose    # Listar servidores del DC donde se tiene acceso administrativo local remoto
 ```
 
 ```powershell 
-❯ Find-DomainUserLocation -Verbose       # Encontrar computadoras donde un admin del dominio (or specified user/group) tiene una sesión
+# Forma 1 de conectarse al server
+❯ winrs -r:dcorp-adminsrv cmd
+```
+
+```powershell 
+# Forma 2 de conectarse al server 
+❯ Enter-PSSession -ComputerName server01.domain01.local    # Ingresar al server donde tenemos acceso administrativo remoto
+	❯ $env:username
+	❯ $env:computername
+```
+
+## Desde adentro de un server 
+
+```powershell 
+❯ Find-DomainUserLocation -Verbose       # Encontrar computadoras donde un admin del dominio (or specified user/group) tiene una sesión y se tiene acceso administrativo local para posible movimiento lateral
+❯ Find-DomainUserLocation -ComputerName server02 
 ❯ Find-DomainUserLocation -UserGroupIdentity "RDPUsers"
 
 ❯ Get-DomainGroupMember     # Consultar el DC del dominio actual o proporcionado para los miembros del grupo dado (Admins de dominio por defecto)
@@ -52,6 +67,11 @@ Notas:
 ❯ Find-DomainUserLocation -Stealth        # Encontrar computadoras (File servers and Distributed File Servers) donde una sesión admin del dominio esta disponible  
 ```
 
+```powershell 
+❯ winrs -r:dcorp-mgmt cmd /c "set computername && set username"  
+# Ejecutar un comando en el server donde se tiene acceso administrativo
+```
+
 ## Invoke-SessionHunter 
 
 * [Invoke-SessionHunter](https://github.com/Leo4j/Invoke-SessionHunter)
@@ -59,7 +79,23 @@ Notas:
 ```powershell 
 No se necesita acceso admin en máquinas remotas. Usar 'Remote Registry y queries HKEY_USERS hive' 
 
+❯ Invoke-SessionHunter -NoPortScan -RawResults | select Hostname,UserSession,Access   # Listar sesiones en las máquinas remotas y mirar si tienes acceso
+
 ❯ Invoke-SessionHunter -FailSafe    # Listar sesiones en máquinas remotas 
 
-❯ Invoke-SessionHunter -NoPortScan -Targets C:\AD\Tools\servers.txt   # Buscar sesiones activas de usuarios en los servidores listados en servers.txt
+❯ Invoke-SessionHunter -NoPortScan -Targets servers.txt   # Buscar sesiones activas de usuarios en los servidores listados en servers.txt
+```
+
+```powershell 
+# Hacerlo más Opsec 
+❯ type servers.txt     # Crear una lista con los servers
+
+❯ Invoke-SessionHunter -NoPortScan -RawResults -Targets servers.txt | select Hostname,UserSession,Access   
+# Listar sesiones en las máquinas remotas y mirar si se tiene acceso
+```
+
+```powershell 
+❯ Enter-PSSession -ComputerName server01.domain01.local    # Ingresar al server donde tenemos acceso administrativo remoto
+	❯ $env:username
+	❯ $env:computername
 ```
