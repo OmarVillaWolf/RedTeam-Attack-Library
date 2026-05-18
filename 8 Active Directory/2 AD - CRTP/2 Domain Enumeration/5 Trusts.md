@@ -62,6 +62,8 @@ Confianzas predeterminadas/automáticas
 	- TrustAttributes = FILTER_SIDS      # Es un 'trust' externo entre dos forest  
 	- TrustDirection = Bidirectional     # Ambas direcciones 
 
+❯ Get-DomainTrust -Domain sub.domain01.local | Where-Object {$_.TargetName -like "_eurocorp_"} | Select-Object SourceName, TargetName, TrustDirection, TrustType
+
 ❯ Get-DomainTrust | ?{$_.TrustAttributes -eq "FILTER_SIDS"}   # Obtener los external trust
 
 ❯ Get-DomainTrust -Domain us.domain1.local
