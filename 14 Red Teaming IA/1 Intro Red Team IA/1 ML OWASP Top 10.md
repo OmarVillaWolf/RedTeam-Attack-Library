@@ -14,3 +14,4 @@ Tags: #IA #OWASP
 | ML08 | Model Skewing               | Los atacantes distorsionan el comportamiento del modelo con fines maliciosos, por ejemplo, manipulando el conjunto de datos de entrenamiento.                                                          |
 | ML09 | Output Integrity Attack     | Los atacantes manipulan la salida de un modelo antes de procesarlo, haciendo que parezca que el modelo produjo una salida diferente.                                                                   |
 | ML10 | Model Poisoning             | Los atacantes manipulan los pesos del modelo, comprometiendo el rendimiento del modelo o creando puertas traseras.                                                                                     |
+
