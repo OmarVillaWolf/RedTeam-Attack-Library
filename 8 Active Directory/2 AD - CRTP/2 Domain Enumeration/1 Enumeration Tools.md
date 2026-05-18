@@ -76,6 +76,8 @@ Ejemplo típico:
 
 ❯ Get-ADGroupMember -Identity "Domain Admins" -Recursive    # Obtener todos los miembros del grupo "Domain Admins"
 ❯ Get-ADPrincipalGroupMembership -Identity user1            # Obtener el 'group membership' de un usuario
+
+❯ Find-DomainShare -CheckShareAccess       # Buscar shares accesibles en el dominio 
 ```
 
 ## PowerView  
