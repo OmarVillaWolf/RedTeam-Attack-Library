@@ -77,4 +77,5 @@ Piensa en Powershell Remoting (PSRemoting) como 'psexec' con esteroides pero muc
 
 Notas:
 	1. Se pueden ejecutar los comandos anteriores sin '$null' en caso de que si te lo permita  
+	2. Hacer OverPassTheHash con las credenciales obtenidas 
 ```
