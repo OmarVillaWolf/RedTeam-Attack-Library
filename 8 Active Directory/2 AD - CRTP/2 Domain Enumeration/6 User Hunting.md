@@ -34,12 +34,12 @@ Notas:
 ```
 
 ```powershell 
-# Forma 1 de conectarse al server
+# Forma 1 de conectarse al server (Límitado a cmd.exe)
 ❯ winrs -r:dcorp-adminsrv cmd
 ```
 
 ```powershell 
-# Forma 2 de conectarse al server 
+# Forma 2 de conectarse al server (Es la mejor forma de conectarse) ya que te da una Powershell 
 ❯ Enter-PSSession -ComputerName server01.domain01.local    # Ingresar al server donde tenemos acceso administrativo remoto
 	❯ $env:username
 	❯ $env:computername
