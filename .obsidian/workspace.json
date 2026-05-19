@@ -64,31 +64,17 @@
             }
           },
           {
-            "id": "7341eccbf43cea9d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/3 .NET - Obfuscation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "3 .NET - Obfuscation"
-            }
-          },
-          {
             "id": "b0170ebc288ee96f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/2 AD - CRTP/4 Lateral Movement/4 Mimikatz - OPTH - PTH.md",
+                "file": "8 Active Directory/2 AD - CRTP/4 Lateral Movement/5 Applocker.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "4 Mimikatz - OPTH - PTH"
+              "title": "5 Applocker"
             }
           }
         ],
@@ -124,7 +110,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "password spraying ",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -262,35 +248,35 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "7341eccbf43cea9d",
+  "active": "b0170ebc288ee96f",
   "lastOpenFiles": [
-    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/1 Powershell.md",
-    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/2 BloodHound.md",
-    "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/2 Lab Casero.md",
-    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/4 Mimikatz - OPTH - PTH.md",
-    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/3 Credential Extraction.md",
     "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/6 User Hunting.md",
-    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/2 Remoting & Tradecraft.md",
-    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/4 Transferir archivos.md",
-    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/5 Revershell.md",
-    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/2 PrivEsc - Tools.md",
-    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/1 PriEsc - Manual.md",
-    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/3 FA - Jenkins.md",
-    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/4 FA - Relaying.md",
-    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/3 ACLs.md",
-    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/2 Bypass.md",
-    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/1 GPO Abuse.md",
-    "Pasted image 20260515195214.png",
-    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/4 GPOs.md",
+    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/5 Applocker.md",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/0 LanguageMode.md",
     "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/1 Enumeration Tools.md",
-    "8 Active Directory/2 AD - CRTP/0 Introduction to AD/3 Funcionamiento Kerberos.md",
-    "8 Active Directory/2 AD - CRTP/0 Introduction to AD/2 Methodology.md",
-    "8 Active Directory/2 AD - CRTP/0 Introduction to AD/1 AD.md",
-    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/3 .NET - Obfuscation.md",
-    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/5 Trusts.md",
-    "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/3 Lab.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
+    "13 Wifi Pentesting/1 Wifi Academy/0 Tools/1 Tools.md",
+    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/3 Airodump-ng.md",
+    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/2 Airmon-ng.md",
+    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/1 Basic.md",
+    "13 Wifi Pentesting/1 Wifi Academy/3 OWE/2 Creación AP.md",
+    "13 Wifi Pentesting/1 Wifi Academy/3 OWE/1 Conectarse a una red OWE.md",
+    "13 Wifi Pentesting/1 Wifi Academy/3 OWE/0 OWE.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/0 OPN.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/1 Metodología.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/2 Encontrar redes ocultas.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/3 Conectarse a una red OPN.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/4 Creación AP.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/5 Evil Twin.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/6 Bypass del Portal Cautivo.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/7 Karma attack.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/1 Hashcat.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/2 Aircrack-ng.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/3 Cowpatty.md",
+    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/4 Pyrit.md",
+    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/7 Evil Twin.md",
+    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/6 Client isolation.md",
+    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/5 Airdecap-ng.md",
+    "Pasted image 20260515195214.png",
     "kerberos_attacks.png",
     "kerberos_flow.png",
     "Silver Attack 1.png",
