@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/1 Enumeration Tools.md",
+                "file": "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/6 AD CS - ESC.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 Enumeration Tools"
+              "title": "6 AD CS - ESC"
             }
           },
           {
@@ -69,16 +69,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/2 AD - CRTP/4 Lateral Movement/5 Applocker.md",
+                "file": "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/2 PrivEsc - Tools.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "5 Applocker"
+              "title": "2 PrivEsc - Tools"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -145,7 +145,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 248.5
+    "width": 357.5
   },
   "right": {
     "id": "352c47b0cb031926",
@@ -248,34 +248,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "b0170ebc288ee96f",
+  "active": "323c580bee69645b",
   "lastOpenFiles": [
-    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/6 User Hunting.md",
-    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/5 Applocker.md",
-    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/0 LanguageMode.md",
+    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/3 Across Attacks - Trust Key Abuse - DC.md",
+    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/1 Constrained Delegation.md",
+    "8 Active Directory/2 AD - CRTP/5 Domain Persistence/13 Unconstrained Delegation (Opción 1).md",
+    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/5 Across Domain Trust - AD CS.md",
+    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/4 Krbtgt Secret Abuse.md",
+    "8 Active Directory/2 AD - CRTP/5 Domain Persistence/9 ACL - Security Descriptors DC.md",
+    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/2 RBCD.md",
+    "8 Active Directory/2 AD - CRTP/5 Domain Persistence/14 Unconstrained Delegation Coercion.md",
+    "8 Active Directory/2 AD - CRTP/5 Domain Persistence/10 PrivEsc - Kerberoasting.md",
+    "8 Active Directory/2 AD - CRTP/5 Domain Persistence/8 ACL - Rights Abuse DC.md",
     "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/1 Enumeration Tools.md",
-    "13 Wifi Pentesting/1 Wifi Academy/0 Tools/1 Tools.md",
-    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/3 Airodump-ng.md",
-    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/2 Airmon-ng.md",
-    "13 Wifi Pentesting/1 Wifi Academy/1 Recon/1 Basic.md",
-    "13 Wifi Pentesting/1 Wifi Academy/3 OWE/2 Creación AP.md",
-    "13 Wifi Pentesting/1 Wifi Academy/3 OWE/1 Conectarse a una red OWE.md",
-    "13 Wifi Pentesting/1 Wifi Academy/3 OWE/0 OWE.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/0 OPN.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/1 Metodología.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/2 Encontrar redes ocultas.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/3 Conectarse a una red OPN.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/4 Creación AP.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/5 Evil Twin.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/6 Bypass del Portal Cautivo.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 OPN/7 Karma attack.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/1 Hashcat.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/2 Aircrack-ng.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/3 Cowpatty.md",
-    "13 Wifi Pentesting/1 Wifi Academy/2 Cracking/4 Pyrit.md",
-    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/7 Evil Twin.md",
-    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/6 Client isolation.md",
-    "13 Wifi Pentesting/1 Wifi Academy/6 WPA-WPA2/5 Airdecap-ng.md",
+    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/2 PrivEsc - Tools.md",
+    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/1 PriEsc - Manual.md",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/0 LanguageMode.md",
+    "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/3 Lab.md",
+    "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/2 Lab Casero.md",
+    "8 Active Directory/2 AD - CRTP/0 Introduction to AD/1 AD.md",
+    "8 Active Directory/2 AD - CRTP/0 Introduction to AD/2 Methodology.md",
+    "8 Active Directory/2 AD - CRTP/0 Introduction to AD/3 Funcionamiento Kerberos.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/5 Revershell.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/4 Transferir archivos.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/3 .NET - Obfuscation.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/1 Powershell.md",
+    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/2 Bypass.md",
+    "8 Active Directory/2 AD - CRTP/5 Domain Persistence/7 ACL - AdminSDHolder.md",
+    "8 Active Directory/2 AD - CRTP/5 Domain Persistence/6 Custom SSP.md",
     "Pasted image 20260515195214.png",
     "kerberos_attacks.png",
     "kerberos_flow.png",
