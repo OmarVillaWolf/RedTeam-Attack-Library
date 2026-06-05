@@ -61,4 +61,3 @@ Los siguientes ESC son fáciles de abusar:
 | Domain Persistence | DPERSIST2 | Crear CA raíz/intermedia maliciosa                                      |
 | Domain Persistence | DPERSIST3 | Backdoor en el servidor de la CA o en el objeto de computadora de la CA |
 
-![](Pasted%20image%2020260423123839.png)
