@@ -251,6 +251,7 @@
   "active": "323c580bee69645b",
   "lastOpenFiles": [
     "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/3 Across Attacks - Trust Key Abuse - DC.md",
+    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/6 AD CS - ESC.md",
     "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/1 Constrained Delegation.md",
     "8 Active Directory/2 AD - CRTP/5 Domain Persistence/13 Unconstrained Delegation (Opción 1).md",
     "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/5 Across Domain Trust - AD CS.md",
@@ -275,7 +276,6 @@
     "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/1 Powershell.md",
     "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/2 Bypass.md",
     "8 Active Directory/2 AD - CRTP/5 Domain Persistence/7 ACL - AdminSDHolder.md",
-    "8 Active Directory/2 AD - CRTP/5 Domain Persistence/6 Custom SSP.md",
     "Pasted image 20260515195214.png",
     "kerberos_attacks.png",
     "kerberos_flow.png",
