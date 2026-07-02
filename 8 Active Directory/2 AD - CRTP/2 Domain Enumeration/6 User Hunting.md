@@ -62,7 +62,7 @@ Notas:
 ```
 
 ```powershell 
-❯ Find-DomainUserLocation -CheckAccess    # Encontrar computadoras donde una sesión del admin del dominio esta dsiponible y el usuario actual tiene acceso admin 
+❯ Find-DomainUserLocation -CheckAccess    # Encontrar computadoras donde una sesión del admin del dominio esta disponible y el usuario actual tiene acceso admin 
 
 ❯ Find-DomainUserLocation -Stealth        # Encontrar computadoras (File servers and Distributed File Servers) donde una sesión admin del dominio esta disponible  
 ```
