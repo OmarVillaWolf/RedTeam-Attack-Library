@@ -53,6 +53,8 @@ Credenciales protegidas que pueden extraerse:
 > SAM → LSA Secrets → DPAPI
 
 ```powershell 
-❯ Get-PSReadLineOption           # Mostrar la ruta del histórico  
-	C:\Users\Omar\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\history.txt 
+# Mostrar la ruta del histórico 
+❯ Get-PSReadLineOption 
+
+C:\Users\Omar\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\history.txt 
 ```
