@@ -28,7 +28,34 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 
 ---
 
-## 0 SINCRONIZACIÓN DE RELOJ (OBLIGATORIO)
+## 0. /etc/hosts — ANTES DE EMPEZAR
+
+Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
+
+```bash
+# Máquina standalone (solo Windows, sin dominio)
+❯ echo "192.168.5.22 castelblack" >> /etc/hosts
+# Solo el hostname → suficiente para conectarse
+
+# Máquina parte de dominio o DC
+❯ echo "192.168.5.22 castelblack.kingdoms.local castelblack" >> /etc/hosts
+# hostname + FQDN → necesario para autenticación Kerberos y SMB con dominio
+# Si solo agregas el hostname → algunas herramientas fallan con el dominio
+```
+
+### Cómo saber si es standalone o parte de dominio
+
+```bash
+❯ nmap -p 88 <IP>
+# Puerto 88 (Kerberos) abierto → es un DC o parte de dominio
+# Puerto 88 cerrado → probablemente standalone
+
+❯ nxc smb <IP>
+# Output muestra: domain → si el dominio es igual al hostname → standalone
+# Si el dominio es diferente al hostname → parte de un dominio real
+```
+
+## 0.1 SINCRONIZACIÓN DE RELOJ (OBLIGATORIO)
 
 ```bash
 # Kerberos requiere que el reloj del atacante no difiera más de 5 minutos del DC
