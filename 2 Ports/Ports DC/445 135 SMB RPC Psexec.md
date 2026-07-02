@@ -17,36 +17,6 @@ Tags: #SMB #RPC #PsExec  #Windows #Enum #Credentials #LateralMovement
 * [NetExec](https://github.com/Pennyw0rth/NetExec)
 * [Sprayhound](https://github.com/Hackndo/sprayhound)
 
----
-
-## 0. /etc/hosts — ANTES DE EMPEZAR
-
-Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
-
-```bash
-# Máquina standalone (solo Windows, sin dominio)
-❯ echo "192.168.5.22 castelblack" >> /etc/hosts
-# Solo el hostname → suficiente para conectarse
-
-# Máquina parte de dominio o DC
-❯ echo "192.168.5.22 castelblack.kingdoms.local castelblack" >> /etc/hosts
-# hostname + FQDN → necesario para autenticación Kerberos y SMB con dominio
-# Si solo agregas el hostname → algunas herramientas fallan con el dominio
-```
-
-### Cómo saber si es standalone o parte de dominio
-
-```bash
-❯ nmap -p 88 <IP>
-# Puerto 88 (Kerberos) abierto → es un DC o parte de dominio
-# Puerto 88 cerrado → probablemente standalone
-
-❯ nxc smb <IP>
-# Output muestra: domain → si el dominio es igual al hostname → standalone
-# Si el dominio es diferente al hostname → parte de un dominio real
-```
-
----
 ## 1. RECONOCIMIENTO / ENUMERACIÓN INICIAL (SIN CREDENCIALES)
 
 ```bash 
@@ -65,6 +35,7 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 ❯ nxc smb <IP/rango> --gen-relay-list relay.txt  
 # Requiere SMB signing OFF → genera lista de hosts vulnerables a NTLM relay
 
+❯ nxc smb <IP> -u '' -p '' --shares    
 ❯ nxc smb <IP> -u 'a' -p '' --shares 
 ❯ nxc smb <IP> -u 'guest' -p '' --shares
 ❯ nxc smb <IP> -u 'null' -p '' --shares
@@ -78,13 +49,7 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 
 ❯ nmblookup -A <IP>  
 # No requiere creds → obtiene NetBIOS (hostname + posible dominio)  
-  
-❯ smbclient -L <IP> -N  
-# Requiere null session → lista shares anónimos (si IPC$ permite acceso)  
-  
-❯ smbclient -L <IP> -N --option='client min protocol=NT1'  
-# Fuerza SMBv1 → útil en targets legacy donde falla SMBv2/3  
-  
+
 ❯ smbmap -H <IP> --no-banner  
 # No requiere creds → enum rápida de shares y permisos (READ/WRITE)  
   
@@ -93,6 +58,12 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
   
 ❯ smbmap -H <IP> -u 'guest' -p ''  
 # Prueba usuario guest → a veces tiene más permisos que null  
+
+❯ smbclient -L <IP> -N  
+# Requiere null session → lista shares anónimos (si IPC$ permite acceso)  
+  
+❯ smbclient -L <IP> -N --option='client min protocol=NT1'  
+# Fuerza SMBv1 → útil en targets legacy donde falla SMBv2/3  
 ```
 ### Insight importante
 - Si **null session funciona → PRIORIDAD ALTA**
@@ -114,8 +85,11 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 ❯ smbmap -H <IP> -r sysvol
 # SYSVOL (AD) → scripts/GPP → alto valor para credenciales
 
-❯ smbclient //<IP>/<share> -N
-# Requiere null session → acceso interactivo al share
+❯ smbclient -N //<IP>/<share>   # Requiere null session → acceso interactivo al share
+	❯ recurse ON    # Activa el recorrido recursivo de directorios 
+	❯ prompt OFF    # Elimina la parte de preguntar al descargar 
+	❯ mget *        # Descargar todo 
+❯ tree <share>      # Listar en forma de árbol toda la carpeta descargada 
 
 ❯ smbclient //<IP>/<share> -U 'guest'
 # Acceso como guest → puede ampliar permisos
