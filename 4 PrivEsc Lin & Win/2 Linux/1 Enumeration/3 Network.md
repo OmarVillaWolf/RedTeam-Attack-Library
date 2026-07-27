@@ -13,18 +13,9 @@ Tags: #LocalEnumeration #PrivEsc #Linux #Meterpreter
 4. Otros hosts en la red
 ```
 
-```bash 
-# Comandos con Meterpreter 
-
-❯ ifconfig         # Muestra las interfaces y su IP
-❯ netstat          # Muestra la lista puertos, estado, direcciones IP, direcciones remotas, usuario, PID
-❯ route            # Muestra la tabla de ruteo 
-❯ arp              # Muestra el ARP cache 
-```
+## Comandos Linux 
 
 ```bash 
-# Comandos Linux 
-
 ❯ ifconfig                  # Muestra las interfaces y su IP
 ❯ ip a s                    # Muestra las interfaces y los adaptadores 
  
@@ -34,4 +25,13 @@ Tags: #LocalEnumeration #PrivEsc #Linux #Meterpreter
 ❯ cat /ect/resolv.conf      # Muestra el nombre y su IP del servidor DNS 
 
 ❯ arp -a                    
+```
+
+## Con Meterpreter
+
+```bash 
+❯ ifconfig         # Muestra las interfaces y su IP
+❯ netstat          # Muestra la lista puertos, estado, direcciones IP, direcciones remotas, usuario, PID
+❯ route            # Muestra la tabla de ruteo 
+❯ arp              # Muestra el ARP cache 
 ```
