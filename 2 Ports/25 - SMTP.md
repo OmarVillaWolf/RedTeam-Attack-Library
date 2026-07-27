@@ -2,6 +2,10 @@
 
 Tags: #SMTP
 
+```bash
+❯ snmp-check IP    # 
+```
+
 ```bash 
 ❯ smtp_user_enum -M VRFY -U /usr/share/metasploit-framework/data/wordlist/unix_users.txt -t ❮IP❯ # Ataque de Fuerza bruta para identificar usuarios 
 
@@ -79,6 +83,7 @@ NOTA:
 ## Explotar OpenSMTPD - Versión 8.13.4 (Debian Sarge)
 
 * [CVE-2007-4560](https://github.com/strikoder/sendmail-clamav-exploit-CVE-2007-4560)
+* [RCE](https://www.exploit-db.com/exploits/4761)
 
 ```bash 
 ❯ python3 explit.py IP
