@@ -116,11 +116,11 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 ❯ ffuf -u http://<IP>/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files-lowercase.txt
 # Enfocado en archivos → mejor que directory-list para encontrar archivos sueltos
 
-❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -e .php,.txt,.html
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e .php,.txt,.html
 # Buscar extensiones específicas junto con la wordlist
 # Linux: .php,.php5,.html,.txt | Windows: .asp,.aspx,.html,.txt,.config
 
-❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -recursion -recursion-depth 2
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -recursion -recursion-depth 2
 # Enumeración recursiva → entra en los directorios encontrados automáticamente
 # -recursion-depth 2 → evita loops infinitos
 
@@ -128,37 +128,37 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 # -c → colores | -t 200 → 200 hilos | -v → verbose con redirecciones
 # --mc=200 → solo mostrar 200 | / al final → follow redirect 301
 
-❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -fs 0 -fc 404,403
+❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -fs 0 -fc 404,403
 # -fs 0 → filtrar respuestas vacías | -fc → filtrar códigos
 ```
 
 ### gobuster
 ```bash
-❯ gobuster dir -u http://<IP>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -t 50 -b 403,404
+❯ gobuster dir -u http://<IP>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 50 -b 403,404
 # -b → blacklist de códigos a ocultar
 
-❯ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -t 50 -b 403,404 -x .php,.html,.txt,.xml -r
+❯ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 50 -b 403,404 -x .php,.html,.txt,.xml -r
 # -x → extensiones | -r → follow redirect
 
-❯ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -x asp,aspx,html,txt -f
+❯ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x asp,aspx,html,txt -f
 # -f / --add-slash → agrega / al final → código real en vez de 301
 # Windows: asp,aspx,html,txt | Linux: php,html,txt,php5
 
-❯ gobuster dir -u https://<IP>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -t 200 -s 200 -x html -b " "
+❯ gobuster dir -u https://<IP>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -s 200 -x html -b " "
 # -s 200 → solo mostrar 200 | -b " " → evitar error de blacklist en HTTPS
 ```
 
 ### wfuzz
 ```bash
-❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ
+❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://<IP>/FUZZ
 
-❯ wfuzz -c -L --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ
+❯ wfuzz -c -L --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt https://<IP>/FUZZ
 # -L → follow redirect 301 | Si no muestra nada → quitar -L y agregar / al final
 
 ❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   https://<IP>/FUZZ.html
 # Buscar extensión específica
 
-❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt   -z list,html-txt-php https://<IP>/FUZZ.FUZ2Z
+❯ wfuzz -c --hc=404,403 -t 200 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -z list,html-txt-php https://<IP>/FUZZ.FUZ2Z
 # -z list → payload de extensiones | FUZ2Z → segunda posición de fuzzing
 ```
 
