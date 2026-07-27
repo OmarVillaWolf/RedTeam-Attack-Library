@@ -23,15 +23,38 @@ Tags: #IA
 (base)❯ conda config --set auto_activate_base false   # Desactivar (base)
 
 (base)❯ conda create -n ai python=3.11         # Crear un entorno llamado 'ai'
-(base)❯ conda activate ai                      # Activar el entorno llamado 'ai'
-(base)❯ conda deactivate                       # Descativar el entorno 
+(base)❯ conda activate ai                      # Activar el entorno llamado 'ai'    --  IMPORTANTE  --
+(base)❯ conda deactivate                       # Descativar el entorno              --  IMPORTANTE  --
 
 # Dentro del entorno 
 (ai)❯ conda install -y numpy scipy pandas scikit-learn matplotlib seaborn transformers datasets tokenizers accelerate evaluate optimum huggingface_hub nltk category_encoders
 (ai)❯ conda install -y pytorch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
 (ai)❯ pip install requests requests_toolbelt
 
+
 # Actualizaciones 
-❯ conda update --all
+Paso 1:
+❯ scoop update
+❯ scoop update miniconda3
+
+Paso 2:
+❯ conda update --all        # Mejor opción 
+
+❯ conda update -n base conda 
 ❯ conda update -n base -c defaults conda
+
+Paso 3:
+❯ conda install --solver=classic -n base --force-reinstall libmamba libmambapy conda-libmamba-solver
+```
+
+## Jupyter 
+
+```powershell 
+NOTA: Asegúrese de que está ejecutando el comando desde dentro de su entorno "ai"
+❯ conda install -y jupyter jupyterlab notebook ipykernel    # Instalación con Conda
+❯ python -m ipykernel install --user --name ai --display-name "Python (ai)"
+❯ jupyter lab  # Iniciar Jupyter
+
+# Ingresar a la web 
+❯ http://localhost:8888/lab?token=...
 ```
