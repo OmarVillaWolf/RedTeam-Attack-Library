@@ -15,16 +15,9 @@ Tags: #LocalEnumeration #Linux #PrivEsc #Meterpreter
 6. Software y paquetes instalados 
 ```
 
-```bash 
-# Comandos con Meterpreter 
-
-❯ sysinfo              # Muestra la informacion del sistema, IP, SO, Arquitectura 
-❯ shell                # Cambias a uns Shell de Linux 
-```
+## Comandos Linux
 
 ```bash 
-# Comandos Linux
-
 # Si al cambiar de Meterpreter a Shell no te muestra una interfaz, debes de colocar '/bin/bash -i' 
 
 ❯ hostaname                 # Muestra el nombre del host
@@ -45,4 +38,11 @@ Tags: #LocalEnumeration #Linux #PrivEsc #Meterpreter
 ❯ lsblk | grep sd
 
 ❯ dpkg -l                   # Muestra los paquetes instalados 
+```
+
+## Con Meterpreter 
+
+```bash 
+❯ sysinfo              # Muestra la informacion del sistema, IP, SO, Arquitectura 
+❯ shell                # Cambias a uns Shell de Linux 
 ```
