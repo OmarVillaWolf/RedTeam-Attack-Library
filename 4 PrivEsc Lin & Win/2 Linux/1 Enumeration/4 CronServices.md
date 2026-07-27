@@ -11,16 +11,9 @@ Tags: #LocalEnumeration #PrivEsc #Linux #Meterpreter
 2. Tareas Cron
 ```
 
-```bash 
-# Comandos con Meterpreter
-
-❯ ps                     # Lista los procesos que estan corriendo, PID, User, Path
-❯ pgrep <name>           # Filtras los procesos por nombre y te muestra el PID
-```
+## Comandos Linux 
 
 ```bash 
-# Comandos Linux 
-
 ❯ ps                      # Lista los procesos que estan corriendo 
 ❯ ps aux                  # Despliega todos los procesos, User, ID, CPU, Path
 ❯ ps aux | grep <name>    # Filtras el proceso por proceso o usuario 
@@ -37,4 +30,11 @@ Tags: #LocalEnumeration #PrivEsc #Linux #Meterpreter
 ❯ <program> -v                 
 ❯ dpkg -l | grep <program>     # En debian 'dpkg' puede mostrar programas y sus versiones 
 ❯ rpm -qa | grep <program>     # En sistemas 'rpm' este comando hace lo mismo 
+```
+
+## Con Meterpreter
+
+```bash 
+❯ ps                     # Lista los procesos que estan corriendo, PID, User, Path
+❯ pgrep <name>           # Filtras los procesos por nombre y te muestra el PID
 ```
