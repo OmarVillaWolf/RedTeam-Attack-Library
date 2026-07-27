@@ -12,19 +12,9 @@ Tags: #LocalEnumeration #PrivEsc #Linux #Meterpreter
 3. Grupos 
 ```
 
-```bash 
-# Comandos con Meterpreter
-
-# Si no te sale en el background la sesion de Meterpreter, se hace lo siguiente
-❯ sessions -u <ID>         # Colocas el ID de la sesion actual, u = upgrade
-❯ sessions <ID>            # Usas la sesion con el ID que te hayas creado en el upgrade anterior 
-
-❯ getuid                   # Muestra el user ID (0 = root)
-```
+## Comandos Linux
 
 ```bash 
-# Comandos con Linux
-
 ❯ whoami                  # Muestra el nombre del usuario actual 
 
 ❯ groups root             # Muestra al grupo que pertenece un usuario en especifico 
@@ -37,4 +27,14 @@ Tags: #LocalEnumeration #PrivEsc #Linux #Meterpreter
 
 ❯ last                    # Muestra los ultimos usuarios loggeados en el SO 
 ❯ lastlog                 # Muestra los usuarios loggeados en el SO
+```
+
+## Con Meterpreter
+
+```bash 
+# Si no te sale en el background la sesion de Meterpreter, se hace lo siguiente
+❯ sessions -u <ID>         # Colocas el ID de la sesion actual, u = upgrade
+❯ sessions <ID>            # Usas la sesion con el ID que te hayas creado en el upgrade anterior 
+
+❯ getuid                   # Muestra el user ID (0 = root)
 ```
