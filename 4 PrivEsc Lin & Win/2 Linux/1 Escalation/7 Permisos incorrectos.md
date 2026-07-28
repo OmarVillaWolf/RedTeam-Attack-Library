@@ -18,11 +18,14 @@ A continuación, se os proporciona el enlace directo al proyecto de GitHub corre
 ## Permisos incorrectos
 
 ```bash 
-❯ find / -writable 2>/dev/null | grep -vE "python3.10|proc"          # Podemos encontrar archivos que tengan capacidad de escritura
+❯ find / -writable 2>/dev/null | grep -vE "python3.10|proc"      # Encontrar archivos que tengan capacidad de escritura
+❯ find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
+
+❯ find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null    # Directorios con permisos de escritura 
 ```
 
 ```bash
--rw-r--rw- 1 root root 8756 Feb 7 2022 /etc/passwd                   # Podemos encontrar que el /etc/passwd tiene los permisos mal implementados
+-rw-r--rw- 1 root root 8756 Feb 7 2022 /etc/passwd               # /etc/passwd con permisos mal implementados
 ```
 
 Para este tipo de escalada:
