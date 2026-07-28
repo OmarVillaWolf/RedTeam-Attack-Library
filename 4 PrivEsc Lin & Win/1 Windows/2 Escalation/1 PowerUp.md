@@ -1,6 +1,6 @@
 # PowerUp.ps1
 
-Tags: #Windows #PowerUp #PrivEsc #Enumeracion #Servicios #PostExplotacion
+Tags: #Windows #Powershell #PowerUp #PrivEsc #Enumeracion #Servicios #PostExplotacion
 
 ## OBJETIVO
 
