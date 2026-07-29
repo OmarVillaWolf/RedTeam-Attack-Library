@@ -44,7 +44,7 @@ Tags: #WinPEAS #Windows #PrivEsc #Enumeracion #PostExplotacion #Automatizacion
 ❯ .\winPEASany.exe | Out-File -Encoding ASCII C:\Temp\winpeas_output.txt
 
 # Transferir el output a Kali para revisarlo cómodamente
-❯ download C:\tmp\winpeas_output.txt    # Desde evil-winrm
+❯ download C:\Temp\winpeas_output.txt    # Desde evil-winrm
 ```
 
 ---
