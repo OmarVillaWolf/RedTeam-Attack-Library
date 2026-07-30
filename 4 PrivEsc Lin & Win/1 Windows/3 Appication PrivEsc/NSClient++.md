@@ -7,6 +7,7 @@ Es un **agente de monitoreo para Windows**.
 Pensar en él como un "cliente" que instala el administrador del sistema para que un servidor de monitoreo (Nagios, Icinga, Centreon, etc.) pueda consultar remotamente el estado de la máquina.
 
 - Normalmente corre como: NT AUTHORITY\SYSTEM
+
 ## Archivos de configuración 
 
 ```bash 
@@ -41,10 +42,20 @@ Donde:
 ```
 
 ```bash 
+# Verificar en nmap que corre el servicio con HTTPS en la web para el ingreso de la password encontrada 
+	
+	8443/tcp  open  ssl/https-alt
+
+
+NOTA:
+	- Para que permita el ingreso a la aplicación se debe de hacer un 'Local Port Forwarding' con el fin de que el server piense que se hace la petición de manera interna de lo contrario mostrara un '403 Your not allowed' 
+```
+
+```bash 
 Paso 2: (Opcional se arriba menciona que esta de manera local)
 # Crear un LocalPortForwarding desde Kali 
 ❯ sshpass -p 'pass123' ssh user@IP -L 8443:127.0.0.1:8443
-	# Mi puerto 8443 convertirlo en el puerto 8443 de la víctima 
+	# -L [PUERTO_EN_TU_KALI] : [IP_VISTA_DESDE_LA_MÁQUINA_REMOTA] : [PUERTO_REMOTO]
 ```
 
 ```bash 
