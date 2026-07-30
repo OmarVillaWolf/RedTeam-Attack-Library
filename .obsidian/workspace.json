@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4 PrivEsc Lin & Win/2 Linux/1 Escalation/1.1 Enumeración Interna.md",
+                "file": "2 Ports/Aplicaciones/FuguHub.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1.1 Enumeración Interna"
+              "title": "FuguHub"
             }
           },
           {
@@ -48,9 +48,23 @@
               "icon": "lucide-file",
               "title": "Nmap - Rustscan"
             }
+          },
+          {
+            "id": "ce607c72ff1b2807",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc/NSClient++.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "NSClient++"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -220,8 +234,22 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "37865c25abebe0c7",
+  "active": "ce607c72ff1b2807",
   "lastOpenFiles": [
+    "2 Ports/22 ssh.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc/NSClient++.md",
+    "2 Ports/Aplicaciones/FuguHub.md",
+    "2 Ports/Aplicaciones/IIS - Web.config.md",
+    "HubPanel.png",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/5 Path Hijacking.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.2 Búsqueda de Creds.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/0 Metodología Linux PrivEsc.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.1 Enumeración Interna.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1 Enumeración del entorno.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/4 Tareas CRON.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/12 Binarios Especificos.md",
+    "2.1 Tools/Nmap - Rustscan.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/2 WinPEAS.md",
     "2 Ports/Ports DC/445 SMB - Psexec.md",
     "8 Active Directory/1 AD - Spartan/4 Persistencia, Post-Explotation/1 DCSync.md",
@@ -236,18 +264,6 @@
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/0 Identifying PrivEsc.md",
     "2 Ports/Ports DC/5985 5986 WINRM.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
-    "2 Ports/Ports DC/88 Kerberos.md",
-    "2 Ports/Ports DC/0.1 Metodología AD - Escenarios Ataque.md",
-    "2 Ports/Ports DC/0.2 Obtener Usuarios.md",
-    "2 Ports/Ports DC/389 636 LDAP.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/2 Netexec.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Escalation/1.1 Enumeración Interna.md",
-    "2.1 Tools/Fuzzers.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Escalation/1 Enumeración del entorno.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Escalation/2 LinPEAS - LinEnum.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Escalation/7 Permisos incorrectos.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Escalation/0 Metodología Linux PrivEsc.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Escalation/4 Tareas CRON.md",
     "2 Ports/Aplicaciones",
     "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc",
     "2 Ports/Puerto 80",
@@ -262,11 +278,9 @@
     "kerberos_flow.png",
     "Silver Attack 1.png",
     "Pasted image 20260419131809.png",
-    "Pasted image 20260419215124.png",
     "14 Red Teaming IA/0 IA Models",
     "14 Red Teaming IA/1 Intro Red Team IA",
     "14 Red Teaming IA",
-    "8 Active Directory/2 AD - CRTP/7 Bypassing Defenses (MDE and MDI)",
-    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks"
+    "8 Active Directory/2 AD - CRTP/7 Bypassing Defenses (MDE and MDI)"
   ]
 }
