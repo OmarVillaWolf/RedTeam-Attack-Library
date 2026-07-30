@@ -162,6 +162,9 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 ## 8. PIVOTING / TUNNELING (CLAVE)
 
 ```bash 
+❯ sshpass -p 'P@ssword123' ssh user@IP -L 8443:127.0.0.1:8443
+# -L [PUERTO_EN_TU_KALI] : [IP_VISTA_DESDE_LA_MÁQUINA_REMOTA] : [PUERTO_REMOTO]
+
 ❯ ssh -L 8080:127.0.0.1:80 user@<IP>  
 # Local port forwarding  
 # Acceso a servicios internos desde tu máquina
