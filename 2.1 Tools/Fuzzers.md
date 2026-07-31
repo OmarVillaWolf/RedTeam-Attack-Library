@@ -18,50 +18,115 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 7. **Hacer una petición base primero → anotar tamaño/código → usarlo como filtro**
 8. **Si encuentras un directorio → fuzzearlo también con recursión o manualmente**
 
----
-
 ## WORDLISTS DE REFERENCIA RÁPIDA
 
-```bash
-# Directorios y archivos — General
-/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt     # Más completa → usar siempre
-/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt      # Más rápida
-/usr/share/dirb/wordlists/common.txt                             # Prueba inicial rápida
-/usr/share/seclists/Discovery/Web-Content/big.txt                # Alternativa grande
-/usr/share/metasploit-framework/data/wordlists/directory.txt     # Apps empresariales
+```bash 
+# Directorios (General)
+/usr/share/SecLists/Discovery/Web-Content/common.txt
+/usr/share/SecLists/Discovery/Web-Content/quickhits.txt
+/usr/share/SecLists/Discovery/Web-Content/combined_directories.txt
+/usr/share/SecLists/Discovery/Web-Content/combined_words.txt
+/usr/share/SecLists/Discovery/Web-Content/big.txt
+/usr/share/SecLists/Discovery/Web-Content/DirBuster-2007-directory-list-2.3-small.txt
+/usr/share/SecLists/Discovery/Web-Content/DirBuster-2007-directory-list-2.3-medium.txt
+/usr/share/SecLists/Discovery/Web-Content/DirBuster-2007-directory-list-2.3-big.txt
 
-# Directorios y archivos — Raft (muy buenas para archivos)
-/usr/share/seclists/Discovery/Web-Content/raft-medium-files-lowercase.txt
-/usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt
-/usr/share/seclists/Discovery/Web-Content/raft-large-files.txt
-/usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt
+# Directorios (RAFT)
+/usr/share/SecLists/Discovery/Web-Content/raft-small-directories.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-medium-directories.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-large-directories.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-small-directories-lowercase.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-large-directories-lowercase.txt
 
-# Subdominios y VHosts
-/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt    # Rápida
-/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt   # Más completa
-/usr/share/seclists/Discovery/DNS/namelist.txt                       # Alternativa
+# Archivos (RAFT)
+/usr/share/SecLists/Discovery/Web-Content/raft-small-files.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-medium-files.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-large-files.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-small-files-lowercase.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-medium-files-lowercase.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-large-files-lowercase.txt
+
+# Extensiones
+/usr/share/SecLists/Discovery/Web-Content/raft-small-extensions.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-medium-extensions.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-large-extensions.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-small-extensions-lowercase.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-medium-extensions-lowercase.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-large-extensions-lowercase.txt
+/usr/share/SecLists/Discovery/Web-Content/web-extensions.txt
+/usr/share/SecLists/Discovery/Web-Content/web-extensions-big.txt
+
+# APIs
+/usr/share/SecLists/Discovery/Web-Content/api/
+/usr/share/SecLists/Discovery/Web-Content/common-api-endpoints-mazen160.txt
 
 # Parámetros GET/POST
-/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt
-/usr/share/seclists/Discovery/Web-Content/api/api-endpoints.txt
+/usr/share/SecLists/Discovery/Web-Content/burp-parameter-names.txt
+/usr/share/SecLists/Discovery/Web-Content/url-params_from_top-55-most-popular-apps.txt
 
-# CMS específicos
-/usr/share/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt
-/usr/share/seclists/Discovery/Web-Content/CMS/joomla.txt
-/usr/share/seclists/Discovery/Web-Content/CMS/drupal.txt
+# Login / Autenticación
+/usr/share/SecLists/Discovery/Web-Content/Logins.fuzz.txt
 
-# Usuarios
-/usr/share/seclists/Usernames/Names/names.txt
-/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+# Credenciales / Passwords
+/usr/share/SecLists/Discovery/Web-Content/Passwords.fuzz.txt
 
-# Contraseñas
-/usr/share/wordlists/rockyou.txt
-/usr/share/seclists/Passwords/Common-Credentials/10-million-password-list-top-100.txt
-/usr/share/seclists/Passwords/Common-Credentials/best110.txt
+# CMS
+/usr/share/SecLists/Discovery/Web-Content/CMS/
+
+# JavaScript
+/usr/share/SecLists/Discovery/Web-Content/JavaScript-Miners.txt
+
+# Java Servlets
+/usr/share/SecLists/Discovery/Web-Content/JavaServlets-Common.fuzz.txt
+
+# Versionado
+/usr/share/SecLists/Discovery/Web-Content/Versioning_metafiles.txt
+
+# Configuración
+/usr/share/SecLists/Discovery/Web-Content/Proxy-Auto-Configuration-Files.txt
+
+# Robots.txt
+/usr/share/SecLists/Discovery/Web-Content/robots-disallowed
+
+# URLs
+/usr/share/SecLists/Discovery/Web-Content/URLs/
+
+# Tipos de contenido
+/usr/share/SecLists/Discovery/Web-Content/web-all-content-types.txt
+
+# Servidores Web
+/usr/share/SecLists/Discovery/Web-Content/Web-Servers/
+
+# Microsoft
+/usr/share/SecLists/Discovery/Web-Content/Microsoft-Frontpage.txt
+
+# Oracle
+/usr/share/SecLists/Discovery/Web-Content/Oracle9i.fuzz.txt
+/usr/share/SecLists/Discovery/Web-Content/OracleAppServer.fuzz.txt
+
+# Hashicorp
+/usr/share/SecLists/Discovery/Web-Content/hashicorp-consul-api.txt
+/usr/share/SecLists/Discovery/Web-Content/hashicorp-vault.txt
+
+# OAuth
+/usr/share/SecLists/Discovery/Web-Content/oauth-oidc-scopes.txt
+
+# SAP
+/usr/share/SecLists/Discovery/Web-Content/SAP-NetWeaver.txt
+/usr/share/SecLists/Discovery/Web-Content/sap-analytics-cloud.txt
+
+# Domino
+/usr/share/SecLists/Discovery/Web-Content/Domino-Hunter/
+/usr/share/SecLists/Discovery/Web-Content/domino-dirs-coldfusion39.txt
+/usr/share/SecLists/Discovery/Web-Content/domino-endpoints-coldfusion39.txt
+
+# ColdFusion
+/usr/share/SecLists/Discovery/Web-Content/coldfusion.txt
+
+# Repositorios públicos
+/usr/share/SecLists/Discovery/Web-Content/Public-Source-Repo-Issues.json
 ```
-
-
----
 
 ## FILTROS DE REFERENCIA RÁPIDA
 
@@ -72,8 +137,6 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 | wfuzz       | --hh \<chars>         | --hc \<code>            | --hw \<words>       | -L              |
 | feroxbuster | --filter-size \<size> | --filter-status \<code> | --filter-words \<n> | -r              |
 | dirsearch   | --exclude-sizes       | --exclude-status        | —                   | —               |
-
----
 
 ## EXTENSIONES POR OS
 
@@ -87,8 +150,6 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 # APIs / Genéricas
 .json .xml .yaml .yml .api .graphql
 ```
-
----
 
 ## 1. ENUMERACIÓN DE DIRECTORIOS Y ARCHIVOS
 
