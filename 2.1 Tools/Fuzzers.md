@@ -153,6 +153,21 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ## 1. ENUMERACIÓN DE DIRECTORIOS Y ARCHIVOS
 
+### dirb
+```bash
+❯ dirb http://<IP>/
+# Wordlist interna → prueba inicial muy rápida
+
+❯ dirb http://<IP>/  /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -X .php
+# -X → extensión específica
+
+❯ dirb http://<IP> /usr/share/metasploit-framework/data/wordlists/directory.txt
+# Wordlist de Metasploit → buena para apps empresariales
+
+❯ dirb https://<IP>/
+# Puerto 443 → HTTPS
+```
+
 ### feroxbuster
 ```bash
 ❯ feroxbuster -u http://<IP> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -d 2
@@ -233,21 +248,6 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 --sl=216       # ShowLine → mostrar solo ese número de líneas
 --sw=6515      # ShowWords → mostrar solo ese número de palabras
 --sh=12345     # ShowCharacters → mostrar solo ese número de caracteres
-```
-
-### dirb
-```bash
-❯ dirb http://<IP>/
-# Wordlist interna → prueba inicial muy rápida
-
-❯ dirb http://<IP>/  /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -X .php
-# -X → extensión específica
-
-❯ dirb http://<IP> /usr/share/metasploit-framework/data/wordlists/directory.txt
-# Wordlist de Metasploit → buena para apps empresariales
-
-❯ dirb https://<IP>/
-# Puerto 443 → HTTPS
 ```
 
 ### dirsearch
