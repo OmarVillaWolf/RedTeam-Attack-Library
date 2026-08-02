@@ -86,7 +86,7 @@ En los sistemas operativos Windows, los privilegios son permisos otorgados a las
 
 Cada uno de estos privilegios otorga la capacidad de realizar acciones concretas en el sistema que pueden influir en su configuración, seguridad y funcionamiento general. Los administradores del sistema deben gestionar y asignar estos privilegios con cuidado para garantizar la seguridad y el correcto desempeño de los sistemas Windows.
 
-## Privilegios Windows para escalar 
+## Privilegios Windows que llevan a SYSTEM
 
 ```bash 
 ❯ whoami /priv        # Muestra los privilegios del usuario actual 
