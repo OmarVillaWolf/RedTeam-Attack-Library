@@ -239,56 +239,14 @@ WSDL/SOAP  → ver nota 80.8_WSDL.md
 
 ---
 
-## FASE 4 — ENUMERACIÓN DE DIRECTORIOS Y ARCHIVOS
-
-```bash
-# Ver nota completa: Fuzzers.md
-
-# Comandos rápidos de referencia:
-❯ ffuf -u http://<IP>/FUZZ -w /usr/share/dirb/wordlists/common.txt
-# Prueba inicial rápida
-
-❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e .php,.txt,.html
-# Enumeración completa con extensiones
-
-❯ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 50 -b 403,404 -x php,html,txt -r
-# Alternativa con gobuster
-
-❯ feroxbuster -u http://<IP> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -d 2
-# Con recursión automática
-```
-
----
-
-## FASE 5 — ENUMERACIÓN DE SUBDOMINIOS Y VHOSTS
-
-```bash
-# Ver nota completa: Fuzzers.md
-
-# Primero obtener tamaño base
-❯ curl -s http://<IP>/ -H "Host: nonexistent.domain.com" | wc -c
-
-❯ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   -H "Host: FUZZ.<domain.com>" -u http://<IP>/ -fs <tamaño_base>
-
-❯ gobuster vhost --append-domain   -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt   --url http://<domain.com>/ -t 200
-
-# Subdominios desde fuentes externas (OSINT)
-❯ sublist3r -d <domain.com>
-❯ dnsrecon -d <domain.com>
-# crt.sh → https://crt.sh/?q=<domain.com>
-# Google Dork: site:*.domain.com
-```
-
----
-
-## FASE 6 — IDENTIFICACIÓN DE VECTORES DE ATAQUE
+## FASE 4 — IDENTIFICACIÓN DE VECTORES DE ATAQUE
 
 > Esta fase identifica qué puede existir — los ataques están en sus notas específicas
 > No ejecutes payloads completos aquí → identifica el vector y ve a la nota dedicada
 
 ---
 
-### 6.1 Panel de Login / Formulario de autenticación
+### 4.1 Panel de Login / Formulario de autenticación
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -325,7 +283,7 @@ Intentar: admin'-- / ' OR 1=1-- / " OR ""="
 
 ---
 
-### 6.2 Formularios de búsqueda / Campos de texto
+### 4.2 Formularios de búsqueda / Campos de texto
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -354,7 +312,7 @@ El formulario envía datos a un endpoint externo
 
 ---
 
-### 6.3 Parámetros GET en la URL
+### 4.3 Parámetros GET en la URL
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -400,7 +358,7 @@ INDICIOS → VECTOR POSIBLE
 
 ---
 
-### 6.4 Subida de archivos (Upload)
+### 4.4 Subida de archivos (Upload)
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -426,7 +384,7 @@ El nombre del archivo se refleja en la respuesta
 
 ---
 
-### 6.5 Cabeceras HTTP
+### 4.5 Cabeceras HTTP
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -454,7 +412,7 @@ Cookie con valor que parece serializado o base64
 
 ---
 
-### 6.6 Respuestas y comportamiento del servidor
+### 4.6 Respuestas y comportamiento del servidor
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -488,7 +446,7 @@ Servidor devuelve errores 500 con payloads específicos
 
 ---
 
-### 6.7 Endpoints de API
+### 4.7 Endpoints de API
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -520,7 +478,7 @@ GraphQL endpoint (/graphql, /api/graphql)
 
 ---
 
-### 6.8 Cookies y sesiones
+### 4.8 Cookies y sesiones
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -548,7 +506,7 @@ Cookie con valor serializado (a:2:{s:4..."} o formato pickle)
 
 ---
 
-### 6.9 Funcionalidades específicas
+### 4.9 Funcionalidades específicas
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -592,7 +550,7 @@ Panel de administración expuesto sin autenticación
 
 ---
 
-### 6.10 Información sensible expuesta
+### 4.10 Información sensible expuesta
 
 ```
 INDICIOS → VECTOR POSIBLE
@@ -614,39 +572,6 @@ Comentarios en HTML con rutas, usuarios o contraseñas
 
 Versión exacta del software en las cabeceras o en la web
   → searchsploit por esa versión exacta → buscar CVEs
-```
-
----
-
-### ONE-LINERS DE IDENTIFICACIÓN RÁPIDA
-```
-Comilla en cualquier campo   → SQLi
-<script>alert(1)</script>    → XSS
-../../../../etc/passwd       → LFI / Path Traversal
-{{7*7}} o ${7*7}             → SSTI
-; whoami / | id / && id      → Command Injection
-http://127.0.0.1/admin       → SSRF
-{"$gt": ""}                  → NoSQLi
-user=admin en cookie b64     → Cookie Tampering
-alg:none en JWT              → JWT Attack
-entidad XML externa          → XXE
-```
-
-
-## FASE 7 — HERRAMIENTAS DE VISUALIZACIÓN Y ANÁLISIS
-
-```bash
-❯ browsh --startup-url <IP>
-# Ver la web en terminal con interfaz gráfica → útil en shells sin GUI
-
-❯ lynx http://<IP>
-# Navegador en terminal → más liviano que browsh
-
-❯ curl <IP> | bash
-# Obtener index.html e interpretarlo como bash → cuidado en entornos controlados
-
-❯ curl http://<IP>/cgi-bin/ | more
-# Ver cabeceras y contenido de directorios CGI
 ```
 
 ---
@@ -708,26 +633,4 @@ Puerto 80/443 abierto
 [ ] Subdominios/VHosts → ffuf con Host header
 [ ] Parámetros identificados → ver nota de vuln correspondiente
 [ ] Formulario → user enum + fuerza bruta
-```
-
----
-
-## REFERENCIAS A NOTAS ESPECÍFICAS
-
-```
-Fuzzers.md          → Directorios, subdominios, usuarios, parámetros
-80.1_WordPress.md   → Enumeración y ataques WordPress
-80.2_Joomla.md      → Enumeración y ataques Joomla
-80.3_Drupal.md      → Enumeración y ataques Drupal
-80.4_Magento.md     → Enumeración y ataques Magento
-80.5_Apache.md      → Shellshock y misconfigs Apache
-80.6_Tomcat.md      → Tomcat manager, WAR upload
-80.7_IIS_Webdav.md  → IIS misconfigs, WebDAV
-80.8_WSDL.md        → SOAP/WSDL enumeration
-SQLi.md             → SQL Injection
-XSS.md              → Cross-Site Scripting
-LFI.md              → Local/Remote File Inclusion
-File_Upload.md      → File Upload Bypass
-SSRF.md             → Server-Side Request Forgery
-IDOR.md             → Insecure Direct Object Reference
 ```
