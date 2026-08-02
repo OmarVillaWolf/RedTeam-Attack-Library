@@ -36,6 +36,8 @@ C:\Users\Public
 
 ### Atacante — Preparar servidor para enviar archivos
 
+* [Netcat](https://eternallybored.org/misc/netcat/)
+
 ```bash
 1. ❯ python3 -m http.server 80
    # Servidor HTTP simple → servir archivos del directorio actual
