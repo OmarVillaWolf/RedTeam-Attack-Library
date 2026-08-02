@@ -20,23 +20,8 @@
               "icon": "lucide-file",
               "title": "1 Entorno IA"
             }
-          },
-          {
-            "id": "a91a613197a4e48b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2.1 Tools/Fuzzers.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Fuzzers"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -208,9 +193,24 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "a91a613197a4e48b",
+  "active": "dc3d956222bf8eb1",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 Token-Priv, Groups.md",
     "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
+    "Silver Attack 1.png",
+    "Pasted image 20260606144728.png",
+    "Pasted image 20260606144649.png",
+    "Pasted image 20260606144420.png",
+    "Pasted image 20260606144158.png",
+    "Pasted image 20260515195214.png",
+    "Pasted image 20260419131809.png",
+    "Pasted image 20260419215124.png",
+    "Ligolo.png",
+    "kerberos_flow.png",
+    "2 Ports/Ports Windows - DC/RDP/FortiClient - VPN Before Logon.md",
+    "2 Ports/Ports Windows - DC/53 DNS.md",
+    "2.1 Tools/Fuzzers.md",
+    "2 Ports/Ports Windows - DC/RDP",
     "8 Active Directory/2 AD - CRTP/5 Domain Persistence/15 Shadow Credentials Attack.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/2 GenericWrite User.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/3 GenericAll User.md",
@@ -222,14 +222,12 @@
     "2 Ports/Ports Windows - DC/1 SMB",
     "8 Active Directory/1 AD - Spartan/4 Persistencia, Post-Explotation/0 Fundamentos Persistencia.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/14 Zerologon",
-    "2.1 Tools/Fuzzers.md",
     "2 Ports/Aplicaciones/FuguHub.md",
     "2.1 Tools/Nmap - Rustscan.md",
     "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc/NSClient++.md",
     "2 Ports/22 ssh.md",
     "2 Ports/Aplicaciones/IIS - Web.config.md",
-    "HubPanel.png",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/5 Path Hijacking.md",
     "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.2 Búsqueda de Creds.md",
     "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/0 Metodología Linux PrivEsc.md",
@@ -238,23 +236,10 @@
     "4 PrivEsc Lin & Win/2 Linux/1 Enumeración",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/4 Tareas CRON.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/12 Binarios Especificos.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/2 WinPEAS.md",
-    "8 Active Directory/1 AD - Spartan/4 Persistencia, Post-Explotation/1 DCSync.md",
-    "2 Ports/Ports Windows - DC/135 RPC.md",
     "2 Ports/Aplicaciones",
     "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc",
     "2 Ports/Puerto 80",
     "7 Hacking Web/0 Web/1 Information Gathering",
-    "7 Hacking Web/0 Web",
-    "Pasted image 20260606144728.png",
-    "Pasted image 20260606144649.png",
-    "Pasted image 20260606144420.png",
-    "Pasted image 20260606144158.png",
-    "Pasted image 20260515195214.png",
-    "kerberos_attacks.png",
-    "kerberos_flow.png",
-    "Silver Attack 1.png",
-    "Pasted image 20260419131809.png",
-    "14 Red Teaming IA/0 IA Models"
+    "7 Hacking Web/0 Web"
   ]
 }
