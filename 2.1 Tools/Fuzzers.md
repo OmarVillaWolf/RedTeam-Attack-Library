@@ -138,7 +138,7 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 | feroxbuster | --filter-size \<size> | --filter-status \<code> | --filter-words \<n> | -r              |
 | dirsearch   | --exclude-sizes       | --exclude-status        | —                   | —               |
 
-## EXTENSIONES POR OS
+## EXTENSIONES POR SO
 
 ```bash
 # Linux
@@ -153,32 +153,52 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ## 1. ENUMERACIÓN DE DIRECTORIOS Y ARCHIVOS
 
-### dirb
+### feroxbuster
 ```bash
+❯ feroxbuster -u http://<IP> -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -d 2
+	# d 2 → profundidad de recursión | Mejor para recursión que gobuster
+
+❯ feroxbuster -u http://<IP> -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -d 2 -x php,html,txt -t 100
+	# x → extensiones 
+	# t → hilos
+
+❯ feroxbuster -u http://<IP> -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -d 2 --filter-status 404,403 --filter-size 0
+	# --filter-status → equivalente a -b en gobuster
+	# --filter-size → filtrar respuestas vacías
+```
+
+### gobuster
+```bash
+❯ gobuster dir -u http://<IP>/ -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -t 50 -b 403,404
+# -b → blacklist de códigos a ocultar
+
+❯ gobuster dir -u http://<IP>/ -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -t 50 -b 403,404 -x .php,.html,.txt,.xml -r
+# -x → extensiones | -r → follow redirect
+
+❯ gobuster dir -u http://<IP>/ -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -x asp,aspx,html,txt -f
+# -f / --add-slash → agrega / al final → código real en vez de 301
+# Windows: asp,aspx,html,txt | Linux: php,html,txt,php5
+
+❯ gobuster dir -u https://<IP>/ -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -t 200 -s 200 -x html -b " "
+# -s 200 → solo mostrar 200 | -b " " → evitar error de blacklist en HTTPS
+```
+
+### dirb
+```powershell
 ❯ dirb http://<IP>/
 # Wordlist interna → prueba inicial muy rápida
 
-❯ dirb http://<IP>/  /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -X .php
-# -X → extensión específica
-
-❯ dirb http://<IP> /usr/share/metasploit-framework/data/wordlists/directory.txt
-# Wordlist de Metasploit → buena para apps empresariales
-
 ❯ dirb https://<IP>/
 # Puerto 443 → HTTPS
-```
 
-### feroxbuster
-```bash
-❯ feroxbuster -u http://<IP> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -d 2
-# -d 2 → profundidad de recursión | Mejor para recursión que gobuster
+❯ dirb http://<IP>/ /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt
+# Con un diccionario en específico 
 
-❯ feroxbuster -u http://<IP> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 -x php,html,txt -t 100
-# -x → extensiones | -t → hilos
+❯ dirb http://<IP>/ /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -X .php,.html,.txt 
+# Colocando una extensión específica 
 
-❯ feroxbuster -u http://<IP> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt   -d 2 --filter-status 404,403 --filter-size 0
-# --filter-status → equivalente a -b en gobuster
-# --filter-size → filtrar respuestas vacías
+❯ dirb http://<IP>/ /usr/share/SecLists/Discovery/Web-Content/raft-medium-files-lowercase.txt 
+# Buscar archivos con extensiones específicas ya integradas en el diccionario 
 ```
 
 ### ffuf
@@ -206,22 +226,6 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -fs 0 -fc 404,403
 # -fs 0 → filtrar respuestas vacías | -fc → filtrar códigos
-```
-
-### gobuster
-```bash
-❯ gobuster dir -u http://<IP>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 50 -b 403,404
-# -b → blacklist de códigos a ocultar
-
-❯ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 50 -b 403,404 -x .php,.html,.txt,.xml -r
-# -x → extensiones | -r → follow redirect
-
-❯ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x asp,aspx,html,txt -f
-# -f / --add-slash → agrega / al final → código real en vez de 301
-# Windows: asp,aspx,html,txt | Linux: php,html,txt,php5
-
-❯ gobuster dir -u https://<IP>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -s 200 -x html -b " "
-# -s 200 → solo mostrar 200 | -b " " → evitar error de blacklist en HTTPS
 ```
 
 ### wfuzz
