@@ -27,12 +27,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 Ports/Aplicaciones/WordPress.md",
+                "file": "2 Ports/4505 y 4506 - SaltStack.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "WordPress"
+              "title": "4505 y 4506 - SaltStack"
+            }
+          },
+          {
+            "id": "347497300dd619ba",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1 Com Lin & Win/3 Hacking Commands/Reverse Shells.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Reverse Shells"
             }
           }
         ],
@@ -208,12 +222,23 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "642b9322c22441ce",
+  "active": "d52bcc28d4b0e634",
   "lastOpenFiles": [
+    "1 Com Lin & Win/3 Hacking Commands/Reverse Shells.md",
+    "2 Ports/4505 y 4506 - SaltStack.md",
+    "2 Ports/3306 - MYSQL.md",
+    "2 Ports/Aplicaciones/APIs/1 Conceptos.md",
+    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
+    "2 Ports/Aplicaciones/APIs/2 Explotación de un endpoint usando la documentación.md",
+    "7 Hacking Web/2 Intermediate/29 APIs/1 Conceptos.md",
+    "2 Ports/Aplicaciones/APIs/3 Parameter pollution en query string del servidor.md",
+    "2 Ports/Aplicaciones/APIs",
+    "2 Ports/Aplicaciones/APIs.md",
+    "7 Hacking Web/2 Intermediate/29 APIs/2 Explotación de un endpoint usando la documentación.md",
+    "7 Hacking Web/2 Intermediate/29 APIs/3 Parameter pollution en query string del servidor.md",
+    "2 Ports/Aplicaciones/WordPress.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 Token-Priv, Groups.md",
     "1 Com Lin & Win/3 Hacking Commands/Transfer.md",
-    "1 Com Lin & Win/3 Hacking Commands/Reverse Shells.md",
-    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
     "2 Ports/Aplicaciones/IIS - Web.config.md",
     "1 Com Lin & Win/3 Hacking Commands/1 Linux Commands.md",
     "2.1 Tools/Fuzzers.md",
@@ -237,24 +262,13 @@
     "8 Active Directory/2 AD - CRTP/5 Domain Persistence/15 Shadow Credentials Attack.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/2 GenericWrite User.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/3 GenericAll User.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/14 Zerologon/1 ZeroLogon.md",
-    "2 Ports/Ports Windows - DC/1 SMB/EternalBlue.md",
-    "2.1 Tools/Metasploit/5 MSF Explotation.md",
-    "2 Ports/Ports Windows - DC/445 SMB - NXC  PsExec.md",
     "2 Ports/Ports Windows - DC/0 Metodología y más",
     "2 Ports/Ports Windows - DC/1 SMB",
-    "8 Active Directory/1 AD - Spartan/4 Persistencia, Post-Explotation/0 Fundamentos Persistencia.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/14 Zerologon",
-    "2 Ports/Aplicaciones/FuguHub.md",
-    "2.1 Tools/Nmap - Rustscan.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc/NSClient++.md",
-    "2 Ports/22 ssh.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/5 Path Hijacking.md",
     "4 PrivEsc Lin & Win/2 Linux/1 Enumeración",
     "2 Ports/Aplicaciones",
     "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc",
     "2 Ports/Puerto 80",
-    "7 Hacking Web/0 Web/1 Information Gathering",
-    "7 Hacking Web/0 Web"
+    "7 Hacking Web/0 Web/1 Information Gathering"
   ]
 }
