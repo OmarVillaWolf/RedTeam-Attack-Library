@@ -2,30 +2,17 @@
 
 Tags: #Pivoting #SSH #DinamicForwarding 
 
-## Traer un puerto de la máquina víctima 
-
-```bash 
-❯ ssh -i id_rsa user@IP -L 8081:127.0.0.1:8200      
-
-	# 8081 = Puerto en Kali a abrir 
-	# 127.0.0.1 = Dirección loopback en el servidor remoto 
-	# 8200 = Puerto en el servidor remoto a traer   
-
-❯ lsof -i:8081      # Verificar el puerto en Kali 
-```
-
 ## Dinamic Port Forwarding 
 
 ```bash 
-❯ ssh -D 1080 user@IP               # Conectarse por SSH creando un túnel dinámico en la máquina local. Por lo que cualquier conexión de red al puerto 1080 en tu computadora se redirigirá a través de la sesión SSH al servidor remoto
+❯ ssh -D 1080 user@IP           # Conectarse por SSH creando un túnel dinámico en la máquina local. Por lo que cualquier conexión de red al puerto 1080 en tu computadora se redirigirá a través de la sesión SSH al servidor remoto
 
-❯ netstat -ant | grep 1080          # Verificar la creación del túnel de manera local (modo: LISTENING)
+❯ netstat -ant | grep 1080      # Verificar la creación del túnel de manera local (modo: LISTENING)
 ```
 
 ```bash 
-❯ nano /etc/proxychains.conf        # Modificar el archivo 'proxychains' y agregar lo siguiente:
-
-	socks4 127.0.0.1 1080          # Comentar (# proxy_dns) y modificar el proxy en 'ProxyList'
+❯ nano /etc/proxychains.conf    # Modificar el archivo 'proxychains' y agregar lo siguiente:
+	socks4 127.0.0.1 1080       # Comentar (# proxy_dns) y modificar el proxy en 'ProxyList'
 ```
 
 ## Comandos con Proxychains
