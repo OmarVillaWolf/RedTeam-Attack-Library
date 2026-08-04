@@ -61,7 +61,7 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 
 ❯ sshpass -p 'PASSWORD' ssh user@<IP>  
 # Login no interactivo (útil en scripts)  
-# ⚠️ Password en claro → bajo OPSEC
+# Password en claro → bajo OPSEC
 ```
 
 
