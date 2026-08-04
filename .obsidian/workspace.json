@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "5 Pivoting/4 SSH.md",
+                "file": "5 Pivoting/3 Chisel.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "4 SSH"
+              "title": "3 Chisel"
             }
           }
         ],
@@ -210,12 +210,14 @@
   },
   "active": "e3e10ccfff47af78",
   "lastOpenFiles": [
+    "5 Pivoting/2 Ligolo.md",
+    "5 Pivoting/3 Chisel.md",
+    "5 Pivoting/4 SSH.md",
+    "5 Pivoting/1 Escaneo Interfaces.md",
     "1 Com Lin & Win/1 Hacking Commands/Filtros.md",
     "1 Com Lin & Win/1 Hacking Commands/Regex.md",
     "1 Com Lin & Win/1 Hacking Commands/Encoding.md",
-    "5 Pivoting/4 SSH.md",
     "2 Ports/22 ssh.md",
-    "5 Pivoting/2 Ligolo.md",
     "2 Ports/Aplicaciones/Jenkins.md",
     "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/3 FA - Relaying.md",
     "2 Ports/4505 y 4506 - SaltStack.md",
@@ -235,8 +237,6 @@
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "2 Ports/Aplicaciones/IIS - Web.config.md",
     "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
-    "2.1 Tools/Fuzzers.md",
-    "2 Ports/Aplicaciones/IIS - Webdav.md",
     "Silver Attack 1.png",
     "Pasted image 20260606144728.png",
     "Pasted image 20260606144649.png",
