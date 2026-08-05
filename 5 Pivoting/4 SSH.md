@@ -1,6 +1,6 @@
 # Pivoting
 
-Tags: #Pivoting #SSH 
+Tags: #Pivoting #SSH #SSHUTTLE  
 
 El **pivoting** (también conocido como “hopping”) es una técnica utilizada en pruebas de penetración y en el análisis de redes que implica el uso de una máquina comprometida para atacar otras máquinas o redes en el mismo entorno.
 
@@ -8,7 +8,21 @@ Por ejemplo, si un atacante ha comprometido una máquina en una red corporativa,
 
 El pivoting puede ser utilizado para superar restricciones de seguridad que de otra manera impedirían a un atacante acceder a determinadas máquinas o redes. Por ejemplo, si una red corporativa utiliza segmentación de red para separar diferentes partes de la red, el pivoting puede ser utilizado para superar esta restricción y permitir que un atacante salte de una red a otra.
 
-## Dinamic Port Forwarding 
+
+## SSHUTTLE (Mejor opción)
+
+```bash 
+❯ sshuttle -r admin@IP --ssh-cmd "ssh -i id_rsa -o StrictHostKeyChecking=no" IP.0/24 -v
+
+	# admin@IP = Usuario e IP de la máquina víctima 
+	# ssh-cmd = Comando para realizar la autenticación a la máquina víctima 
+	# StrictHostKeyChecking = Controlar la validación de claves de servidores remotos
+	# IP.0/24 = Subred a la que no se tiene comunicación desde Kali 
+
+❯ ps -aux   # Verificar la conexión en Kali
+```
+
+## SSH - Dinamic Port Forwarding 
 
 ```bash 
 ❯ ssh -D 1080 user@IP           # Conectarse por SSH creando un túnel dinámico en la máquina local. Por lo que cualquier conexión de red al puerto 1080 en tu computadora se redirigirá a través de la sesión SSH al servidor remoto
