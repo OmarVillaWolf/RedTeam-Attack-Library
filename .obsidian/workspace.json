@@ -22,35 +22,21 @@
             }
           },
           {
-            "id": "cd8ad7b57a2d40be",
+            "id": "1c9fccbb3a0aeef6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 Ports/Ports Windows - DC/SMB - Vulnes Comunes/Samba 4.6.3.md",
+                "file": "4 PrivEsc Lin & Win/2 Linux/2 Escalation/14 Docker Breakout.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Samba 4.6.3"
-            }
-          },
-          {
-            "id": "75f0b3cff64e3f60",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2 Ports/Ports Windows - DC/445 SMB - NXC  PsExec.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "445 SMB - NXC  PsExec"
+              "title": "14 Docker Breakout"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -222,11 +208,17 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "75f0b3cff64e3f60",
+  "active": "1c9fccbb3a0aeef6",
   "lastOpenFiles": [
-    "2 Ports/Ports Windows - DC/SMB - Vulnes Comunes/EternalBlue.md",
+    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
     "2 Ports/Ports Windows - DC/SMB - Vulnes Comunes/Samba 4.6.3.md",
+    "2.1 Tools/Metasploit/5 MSF Explotation.md",
+    "2 Ports/Ports Windows - DC/SSH - Vulnes Comunes/OpenSSH Menor 7.7.md",
+    "2 Ports/Ports Windows - DC/SSH - Vulnes Comunes/Restricted Bash.md",
+    "2 Ports/22 ssh.md",
+    "2 Ports/Ports Windows - DC/SSH - Vulnes Comunes",
     "2 Ports/Ports Windows - DC/445 SMB - NXC  PsExec.md",
+    "2 Ports/Ports Windows - DC/SMB - Vulnes Comunes/EternalBlue.md",
     "2 Ports/Ports Windows - DC/135 RPC.md",
     "5 Pivoting/4 SSH.md",
     "2.1 Tools/Nmap - Rustscan.md",
@@ -245,11 +237,6 @@
     "5 Pivoting/2 Ligolo.md",
     "5 Pivoting/1 Escaneo Interfaces.md",
     "1 Com Lin & Win/1 Hacking Commands/Filtros.md",
-    "1 Com Lin & Win/1 Hacking Commands/Regex.md",
-    "1 Com Lin & Win/1 Hacking Commands/Encoding.md",
-    "2 Ports/22 ssh.md",
-    "2 Ports/Aplicaciones/Jenkins.md",
-    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/3 FA - Relaying.md",
     "2 Ports/Aplicaciones/APIs",
     "Silver Attack 1.png",
     "Pasted image 20260606144728.png",
@@ -268,7 +255,6 @@
     "4 PrivEsc Lin & Win/2 Linux/1 Enumeración",
     "2 Ports/Aplicaciones",
     "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc",
-    "2 Ports/Puerto 80",
-    "7 Hacking Web/0 Web/1 Information Gathering"
+    "2 Ports/Puerto 80"
   ]
 }
