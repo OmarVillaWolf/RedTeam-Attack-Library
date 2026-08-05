@@ -73,6 +73,9 @@ Tags: #SMB #RPC #PsExec  #Windows #Enum #Credentials #LateralMovement
 ## 2. ENUMERACIÓN DE SHARES
 
 ```bash 
+❯ smbmap -H <IP>
+❯ smbmap -H <IP> -u guest     # Enumeración con el usuario invitado 
+
 ❯ smbmap -H <IP> -r <share>
 # Requiere READ → lista contenido del share (rápido, sin interactivo)
 
@@ -84,7 +87,9 @@ Tags: #SMB #RPC #PsExec  #Windows #Enum #Credentials #LateralMovement
 
 ❯ smbmap -H <IP> -r sysvol
 # SYSVOL (AD) → scripts/GPP → alto valor para credenciales
+```
 
+```bash 
 ❯ smbclient -N //<IP>/<share>   # Requiere null session → acceso interactivo al share
 	❯ recurse ON    # Activa el recorrido recursivo de directorios 
 	❯ prompt OFF    # Elimina la parte de preguntar al descargar 
