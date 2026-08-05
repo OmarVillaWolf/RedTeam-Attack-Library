@@ -25,14 +25,10 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 * [Hashes.com](https://hashes.com/en/decrypt/hash)
 * [Sprayhound](https://github.com/Hackndo/sprayhound)
 
-
----
-
-## 0. /etc/hosts — ANTES DE EMPEZAR
-
+## /etc/hosts — ANTES DE EMPEZAR
+```bash
 Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 
-```bash
 # Máquina standalone (solo Windows, sin dominio)
 ❯ echo "192.168.5.22 castelblack" >> /etc/hosts
 # Solo el hostname → suficiente para conectarse
@@ -44,7 +40,6 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 ```
 
 ### Cómo saber si es standalone o parte de dominio
-
 ```bash
 ❯ nmap -p 88 <IP>
 # Puerto 88 (Kerberos) abierto → es un DC o parte de dominio
