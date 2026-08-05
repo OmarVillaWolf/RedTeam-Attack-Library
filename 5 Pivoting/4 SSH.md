@@ -11,13 +11,14 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 
 ## SSHUTTLE (Mejor opción)
 
+### En Kali - Alcanzar Punto B (Máquina Windows) desde el Punto A (Máquina Linux - Puente)
 ```bash 
 ❯ sshuttle -r admin@IP --ssh-cmd "ssh -i id_rsa -o StrictHostKeyChecking=no" IP.0/24 -v
 
-	# admin@IP = Usuario e IP de la máquina víctima 
+	# admin@IP = Usuario e IP de la máquina víctima (Punto A)
 	# ssh-cmd = Comando para realizar la autenticación a la máquina víctima 
 	# StrictHostKeyChecking = Controlar la validación de claves de servidores remotos
-	# IP.0/24 = Subred a la que no se tiene comunicación desde Kali 
+	# IP.0/24 = Subred a la que no se tiene comunicación desde Kali (Punto B)
 
 ❯ ps -aux   # Verificar la conexión en Kali
 ```
