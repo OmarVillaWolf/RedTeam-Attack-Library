@@ -118,13 +118,14 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 ```
 
 ```bash
+# SI SE TIENE PERMISOS DE LECTURA
 ❯ smbclient -N //<IP>/<share>   # Requiere null session → acceso interactivo al share
 	❯ recurse ON    # Activa el recorrido recursivo de directorios
 	❯ prompt OFF    # Elimina la parte de preguntar al descargar
 	❯ mget *        # Descargar todo
 ❯ tree <share>      # Listar en forma de árbol toda la carpeta descargada
-❯ find active.htb -name "Groups.xml"   # Buscar el archivo y devuelve la ruta donde se encuentra
-❯ cp active.htb/Policies/{31B2F340-016D-11D2-945F-00C04FB984F9}/MACHINE/Preferences/Groups/Groups.xml .
+❯ find domain.local -name "Groups.xml"   # Buscar el archivo y devuelve la ruta donde se encuentra
+❯ cp domain.local/Policies/{31B2F340-016D-11D2-945F-00C04FB984F9}/MACHINE/Preferences/Groups/Groups.xml .
 # Copiar el archivo al área actual de trabajo
 
 ❯ smbclient //<IP>/<share> -U 'guest'
@@ -144,7 +145,12 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 	❯ mget *          # Descargar todos los archivos sin confirmación
 	❯ more <file>     # Leer archivos directamente
 
-Notas:
+
+# SI SE TIENE PERMISOS DE ESCRITURA
+❯ smbclient -N //<IP>/<share> -c 'put file.txt file.txt; ls'   # Subir un archivo al dir y guardarlo como 'file.txt'
+
+
+NOTA:
 	1. D - Directory
 	2. DH - Hidden Directory
 	3. H - Hidden File
