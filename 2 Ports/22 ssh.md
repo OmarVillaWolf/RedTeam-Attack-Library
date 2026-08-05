@@ -23,8 +23,6 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 * ssh-audit  
 * proxychains  
   
----  
-  
 ## 1. RECONOCIMIENTO / ENUMERACIÓN INICIAL  
   
 ```bash  
@@ -48,8 +46,6 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 # - malas configuraciones
 ```
 
----
-
 ## 2. CONEXIÓN BÁSICA
 
 ```bash 
@@ -64,8 +60,6 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 # Password en claro → bajo OPSEC
 ```
 
-
----
 
 ## 3. AUTENTICACIÓN CON LLAVES
 
@@ -82,8 +76,6 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 # Login sin password si authorized_keys está configurado
 ```
 
-
----
 
 ## 4. GESTIÓN DE LLAVES (IMPORTANTE)
 
@@ -106,41 +98,7 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 - Si puedes escribir en `authorized_keys` → acceso persistente
 - Si encuentras `id_rsa` → posible acceso inmediato
 
----
-
-## 5. EJECUCIÓN REMOTA DE COMANDOS
-
-```bash 
-❯ ssh user@<IP> 'whoami'  
-# Ejecutar comando remoto sin shell interactiva
-
-❯ ssh user@<IP> bash  
-# Bypass de restricted shell (rbash mal configurada)
-```
-
-### Condiciones
-- Usuario válido
-- Acceso SSH permitido
-
----
-
-## 6. ENUMERACIÓN DE USUARIOS
-
-```bash 
-❯ searchsploit ssh user enumeration  
-# Scripts para detectar usuarios válidos
-
-❯ python2 45939.py <IP> <USER>  
-# Enum usuarios (OpenSSH < 7.7)
-```
-
-### Requisitos
-- Versión vulnerable
-- Script funcional (paramiko)
-
----
-
-## 7. ENUMERACIÓN POST-ACCESO
+## 5. ENUMERACIÓN POST-ACCESO
 
 ```bash 
 ❯ whoami  
@@ -156,34 +114,7 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 # Buscar credenciales
 ```
 
-
----
-
-## 8. PIVOTING / TUNNELING (CLAVE)
-
-```bash 
-❯ sshpass -p 'P@ssword123' ssh user@IP -L 8443:127.0.0.1:8443
-# -L [PUERTO_EN_TU_KALI] : [IP_VISTA_DESDE_LA_MÁQUINA_REMOTA] : [PUERTO_REMOTO]
-
-❯ ssh -L 8080:127.0.0.1:80 user@<IP>  
-# Local port forwarding  
-# Acceso a servicios internos desde tu máquina
-
-❯ ssh -R 4444:127.0.0.1:4444 user@<IP>  
-# Remote port forwarding  
-# Exponer servicio hacia la víctima
-
-❯ ssh -D 1080 user@<IP>  
-# SOCKS proxy (pivoting dinámico)
-
-❯ proxychains ssh user@<IP>  
-# Encadenar conexiones
-```
-
-
----
-
-## 9. MOVIMIENTO LATERAL
+## 6. MOVIMIENTO LATERAL
 
 ```bash 
 ❯ ssh user@<IP2>  
@@ -194,9 +125,7 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 ```
 
 
----
-
-## 10. PERSISTENCIA
+## 7. PERSISTENCIA
 
 ```bash 
 ❯ echo "ssh-rsa AAAAB3..." >> ~/.ssh/authorized_keys  
@@ -206,9 +135,7 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 ### Requisitos
 - Permiso de escritura en ~/.ssh/
 
----
-
-## 11. CASOS ESPECIALES
+## 8. CASOS ESPECIALES
 
 ```bash 
 ❯ ssh -o StrictHostKeyChecking=no user@<IP>  
@@ -221,8 +148,6 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 # Desactivar uso de llaves
 ```
 
-
----
 
 ## CONDICIONES CLAVE
 
