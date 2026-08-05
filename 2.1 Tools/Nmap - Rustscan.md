@@ -248,6 +248,9 @@ Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 ```bash
 ❯ nmap -Pn -script=smb-vuln\* -p445 <IP>     # -- MEJOR -- Detecta si tiene alguna vulnerabilidad y muestra su CVE 
 
+❯ nmap -Pn -script=smb-protocols,smb2-security-mode,smb-os-discovery,smb-enum-shares -p445 <IP> -v 
+# Escaneo más profundo 
+
 ❯ nmap -p445 -sCV <IP>
 # Enumeración exhaustiva de SMB
 
