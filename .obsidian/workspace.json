@@ -22,21 +22,16 @@
             }
           },
           {
-            "id": "1c9fccbb3a0aeef6",
+            "id": "c8097fbe6d6d7997",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4 PrivEsc Lin & Win/2 Linux/2 Escalation/14 Docker Breakout.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "14 Docker Breakout"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -208,9 +203,10 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "1c9fccbb3a0aeef6",
+  "active": "dc3d956222bf8eb1",
   "lastOpenFiles": [
     "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/14 Docker Breakout.md",
     "2 Ports/Ports Windows - DC/SMB - Vulnes Comunes/Samba 4.6.3.md",
     "2.1 Tools/Metasploit/5 MSF Explotation.md",
     "2 Ports/Ports Windows - DC/SSH - Vulnes Comunes/OpenSSH Menor 7.7.md",
@@ -236,7 +232,6 @@
     "5 Pivoting/3 Chisel.md",
     "5 Pivoting/2 Ligolo.md",
     "5 Pivoting/1 Escaneo Interfaces.md",
-    "1 Com Lin & Win/1 Hacking Commands/Filtros.md",
     "2 Ports/Aplicaciones/APIs",
     "Silver Attack 1.png",
     "Pasted image 20260606144728.png",
