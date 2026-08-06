@@ -8,13 +8,13 @@ No obstante, si estos servicios **no están configurados adecuadamente** y se 
 
 Un ejemplo concreto sería un servicio de red mal configurado con permisos elevados. Si un atacante logra identificarlo y hallar una forma de aprovecharlo, podría utilizarlo para escalar privilegios y obtener acceso de administrador.
 
-En esta clase, analizaremos un caso ilustrativo de cómo un atacante podría, en primer lugar, detectar un servicio activo en el sistema y, posteriormente, explotarlo para incrementar sus privilegios de usuario.
+Se analizará un caso ilustrativo de cómo un atacante podría, en primer lugar, detectar un servicio activo en el sistema y, posteriormente, explotarlo para incrementar sus privilegios de usuario.
 
 
 ## Servicios Internos 
 
 ```bash
-❯ netstat -nat                          # Podemos ver los puertos abiertos internos 
+❯ netstat -nat   # Podemos ver los puertos abiertos internos 
 
 	# 27017 = Mongo el cual podemos usar para buscar usuario y passwd
 	# 8000 = Posible web 
