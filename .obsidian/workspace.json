@@ -22,16 +22,35 @@
             }
           },
           {
+            "id": "2ea14771086cf9a1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2.1 Tools/Fuzzers.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Fuzzers"
+            }
+          },
+          {
             "id": "c8097fbe6d6d7997",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/2 Linux/2 Escalation/5 Path Hijacking.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "5 Path Hijacking"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -203,10 +222,23 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "dc3d956222bf8eb1",
+  "active": "c8097fbe6d6d7997",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/12 Secuestro de Biblioteca.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/3 SUID.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/12 Binarios Especificos.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/8 Capabilities.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/2 Sudoers.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/10 Grupos especiales.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/11 Servicios Internos.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/7 Permisos incorrectos.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/9 Kernel.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/13 Docker Breakout.md",
+    "2.1 Tools/Password Cracking.md",
+    "2 Ports/Aplicaciones/CMS - Grav.md",
+    "2.1 Tools/Fuzzers.md",
+    "2.1 Tools/Nmap - Rustscan.md",
     "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/14 Docker Breakout.md",
     "2 Ports/Ports Windows - DC/SMB - Vulnes Comunes/Samba 4.6.3.md",
     "2.1 Tools/Metasploit/5 MSF Explotation.md",
     "2 Ports/Ports Windows - DC/SSH - Vulnes Comunes/OpenSSH Menor 7.7.md",
@@ -217,21 +249,8 @@
     "2 Ports/Ports Windows - DC/SMB - Vulnes Comunes/EternalBlue.md",
     "2 Ports/Ports Windows - DC/135 RPC.md",
     "5 Pivoting/4 SSH.md",
-    "2.1 Tools/Nmap - Rustscan.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 Token-Priv, Groups.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/3 Netexec.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
-    "2 Ports/Ports Windows - DC/3389 3333 RDP.md",
-    "2 Ports/Ports Windows - DC/389 636 LDAP.md",
-    "2 Ports/Ports Windows - DC/88 Kerberos.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/2 NetExec.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/2 Credenciales Descripción/1 Credenciales Descripción.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/2 Credenciales Descripción/2 NetExec.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
-    "2 Ports/Ports Windows - DC/53 DNS.md",
-    "5 Pivoting/3 Chisel.md",
-    "5 Pivoting/2 Ligolo.md",
-    "5 Pivoting/1 Escaneo Interfaces.md",
     "2 Ports/Aplicaciones/APIs",
     "Silver Attack 1.png",
     "Pasted image 20260606144728.png",
