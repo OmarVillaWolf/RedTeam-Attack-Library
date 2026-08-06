@@ -67,7 +67,7 @@ Una vez modificado migramos al usuario root
 * Caso 2:
 Cuando tenemos un archivo en nuestro dir que se esta ejecutando cada cierto tiempo y quien lo ejecuta es root. Tareas CRON 
 ```bash 
--rwxr-xr-x 1 root root 8756 Feb 7 2022 example.sh                   # Miramos sus privilegios y nos damos cuenta que no lo podemos modificar 
+-rwxr-xr-x 1 root root 8756 Feb 7 2022 example.sh   # Mirar sus privilegios y ver que no lo podemos modificar 
 ```
 
 Pero como este archivo se encuentra en nuestro dir, lo que haríamos seria eliminarlo. 
