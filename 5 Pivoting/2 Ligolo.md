@@ -52,7 +52,7 @@ del proceso:
 ![[ligolo_punto_a_punto_b.png]]
 
 
-### Conectar un agente (Del Punto B al Punto A)
+### Conectar Kali al Punto B por medio del Punto A  con un agente
 
 ```bash 
 # Descargar agente y proxy 
@@ -105,11 +105,10 @@ PASO 2:
 ❯ ip route list                      # Mirar la tabla de enrutamiento 
 ```
 
-### Conectar más agentes (Del Punto C  al Punto A)
+### Conectar Kali al Punto Final por medio del Punto B con un agente
 
 ```bash 
-# Esto funciona cuando ya se tiene un primer túnel y se quiere crear un segundo túnel 
-
+# Esto funciona cuando ya se tiene un primer túnel (Punto A) y se quiere crear un segundo túnel 
 
 PASO 1:
 ❯ ip tuntap add user $USER mode tun ligolo2       # Crear una interface de red llamada 'ligolo2' en modo tunel en Kali
