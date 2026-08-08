@@ -114,6 +114,13 @@ EXTRA:
    # Recibir data de la víctima
 ```
 
+```bash 
+EXTRA:
+# Transferencia directa usando SSH
+❯ scp -i id_rsa_editorial /home/Documents/chisel admin@IP:/tmp/chisel 
+	# IP = Es la IP de la máquina víctima 
+```
+
 ### Víctima Linux — Descargar desde Kali
 
 ```bash
