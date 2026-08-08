@@ -11,10 +11,46 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 ## Ejemplo de red 
 
 [![Ligolo.png | 800](https://i.postimg.cc/5NdP2MyL/Ligolo.png)](https://postimg.cc/8s4dZ9hz)
+
+## IMPORTANTE
+
+```bash 
+	TIP 1:
+# Deshabilitar Windows Firewall (requiere High integrity / SYSTEM)
+❯ netsh advfirewall set allprofiles state off
+# Deshabilita los 3 perfiles: Domain, Private y Public
+# Necesario cuando el agente de Ligolo no logra conectar al proxy de Kali
+# por reglas de firewall que bloquean la conexión saliente
+
+# Alternativa — solo abrir el puerto específico sin deshabilitar todo (más sigiloso)
+❯ netsh advfirewall firewall add rule name="Ligolo" dir=out action=allow protocol=TCP localport=<PORT>
+
+# Verificar estado actual antes de tocar nada
+❯ netsh advfirewall show allprofiles state
+
+# Restaurar al terminar (limpieza post-explotación)
+❯ netsh advfirewall set allprofiles state on
+
+
+	TIP 2:
+Si el agente de Ligolo en Windows es bloqueado por UAC al ejecutarlo desde
+una shell remota (WinRM, reverse shell, etc.), verificar el integrity level
+del proceso:
+
+    whoami /groups | findstr "Mandatory Label"
+
+- High Mandatory Level  → ejecutar el agente directo, no hay problema
+- Medium Mandatory Level → el token no está elevado, opciones:
+    1. Bypass de UAC: Start-Process powershell.exe -Verb RunAs
+    2. Ejecutar con runas y creds del admin
+    3. Conectar por RDP (sesión interactiva) y ejecutarlo desde ahí
+       → RDP garantiza el contexto de escritorio que UAC necesita para
+         mostrar el prompt y permitir la elevación manual
+```
+
 ## Ligolo (agente y proxy) 
 
 * [Ligolo-ng](https://github.com/nicocha30/ligolo-ng/releases)
-
 ### Conectar un agente (Del Punto B al Punto A)
 
 ```bash 
