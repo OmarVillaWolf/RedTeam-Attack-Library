@@ -240,6 +240,7 @@ Notas:
 
 ```bash 
 ❯ net user <user>     # Mirar los grupos del usuario 
+	# <user> = Nombre del usuario actual 
 ```
 
 ```powershell
