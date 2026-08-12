@@ -19,7 +19,8 @@ Tags: #AD
 ```bash
 SAM ('Security Account Manager') se corresponde con una base de datos en Windows que almacena información sobre usuarios, grupos, contraseñas... del sistema 
 	- La base de datos SAM se comprueba por el LSA (Local Security Authority) para 'autenticar el acceso de los usuarios al sistema local'
-	- Las contraseñas de los usuarios se almacenan hasheadas en el Registro de Windows (HKLM/SAM). El fichero se encuentra en %SystemRoot%/system32/config/SAM
+	- Las contraseñas de los usuarios se almacenan hasheadas en el Registro de Windows (HKLM/SAM). El fichero se encuentra en:
+		   %SystemRoot%/system32/config/SAM
 	- La SAM 'se puede enumerar de forma local y remotamente'
 
 
@@ -40,8 +41,6 @@ Nota:
 
 5 Database files: La información del directorio se almacena en un único fichero de base de datos. Adicionalmente utiliza ficheros de log para transmisiones que no terminan adecuadamente 
 ```
-
-![ | 700](Info.png)
 
 ```bash 
 LDAP (Lightweight Directory Access Protocol) es un protocolo de aplicación que permite interactuar con servicios de directorio (como Active Directory) para almacenar, leer o modificar información
