@@ -101,8 +101,12 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 ## 2. Enumeración de shares
 
 ```bash
+❯ smbmap --help   # Panel de ayuda 
+
 ❯ smbmap -H <IP>
 ❯ smbmap -H <IP> -u guest     # Enumeración con el usuario invitado
+
+❯ smbmap -H <IP> -r    # Mirar los archivos existentes de manera recursiva 
 
 ❯ smbmap -H <IP> -r <share>
 # Requiere READ → lista contenido del share (rápido, sin interactivo)
