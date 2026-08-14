@@ -573,21 +573,6 @@ NOTA: Los usuarios por defecto de MSSQL que siempre vale probar:
 # Enumeración LDAP
 ```
 
-## 10. Casos especiales
-
-```bash
-❯ smbpasswd -r <IP> -U 'user'
-# Cambio de contraseña obligatorio
-```
-
-```bash
-❯ net rpc password "TargetUser" "NewPass123!" -U "domain/user%pass" -S <IP>
-# Cambiar contraseña
-# Requiere:
-# - GenericAll
-# - ForceChangePassword
-```
-
 ## CONDICIONES CLAVE
 
 - Null session → enum sin creds
