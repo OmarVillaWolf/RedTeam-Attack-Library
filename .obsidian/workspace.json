@@ -22,7 +22,7 @@
             }
           },
           {
-            "id": "0a3775c03ac22ea0",
+            "id": "b34d42ff3f7c9c7d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -34,9 +34,23 @@
               "icon": "lucide-file",
               "title": "4 ADCS - Service Misconfigurations"
             }
+          },
+          {
+            "id": "20c8d79b3fb9854b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/2 Linux/2 Escalation/3 Grupos especiales.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "3 Grupos especiales"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -208,36 +222,36 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "0a3775c03ac22ea0",
+  "active": "20c8d79b3fb9854b",
   "lastOpenFiles": [
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 PowerUp.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/6 WinPEAS.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/6.1 Python Library Hijacking.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/6 Path Hijacking.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/5 Tareas CRON.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/4 SUID.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/3 Grupos especiales.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Escalation/2 Sudoers.md",
+    "1 Com Lin & Win/1 Hacking Commands/Tratamiento TTY.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ADCS - Service Misconfigurations.md",
+    "2 Ports/Aplicaciones/Grafana.md",
+    "2.1 Tools/SQLite3.md",
+    "2 Ports/Aplicaciones/CMS - Grav.md",
+    "2 Ports/Aplicaciones/ColdFusion.md",
+    "2 Ports/Aplicaciones/FuguHub.md",
+    "2 Ports/Aplicaciones/ZoneMinder.md",
+    "2 Ports/Aplicaciones/WSDL.md",
+    "2 Ports/Aplicaciones/Tomcat.md",
+    "2 Ports/Aplicaciones/SmarterMail.md",
+    "2 Ports/Aplicaciones/NVMS-1000.md",
+    "2 Ports/Aplicaciones/Jenkins.md",
+    "2 Ports/Aplicaciones/IIS - Webdav.md",
+    "2 Ports/Aplicaciones/IIS - Web.config.md",
+    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/6 WinPEAS.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 PowerUp.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/2 Group-Based Escalation.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/1 Token Privileges.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/0 Identifying PrivEsc.md",
-    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/6 AD CS - ESC.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/5 GetChangesAll, GetChanges - Dominio.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/6 WriteProperty - msDS-KeyCredentialLink.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/2 GenericWrite - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/4 ForceChangePassword - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/3 GenericAll - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/1 WriteOwner - Group.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL & Permissions.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/Untitled",
-    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/2 GenericWrite - User.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/6 WriteProperty - msDS-KeyCredentialLink.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/5 GetChangesAll, GetChanges - Dominio.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/4 ForceChangePassword - User.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/3 GenericAll - User.md",
-    "8 Active Directory/2 AD - CRTP/5 Domain Persistence/15 Shadow Credentials Attack.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/1 WriteOwner - Group.md",
-    "2.1 Tools/Password Cracking.md",
-    "2 Ports/Ports Windows - DC/445 SMB - NXC  PsExec.md",
-    "2 Ports/Ports Windows - DC/389 636 LDAP.md",
-    "2 Ports/Ports Windows - DC/464 kpasswd.md",
     "ligolo_punto_a_punto_b 2.png",
     "ligolo_punto_a_punto_b 1.png",
     "ligolo_punto_a_punto_b.png",
