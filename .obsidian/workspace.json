@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ESC - Service Misconfigurations.md",
+                "file": "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ADCS - Service Misconfigurations.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "4 ESC - Service Misconfigurations"
+              "title": "4 ADCS - Service Misconfigurations"
             }
           }
         ],
@@ -212,18 +212,18 @@
   "lastOpenFiles": [
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 PowerUp.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/6 WinPEAS.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ESC - Service Misconfigurations.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ADCS - Service Misconfigurations.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/2 Group-Based Escalation.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/1 Token Privileges.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/0 Identifying PrivEsc.md",
     "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/6 AD CS - ESC.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/5 GetChangesAll, GetChanges - Dominio.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/6 WriteProperty - msDS-KeyCredentialLink.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/2 GenericWrite - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/4 ForceChangePassword - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/3 GenericAll - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/1 WriteOwner - Group.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/5 GetChangesAll, GetChanges - Dominio.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/6 WriteProperty - msDS-KeyCredentialLink.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/2 GenericWrite - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/4 ForceChangePassword - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/3 GenericAll - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali/1 WriteOwner - Group.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL - Kali",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL & Permissions.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/Untitled",
     "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
