@@ -22,17 +22,17 @@
             }
           },
           {
-            "id": "c0786856998e3d0c",
+            "id": "0a3775c03ac22ea0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/2 GenericWrite - User.md",
+                "file": "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ESC - Service Misconfigurations.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2 GenericWrite - User"
+              "title": "4 ESC - Service Misconfigurations"
             }
           }
         ],
@@ -208,34 +208,36 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "c0786856998e3d0c",
+  "active": "0a3775c03ac22ea0",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 PowerUp.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/6 WinPEAS.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ESC - Service Misconfigurations.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/2 Group-Based Escalation.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/1 Token Privileges.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/0 Identifying PrivEsc.md",
+    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/6 AD CS - ESC.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/5 GetChangesAll, GetChanges - Dominio.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/6 WriteProperty - msDS-KeyCredentialLink.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/2 GenericWrite - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/4 ForceChangePassword - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/3 GenericAll - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali/1 WriteOwner - Group.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 ACL - Kali",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ACL & Permissions.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/Untitled",
+    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/2 GenericWrite - User.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/6 WriteProperty - msDS-KeyCredentialLink.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/5 GetChangesAll, GetChanges - Dominio.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/4 ForceChangePassword - User.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/3 GenericAll - User.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/2 GenericWrite - User.md",
     "8 Active Directory/2 AD - CRTP/5 Domain Persistence/15 Shadow Credentials Attack.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/1 WriteOwner - Group.md",
     "2.1 Tools/Password Cracking.md",
     "2 Ports/Ports Windows - DC/445 SMB - NXC  PsExec.md",
     "2 Ports/Ports Windows - DC/389 636 LDAP.md",
     "2 Ports/Ports Windows - DC/464 kpasswd.md",
-    "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
-    "2 Ports/20 21 ftp tftp.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/0 LinWinPwn - Tool/1 LinWinPwn.md",
-    "2 Ports/Ports Windows - DC/88 Kerberos.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Windows/1 ACL y ACE.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Windows/2 Powerview.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Windows/3 WriteDacl Computador.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Windows/4 GenericAll Grupo.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Windows/5 GenericAll User.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Windows/6 GenericWrite Computador.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "2 Ports/Ports Windows - DC/135 RPC.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc/RemoteMouse (CVE-2021-35448).md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc/FileZilla.md",
     "ligolo_punto_a_punto_b 2.png",
     "ligolo_punto_a_punto_b 1.png",
     "ligolo_punto_a_punto_b.png",
@@ -253,8 +255,6 @@
     "2 Ports/Ports Windows - DC/SMB - Vulnes Comunes",
     "8 Active Directory/1 AD - Spartan/2 Attacks/14 Zerologon",
     "4 PrivEsc Lin & Win/2 Linux/1 Enumeración",
-    "2 Ports/Aplicaciones",
-    "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc",
-    "2 Ports/Puerto 80"
+    "2 Ports/Aplicaciones"
   ]
 }
