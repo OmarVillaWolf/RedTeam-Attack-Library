@@ -86,6 +86,8 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 ❯ smbmap -H <IP> -u 'guest' -p ''
 # Prueba usuario guest → a veces tiene más permisos que null
 
+❯ smbmap -H <IP> -r    # Mirar los archivos existentes de manera recursiva 
+
 ❯ smbclient -L <IP> -N
 # Requiere null session → lista shares anónimos (si IPC$ permite acceso)
 
@@ -98,21 +100,18 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 - Si **null session funciona → PRIORIDAD ALTA**
 - Si ves shares → entra inmediatamente
 
-## 2. Enumeración de shares
+## 2. Enumeración de shares 
 
 ```bash
 ❯ smbmap --help   # Panel de ayuda 
 
-❯ smbmap -H <IP>
-❯ smbmap -H <IP> -u guest     # Enumeración con el usuario invitado
+❯ smbmap -H <IP> -u user -p passwd     # Enumeración con el usuario invitado
 
-❯ smbmap -H <IP> -r    # Mirar los archivos existentes de manera recursiva 
+❯ smbmap -H <IP> -u user -p passwd -r  # Mirar los archivos existentes de manera recursiva con credenciales 
 
 ❯ smbmap -H <IP> -r <share>
+❯ smbmap -H <IP> -u user -p passwd -r <share>
 # Requiere READ → lista contenido del share (rápido, sin interactivo)
-
-❯ smbmap -H <IP> -R <share>
-# Requiere READ → enum recursiva (más ruido pero más cobertura)
 
 ❯ smbmap -H <IP> -r 'dir uno'
 # Requiere READ → enum de un directorio específico
