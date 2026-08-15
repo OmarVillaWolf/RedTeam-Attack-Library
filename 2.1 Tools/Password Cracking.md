@@ -93,7 +93,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # Con reglas → más variantes
 
 # john
-❯ john --format=Raw-MD5 -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=Raw-MD5 hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ❯ john --show --format=Raw-MD5 hash.txt
 # --show → ver resultados ya crackeados
 ```
@@ -104,7 +104,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 100 hash.txt /usr/share/wordlists/rockyou.txt
 
 # john
-❯ john --format=Raw-SHA1 -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=Raw-SHA1 hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ```
 
 ### SHA256
@@ -113,7 +113,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 1400 hash.txt /usr/share/wordlists/rockyou.txt
 
 # john
-❯ john --format=Raw-SHA256 -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=Raw-SHA256 hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ```
 
 ### SHA512
@@ -122,7 +122,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 1700 hash.txt /usr/share/wordlists/rockyou.txt
 
 # john
-❯ john --format=Raw-SHA512 -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=Raw-SHA512 hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ```
 
 ### bcrypt
@@ -132,7 +132,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # -O → optimización | bcrypt es muy lento → ser paciente
 
 # john
-❯ john --format=bcrypt -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=bcrypt hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ```
 
 ### phpass (WordPress / Joomla MD5 — empieza con $P$ o $H$)
@@ -142,7 +142,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # -m 400 → phpass WordPress/Joomla
 
 # john
-❯ john --format=phpass -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=phpass hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ```
 
 ---
@@ -155,10 +155,10 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 1000 hash.txt /usr/share/wordlists/rockyou.txt
 # -m 1000 → NTLM (hash NT puro)
 
-❯ hashcat -m 1000 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best66.rule
+❯ hashcat -m 1000 hash.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule
 
 # john
-❯ john --format=NT -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=NT hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ❯ john --show hash.txt
 ```
 
@@ -168,10 +168,10 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --force -O
 # -m 5600 → NetNTLMv2 | --force → ignorar warnings | -O → optimizar
 
-❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best66.rule --force
+❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule --force
 
 # john
-❯ john --format=netntlmv2 -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=netntlmv2 hash.txt -w=/usr/share/wordlists/rockyou.txt 
 
 # NTLMv1 (menos común)
 ❯ hashcat -m 5500 hash.txt /usr/share/wordlists/rockyou.txt --force
@@ -186,7 +186,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 18200 hash_brandon /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule -r /usr/share/hashcat/rules/rockyou-30000.rule
 
 # john
-❯ john --format=krb5asrep -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=krb5asrep hash.txt -w=/usr/share/wordlists/rockyou.txt 
 
 # Ver resultados
 ❯ hashcat -m 18200 hash.txt --show
@@ -205,7 +205,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt   --rules /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule --force
 
 # john
-❯ john --format=krb5tgs -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=krb5tgs hash.txt -w=/usr/share/wordlists/rockyou.txt 
 
 # Ver resultados
 ❯ hashcat -m 13100 hash.txt --show
@@ -226,7 +226,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # -m 131 → MSSQL (2005)
 
 # john
-❯ john --format=mssql12 -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=mssql12 hash.txt -w=/usr/share/wordlists/rockyou.txt 
 
 # Ver resultado
 ❯ hashcat -m 1731 hash.txt --show
@@ -239,7 +239,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # -m 300 → MySQL4.1/MySQL5+
 
 # john
-❯ john --format=mysql-sha1 -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john --format=mysql-sha1 hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ```
 
 ---
@@ -253,7 +253,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # Genera el hash del ZIP para crackearlo
 
 # john
-❯ john -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ❯ john --show hash.txt
 
 # fcrackzip (alternativa)
@@ -276,7 +276,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # Convierte la clave privada cifrada en hash crackeable
 
 # john
-❯ john -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ❯ john --show hash.txt
 
 # hashcat
@@ -294,7 +294,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # Con archivo clave → -k especifica el archivo clave
 
 # john
-❯ john -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ❯ john --show hash.txt
 
 # hashcat
@@ -303,13 +303,26 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ```
 
 ### Password Safe (.psafe3)
+* [PasswordSafe](https://github.com/pwsafe/pwsafe/releases?q=non-windows&expanded=true)
 ```bash
 # Extraer hash
 ❯ pwsafe2john file.psafe3 > hash.txt
 
 # john
-❯ john -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ❯ john --show hash.txt
+
+
+# Descargar el .deb (ejemplo para Debian/Kali) 
+❯ dpkg -i passwordsafe-debian12-1.*.deb
+❯ pwsafe   # Abrir la base de datos 
+	❯ apt install libykpers-1-1   # Si falta alguna librería 
+
+
+NOTA: 
+	- Se necesita instalar el gestor de contraseñas para mirar el contenido de la base de datos
+	- Ingresar el archivo 'file.psafe3' y la password crackeada con John 
+	- Dar click derecho al usuario y seleccionar 'Copy Password to Clipboard'
 ```
 
 ### Archivos PFX / PKCS12 (certificados)
@@ -337,7 +350,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ rar2john file.rar > hash.txt
 
 # john
-❯ john -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john hash.txt -w=/usr/share/wordlists/rockyou.txt 
 
 # hashcat
 ❯ hashcat -m 13000 hash.txt /usr/share/wordlists/rockyou.txt
@@ -352,7 +365,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ pdf2john file.pdf > hash.txt
 
 # john
-❯ john -w=/usr/share/wordlists/rockyou.txt hash.txt
+❯ john hash.txt -w=/usr/share/wordlists/rockyou.txt 
 
 # hashcat
 ❯ hashcat -m 10500 hash.txt /usr/share/wordlists/rockyou.txt
