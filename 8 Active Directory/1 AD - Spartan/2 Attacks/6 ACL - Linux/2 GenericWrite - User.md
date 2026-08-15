@@ -43,7 +43,7 @@ Paso 3:
 	# kerberoasting.tgs = Contiene el TGT del comando anterior 
 ```
 
-## GenericWrite sobre Usuario - Forma 2 (Shadow Attack)
+## GenericWrite sobre Usuario - Forma 2 (Shadow Credentials Attack)
 
 * [PyWhisker](https://github.com/ShutdownRepo/pywhisker/tree/main/pywhisker)
 * [Shadow Credentials attack](https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab)
