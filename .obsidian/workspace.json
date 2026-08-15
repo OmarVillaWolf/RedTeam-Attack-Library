@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/3 GenericAll - User.md",
+                "file": "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/2 GenericWrite - User.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3 GenericAll - User"
+              "title": "2 GenericWrite - User"
             }
           }
         ],
@@ -210,12 +210,13 @@
   },
   "active": "c0786856998e3d0c",
   "lastOpenFiles": [
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/2 GenericWrite - User.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/3 GenericAll - User.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/4 ForceChangePassword - User.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/6 WriteProperty - msDS-KeyCredentialLink.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/5 GetChangesAll, GetChanges - Dominio.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/1 WriteOwner - Group.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/4 ForceChangePassword - User.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/3 GenericAll - User.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/2 GenericWrite - User.md",
     "8 Active Directory/2 AD - CRTP/5 Domain Persistence/15 Shadow Credentials Attack.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACL - Linux/1 WriteOwner - Group.md",
     "2.1 Tools/Password Cracking.md",
     "2 Ports/Ports Windows - DC/445 SMB - NXC  PsExec.md",
     "2 Ports/Ports Windows - DC/389 636 LDAP.md",
@@ -235,7 +236,6 @@
     "2 Ports/Ports Windows - DC/135 RPC.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc/RemoteMouse (CVE-2021-35448).md",
     "4 PrivEsc Lin & Win/1 Windows/3 Appication PrivEsc/FileZilla.md",
-    "2 Ports/1978 - RemoteMouse.md",
     "ligolo_punto_a_punto_b 2.png",
     "ligolo_punto_a_punto_b 1.png",
     "ligolo_punto_a_punto_b.png",
