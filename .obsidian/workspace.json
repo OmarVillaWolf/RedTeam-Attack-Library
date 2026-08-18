@@ -36,17 +36,13 @@
             }
           },
           {
-            "id": "85d59006a28029ab",
+            "id": "0e9e510c627743df",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2 Ports/2 Aplicaciones Web/Gerapy.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Gerapy"
+              "title": "New tab"
             }
           }
         ],
@@ -222,17 +218,17 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "85d59006a28029ab",
+  "active": "0e9e510c627743df",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ADCS - Service Misconfigurations.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "2 Ports/2 Aplicaciones Web/Gerapy.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/5 Capabilities.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/9 Permisos incorrectos.md",
     "2.1 Tools/SQLite3.md",
-    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/4 SUID.md",
-    "2 Ports/2 Aplicaciones Web/Gerapy.md",
     "1 Com Lin & Win/1 Hacking Commands/Tratamiento TTY.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/3 Grupos especiales.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ADCS - Service Misconfigurations.md",
     "2 Ports/2 Aplicaciones Web/FuguHub.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/2 Sudoers.md",
     "2 Ports/2 Aplicaciones Web/Exhibitor Zookeeper.md",
