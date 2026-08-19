@@ -52,12 +52,18 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 ❯ hashcat -m 5600 hash_user.txt /usr/share/wordlists/rockyou.txt    # Crackear el NTLMv2
 ```
 
+```bash 
+# IMPORTANTE 
+❯ nxc smb <IP>   # No requiere creds → muestra dominio, OS y SMB signing (clave para relay)
+
+❯ nxc smb <IP> --generate-hosts-file hosts     # Crear un archivo 'hosts' con las combinaciones 
+❯ cat /etc/hosts hosts | sponge /etc/hosts     # Colocar el resultado en el /etc/hosts 
+```
+
 ```bash
+# ENUMERACIÓN 
 ❯ nxc smb <IP/rango>
 # Mapear toda la red
-
-❯ nxc smb <IP>
-# No requiere creds → muestra dominio, OS y SMB signing (clave para relay)
 
 ❯ nxc smb <IP/rango> --gen-relay-list relay.txt
 # Requiere SMB signing OFF → genera lista de hosts vulnerables a NTLM relay
@@ -67,6 +73,9 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 ❯ nxc smb <IP> -u 'guest' -p '' --shares
 ❯ nxc smb <IP> -u 'null' -p '' --shares
 # Enumerar con null session al SMBv1/SMBv2
+
+❯ nxc smb <IP> -u 'guest' -p '' -M spider_plus
+# enumeración más profunda de los shares SMB accesibles y recorre sus directorios/archivos
 
 ❯ nxc smb <IP> -u '' -p '' --shares --users --pass-pol
 # Todo en un solo comando con null session
@@ -144,7 +153,7 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 	❯ dir             # Listar contenido del share
 	❯ get <file>      # Descargar archivo
 	❯ put <file>      # Subir archivo (si hay permisos de escritura)
-	❯ prompt
+	❯ prompt off
 	❯ mget *          # Descargar todos los archivos sin confirmación
 	❯ more <file>     # Leer archivos directamente
 
@@ -319,6 +328,9 @@ NOTA:
 
 ❯ nxc smb <IP> -u 'user' -p 'pass' --pass-pol
 # Política de contraseñas (lockout, longitud, etc.)
+
+❯ nxc smb <IP> -u 'user' -p 'pass' -M spider_plus
+# enumeración más profunda de los shares SMB accesibles y recorre sus directorios/archivos
 
 ❯ nxc smb <IP> -u 'user' -p 'pass' --spider <share> --regex .
 # Búsqueda recursiva de archivos
