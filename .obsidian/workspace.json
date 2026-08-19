@@ -34,23 +34,9 @@
               "icon": "lucide-file",
               "title": "4 ADCS - Service Misconfigurations"
             }
-          },
-          {
-            "id": "82996168a8c5726a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "1433 - MSSQL"
-            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -222,15 +208,22 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "82996168a8c5726a",
+  "active": "b34d42ff3f7c9c7d",
   "lastOpenFiles": [
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ADCS - Service Misconfigurations.md",
-    "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL.md",
     "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL.md",
+    "2 Ports/3 DC (Domain Controller)/5985 5986 WinRM.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/6 WinPEAS.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/5 PowerUp.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ADCS - Service Misconfigurations.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/2 Group-Based Escalation.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/1 Token Privileges.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/0 Identifying PrivEsc.md",
     "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
     "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
-    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "2 Ports/2 Aplicaciones Web/Gerapy.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/5 Capabilities.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/9 Permisos incorrectos.md",
@@ -243,13 +236,6 @@
     "2 Ports/2 Aplicaciones Web/Exhibitor Zookeeper.md",
     "2 Ports/2 Aplicaciones Web/ColdFusion.md",
     "2 Ports/2 Aplicaciones Web/Grafana.md",
-    "2 Ports/2 Aplicaciones Web/IIS - Web.config.md",
-    "2 Ports/2 Aplicaciones Web/IIS - Webdav.md",
-    "2 Ports/2 Aplicaciones Web/Jenkins.md",
-    "2 Ports/2 Aplicaciones Web/NVMS-1000.md",
-    "2 Ports/2 Aplicaciones Web/SmarterMail.md",
-    "2 Ports/2 Aplicaciones Web/Tomcat.md",
-    "2 Ports/2 Aplicaciones Web/ZoneMinder.md",
     "2 Ports/4 Windows - Linux/5 Database",
     "2 Ports/4 Windows/PHASE 1 Credential Hunting",
     "2 Ports/4 Windows - Linux/7 Otros",
