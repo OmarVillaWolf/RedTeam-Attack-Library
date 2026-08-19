@@ -46,6 +46,7 @@ Notas:
 ```bash 
 # Guardar y crackear el hash con 'Hashcat'
 ❯ hashcat -m 13100 hash-kerberoasting /usr/share/wordlists/rockyou.txt --force
+❯ hashcat -m 13100 hash-kerberoasting /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule --force 
 
 	# m = Método por fuerza bruta
 	# 13100 = TGS de un Kerberoasting
