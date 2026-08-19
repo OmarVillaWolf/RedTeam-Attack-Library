@@ -152,6 +152,20 @@ Referencia rápida de comandos Linux organizados por contexto de uso. No es una 
 ❯ strace ./<binario>  # Trazar llamadas al sistema
 ```
 
+### Archivos XLSX
+
+```bash 
+❯ unzip -p file.xlsx xl/workbook.xml     # Ver datos del archivo 
+
+# Mirar el contenido del archivo 
+❯ mkdir accounts_unzip   
+❯ unzip -q accounts.xlsx -d accounts_unzip
+❯ cat accounts_unzip/xl/sharedStrings.xml
+
+# Mirar el contenido en una columna 
+❯ unzip -p accounts.xlsx xl/sharedStrings.xml | sed 's/<[^>]*>/\n/g' | sed '/^$/d'
+```
+
 ### Compresión y descompresión
 
 ```bash
