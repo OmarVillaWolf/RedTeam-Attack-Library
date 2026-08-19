@@ -36,13 +36,17 @@
             }
           },
           {
-            "id": "0e9e510c627743df",
+            "id": "82996168a8c5726a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "1433 - MSSQL"
             }
           }
         ],
@@ -80,7 +84,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "pwsafe",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -218,9 +222,14 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "0e9e510c627743df",
+  "active": "82996168a8c5726a",
   "lastOpenFiles": [
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/4 ADCS - Service Misconfigurations.md",
+    "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL.md",
+    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
+    "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "2 Ports/2 Aplicaciones Web/Gerapy.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Escalation/5 Capabilities.md",
@@ -241,13 +250,8 @@
     "2 Ports/2 Aplicaciones Web/SmarterMail.md",
     "2 Ports/2 Aplicaciones Web/Tomcat.md",
     "2 Ports/2 Aplicaciones Web/ZoneMinder.md",
-    "2 Ports/2 Aplicaciones Web/WSDL.md",
-    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-    "2 Ports/4 Windows - Linux/3 Email Services/79 - Finger (Enum Users).md",
-    "2 Ports/4 Windows - Linux/3 Email Services/2224 - Mercury Admin.md",
     "2 Ports/4 Windows - Linux/5 Database",
     "2 Ports/4 Windows/PHASE 1 Credential Hunting",
-    "2 Ports/4 Windows - Linux/3 Email Services/143 - IMAP (Probar creds).md",
     "2 Ports/4 Windows - Linux/7 Otros",
     "2 Ports/4 Windows - Linux/4 Enumeration",
     "2 Ports/4 Windows - Linux/1 Initial Access",
