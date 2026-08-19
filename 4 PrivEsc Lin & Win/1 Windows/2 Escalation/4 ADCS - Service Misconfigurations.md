@@ -7,3 +7,9 @@ Tags: #Windows #PrivEsc #ESC #Linux #ADCS
 ```bash 
 ❯ 
 ```
+
+## ESC 4
+
+```bash 
+❯ 
+```
