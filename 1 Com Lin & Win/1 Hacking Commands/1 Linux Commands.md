@@ -166,6 +166,15 @@ Referencia rápida de comandos Linux organizados por contexto de uso. No es una 
 ❯ unzip -p accounts.xlsx xl/sharedStrings.xml | sed 's/<[^>]*>/\n/g' | sed '/^$/d'
 ```
 
+## Archivos Lnk
+
+```bash 
+❯ pip3 install lnkparse3 --break-system-packages   # Instalación
+
+❯ lnkparse login.vbs.lnk   
+# Analizar archivos .lnk de Windows (accesos directos) y extraer información
+```
+
 ### Compresión y descompresión
 
 ```bash
