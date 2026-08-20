@@ -131,6 +131,7 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 
 ```bash
 # SI SE TIENE PERMISOS DE LECTURA
+
 ❯ smbclient -N //<IP>/<share>   # Requiere null session → acceso interactivo al share
 	❯ recurse ON    # Activa el recorrido recursivo de directorios
 	❯ prompt OFF    # Elimina la parte de preguntar al descargar
@@ -139,15 +140,6 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 ❯ find domain.local -name "Groups.xml"   # Buscar el archivo y devuelve la ruta donde se encuentra
 ❯ cp domain.local/Policies/{31B2F340-016D-11D2-945F-00C04FB984F9}/MACHINE/Preferences/Groups/Groups.xml .
 # Copiar el archivo al área actual de trabajo
-
-❯ smbclient //<IP>/<share> -U 'guest'
-# Acceso como guest → puede ampliar permisos
-
-❯ smbclient //<IP>/<share> -U 'user%pass'
-# Requiere creds válidas → acceso interactivo autenticado
-
-❯ smbclient -L <IP> -U 'user'
-# Requiere creds → lista shares visibles para el usuario
 
 ❯ smbclient -U user //<IP>/ShareName      # Requiere creds → acceso directo al share
 	❯ dir             # Listar contenido del share
@@ -158,9 +150,25 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 	❯ more <file>     # Leer archivos directamente
 
 
+❯ smbclient //<IP>/<share> -U 'guest'
+# Acceso como guest → puede ampliar permisos
+
+❯ smbclient //<IP>/<share> -N -c 'dir' | grep -E '^[[:space:]]+[A-Za-z]+\.[A-Za-z]+' | awk '{print $1}' > users.txt 
+# Si en una carpeta hay nombres de usuarios asi se extraen en un archivo 
+
+❯ smbclient //<IP>/<share> -U 'user%pass'
+# Requiere creds válidas → acceso interactivo autenticado
+
+❯ smbclient -L <IP> -U 'user'
+# Requiere creds → lista shares visibles para el usuario
+
+++++++++++++++
+
 # SI SE TIENE PERMISOS DE ESCRITURA
+
 ❯ smbclient -N //<IP>/<share> -c 'put file.txt file.txt; ls'   # Subir un archivo al dir y guardarlo como 'file.txt'
 
+++++++++++++++
 
 NOTA:
 	1. D - Directory
@@ -324,8 +332,9 @@ NOTA:
 # Shares accesibles
 
 ❯ nxc smb <IP> -u user -p 'pass' --users    # Enumerar usuarios del dominio
-❯ nxc smb <IP> -u user -p 'pass' --users | grep -E 'DC01.*(Administrator|Guest|krbtgt|michael|ryan|oscar|sql_svc|rose|ca_svc)' | awk '$5 != "[+]" {print $5}' > users.txt
+❯ nxc smb <IP> -u user -p 'pass' --users | awk '$4 == "DC" && $5 != "[+]" && $5 != "[*]" && $5 != "-Username-" {print $5}' > users.txt
 # Agregar los usuarios del dominio en un archivo 
+	# DC = Se refiere al nombre que aparece antes del usuario (Cambiar)
 
 ❯ nxc smb <IP> -u 'user' -p 'pass' --pass-pol
 # Política de contraseñas (lockout, longitud, etc.)
