@@ -4,6 +4,8 @@ Tags: #AD #ACL #Linux #DCSync
 
 ## GenericAll sobre GPO Defalut Domain Policy 
 
+El icono en BloodHound, la **GPO (Group Policy Object)** aparece representada con el **icono de una lista/documento** color azul.
+
 * [GPOAbuse](https://github.com/Hackndo/pyGPOAbuse)
 
 En BloodHound se puede ver el identificador de la GPO a la cual se tiene privilegios.
