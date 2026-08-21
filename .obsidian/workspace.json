@@ -22,7 +22,7 @@
             }
           },
           {
-            "id": "6b344afba3e9d748",
+            "id": "ef1d0e4784aff356",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -208,8 +208,11 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "6b344afba3e9d748",
+  "active": "ef1d0e4784aff356",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ADCS - Service Misconfigurations.md",
+    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GenericAll - GPO.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GetChangesAll, GetChanges - Dominio.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/WriteOwner - Group.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/WriteProperty - msDS-KeyCredentialLink.md",
@@ -220,10 +223,8 @@
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/WriteDacl - Computer.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/WriteOwner - User.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/WriteDacl - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GenericAll - GPO.md",
     "8 Active Directory/1 AD - Spartan/4 Persistencia, Post-Explotation/1 DCSync.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GenericAll - User.md",
-    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
     "2 Ports/1 Common Vulnes/SMB/SYSVOL.md",
     "8 Active Directory/2 AD - CRTP/4 Lateral Movement/1 GPO Abuse.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/7 Abuso de GPO/1 GPO.md",
@@ -232,7 +233,6 @@
     "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
     "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
     "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ADCS - Service Misconfigurations.md",
     "2 Ports/3 DC (Domain Controller)/5985 5986 WinRM.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
     "2 Ports/3 DC (Domain Controller)/88 Kerberos.md",
