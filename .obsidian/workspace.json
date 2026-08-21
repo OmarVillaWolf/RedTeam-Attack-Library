@@ -27,58 +27,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/1 AD - Spartan/2 Attacks/7 Abuso de GPO/1 GPO.md",
+                "file": "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GenericAll - GPO.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 GPO"
-            }
-          },
-          {
-            "id": "976cb92bdba72d8d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "445 SMB - NXC  PsExec"
-            }
-          },
-          {
-            "id": "8ce2712bd98ab46e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "5 BloodHound"
-            }
-          },
-          {
-            "id": "e6f378ed71c9ea0d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "1 Linux Commands"
+              "title": "GenericAll - GPO"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -250,34 +208,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "8ce2712bd98ab46e",
+  "active": "6b344afba3e9d748",
   "lastOpenFiles": [
-    "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/WriteDacl - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GenericAll - GPO.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/WriteOwner - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ADCS - Service Misconfigurations.md",
-    "2 Ports/3 DC (Domain Controller)/5985 5986 WinRM.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/7 Abuso de GPO/1 GPO.md",
-    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/1 GPO Abuse.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/2 PowerView.md",
-    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/3 ACLs.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
-    "2 Ports/3 DC (Domain Controller)/88 Kerberos.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/GenericAll - Group.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GenericAll - User.md",
     "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/WriteOwner - User.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/WriteDacl - Computer.md",
+    "2 Ports/1 Common Vulnes/SMB/SYSVOL.md",
+    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/1 GPO Abuse.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/7 Abuso de GPO/1 GPO.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/2 PowerView.md",
+    "8 Active Directory/2 AD - CRTP/2 Domain Enumeration/3 ACLs.md",
+    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/3 ADCS - Service Misconfigurations.md",
+    "2 Ports/3 DC (Domain Controller)/5985 5986 WinRM.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
+    "2 Ports/3 DC (Domain Controller)/88 Kerberos.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/GenericWrite - Computer.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/GenericAll - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/GenericAll - Group.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/2 Powerview.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Windows/1 ACL y ACE.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GenericAll - User.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GenericWrite - User.md",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/GetChangesAll, GetChanges - Dominio.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/ForceChangePassword - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Escalation/ACL - Kali/WriteOwner - Group.md",
     "2 Ports/4 Windows - Linux/5 Database",
     "2 Ports/4 Windows/PHASE 1 Credential Hunting",
     "2 Ports/4 Windows - Linux/7 Otros",
