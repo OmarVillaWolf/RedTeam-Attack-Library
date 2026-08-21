@@ -19,19 +19,22 @@ En BloodHound buscar una `CertTemplate` donde mi usuario o un grupo al que perte
 
 Ejemplo: 
 
+* El icono en BloodHound, la **plantilla de certificado (Certificate Template)** aparece representada con el **icono de un certificado/documento** color morado.
+
 - CA_SVC → MemberOf → CERT PUBLISHERS → GenericAll → DunderMifflinAuthentication
+
 
 Si se tiene permisos de escritura sobre la `CertTemplate`, se puede modificar su configuración y hacerla explotable.
 
 ```bash 
 # Enumerar plantillas y detectar vulnerabilidades
-❯ certipy-ad find -u 'user@domain.local' -p 'Password123!!' -dc-ip IP_DC -vulnerable 
+❯ certipy-ad find -u 'user@domain.local' -p 'Password123!!' -dc-ip IP_DC -vulnerable -stdout 
 
 	# u = Usuario con los privilegios sobre el Template 
 	# p = Password del usuario con privilegios
 
 NOTA:
-	- Guarda la salida en diferentes archivos 
+	- Sin '-stdout' guarda la salida en diferentes archivos 
 ```
 
 ```bash 
