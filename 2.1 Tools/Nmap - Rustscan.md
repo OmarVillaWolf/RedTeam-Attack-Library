@@ -43,6 +43,8 @@ Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 # -p- → todos los 65535 puertos | --open → solo abiertos
 # -sS → SYN scan | --min-rate 5000 → velocidad alta
 
+❯ nmap -n --disable-arp-ping -P0 -p- --min-rate 5000 -vvv --open -sV <IP>
+
 # PASO 2 → Versión y scripts en los puertos encontrados
 ❯ nmap -sCV -p<puertos> <IP> -oN targeted
 # -sC → scripts por defecto | -sV → versión | -oN → output legible
