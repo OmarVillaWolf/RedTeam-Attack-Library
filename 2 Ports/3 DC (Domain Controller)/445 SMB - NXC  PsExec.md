@@ -75,13 +75,20 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 # Enumerar con null session al SMBv1/SMBv2
 
 ❯ nxc smb <IP> -u 'guest' -p '' -M spider_plus
-# enumeración más profunda de los shares SMB accesibles y recorre sus directorios/archivos
+# Enumeración más profunda de los shares SMB accesibles y recorre sus directorios/archivos
 
 ❯ nxc smb <IP> -u '' -p '' --shares --users --pass-pol
 # Todo en un solo comando con null session
 
 ❯ nxc smb <IP/rango> --gen-relay-list hosts_sin_signing.txt
 # Mapear toda la red buscando hosts sin SMB signing (clave para relay attacks)
+
+❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser"
+# Enum usuarios válidos por RID → no requiere creds
+
+❯ impacket-changepassws domain.local/user:'Passwd'@IP -newpass 'P@$$w0rd123!'
+# Si al buscar usuarios le podemos asignar una password si estos salen con el siguiente mensaje:
+	[] 
 
 ❯ nmblookup -A <IP>
 # No requiere creds → obtiene NetBIOS (hostname + posible dominio)
@@ -137,18 +144,14 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 	❯ prompt OFF    # Elimina la parte de preguntar al descargar
 	❯ mget *        # Descargar todo
 ❯ tree <share>      # Listar en forma de árbol toda la carpeta descargada
-❯ find domain.local -name "Groups.xml"   # Buscar el archivo y devuelve la ruta donde se encuentra
-❯ cp domain.local/Policies/{31B2F340-016D-11D2-945F-00C04FB984F9}/MACHINE/Preferences/Groups/Groups.xml .
-# Copiar el archivo al área actual de trabajo
 
-❯ smbclient -U user //<IP>/ShareName      # Requiere creds → acceso directo al share
+❯ smbclient -U user //<IP>/ShareName   # Requiere creds → acceso directo al share
 	❯ dir             # Listar contenido del share
 	❯ get <file>      # Descargar archivo
 	❯ put <file>      # Subir archivo (si hay permisos de escritura)
 	❯ prompt off
 	❯ mget *          # Descargar todos los archivos sin confirmación
 	❯ more <file>     # Leer archivos directamente
-
 
 ❯ smbclient //<IP>/<share> -U 'guest'
 # Acceso como guest → puede ampliar permisos
@@ -263,9 +266,6 @@ NOTA:
 ## 4. Enumeración de usuarios / dominio
 
 ```bash
-❯ nxc smb <IP> --users
-# Enumerar usuarios
-
 ❯ enum4linux <IP> -a
 # No requiere creds → enum legacy (puede fallar en AD modernos)
 
@@ -292,9 +292,6 @@ NOTA:
 
 ❯ enum4linux -a -u "admin" -p 'password' <IP>
 # Requiere creds → enum más completa
-
-❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser"
-# Enum usuarios válidos por RID → no requiere creds
 ```
 
 ### Limitación
