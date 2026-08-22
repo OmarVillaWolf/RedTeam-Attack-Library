@@ -15,3 +15,7 @@ Donde:
 	- El sistema administra automáticamente su contraseña, incluyendo su rotación periódica
 ```
 
+```bash 
+# Verificar el hash 
+❯ nxc smb IP_DC -u 'mgtsvc$' -H e0915507b35c02ccc57959c4a1fc6051
+```
