@@ -76,6 +76,7 @@ Enumerar lo siguiente en BloodHound usando la pestaña de 'CYPHER':
 	5. 'AS-REP Roastable users (DontReqPreAuth)'
 	6. 'Shortest paths to Domain Admins'
 	7. 'Unsconstrained Delegation'
+	8. Shortest Path from Owned objects  <-- IMPORTANTE 
 
 
 Una vez obtenido un usuario:
