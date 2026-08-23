@@ -24,7 +24,7 @@ Paso 3:
 
 Paso 4:
 # Crear una SecureString con la nueva contraseña
-❯ $cred = ConvertTo-SecureString 'Password123!!' -AsPlainText -Force
+❯ $cred = ConvertTo-SecureString 'P@$$w0rd123!' -AsPlainText -Force
 
 Paso 5:
 # Cambiar la contraseña del usuario víctima 
