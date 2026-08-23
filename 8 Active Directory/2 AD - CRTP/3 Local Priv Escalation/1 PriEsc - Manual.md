@@ -16,7 +16,8 @@ Hay diferentes maneras de escalar privilegios localmente en Windows:
 ## Comandos Windows 
 
 ```powershell 
-❯ Get-WmiObject -Class win32_service | select pathname     # Consultar vía WMI la clase 'Win32_Service' y te devuelve el 'PathName' de cada servicio, o sea, la ruta del ejecutable que corre cada servicio del sistema
+❯ Get-WmiObject -Class win32_service | select pathname     
+# Consultar vía WMI la clase 'Win32_Service' y te devuelve el 'PathName' de cada servicio, o sea, la ruta del ejecutable que corre cada servicio del sistema
 
 
 Que buscar:
@@ -37,7 +38,8 @@ Que no buscar:
 
 ```powershell 
 # Los servicios tienen un 'DACL' (Discretionary Access Control List)
-❯ sc.exe sdshow snmptrap   # Mostrar qué permisos tiene cada usuario/grupo sobre ese servicio 'snmptrap'
+❯ sc.exe sdshow snmptrap   
+# Mostrar qué permisos tiene cada usuario/grupo sobre ese servicio 'snmptrap'
 
 
 Output del comando:
