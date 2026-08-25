@@ -50,7 +50,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -119,7 +119,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 309.5
+    "width": 252.5
   },
   "right": {
     "id": "352c47b0cb031926",
@@ -222,14 +222,14 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "29bac72100259498",
+  "active": "d51cb07ff276efcd",
   "lastOpenFiles": [
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/0 Identifying PrivEsc.md",
     "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/1 SystemInfo.md",
     "1 Com Lin & Win/1 Hacking Commands/2 Windows Commands.md",
     "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
-    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "2 Ports/2 Aplicaciones Web/H2 Database.md",
     "Pasted image 20260825133926.png",
     "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
