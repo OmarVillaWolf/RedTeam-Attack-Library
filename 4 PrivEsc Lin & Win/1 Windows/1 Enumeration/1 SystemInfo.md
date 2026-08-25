@@ -20,8 +20,10 @@ Tags: #LocalEnumeration #Windows #PrivEsc #Meterpreter
 
 ```bash 
 ❯ hostname      # Muestar el nombre del usuario 
+❯ C:\Windows\System32\hostname.exe
 
 ❯ systeminfo    # Despliega toda la información del SO como (Hotfix)
+❯ C:\Windows\System32\systeminfo.exe
 
 ❯ wmic qfe get Caption,Description,HotfixID,InstalledOn     # Muestra información adicional 
 	# Buscar los security Update para ver cuando fue instalado 
