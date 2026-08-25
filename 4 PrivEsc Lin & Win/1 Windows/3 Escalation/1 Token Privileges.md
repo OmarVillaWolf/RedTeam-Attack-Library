@@ -90,6 +90,7 @@ Cada uno de estos privilegios otorga la capacidad de realizar acciones concretas
 
 ```bash 
 ❯ whoami /priv        # Muestra los privilegios del usuario actual 
+❯ C:\Windows\System32\whoami.exe /priv 
 ```
 
 ```powershell 
