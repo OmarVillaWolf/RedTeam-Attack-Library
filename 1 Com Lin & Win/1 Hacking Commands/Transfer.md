@@ -49,6 +49,7 @@ C:\Users\Public
    # Servidor SMB → mejor cuando HTTP está bloqueado en la víctima
    # smb2support → soporte SMB2 para Windows 10+
 
+# MEJOR OPCIÓN SIEMPRE 
 4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support -username omar -password omar123
    # Con credenciales → cuando Windows bloquea conexiones SMB anónimas
    # El user y la passwd son inventadas (No importa)
