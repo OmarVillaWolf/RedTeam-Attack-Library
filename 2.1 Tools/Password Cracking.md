@@ -302,6 +302,12 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # -m 13400 → KeePass 1/2 AES / KeePass 2 AES
 ```
 
+* [Keepass4brute](https://github.com/r3nt0n/keepass4brute)
+```bash 
+# KeePass formato '40000' 
+❯ ./keepass4brute.sh <kdbx-file> /usr/share/wordlists/rockyou.txt
+```
+
 ### Password Safe (.psafe3)
 * [PasswordSafe](https://github.com/pwsafe/pwsafe/releases?q=non-windows&expanded=true)
 ```bash
