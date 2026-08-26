@@ -345,7 +345,7 @@ NOTA:
 ❯ nxc smb <IP> -u 'user' -p 'pass' --spider <share> --regex .
 # Búsqueda recursiva de archivos
 
-❯ nxc smb <IP> -u 'user' -p 'pass' --groups
+❯ nxc ldap <IP> -u 'user' -p 'pass' --groups
 # Grupos locales y del dominio
 
 ❯ nxc smb <IP> -u 'user' -p 'pass' --local-users
