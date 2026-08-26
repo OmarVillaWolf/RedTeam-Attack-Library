@@ -1,4 +1,4 @@
-# KeePass — Cracking .kdbx
+# KeePass 
 
 Tags: #KeePass #PostExplotacion #FileAnalysis #PasswordCracking #KDBX
 
@@ -54,6 +54,12 @@ Tags: #KeePass #PostExplotacion #FileAnalysis #PasswordCracking #KDBX
 ❯ hashcat -m 13400 hash.txt /usr/share/wordlists/rockyou.txt \
   -r /usr/share/hashcat/rules/best64.rule
 # Con reglas → más probabilidad de crackear
+```
+
+* [Keepass4brute](https://github.com/r3nt0n/keepass4brute)
+```bash 
+# KeePass formato '40000' 
+❯ ./keepass4brute.sh <kdbx-file> /usr/share/wordlists/rockyou.txt
 ```
 
 ---
