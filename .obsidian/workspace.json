@@ -22,35 +22,49 @@
             }
           },
           {
-            "id": "d51cb07ff276efcd",
+            "id": "b0d50b942691e5f8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
+                "file": "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 Token Privileges"
+              "title": "1 Metodología AD"
             }
           },
           {
-            "id": "29bac72100259498",
+            "id": "82ec5805f4576a78",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+                "file": "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Transfer"
+              "title": "5 BloodHound"
+            }
+          },
+          {
+            "id": "3e8ae73b88a9273f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericAll - User.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "GenericAll - User"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -84,7 +98,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "lnk",
+                "query": "kdbx",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -222,35 +236,35 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "d51cb07ff276efcd",
+  "active": "3e8ae73b88a9273f",
   "lastOpenFiles": [
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericAll - Group.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/WriteOwner - Group.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/ReadGMSAPassword - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericWrite - Group.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericAll - User.md",
+    "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericWrite - User.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "2.1 Tools/Password Cracking.md",
+    "2.1 Tools/KeePass KDBX.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/WriteOwner - User.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
+    "2 Ports/3 DC (Domain Controller)/135 RPC.md",
+    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/0 Metodología AD.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/3 Crear lista de usuarios.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/2 Obtener Usuarios.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
+    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/0 Identifying PrivEsc.md",
     "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/1 SystemInfo.md",
     "1 Com Lin & Win/1 Hacking Commands/2 Windows Commands.md",
     "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
-    "2 Ports/2 Aplicaciones Web/H2 Database.md",
     "Pasted image 20260825133926.png",
-    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
-    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/DVR4.md",
-    "2 Ports/2 Aplicaciones Web/Argus Surveillance DVR4.md",
-    "8 Active Directory/2 AD - CRTP/3 Local Priv Escalation/1 PriEsc - Manual.md",
-    "2 Ports/2 Aplicaciones Web/ColdFusion.md",
-    "2 Ports/2 Aplicaciones Web/WSDL.md",
-    "2 Ports/2 Aplicaciones Web/ZoneMinder.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/3 ADCS - Service Misconfigurations.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericAll - GPO.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Windows/WriteOwner - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/ReadGMSAPassword - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/WriteOwner - User.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/2 PowerView.md",
-    "2 Ports/1 Common Vulnes/SMB/SYSVOL.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
-    "8 Active Directory/2 AD - CRTP/4 Lateral Movement/1 GPO Abuse.md",
-    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/6 AD CS - ESC.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral",
     "2 Ports/4 Windows - Linux/5 Database",
