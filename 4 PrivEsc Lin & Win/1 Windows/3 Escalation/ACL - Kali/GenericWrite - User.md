@@ -2,7 +2,7 @@
 
 Tags: #AD #ACL #Linux #Impacket #ShadowAttack #Pywhisker #Gettgtpkinit 
 
-## GenericWrite sobre un usuario - Forma 1 (Kerberosteable) 
+## GenericWrite sobre un Usuario - Forma 1 (Kerberosteable) 
 
 Ataques:
 	1. Targered Kerberoast --> Colocar un SPN 
