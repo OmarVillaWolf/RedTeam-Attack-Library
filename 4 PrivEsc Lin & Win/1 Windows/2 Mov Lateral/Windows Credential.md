@@ -2,6 +2,23 @@
 
 Tags: #Windows #MovimientoLateral 
 
+## Identificación 
+
+```bash 
+# Windows — aplicaciones web
+
+C:\inetpub\wwwroot\<APP>\web.config
+C:\inetpub\wwwroot\<APP>\config.php
+C:\inetpub\wwwroot\<APP>\db.php
+C:\inetpub\wwwroot\<APP>\.env
+
+C:\xampp\htdocs\<APP>\config.php
+C:\xampp\htdocs\<APP>\db.php
+C:\xampp\htdocs\<APP>\.env
+
+C:\wamp64\www\<APP>\config.php
+C:\wamp64\www\<APP>\db.php
+```
 ## PowerShell History
 
 ```powershell
