@@ -8,5 +8,6 @@ Tags: #Windows #PrivEsc #Meterpreter
 * [PrivescCheck](https://github.com/itm4n/PrivescCheck)
 
 ```bash 
-❯ powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"    # Recopila informacion del PrivEsc
+❯ powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"    
+# Recopila informacion del PrivEsc
 ```
