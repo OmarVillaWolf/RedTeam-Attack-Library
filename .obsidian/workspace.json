@@ -22,31 +22,27 @@
             }
           },
           {
-            "id": "b0d50b942691e5f8",
+            "id": "4a75013c6935b6cd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 Ports/4 Windows - Linux/4 Enumeration/6379 - Redis.md",
+                "file": "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "6379 - Redis"
+              "title": "1 Metodología AD"
             }
           },
           {
-            "id": "1b0e3f66b8f0d515",
+            "id": "9eee7ca77293e981",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericAll - GPO.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "GenericAll - GPO"
+              "title": "New tab"
             }
           }
         ],
@@ -84,7 +80,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "kdbx",
+                "query": "get -X",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -222,34 +218,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "b0d50b942691e5f8",
+  "active": "4a75013c6935b6cd",
   "lastOpenFiles": [
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericAll - GPO.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericAll - Group.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericAll - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericWrite - Group.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GenericWrite - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/GetChangesAll, GetChanges - Dominio.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/ReadGMSAPassword - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/WriteOwner - Group.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/WriteOwner - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Kali/WriteProperty - msDS-KeyCredentialLink.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Windows/GenericAll - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Windows/GenericWrite - Computer.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Windows/WriteDacl - Computer.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Windows/WriteDacl - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ACL - Windows/WriteOwner - User.md",
-    "2 Ports/4 Windows - Linux/4 Enumeration/6379 - Redis.md",
     "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
-    "2.1 Tools/Fuzzers.md",
-    "2.1 Tools/Hydra.md",
-    "2 Ports/2 Aplicaciones Web/CS-CART.md",
-    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
-    "2 Ports/3 DC (Domain Controller)/135 RPC.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DPAPI.md",
-    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1 LinPEAS - LinEnum.md",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/6 Tareas CRON.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/4 SUID.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/3 Grupos especiales.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/MySQL Credentials.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Frameworks Crdentials.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/PHP Credentials.md",
+    "2 Ports/4 Windows - Linux/4 Enumeration/3306 - MYSQL.md",
+    "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Inicio de procesos.md",
+    "1 Com Lin & Win/1 Hacking Commands/Tratamiento TTY.md",
+    "2 Ports/2 Aplicaciones Web/Simple PHP Photo Gallery.md",
+    "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
+    "2.1 Tools/Fuzzers.md",
+    "2 Ports/3 DC (Domain Controller)/135 RPC.md",
+    "2 Ports/4 Windows - Linux/1 Initial Access/20 21 ftp tftp.md",
+    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5 WinPEAS.md",
+    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/GlassFish.md",
+    "1 Com Lin & Win/1 Hacking Commands/Searchsploit.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/4 PowerUp.md",
     "Pasted image 20260825133926.png",
     "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral",
