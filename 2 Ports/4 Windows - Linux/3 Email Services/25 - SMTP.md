@@ -3,7 +3,7 @@
 Tags: #SMTP
 
 ```bash
-❯ snmp-check IP    # 
+❯ snmp-check IP    # Enumerar información de un dispositivo
 ```
 
 ```bash 
