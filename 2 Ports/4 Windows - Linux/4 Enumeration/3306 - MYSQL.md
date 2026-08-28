@@ -14,7 +14,7 @@ Tags: #MySQL #Servidor #Comandos #DB
 ```
 
 ```bash 
-❯ mysql -u user -p passwd -D database
+❯ mysql -u root -p passwd -D database
 
 ❯ mysql -u root -p -h <IP>         # Fuera del server 
 ❯ mysql -u root -p                 # Dentro del server 
@@ -26,19 +26,18 @@ Tags: #MySQL #Servidor #Comandos #DB
 ```
 
 ```bash
-❯ mysql -u ❮User❯ -p          # Conectar y proporcionar credenciales
+❯ mysql -u root -p          # Conectar y proporcionar credenciales
 
-	❯ show databases;                         # Mostrar todas las bases de datos existentes
-	❯ use ❮DB_name❯;                          # Usar una base de datos especifica
-	❯ show tables;                            # Mostrar el contenido de las tablas de la DB elegida
-	❯ select * from ❮Table_name❯;             # Dumpear toda la info de la tabla users, incluyendo sus hashes
-	❯ describe ❮Table_name❯;                         # Mirar que columnas existen
-	❯ select count(*) from ❮Table_name❯              # Mirar los registros de la tabla de la DB seleccionada
-	❯ select User,Password from ❮Table_name❯;        # Seleccionar los campos de una tabla especifica 
+	❯ show databases;       # Mostrar todas las bases de datos existentes
+	❯ use ❮DB_name❯;        # Usar una base de datos especifica
+	❯ show tables;          # Mostrar el contenido de las tablas de la DB elegida
+	❯ select * from ❮Table_name❯;    # Dumpear toda la info de la tabla users, incluyendo sus hashes
+	❯ describe ❮Table_name❯;         # Mirar que columnas existen
+	❯ select count(*) from ❮Table_name❯        # Mirar los registros de la tabla de la DB seleccionada
+	❯ select User,Password from ❮Table_name❯;  # Seleccionar los campos de una tabla especifica 
 	
 	❯ select * from ❮Table_name❯ where username=’admin’;
-	❯ select load_file("/etc/shadow");        # Si hay permisos se puede ver el archivo '/etc/shadow'
-	
+	❯ select load_file("/etc/shadow");    # Si hay permisos se puede ver el archivo '/etc/shadow'
 ```
 
 ```bash 
