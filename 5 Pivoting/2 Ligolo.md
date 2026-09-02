@@ -25,9 +25,21 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 # Alternativa — solo abrir el puerto específico sin deshabilitar todo (más sigiloso)
 ❯ netsh advfirewall firewall add rule name="Ligolo" dir=out action=allow protocol=TCP localport=<PORT>
 
+❯ Set-MpPreference -DisableRealtimeMonitoring $true 
+❯ Set-MpPreference -DisableScriptScanning $true 
+❯ Set-MpPreference -DisableIOAVProtection $true
+
+❯ sc query windefend
+# Estado de Windows Defender
+
+# PowerShell → deshabilitar Defender
+❯ Set-MpPreference -DisableRealtimeMonitoring $true
+
+❯ wmic /namespace:\\root\securitycenter2 path antivirusproduct get displayName
+# Ver antivirus instalado
+
 # Restaurar al terminar (limpieza post-explotación)
 ❯ netsh advfirewall set allprofiles state on
-
 
 	TIP 2:
 Si el agente de Ligolo en Windows es bloqueado por UAC al ejecutarlo desde
