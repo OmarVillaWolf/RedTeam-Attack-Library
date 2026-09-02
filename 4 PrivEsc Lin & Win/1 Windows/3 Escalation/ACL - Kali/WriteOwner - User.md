@@ -4,6 +4,8 @@ Tags: #AD #ACL #Linux #Impacket #BloodyAD
 
 ## WriteOwner sobre Usuario 
 
+Si tenemos esta ACL sobre un **User**, podemos **cambiar el propietario del usuario**. Después podemos modificar su ACL, otorgarnos `ResetPassword` y **cambiar su contraseña**.
+
 ```bash 
 Paso 1:
 # Cambiar propietario del usuario víctima a ControlledAccount
