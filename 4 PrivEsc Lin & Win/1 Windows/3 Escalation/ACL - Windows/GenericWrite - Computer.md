@@ -7,15 +7,27 @@ Tags: #AD #ACL #Windows
 * [Abusin-AD-ACLs-ACEs](https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces)
 * [HackTricks-Abusing-AD-ACLs-ACE](https://book.hacktricks.xyz/es/windows-hardening/active-directory-methodology/acl-persistence-abuse)
 
+Si tenemos esta ACL sobre un objeto Computer, permite modificar determinados atributos del objeto Computer en Active Directory. En este escenario, se aprovecha para modificar la configuración necesaria del Computer y continuar con RBCD.
+
 ```powershell
-❯ $user = Get-ADUser -Identity "compwrite.user"    # Creamos una variable con el objeto 'usuario'
-❯ $user.SID                                        # Ver el atributo SID del objeto 'usuario'
+# Paso 1: Obtener el objeto del usuario que posee GenericWrite
+❯ $user = Get-ADUser -Identity "compwrite.user"
 
+# Paso 2: Obtener su SID
+❯ $SID = $user.SID
 
-❯ Get-ObjectAcl -SamAccountName First-DC -ResolveGUIDs | ?{$_.ActiveDirectoryRights -eq "GenericWrite" -and $_.SecurityIdentifier -eq "S-1-5-21-1861162130-2580302541-221646211-1124" } | select AceType,ActiveDirectoryRights,ObjectDN | fl
+# Paso 3: Comprobar que compwrite.user tiene GenericWrite sobre el Computer objetivo
+❯ Get-ObjectAcl -SamAccountName First-DC -ResolveGUIDs | ?{$_.ActiveDirectoryRights -eq "GenericWrite" -and $_.SecurityIdentifier -eq $SID} | Select AceType,ActiveDirectoryRights,ObjectDN | Format-List
+
 
 # Otra forma de poner el SID pero antes se debe agregar a la variable convertido 
 ❯ Get-ObjectAcl -SamAccountName First-DC -ResolveGUIDs | ?{$_.ActiveDirectoryRights -eq "GenericWrite" -and $_.SecurityIdentifier -eq $SID } | select AceType,ActiveDirectoryRights,ObjectDN | fl
 
-Nota: Despues de esto sigue el RBCD
+# Objetivo:
+# Confirmar que compwrite.user tiene GenericWrite sobre First-DC.
+# GenericWrite → modificar atributos del Computer → configurar RBCD → continuar la escalada.
+
+
+NOTA
+	- Despues de esto sigue el RBCD
 ```
