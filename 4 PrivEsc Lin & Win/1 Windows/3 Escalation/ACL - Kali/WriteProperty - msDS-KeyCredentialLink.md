@@ -4,6 +4,8 @@ Tags: #Linux #AD #ACL #WriteProperty #msDS-KeyCredentialLink
 
 ##  WriteProperty sobre msDS-KeyCredentialLink (Shadow Credentials Attack)
 
+Si tenemos permiso para escribir sobre **`msDS-KeyCredentialLink`**, podemos agregar una **Key Credential** controlada por nosotros y utilizar **Shadow Credentials** para autenticarnos como el usuario objetivo.
+
 Ataque:
 	1. Crear una llave privada y pública 
 	2. Colocar la llave pública sobre el objeto
