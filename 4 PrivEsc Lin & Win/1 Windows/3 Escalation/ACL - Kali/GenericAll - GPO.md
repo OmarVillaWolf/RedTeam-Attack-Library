@@ -4,6 +4,8 @@ Tags: #AD #ACL #Linux #DCSync
 
 ## GenericAll sobre GPO Defalut Domain Policy 
 
+Si tenemos esta ACL sobre un **GPO**, tenemos control total sobre el GPO y podemos **modificar su configuración**, pudiendo utilizarlo para ejecutar acciones/comandos mediante Group Policy.
+
 El icono en BloodHound, la **GPO (Group Policy Object)** aparece representada con el **icono de una lista/documento** color azul.
 
 * [GPOAbuse](https://github.com/Hackndo/pyGPOAbuse)
