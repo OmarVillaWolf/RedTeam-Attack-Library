@@ -4,6 +4,8 @@ Tags: #AD #ACL #Linux
 
 ## CanPSRemote sobre una Computadora/Equipo Windows 
 
+Si tenemos esta ACL sobre un **Computer**, podemos utilizar **PowerShell Remoting/WinRM** para conectarnos remotamente al equipo, siempre que la cuenta tenga las condiciones necesarias para usar PSRemoting.
+
 * El icono en BloodHound, la **Computadora o Equipo Windows** aparece representada con el **icono de un computador** color rojo.
 
 ```bash 
