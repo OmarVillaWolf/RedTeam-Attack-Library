@@ -4,6 +4,8 @@ Tags: #AD #ACL #Linux #Impacket #ShadowAttack #Pywhisker #Gettgtpkinit
 
 ## GenericWrite sobre un Usuario - Forma 1 (Kerberosteable) 
 
+Si tenemos esta ACL sobre un **User**, podemos **modificar determinados atributos del usuario**, pudiendo utilizarlo para diferentes técnicas de abuso según los atributos disponibles.
+
 Ataques:
 	1. Targered Kerberoast --> Colocar un SPN 
 	2. Shadow Credential Attack --> Modificar msDS-KeyCredentialLink
