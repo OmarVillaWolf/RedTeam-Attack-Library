@@ -4,6 +4,8 @@ Tags: #AD #ACL #Linux
 
 ## GenercilAll sobre un Grupo  
 
+Si tenemos esta ACL sobre un **Group**, tenemos control total sobre el grupo y podemos **modificar su membresía**, por ejemplo agregar nuestro usuario a un grupo privilegiado.
+
 * El icono en BloodHound, el **Group** aparece representado con el **icono de tres usuarios** en color amarillo.
 
 ```bash 
