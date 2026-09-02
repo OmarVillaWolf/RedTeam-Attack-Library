@@ -4,6 +4,8 @@ Tags: #AD #ACL #Linux
 
 ## ReadGMSAPassword sobre un Usuario$
 
+Si tenemos esta ACL sobre un **gMSA**, podemos **leer su contraseña administrada** y obtener las credenciales/hash de la cuenta de servicio.
+
 ```bash 
 # Si pertenecemos al grupo con los privilegios 'ReadGMSAPassword' se puede leer la password del usuario 
 
