@@ -12,9 +12,9 @@ Tags: #PrivEsc #Xampp #Windows #PHP #ReverseShell
 
 ## Explotación 
 
-Si este directorio tiene permsos de escritura: 
+Si este directorio tiene permisos de escritura desde el server: 
 
-	C:\xampp\htdocs -->  Es el DocumentRoot de Apache
+	`C:\xampp\htdocs`  -->  Es el DocumentRoot de Apache
 
 ```bash 
 # Verificar la creación de archivos en ese dir 
