@@ -150,8 +150,6 @@ Paso 5 (Abusar de la forma 2):
 
 ## ESC 3 
 
-- El template **"SmartCardEnrollment-Agent"** permite a los usuarios del dominio inscribirse (_enroll_) y cuenta con el EKU **"Certificate Request Agent"**.
-
 ```powershell 
 ! Usuario: Usuario de dominio
 
@@ -186,8 +184,6 @@ EKU:
 - Certificate Request Agent    ->      Solicitar certificados en nombre de otros 
 - Secure Email                 ->      S/MIME
 ```
-
-- El template **"SmartCardEnrollment-Users"** tiene un requisito de emisión (_Application Policy Issuance Requirement_) de **Certificate Request Agent** y además cuenta con un **EKU (Extended Key Usage)** que indica **para qué puede usarse un certificado**
 
 ```powershell 
 ! Usuario: Usuario de dominio
