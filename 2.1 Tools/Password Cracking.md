@@ -201,8 +201,8 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ hashcat -m 19700 hash.txt /usr/share/wordlists/rockyou.txt
 # AES256 → más lento
 
-❯ hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best66.rule
-❯ hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt   --rules /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule --force
+❯ hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule
+❯ hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt --rules /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule --force
 
 # john
 ❯ john --format=krb5tgs hash.txt -w=/usr/share/wordlists/rockyou.txt 
