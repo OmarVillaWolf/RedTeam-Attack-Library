@@ -148,7 +148,7 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 	❯ mget *        # Descargar todo
 ❯ tree <share>      # Listar en forma de árbol toda la carpeta descargada
 
-❯ smbclient -U user //<IP>/ShareName   # Requiere creds → acceso directo al share
+❯ smbclient -U 'user%pass' //<IP>/ShareName   # Requiere creds → acceso directo al share
 	❯ dir             # Listar contenido del share
 	❯ get <file>      # Descargar archivo
 	❯ put <file>      # Subir archivo (si hay permisos de escritura)
@@ -330,6 +330,8 @@ NOTA:
 ```bash
 ❯ nxc smb <IP> -u 'user' -p 'pass' --shares
 # Shares accesibles
+
+❯ nxc smb <IP> -u 'user' -p 'pass' -M slinky 
 
 ❯ nxc smb <IP> -u user -p 'pass' --users    # Enumerar usuarios del dominio
 ❯ nxc smb <IP> -u user -p 'pass' --users | awk '$4 == "DC" && $5 != "[+]" && $5 != "[*]" && $5 != "-Username-" {print $5}' > users.txt
