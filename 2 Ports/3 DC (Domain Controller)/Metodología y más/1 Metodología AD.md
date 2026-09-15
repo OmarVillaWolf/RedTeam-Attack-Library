@@ -4,6 +4,8 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 
 ## SIN CREDENCIALES 
 ```bash 
+## RECONOCIMIENTO
+
 - Enumeración puerto 445 'SMB'
   	- Enumerar usuarios (--rid-brute)
 	- Investigar Shares
@@ -17,17 +19,24 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 - Enumeración puerto 88 'Kerberos'
 	- Kerbrute para validar buscar usuarios válidos (BruteForce)
 
+```
+
+```bash 
+## ATAQUES 
+
 - ASReproast Attack (Si se tiene solo el usuario sin passwd) 
 ```
 
 ## CON CREDENCIALES 
 ```bash 
+## RECONOCIMIENTO 
+
 Pasos:
 - Enumeración puerto 445 'SMB'
 	- Enumerar usuarios (--users)
 	    - Ataque de bruteforce 'users.txt:users.txt' 
 	    - Password Spraying (Misma password dada al inicio)
-	- Investigar Shares
+	- Investigar Shares (Revisaar de caada usuario nuevo obtenido)
 		- Investigar carpeta de SYSVOL, NETLOGON o Personalizadas 
 		- Buscar archivos con credenciales 
 
@@ -36,11 +45,22 @@ Pasos:
 - Enumeración puerto 389/636 'LDAP'
 	- Mapear toda la info con 'ldapdomaindump'
 
-- Kerberoasting Attack
-
 - Enumeración con BloodHound 
-	- Abuso de ACLs 
+	- Buscar Outbound Object Control (ACLs) 
 	- Buscar usuarios Kerberosteables 
 	- Shortest Path to Domain Admin 
 	- Shortest Path from Owned objects
+```
+
+```bash 
+## ATAQUES 
+
+- Abuso de ACLs
+- Kerberoasting Attack 
+- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
+
+- Pass-the-Hash (PtH)
+    - El hash pertenece solo al user Administrator?
+    - El hash puede estar siendo reutilizado por otras cuentas?
+	- Revisar en BloodHound (Shortest paths to Domain Admins, All Domain Admins) 
 ```
