@@ -40,4 +40,7 @@ Pasos:
 
 - Enumeración con BloodHound 
 	- Abuso de ACLs 
+	- Buscar usuarios Kerberosteables 
+	- Shortest Path to Domain Admin 
+	- Shortest Path from Owned objects
 ```
