@@ -1,6 +1,6 @@
 # Pivoting
 
-Tags: #Pivoting #Chisel 
+Tags: #Pivoting #Chisel #Linux #Windows 
 
 El **pivoting** (también conocido como “hopping”) es una técnica utilizada en pruebas de penetración y en el análisis de redes que implica el uso de una máquina comprometida para atacar otras máquinas o redes en el mismo entorno.
 
