@@ -4,10 +4,15 @@ Tags: #Windows #MovimientoLateral
 
 ## Enumeración 
 ```powershell 
-# Enumerar procesos que se estan ejecutando
-❯ Get-Process | Sort-Object CPU -Descending | Format-Table Name, Id, CPU, WorkingSet -AutoSize
+# Enumerar procesos 
+❯ netstat -ano | findstr LISTENING
 
-# Enumerar servicios/procesos desde el registro
+# Ejemplo:
+	 TCP 127.0.0.1:1433 0.0.0.0:0 LISTENING 4188   # MSSQL LOCAL (Pivoting)
+```
+
+```powershell 
+# Enumerar servicios/procesos desde el registro (Mejor Opción)
 ❯ Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services | ForEach-Object {
     $ip = $_.GetValue("ImagePath")
     "$($_.PSChildName) = $ip"
@@ -15,6 +20,10 @@ Tags: #Windows #MovimientoLateral
 
 NOTA:
 	- A veces hay credenciales en esos procesos (Se debe filtrar)
+
+
+# Enumerar procesos que se estan ejecutando
+❯ Get-Process | Sort-Object CPU -Descending | Format-Table Name, Id, CPU, WorkingSet -AutoSize
 ```
 
 ## Filtrado a buscar credenciales en algún servicio/proceso
