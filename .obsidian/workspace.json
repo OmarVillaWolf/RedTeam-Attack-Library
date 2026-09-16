@@ -62,23 +62,9 @@
               "icon": "lucide-file",
               "title": "IIS - Webdav"
             }
-          },
-          {
-            "id": "c0ef91f5d770054b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "1 Token Privileges"
-            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -250,36 +236,36 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "ed7456775ca54d94",
+  "active": "4039f4c7fcbfebdb",
   "lastOpenFiles": [
+    "5 Pivoting/4 Silver C2 framework.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
+    "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL.md",
+    "5 Pivoting/2 Ligolo.md",
+    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "5 Pivoting/3 Chisel.md",
+    "5 Pivoting/1 SSH.md",
+    "9 C2 (Post Exploitation)/2 PS Empire & Starkiller/1 PS Empire.md",
+    "9 C2 (Post Exploitation)/1 C&C/1 Introduction.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Inicio de procesos.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Kali/GenericAll - User.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/4 SMB Writable Share - Slinky - Malicious LNK.md",
     "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/1 GPO Abuse.md",
+    "8 Active Directory/2 AD - CRTP CRTE/3 Local Priv Escalation/3 FA - Relaying.md",
     "2 Ports/2 Aplicaciones Web/IIS - Webdav.md",
     "2.1 Tools/Password Cracking.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/4 SMB Writable Share - Slinky - Malicious LNK.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/3 Impacket-ntlmrelayx.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/2 NTLM.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/1 Relay Attacks.md",
-    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Kali/ForceChangePassword - User.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/3 Netexec.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Windows/WriteDacl - User.md",
-    "2.1 Tools/Hydra.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Kali/Untitled.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Kali/GetChangesAll, GetChanges - Dominio.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Windows/WriteDacl - Domain.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Kali/WriteOwner - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Kali/GenericAll - User.md",
     "8 Active Directory/3 AD - CRTE",
-    "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
-    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/6 AD CS - ESC.md",
-    "8 Active Directory/2 AD - CRTP/0 Attack Paths Lab/2 Lab Casero.md",
     "Pasted image 20260907014447.png",
-    "8 Active Directory/2 AD - CRTP/6 Cross Trust Attacks/3 Across Attacks - Trust Key Abuse - DC.md",
-    "8 Active Directory/2 AD - CRTP/1 Offensive PowerShell and .NET tradecraft/4 Transferir archivos.md",
-    "5 Pivoting/2 Ligolo.md",
     "Pasted image 20260825133926.png",
     "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral",
