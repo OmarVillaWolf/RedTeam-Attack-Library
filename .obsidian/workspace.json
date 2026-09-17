@@ -62,9 +62,37 @@
               "icon": "lucide-file",
               "title": "IIS - Webdav"
             }
+          },
+          {
+            "id": "cb448dd464367760",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2 Ports/2 Aplicaciones Web/Jenkins.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Jenkins"
+            }
+          },
+          {
+            "id": "dd4916333d9169be",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.2 Búsqueda de Creds.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "1.2 Búsqueda de Creds"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -98,7 +126,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "PowerHunt",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -236,12 +264,23 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "4039f4c7fcbfebdb",
+  "active": "dd4916333d9169be",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1 Enumeración del entorno.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/0 Metodología Linux PrivEsc.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.2 Búsqueda de Creds.md",
+    "4 PrivEsc Lin & Win/2 Linux/4 Persistencia/2 SSH.md",
+    "4 PrivEsc Lin & Win/2 Linux/4 Persistencia/1 Usuarios.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/13 Docker Breakout.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
+    "2 Ports/2 Aplicaciones Web/Jenkins.md",
+    "1 Com Lin & Win/1 Hacking Commands/Tratamiento TTY.md",
+    "2 Ports/2 Aplicaciones Web/Groovy.md",
+    "2 Ports/2 Aplicaciones Web/IIS - Webdav.md",
     "5 Pivoting/4 Silver C2 framework.md",
+    "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL.md",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
-    "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL.md",
     "5 Pivoting/2 Ligolo.md",
     "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
     "5 Pivoting/3 Chisel.md",
@@ -253,17 +292,6 @@
     "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/4 SMB Writable Share - Slinky - Malicious LNK.md",
     "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
-    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/1 GPO Abuse.md",
-    "8 Active Directory/2 AD - CRTP CRTE/3 Local Priv Escalation/3 FA - Relaying.md",
-    "2 Ports/2 Aplicaciones Web/IIS - Webdav.md",
-    "2.1 Tools/Password Cracking.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/3 Impacket-ntlmrelayx.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/2 NTLM.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/1 Relay Attacks.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Kali/ForceChangePassword - User.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/3 Netexec.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Windows/WriteDacl - User.md",
     "8 Active Directory/3 AD - CRTE",
     "Pasted image 20260907014447.png",
     "Pasted image 20260825133926.png",
