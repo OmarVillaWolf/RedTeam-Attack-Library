@@ -67,14 +67,18 @@
             "id": "52602819ff38aabc",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 4.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "ESC 4"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -246,10 +250,12 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "ed7456775ca54d94",
+  "active": "52602819ff38aabc",
   "lastOpenFiles": [
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 1.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 5.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 4.md",
     "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 1.md",
     "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
     "2 Ports/2 Aplicaciones Web/IIS - Webdav.md",
     "8 Active Directory/0 Evasión/4 WMIExec2.md",
@@ -265,8 +271,6 @@
     "8 Active Directory/0 Evasión/0 Políticas.md",
     "8 Active Directory/1 AD - Spartan/5 Evasión/4 AMSI.md",
     "8 Active Directory/0 Evasión",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 5.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 4.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 3.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/3 ADCS - Service Misconfigurations.md",
     "8 Active Directory/2 AD - CRTP CRTE/6 Cross Trust Attacks/6 AD CS - ESC.md",
