@@ -18,7 +18,7 @@ A continuación se proporciona el enlace directo para la descarga de la máquina
 ## Comandos
 
 Si encontramos un dir llamado **/cgi-bin/** lo mas probables es que podamos testear un ShellShock. 
-En esos directorios debemos de buscar archivos **pl, sh, cgi,** asi como tambien sin extension. 
+En este directorio se debe buscar archivos **pl, sh, cgi,** así como también sin extensión. 
 
 * [ShellShock-Attack](https://blog.cloudflare.com/inside-shellshock/)
 
