@@ -36,8 +36,8 @@ Pasos:
 	- Enumerar usuarios (--users)
 	    - Ataque de bruteforce 'users.txt:users.txt' 
 	    - Password Spraying (Misma password dada al inicio)
-	- Investigar Shares (Revisaar de caada usuario nuevo obtenido)
-		- Investigar carpeta de SYSVOL, NETLOGON o Personalizadas 
+	- Investigar Shares (Revisar de cada usuario nuevo obtenido)
+		- Investigar carpeta de SYSVOL (Common Vulnes), NETLOGON o Personalizadas 
 		- Buscar archivos con credenciales 
 
 - Verificar si el usuario dado puede ingresar por 'WinRM'
@@ -58,6 +58,7 @@ Pasos:
 - Abuso de ACLs
 - Kerberoasting Attack 
 - SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
+- LogonScript (Dir WRITE)
 - ADCS Attacks 
 
 - Pass-the-Hash (PtH)
