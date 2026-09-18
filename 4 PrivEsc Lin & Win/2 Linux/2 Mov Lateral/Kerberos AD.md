@@ -42,6 +42,7 @@ NOTA:
 ```
 
 ```bash 
+# Esta configuración viene del archivo original 'krb5.conf' en la máquina linux
 ❯ nvim /etc/krb5.conf
 
 	[libdefaults]
