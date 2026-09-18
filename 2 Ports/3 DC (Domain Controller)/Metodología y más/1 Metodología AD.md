@@ -58,6 +58,7 @@ Pasos:
 - Abuso de ACLs
 - Kerberoasting Attack 
 - SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
+- ADCS Attacks 
 
 - Pass-the-Hash (PtH)
     - El hash pertenece solo al user Administrator?
