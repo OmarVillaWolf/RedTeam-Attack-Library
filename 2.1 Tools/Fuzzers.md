@@ -18,6 +18,18 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 7. **Hacer una petición base primero → anotar tamaño/código → usarlo como filtro**
 8. **Si encuentras un directorio → fuzzearlo también con recursión o manualmente**
 
+# Herramientas 
+
+| Herramienta | Lenguaje | En qué destaca             | Uso principal                                                                                       |
+| ----------- | -------- | -------------------------- | --------------------------------------------------------------------------------------------------- |
+| Feroxbuster | Rust     | Velocidad y recursión      | Descubrir directorios y archivos, incluyendo contenido dentro de rutas encontradas                  |
+| FFUF        | Go       | Fuzzing flexible           | Fuzzear directorios, archivos, parámetros, headers, vhosts y diferentes partes de una petición HTTP |
+| Gobuster    | Go       | Simplicidad y velocidad    | Enumerar directorios, archivos, subdominios DNS y virtual hosts de forma rápida                     |
+| Dirsearch   | Python   | Flexibilidad y extensiones | Buscar directorios y archivos, permitiendo especificar extensiones como PHP, HTML, TXT o BAK        |
+| Wfuzz       | Python   | Fuzzing avanzado           | Fuzzear parámetros, URLs, headers, cookies y diferentes elementos de peticiones HTTP                |
+| Dirb        | C        | Simplicidad                | Realizar búsquedas básicas de directorios y archivos ocultos utilizando wordlists                   |
+| DirBuster   | Java     | GUI y metodología clásica  | Descubrir directorios y archivos mediante fuerza bruta, principalmente en entornos de laboratorio   |
+
 ## WORDLISTS DE REFERENCIA RÁPIDA
 
 ```bash 
@@ -167,6 +179,20 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 	# --filter-size → filtrar respuestas vacías
 ```
 
+### dirsearch
+```bash
+❯ dirsearch -u http://<IP>/   # Buscar archivos ocultos 
+
+❯ dirsearch -u http://<IP>/ -t 30 -e txt,html,php -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+# -e → extensiones | -t → hilos
+
+❯ dirsearch -u http://<IP>/ -t 30 -e txt,html,php,jsp,asp,aspx,rar,zip -f -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+# -f → forzar extensiones en cada palabra → más completo pero más lento
+
+❯ dirsearch -u http://<IP>/ -t 30 -e php,html,txt --exclude-status 403,404
+# --exclude-status → equivalente a -b en gobuster
+```
+
 ### gobuster
 ```bash
 ❯ gobuster dir -u http://<IP>/ -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -t 50 -b 403,404
@@ -252,18 +278,6 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 --sl=216       # ShowLine → mostrar solo ese número de líneas
 --sw=6515      # ShowWords → mostrar solo ese número de palabras
 --sh=12345     # ShowCharacters → mostrar solo ese número de caracteres
-```
-
-### dirsearch
-```bash
-❯ dirsearch -u http://<IP>/ -t 30 -e txt,html,php -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
-# -e → extensiones | -t → hilos
-
-❯ dirsearch -u http://<IP>/ -t 30 -e txt,html,php,jsp,asp,aspx,rar,zip -f -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
-# -f → forzar extensiones en cada palabra → más completo pero más lento
-
-❯ dirsearch -u http://<IP>/ -t 30 -e php,html,txt --exclude-status 403,404
-# --exclude-status → equivalente a -b en gobuster
 ```
 
 ### dirbuster (gráfico)
