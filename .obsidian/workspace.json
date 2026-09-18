@@ -64,21 +64,17 @@
             }
           },
           {
-            "id": "cc7d2dbff3c43f59",
+            "id": "52602819ff38aabc",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Kerberos AD.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Kerberos AD"
+              "title": "New tab"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -250,34 +246,36 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "cc7d2dbff3c43f59",
+  "active": "ed7456775ca54d94",
   "lastOpenFiles": [
-    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Kerberos AD.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 1.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
     "2 Ports/2 Aplicaciones Web/IIS - Webdav.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Frameworks Credentials.md",
-    "2 Ports/2 Aplicaciones Web/Jenkins.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.2 Búsqueda de Creds.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1 Enumeración del entorno.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/0 Metodología Linux PrivEsc.md",
-    "4 PrivEsc Lin & Win/2 Linux/4 Persistencia/2 SSH.md",
-    "4 PrivEsc Lin & Win/2 Linux/4 Persistencia/1 Usuarios.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/13 Docker Breakout.md",
+    "8 Active Directory/0 Evasión/4 WMIExec2.md",
     "1 Com Lin & Win/1 Hacking Commands/Tratamiento TTY.md",
-    "2 Ports/2 Aplicaciones Web/Groovy.md",
-    "5 Pivoting/4 Silver C2 framework.md",
-    "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
-    "5 Pivoting/2 Ligolo.md",
+    "8 Active Directory/0 Evasión/3 AV-Defender Evasion.md",
     "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-    "5 Pivoting/3 Chisel.md",
-    "5 Pivoting/1 SSH.md",
-    "9 C2 (Post Exploitation)/2 PS Empire & Starkiller/1 PS Empire.md",
-    "9 C2 (Post Exploitation)/1 C&C/1 Introduction.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Inicio de procesos.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Kali/GenericAll - User.md",
+    "2 Ports/3 DC (Domain Controller)/5985 5986 WinRM.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Windows/WriteDacl - User.md",
+    "8 Active Directory/2 AD - CRTP CRTE/1 Offensive PowerShell and .NET tradecraft/2 Bypass.md",
+    "8 Active Directory/0 Evasión/2 AMSI.md",
+    "8 Active Directory/0 Evasión/4 Bypass Defender.md",
+    "8 Active Directory/0 Evasión/1 InvisiShell.md",
+    "8 Active Directory/0 Evasión/0 Políticas.md",
+    "8 Active Directory/1 AD - Spartan/5 Evasión/4 AMSI.md",
+    "8 Active Directory/0 Evasión",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 5.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 4.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 3.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/3 ADCS - Service Misconfigurations.md",
+    "8 Active Directory/2 AD - CRTP CRTE/6 Cross Trust Attacks/6 AD CS - ESC.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/3 DPAPI.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/2 Group-Based Escalation.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Kerberos AD.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Frameworks Credentials.md",
     "8 Active Directory/3 AD - CRTE",
     "Pasted image 20260907014447.png",
     "Pasted image 20260825133926.png",
@@ -288,8 +286,6 @@
     "2 Ports/4 Windows - Linux/7 Otros",
     "2 Ports/4 Windows - Linux/4 Enumeration",
     "2 Ports/4 Windows - Linux/1 Initial Access",
-    "2 Ports/5 Puertos",
-    "2 Ports/4 Windows Server (Non-DC)/PHASE 2 Credential Stuffing/Bases de Datos",
     "ligolo_punto_a_punto_b 2.png",
     "ligolo_punto_a_punto_b 1.png",
     "ligolo_punto_a_punto_b.png",
