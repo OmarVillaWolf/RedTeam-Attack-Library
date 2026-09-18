@@ -473,6 +473,9 @@ Jerarquía de preferencia para ejecución remota:
 # Alternativa
 ```
 
+NOTA:
+	- Si no funciona por ``SMB o WinRM`` utilizar ``WMIExec2`` para la evasión y conexión mediante WMI
+
 ```bash
 ❯ impacket-smbexec domain.corp/user:'Password'@IP
 # Ingresar por smb
