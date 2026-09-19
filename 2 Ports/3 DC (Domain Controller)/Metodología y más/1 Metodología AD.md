@@ -10,7 +10,7 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
   	- Enumerar usuarios (--rid-brute)
 	- Investigar Shares
 		- Investigar carpeta de SYSVOL, NETLOGON o Personalizadas 
-		- Buscar archivos con credenciales 
+		- Buscar archivos con credenciales  <-  IMPORTANTE
 
 - Enumeración puerto 135 'RPC'
 	- Enumerar con nullsession en busca de usuarios
@@ -19,6 +19,8 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 - Enumeración puerto 88 'Kerberos'
 	- Kerbrute para validar buscar usuarios válidos (BruteForce)
 
+- Enumeración puerto 80 'web'
+	- Buscar archivos con credenciales  <-  IMPORTANTE
 ```
 
 ```bash 
@@ -38,12 +40,15 @@ Pasos:
 	    - Password Spraying (Misma password dada al inicio)
 	- Investigar Shares (Revisar de cada usuario nuevo obtenido)
 		- Investigar carpeta de SYSVOL (Common Vulnes), NETLOGON o Personalizadas 
-		- Buscar archivos con credenciales 
+		- Buscar archivos con credenciales  <-  IMPORTANTE 
 
 - Verificar si el usuario dado puede ingresar por 'WinRM'
 
 - Enumeración puerto 389/636 'LDAP'
 	- Mapear toda la info con 'ldapdomaindump'
+
+- Enumeración puerto 80 'web'
+	- Buscar archivos con credenciales  <-  IMPORTANTE
 
 - Enumeración con BloodHound 
 	- Buscar Outbound Object Control (ACLs) 
