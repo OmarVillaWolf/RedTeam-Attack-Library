@@ -48,7 +48,7 @@ Tags: #Hashcat #JohnTheRipper #PasswordCracking #HashIdentifier #Fcrackzip #Crac
 ### Referencia de prefijos de hash
 | Prefijo      | Algoritmo                     |
 | ------------ | ----------------------------- |
-| \$1$         | MD5                           |
+| \$1$         | MD5Crypt                      |
 | \$2$ o \$2a$ | Blowfish                      |
 | \$2y$        | bcrypt                        |
 | \$5$         | SHA-256                       |
@@ -82,8 +82,10 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 
 ## 1. HASHES DE CONTRASEÑAS COMUNES
 
-### MD5
+### MD5 Puro 
 ```bash
+# EJEMPLO: 5f4dcc3b5aa765d61d8327deb882cf99
+
 # hashcat
 ❯ hashcat -m 0 hash.txt /usr/share/wordlists/rockyou.txt
 # -m 0 → MD5
@@ -96,6 +98,17 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ john --format=Raw-MD5 hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ❯ john --show --format=Raw-MD5 hash.txt
 # --show → ver resultados ya crackeados
+```
+
+## MD5 md5crypt
+```bash
+# EJEMPLO: $1$mERr$isugnYiHsjHT.i.tc2GDY.
+
+# hashcat
+❯ hashcat -m 500 hash.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule
+
+# John 
+❯ john --format=md5crypt hash.txt -w=/usr/share/wordlists/rockyou.txt
 ```
 
 ### SHA1
