@@ -64,17 +64,13 @@
             }
           },
           {
-            "id": "e5209d1e8b086f48",
+            "id": "a9a081504696acb1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2.1 Tools/Fuzzers.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Fuzzers"
+              "title": "New tab"
             }
           }
         ],
@@ -147,7 +143,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 255.5
+    "width": 278.5
   },
   "right": {
     "id": "352c47b0cb031926",
@@ -250,34 +246,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "e5209d1e8b086f48",
+  "active": "a9a081504696acb1",
   "lastOpenFiles": [
+    "2 Ports/2 Aplicaciones Web/IIS - Webdav.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Kali/GenericAll - GPO.md",
+    "2 Ports/3 DC (Domain Controller)/3389 3333 RDP.md",
+    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Link.md",
+    "2 Ports/3 DC (Domain Controller)/5985 5986 WinRM.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
+    "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/4 Services.md",
+    "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/3 Network.md",
+    "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/2 Users, Groups.md",
+    "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/1 SystemInfo.md",
+    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/Xampp.md",
     "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
     "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "2 Ports/2 Aplicaciones Web/IIS - Webdav.md",
-    "2 Ports/3 DC (Domain Controller)/Metodología y más/3 Crear lista de usuarios.md",
+    "2 Ports/2 Aplicaciones Web/RoundCube.md",
+    "2.1 Tools/Password Cracking.md",
     "2.1 Tools/Fuzzers.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/3 Crear lista de usuarios.md",
     "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
     "7 Hacking Web/1 Basic/24 ShellShock.md",
-    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
     "2 Ports/3 DC (Domain Controller)/464 kerberos Password.md",
     "2 Ports/1 Common Vulnes/SMB/SYSVOL.md",
     "8 Active Directory/2 AD - CRTP CRTE/3 Local Priv Escalation/1 PriEsc - Manual.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/3 DPAPI.md",
     "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 1.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 4.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC/ESC 5.md",
-    "8 Active Directory/0 Evasión/4 WMIExec2.md",
-    "1 Com Lin & Win/1 Hacking Commands/Tratamiento TTY.md",
-    "8 Active Directory/0 Evasión/3 AV-Defender Evasion.md",
-    "2 Ports/3 DC (Domain Controller)/5985 5986 WinRM.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/DC - ACL - Windows/WriteDacl - User.md",
-    "8 Active Directory/2 AD - CRTP CRTE/1 Offensive PowerShell and .NET tradecraft/2 Bypass.md",
-    "8 Active Directory/0 Evasión/2 AMSI.md",
-    "8 Active Directory/0 Evasión/4 Bypass Defender.md",
-    "8 Active Directory/0 Evasión/1 InvisiShell.md",
-    "8 Active Directory/0 Evasión/0 Políticas.md",
     "8 Active Directory/0 Evasión",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/ESC",
     "8 Active Directory/3 AD - CRTE",
