@@ -3,6 +3,20 @@
 Tags: #Windows #MovimientoLateral 
 
 ## Identificación 
+```bash 
+# Enumeración 
+
+# Buscar software de terceros no estándar, antiguo o vulnerable.
+# Ejemplos: servidores de correo, clientes de backup, herramientas administrativas, etc.
+C:\Program Files
+C:\Program Files (x86)
+
+# Revisar completamente el perfil del usuario comprometido:
+C:\Users\Omar\
+
+# Buscar archivos de configuración, scripts, backups, credenciales, documentos o información sensible.
+```
+
 
 ```bash 
 # Windows — aplicaciones web
@@ -23,7 +37,9 @@ C:\wamp64\www\<APP>\db.php
 
 ```powershell
 ❯ Get-Content (Get-PSReadLineOption).HistorySavePath
+
 ❯ type $env:APPDATA\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+
 ❯ type C:\Users\<usuario>\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 ```
 
