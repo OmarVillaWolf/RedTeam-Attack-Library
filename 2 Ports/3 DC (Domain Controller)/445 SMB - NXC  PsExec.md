@@ -74,6 +74,13 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 ❯ nxc smb <IP> -u 'null' -p '' --shares
 # Enumerar con null session al SMBv1/SMBv2
 
+❯ nxc smb <IP> -u '' -p '' --users   # Enumerar usuarios 
+❯ nxc smb <IP> -u '' -p '' --users | awk '$4 == "DC" && $5 != "[+]" && $5 != "[*]" && $5 != "-Username-" {print $5}' > users.txt
+
+❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser"
+❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser" | awk -F'\\' '{print $2}' | awk '{print $1}' > users.txt
+# Enum usuarios válidos por RID → no requiere creds
+
 ❯ nxc smb <IP> -u 'guest' -p '' -M spider_plus
 # Enumeración más profunda de los shares SMB accesibles y recorre sus directorios/archivos
 
@@ -82,10 +89,6 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 
 ❯ nxc smb <IP/rango> --gen-relay-list hosts_sin_signing.txt
 # Mapear toda la red buscando hosts sin SMB signing (clave para relay attacks)
-
-❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser"
-❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser" | awk -F'\\' '{print $2}' | awk '{print $1}' > users.txt
-# Enum usuarios válidos por RID → no requiere creds
 
 ❯ nxc smb <IP> -u users.txt -p '' --continue-on-success 
 # Si al buscar usuarios le podemos asignar una password si estos salen con el siguiente mensaje:
