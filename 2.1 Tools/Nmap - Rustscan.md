@@ -35,6 +35,7 @@ Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 # PASO 1 → Descubrir todos los puertos abiertos (elegir uno)
 
 # Opción A — RustScan (más rápido)
+❯ rustscan -a <IP> -- -A 
 ❯ rustscan -a <IP> --ulimit 5000 -g
 # --ulimit 5000 → necesario para máxima velocidad | -g → grepeable
 
@@ -51,6 +52,14 @@ Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 
 # PASO 3 → UDP en los más comunes (si aplica)
 ❯ nmap -sU --top-ports 100 --open -T5 -v -n <IP>
+```
+
+```bash 
+# Si sale FILTRADO hacer lo siguiente:
+❯ nmap --source-port 53 -p22,80,... -sCV <IP> -oN Targeted 
+❯ nmap -D RND:5 -p22,80,... -sCV <IP> -oN Targeted 
+
+❯ rustscan -a <IP> -t 2000 -b 100 -- -A -sV -oN Targeted
 ```
 
 ---
