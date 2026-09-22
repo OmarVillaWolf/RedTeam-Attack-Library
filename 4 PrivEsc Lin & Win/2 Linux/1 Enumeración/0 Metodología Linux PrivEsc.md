@@ -17,33 +17,6 @@ Los comandos están en las notas individuales de cada técnica.
 
 ---
 
-## ORDEN DE PRIORIDAD
-
-Sigue este orden — los más rápidos y frecuentes primero:
-
-```
- 0. foothold (www-data)  → buscar credenciales / reutilización / pivot a usuario real
- 1. sudo -l              → más rápido y más común en el examen
- 2. Grupos especiales    → docker/lxd = root casi seguro
- 3. SUID / SGID          → find + GTFObins
- 4. Capabilities         → cap_setuid = root directo
- 5. Tareas Cron          → scripts escribibles o wildcard injection
- 6. Password Hunting     → configs, historial, backups, DB → muy subestimado
- 7. Permisos incorrectos → /etc/passwd, shadow, id_rsa de root
- 8. NFS no_root_squash   → muy común en máquinas de examen
- 9. Path Hijacking       → scripts que llaman sin ruta absoluta
-10. Python Lib Hijacking → scripts Python con sudo o cron
-11. Secuestro Biblioteca → LD_PRELOAD con sudo env_keep
-12. Wildcard Injection   → tar, rsync, chown con * en cron
-13. Servicios Internos   → MySQL, Redis sin auth en localhost
-14. Systemd Timers       → como cron pero con systemd
-15. Restricted Shell     → escapar de rbash antes de privesc
-16. Docker Breakout      → si estás en contenedor
-17. Kernel Exploit       → último recurso → puede crashear el sistema
-```
-
----
-
 ## CHECKLIST RÁPIDO PARA EL EXAMEN
 
 ```
