@@ -4,20 +4,20 @@ Tags: #MySQL #Servidor #Comandos #DB
 
 ## DATABASE - TABLES - COLUMS - DATA 
 
+## Instalación 
 ```bash
-❯ sudo apt install mariadb-server              # Instalar Mariadb
+❯ sudo apt install mariadb-server     # Instalar Mariadb
+
+❯ service mariadb start     # Iniciar el servicio
+❯ service mariadb stop      # Parar el servicio
 ```
 
-```bash
-❯ service mariadb start                        # Iniciar el servicio
-❯ service mariadb stop                         # Parar el servicio
-```
-
+## Conexión a MYSQL 
 ```bash 
-❯ mysql -u root -p passwd -D database
+❯ mysql -u root -D wordpress -h localhost -p
 
-❯ mysql -u root -p -h <IP>         # Fuera del server 
-❯ mysql -u root -p                 # Dentro del server 
+❯ mysql -u root -p -h <IP>       # Fuera del server 
+❯ mysql -u root -p               # Dentro del server 
 
 	# h = Host
 	# u = User
@@ -25,6 +25,7 @@ Tags: #MySQL #Servidor #Comandos #DB
 	# D = Especificar una base de datos para conectarse 
 ```
 
+## Comandos dentro de MYSQL 
 ```bash
 ❯ mysql -u root -p          # Conectar y proporcionar credenciales
 
@@ -41,7 +42,18 @@ Tags: #MySQL #Servidor #Comandos #DB
 ```
 
 ```bash 
-❯ php -r '$m=new mysqli("mysql","root","trinity","nexust_joomla"); if($m->connect_error){die($m->connect_error);} $r=$m->query("SHOW TABLES"); while($row=$r->fetch_row()){echo $row[0].PHP_EOL;}'
+# Mirar las tablas
+❯ php -r '$m=new mysqli("localhost","root","Password","DB_Name"); if($m->connect_error){die($m->connect_error);} $r=$m->query("SHOW TABLES"); while($row=$r->fetch_row()){echo $row[0].PHP_EOL;}'
+
+	# localhost = 127.0.0.1 = IP donde se esta ejecutando el servicio 
+	# root = Usuario que se conecta a la DB
+	# Password = Contraseña del usuario que se conectaará a la DB
+	# DB_Name = Nombre de la DB
+
+# Mirar el contenido de las tablas (Users)
+❯ php -r '$m=new mysqli("localhost","root","Password","DB_Name"); $r=$m->query("SELECT * FROM users"); while($row=$r->fetch_assoc()){print_r($row);}'
+
+❯ php -r '$m=new mysqli("localhost","root","Password","DB_Name"); $r=$m->query("SELECT * FROM users"); while($row=$r->fetch_assoc()){echo implode(" | ",$row).PHP_EOL;}'
 ```
 
 ## Crear una DB en MSQL
