@@ -23,12 +23,18 @@ Tags: #WordPress #CMS #WPScan #WPProbe #Enumeracion #FuerzaBruta #RCE #LFI #xmlr
 
 ## 1. RUTAS Y ARCHIVOS CLAVE
 
+### Credenciales por defecto 
+```bash 
+admin:admin 
+admin:password 
+```
+
 ### Rutas web importantes
 ```
 /readme.html                     → Versión de WordPress
 /wp-login.php                    → Panel de login
 /wordpress/wp-login.php          → Instalación en subdirectorio
-/wp-admin/                       → Panel de administración
+/wp-admin/admin.php              → Panel de administración
 /wp-json/wp/v2/users/            → Enumerar usuarios sin auth (JSON)
 /wp-content/plugins/             → Directory listing de plugins
 /xmlrpc.php                      → Si expuesto → fuerza bruta sin límite
@@ -40,6 +46,7 @@ Tags: #WordPress #CMS #WPScan #WPProbe #Enumeracion #FuerzaBruta #RCE #LFI #xmlr
 ```
 /var/www/html/wp-config.php           → Credenciales de DB → leer siempre
 /usr/share/wordpress/wp-config.php    → Ruta alternativa
+/var/www/html/wp-config.php           → Ruta con credenciales 
 /etc/apache2/sites-enabled/wordpress.conf  → Configuración Apache
 /var/www/html/wp-content/uploads/     → Archivos subidos → buscar webshells
 /var/www/html/wp-content/plugins/     → Plugins instalados
