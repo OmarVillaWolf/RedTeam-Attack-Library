@@ -20,7 +20,7 @@ Componentes:
 	- Quien puede usarlo 
 	- Los permisos 
 
-# ESC 4 Overly Permissive ACLs on Certificate Templates
+# ESC 4 - Overly Permissive ACLs on Certificate Templates
 
 Una vulnerabilidad de quien tiene permisos de escritura sobre LA PLANTILLA, se puede modificar su configuración ESC4 y hacerla explotable al ESC1.
 
