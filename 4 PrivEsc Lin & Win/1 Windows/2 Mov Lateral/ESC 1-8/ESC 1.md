@@ -20,7 +20,7 @@ Componentes:
 	- Quien puede usarlo 
 	- Los permisos 
 
-# ESC 1 Overly Permissive Certificate Template
+# ESC 1 - Overly Permissive Certificate Template
 
 El template permite que quien solicita el certificado especifique un Subject Alternative Name (SAN). Si un usuario puede hacer enrollment en este template, puede solicitar un certificado haciéndose pasar por cualquier usuario (incluido un Domain Admin).
 ## Enumeración General 
