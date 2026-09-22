@@ -289,6 +289,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # Convierte la clave privada cifrada en hash crackeable
 
 # john
+❯ john --format=ssh hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
 ❯ john hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ❯ john --show hash.txt
 
