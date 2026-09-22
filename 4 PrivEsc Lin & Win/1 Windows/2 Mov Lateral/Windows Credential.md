@@ -43,6 +43,41 @@ C:\wamp64\www\<APP>\db.php
 ❯ type C:\Users\<usuario>\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 ```
 
+## Filtrado a buscar credenciales en algún servicio/proceso
+```powershell 
+❯ Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services | ForEach-Object {
+    $imagePath = $_.GetValue("ImagePath")
+    $serviceName = $_.PSChildName
+    
+    if ($imagePath -match "-u\s+\S+|-p\s+\S+|/u\s+\S+|/p\s+\S+|--user|--password|username|password") {
+        # Extrae solo la credencial
+        $credMatch = [regex]::Matches($imagePath, '(?:-u|-p|/u|/p|--user|--password)\s+(\S+)')
+        
+        [PSCustomObject]@{
+            "Servicio" = $serviceName
+            "Parámetros_Sospechosos" = ($credMatch.Groups[1].Value -join ", ")
+            "Ruta_Completa" = $imagePath
+        }
+    }
+} | Format-Table -AutoSize
+```
+
+
+```powershell 
+# Enumerar servicios/procesos desde el registro (Mejor Opción)
+❯ Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services | ForEach-Object {
+    $ip = $_.GetValue("ImagePath")
+    "$($_.PSChildName) = $ip"
+}
+
+NOTA:
+	- A veces hay credenciales en esos procesos (Se debe filtrar)
+
+
+# Enumerar procesos que se estan ejecutando
+❯ Get-Process | Sort-Object CPU -Descending | Format-Table Name, Id, CPU, WorkingSet -AutoSize
+```
+
 ## Credenciales Almacenadas (Credential Manager)
 
 ```powershell
