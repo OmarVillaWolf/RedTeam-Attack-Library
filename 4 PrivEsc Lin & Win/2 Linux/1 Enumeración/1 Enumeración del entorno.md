@@ -11,7 +11,7 @@ Tags: #PrivEsc
 
 ❯ whoami             # Mirar el usuario 
 ❯ id                 # Mirar los grupos 
-❯ ipconfig | ip a    # mirar las interfaces 
+❯ ipconfig | ip a    # Mirar las interfaces 
 ❯ hostaname          # Muestra el nombre del host
 ❯ sudo su            # A veces el usuario no necesita password para ingresar 
 ❯ cat /etc/issue         # Identificar la distribución actual del SO
