@@ -20,7 +20,7 @@ Componentes:
 	- Quien puede usarlo 
 	- Los permisos 
 
-# ESC 3 Issuance Policy / Application Policy
+# ESC 3 - Issuance Policy / Application Policy
 
 El atacante puede pedir un certificado en nombre de OTRO USUARIO. (Para utilizar o reemplazar a otra persona)
 
