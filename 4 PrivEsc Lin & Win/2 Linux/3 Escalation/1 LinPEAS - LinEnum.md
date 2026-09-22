@@ -8,6 +8,9 @@ LinPEAS es una herramienta de enumeración diseñada para sistemas Unix/Linux, o
 
 ```bash 
 ❯ ./linpeas.sh      # Ejecutamos el binario 
+
+❯ ./linpeas.sh > linpeas_output.txt 2>&1   # Guardar en un archivo 
+❯ ./linpeas.sh | tee linpeas_output.txt    # Ver en pantalla y guardar 
 ```
 
 ## LinEnum
