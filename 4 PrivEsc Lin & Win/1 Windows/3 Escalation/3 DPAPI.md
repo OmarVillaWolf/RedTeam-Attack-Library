@@ -1,6 +1,6 @@
 # DPAPI (Data Protection API)
 
-Tags: #Windows #PrivEsc #DPAPI #Kali 
+Tags: #Windows #PrivEsc #DPAPI #Kali #WinPEAS 
 
 Es una API de Windows que encripta/desencripta datos usando credenciales del usuario actual.
 
