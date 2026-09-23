@@ -36,18 +36,16 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 ```bash
 NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina víctima 
 
-❯ ./chisel server --reverse -p 11601       # Crear el server en Kali 
+❯ ./chisel_linux server --reverse -p 11601       # Crear el server en Kali 
 	# Port-Server = Puerto a abrir en Kali
 
-❯ ./chisel client <IP-Server>:11601 R:<Port-Local-a-Abrir>:<IP-Local>:<Port-Traemos>    # Levantar el cliente 
-	# IP-Server = IP de Kali
-	# Port-Server = Puerto de Kali = 1234
-	# R = Remote Port Forwarding
-	# Port-Local = Puerto que vamos a traer de la maquina víctima
-	# IP-Local = IP del Localhost de la maquina víctima 
-	# Port-Traemos = Puerto a abrir en Kali
+❯ chisel client IP_Kali:11601 R:<Port-Local-a-Abrir>:127.0.0.1:<Port-Traer>    # Levantar el cliente 
 
-Nota: Se crea un túnel utilizando un solo puerto con una IP especifica
+	# R = Remote Port Forwarding
+	# Port-Local-a-Abrir = Puerto en Kali donde escuchará 
+	# 127.0.0.1:<Port-Traer> = Destino en la máquina víctima (O sea su puerto a traer: 80,1433, etc...)
+
+Nota: Se crea un túnel utilizando un solo puerto con una IP específica
 ```
 
 ## 1.2 Crear un túnel con todos los puertos 
