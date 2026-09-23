@@ -31,15 +31,13 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 ```
 
 ```bash 
-❯ nano /etc/proxychains.conf    # Modificar el archivo 'proxychains' y agregar lo siguiente:
-	socks4 127.0.0.1 1080       # Comentar (# proxy_dns) y modificar el proxy en 'ProxyList'
+❯ nvim /etc/proxychains4.conf    
+	socks5 127.0.0.1 1080        # Comentar (# proxy_dns) y modificar el proxy en 'ProxyList'
 ```
 
 ## Comandos con Proxychains
 
 ```bash 
-Siempre se debe colocar 'proxychains' antes de cada comando por lo que hará el comando pase por el tunel creado por chisel
-
 - NMAP
 ❯ seq 1 65535 | xargs -P 500 -I {} proxychains nmap -sT -Pn -p{} -open -T5 -v -n ❮Target IP❯ 2>&1 | grep "tcp open"
 
@@ -51,6 +49,7 @@ Siempre se debe colocar 'proxychains' antes de cada comando por lo que hará el 
 
 - WHATWEB
 ❯ proxychains whatweb IP          # Escaneo hacia la maquina víctima 
+❯ proxychains curl http://127.0.0.1:80/  # Mirar el puerto 80 
 
 
 - NETCAT
