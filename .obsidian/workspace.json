@@ -50,49 +50,21 @@
             }
           },
           {
-            "id": "f60b3389c4496f99",
+            "id": "d314bb402a6388b0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2.1 Tools/Nmap - Rustscan.md",
+                "file": "5 Pivoting/2 Ligolo.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Nmap - Rustscan"
-            }
-          },
-          {
-            "id": "52cbc585165d2a14",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "5 Capabilities"
-            }
-          },
-          {
-            "id": "cb559ae5f6b7d1bc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "7 Hacking Web/1 Basic/9 SSTI - Python,Flask,Jinja2.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "9 SSTI - Python,Flask,Jinja2"
+              "title": "2 Ligolo"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -126,7 +98,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "pdf",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -264,34 +236,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "cb559ae5f6b7d1bc",
+  "active": "d314bb402a6388b0",
   "lastOpenFiles": [
-    "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
-    "7 Hacking Web/1 Basic/9 SSTI - Python,Flask,Jinja2.md",
-    "7 Hacking Web/1 Basic/11 Padding Oracle.md",
-    "7 Hacking Web/1 Basic/10 CSTI.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
-    "2 Ports/4 Windows - Linux/5 Database/3306 - MYSQL.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/6 Tareas CRON.md",
-    "2 Ports/2 Aplicaciones Web/CMS - WordPress.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/MySQL Credentials.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/3 DPAPI.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1 LinPEAS - LinEnum.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Búsqueda de Creds.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.1 Enumeración Interna.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/0 Metodología Linux PrivEsc.md",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "5 Pivoting/3 Chisel.md",
     "5 Pivoting/2 Ligolo.md",
-    "2 Ports/4 Windows - Linux/1 Initial Access/22 - SSH.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/PHP Credentials.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Kerberos AD.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Frameworks Credentials.md",
+    "5 Pivoting/1 SSH.md",
     "2.1 Tools/Password Cracking.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1 Enumeración del entorno.md",
-    "2 Ports/4 Windows - Linux/6 File Share Path/2049 - NFS.md",
+    "3 Passive  Reconnaissance/1 Webs.md",
+    "General Hacking/0 OSINT & Passive Recon/1 Search Engines.md",
+    "General Hacking/01 Footprinting and Reconnaissance/1 Search Engines.md",
+    "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
+    "7 Hacking Web/2 Intermediate/0 HTTP Conceptos/1 Basic HTTP.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "1 Com Lin & Win/1 Hacking Commands/Encoding.md",
+    "2 Ports/3 DC (Domain Controller)/3389 3333 RDP.md",
+    "2 Ports/4 Windows - Linux/2 Web Services/80 - HTTP.md",
+    "2 Ports/4 Windows - Linux/1 Initial Access/20 21 - FTP.md",
+    "2 Ports/3 DC (Domain Controller)/135 RPC.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
+    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "2.1 Tools/Nmap - Rustscan.md",
+    "1 Com Lin & Win/1 Hacking Commands/2 Windows Commands.md",
+    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/FileZilla.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
+    "7 Hacking Web/1 Basic/9 SSTI - Python,Flask = Jinja2.md",
+    "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
+    "7 Hacking Web/1 Basic/11 Padding Oracle.md",
     "8 Active Directory/0 Evasión",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/ESC 1-8",
     "8 Active Directory/3 AD - CRTE",
