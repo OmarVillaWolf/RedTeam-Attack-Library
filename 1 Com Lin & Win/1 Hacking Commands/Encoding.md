@@ -1,6 +1,6 @@
 # Encoding / Decoding
 
-Tags: #Encoding #Decoding #Base64 #URL #HTML #Hex #Unicode #BypassFiltros #Web
+Tags: #Encoding #Decoding #Base64 #URL #HTML #Hex #Unicode #BypassFiltros #Web #CyberChef 
 
 ## OBJETIVO
 
@@ -20,7 +20,11 @@ Tags: #Encoding #Decoding #Base64 #URL #HTML #Hex #Unicode #BypassFiltros #Web
 
 ## RECURSOS
 
+* [CyberChef](https://gchq.github.io/CyberChef/)
+
 ```bash
+CyberChef = Decodificar, transformar y analizar datos
+
 ❯ https://gchq.github.io/CyberChef/         # Navaja suiza del encoding → usar siempre
 ❯ https://www.ascii-code.com/               # Tabla ASCII completa
 ❯ https://www.utf8-chartable.de/            # Unicode UTF-8
