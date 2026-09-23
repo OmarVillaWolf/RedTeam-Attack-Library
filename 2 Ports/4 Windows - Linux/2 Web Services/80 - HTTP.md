@@ -74,6 +74,9 @@ Tags: #Web #HTTP #HTTPS #Reconocimiento #Enumeracion #BannerGrabbing #Fuzzing
 # Ver headers completos de request y response
 # Buscar: Server, X-Powered-By, Set-Cookie, Content-Type
 
+❯ curl -i http://<IP>:33333/list-running-procs -X POST -H 'Content-Length: 0'
+# Enumerar un Endpoint llamado 'list-running-procs' 
+
 ❯ http <IP>
 # HTTPie → ver cabeceras de forma más legible que curl
 ```
