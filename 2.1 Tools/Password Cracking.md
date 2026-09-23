@@ -380,6 +380,11 @@ NOTA:
 ```
 
 ### PDF
+```bash 
+# Abrir un PDF 
+❯ okular File.pdf     # Okulaar es un lector de documentos PDF
+```
+
 ```bash
 # Extraer hash
 ❯ pdf2john file.pdf > hash.txt
