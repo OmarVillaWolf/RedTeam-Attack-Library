@@ -152,6 +152,7 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 ❯ tree <share>      # Listar en forma de árbol toda la carpeta descargada
 
 ❯ smbclient -U 'user%pass' //<IP>/ShareName   # Requiere creds → acceso directo al share
+❯ smbclient -U 'user%pass' //<IP>/"Human Resources"    
 	❯ dir             # Listar contenido del share
 	❯ get <file>      # Descargar archivo
 	❯ put <file>      # Subir archivo (si hay permisos de escritura)
