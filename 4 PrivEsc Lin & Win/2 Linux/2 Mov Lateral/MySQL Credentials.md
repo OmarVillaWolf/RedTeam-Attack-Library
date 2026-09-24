@@ -2,29 +2,20 @@
 
 Tags: #PrivEsc #MovimientoLateral 
 
-## Identificación de la base de datos
-
+## Mysql credentials 
 ```bash 
-# Linux — rutas comunes 
-
-/var/www/html/config.php
-/var/www/html/config.inc.php
-/var/www/html/configuration.php
-/var/www/html/db.php
-/var/www/html/database.php
-/var/www/html/.env
-
-/var/www/<APP>/config.php
-/var/www/<APP>/config/db.php
-/var/www/<APP>/config/database.php
-/var/www/<APP>/.env
-
-/opt/<APP>/config/
-/opt/<APP>/config/db.php
-/opt/<APP>/.env
-
-/home/<USER>/<APP>/.env
-/home/<USER>/<APP>/config.php
+	/var/www/html/config.php
+	/var/www/html/db.php
+	/var/www/html/database.php
+	/var/www/html/wp-config.php
+	/var/www/html/configuration.php
+	/var/www/config.php
+	/var/www/config/db.php
+	/var/www/config/database.php
+	/opt/config/db.php
+	/srv/config/db.php
+	/etc/mysql/my.cnf
+	/etc/phpmyadmin/config.inc.php
 ```
 ### Acceso a MySQL
 
