@@ -33,6 +33,7 @@ C:\xampp\htdocs\<APP>\.env
 C:\wamp64\www\<APP>\config.php
 C:\wamp64\www\<APP>\db.php
 ```
+
 ## PowerShell History
 
 ```powershell
@@ -44,6 +45,22 @@ C:\wamp64\www\<APP>\db.php
 ```
 
 ## Filtrado a buscar credenciales en algún servicio/proceso
+
+```powershell 
+# Enumerar servicios/procesos desde el registro     <-- MEJOR OPCIÓN 
+❯ Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services | ForEach-Object {
+    $ip = $_.GetValue("ImagePath")
+    "$($_.PSChildName) = $ip"
+}
+
+NOTA:
+	- A veces hay credenciales en esos procesos (Se debe filtrar)
+
+
+# Enumerar procesos que se estan ejecutando
+❯ Get-Process | Sort-Object CPU -Descending | Format-Table Name, Id, CPU, WorkingSet -AutoSize
+```
+
 ```powershell 
 ❯ Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services | ForEach-Object {
     $imagePath = $_.GetValue("ImagePath")
@@ -60,22 +77,6 @@ C:\wamp64\www\<APP>\db.php
         }
     }
 } | Format-Table -AutoSize
-```
-
-
-```powershell 
-# Enumerar servicios/procesos desde el registro (Mejor Opción)
-❯ Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services | ForEach-Object {
-    $ip = $_.GetValue("ImagePath")
-    "$($_.PSChildName) = $ip"
-}
-
-NOTA:
-	- A veces hay credenciales en esos procesos (Se debe filtrar)
-
-
-# Enumerar procesos que se estan ejecutando
-❯ Get-Process | Sort-Object CPU -Descending | Format-Table Name, Id, CPU, WorkingSet -AutoSize
 ```
 
 ## Credenciales Almacenadas (Credential Manager)
@@ -97,7 +98,11 @@ NOTA:
 ## Variables de Entorno
 
 ```powershell
-❯ Get-ChildItem Env:
+❯ Get-ChildItem Env:    # Mirar el contenido de todas las variaables de entorno 
+❯ $env:PATH
+❯ $env:USERPROFILE
+
+# CMC
 ❯ echo %PATH%
 ❯ echo %USERPROFILE%
 ```
@@ -105,8 +110,8 @@ NOTA:
 ## Historial RDP/SSH
 
 ```powershell
-❯ reg query "HKCU\Software\Microsoft\Terminal Server Client\Default"
-❯ Get-ChildItem C:\Users\<usuario>\.ssh\
+❯ reg query "HKCU\Software\Microsoft\Terminal Server Client" /s
+
 ❯ Get-ChildItem C:\Users\<usuario>\.ssh\id_rsa
 ```
 
