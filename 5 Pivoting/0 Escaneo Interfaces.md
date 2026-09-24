@@ -45,6 +45,7 @@ tput cnorm
 ```
 
 # Escaneo en Windows 
+### Descubrimiento de IPs
 
 * [Escaneo de IPs](https://github.com/BornToBeRoot/PowerShell_IPv4NetworkScanner/tree/main/Scripts)
 
@@ -52,16 +53,28 @@ tput cnorm
 1. Descubrimiento de IPs desde una maquina Windows con ARP
 ❯ arp -a       # Mirar la tabla de ARP 
 
-# Descubrimiento de IPs desde una maquina Windows con la herramienta
-1.Descargar la tool en Kali para despues transferirla a la máquina víctima con Windows
-❯ wget https://raw.githubusercontent.com/BornToBeRoot/PowerShell_IPv4NetworkScanner/refs/heads/main/Scripts/IPv4NetworkScan.ps1
-
-# Ejecutar en Windows
-❯ .\IPv4NetworkScan.ps1 -StartIPv4Address 10.10.10.0 -EndIPv4Address 10.10.10.254   # Escanear con la herramienta el segmento de red en busca de IPs activas  
+# Ejecutar la tool en Windows
+❯ .\IPv4NetworkScan.ps1 -StartIPv4Address IP.0 -EndIPv4Address IP.254   
+# Escanear con la herramienta el segmento de red en busca de IPs activas  
 ```
 
+### Descubrimiento de Puertos 
 ```bash 
 1 Descubrimiento de puertos desde una maquina Windows teniendo un túnel ya activado con 'Proxychains' el cual hace que se pueda escanear los puertos desde Kali
 
 ❯ seq 1 65535 | xargs -P 500 -I {} proxychains nmap -sT -Pn -p{} -open -T5 -v -n ❮Target IP❯ --append-output -oG allPorts 2>&1 | grep -vE "chain|Initiating|Starting|timeout|seconds|Read|Completed|Scanning"
 ```
+
+### Mirar Redes 
+```powershell 
+# El clásico que siempre funciona
+❯ ipconfig /all
+
+# O versión PowerShell sin CIM
+Get-ChildItem -Path "HKLM:\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces" -ErrorAction SilentlyContinue | 
+  ForEach-Object { 
+    $ip = (Get-ItemProperty $_.PSPath).DhcpIPAddress
+    if ($ip) { Write-Host $ip }
+  }
+```
+
