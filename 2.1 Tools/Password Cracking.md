@@ -49,7 +49,6 @@ Tags: #Hashcat #JohnTheRipper #PasswordCracking #HashIdentifier #Fcrackzip #Crac
 | Prefijo      | Algoritmo                     |
 | ------------ | ----------------------------- |
 | \$1$         | MD5Crypt                      |
-| \$2$ o \$2a$ | Blowfish                      |
 | \$2y$        | bcrypt                        |
 | \$5$         | SHA-256                       |
 | \$6$         | SHA-512                       |
@@ -138,7 +137,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ john --format=Raw-SHA512 hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ```
 
-### bcrypt
+### Bcrypt
 ```bash
 # hashcat
 ❯ hashcat -m 3200 hash.txt /usr/share/wordlists/rockyou.txt -O
