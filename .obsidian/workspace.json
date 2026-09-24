@@ -50,35 +50,17 @@
             }
           },
           {
-            "id": "499d9eb44b44ef4d",
+            "id": "ddec85d8460b7f4b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Procesos Internos"
-            }
-          },
-          {
-            "id": "a77f4d16cb014d25",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2 Ports/2 Aplicaciones Web/CMS - WordPress.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CMS - WordPress"
+              "title": "New tab"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -250,21 +232,22 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "a77f4d16cb014d25",
+  "active": "ddec85d8460b7f4b",
   "lastOpenFiles": [
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
+    "2 Ports/2 Aplicaciones Web/CMS - Drupal.md",
+    "2 Ports/2 Aplicaciones Web/CMS - Magento.md",
+    "2 Ports/2 Aplicaciones Web/CMS - WordPress.md",
     "2 Ports/2 Aplicaciones Web/CMS - Joomla.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Joomla.md",
     "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
     "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1 Kernel.md",
     "2.1 Tools/Password Cracking.md",
     "2 Ports/4 Windows - Linux/5 Database/3306 - MYSQL.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
-    "2 Ports/2 Aplicaciones Web/CMS - WordPress.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Wordpress.md",
-    "2 Ports/2 Aplicaciones Web/CMS - Magento.md",
     "1 Kitty.md",
     "14 Red Teaming IA/0 IA Models/1 Entorno IA.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
     "2 Ports/4 Windows - Linux/1 Initial Access/22 - SSH.md",
     "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1 K.md",
     "1 Com Lin & Win/1 Hacking Commands/Tratamiento TTY.md",
@@ -277,7 +260,6 @@
     "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.1 Enumeración Interna.md",
     "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1 Enumeración del entorno.md",
     "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Frameworks Credentials.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/0 Metodología Linux PrivEsc.md",
     "8 Active Directory/0 Evasión",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8",
     "8 Active Directory/3 AD - CRTE",
