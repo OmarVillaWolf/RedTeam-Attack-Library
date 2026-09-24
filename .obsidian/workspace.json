@@ -62,23 +62,9 @@
               "icon": "lucide-file",
               "title": "5 BloodHound"
             }
-          },
-          {
-            "id": "32fb66d0437711c7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Transfer"
-            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -112,7 +98,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "dirty",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -250,34 +236,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "32fb66d0437711c7",
+  "active": "47fb9bf8e9677df1",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1 Kernel.md",
     "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "2 Ports/4 Windows - Linux/1 Initial Access/22 - SSH.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1 K.md",
+    "1 Com Lin & Win/1 Hacking Commands/Tratamiento TTY.md",
+    "2 Ports/2 Aplicaciones Web/Zenphoto.md",
+    "2 Ports/2 Aplicaciones Web/ZoneMinder.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/12 Docker Breakout.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Búsqueda de Creds.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/PHP Credentials.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/MySQL Credentials.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.1 Enumeración Interna.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1 Enumeración del entorno.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Frameworks Credentials.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/0 Metodología Linux PrivEsc.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
+    "2 Ports/4 Windows - Linux/5 Database/3306 - MYSQL.md",
+    "2 Ports/2 Aplicaciones Web/Grafana.md",
+    "2 Ports/2 Aplicaciones Web/Gerapy.md",
+    "2 Ports/4 Windows - Linux/1 Initial Access/23 - Telnet.md",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Edge Snapper.md",
     "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Link.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/3 DPAPI.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/4 WinPEAS.md",
-    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-    "2 Ports/3 DC (Domain Controller)/135 RPC.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/4 SMB Writable Share - Slinky - Malicious LNK.md",
-    "2.1 Tools/Nmap - Rustscan.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 8.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 7.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 6.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 5.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 4.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 3.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 1.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Kali/GenericWrite - User.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Kali/GenericAll - User.md",
-    "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/WriteOwner - User.md",
     "8 Active Directory/0 Evasión",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8",
     "8 Active Directory/3 AD - CRTE",
