@@ -52,6 +52,9 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 ❯ ssh user@<IP>  
 # Conexión estándar (password o key)
 
+❯ ssh -o HostKeyAlgorithms=ssh-rsa -o PubkeyAcceptedAlgorithms=ssh-rsa user@<IP>
+# Si es un server antiguo usar este comando para conectarse por SSH 
+
 ❯ ssh user@<IP> -p 2222  
 # Puerto no estándar
 
