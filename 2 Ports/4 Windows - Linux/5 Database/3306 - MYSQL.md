@@ -14,21 +14,21 @@ Tags: #MySQL #Servidor #Comandos #DB
 
 ## Conexión a MYSQL 
 ```bash 
-❯ mysql -u root -D wordpress -h localhost -p
+# Fuera del server 
+❯ mysql -u root -p -h <IP>     # Se debe tener el puerto expuesto 
 
-❯ mysql -u root -p -h <IP>       # Fuera del server 
-❯ mysql -u root -p               # Dentro del server 
+# Dentro del server            # Se debe tener el puerto interno ejecutandose 
+❯ mysql -u root -p              
+❯ mysql -u root -D <DB_Name> -h localhost -p
 
-	# h = Host
+	# h = Host (IP)
 	# u = User
-	# p = passwd    -> Dar enter, root, admin -> Passwd por defecto
-	# D = Especificar una base de datos para conectarse 
+	# p = passwd -> Dar enter, root, admin -> Passwd por defecto
+	# D = Conectar a una DB específica 
 ```
 
 ## Comandos dentro de MYSQL 
 ```bash
-❯ mysql -u root -p          # Conectar y proporcionar credenciales
-
 	❯ show databases;       # Mostrar todas las bases de datos existentes
 	❯ use ❮DB_name❯;        # Usar una base de datos especifica
 	❯ show tables;          # Mostrar el contenido de las tablas de la DB elegida
