@@ -33,7 +33,7 @@ Ctrl + Shift + Enter            # Abrir múltiples ventanas dentro de la misma t
 Ctrl + Shift + r                # Modificar el tamaño de la Kitty, (t=taller, s=smaller, q=quit)
 Ctrl + Shift + t                # Crear una nueva ventana Kitty
 Ctrl + Shift + Alt + t          # Renombrar la ventana actual de trabajo
-Ctrl + Shift + .                # Cambiar la nueva Kitty a la inquiera (.=Moverla hacia la izquierda, ,=moverla a la derecha)
+Ctrl + Shift + .                # Cambiar la nueva Kitty a la inquiera (.=Moverla hacia la izquierda | ,=moverla a la derecha)
 Ctrl + Shift + Flecha(Left)     # Moverte entre las ventanas
 Ctrl + Shift + w                # Cerrar la ventana de la Kitty
 Ctrl + Flecha                   # Moverte entre consolas de la Kitty
