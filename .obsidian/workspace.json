@@ -8,6 +8,20 @@
         "type": "tabs",
         "children": [
           {
+            "id": "566cce43f9da1362",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1 Kitty.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "1 Kitty"
+            }
+          },
+          {
             "id": "dc3d956222bf8eb1",
             "type": "leaf",
             "state": {
@@ -27,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
+                "file": "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 Metodología AD"
+              "title": "1 Metodología - Server Windows y AD"
             }
           },
           {
@@ -50,21 +64,21 @@
             }
           },
           {
-            "id": "d314bb402a6388b0",
+            "id": "32fb66d0437711c7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "5 Pivoting/2 Ligolo.md",
+                "file": "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2 Ligolo"
+              "title": "Transfer"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -98,7 +112,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "pdf",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -236,36 +250,36 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "d314bb402a6388b0",
+  "active": "32fb66d0437711c7",
   "lastOpenFiles": [
-    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
-    "5 Pivoting/3 Chisel.md",
-    "5 Pivoting/2 Ligolo.md",
-    "5 Pivoting/1 SSH.md",
-    "2.1 Tools/Password Cracking.md",
-    "3 Passive  Reconnaissance/1 Webs.md",
-    "General Hacking/0 OSINT & Passive Recon/1 Search Engines.md",
-    "General Hacking/01 Footprinting and Reconnaissance/1 Search Engines.md",
-    "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
-    "7 Hacking Web/2 Intermediate/0 HTTP Conceptos/1 Basic HTTP.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
     "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "1 Com Lin & Win/1 Hacking Commands/Encoding.md",
-    "2 Ports/3 DC (Domain Controller)/3389 3333 RDP.md",
-    "2 Ports/4 Windows - Linux/2 Web Services/80 - HTTP.md",
-    "2 Ports/4 Windows - Linux/1 Initial Access/20 21 - FTP.md",
-    "2 Ports/3 DC (Domain Controller)/135 RPC.md",
-    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología AD.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Edge Snapper.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Link.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/3 DPAPI.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/4 WinPEAS.md",
     "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "2 Ports/3 DC (Domain Controller)/135 RPC.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/4 SMB Writable Share - Slinky - Malicious LNK.md",
     "2.1 Tools/Nmap - Rustscan.md",
-    "1 Com Lin & Win/1 Hacking Commands/2 Windows Commands.md",
-    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/FileZilla.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
-    "7 Hacking Web/1 Basic/9 SSTI - Python,Flask = Jinja2.md",
-    "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
-    "7 Hacking Web/1 Basic/11 Padding Oracle.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 8.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 7.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 6.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 5.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 4.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 3.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 1.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Kali/GenericWrite - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Kali/GenericAll - User.md",
+    "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/WriteOwner - User.md",
     "8 Active Directory/0 Evasión",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/ESC 1-8",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8",
     "8 Active Directory/3 AD - CRTE",
     "Pasted image 20260907014447.png",
     "Pasted image 20260825133926.png",
