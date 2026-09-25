@@ -35,7 +35,10 @@ DeepCE significa Docker Enumeration, Escalation of Privileges and Container Esca
 # Subir 'deepce.sh' a la máquina víctima y ejecutarlo
 ❯ chmod +x deepce.sh 
 ❯ ./deepce.sh   
+
+./deepce.sh -e DOCKER    # Explota la vulneraabilidad encontrada 
 ```
+
 ### Forma 1 - Escalar a Root
 * [docker-group.md](https://stealthcopter.github.io/deepce/guides/docker-group.md)
 ```bash 
