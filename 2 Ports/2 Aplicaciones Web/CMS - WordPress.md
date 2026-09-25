@@ -275,7 +275,6 @@ http://IP/api/modular-connector/login/anything?origin=mo&type=foo
 ### Opción 1 — Editar tema existente (más rápido)
 ```bash
 # Appearance → Theme File Editor → seleccionar tema activo → 404.php Template
-# Si no sale el 'Theme Editor' es que esta deshabilitado y el vector es por 'plugin'
 
 Forma 1:
 # Webshell para ejecutar comandos
