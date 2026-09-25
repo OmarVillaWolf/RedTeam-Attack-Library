@@ -35,6 +35,13 @@ Esta herramienta además de enumerar un servidor Joomla, nos crea un reporte de 
 ```
 
 ## Joomla versión 4.0.0 a 4.2.7 - Obtener credenciales 
+### Forma 1
+* [CVE-2023-23752](https://www.exploit-db.com/exploits/51334)
+```bash 
+# Obtener usuario y valores de la DB
+❯ ruby CVE-2023-23752.rb http://IP  
+```
+### Forma 2
 ```bash 
 ❯ msfconsole -q    # Ingresar a metasploit
 	❯ search auxiliary/scanner/http/joomla_api_improper_access_checks 
