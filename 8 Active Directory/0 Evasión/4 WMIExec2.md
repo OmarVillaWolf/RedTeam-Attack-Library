@@ -9,14 +9,8 @@ E**jecutar comandos mediante WMI (Windows Management Instrumentation)** en lugar
 * [WmiExec2](https://github.com/ice-wzl/wmiexec2)
 
 ```bash 
-# Descargar 
-❯ git clone https://github.com/ice-wzl/wmiexec2.git
-❯ cd wmiexec2/
-
-# Instalar 
-❯ python3 -m venv .venv
-❯ source .venv/bin/activate
-❯ pip3 install -r requirements.txt
+# Descargar e instalar 
+❯ git clone https://github.com/ice-wzl/wmiexec2.git && cd wmiexec2 && python3 -m venv .venv && source .venv/bin/activate && pip3 install -r requirements.txt
 ```
 
 ```powershell 
