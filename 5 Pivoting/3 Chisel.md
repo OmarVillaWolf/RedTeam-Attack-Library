@@ -45,7 +45,9 @@ NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina v�
 	# Port-Local-a-Abrir = Puerto en Kali donde escuchará 
 	# 127.0.0.1:<Port-Traer> = Destino en la máquina víctima (O sea su puerto a traer: 80,1433, etc...)
 
-Nota: Se crea un túnel utilizando un solo puerto con una IP específica
+NOTA: 
+	- Se crea un túnel utilizando un solo puerto con una IP específica
+	- Los comandos ahora serán para la IP '127.0.0.1 o localhost' 
 ```
 
 ## 1.2 Crear un túnel con todos los puertos 
