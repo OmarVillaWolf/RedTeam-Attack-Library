@@ -35,6 +35,17 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 |Creds válidas y quiero pivotar a WinRM / MSSQL / LDAP|[[#9. Movimiento lateral a otros protocolos]]|
 |Necesito cambiar password de un usuario (ACL abuse)|[[#10. Casos especiales]]|
 
+## 0. Identificar en /etc/hosts
+
+```bash 
+192.168.107.175    RESOURCEDC.resourced.local    resourced.local    RESOURCEDC
+       │                    │                         │                 │
+       │                    │                         │                 └─ Hostname
+       │                    │                         └─ Dominio DNS
+       │                    └─ FQDN del equipo
+       └─ IP
+```
+
 ## 1. Reconocimiento sin credenciales
 
 ```bash
