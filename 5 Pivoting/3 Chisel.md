@@ -47,7 +47,7 @@ NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina v�
 
 NOTA: 
 	- Se crea un túnel utilizando un solo puerto con una IP específica
-	- Los comandos ahora serán para la IP '127.0.0.1 o localhost' 
+	- Los comandos ahora serán para la IP '127.0.0.1 o localhost'    <- IMPORTANTE
 ```
 
 ## 1.2 Crear un túnel con todos los puertos 
