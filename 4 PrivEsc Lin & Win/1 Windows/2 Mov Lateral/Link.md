@@ -6,7 +6,7 @@ Tags: #Windows #MovimientoLateral #lnk
 ```bash 
 # Si se encuentra un acceso directo modificado con Putty, este puede contener credenciales.  
 
-❯ type 'Putty - HS Router login' 
+❯ type 'Putty.lnk' 
 
 NOTA:
 	- No es que type "descifre" el .lnk. Simplemente lee los bytes del archivo y los muestra. Los campos de texto almacenados dentro del shortcut pueden aparecer en claro
