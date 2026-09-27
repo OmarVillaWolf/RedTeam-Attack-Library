@@ -12,15 +12,22 @@ Tags: #PrivEsc #MovimientoLateral
 	/var/www/config.php
 	/var/www/config/db.php
 	/var/www/config/database.php
+	
 	/opt/config/db.php
+	
 	/srv/config/db.php
+	/srv/http/wp-config.php 
+	
 	/etc/mysql/my.cnf
 	/etc/phpmyadmin/config.inc.php
 ```
 ### Acceso a MySQL
 
 ```bash
-mysql -h <IP> -u <usuario> -p 
+mysql -u <usuario> -p -h localhost 
+
+	# u = usuario a ingresar a la DB
+	# p = Indicar que se escribira la password del usuario 
 
 	❯ show databases;      # Mostrar todas las bases de datos existentes
 	❯ use ❮DB_name❯;       # Usar una base de datos especifica
