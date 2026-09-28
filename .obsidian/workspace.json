@@ -50,49 +50,17 @@
             }
           },
           {
-            "id": "47119e3aa19eb3cd",
+            "id": "eb08f313ba718195",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Procesos Internos"
-            }
-          },
-          {
-            "id": "7afd4a59739ddca9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "5 Pivoting/3 Chisel.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "3 Chisel"
-            }
-          },
-          {
-            "id": "ac35cf72de0ff153",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4 PrivEsc Lin & Win/2 Linux/3 Escalation/4 SUID.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "4 SUID"
+              "title": "New tab"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -264,34 +232,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "ac35cf72de0ff153",
+  "active": "a115b9559678b49a",
   "lastOpenFiles": [
-    "2 Ports/4 Windows - Linux/5 Database/5800, 5900, 5901 - VNC.md",
-    "5 Pivoting/3 Chisel.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
-    "2.1 Tools/Password Cracking.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/MySQL Credentials.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/4 SUID.md",
-    "2 Ports/2 Aplicaciones Web/CMS - WordPress.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/3 Grupos especiales.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1 Kernel.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.1 Enumeración Interna.md",
-    "7 Hacking Web/2 Intermediate/1 SQLi/8 SQLi Blind Time Extract Info.md",
-    "7 Hacking Web/2 Intermediate/1 SQLi/10 Bypass XML Encoding.md",
-    "7 Hacking Web/2 Intermediate/1 SQLi/9 SQLi Blind OOB Extract Info.md",
-    "7 Hacking Web/2 Intermediate/1 SQLi/7 SQLi Blind Visible Error-based.md",
-    "7 Hacking Web/1 Basic/1 SQLI.md",
-    "7 Hacking Web/1 Basic/2 XSS.md",
     "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "2 Ports/4 Windows - Linux/5 Database/1433 - MSSQL (Externo).md",
-    "2 Ports/1 Common Vulnes/SMB/Samba 4.6.3.md",
-    "2 Ports/1 Common Vulnes/SMB/SYSVOL.md",
-    "2 Ports/1 Common Vulnes/SMB/EternalBlue.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/1 Relay Attacks.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/2 NTLM.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/5 Relay Attacks/3 Impacket-ntlmrelayx.md",
-    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/MSSQL.md",
+    "2 Ports/4 Windows - Linux/3 Email Services/25 - SMTP.md",
+    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/Inetpub.md",
+    "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/WriteDacl - Domain.md",
+    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/Xampp.md",
+    "2 Ports/4 Windows - Linux/3 Email Services/110 - POP3 (Probar creds).md",
+    "2 Ports/4 Windows - Linux/3 Email Services/143 - IMAP (Probar creds).md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/WriteOwner - User.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Búsqueda de Creds.md",
+    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
+    "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/3 Grupos especiales.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.1 Enumeración Interna.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Joomla.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Kerberos AD.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/MySQL Credentials.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/PHP Credentials.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/10 Servicios Internos.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/4 SUID.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "8 Active Directory/0 Evasión",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8",
     "8 Active Directory/3 AD - CRTE",
