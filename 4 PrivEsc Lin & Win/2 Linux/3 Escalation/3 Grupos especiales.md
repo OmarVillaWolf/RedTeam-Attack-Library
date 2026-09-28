@@ -75,8 +75,23 @@ docker = Si estas en este grupo puedes usar los siguientes comandos:
 ```bash
 adm   # Si estas en este grupo, podras leer los logs del sistema
 
-❯ ls -l /var/log/
-❯ cat /var/log/apache2/access.log
+❯ ls -la /var/log/
+
+# Típicamente puede leer:
+	/var/log/
+		provisioning.log       ← A veces contiene passwords 
+		auth.log               ← Intentos de login (contraseñas en texto a veces)
+		auth.log.1, .2         ← Logs rotados
+		
+	/var/log/syslog            ← Eventos del sistema
+	
+	/var/log/apache2/          ← Logs de Apache
+		access.log             ← A veces contiene passwords
+		
+	/var/log/nginx/            ← Logs de Nginx
+	
+	/var/log/apt/history.log   ← Historial de apt (comandos instalados)
+
 ```
 
 ## Lxd
