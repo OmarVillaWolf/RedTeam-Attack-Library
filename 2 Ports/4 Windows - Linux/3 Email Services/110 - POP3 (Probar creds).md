@@ -3,9 +3,23 @@
 Tags: #POP3 #Puerto #Comandos 
 
 Se utiliza en clientes locales de correo para obtener los mensajes de correo electrónico almacenados en un servidor remoto, denominado servidor POP.
+# Enumeración 
+```bash 
+❯ exiftool mail_doc.pdf    # Mirar los metadatos del archivo. A veces se encuentran correos de los usuarios 
+```
 
+## Validar credenciales (correo y contraseña) 
+```bash 
+# Conectar a POP3 para leer correos de un usuario válido 
+❯ curl --url "pop3://IP_Server/" --user 'ControlledAccount@company.com:P@$$w0rd123!' --verbose
+
+	# ControlledAccount = Usuario del cual se tiene un correo válido 
+	# P@$$w0rd123! = Es la contraseña válida del usuario 
+```
+
+## Autenticación 
 ```bash
-❯ nc <IP> 110                           # Aveces nos da problemas al momento de conectarnos
+❯ nc <IP> 110                           # A veces da problemas al momento de conectarse
 ❯ telnet <IP> 110
 
 	# 110 = Puerto del POP3
@@ -13,8 +27,8 @@ Se utiliza en clientes locales de correo para obtener los mensajes de correo ele
 	# Telnet = Protocolo de conexion a usar 
 ```
 
+## Comandos después de la autenticación 
 ```bash
-# Comandos cuando nos conectamos
 ❯ USER <Name>                    # Nombre del usuario a conectar
 ❯ PASS <Passwd>                  # Passwd del usuario a conectar 
 ❯ LIST                           # Miramos si tiene algun correo y debemos ver minimo **1** 10, por lo que no debemos de ver 0 0 ya que eso dice que no tiene correo 
