@@ -86,13 +86,14 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 # Enumerar con null session al SMBv1/SMBv2
 
 ❯ nxc smb <IP> -u '' -p '' --users   # Enumerar usuarios 
+❯ nxc smb <IP> -u 'guest' -p '' --users
 ❯ nxc smb <IP> -u '' -p '' --users | awk '$4 == "DC" && $5 != "[+]" && $5 != "[*]" && $5 != "-Username-" {print $5}' > users.txt
 
 ❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser"
 ❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser" | awk -F'\\' '{print $2}' | awk '{print $1}' > users.txt
 # Enum usuarios válidos por RID → no requiere creds
 
-❯ nxc smb <IP> -u 'guest' -p '' -M spider_plus
+❯ nxc smb <IP> -u 'guest' -p '' -M spider_plus    <- IMPORTANTE 
 # Enumeración más profunda de los shares SMB accesibles y recorre sus directorios/archivos
 
 ❯ nxc smb <IP> -u '' -p '' --shares --users --pass-pol
