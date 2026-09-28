@@ -4,6 +4,11 @@ Tags: #PrivEsc
 
 Al enumerar un sistema, es importante anotar cualquier credencial. Estas se pueden encontrar en archivos de configuración (`.conf`, `.config`, `.xml`, etc.), scripts de shell, el archivo de historial de bash de un usuario, archivos de respaldo (`.bak`), dentro de archivos de bases de datos o incluso en archivos de texto. Las credenciales pueden ser útiles para escalar a otros usuarios o incluso a root, acceder a bases de datos y a otros sistemas dentro del entorno.
 
+```bash 
+❯ su - root      # Cambiar al usuario 'root' si se encuentran credenciales 
+❯ ssh root@IP    # Ingresar por SSH con el usuaario root si se tienen credenciales 
+```
+
 ## ONE LINER POTENTE 
 ```bash 
 # Busca CUALQUIER cosa que parezca credencial:
@@ -33,7 +38,7 @@ cat ~/.ssh/config 2>/dev/null | grep -i "user\|password\|identityfile"
 
 ## BUSCAR EN HISTORIALES DE BASH/SHELL
 ```bash 
-# Historial del usuario actual
+# Historial del usuario actual    ← IMPORTANTE 
 ❯ cat ~/.bash_history | grep -i "password\|mysql\|ssh\|curl.*-u"
 
 # Historial de otros usuarios (si eres root):
