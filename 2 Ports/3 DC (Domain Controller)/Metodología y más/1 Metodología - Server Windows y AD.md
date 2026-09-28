@@ -21,12 +21,17 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 
 - Enumeración puerto 80 'web'
 	- Buscar archivos con credenciales  <-  IMPORTANTE
+
+
+NOTA:
+	- Si se encuentra una password con un año en especial, a veces es bueno colocarle el siguiente año o el actual para el password Spraying 
 ```
 
 ```bash 
 ## ATAQUES 
 
 - ASReproast Attack (Si se tiene solo el usuario sin passwd) 
+- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
 ```
 
 ## CON CREDENCIALES 
@@ -43,6 +48,9 @@ Pasos:
 	- Investigar Shares (Revisar de cada usuario nuevo obtenido)
 		- Investigar carpeta de SYSVOL (Common Vulnes), NETLOGON o Personalizadas 
 		- Buscar archivos con credenciales  <-  IMPORTANTE 
+
+NOTA:
+	- Si se encuentra una password con un año en especial, a veces es bueno colocarle el siguiente año o el actual para el password Spraying 
 ```
 
 ```bash 
