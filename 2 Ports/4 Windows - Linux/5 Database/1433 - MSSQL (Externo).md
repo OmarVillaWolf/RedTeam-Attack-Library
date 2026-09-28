@@ -81,6 +81,11 @@ IMPORTANTE:
 ```bash 
 ❯ nxc mssql 127.0.0.1 -u 'user' -p 'pass' 
 ❯ nxc mssql 127.0.0.1 -u 'user' -p 'pass' --local-auth
+
+
+IMPORTANTE:
+	- [Pwn3d!] → sysadmin → xp_cmdshell directo
+	- Sin [Pwn3d!] pero con acceso → enumerar y buscar impersonación
 ```
 
 ## 2. CONEXIÓN Y AUTENTICACIÓN
