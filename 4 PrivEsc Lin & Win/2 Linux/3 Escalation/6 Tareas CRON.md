@@ -36,7 +36,7 @@ Con el objetivo de reducir las posibilidades de que un atacante lograra explotar
 ❯ rpm -qa | grep <program>     # En sistemas 'rpm' este comando hace lo mismo 
 ```
 
-## Pspy
+## Pspy (IMPORTANTE)
 
 PSPY es una herramienta Linux que monitorea procesos en tiempo real sin necesidad de root.
 
