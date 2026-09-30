@@ -50,17 +50,21 @@
             }
           },
           {
-            "id": "eb08f313ba718195",
+            "id": "dbc840522ea14ef2",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "2 Sudoers"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -232,9 +236,24 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "a115b9559678b49a",
+  "active": "dbc840522ea14ef2",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1 Kernel.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Búsqueda de Creds.md",
     "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "2 Ports/2 Aplicaciones Web/CloudBeaver - Oracle.md",
+    "Untitled.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/6 Tareas CRON.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.1 Enumeración Interna.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Kerberos AD.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/3 Grupos especiales.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/4 SUID.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
+    "2 Ports/4 Windows - Linux/4 Enumeration/161 - SNMP.md",
+    "2.1 Tools/Nmap - Rustscan.md",
     "2 Ports/4 Windows - Linux/3 Email Services/25 - SMTP.md",
     "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/Inetpub.md",
     "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
@@ -244,22 +263,7 @@
     "2 Ports/4 Windows - Linux/3 Email Services/110 - POP3 (Probar creds).md",
     "2 Ports/4 Windows - Linux/3 Email Services/143 - IMAP (Probar creds).md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/WriteOwner - User.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Búsqueda de Creds.md",
     "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
-    "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/3 Grupos especiales.md",
-    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1.1 Enumeración Interna.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Joomla.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Kerberos AD.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/MySQL Credentials.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/PHP Credentials.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/10 Servicios Internos.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/4 SUID.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
-    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "8 Active Directory/0 Evasión",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8",
     "8 Active Directory/3 AD - CRTE",
