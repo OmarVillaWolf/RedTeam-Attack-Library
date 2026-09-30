@@ -50,6 +50,9 @@ Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 ❯ nmap -sCV -p<puertos> <IP> -oN targeted
 # -sC → scripts por defecto | -sV → versión | -oN → output legible
 
+# Si solo hay un puerto en TCP, buscar en UDP 
+❯ nmap -sU -sV -p 161,53,123,137,138,139,445 <IP>
+
 # PASO 3 → UDP en los más comunes (si aplica)
 ❯ nmap -sU --top-ports 100 --open -T5 -v -n <IP>
 ```
