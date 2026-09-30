@@ -12,9 +12,7 @@ Al enumerar un sistema, es importante anotar cualquier credencial. Estas se pued
 ## ONE LINER POTENTE 
 ```bash 
 # Busca CUALQUIER cosa que parezca credencial:
-❯ grep -r "password\|passwd\|pwd\|secret\|token\|api_key\|apikey\|Authorization.*Bearer\|Basic.*=" \
-  /var/www /etc /home /opt /srv 2>/dev/null | \
-  grep -v "^Binary" | head -50
+❯ grep -r "password\|passwd\|pwd\|secret\|token\|api_key\|apikey\|Authorization.*Bearer\|Basic.*=" /var/www /etc /home /opt /srv 2>/dev/null | grep -v "^Binary" | head -50
 ```
 
 ## BUSCAR EN SSH/AUTENTICACIÓN
@@ -27,13 +25,13 @@ Al enumerar un sistema, es importante anotar cualquier credencial. Estas se pued
 	known_hosts
 
 # Claves SSH de todos los usuarios:
-find / -type f -name "id_rsa" -o -name "id_ed25519" 2>/dev/null
+❯ find / -type f -name "id_rsa" -o -name "id_ed25519" 2>/dev/null
 
 # Archivos autorizados:
-find / -type f -name "authorized_keys" 2>/dev/null
+❯ find / -type f -name "authorized_keys" 2>/dev/null
 
 # SSH config con credenciales:
-cat ~/.ssh/config 2>/dev/null | grep -i "user\|password\|identityfile"
+❯ cat ~/.ssh/config 2>/dev/null | grep -i "user\|password\|identityfile"
 ```
 
 ## BUSCAR EN HISTORIALES DE BASH/SHELL
@@ -51,13 +49,13 @@ cat ~/.ssh/config 2>/dev/null | grep -i "user\|password\|identityfile"
 ## BUSCAR EN BASES DE DATOS
 ```bash 
 # Si MySQL está corriendo:
-mysql -u root -e "SELECT User, Host FROM mysql.user;" 2>/dev/null
+❯ mysql -u root -e "SELECT User, Host FROM mysql.user;" 2>/dev/null
 
 # Si tienes credenciales:
-mysql -u wordpressuser -p'WPadmin123!' -e "show databases;" 2>/dev/null
+❯ mysql -u wordpressuser -p'WPadmin123!' -e "show databases;" 2>/dev/null
 
 # SQLite:
-find / -name "*.db" -o -name "*.sqlite" 2>/dev/null | xargs strings | grep -i "password\|admin"
+❯ find / -name "*.db" -o -name "*.sqlite" 2>/dev/null | xargs strings | grep -i "password\|admin"
 ```
 
 ## BUSCAR CREDENCIALES EN MEMORIA
@@ -72,11 +70,7 @@ find / -name "*.db" -o -name "*.sqlite" 2>/dev/null | xargs strings | grep -i "p
 ## Buscar credenciales en archivos de configuración 
 ```bash 
 # Busca en todos los archivos de config (más específico)
-❯ find / -type f \( -name "*.php" -o -name "*.conf" -o -name "*.config" -o -name "*config*" \) 2>/dev/null | \
-  xargs grep -l "password\|user\|pass\|pwd\|credential" 2>/dev/null | head -20
-
-# O más agresivo:
-❯ find / -type f 2>/dev/null | xargs grep -h "password.*=\|DB_PASSWORD\|MYSQL_PASSWORD" 2>/dev/null | grep -v "^#"
+❯ find / -type f \( -name "*.php" -o -name "*.conf" -o -name "*.config" -o -name "*config*" \) 2>/dev/null | xargs grep -l "password\|user\|pass\|pwd\|credential" 2>/dev/null | head -20
 ```
 
 ## BUSCAR EN ARCHIVOS DE APLICACIONES WEB
