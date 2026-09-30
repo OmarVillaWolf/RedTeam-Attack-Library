@@ -20,21 +20,22 @@ Tags: #TTY #Shell #ReverseShell #Meterpreter #Linux #Interactiva
 ## MÉTODO PRINCIPAL — script + stty
 
 ```bash
-# PASO 1 → Estabilizar la shell
+	PASO 1 → Estabilizar la shell
 ❯ script /dev/null -c bash
 # Inicia un proceso bash limpio con TTY
 
 # Si script no está disponible → alternativa con Python
-❯ python3 -c 'import pty;pty.spawn("/bin/bash")'
+❯ python3 -c 'import pty;pty.spawn("/bin/bash")'   <- IMPORTANTE
 ❯ python -c 'import pty;pty.spawn("/bin/bash")'    # Python 2
 
-# PASO 2 → Configurar variables de entorno
-❯ export SHELL=bash
+	# PASO 2 → Configurar variables de entorno
+❯ export SHELL=bash    <- IMPORTANTE
 # o
 ❯ export SHELL=/bin/bash
 # Necesario si $SHELL vale /usr/bin/nologin u otro valor no interactivo
 
-❯ export TERM=xterm
+	PASO 3:
+❯ export TERM=xterm    <- IMPORTANTE
 # Habilita: Ctrl+C, Ctrl+L (limpiar), flechas
 
 ❯ export TERM=xterm-256color
@@ -42,17 +43,17 @@ Tags: #TTY #Shell #ReverseShell #Meterpreter #Linux #Interactiva
 ❯ source /etc/skel/.bashrc
 # Aplicar colores y configuración bash completa
 
-# PASO 3 → Resetear la TTY desde Kali (suspender la shell primero)
+	PASO 4 → Resetear la TTY desde Kali (suspender la shell primero)
 # Presionar: Ctrl + Z  (suspende la shell)
 ❯ stty raw -echo; fg
 # stty raw → modo raw → pasa las teclas directamente
 # -echo → deshabilita el eco local → Ctrl+C no mata la shell
 # fg → retomar la shell en primer plano
 
-❯ reset xterm
+❯ reset xterm    <- IMPORTANTE 
 # Resetear el terminal → aplica la configuración completa
 
-# PASO 4 → Ajustar dimensiones (OBLIGATORIO para vim/nano)
+	PASO 5 → Ajustar dimensiones (OBLIGATORIO para vim/nano)
 # En Kali → obtener dimensiones actuales
 ❯ stty size
 # Devuelve: filas columnas (ej: 51 189)
