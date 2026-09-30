@@ -15,8 +15,10 @@ Tags: #SNMP #Comandos #UDP
 ❯ onesixtyone -c /usr/share/seclists/Discovery/SNMP/snmp-onesixtyone.txt ❮IP❯     # Sirve para hacer Fuerza Bruta al snmp y encontrar los 'community strings'
 ```
 
+## Enumeración 
 ```bash
-❯ snmwalk -c public -v2c ❮IP❯          # Sirve para poder inspeccionar el puerto SNMP
+# Buscar credenciales 
+❯ snmwalk -c public -v2c ❮IP❯          # Sirve para poder inspeccionar el puerto SNMP 
 
 	# c = Community string
 	# v2c = version
