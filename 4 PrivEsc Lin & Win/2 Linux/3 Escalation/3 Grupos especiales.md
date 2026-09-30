@@ -20,7 +20,9 @@ Para mitigar el riesgo de abuso de grupos de usuario especiales, es importante l
 ## Sudo
 
 ```bash 
-sudo = Si estas en estre grupo y disponemos de la passwd del usuario, podemos ejecutar comandos como el usuario 'root'
+sudo = Si estas en este grupo y disponemos de la passwd del usuario, podemos ejecutar comandos como el usuario 'root'
+
+❯ sudo -l 
 ```
 
 ## Docker
