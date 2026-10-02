@@ -87,7 +87,7 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 
 ❯ nxc smb <IP> -u '' -p '' --users   # Enumerar usuarios 
 ❯ nxc smb <IP> -u 'guest' -p '' --users
-❯ nxc smb <IP> -u '' -p '' --users | awk '$4 == "DC" && $5 != "[+]" && $5 != "[*]" && $5 != "-Username-" {print $5}' > users.txt
+❯ nxc smb <IP> -u '' -p '' --users | awk '$4 == "DC01" && $5 != "[+]" && $5 != "[*]" && $5 != "-Username-" {print $5}' > users.txt
 
 ❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser"
 ❯ nxc smb <IP> -u 'guest' -p '' --rid-brute | grep "SidTypeUser" | awk -F'\\' '{print $2}' | awk '{print $1}' > users.txt
@@ -164,13 +164,21 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 ❯ tree <share>      # Listar en forma de árbol toda la carpeta descargada
 
 ❯ smbclient -U 'user%pass' //<IP>/ShareName   # Requiere creds → acceso directo al share
-❯ smbclient -U 'user%pass' //<IP>/"Human Resources"    
+❯ smbclient -U 'user%pass' //<IP>/"Human Resources"   
+❯ smbclient -U 'domain.local/user%pass' //<IP>/"Human Resources"   # La mejor forma para ingresar al directorio 
 	❯ dir             # Listar contenido del share
 	❯ get <file>      # Descargar archivo
 	❯ put <file>      # Subir archivo (si hay permisos de escritura)
 	❯ prompt off
 	❯ mget *          # Descargar todos los archivos sin confirmación
 	❯ more <file>     # Leer archivos directamente
+
+
+❯ smbclient -U 'domain.local/user%pass' //<IP>/"Human Resources" -c "put xd.library-ms"  
+# Subir un archivo llamado "xd.library-ms" al directorio del Server llamado "Human Resources" 
+
+❯ smbclient -U 'domain.local/user%pass' //<IP>/"Human Resources" -c "prompt; mput *"
+# Subir todos los archivos del directorio actual en Kali al directorio del Server llamado "Human Resources"
 
 ❯ smbclient //<IP>/<share> -U 'guest'
 # Acceso como guest → puede ampliar permisos
