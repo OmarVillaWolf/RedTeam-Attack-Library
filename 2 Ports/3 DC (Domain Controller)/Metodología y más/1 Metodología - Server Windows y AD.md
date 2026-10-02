@@ -3,6 +3,8 @@
 Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows 
 
 ## SIN CREDENCIALES 
+
+### EN DC
 ```bash 
 ## RECONOCIMIENTO
 
@@ -24,14 +26,16 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 
 
 NOTA:
-	- Si se encuentra una password con un año en especial, a veces es bueno colocarle el siguiente año o el actual para el password Spraying 
+	- Si se encuentra una password con un año en especial, a veces es bueno colocarle el siguiente año o el actual para el password Spraying
 ```
 
 ```bash 
 ## ATAQUES 
 
 - ASReproast Attack (Si se tiene solo el usuario sin passwd) 
-- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
+- Relays 
+	- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
+	- Library-ms
 ```
 
 ## CON CREDENCIALES 
@@ -56,7 +60,9 @@ NOTA:
 ```bash 
 ## ATAQUES 
 
-- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
+- Relays 
+	- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
+	- Library-ms
 ```
 
 ### EN DC
@@ -80,8 +86,10 @@ Pasos:
 
 - Enumeración puerto 80 'web'
 	- Buscar archivos con credenciales  <-  IMPORTANTE
+	- Buscar si existe un login e ingresar con las credenciales 
 
 - Enumeración con BloodHound 
+	- Enabled: FALSE  = Cuenta deshabilitada, por lo tanto toca habilitarla con LDAP
 	- Buscar Outbound Object Control (ACLs) 
 	- Buscar usuarios Kerberosteables 
 	- Shortest Path to Domain Admin 
@@ -91,11 +99,17 @@ Pasos:
 ```bash 
 ## ATAQUES 
 
-- Abuso de ACLs
-- Kerberoasting Attack 
-- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
-- LogonScript (Dir WRITE)
-- ADCS Attacks 
+- BloodHound 
+  	- LogonScript (Dir WRITE)
+	- Abuso de ACLs 
+		* En BloodHound hay que seleccionar el usuario o grupo que tiene la ACL porque luego no la muestra bien la consola
+	- Kerberoasting Attack 
+	- ADCS Attacks 
+
+- Relays 
+	- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
+	- Library-ms
+
 
 - Pass-the-Hash (PtH)
     - El hash pertenece solo al user Administrator?
