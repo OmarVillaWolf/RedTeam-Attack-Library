@@ -107,7 +107,7 @@ Pasos:
 	- ADCS Attacks 
 
 - Relays 
-	- 
+	- NTLM Coercion Attack - Service Account (Acceder a un panel web y proporcionar ruta //IP_Kali/test) para capturar el HASH con "responder" 
 	- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
 	- Library-ms
 
