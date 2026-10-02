@@ -10,6 +10,7 @@ El objetivo es provocar que un usuario/equipo que interactúe con el recurso gen
 
 - Credenciales válidas para acceder al SMB share.
 - Acceso al recurso SMB.
+- Signing = False 
 - **Permiso de escritura (`WRITE`) sobre el SMB share/directorio objetivo.**
 - Una víctima que interactúe con el recurso o con el `.LNK`.
 - Un servidor/listener controlado por el atacante para recibir la autenticación.
