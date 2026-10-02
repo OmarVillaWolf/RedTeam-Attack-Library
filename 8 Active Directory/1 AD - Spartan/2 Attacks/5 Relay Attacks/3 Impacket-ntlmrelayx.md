@@ -7,9 +7,9 @@ Tags: #AD #Windows #Relay #SMB #Impacket
 * [SMB - Relay - attacks](https://swisskyrepo.github.io/InternalAllTheThings/active-directory/internal-mitm-relay/#smb-signing-disabled-and-ipv4)
 
 ```bash 
-# Necesitamos tener varias condiciones:
+# Se necesita tener varias condiciones:
 
-1. Mirar la IP de la maquina de atacante
+1. Mirar la IP de la máquina de atacante
 2. Que el 'SMB' este como 'SMB Signing Disabled' o 'Signing = False' 
 3. Utilizando técnicas de envenenamiento de LLMNR y NBT-NS, el atacante puede hacer que las solicitudes de autenticación se dirijan a su máquina, esto se hará por medio de la tool de 'Impacket'.
 ```
