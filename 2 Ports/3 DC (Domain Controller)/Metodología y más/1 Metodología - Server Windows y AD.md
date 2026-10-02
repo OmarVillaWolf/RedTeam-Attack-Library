@@ -107,6 +107,7 @@ Pasos:
 	- ADCS Attacks 
 
 - Relays 
+	- 
 	- SMB Writable Share -> Slinky -> Malicious LNK / NTLM Authentication Capture
 	- Library-ms
 
