@@ -45,8 +45,8 @@ Paso 2:
 
 ## Si la cuenta esta deshabilitada 
 ```bash 
-# Obtener los datos del usuario a caambiar 
-❯ ldapsearch -x -H ldap://IP_DC -D 'user@domain.local' -W -b 'DC=domain,DC=local' "(SAMAccountName=adam.silver)"
+# Obtener los datos del usuario a cambiar 
+❯ ldapsearch -x -H ldap://IP_DC -D 'user@domain.local' -W -b 'DC=domain,DC=local' "(SAMAccountName=user)"
 
 Donde:
 	- El campo que dice si la cuenta es habilitada o no es 'UserAccountControl'
