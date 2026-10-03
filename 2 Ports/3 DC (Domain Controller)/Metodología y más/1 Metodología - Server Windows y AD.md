@@ -18,6 +18,10 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 	- Enumerar con nullsession en busca de usuarios
 	- RID CYCLING (Si no se puede ingresar por null session)
 
+- Enumeración puerto 389/636 'LDAP'
+	- Mapear toda la info con 'ldapdomaindump'
+	- A veces muestra credenciales  
+
 - Enumeración puerto 88 'Kerberos'
 	- Kerbrute para validar buscar usuarios válidos (BruteForce)
 
