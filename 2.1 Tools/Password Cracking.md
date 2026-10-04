@@ -174,6 +174,21 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ❯ john --show hash.txt
 ```
 
+### Mscash ( --lsa )
+```bash 
+# Ejemplo:
+	DOMAIN.LOCAL/eknight:$DCC2$10240#eknight#e92981e7e9fc7e5732c32865e4c83a8a: (2025-11-29 10:54:13)
+# Solo copiar:
+	$DCC2$10240#eknight#e92981e7e9fc7e5732c32865e4c83a8a
+
+
+# hashcat
+❯ hashcat -m 2100 hash.txt /usr/share/wordlists/rockyou.txt
+
+# john
+❯ john --format=mscash2 hash.txt --wordlist=/usr/share/wordlists/rockyou.txt 
+```
+
 ### NTLMv2 (NetNTLMv2 — capturado con Responder)
 ```bash
 # hashcat
