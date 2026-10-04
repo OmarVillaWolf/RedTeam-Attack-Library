@@ -163,6 +163,9 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 
 ### NTLM (hash NT — de SAM, secretsdump, mimikatz)
 ```bash
+# Ejemplo: 
+	Lab:1000:aad3b435b51404eeaad3b435b51404ee:30e87bf999828446a1c1209ddde4c450:::
+
 # hashcat
 ❯ hashcat -m 1000 hash.txt /usr/share/wordlists/rockyou.txt
 # -m 1000 → NTLM (hash NT puro)
