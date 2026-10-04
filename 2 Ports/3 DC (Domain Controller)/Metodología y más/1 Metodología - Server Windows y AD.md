@@ -49,8 +49,8 @@ NOTA:
 Pasos:
 - Verificar si el usuario dado puede ingresar por 'WinRM, RDP' 
 	- Si se obtiene un usuario por 'dump (SAM)' agregar el parámetro --local-auth en 'Netexec' para esos usuarios 
-	- Cracker hashes NT con John 
-	- Verificar si el usuario dado puede ingresar por 'WinRM, RDP' con --local-auth
+		- Cracker hashes NT con John 
+		- Verificar si el usuario dado puede ingresar por 'WinRM, RDP' con --local-auth
 
 - Enumeración puerto 445 'SMB'
 	- Enumerar usuarios (--users, --rid-brute)
