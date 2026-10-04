@@ -21,7 +21,7 @@ TIP:  <-IMPORTANTE
 
 
 ❯ net localgroup Administrators omar /add    # Agregar a un usuario al grupo administradores 
-❯ net localgroup Administrators              # Mirar si se ha agregado aal grupo 
+❯ net localgroup Administrators              # Mirar si se ha agregado al grupo 
 ```
 
 ## Dump All Hashes Remotamente: 
