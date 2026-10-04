@@ -93,6 +93,7 @@ Paso 3:
 Paso 2: 
 # Escuchar las conexiones que lleguen a la interfaz VPN 'tun0'
 ❯ responder -I tun0
+❯ ls /usr/share/responder/logs/    # Dir donde se guardan los logs capturados 
 ```
 
 ## Cracking 
