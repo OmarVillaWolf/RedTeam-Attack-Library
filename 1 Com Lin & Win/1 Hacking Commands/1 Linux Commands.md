@@ -68,10 +68,10 @@ Referencia rápida de comandos Linux organizados por contexto de uso. No es una 
 ❯ ping -c 1 <IP> -R
 # -R → traceroute → solo funciona en Linux
 
-❯ fping -I ens33 -g <IP/24> -a 2>/dev/null
+❯ fping -I eth1 -g IP/24 -a 2>/dev/null
 # Ping a múltiples IPs de una subred → -a → mostrar solo activos
 
-❯ netdiscover -i ens33 -r <IP/24>
+❯ netdiscover -i eth1 -r IP/24
 # Descubrir hosts via ARP
 
 ❯ arp-scan -I ens33 --localnet --ignoredups
