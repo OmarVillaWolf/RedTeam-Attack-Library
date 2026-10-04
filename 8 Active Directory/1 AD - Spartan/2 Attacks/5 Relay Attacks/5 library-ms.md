@@ -38,6 +38,7 @@ Paso 1:
 ```bash 
 Paso 2:
 ❯ responder -I tun0
+❯ ls /usr/share/responder/logs/    # Dir donde se guardan los logs capturados 
 ```
 
 ```bash 
@@ -72,6 +73,7 @@ Ingresar:
 ```bash 
 Paso 2:
 ❯ responder -I tun0
+❯ ls /usr/share/responder/logs/    # Dir donde se guardan los logs capturados 
 ```
 
 ```bash 
