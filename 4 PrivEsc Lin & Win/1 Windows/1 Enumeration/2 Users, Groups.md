@@ -17,7 +17,15 @@ Tags: #LocalEnumeration #PrivEsc #Windows  #Meterpreter
 ```bash
 ❯ whoami                   # Mirar el nombre del usuario
 ❯ whoami /priv             # Mirar los privilegios 'Token' del usuario 
-❯ whoami /all              # Mirar toda la info del usuario 
+
+# Información del usuario (Grupos, Privilegios)
+❯ whoami /all
+
+	BUILTIN\Administrators     <- Pertenece al grupo administradores locales 
+
+
+❯ net localgroup Administrators domain\omar /add   # Agregar a un usuario al grupo administradores 
+❯ net localgroup Administrators                    # Mirar si se ha agregado aal grupo 
 ```
 
 ```bash 
