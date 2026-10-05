@@ -34,6 +34,10 @@ C:\wamp64\www\<APP>\config.php
 C:\wamp64\www\<APP>\db.php
 ```
 
+```powershell 
+❯ Get-Content file    # Mirar el contenido de un archivo sin ejecutarlo 
+```
+
 ## PowerShell History
 
 ```powershell
