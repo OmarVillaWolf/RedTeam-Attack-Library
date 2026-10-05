@@ -67,9 +67,8 @@ NOTAS:
 ``` 
 
 ## PrivEsc máquina inicial 
-
+### PowerUp
 ```powershell 
-# PowerUp
 ❯ Invoke-AllChecks
 # Ejecuta todos los checks de escalación de privilegios locales de PowerSploit/PowerUp. Identifica servicios con rutas sin comillas (Unquoted Service Path), servicios cuya configuración puede ser modificada por el usuario actual (weak service permissions), binarios de servicios reemplazables, tareas programadas mal configuradas, entre otros vectores comunes de privesc en Windows.
 
