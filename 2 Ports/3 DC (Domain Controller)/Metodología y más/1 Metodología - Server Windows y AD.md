@@ -42,6 +42,32 @@ NOTA:
 	- Library-ms
 ```
 
+### EN SERVER WINDOWS 
+```bash 
+- Si hay pocos puertos TCP, hacer escaneo UDP 
+
+- Enumeración puerto 80 'web'
+	- Buscar archivos con credenciales  <-  IMPORTANTE
+```
+
+### EN SERVER LINUX 
+```bash 
+- Si hay pocos puertos TCP, hacer escaneo UDP 
+	- Enumeración puerto 161 'SNMP' (Verificar credenciales con fuerza bruta y enumerar con creds válidas)
+
+- Enumeración puerto 22 'SSH'
+	- Fuerza bruta o ingreso con credenciales válidas 
+
+- Enumeración puerto 80 'web'
+	- Buscar exploits de la aplicación que se esta ejecutando 
+
+- Enumeración puerto 2049 'NFS' 
+	- Verificar las monturas 
+```
+
+
+---
+
 ## CON CREDENCIALES 
 
 ### EN SERVER
