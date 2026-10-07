@@ -92,7 +92,7 @@ Una vez obtenido un usuario:
 ❯ nxc ldap IP -u 'user' -p 'passwd' --bloodhound --collection All --dns-server IP
 
 NOTA:
-	- Al final de laa ejecución muestra la ruta de almacenamiento 
+	- Al final de la ejecución muestra la ruta de almacenamiento 
 ```
 
 ## 2. BloodHound-Python Recolector
