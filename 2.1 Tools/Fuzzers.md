@@ -34,19 +34,19 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ```bash 
 # Directorios (General)
-/usr/share/SecLists/Discovery/Web-Content/common.txt
+/usr/share/SecLists/Discovery/Web-Content/common.txt    <- IMPORTANTE
 /usr/share/SecLists/Discovery/Web-Content/quickhits.txt
 /usr/share/SecLists/Discovery/Web-Content/combined_directories.txt
 /usr/share/SecLists/Discovery/Web-Content/combined_words.txt
 /usr/share/SecLists/Discovery/Web-Content/big.txt
 /usr/share/SecLists/Discovery/Web-Content/DirBuster-2007-directory-list-2.3-small.txt
-/usr/share/SecLists/Discovery/Web-Content/DirBuster-2007-directory-list-2.3-medium.txt
+/usr/share/SecLists/Discovery/Web-Content/DirBuster-2007-directory-list-2.3-medium.txt  <- IMPORTANTE
 /usr/share/SecLists/Discovery/Web-Content/DirBuster-2007-directory-list-2.3-big.txt
 
 # Directorios (RAFT)
 /usr/share/SecLists/Discovery/Web-Content/raft-small-directories.txt
 /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories.txt
-/usr/share/SecLists/Discovery/Web-Content/raft-large-directories.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-large-directories.txt     <- IMPORTANTE
 /usr/share/SecLists/Discovery/Web-Content/raft-small-directories-lowercase.txt
 /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt
 /usr/share/SecLists/Discovery/Web-Content/raft-large-directories-lowercase.txt
@@ -54,7 +54,7 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 # Archivos (RAFT)
 /usr/share/SecLists/Discovery/Web-Content/raft-small-files.txt
 /usr/share/SecLists/Discovery/Web-Content/raft-medium-files.txt
-/usr/share/SecLists/Discovery/Web-Content/raft-large-files.txt
+/usr/share/SecLists/Discovery/Web-Content/raft-large-files.txt     <- IMPORTANTE
 /usr/share/SecLists/Discovery/Web-Content/raft-small-files-lowercase.txt
 /usr/share/SecLists/Discovery/Web-Content/raft-medium-files-lowercase.txt
 /usr/share/SecLists/Discovery/Web-Content/raft-large-files-lowercase.txt
