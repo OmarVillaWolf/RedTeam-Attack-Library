@@ -78,17 +78,21 @@
             }
           },
           {
-            "id": "1fc6f538a4331fb3",
+            "id": "4cbdb6aef9c25df1",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/1 Windows/3 Escalation/4 Unquoted Service Path.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "4 Unquoted Service Path"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -260,34 +264,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "a115b9559678b49a",
+  "active": "4cbdb6aef9c25df1",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/PtH/Dumpear todos los hashes remotamente.md",
+    "2.1 Tools/Password Cracking.md",
     "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/6 Tareas CRON.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/3 Grupos especiales.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/4 SUID.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
-    "2 Ports/2 Aplicaciones Web/Traffic Offense Management System.md",
-    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/4 Mimikatz - OPTH - PTH.md",
+    "1 Com Lin & Win/1 Hacking Commands/2 Windows Commands.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/3 Credential Extraction.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
     "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
-    "2 Ports/4 Windows - Linux/5 Database/3306 - MYSQL.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/PHP Credentials.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Wordpress.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/MySQL Credentials.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Traffic Offense Management System.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1.1 Sudo --version.md",
-    "2 Ports/3 DC (Domain Controller)/5985 5986 WinRM.md",
-    "2 Ports/3 DC (Domain Controller)/464 kerberos Password.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
+    "1 Com Lin & Win/1 Hacking Commands/1 Linux Commands.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/4 Unquoted Service Path.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/6 PowerUp - PrivEsc.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5 WinPEAS - Enum y PrivEsc.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/2 Group-Based Escalation.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/2 NetExec.md",
+    "2 Ports/3 DC (Domain Controller)/88 Kerberos.md",
     "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-    "2 Ports/2 Aplicaciones Web/Argus Surveillance DVR4.md",
-    "2 Ports/2 Aplicaciones Web/Apache - Shellshock.md",
-    "2 Ports/2 Aplicaciones Web/CloudBeaver - Oracle.md",
-    "2 Ports/2 Aplicaciones Web/CMS - Drupal.md",
-    "2 Ports/2 Aplicaciones Web/ColdFusion.md",
-    "2 Ports/2 Aplicaciones Web/CS-CART.md",
-    "2 Ports/2 Aplicaciones Web/Exhibitor Zookeeper.md",
+    "2.1 Tools/Nmap - Rustscan.md",
+    "2.1 Tools/Fuzzers.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Edge Snapper.md",
+    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/Firefox.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/PtH",
     "8 Active Directory/0 Evasión",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8",
