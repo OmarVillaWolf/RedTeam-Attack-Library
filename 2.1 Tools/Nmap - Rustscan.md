@@ -35,11 +35,13 @@ Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 # PASO 1 → Descubrir todos los puertos abiertos (elegir uno)
 
 # Opción A — RustScan (más rápido)
+❯ rustscan -a <IP> --ulimit 5000 -- -Pn -sC -sV -oN Targeted 
 ❯ rustscan -a <IP> --ulimit 5000 -- -A -oN Targeted 
 ❯ rustscan -a <IP> --ulimit 5000 -- -Pn -A -oN Targeted 
 	# Pn = Requerido en Windows 
 
 # Opción B — Nmap
+❯ nmap -p- --open --max-rtt-timeout 1000ms --max-retries 5 --min-rate 1000 -vvv -n -Pn <IP> -oN allPorts
 ❯ nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn <IP> -oG allPorts
 # -p- → todos los 65535 puertos | --open → solo abiertos
 # -sS → SYN scan | --min-rate 5000 → velocidad alta
