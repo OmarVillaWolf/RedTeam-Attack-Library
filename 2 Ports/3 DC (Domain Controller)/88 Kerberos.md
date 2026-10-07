@@ -87,6 +87,11 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 ## 1. ENUMERACIÓN DE USUARIOS (SIN CREDENCIALES)
 
 ```bash
+# Instalación 
+❯ wget https://github.com/ropnop/kerbrute/releases/latest/download/kerbrute_linux_amd64 -O kerbrute && chmod +x kerbrute && mv kerbrute /usr/local/bin/
+```
+
+```bash
 ❯ kerbrute userenum -d domain.corp --dc <IP> users.txt
 # No requiere creds → valida usuarios contra el DC directamente vía Kerberos
 # Más sigiloso que LDAP o RPC para enumerar usuarios
