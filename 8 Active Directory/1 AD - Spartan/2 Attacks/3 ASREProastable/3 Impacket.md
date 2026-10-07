@@ -28,8 +28,8 @@ Notas:
 # Guardar y crackear el hash con 'Hashcat'
 ❯ hashcat -m 18200 hashes.asreproast /usr/share/wordlists/rockyou.txt --force
 
-	# m = Método por fuerza bruta
-	# 18200 = Es un ASREProstable
+	# m = Método por fuerza bruta 
+	# 18200 = Es un ASREProstable 
 	# hashes.asreproast = Archivo que contiene el hash 
 	# rockyou = Diccionario a usar 
 ```
