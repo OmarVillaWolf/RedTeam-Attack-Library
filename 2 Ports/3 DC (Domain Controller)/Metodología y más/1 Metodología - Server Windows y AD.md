@@ -125,6 +125,7 @@ Pasos:
 	- Enabled: FALSE  = Cuenta deshabilitada, por lo tanto toca habilitarla con LDAP
 	- Buscar Outbound Object Control (ACLs) 
 	- Buscar usuarios Kerberosteables 
+	- Buscar usuarios Asrep-Roastables
 	- Shortest Path to Domain Admin 
 	- Shortest Path from Owned objects
 ```
@@ -149,4 +150,31 @@ Pasos:
     - El hash pertenece solo al user Administrator?
     - El hash puede estar siendo reutilizado por otras cuentas?
 	- Revisar en BloodHound (Shortest paths to Domain Admins, All Domain Admins) 
+```
+
+--- 
+
+## Escenario 2 PCs, 1 AD
+
+```bash 
+# TIPS DC
+- BloodHound de primera 
+- Buscar un usuario extra por medio del DC 
+
+- Al obtenerlo:
+	- Ver si en algún server (PC) si tiene acceso 'winrm, rdp'
+	- Mirar los shares en los diferentes servers 
+```
+
+```bash 
+# TIPS dentro de un server (PC o Server)
+# ESCENARIO 1: 
+	- Mirar si ademas de ser usuaario del 'dominio' tambien es o pertenece a los usuarios 'admins locales', si es así hacer dump de credenciales. (Cumpliendo los dos criterios)   
+	- Si se obtiene un usuario que pertenezca a lo 'admin locales' que no sea parte del dominio, puede agregar a un usuario que sea parte del dominio para hacer el dump remotamente de credenciales o hacer el dump con mimikatz directo pero elevando la sesión desde el RDP 
+
+# ESCENARIO 2: 
+	- Buscar la escalada:
+		- Con 'PowerUp' buscar 'Unquoted Services'
+		- Si se consigue ser el administrador local 'system32' puede dumpear con 'mimikatz' 
+
 ```
