@@ -24,6 +24,7 @@ Tags: #LocalEnumeration #PrivEsc #Windows  #Meterpreter
 	BUILTIN\Administrators     <- Pertenece al grupo administradores locales 
 
 
+❯ net localgroup Administrators <usuario> /add     <- IMPORTANTE
 ❯ net localgroup Administrators domain\omar /add   # Agregar a un usuario al grupo administradores 
 ❯ net localgroup Administrators                    # Mirar si se ha agregado aal grupo 
 ```
