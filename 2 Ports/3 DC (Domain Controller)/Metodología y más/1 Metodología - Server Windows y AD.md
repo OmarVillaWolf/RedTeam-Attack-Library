@@ -9,8 +9,8 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 ## RECONOCIMIENTO
 
 - Enumeración puerto 445 'SMB'
-  	- Enumerar usuarios (--rid-brute, --users)
-	- Investigar Shares
+  	- Enumerar usuarios (--rid-brute, --users) con '' y 'guest'  <- SIEMPRE
+	- Investigar Shares con '' y 'guest'  <- SIEMPRE
 		- Investigar carpeta de SYSVOL, NETLOGON o Personalizadas 
 		- Buscar archivos con credenciales  <-  IMPORTANTE
 
@@ -31,6 +31,7 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 
 NOTA:
 	- Si se encuentra una password con un año en especial, a veces es bueno colocarle el siguiente año o el actual para el password Spraying
+	- Password Sprying con las nuevas contraseñas a todos los usuarios 
 ```
 
 ```bash 
@@ -88,6 +89,7 @@ Pasos:
 
 NOTA:
 	- Si se encuentra una password con un año en especial, a veces es bueno colocarle el siguiente año o el actual para el password Spraying 
+	- Password Sprying con las nuevas contraseñas a todos los usuarios 
 ```
 
 ```bash 
@@ -150,6 +152,10 @@ Pasos:
     - El hash pertenece solo al user Administrator?
     - El hash puede estar siendo reutilizado por otras cuentas?
 	- Revisar en BloodHound (Shortest paths to Domain Admins, All Domain Admins) 
+
+
+NOTA:
+	- Password Sprying con las nuevas contraseñas a todos los usuarios 
 ```
 
 --- 
@@ -159,6 +165,8 @@ Pasos:
 ```bash 
 # TIPS DC
 - BloodHound de primera 
+- Con el usuario inicial verificar si puede ingresar por 'Winrm, RDP' a todos los servers
+- Password Sprying con la contraseña inicial a los usuarios encontrados
 - Buscar un usuario extra por medio del DC 
 
 - Al obtenerlo:
@@ -168,6 +176,10 @@ Pasos:
 
 ```bash 
 # TIPS dentro de un server (PC o Server)
+# Siempre miraar los usuarios admins locales 
+❯ net localgroup administrators 
+
+
 # ESCENARIO 1: 
 	- Mirar si ademas de ser usuaario del 'dominio' tambien es o pertenece a los usuarios 'admins locales', si es así hacer dump de credenciales. (Cumpliendo los dos criterios)   
 	- Si se obtiene un usuario que pertenezca a lo 'admin locales' que no sea parte del dominio, puede agregar a un usuario que sea parte del dominio para hacer el dump remotamente de credenciales o hacer el dump con mimikatz directo pero elevando la sesión desde el RDP 
@@ -177,4 +189,12 @@ Pasos:
 		- Con 'PowerUp' buscar 'Unquoted Services'
 		- Si se consigue ser el administrador local 'system32' puede dumpear con 'mimikatz' 
 
+
+TIP:
+	- Si se obtiene un usuario por 'dump (SAM)' agregar el parámetro --local-auth en 'Netexec' para esos usuarios 
+		- Cracker hashes NT con John 
+		- Verificar si el usuario dado puede ingresar por 'WinRM, RDP' con --local-auth
+	  
+NOTA:
+	- Password Sprying con las nuevas contraseñas a todos los usuarios 
 ```
