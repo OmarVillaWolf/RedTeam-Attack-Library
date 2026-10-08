@@ -25,31 +25,6 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 * [Hashes.com](https://hashes.com/en/decrypt/hash)
 * [Sprayhound](https://github.com/Hackndo/sprayhound)
 
-## /etc/hosts — ANTES DE EMPEZAR
-```bash
-Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
-
-# Máquina standalone (solo Windows, sin dominio)
-❯ echo "192.168.5.22 castelblack" >> /etc/hosts
-# Solo el hostname → suficiente para conectarse
-
-# Máquina parte de dominio o DC
-❯ echo "192.168.5.22 castelblack.kingdoms.local castelblack" >> /etc/hosts
-# hostname + FQDN → necesario para autenticación Kerberos y SMB con dominio
-# Si solo agregas el hostname → algunas herramientas fallan con el dominio
-```
-
-### Cómo saber si es standalone o parte de dominio
-```bash
-❯ nmap -p 88 <IP>
-# Puerto 88 (Kerberos) abierto → es un DC o parte de dominio
-# Puerto 88 cerrado → probablemente standalone
-
-❯ nxc smb <IP>
-# Output muestra: domain → si el dominio es igual al hostname → standalone
-# Si el dominio es diferente al hostname → parte de un dominio real
-```
-
 ## 0.1 SINCRONIZACIÓN DE RELOJ (OBLIGATORIO)
 
 ```bash
@@ -77,15 +52,15 @@ Siempre agregar la máquina al /etc/hosts antes de enumerar SMB.
 # Restablecer la fecha y hora
 ```
 
-### Insight importante
-- **Sin sincronización → ningún ataque Kerberos funcionará**
-- En el examen esto se olvida frecuentemente → ponlo como primer paso del checklist
-- Si un ataque falla misteriosamente → revisar el reloj primero
-
----
-
 ## 1. ENUMERACIÓN DE USUARIOS (SIN CREDENCIALES)
 
+### Netexec 
+```bash 
+# Verificar si algún usuario es vulnerable a 'Asreproast Attack'
+❯ nxc ldap IP_DC -u users.txt -p '' -k --dns-server IP_DC 
+```
+
+### Kerbrute 
 ```bash
 # Instalación 
 ❯ wget https://github.com/ropnop/kerbrute/releases/latest/download/kerbrute_linux_amd64 -O kerbrute && chmod +x kerbrute && mv kerbrute /usr/local/bin/
