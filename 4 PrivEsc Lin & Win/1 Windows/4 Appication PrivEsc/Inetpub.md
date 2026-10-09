@@ -14,7 +14,10 @@ Paso 1:
 ❯ dir C:\inetpub   # Ingresar al directorio 
 ❯ Get-Acl C:\inetpub\wwwroot | Format-List  # Mostrar los permisos de acceso de C:\inetpub\wwwroot en Windows para ver si se puede escribir 
 
-	Access : BUILTIN\Users Allow  Modify, Synchronize  ← ESTA ES LA QUE IMPORTA
+
+Access : 
+	BUILTIN\Users Allow  Modify, Synchronize  ← ESTA ES LA QUE IMPORTA
+
 
 Donde:
 	BUILTIN\Users     = Todos los usuarios locales
