@@ -57,10 +57,11 @@ NOTA:
 	- Enumeración puerto 161 'SNMP' (Verificar credenciales con fuerza bruta y enumerar con creds válidas)
 
 - Enumeración puerto 22 'SSH'
-	- Fuerza bruta o ingreso con credenciales válidas 
+	- Fuerza bruta o ingreso con credenciales válidas  
 
 - Enumeración puerto 80 'web'
 	- Buscar exploits de la aplicación que se esta ejecutando 
+	- Buscar el 'id_rsa, /etc/passwd' para obtener un usuario y su clave privada por medio de una app vulnerable para SSH
 
 - Enumeración puerto 2049 'NFS' 
 	- Verificar las monturas 
