@@ -64,9 +64,9 @@ Paso 3:
 #### CASO 2
 ```bash 
 Paso 1:
-Si el archivo si existe y somos 'www-data' pero el dir donde se encuentra el archvio esta asi:
+Si el archivo si existe y somos 'www-data' pero el dir donde se encuentra el archivo esta asi:
 ❯ ls -la /var/www/scripts/ 
-	drwxr-xr-x 2 www-data   www-data   4096 Oct 28  2021 .
+	drwxr-xr-x 2 www-data   www-data   4096 Oct 28  2021 .     <- Otros pueden eliminar/crear archivos en este dir 
 	drwxr-xr-x 4 root       root       4096 Oct 28  2021 ..
 	-rwxrwxr-- 1 plot_admin plot_admin  141 Oct 28  2021 backup.sh 
 
@@ -89,7 +89,7 @@ Paso 4:
 Paso 1:
 # El archivo existe en nuestro /home 
 ❯ ls -la /home/layne.stanley/
-	drwxrwxrwx 5 layne.stanley layne.stanley 4096 Sep 15  2025 .
+	drwxrwxrwx 5 layne.stanley layne.stanley 4096 Sep 15  2025 .   <- Otros pueden eliminar/crear archivos en este dir 
 	drwxr-xr-x 6 root          root          4096 Sep 12  2025 ..
 	-rwxr-xr-x 1 scott.weiland scott.weiland 2937 Sep 12  2025 bankSmarter_backup.sh
 
