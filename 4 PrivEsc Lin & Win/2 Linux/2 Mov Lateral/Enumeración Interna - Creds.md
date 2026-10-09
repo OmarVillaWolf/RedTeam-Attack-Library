@@ -94,8 +94,8 @@
 ### Escalada Rápida (si encuentras credenciales)
 
 ```bash
-❯ su - root                     # Cambiar al usuario 'root' si se encuentran credenciales
-❯ ssh root@IP                   # Ingresar por SSH con el usuario root si se tienen credenciales
+❯ su - root          # Cambiar al usuario 'root' si se encuentran credenciales
+❯ ssh root@IP        # Ingresar por SSH con el usuario root si se tienen credenciales
 ```
 
 ---
