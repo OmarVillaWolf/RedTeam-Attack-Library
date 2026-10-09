@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2.1 Tools/Password Cracking.md",
+                "file": "4 PrivEsc Lin & Win/2 Linux/3 Escalation/0 LinPEAS - LinEnum.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Password Cracking"
+              "title": "0 LinPEAS - LinEnum"
             }
           },
           {
@@ -33,6 +33,20 @@
               },
               "icon": "lucide-file",
               "title": "Dumpear todos los hashes remotamente"
+            }
+          },
+          {
+            "id": "4cbdb6aef9c25df1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2 Ports/3 DC (Domain Controller)/Metodología y más/0 Windows Met.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "0 Windows Met"
             }
           },
           {
@@ -64,21 +78,21 @@
             }
           },
           {
-            "id": "4cbdb6aef9c25df1",
+            "id": "cb9f991eb4aa7ecc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
+                "file": "2 Ports/2 Aplicaciones Web/CMS - Joomla.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "445 SMB - NXC  PsExec"
+              "title": "CMS - Joomla"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -250,34 +264,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "4cbdb6aef9c25df1",
+  "active": "cb9f991eb4aa7ecc",
   "lastOpenFiles": [
-    "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
-    "4 PrivEsc Lin & Win/1 Windows/1 Enumeration/2 Users, Groups.md",
-    "2.1 Tools/Password Cracking.md",
-    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/PtH/Dumpear todos los hashes remotamente.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5.1 PowerUp -Misconfigured Services.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
-    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/3 DPAPI.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5 PowerUp - PrivEsc.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/2 Group-Based Escalation.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/0 Identifying PrivEsc.md",
-    "2 Ports/3 DC (Domain Controller)/88 Kerberos.md",
-    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Unix socket.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/4 SUID.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
-    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/3 Grupos especiales.md",
-    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Enumeración Interna - Creds.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1.1 Sudo --version.md",
     "4 PrivEsc Lin & Win/2 Linux/3 Escalation/6 Tareas CRON.md",
-    "2 Ports/4 Windows - Linux/4 Enumeration/161 - SNMP (TCP - UDP).md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/5 Capabilities.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/4 SUID.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/3 Grupos especiales.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/2 Sudoers.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/1 Kernel.md",
+    "4 PrivEsc Lin & Win/2 Linux/3 Escalation/0 LinPEAS - LinEnum.md",
+    "2 Ports/2 Aplicaciones Web/Rocket.Chat.md",
+    "1 Com Lin & Win/1 Hacking Commands/Tratamiento TTY.md",
+    "2 Ports/4 Windows - Linux/2 Web Services/80 - HTTP.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "2 Ports/2 Aplicaciones Web/CloudBeaver - Oracle.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/1 Enumeración del entorno.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/0 Windows Met.md",
+    "4 PrivEsc Lin & Win/2 Linux/1 Enumeración/0 Metodología Linux PrivEsc.md",
+    "2 Ports/4 Windows - Linux/5 Database/3306 - MYSQL.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Joomla.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Enumeración Interna - Creds.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Procesos Internos.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Traffic Offense Management System.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Unix socket.md",
+    "4 PrivEsc Lin & Win/2 Linux/2 Mov Lateral/Wordpress.md",
+    "2 Ports/4 Windows - Linux/1 Initial Access/22 - SSH.md",
+    "2.1 Tools/Password Cracking.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/PtH",
     "8 Active Directory/0 Evasión",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8",
