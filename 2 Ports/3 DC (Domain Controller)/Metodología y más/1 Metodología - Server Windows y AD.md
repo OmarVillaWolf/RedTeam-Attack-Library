@@ -45,6 +45,9 @@ NOTA:
 
 ### EN SERVER WINDOWS 
 ```bash 
+TIP: Relacionar los puertos con la cadena de ataque 
+	 Reutilizar credenciales en todo lo que se pueda
+
 - Si hay pocos puertos TCP, hacer escaneo UDP 
 
 - Enumeración puerto 80 'web'
@@ -53,11 +56,17 @@ NOTA:
 
 ### EN SERVER LINUX 
 ```bash 
+TIP: Relacionar los puertos con la cadena de ataque 
+	 Reutilizar credenciales en todo lo que se pueda
+
 - Si hay pocos puertos TCP, hacer escaneo UDP 
 	- Enumeración puerto 161 'SNMP' (Verificar credenciales con fuerza bruta y enumerar con creds válidas)
 
 - Enumeración puerto 22 'SSH'
 	- Fuerza bruta o ingreso con credenciales válidas  
+
+- Enumeración puerto 25 'SMTP'
+	- 
 
 - Enumeración puerto 80 'web'
 	- Buscar exploits de la aplicación que se esta ejecutando 
