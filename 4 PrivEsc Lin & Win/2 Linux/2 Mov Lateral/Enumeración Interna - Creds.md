@@ -2,6 +2,13 @@
 
 **Tags:** #PrivEsc #Enumeration #Recon #Credentials
 
+### Escalada Rápida (si encuentras credenciales)
+
+```bash
+❯ su - root          # Cambiar al usuario 'root' si se encuentran credenciales
+❯ ssh root@IP        # Ingresar por SSH con el usuario root si se tienen credenciales
+```
+
 ## 🖥️ SERVICIOS E INTERNALS
 
 ### Interfaces de Red & Hosts
@@ -27,9 +34,10 @@
 ### Shell & Historial de Comandos
 
 ```bash
-❯ echo "$SHELL"                 # Mirar la shell
+❯ echo "$SHELL"          # Mirar la shell
+❯ cat /etc/passwd        # Mirar los usuarios y sus shell 
 
-❯ history                       # Historial de comandos
+❯ history                # Historial de comandos
 ❯ cat ~/.bash_history
 ❯ cat ~/.zsh_history
 ❯ cat ~/.sh_history
