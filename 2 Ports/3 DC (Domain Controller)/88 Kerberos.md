@@ -56,7 +56,7 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 
 ### Netexec 
 ```bash 
-# Verificar si algún usuario es vulnerable a 'Asreproast Attack'
+# Verificar si algún usuario es vulnerable a 'Asreproast Attack'  <- LENTO
 ❯ nxc ldap IP_DC -u users.txt -p '' -k --dns-server IP_DC 
 ```
 
@@ -67,7 +67,7 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 ```
 
 ```bash
-❯ kerbrute userenum -d domain.corp --dc <IP> users.txt
+❯ kerbrute userenum -d domain.corp --dc <IP> users.txt   <- MEJOR OPCIÓN
 # No requiere creds → valida usuarios contra el DC directamente vía Kerberos
 # Más sigiloso que LDAP o RPC para enumerar usuarios
 
