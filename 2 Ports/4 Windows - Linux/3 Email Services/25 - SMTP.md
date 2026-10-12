@@ -9,11 +9,20 @@ Tags: #SMTP
 ❯ snmp-check IP    # Enumerar información de un dispositivo
 ```
 
+* [SMTP-User-Enum](https://github.com/cytopia/smtp-user-enum)
 ```bash 
 ❯ smtp-user-enum -M VRFY -U users.txt -t ❮IP❯   # Ataque de Fuerza bruta para identificar usuarios 
 
 	# VRFY = Verificar una lista de usuarios 
 	# U = Lista de usuarios 
+
+NOTA:
+	- Se puede usar una lista personalizada o la siguiente: 
+		  /usr/share/SecLists/Usernames/xato-net-10-million-usernames.txt 
+
+
+# Guardar los nombres de usuarios válidos en un archivo 
+❯ smtp-user-enum -M VRFY -U /usr/share/SecLists/Usernames/xato-net-10-million-usernames.txt -t IP | grep 'exists' | awk '{print $2}' | tee users.txt 
 ```
 
 ```bash 
