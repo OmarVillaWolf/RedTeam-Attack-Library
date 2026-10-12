@@ -26,6 +26,7 @@ Notas:
 
 ```bash 
 # Guardar y crackear el hash con 'Hashcat'
+❯ john --format=krb5asrep hashes.asreproast -w=/usr/share/wordlists/rockyou.txt 
 ❯ hashcat -m 18200 hashes.asreproast /usr/share/wordlists/rockyou.txt --force
 
 	# m = Método por fuerza bruta 
