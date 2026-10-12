@@ -66,11 +66,12 @@ TIP: Relacionar los puertos con la cadena de ataque
 	- Fuerza bruta o ingreso con credenciales válidas  
 
 - Enumeración puerto 25 'SMTP'
-	- 
+	- Fuerza bruta para encontrar users válidos 
 
 - Enumeración puerto 80 'web'
 	- Buscar exploits de la aplicación que se esta ejecutando 
 	- Buscar el 'id_rsa, /etc/passwd' para obtener un usuario y su clave privada por medio de una app vulnerable para SSH
+	- LFI (si hay ?view= usar wrappers en base64) para buscar usuarios en '/etc/passwd' y su id_rsa o log-poisoning
 
 - Enumeración puerto 2049 'NFS' 
 	- Verificar las monturas 
@@ -178,6 +179,9 @@ NOTA:
 - Con el usuario inicial verificar si puede ingresar por 'Winrm, RDP' a todos los servers
 - Password Sprying con la contraseña inicial a los usuarios encontrados
 - Buscar un usuario extra por medio del DC 
+	- Kerberoasting
+	- Asrep
+	- ACL
 
 - Al obtenerlo:
 	- Ver si en algún server (PC) si tiene acceso 'winrm, rdp'
@@ -186,8 +190,16 @@ NOTA:
 
 ```bash 
 # TIPS dentro de un server (PC o Server)
-# Siempre miraar los usuarios admins locales 
+# Siempre mirar los usuarios admins locales 
+
+SIEMPRE HACER: Hasta con el usuario Administrador 
+❯ whoami /all 
 ❯ net localgroup administrators 
+❯ ls
+	Desktop
+	Documents
+	Downloads 
+	C:\
 
 
 # ESCENARIO 1: 
