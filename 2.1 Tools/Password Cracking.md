@@ -415,6 +415,17 @@ NOTA:
 # -m 10700 → PDF 1.7 Level 8 (Acrobat 9)
 ```
 
+## Archivos  (.accdb, .doc, .docx, .xlsx, .pttx, .mdb, .odt, .ods, .odp)
+```bash 
+# El archivo '.accdb' se abre con 'Access' que se encuentra en Microsoft Office
+```
+
+```bash 
+❯ office2john file.accdb > hash.txt 
+
+❯ john hash.txt -w=/usr/share/wordlists/rockyou.txt 
+```
+
 ---
 
 ## 5. WI-FI (WPA/WPA2)
