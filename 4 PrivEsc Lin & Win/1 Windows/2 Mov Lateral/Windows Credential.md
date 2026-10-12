@@ -102,7 +102,7 @@ NOTA:
 ## Variables de Entorno
 
 ```powershell
-❯ Get-ChildItem Env:    # Mirar el contenido de todas las variaables de entorno 
+❯ Get-ChildItem Env:    # Mirar el contenido de todas las variables de entorno 
 ❯ $env:PATH
 ❯ $env:USERPROFILE
 
