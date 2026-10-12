@@ -30,6 +30,16 @@ C:\Users\Public
 /dev/shm
 ```
 
+
+## Tranferir de Kali Vmware a Windos host 
+```bash 
+# En Kali 
+❯ python3 -m http.server 80 
+
+# En Windows 
+Ir al navegador y colocar la IP de Kali para acceder al recurso 
+```
+
 ---
 
 ## LINUX (ATACANTE) → WINDOWS (VÍCTIMA)
