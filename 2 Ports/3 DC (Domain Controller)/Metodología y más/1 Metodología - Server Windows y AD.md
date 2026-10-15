@@ -18,9 +18,9 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 	- Enumerar con nullsession en busca de usuarios
 	- RID CYCLING (Si no se puede ingresar por null session)
 
-- Enumeración puerto 389/636 'LDAP'
+- Enumeración puerto 389/636 'LDAP, LDAPS'
 	- Mapear toda la info con 'ldapdomaindump'
-	- A veces muestra credenciales  
+	- A veces muestra passwords en la descripción 
 
 - Enumeración puerto 88 'Kerberos'
 	- Kerbrute para validar buscar usuarios válidos (BruteForce)
@@ -69,9 +69,10 @@ TIP: Relacionar los puertos con la cadena de ataque
 	- Fuerza bruta para encontrar users válidos 
 
 - Enumeración puerto 80 'web'
+	- Mirar en el código de la web si hay 'Virtual Hosting'
 	- Buscar exploits de la aplicación que se esta ejecutando 
 	- Buscar el 'id_rsa, /etc/passwd' para obtener un usuario y su clave privada por medio de una app vulnerable para SSH
-	- LFI (si hay ?view= usar wrappers en base64) para buscar usuarios en '/etc/passwd' y su id_rsa o log-poisoning
+	- LFI (Buscar el Path Traversal) para encontrar usuarios en '/etc/passwd' y su id_rsa o hacer log-poisoning si se pueden leer los logs
 
 - Enumeración puerto 2049 'NFS' 
 	- Verificar las monturas 
