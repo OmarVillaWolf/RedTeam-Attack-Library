@@ -21,6 +21,11 @@ Tags: #Hashcat #JohnTheRipper #PasswordCracking #HashIdentifier #Fcrackzip #Crac
 * [CrackStation](https://crackstation.net/)
 * [Hashcat Example Hashes](https://hashcat.net/wiki/doku.php?id=example_hashes)
 
+```bash 
+# Activar hashcat en un entorno virtual 
+❯ apt install pocl-opencl-icd
+```
+
 ---
 
 ## 0. IDENTIFICAR EL TIPO DE HASH
@@ -210,7 +215,7 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 ```bash
 # hashcat
 ❯ hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt
-❯ hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt   -r /usr/share/hashcat/rules/best66.rule
+❯ hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule
 ❯ hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt   --rules /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule --force
 ❯ hashcat -m 18200 hash_brandon /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule -r /usr/share/hashcat/rules/rockyou-30000.rule
 
