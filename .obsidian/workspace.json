@@ -104,19 +104,9 @@
               "icon": "lucide-file",
               "title": "5 BloodHound"
             }
-          },
-          {
-            "id": "5e239bc70ef79fd1",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -185,7 +175,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 326.5
+    "width": 237.5
   },
   "right": {
     "id": "352c47b0cb031926",
@@ -288,8 +278,21 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "5e239bc70ef79fd1",
+  "active": "a115b9559678b49a",
   "lastOpenFiles": [
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5.1 PowerUp -Misconfigured Services.md",
+    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/WriteOwner - User.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5 PowerUp - PrivEsc.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/3 DPAPI.md",
+    "2 Ports/3 DC (Domain Controller)/3389 3333 RDP.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
+    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
+    "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/0 Windows Met.md",
+    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
+    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 8.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 7.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 6.md",
@@ -297,25 +300,12 @@
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 4.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 3.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ESC 1-8/ESC 1.md",
-    "2 Ports/3 DC (Domain Controller)/445 SMB - NXC  PsExec.md",
-    "2 Ports/3 DC (Domain Controller)/3389 3333 RDP.md",
-    "2 Ports/3 DC (Domain Controller)/389 636 LDAP.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/3 ASREProastable/3 Impacket.md",
     "2.1 Tools/Password Cracking.md",
-    "2 Ports/3 DC (Domain Controller)/Metodología y más/0 Windows Met.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/2 Impacket.md",
     "2.1 Tools/Fuzzers.md",
     "2.1 Tools/Nmap - Rustscan.md",
     "2 Ports/4 Windows - Linux/6 File Share Path/2049 - NFS.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
     "4 PrivEsc Lin & Win/1 Windows/0 Evasión 1/4 WMIExec2.md",
-    "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/5 TargetKerberoast.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/4 Powerview.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/1 Rubeus.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/4 Kerberoasting/3 Netexec.md",
     "4 PrivEsc Lin & Win/1 Windows/0 Evasión 1",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/PtH",
     "8 Active Directory/0 Evasión",
