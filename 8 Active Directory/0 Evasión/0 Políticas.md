@@ -11,6 +11,7 @@ Métodos para ejecutar scripts/comandos de PowerShell evitando temporalmente. La
 ❯ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 
 # Iniciar una nueva sesión de PowerShell ignorando la Execution Policy
+❯ powershell -ep Bypass
 ❯ powershell -ExecutionPolicy Bypass
 
 # Ejecutar un comando específico ignorando la Execution Policy
