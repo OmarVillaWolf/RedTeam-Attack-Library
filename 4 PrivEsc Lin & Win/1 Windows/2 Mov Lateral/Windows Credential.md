@@ -43,6 +43,9 @@ C:\wamp64\www\<APP>\db.php
 ```powershell
 ❯ Get-Content (Get-PSReadLineOption).HistorySavePath
 
+# Leer el historial del usuario 
+❯ cat $env:USERPROFILE\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+
 ❯ type $env:APPDATA\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 
 ❯ type C:\Users\<usuario>\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
