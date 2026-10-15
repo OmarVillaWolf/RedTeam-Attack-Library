@@ -17,7 +17,7 @@ Lo enumeras con WinPEAS.
 * [Releases](https://github.com/peass-ng/PEASS-ng/releases) → descargar binarios precompilados
 
 ## Explotación 
-
+### Forma 1 - WinPEAS
 ```powershell 
 Paso 1:
 # Obtener la Masterkey desde WinPEAS
