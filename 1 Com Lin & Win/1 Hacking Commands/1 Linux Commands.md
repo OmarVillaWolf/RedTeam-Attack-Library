@@ -56,6 +56,7 @@ Referencia rápida de comandos Linux organizados por contexto de uso. No es una 
 ❯ pip3 install pwn --break-system-packages    # pwntools
 ❯ sudo apt install arp-scan                   # ARP-Scan
 ❯ sudo updatedb                               # Actualizar base de datos de locate
+❯ sudo apt install moreutils -y   # Instalar Sponge 
 ```
 
 ## 2. RECONOCIMIENTO DE RED LOCAL
