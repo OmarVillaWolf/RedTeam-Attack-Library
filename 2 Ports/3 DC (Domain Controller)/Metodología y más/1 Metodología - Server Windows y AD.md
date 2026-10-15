@@ -13,6 +13,7 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 	- Investigar Shares con '' y 'guest'  <- SIEMPRE
 		- Investigar carpeta de SYSVOL, NETLOGON o Personalizadas 
 		- Buscar archivos con credenciales  <-  IMPORTANTE
+		- A veces estan las credenciales cifradas de Windows DPAPI 
 
 - Enumeración puerto 135 'RPC'
 	- Enumerar con nullsession en busca de usuarios
