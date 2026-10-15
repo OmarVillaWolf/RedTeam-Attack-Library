@@ -161,6 +161,9 @@ Tags: #SMB #RPC #PsExec #Windows #Enum #Credentials #LateralMovement
 	❯ recurse ON    # Activa el recorrido recursivo de directorios
 	❯ prompt OFF    # Elimina la parte de preguntar al descargar
 	❯ mget *        # Descargar todo
+
+# Descargar todo recursivamente 
+❯ smbclient -N //<IP>/<share> -c "recurse ON; prompt OFF; mget *" 
 ❯ tree <share>      # Listar en forma de árbol toda la carpeta descargada
 
 ❯ smbclient -U 'user%pass' //<IP>/ShareName   # Requiere creds → acceso directo al share
