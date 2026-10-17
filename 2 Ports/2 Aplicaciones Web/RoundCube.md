@@ -72,6 +72,7 @@ NOTA: La lista de usuarios puede ser personalizada
 ## Roundcube Webmail 1.5.9
 * [PoC CVE-2025-49113](https://github.com/hakaioffsec/CVE-2025-49113-exploit)
 ```bash 
+# Se necesitan credenciales válidas 
 # Versiones vulnerables 
 1.5.0 - 1.5.9
 1.6.0 - 1.6.10
