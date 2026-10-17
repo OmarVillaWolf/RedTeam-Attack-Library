@@ -10,6 +10,7 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 
 - Enumeración puerto 445 'SMB'
   	- Enumerar usuarios (--rid-brute, --users) con '' y 'guest'  <- SIEMPRE
+	  	- En la descripción de '--users' a veces hay credenciales 
 	- Investigar Shares con '' y 'guest'  <- SIEMPRE
 		- Investigar carpeta de SYSVOL, NETLOGON o Personalizadas 
 		- Buscar archivos con credenciales  <-  IMPORTANTE
@@ -20,14 +21,15 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 	- RID CYCLING (Si no se puede ingresar por null session)
 
 - Enumeración puerto 389/636 'LDAP, LDAPS'
-	- Mapear toda la info con 'ldapdomaindump'
 	- A veces muestra passwords en la descripción 
 
 - Enumeración puerto 88 'Kerberos'
 	- Kerbrute para validar buscar usuarios válidos (BruteForce)
 
 - Enumeración puerto 80 'web'
-	- Buscar archivos con credenciales  <-  IMPORTANTE
+	- Buscar archivos con credenciales enum directorios <-  IMPORTANTE
+		- Dirsearch
+		- Feroxbuster 
 
 
 NOTA:
@@ -74,6 +76,8 @@ TIP: Relacionar los puertos con la cadena de ataque
 	- Buscar exploits de la aplicación que se esta ejecutando 
 	- Buscar el 'id_rsa, /etc/passwd' para obtener un usuario y su clave privada por medio de una app vulnerable para SSH
 	- LFI (Buscar el Path Traversal) para encontrar usuarios en '/etc/passwd' y su id_rsa o hacer log-poisoning si se pueden leer los logs
+	- Si la web ejecuta un .php buscar como subirlo y com ejecutralo 
+	- Si hay archvivos .zip verificar si hay '.git' y buscar creds
 
 - Enumeración puerto 2049 'NFS' 
 	- Verificar las monturas 
@@ -94,6 +98,7 @@ Pasos:
 
 - Enumeración puerto 445 'SMB'
 	- Enumerar usuarios (--users, --rid-brute)
+		- En la descripción de '--users' a veces hay credenciales 
 	    - Ataque de bruteforce 'users.txt:users.txt' 
 	    - Password Spraying (Misma password dada al inicio)
 	- Investigar Shares (Revisar de cada usuario nuevo obtenido)
@@ -120,6 +125,7 @@ NOTA:
 Pasos:
 - Enumeración puerto 445 'SMB'
 	- Enumerar usuarios (--users, --rid-brute)
+	    - En la descripción de '--users' a veces hay credenciales   
 	    - Ataque de bruteforce 'users.txt:users.txt' 
 	    - Password Spraying (Misma password dada al inicio)
 	- Investigar Shares (Revisar de cada usuario nuevo obtenido)
