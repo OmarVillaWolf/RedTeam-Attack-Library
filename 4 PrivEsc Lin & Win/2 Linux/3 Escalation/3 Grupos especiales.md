@@ -73,7 +73,7 @@ docker = Si estas en este grupo puedes usar los siguientes comandos:
 ```
 
 ## Adm 
-
+* [Hacktricks](https://github.com/b4rdia/HackTricks/blob/master/linux-hardening/privilege-escalation/interesting-groups-linux-pe/README.md)
 ```bash
 adm   # Si estas en este grupo, podras leer los logs del sistema
 
@@ -94,6 +94,10 @@ adm   # Si estas en este grupo, podras leer los logs del sistema
 	
 	/var/log/apt/history.log   ← Historial de apt (comandos instalados)
 
+
+# Buscar la password de otro usuario   <- IMPORTANTE
+❯ cd /var/log 
+❯ grep -r -i 'user1' 2>/dev/null
 ```
 
 ## Lxd
