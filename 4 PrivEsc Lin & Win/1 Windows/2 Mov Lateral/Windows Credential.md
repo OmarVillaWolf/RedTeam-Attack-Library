@@ -2,6 +2,9 @@
 
 Tags: #Windows #MovimientoLateral 
 
+## Página para PrivEsc
+* [PrivEsc](https://www.hackingarticles.in/)
+
 ## Identificación 
 ```bash 
 # Enumeración 
