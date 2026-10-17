@@ -186,4 +186,3 @@ Paso 4:
 ❯ /bin/bash -p
 ❯ whoami
 ```
-
