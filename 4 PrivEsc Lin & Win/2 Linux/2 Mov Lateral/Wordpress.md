@@ -20,7 +20,6 @@ WordPress es un CMS de código abierto (PHP + MySQL) especializado en blogs y si
 ```
 /var/www/html/wp-config.php           → Credenciales de DB → leer siempre
 /usr/share/wordpress/wp-config.php    → Ruta alternativa
-/var/www/html/wp-config.php           → Ruta con credenciales 
 /etc/apache2/sites-enabled/wordpress.conf  → Configuración Apache
 /var/www/html/wp-content/uploads/     → Archivos subidos → buscar webshells
 /var/www/html/wp-content/plugins/     → Plugins instalados
