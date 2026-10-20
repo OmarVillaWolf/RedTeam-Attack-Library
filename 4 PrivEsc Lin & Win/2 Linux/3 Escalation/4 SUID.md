@@ -52,6 +52,7 @@ Forma 2:
 ❯ make                     # Crear un compilado del binario 
 ❯ ./cve-2021-4034          # Ejecutar el binario 
 ```
+
 ## Dosbox 
 ```bash 
 # DOSBox es un emulador gratuito y de código abierto que permite ejecutar aplicaciones y juegos clásicos diseñados para MS-DOS en sistemas operativos modernos como Windows, macOS y Linux.
