@@ -431,6 +431,14 @@ NOTA:
 ❯ john hash.txt -w=/usr/share/wordlists/rockyou.txt 
 ```
 
+## ASC
+```bash 
+# Extrae el hash de la clave privada
+❯ gpg2john file.asc > hash.txt
+
+❯ john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
+```
+
 ---
 
 ## 5. WI-FI (WPA/WPA2)
