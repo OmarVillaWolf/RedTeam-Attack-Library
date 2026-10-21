@@ -31,6 +31,9 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 		- Dirsearch
 		- Feroxbuster 
 
+- Enumeración puerto 1433 'MSSQL'
+	- Si se encuentran creds locales ingresar a la DB 
+	- Verificar si es 'SA', si puede 'Impersonar' o utilizar 'Responder'
 
 NOTA:
 	- Si se encuentra una password con un año en especial, a veces es bueno colocarle el siguiente año o el actual para el password Spraying
