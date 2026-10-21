@@ -20,6 +20,7 @@ Tags: #WinPEAS #Windows #PrivEsc #Enumeracion #PostExplotacion #Automatizacion
 
 ```powershell
 # Guardar output a archivo → SIEMPRE hacerlo
+❯ .\winPEAS.exe   
 ❯ .\winPEASany.exe  
 ❯ .\winPEASany.exe > C:\Temp\winpeas_output.txt
 ❯ .\winPEASany.exe | Out-File -Encoding ASCII C:\Temp\winpeas_output.txt
