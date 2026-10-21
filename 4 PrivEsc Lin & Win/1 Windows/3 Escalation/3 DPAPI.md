@@ -14,7 +14,6 @@ Es una API de Windows que encripta/desencripta datos usando credenciales del usu
 ## Recursos 
 Lo enumeras con WinPEAS.
 * [WinPEAS GitHub](https://github.com/peass-ng/PEASS-ng/blob/master/winPEAS/winPEASexe/README.md)
-* [Releases](https://github.com/peass-ng/PEASS-ng/releases) → descargar binarios precompilados
 
 ## Explotación 
 ### Forma 1 - WinPEAS
