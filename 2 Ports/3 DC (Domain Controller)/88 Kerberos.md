@@ -28,28 +28,9 @@ Tags: #Kerberos #DC #Windows #AD #ASREPRoasting #Kerberoasting #UserEnum
 ## 0.1 SINCRONIZACIÓN DE RELOJ (OBLIGATORIO)
 
 ```bash
-# Kerberos requiere que el reloj del atacante no difiera más de 5 minutos del DC
-# Si no sincronizas → KRB_AP_ERR_SKEW → todos los ataques fallan
-
-❯ sudo ntpdate <IP_DC>
-# Sincronizar automáticamente con el DC
-# Requiere: acceso al DC
-
-❯ sudo ntpdate -u <IP_DC>
-# Forzar sincronización ignorando si NTP ya está corriendo
-
-❯ sudo rdate -n <IP_DC>
-# Alternativa si ntpdate no está disponible
-
-❯ sudo timedatectl set-ntp false
-❯ sudo timedatectl set-time "YYYY-MM-DD HH:MM:SS"
-# Ajuste manual como último recurso
-
-❯ date
-# Verificar que la hora quedó correcta después de sincronizar
-
-❯ date -s "2025-01-04 15:30:00"   
-# Restablecer la fecha y hora
+# Sincronizar el reloj con el DC
+❯ sudo timedatectl set-ntp off 
+❯ sudo ntpdate -u IP_DC
 ```
 
 ## 1. ENUMERACIÓN DE USUARIOS (SIN CREDENCIALES)
