@@ -366,25 +366,6 @@ NOTA:
 	- Dar click derecho al usuario y seleccionar 'Copy Password to Clipboard'
 ```
 
-### Archivos PFX / PKCS12 (certificados)
-```bash
-# Crackear contraseña del PFX
-❯ crackpkcs12 -d /usr/share/wordlists/rockyou.txt certificate.pfx
-# -d → diccionario
-
-# Instalar crackpkcs12 si no está disponible
-❯ git clone https://github.com/crackpkcs12/crackpkcs12
-❯ sudo apt install libssl-dev
-❯ cd crackpkcs12 && ./configure && make && sudo make install
-
-# Extraer contenido del PFX una vez que tienes la contraseña
-❯ openssl pkcs12 -in cert.pfx -nocerts -out priv-key.pem -nodes
-# Extraer clave privada → priv-key.pem
-
-❯ openssl pkcs12 -in cert.pfx -nokeys -out certificate.pem
-# Extraer certificado → certificate.pem
-```
-
 ### RAR
 ```bash
 # Extraer hash
@@ -422,7 +403,13 @@ NOTA:
 
 ## Archivos  (.accdb, .doc, .docx, .xlsx, .pttx, .mdb, .odt, .ods, .odp)
 ```bash 
-# El archivo '.accdb' se abre con 'Access' que se encuentra en Microsoft Office
+# Abrir archivos 
+- El archivo '.accdb' se abre con 'Access' que se encuentra en Microsoft Office
+
+- Los archivos '.xlsx' se pueden abrir con:
+	- Microsoft Office
+	- Free Online XLSX Viewer (Google)
+	- libreoffice --calc file.xlsx
 ```
 
 ```bash 
