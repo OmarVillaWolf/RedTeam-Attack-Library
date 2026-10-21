@@ -19,6 +19,8 @@ Tags: #MSSQL #SQLServer #Windows #DC #RCE #HashCapture #NTLMRelay #Impersonacion
 5. **Responder ANTES de ejecutar xp_dirtree → si lo haces al revés no capturas nada**
 6. **Impersonación → si puedes actuar como SA → xp_cmdshell aunque no seas sysadmin**
 
+Usuario por defecto: ``sa``
+
 ## TOOLS
 
 - [Impacket-mssqlclient](https://github.com/fortra/impacket)
@@ -93,6 +95,7 @@ IMPORTANTE:
 ```bash
 # Si el puerto esta expuesto en el server  
 # Autenticación Windows (dominio) → más común en AD
+❯ impacket-mssqlclient domain01.corp/'user:passwd'@❮IP❯
 ❯ impacket-mssqlclient domain01.corp/'user:passwd'@❮IP❯ -windows-auth     <- IMPORTANTE 
 
 # Puerto no estándar
@@ -102,6 +105,7 @@ IMPORTANTE:
 ```bash 
 # Autenticación SQL local con el usuario → sa 
 ❯ impacket-mssqlclient 'sa:passwd'@❮IP❯
+❯ impacket-mssqlclient domain01.corp/'user:passwd'@❮IP❯
 
 # sqsh → alternativa cuando impacket falla
 ❯ sqsh -S ❮IP❯ -U 'user' -P 'passwd'
