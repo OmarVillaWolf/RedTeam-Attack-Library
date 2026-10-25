@@ -54,6 +54,7 @@ Tags: #PrivEsc
 ❯ cat /etc/shells      # Muestra las shells de inicio de sesión 
 
 ❯ cat /etc/passwd      # Mirar los usuarios existentes 
+❯ cat /etc/passwd | grep -i sh 
 ❯ cat /etc/passwd | cut -f1 -d:
 ❯ cat /etc/passwd | grep -v /nologin    # v = Excluir
 
