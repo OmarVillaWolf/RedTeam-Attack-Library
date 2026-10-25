@@ -15,7 +15,7 @@ A continuación se proporciona el enlace directo para la descarga de la máquina
 -   **SickOs 1.1**: [https://www.vulnhub.com/entry/sickos-11,132/](https://www.vulnhub.com/entry/sickos-11,132/)
 
 
-## Comandos
+## Comandos - Linux 
 
 Si encontramos un dir llamado **/cgi-bin/** lo mas probables es que podamos testear un ShellShock. 
 En este directorio se debe buscar archivos **pl, sh, cgi,** así como también sin extensión. 
