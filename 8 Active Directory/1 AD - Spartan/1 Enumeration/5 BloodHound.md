@@ -101,6 +101,9 @@ NOTA:
 # Recolectar data con credenciales validas 
 ❯ bloodhound-python -u 'user' -p 'passwd' -c All --zip -ns IP_DC -d domain.corp 
 
+❯ bloodhound-python -u 'user' -p 'passwd' -c All --zip -ns IP_DC -d flight.htb --dns-tcp
+
+
 NOTA: 
 	1. Sincronizar el reloj con el DC 
 		❯ ntpdate IP
