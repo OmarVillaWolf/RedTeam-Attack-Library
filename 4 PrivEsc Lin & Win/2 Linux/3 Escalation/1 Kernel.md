@@ -29,6 +29,8 @@ A continuación, se os comparte el enlace a la máquina Sumo 1 de Vulnhub, la cu
 
 ```bash 
 ❯ uname -a    # Mirar la versión del kernel 
+❯ uname -sr
+❯ lsb_release -a 
 	Linux offsecsrv 2.6.32-21-generic #32-Ubuntu SMP Fri Apr 16 08:10:02 UTC 2010 i686 GNU/Linux
 	
 Donde: 
