@@ -38,6 +38,9 @@ Tags: #TTY #Shell #ReverseShell #Meterpreter #Linux #Interactiva
 ❯ export TERM=xterm    <- IMPORTANTE
 # Habilita: Ctrl+C, Ctrl+L (limpiar), flechas
 
+# Poner de color la terminal 
+❯ PS1='\[\e[31m]\u\[\e[96m]@\[\e[35m]\h\[\e[0m]:\[\e[93m]\w\[\e[0m]\$ '
+
 ❯ export TERM=xterm-256color
 # Igual que xterm pero con colores en la terminal
 ❯ source /etc/skel/.bashrc
