@@ -51,6 +51,9 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt
 /usr/share/SecLists/Discovery/Web-Content/raft-large-directories-lowercase.txt
 
+# Subdominios 
+/usr/share/SecLists/Discovery/DNS/subdomains-top1million-5000.txt 
+
 # Archivos (RAFT)
 /usr/share/SecLists/Discovery/Web-Content/raft-small-files.txt
 /usr/share/SecLists/Discovery/Web-Content/raft-medium-files.txt
@@ -163,6 +166,17 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 .json .xml .yaml .yml .api .graphql
 ```
 
+
+```bash 
+/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+/usr/share/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt
+
+/usr/share/seclists/Discovery/Web-Content/common.txt
+/usr/share/seclists/Discovery/Web-Content/big.txt
+/usr/share/seclists/Discovery/Web-Content/raft-large-files.txt
+/usr/share/seclists/Discovery/Web-Content/raft-large-words.txt
+```
+
 ## 1. ENUMERACIÓN DE DIRECTORIOS Y ARCHIVOS
 
 ### feroxbuster
@@ -252,6 +266,11 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ❯ ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -fs 0 -fc 404,403
 # -fs 0 → filtrar respuestas vacías | -fc → filtrar códigos
+```
+
+```bash 
+# Subdominios 
+❯ ffuf -w /usr/share/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u http://domain.local -H "Host: FUZZ.domain.local" -c -t 50 -fw 1546 
 ```
 
 ### wfuzz
