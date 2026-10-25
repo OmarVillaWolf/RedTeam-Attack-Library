@@ -22,8 +22,14 @@ Tags: #Hashcat #JohnTheRipper #PasswordCracking #HashIdentifier #Fcrackzip #Crac
 * [Hashcat Example Hashes](https://hashcat.net/wiki/doku.php?id=example_hashes)
 
 ```bash 
-# Activar hashcat en un entorno virtual 
-❯ apt install pocl-opencl-icd
+/usr/share/wordlists/rockyou.txt
+/usr/share/wordlists/seclists/Passwords/Common-Credentials/Pwdb_top-10000000.txt
+/usr/share/wordlists/seclists/Passwords/xato-net-10-million-passwords-1000000.txt
+
+/usr/share/wordlists/seclists/Passwords/Common-Credentials/Pwdb_top-1000.txt
+/usr/share/wordlists/seclists/Passwords/Common-Credentials/10-million-password-list-top-1000.txt
+/usr/share/wordlists/seclists/Passwords/Common-Credentials/probable-v2_top-1575.txt
+/usr/share/wordlists/seclists/Passwords/Common-Credentials/best1050.txt
 ```
 
 ---
