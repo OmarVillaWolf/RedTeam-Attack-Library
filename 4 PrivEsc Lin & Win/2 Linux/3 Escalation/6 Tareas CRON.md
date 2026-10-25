@@ -46,7 +46,7 @@ PSPY es una herramienta Linux que monitorea procesos en tiempo real sin necesida
 ❯ id 1002  # Mirar el nombre del usuario (1002 = user2)          <- CASO 1
 ❯ id 1001  # Mirar el nombre del usuario (1002 = plot_admin)     <- CASO 2
 ```
-#### CASO 1
+#### PSPY - CASO 1
 ```bash 
 Si no existe el archivo que se esta ejecutando, crearlo y colocarle una shell 
 Paso 1: 
@@ -59,9 +59,9 @@ Paso 2:
 
 Paso 3:
 # En Kali levantar el listener para recibir la revershell 
-❯ penelope -p 4444
+❯ nc -nlvp 4444
 ```
-#### CASO 2
+#### PSPY - CASO 2
 ```bash 
 Paso 1:
 Si el archivo si existe y somos 'www-data' pero el dir donde se encuentra el archivo esta asi:
@@ -81,10 +81,9 @@ Paso 3:
 
 Paso 4:
 # En Kali levantar el listener para recibir la revershell 
-❯ penelope -p 4455
+❯ nc -nlvp 4444
 ```
-
-#### CASO 3
+#### PSPY - CASO 3
 ```bash 
 Paso 1:
 # El archivo existe en nuestro /home 
@@ -104,7 +103,7 @@ Paso 3:
 
 Paso 4:
 # En Kali levantar el listener para recibir la revershell 
-❯ penelope -p 4455
+❯ nc -nlvp 4444
 ```
 
 
