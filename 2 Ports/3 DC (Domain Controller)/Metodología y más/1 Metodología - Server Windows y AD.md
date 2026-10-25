@@ -28,8 +28,10 @@ Tags: #AD #ActiveDirectory #Metodologia #Kali #Windows
 
 - Enumeración puerto 80 'web'
 	- Buscar archivos con credenciales enum directorios <-  IMPORTANTE
-		- Dirsearch
-		- Feroxbuster 
+		- Dirsearch (Archivos)
+		- Feroxbuster (Dir, Subdominios)
+	- Bucar en la web un LFI para usar 'Responder'
+	- Buscar si en la web se refleja el dir del SMB desde un puerto específico para cargar una shell y hacer un RCE 
 
 - Enumeración puerto 1433 'MSSQL'
 	- Si se encuentran creds locales ingresar a la DB 
@@ -56,8 +58,14 @@ TIP: Relacionar los puertos con la cadena de ataque
 
 - Si hay pocos puertos TCP, hacer escaneo UDP 
 
+- Enumeración puerto 445 'SMB'
+  	- Enumerar usuarios (--rid-brute, --users) con '' y 'guest'  <- SIEMPRE
+	  	- En la descripción de '--users' a veces hay credenciales 
+	- Investigar Shares con '' y 'guest'  <- SIEMPRE
+
 - Enumeración puerto 80 'web'
 	- Buscar archivos con credenciales  <-  IMPORTANTE
+	- Buscar si en la web se refleja el dir del SMB desde un puerto específico para cargar una shell y hacer un RCE 
 ```
 
 ### EN SERVER LINUX 
@@ -144,6 +152,7 @@ Pasos:
 - Enumeración puerto 80 'web'
 	- Buscar archivos con credenciales  <-  IMPORTANTE
 	- Buscar si existe un login e ingresar con las credenciales 
+	- Buscar si en la web se refleja el dir del SMB desde un puerto específico para cargar una shell y hacer un RCE 
 
 - Enumeración con BloodHound 
 	- Enabled: FALSE  = Cuenta deshabilitada, por lo tanto toca habilitarla con LDAP
@@ -184,25 +193,16 @@ NOTA:
 
 ## Escenario 2 PCs, 1 AD
 
-```bash 
-# TIPS DC
-- BloodHound de primera 
-- Con el usuario inicial verificar si puede ingresar por 'Winrm, RDP' a todos los servers
-- Password Sprying con la contraseña inicial a los usuarios encontrados
-- Buscar un usuario extra por medio del DC 
-	- Kerberoasting
-	- Asrep
-	- ACL
+```powershell 
+# En server 1
+- Con el usuario dado buscar otro usuario que el que ingresará al server 
+- Buscar en SMB archivos
+- En la descripción de --users a veces hay passwords 
 
-- Al obtenerlo:
-	- Ver si en algún server (PC) si tiene acceso 'winrm, rdp'
-	- Mirar los shares en los diferentes servers 
-```
-
-```bash 
 # TIPS dentro de un server (PC o Server)
 # Siempre mirar los usuarios admins locales 
 
+Dentro:
 SIEMPRE HACER: Hasta con el usuario Administrador 
 ❯ whoami /all 
 ❯ net localgroup administrators 
@@ -212,9 +212,15 @@ SIEMPRE HACER: Hasta con el usuario Administrador
 	Downloads 
 	C:\
 
+❯ net localgroup Administrators omar /add 
+
+- Revisar los puertos internos.  
+- Buscar posibles rutas de escalada de privilegios (privesc) con PowerUp, PrivescCheck y WinPEAS.
+- Después, realizar enumeración manual en busca de credenciales, revisar la papelera de reciclaje (Recycle Bin), el historial de comandos (History), etc. Buscaar archvios con credenciales  
+- Si no se encuentra nada, configurar el pivoting e intentar obtener acceso adicional mediante movimiento lateral o ataques contra Active Directory (AD).
 
 # ESCENARIO 1: 
-	- Mirar si ademas de ser usuaario del 'dominio' tambien es o pertenece a los usuarios 'admins locales', si es así hacer dump de credenciales. (Cumpliendo los dos criterios)   
+	- Mirar si ademas de ser usuario del 'dominio' tambien es o pertenece a los usuarios 'admins locales', si es así hacer dump de credenciales. (Cumpliendo los dos criterios)   
 	- Si se obtiene un usuario que pertenezca a lo 'admin locales' que no sea parte del dominio, puede agregar a un usuario que sea parte del dominio para hacer el dump remotamente de credenciales o hacer el dump con mimikatz directo pero elevando la sesión desde el RDP 
 
 # ESCENARIO 2: 
@@ -227,7 +233,41 @@ TIP:
 	- Si se obtiene un usuario por 'dump (SAM)' agregar el parámetro --local-auth en 'Netexec' para esos usuarios 
 		- Cracker hashes NT con John 
 		- Verificar si el usuario dado puede ingresar por 'WinRM, RDP' con --local-auth
-	  
+
+
 NOTA:
-	- Password Sprying con las nuevas contraseñas a todos los usuarios 
+	- Password Sprying con las nuevas contraseñas a todos los usuarios
+	- Con el usuario dado, buscar otro usuario para ingresar al server
+	- Dentro del server escalar para dumpear el segundo por medio de nxc, mimikatz o buscando algo ocult, este user es el que ingresará al server dos del pivoting 
 ```
+
+```powershell 
+# Con el pivoting  Server 2 
+- Verificar si el user nuevo puede ingresar al server 2 por 'winrm, rdp'
+- Buscar la escalada 'PowerUp, PrivescCheck, WinPEAS'
+  
+(Opcional)
+- Buscar más usuarios en el SMB del server dos incluir 'SYSVOL, NETLOGON' 
+- Mirar puertos internos a traer 
+
+```
+
+
+```bash 
+# Con el pivoting 
+
+# TIPS DC
+- BloodHound de primera 
+- usar --users ya que en la descripción luego hay passwords 
+- Con el usuario inicial verificar si puede ingresar por 'Winrm, RDP' a todos los servers
+- Password Sprying con la contraseña inicial a los usuarios encontrados
+- Buscar un usuario extra por medio del DC 
+	- Kerberoasting
+	- Asrep
+	- ACL
+
+- Al obtenerlo:
+	- Ver si en algún server (PC) si tiene acceso 'winrm, rdp'
+	- Mirar los shares en los diferentes servers 
+```
+
