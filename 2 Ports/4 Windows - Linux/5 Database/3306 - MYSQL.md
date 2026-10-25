@@ -18,7 +18,7 @@ Tags: #MySQL #Servidor #Comandos #DB
 ❯ mysql -u root -p -h <IP>     # Se debe tener el puerto expuesto 
 
 # Dentro del server            # Se debe tener el puerto interno ejecutandose 
-❯ mysql -u root -p              
+❯ mysql -u root -p             <- Intentar siempre 
 ❯ mysql -u root -D <DB_Name> -h localhost -p
 
 	# h = Host (IP)
