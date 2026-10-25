@@ -12,6 +12,7 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 
 ### En Kali - Alcanzar Punto B (Máquina Windows) desde el Punto A (Máquina Linux - Puente)
 ```bash 
+❯ sshuttle -r admin@IP IP.0/24 
 ❯ sshuttle -r admin@IP --ssh-cmd "ssh -i id_rsa -o StrictHostKeyChecking=no" IP.0/24 -v
 
 	# admin@IP = Usuario e IP de la máquina víctima (Punto A)
@@ -25,7 +26,11 @@ El pivoting puede ser utilizado para superar restricciones de seguridad que de o
 ## SSH - Dinamic Port Forwarding 
 
 ```bash 
-❯ ssh -D 1080 user@IP           # Conectarse por SSH creando un túnel dinámico en la máquina local. Por lo que cualquier conexión de red al puerto 1080 en tu computadora se redirigirá a través de la sesión SSH al servidor remoto
+❯ ssh -N -D 1080 user@IP           # Conectarse por SSH creando un túnel dinámico en la máquina local. Por lo que cualquier conexión de red al puerto 1080 en tu computadora se redirigirá a través de la sesión SSH al servidor remoto
+
+❯ ssh -N -D 1080 user@IP -vv
+❯ ssh -N -D 1080 -f user@IP -p 22000 
+❯ ssh -C -N -D 1080 user@IP -vv
 
 ❯ netstat -ant | grep 1080      # Verificar la creación del túnel de manera local (modo: LISTENING)
 ```
