@@ -46,11 +46,13 @@ NOTA: Funciona muy bien para traer servicios en el 'localhost' de la máquina v�
 	# Port-Local-a-Abrir = Puerto en Kali donde escuchará 
 	# 127.0.0.1:<Port-Traer> = Destino en la máquina víctima (O sea su puerto a traer: 80,1433, etc...)
 
+❯ ss -lntp | grep 9000   # Verificar la conexión 
 
 NOTA: 
 	- Se crea un túnel utilizando un solo puerto con una IP específica
 	- Los comandos ahora serán para la IP '127.0.0.1 o localhost'    <- IMPORTANTE
 ```
+
 
 ## 1.2 Traer un puerto específico teniendo un túnel (pivoting) 
 
