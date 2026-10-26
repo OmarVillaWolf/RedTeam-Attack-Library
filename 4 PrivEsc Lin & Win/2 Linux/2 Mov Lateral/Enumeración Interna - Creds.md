@@ -20,8 +20,8 @@
 ### Interfaces de Red & Hosts
 
 ```bash
-❯ ip a                          # Conocer las interfaces de red
-❯ cat /etc/hosts                # Conocer los hostnames internos
+❯ ip a                # Conocer las interfaces de red
+❯ cat /etc/hosts      # Conocer los hostnames internos
 ```
 
 ### Usuarios Activos & Último Acceso
