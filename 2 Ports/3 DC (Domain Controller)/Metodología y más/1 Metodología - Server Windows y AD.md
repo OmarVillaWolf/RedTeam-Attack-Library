@@ -212,7 +212,9 @@ SIEMPRE HACER: Hasta con el usuario Administrador
 	Downloads 
 	C:\
 
+# Si somos admin por el SeImpersonate o por Powerup o algo así gregar siempre al usuario inicial del dominio a Admins para que dumpee con --lsa
 ❯ net localgroup Administrators omar /add 
+
 
 - Revisar los puertos internos.  
 - Buscar posibles rutas de escalada de privilegios (privesc) con PowerUp, PrivescCheck y WinPEAS.
