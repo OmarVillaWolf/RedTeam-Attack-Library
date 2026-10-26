@@ -64,7 +64,7 @@ Tags: #SSH #Linux #Auth #Keys #Bruteforce #Pivoting #Tunneling #Persistence
 ```
 
 ```bash 
-❯ ssh-keygen -y -f id_rsa    # Verificar si laa llave privada tiene un 'passphrase'
+❯ ssh-keygen -y -f id_rsa    # Verificar si la llave privada tiene un 'passphrase'
 
 NOTA:
 	- Si la llave privada tiene un passphrase se debe de crackear con Hashcat o John  
@@ -73,10 +73,10 @@ NOTA:
 ## 3. AUTENTICACIÓN CON LLAVES
 
 ```bash 
-❯ ssh -i id_rsa user@<IP>  
-# Autenticación con clave privada  
-# Requiere:  
-# - permisos 600 en id_rsa
+❯ ssh -i id_rsa user@<IP> 
+
+NOTA:
+	- En la llave pública 'id_rsa.pub' se puede mirar el usuario de la llave privada
 
 ❯ chmod 600 id_rsa  
 # Ajustar permisos si falla autenticación
