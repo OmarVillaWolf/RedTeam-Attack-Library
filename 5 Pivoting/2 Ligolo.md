@@ -102,17 +102,18 @@ PASO 3:
 ```
 
 ```bash 
-EXTRA --> Si una vulne necesita puertos expecíficos se hace de la siguiente manera <--
+PASO 4: 
+# Problema
+- MS02 (red interna 10.x) no puede alcanzar a Kali directamente.
+- MS01 actúa como gateway entre la red externa y la interna.
 
-PASO 4: # Esto es para la vulne Log4Shell 
-# Sobre el agente de la máquina 'A' utiliza ligolo para redireccionar todo lo de Kali  
-# Hacelo por puerto
-❯ listener_add --addr 0.0.0.0:1389 --to 127.0.0.1:1389 --tcp  # LDAP Malicioso 
-❯ listener_add --addr 0.0.0.0:8000 --to 127.0.0.1:8000 --tcp  # Servicio HHTP
-❯ listener_add --addr 0.0.0.0:9001 --to 127.0.0.1:9001 --tcp  # Revershell 
+# Solución — Listeners en Ligolo
+- Configurar listeners en MS01 que redirijan el tráfico hacia Kali.
+- MS02 apunta a MS01 en el puerto específico configurado, Ligolo reenvía transparentemente a Kali y se establece la descarga o la revershell 
 
-# Si se necesita una segunda revershell crear otro listener 
-❯ listener_add --addr 0.0.0.0:4444 --to 127.0.0.1:4444 --tcp  # Revershell 2
+# Si se necesita una revershell crear un listener   <- IMPORTANTE 
+❯ listener_add --addr 0.0.0.0:4444 --to 127.0.0.1:4444 --tcp  # Revershell
+❯ listener_add --addr 0.0.0.0:9000 --to 127.0.0.1:9000 --tcp  # Descargar  
 
 
 PASO 5:
