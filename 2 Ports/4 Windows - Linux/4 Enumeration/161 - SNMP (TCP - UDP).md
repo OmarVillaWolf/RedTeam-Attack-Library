@@ -12,6 +12,8 @@ Tags: #SNMP #Comandos #UDP
 # Buscar credenciales    <- IMPORTANTE 
 ❯ snmpwalk -c public -v2c ❮IP❯ 1        # Colocar 1 significa que empezará desde la raiz '/' y asi poder encontrar más información acerca del protocolo, por default empieza desde el 2
 
+❯ snmpwalk -c public -v2c ❮IP❯ NET-SNMP-EXTEND-MIB::nsExtendObjects 
+
 NOTA:
 	- Si muestra un usuario ejemplo: "kiero" probarlo en los otros puertos abiertos como FTP, SSH.. de la siguiente manera: 'kiero:kiero' 
 ```
