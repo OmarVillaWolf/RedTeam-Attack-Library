@@ -165,8 +165,8 @@ PASO 5:
 ## Eliminar agente en Windows 
 
 ```powershell 
-❯ tasklist | findstr agent          # Saber si un agente se esta ejecutando en Windows 
-❯ taskkill /f /im agent_win.exe     # Eliminar todas las sesiones de los agentes en Windows 
+❯ tasklist | findstr agent      # Saber si un agente se esta ejecutando en Windows 
+❯ taskkill /f /im agent.exe     # Eliminar todas las sesiones de los agentes en Windows 
 ```
 
 ## Hacer una Reverse Shell 
