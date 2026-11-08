@@ -83,6 +83,14 @@ Una vez obtenido un usuario:
 		- Seleccionar el usuario y dar click en 'Inbound Object Control' para mostrar quien tiene control sobre el objeto seleccionado 
 		- Seleccionar el usuario y dar click en 'Outbound Object Control' para mostrar sobre que objetos tiene control el usuario comprometido 
 
+## DACLhound 
+
+* [DACLhound](https://github.com/gzzcoo/DACLhound)
+
+```bash 
+❯ DACLhound.py collect --host FQDN -d DOMAIN -u 'user' -p 'password' --dc-ip IP --output DOMAIN.json
+```
+
 # Diferentes Recolectores 
 
 ## 1. Netexec 
@@ -114,16 +122,13 @@ NOTA:
 
 Para descargar Sharphound se puede hacer desde la consola de Bloodhound Community Edition.
 
-```bash 
-❯ .\SharpHound.exe -c All    # Iniciar la recolección  
-```
-
 ```powershell 
 # Recolección de manera sigilosa 
-❯ C:\AD\Tools\Loader.exe -Path C:\AD\Tools\SharpHound.exe -args --collectionmethods All   
+❯ .\Loader.exe -Path .\SharpHound.exe -args --collectionmethods All
 
 # Para hacer una recolección aún más sigilosa, remover métodos ruidosos de recolección como RDP,DCOM, PSRemote y LocalAdmin
-❯ C:\AD\Tools\Loader.exe -Path C:\AD\Tools\SharpHound.exe -args --collectionmethods Group,GPOLocalGroup,Session,Trusts,ACL,Container,ObjectProps,SPNTargets,CertServices --excludedcs 
+❯ .\Loader.exe -Path .\SharpHound.exe -args --collectionmethods Group,GPOLocalGroup,Session,Trusts,ACL,Container,ObjectProps,SPNTargets,CertServices --excludedcs 
+
 
 NOTA:
 	1. Usar 'Excludedcs' para evitar la detección MDI
@@ -170,23 +175,7 @@ Para descargar Sharphound se puede hacer desde la consola de Bloodhound Communit
 # Enumeración con SharpHound a un dominio con credenciales validas desde una CMD en Windows
 ```
 
-## 4. RustHound 
-
-* [RustHound](https://github.com/NH-RED-TEAM/RustHound)
-
-```bash 
-# Recolectar info para BloodHound 
-❯ rusthound -d domain.corp -u 'user' -p 'passwd' -n IP_DC -o ./rusthound_output 
-```
-
-## 5. BloodyAD
-
-```bash 
-# Recolectar info para BloodHound 
-❯ bloody -H IP_DC -d domain.corp -u 'user' -p 'passwd' get bloodhound 
-```
-
-## 6. SOAPHound 
+## 4. SOAPHound (Sigiloso)
 
 * [SOAPHound](https://github.com/FalconForceTeam/SOAPHound)
 
@@ -197,13 +186,53 @@ SOAPHound es más sigiloso. El se comunica con Active Directory Web Services (AD
 
 
 # Construir un cache que contiene info básica de los objetos de dominio  
-❯ SOAPHound.exe --buildcache -c C:\AD\Tools\cache.txt   
+❯ SOAPHound.exe --buildcache -c cache.txt   
+	# buildcache = Construir el cache. 
+	# cache.txt  = Es un archivo que contiene información recopilada de Active Directory para utilizarla posteriormente en la fase de extracción.
 
 # Recolectar data compatible con BloodHound 
-❯ SOAPHound.exe -c C:\AD\Tools\cache.txt --bhdump -o C:\AD\Tools\bloodhound-output --nolaps  
+❯ SOAPHound.exe -c cache.txt --bhdump -o bloodhound-output --nolaps  
+
+	# cache.txt = Utiliza el caché creado anteriormente
+	# bhdump = Ejecuta la recopilación y generación de datos en formato compatible con BloodHound
+	# o = Formato de salida
+	# nolaps = Omite la recopilación relacionada con LAPS
 ```
 
-## 7. ADPeas 
+## 5. SharpADWS 
+
+* [SharpADWS](https://github.com/wh0amitz/SharpADWS)
+
+```bash 
+❯ sharpADWS.exe Cache    # Crear cache 
+
+# Para ACL
+❯ sharpADWS.exe Acl {-user,-groups,-gpo,...}
+
+# ACLs para usuarios con RDI arriba de 1000
+❯ sharpADWS.exe Acl -dn "CN=Users,DC=us,DC=tech,DC-local" -scope Subtree -rid 1000 
+
+# Usuarios con permisos DCSync
+❯ sharpADWS.exe DCSync -list 
+```
+
+## 6. RustHound 
+
+* [RustHound](https://github.com/NH-RED-TEAM/RustHound)
+
+```bash 
+# Recolectar info para BloodHound 
+❯ rusthound -d domain.corp -u 'user' -p 'passwd' -n IP_DC -o ./rusthound_output 
+```
+
+## 7. BloodyAD
+
+```bash 
+# Recolectar info para BloodHound 
+❯ bloody -H IP_DC -d domain.corp -u 'user' -p 'passwd' get bloodhound 
+```
+
+## 8. ADPeas 
 
 * [ADPeas](https://github.com/61106960/adPEAS)
 
