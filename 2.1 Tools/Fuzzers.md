@@ -195,6 +195,11 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ### dirsearch
 ```bash
+# Reinstalción por si falla 
+❯ apt install --reinstall dirsearch
+```
+
+```bash
 ❯ dirsearch -u http://<IP>/   # Buscar archivos ocultos 
 
 ❯ dirsearch -u http://<IP>/ -t 30 -e txt,html,php -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
