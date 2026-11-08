@@ -170,6 +170,11 @@ Tags: #Nmap #RustScan #Reconocimiento #Escaneo #TCP #UDP #NSE #Scripts
 ❯ nmap -Pn -sV -O <IP> -oX Scan
 # -O → detección de OS | -oX → XML para Metasploit
 
+❯ nmap -p22 --script ssh2-enum-algos,ssh-auth-method <IP>
+❯ nmap -p110 --script pop3-capabilities <IP> 
+❯ nmap -p110 --script imap-capabilities <IP>
+❯ nmap -p43 --script whois-domain,whois-ip <target>
+
 # Pasar resultado de RustScan directamente a nmap
 ❯ rustscan -a <IP> --ulimit 5000 -- -sCV -oN targeted
 # Todo después de -- son flags de nmap
