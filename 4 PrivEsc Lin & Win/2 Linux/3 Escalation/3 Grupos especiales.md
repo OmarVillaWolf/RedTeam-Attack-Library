@@ -97,7 +97,7 @@ adm   # Si estas en este grupo, podras leer los logs del sistema
 
 # Buscar la password de otro usuario   <- IMPORTANTE
 ❯ cd /var/log 
-❯ grep -r -i 'user1' 2>/dev/null
+❯ grep -r -i 'robert' 2>/dev/null
 ```
 
 ## Lxd
