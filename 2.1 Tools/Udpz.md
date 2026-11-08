@@ -6,9 +6,11 @@ Es un **escáner UDP rápido basado en probes** — la alternativa a `nmap -sU` 
 
 ## Instalación 
 ```bash 
+# Instalar GO
+❯ sudo apt install golang -y
+
 # Instalación con GO   <-  MEJOR FORMA
-❯ go install github.com/FalconOpsLLC/udpz@latest
-❯ export PATH=$PATH:~/go/bin
+❯ go install github.com/FalconOpsLLC/udpz@latest && export PATH=$PATH:~/go/bin
 ```
 
 ```bash 
