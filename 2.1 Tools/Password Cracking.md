@@ -325,9 +325,25 @@ admin:500:aad3b435b51404eeaad3b435b51404ee:71759a1bb2web4da43e676d6b7190711:::
 # -m 22921 → RSA/DSA/EC/OpenSSH Private Keys
 ```
 
-### KeePass (.kdbx)
+### KeePass ( .kdb / .kdbx)
+```bash
+# Instalación 
+❯ sudo apt install keepassxc
+
+❯ keepassxc file.kdbx   # Abrir la DB 
+# Pide contraseña maestra al abrir → probar contraseñas encontradas previamente
+
+
+NOTA:
+	- Si la DB al abrirla dice: 'The selected file is an old KeePass 1 database (.kdb)' y no la abre. Hacer lo siguiente: 
+		1. Dar click en 'Import File'
+		2. Seleccionar 'KeePass 1 Database (.kdb)'
+		3. Buscar la DB para importarla y colocar su password 
+```
+
 ```bash
 # Extraer hash
+❯ keepass2john file.kdb > hash.txt
 ❯ keepass2john file.kdbx > hash.txt
 # Sin archivo clave
 
@@ -390,7 +406,10 @@ NOTA:
 ### PDF
 ```bash 
 # Abrir un PDF 
-❯ okular File.pdf     # Okulaar es un lector de documentos PDF
+❯ okular File.pdf     # Okular es un lector de documentos PDF
+
+NOTA:
+	- Si no se encuentra nada abriendo el PDF mirar con exiftool 
 ```
 
 ```bash
