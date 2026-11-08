@@ -151,22 +151,7 @@ http://<IP>/api
 http://<IP>/console
 ```
 
-### 2.3 Repositorio .git expuesto
-```bash
-# Si curl http://<IP>/.git/HEAD devuelve contenido → repositorio expuesto
-
-❯ python3 GitHack.py http://<IP>/.git/
-# Extraer todos los recursos del proyecto
-# Puede contener: credenciales, código fuente, historial de commits
-
-❯ git_hacker.py http://<IP>/.git/
-❯ git-dump.py http://<IP>/.git/
-
-# Después de extraer → buscar credenciales
-❯ grep -ri "password\|passwd\|secret\|key\|token" ./ 2>/dev/null
-```
-
-### 2.4 Ver código fuente y tecnologías en el navegador
+### 2.3 Ver código fuente y tecnologías en el navegador
 ```
 Ctrl + U         → Ver código fuente completo
 Ctrl + Shift + C → Inspeccionar elemento
