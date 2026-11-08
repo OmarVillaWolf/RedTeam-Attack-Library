@@ -7,35 +7,12 @@ Tags: #Windows #MovimientoLateral
 
 ## Identificación 
 ```bash 
-# Enumeración 
-
-# Buscar software de terceros no estándar, antiguo o vulnerable.
-# Ejemplos: servidores de correo, clientes de backup, herramientas administrativas, etc.
-C:\Program Files
-C:\Program Files (x86)
-
-# Revisar completamente el perfil del usuario comprometido:
-C:\Users\Omar\
-
-# Buscar archivos de configuración, scripts, backups, credenciales, documentos o información sensible.
+# Enumeración de archivos 
+	C:\windows.old\Windows\System32
+		SAM
+		SYSTEM
 ```
 
-
-```bash 
-# Windows — aplicaciones web
-
-C:\inetpub\wwwroot\<APP>\web.config
-C:\inetpub\wwwroot\<APP>\config.php
-C:\inetpub\wwwroot\<APP>\db.php
-C:\inetpub\wwwroot\<APP>\.env
-
-C:\xampp\htdocs\<APP>\config.php
-C:\xampp\htdocs\<APP>\db.php
-C:\xampp\htdocs\<APP>\.env
-
-C:\wamp64\www\<APP>\config.php
-C:\wamp64\www\<APP>\db.php
-```
 
 ## Comandos básicos de reconocimiento 
 ```powershell 
@@ -174,12 +151,40 @@ NOTA:
 ## Búsqueda de Archivos con Credenciales
 ```powershell
 ❯ Get-ChildItem -Path C:\Users\<usuario> -Recurse -ErrorAction SilentlyContinue | Select-String "password|credential|secret|pass" -List
+
+❯ Get-ChildItem -Path C:\ -Force -ErrorAction SilentlyContinue 
+❯ Get-ChildItem -Path C:\Users\user1 -Recurse -Force *.kdbx,*.txt,*.ini,*.config,*.xml -File -Recurse -ErrorAction SilentlyContinue 
+❯ Get-ChildItem -Path C:\ -Include *.kdbx,*.txt,*.ini,*.config,*.xml,*.ps1,*.config -File -ErrorAction SilentlyContinue 
+
+❯ Get-Content C:\Windows\System32\inetsrv\config\applicationHost.config
+
+❯ Get-Content (Get-PsReadLineOption).HistorySavePath
+
+❯ findstr /si /m password *.xml *.ini *.txt *.config
+
+❯ req query HKLM /f password /t REG_SZ /s 
+
+❯ req query "HKCU\Software\SimonTatham\PuTTY\Sessions" /t REG_SZ /s 
+# Credenciales de Putty en texto claro 
+
+# Config gold: C:\xampp\passwords.txt, my.ini, Filezilla 
+❯ (sitemanager.xml/recentservers.xml), unattend.xml, web.config, WinSCP.ini 
+
+❯ type C:\Users\Public\Transcripts\*.txt 
+
+❯ $cred (ConvertTo-SecureString)
 ```
 
 ## Scheduled Tasks
 ```powershell
+❯ schtasks /query /v /fo list 
+❯ schtasks /query /v /fo list | findstr /v "\Microsoft"
+
+❯ Get-ScheduledTask
 ❯ Get-ScheduledTask -TaskPath * | Get-ScheduledTaskInfo
-❯ schtasks /query /v /fo list
+
+❯ icacls "C:\path\TaskBinary.exe"
+❯ higher user -> Reemplazarlo 
 ```
 
 ## Archivos Recientes (Desktop/Documents)
@@ -215,11 +220,6 @@ NOTA:
 # Extraer DPAPI credentials
 ❯ dir C:\Users\<usuario>\AppData\Roaming\Microsoft\Credentials\
 # Luego usar herramientas como Mimikatz o LaZagne
-```
-
-## Recycle Bin
-```powershell
-❯ ls C:\$Recycle.Bin\
 ```
 
 ## Recent Files Registry
