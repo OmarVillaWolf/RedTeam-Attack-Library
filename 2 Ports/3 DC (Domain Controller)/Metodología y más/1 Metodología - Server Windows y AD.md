@@ -74,7 +74,9 @@ TIP: Relacionar los puertos con la cadena de ataque
 	 Reutilizar credenciales en todo lo que se pueda
 
 - Si hay pocos puertos TCP, hacer escaneo UDP 
-	- Enumeración puerto 161 'SNMP' (Verificar credenciales con fuerza bruta y enumerar con creds válidas)
+	- Enumeración puerto 161 'SNMP' 
+		- Enumerar credenciales con 'snmpwalk'
+		- Verificar credenciales con fuerza bruta
 
 - Enumeración puerto 22 'SSH'
 	- Fuerza bruta o ingreso con credenciales válidas  
@@ -212,7 +214,7 @@ SIEMPRE HACER: Hasta con el usuario Administrador
 	Downloads 
 	C:\
 
-# Si somos admin por el SeImpersonate o por Powerup o algo así gregar siempre al usuario inicial del dominio a Admins para que dumpee con --lsa
+# Si somos admin por el SeImpersonate o por Powerup o algo así agregar siempre al usuario inicial del dominio a Admins para que dumpee con --lsa
 ❯ net localgroup Administrators omar /add 
 
 
