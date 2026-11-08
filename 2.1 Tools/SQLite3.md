@@ -1,6 +1,6 @@
 # SQLite3 
 
-Tags: #Tool #SQLite 
+Tags: #Tool #SQLite #db
 
 ```bash 
 ❯ sqlite3 file.db        # Mirar la DB con SQLite3
