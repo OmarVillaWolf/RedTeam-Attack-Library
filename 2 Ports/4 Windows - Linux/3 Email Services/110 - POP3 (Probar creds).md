@@ -17,6 +17,12 @@ Se utiliza en clientes locales de correo para obtener los mensajes de correo ele
 	# P@$$w0rd123! = Es la contraseña válida del usuario 
 ```
 
+```bash 
+❯ openssl s_client -connect IP:110 -starttls pop3 -crlf
+	CAPA
+	QUIT
+```
+
 ## Autenticación 
 ```bash
 ❯ nc <IP> 110     # A veces da problemas al momento de conectarse
@@ -29,9 +35,11 @@ Se utiliza en clientes locales de correo para obtener los mensajes de correo ele
 
 ## Comandos después de la autenticación 
 ```bash
-❯ USER <Name>           # Nombre del usuario a conectar
-❯ PASS <Passwd>         # Passwd del usuario a conectar 
-❯ LIST                  # Mirar si tiene algun correo y ver mínimo '1' 10, por lo que no se debe de ver 0 0 ya que eso dice que no tiene correo 
+❯ USER <Name>     # Nombre del usuario a conectar 'sysadmin o user@admin.com'
+❯ PASS <Passwd>   # Passwd del usuario a conectar 'prueba'
+❯ LIST            # Mirar si tiene algun correo y ver mínimo '1' 10, por lo que no se debe de ver 0 0 ya que eso dice que no tiene correo 
 
 ❯ RETR <NUM>            # Dar el primer numero que se ha encontrado anteriormente y listar los mensajes que tenga en su bandeja de entrada, si se encuentra un **2** quiere decir que hay dos correos, por lo que se puede poner primero **1** y despues el **2** y asi sucesivamente.
+
+❯ QUIT   # Salir 
 ```
