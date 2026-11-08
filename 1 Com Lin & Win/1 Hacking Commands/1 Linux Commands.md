@@ -179,15 +179,15 @@ Referencia rápida de comandos Linux organizados por contexto de uso. No es una 
 ### Compresión y descompresión
 
 ```bash
-❯ 7z l <archivo.zip>          # Ver contenido sin extraer (l=ele)
+❯ 7z x <archivo.zip>          # Extraer el contenido 
 ❯ 7z x <archivo.gz>           # Extraer contenido
 ❯ tar -xf <archivo.tar.gz>    # Descomprimir tar.gz
 ❯ tar -xvf <archivo.tar.gz>   # Con verbose
 ❯ tar -czf output.tar.gz dir/ # Comprimir directorio
 ❯ gzip -d <archivo.txt.gz>    # Descomprimir gz
 ❯ gunzip <archivo.gz>         # Alternativa a gzip -d
-❯ unzip <archivo.zip>         # Descomprimir zip
 ❯ unzip -l <archivo.zip>      # Ver contenido sin extraer
+❯ tar xvfj file.tar.bz2       # Descomprimir 
 ```
 
 ---
