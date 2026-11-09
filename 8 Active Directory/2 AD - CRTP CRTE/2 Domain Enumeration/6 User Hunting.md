@@ -2,7 +2,7 @@
 
 Tags: #AD #Powershell #PowerView 
 
-[![User-Hunting.png | 750](https://i.postimg.cc/9QFThwmg/User-Hunting.png)](https://postimg.cc/F781bRJ0)
+![[Pasted image 20261109173209.png]]
 
 ```bash 
 ID de eventos:
@@ -12,7 +12,14 @@ ID de eventos:
 - 4672 = Asignación de privilegios especiales. Un usuario inicia sesión y se le asignan privilegios especiales tipicamente por ser miembro de grupos privilegiados (Administrators, Domain Admins, etc...) 
 ```
 
-## PowerView 
+## PowerView - Verificar el acceso Admin a un Server 
+
+* [PowerView](https://github.com/ZeroDayLab/PowerSploit/blob/master/Recon/PowerView.ps1)
+
+```powershell 
+❯ . .\PowerView.ps1                # Cargar PowerView en memoria 
+❯ Import-Module .\PowerView.ps1    # Importar el módulo 
+```
 
 ```powershell 
 ❯ Find-LocalAdminAccess -Verbose    # Encontrar todas las máquinas en el dominio actual donde el usuario actual tiene acceso 'admin'
@@ -21,15 +28,15 @@ ID de eventos:
 ❯ Invoke-CheckLocalAdminAccess   # Usar 'multi-threaded' para cada máquina 
 
 
-Notas:
-	1. Esto tambien se puede hacer con la ayuda de herraminetas de administración remota como WMI y Powershell. Bastante útil en los casos en que los puertos (RPC y SMB) utilizados por 'Find-LocalAdminAccess' son bloqueados
-	2. Mirar 'Find-WMILocalAdminAccess.ps1' y 'Find-PSRemotingLocalAdminAccess.ps1'
+NOTA:
+	- La herraminetas de administración remota como WMI y Powershell es bastante útil en los casos en que los puertos (RPC y SMB) utilizados por 'Find-LocalAdminAccess' son bloqueados
+	- Utilizar 'Find-WMILocalAdminAccess.ps1' y 'Find-PSRemotingLocalAdminAccess.ps1' para enumerar
 ```
 
-## Desde afuera 
+## Desde afuera - Verificar el acceso Admin a un Server 
 
 ```powershell 
-❯ . Find-PSRemotingLocalAdminAccess.ps1       # Importar el módulo 
+❯ . .\Find-PSRemotingLocalAdminAccess.ps1     # Importar el módulo 
 ❯ Find-PSRemotingLocalAdminAccess -Verbose    # Listar servidores del DC donde se tiene acceso administrativo local remoto
 ```
 
@@ -45,7 +52,7 @@ Notas:
 	❯ $env:computername
 ```
 
-## Desde adentro de un server 
+## Desde adentro de un server - Verificar el acceso Admin a otro Server 
 
 ```powershell 
 ❯ Find-DomainUserLocation -Verbose       # Encontrar computadoras donde un admin del dominio (or specified user/group) tiene una sesión y se tiene acceso administrativo local para posible movimiento lateral
@@ -77,9 +84,9 @@ Notas:
 * [Invoke-SessionHunter](https://github.com/Leo4j/Invoke-SessionHunter)
 
 ```powershell 
-No se necesita acceso admin en máquinas remotas. Usar 'Remote Registry y queries HKEY_USERS hive' 
+No se necesita acceso admin en máquinas remotas. Usa 'Remote Registry y queries HKEY_USERS hive' 
 
-❯ Invoke-SessionHunter -NoPortScan -RawResults | select Hostname,UserSession,Access   # Listar sesiones en las máquinas remotas y mirar si tienes acceso
+❯ Invoke-SessionHunter -NoPortScan -RawResults | select Hostname,UserSession,Access   # Listar sesiones en las máquinas remotas y mirar si se tiene acceso
 
 ❯ Invoke-SessionHunter -FailSafe    # Listar sesiones en máquinas remotas 
 
@@ -95,7 +102,7 @@ No se necesita acceso admin en máquinas remotas. Usar 'Remote Registry y querie
 ```
 
 ```powershell 
-❯ Enter-PSSession -ComputerName server01.domain01.local    # Ingresar al server donde tenemos acceso administrativo remoto
+❯ Enter-PSSession -ComputerName server01.domain01.local    # Ingresar al server donde se tiene acceso administrativo remoto
 	❯ $env:username
 	❯ $env:computername
 ```
