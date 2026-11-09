@@ -19,11 +19,17 @@ Listas de control de acceso (ACL):
 * [PowerView](https://github.com/ZeroDayLab/PowerSploit/blob/master/Recon/PowerView.ps1)
 
 ```powershell 
-❯ . C:\AD\PowerView.ps1               # Cargar PowerView en memoria 
-❯ Import-Module .\PowerView.ps1       # Importar el módulo 
+❯ . .\PowerView.ps1                # Cargar PowerView en memoria 
+❯ Import-Module .\PowerView.ps1    # Importar el módulo 
 ```
 
 ```powershell 
+# Enumerar los grupos restringidos locales 
+❯ Get-DomainGPOLocalGroup 
+
+# Enumnerar los mismbros de un grupo específico  
+❯ Get-DoaminGroupMember -Identity machienadmins  
+
 # Obtener los ACLs asociados con un objeto específico 
 ❯ Get-DomainObjectAcl -SamAccountName user1 -ResolveGUIDs
    
