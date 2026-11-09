@@ -93,32 +93,56 @@ Una vez obtenido un usuario:
 
 # Diferentes Recolectores 
 
-## 1. Netexec 
+## 1. SharpADWS <- IMPORTANTE 
+
+* [SharpADWS](https://github.com/wh0amitz/SharpADWS)
 
 ```bash 
-# Recolectar info para BloodHound 
-❯ nxc ldap IP -u 'user' -p 'passwd' --bloodhound --collection All --dns-server IP
+Paso 1:
+❯ sharpADWS.exe Cache    # Crear cache 
 
-NOTA:
-	- Al final de la ejecución muestra la ruta de almacenamiento 
+Paso 2:
+# Para ACL
+❯ sharpADWS.exe Acl {-user,-groups,-gpo,...}
+❯ sharpADWS.exe Acl -user > user_acls.txt    # Buscar usuarios con ACL 
+
+# ACLs para usuarios con RDI arriba de 1000
+❯ sharpADWS.exe Acl -dn "CN=Users,DC=us,DC=tech,DC-local" -scope Subtree -rid 1000 
+
+Paso 3:
+# Usuarios con permisos DCSync
+❯ sharpADWS.exe DCSync -action list   # Listar los usuarios con DCSync 
 ```
 
-## 2. BloodHound-Python Recolector
+## 2. SOAPHound (Sigiloso)
 
-```bash
-# Recolectar data con credenciales validas 
-❯ bloodhound-python -u 'user' -p 'passwd' -c All --zip -ns IP_DC -d domain.corp 
+* [SOAPHound](https://github.com/FalconForceTeam/SOAPHound)
 
-❯ bloodhound-python -u 'user' -p 'passwd' -c All --zip -ns IP_DC -d flight.htb --dns-tcp
+```powershell 
+SOAPHound es más sigiloso. El se comunica con Active Directory Web Services (ADWS - Puerto 9389) en lugar de enviar peticiones LDAP como lo haría el AD Module
+	- Casi ninguna detección basada en la red  (MDI)
+	- Recupera info sobre todos los objetos (objectGuid=*) y sus procesos. Esos significa peticiones limitadas a LDAP - Menos posobilidad de detección en puntos finales 
 
+Paso 1:
+# Construir un cache que contiene info básica de los objetos de dominio  
+❯ SOAPHound.exe --buildcache --nolaps --cachefilename cache.txt    
+	# buildcache = Construir el cache. 
+	# cache.txt  = Es un archivo que contiene información recopilada de Active Directory para utilizarla posteriormente en la fase de extracción.
 
-NOTA: 
-	1. Sincronizar el reloj con el DC 
-		❯ ntpdate IP
-	2. Importar todos los archivos en formato 'Json' a BloodHound
+Paso 2:
+# Recolección el cual generará archivos Json 
+❯ SOAPHound.exe --domain domain.local --dc dc.domain.local --bhdump --outputdirectory C:\AD\usdump --cachefilename cache.txt --nolaps
+
+# Recolectar data compatible con BloodHound 
+❯ SOAPHound.exe -c cache.txt --bhdump -o bloodhound-output --nolaps    
+
+	# cache.txt = Utiliza el caché creado anteriormente
+	# bhdump = Ejecuta la recopilación y generación de datos en formato compatible con BloodHound
+	# o = Formato de salida
+	# nolaps = Omite la recopilación relacionada con LAPS
 ```
 
-## 3a. SharpHound (.exe)
+## 3a. SharpHound (.exe)  <- IMPORTANTE 
 
 Para descargar Sharphound se puede hacer desde la consola de Bloodhound Community Edition.
 
@@ -175,45 +199,29 @@ Para descargar Sharphound se puede hacer desde la consola de Bloodhound Communit
 # Enumeración con SharpHound a un dominio con credenciales validas desde una CMD en Windows
 ```
 
-## 4. SOAPHound (Sigiloso)
-
-* [SOAPHound](https://github.com/FalconForceTeam/SOAPHound)
-
-```powershell 
-SOAPHound es más sigiloso. El se comunica con Active Directory Web Services (ADWS - Puerto 9389) en lugar de enviar peticiones LDAP como lo haría el AD Module
-	- Casi ninguna detección basada en la red  (MDI)
-	- Recupera info sobre todos los objetos (objectGuid=*) y sus procesos. Esos significa peticiones limitadas a LDAP - Menos posobilidad de detección en puntos finales 
-
-
-# Construir un cache que contiene info básica de los objetos de dominio  
-❯ SOAPHound.exe --buildcache -c cache.txt   
-	# buildcache = Construir el cache. 
-	# cache.txt  = Es un archivo que contiene información recopilada de Active Directory para utilizarla posteriormente en la fase de extracción.
-
-# Recolectar data compatible con BloodHound 
-❯ SOAPHound.exe -c cache.txt --bhdump -o bloodhound-output --nolaps  
-
-	# cache.txt = Utiliza el caché creado anteriormente
-	# bhdump = Ejecuta la recopilación y generación de datos en formato compatible con BloodHound
-	# o = Formato de salida
-	# nolaps = Omite la recopilación relacionada con LAPS
-```
-
-## 5. SharpADWS 
-
-* [SharpADWS](https://github.com/wh0amitz/SharpADWS)
+## 4. Netexec 
 
 ```bash 
-❯ sharpADWS.exe Cache    # Crear cache 
+# Recolectar info para BloodHound 
+❯ nxc ldap IP -u 'user' -p 'passwd' --bloodhound --collection All --dns-server IP
 
-# Para ACL
-❯ sharpADWS.exe Acl {-user,-groups,-gpo,...}
+NOTA:
+	- Al final de la ejecución muestra la ruta de almacenamiento 
+```
 
-# ACLs para usuarios con RDI arriba de 1000
-❯ sharpADWS.exe Acl -dn "CN=Users,DC=us,DC=tech,DC-local" -scope Subtree -rid 1000 
+## 5. BloodHound-Python Recolector
 
-# Usuarios con permisos DCSync
-❯ sharpADWS.exe DCSync -list 
+```bash
+# Recolectar data con credenciales validas 
+❯ bloodhound-python -u 'user' -p 'passwd' -c All --zip -ns IP_DC -d domain.corp 
+
+❯ bloodhound-python -u 'user' -p 'passwd' -c All --zip -ns IP_DC -d flight.htb --dns-tcp
+
+
+NOTA: 
+	1. Sincronizar el reloj con el DC 
+		❯ ntpdate IP
+	2. Importar todos los archivos en formato 'Json' a BloodHound
 ```
 
 ## 6. RustHound 
