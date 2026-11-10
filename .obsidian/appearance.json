@@ -1,4 +1,6 @@
 {
   "baseFontSize": 17,
-  "cssTheme": "AnuPpuccin"
+  "cssTheme": "Blossom",
+  "accentColor": "#5322c3",
+  "theme": "obsidian"
 }
