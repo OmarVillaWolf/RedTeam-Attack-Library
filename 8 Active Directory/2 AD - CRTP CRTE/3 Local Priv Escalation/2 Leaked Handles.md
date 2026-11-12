@@ -1,6 +1,6 @@
 # Local Privilege Escalation -  Filtración de handles
 
-Tags: #AD #Windows #Powershell #PrivEsc 
+Tags: #AD #Windows #Powershell #PrivEsc #LeakedHandlesFinder
 
 
 - **Handles de Windows**
@@ -52,7 +52,7 @@ Pasos:
 - Al abrir las propiedades del handle, la captura indica **“Granted access: 0x1fffff (Full control)”**: el handle tiene acceso amplio al objeto `winlogon.exe`.
 
 
-## LeakedHandlesFinder
+## LeakedHandlesFinder Tool
 
 - `LeakedHandlesFinder.exe` enumera los handles filtrados que encuentra en el sistema.
 - Automatiza el intento de aprovechar esos handles para iniciar procesos con privilegios elevados.
@@ -61,6 +61,22 @@ Pasos:
 
 
 **Interpretar:**
-La primera salida identifica un handle hacia un proceso con PID 692 (`winlogon.exe` en las diapositivas anteriores) y muestra `Granted access: 0x1fffff`, que la herramienta interpreta como acceso amplio. Lo etiqueta como **“Exploitable Handle”**.
+
+```bash 
+Paso 1:
+# Buscar handles que pueden ser explotados 
+❯ LeakedHandlesFinder.exe  
+```
+
+La primera salida identifica un handle hacia un proceso con PID 692 (`winlogon.exe` en las diapositivas anteriores) y muestra `Handle type: Process (0x110)`  `Granted access: 0x1fffff`, que la herramienta interpreta como acceso amplio. Lo etiqueta como `Exploitable Handle`.
+
+```bash 
+Paso 2:
+# Abusar del handler y ejecutará un CMD como Administrator
+❯ LeakedHandlesFinder.exe -a 
+
+❯ LeakedHandlesFinder.exe -a --cmd.exe 
+❯ whoami   # Muestra que es 'nt authority\system'
+```
 
 En la segunda captura se ejecuta la herramienta con la opción `--cmd.exe`. La salida indica que creó un proceso y que el intento tuvo éxito; en la ventana de comandos, `whoami` devuelve `nt authority\system`. Eso significa que, en ese entorno de demostración, el símbolo del sistema terminó ejecutándose como `SYSTEM`.
