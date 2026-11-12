@@ -7,7 +7,7 @@ Tags: #Powershell #AD #Comandos
 ```powershell 
 ❯ . .\PowerView.ps1                     # Cargar un script 
 
-❯ Import-Module .  \PowerView.psd1    # Importar un modulo 
+❯ Import-Module .  \PowerView.psd1      # Importar un modulo 
 
 ❯ Get-Command -Module <ModuleName>      # Listar modulos 
 ```
