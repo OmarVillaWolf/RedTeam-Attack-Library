@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "9 C2 (Post Exploitation)/2 Sliver C2/3 Implant & Listener.md",
+                "file": "4 PrivEsc Lin & Win/1 Windows/0 Evasión 1/8 Evasión Defender.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3 Implant & Listener"
+              "title": "8 Evasión Defender"
             }
           },
           {
@@ -75,6 +75,20 @@
               },
               "icon": "lucide-file",
               "title": "GenericAll - Group"
+            }
+          },
+          {
+            "id": "24b0bd986d45c211",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "7 Hacking Web/0 Web/2 Metodología.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2 Metodología"
             }
           }
         ],
@@ -252,32 +266,34 @@
   },
   "active": "07b3f7041d7c247f",
   "lastOpenFiles": [
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/GenericAll - Group.md",
-    "6 Lenguajes Programacion/1 Python/7 Librerias comunes/1 Sys y os.md",
+    "4 PrivEsc Lin & Win/1 Windows/0 Evasión 1/7 Applocker.md",
+    "4 PrivEsc Lin & Win/1 Windows/0 Evasión 1/8 Evasión Defender.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/6.4 Bypass - Staged vs Stageless Payloads.md",
     "9 C2 (Post Exploitation)/2 Sliver C2/3 Implant & Listener.md",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
-    "8 Active Directory/2 AD - CRTP CRTE/0 Attack Paths Lab/3 Metodología.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/6.5 Bypass Windows Defender.md",
     "9 C2 (Post Exploitation)/2 Sliver C2/2 Consola.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/1 Instalación.md",
-    "8 Active Directory/2 AD - CRTP CRTE/2 Domain Enumeration/4 GPOs, OUs, Groups.md",
-    "8 Active Directory/2 AD - CRTP CRTE/2 Domain Enumeration/3 ACLs.md",
-    "8 Active Directory/1 AD - Spartan/2 Attacks/6 ACLs/1 NOTA IMPORTANTE.md",
-    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/1 GPO Abuse.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/5 BloodHound.md",
-    "8 Active Directory/2 AD - CRTP CRTE/3 Local Priv Escalation/2 Leaked Handles.md",
-    "9 C2 (Post Exploitation)/1 Adaptix C2/4 HTTPS Beacons and Redirectors.md",
-    "8 Active Directory/2 AD - CRTP CRTE/0 Attack Paths Lab/1 CRTP - Attack Paths Lab.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Mov Lateral - Tools/Safetykatz - Mimikatz.md",
-    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/4 Mimikatz - OPTH - PTH.md",
-    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/1 Golden Ticket - DC.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
-    "2 Ports/3 DC (Domain Controller)/3389 3333 RDP.md",
-    "9 C2 (Post Exploitation)/1 Adaptix C2/3 Listeners.md",
-    "8 Active Directory/2 AD - CRTP CRTE/1 Offensive PowerShell and .NET tradecraft/5 Transfer y AMSI.md",
-    "2.1 Tools/Ngrok.md",
-    "8 Active Directory/1 AD - Spartan/1 Enumeration/3 ADPeas.md",
-    "General Hacking/11 Evading IDS, Firewall and Honeypot/2 Evasion Firewall.md",
-    "8 Active Directory/1 AD - Spartan/4 Persistencia, Post-Explotation/4.1 Golden Ticket.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/4 Armory.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/5 Pivoting.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/6 Introducción Evasión.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/6.1 Static Evasion.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/6.2 Runtime Evasion.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/6.3 Process Injection - Migration.md",
+    "4 PrivEsc Lin & Win/1 Windows/0 Evasión 1/3 Turn off - Defender.md",
+    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/3 Scheduled Tasks.md",
+    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/5 Service Creation.md",
+    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/4 Registry Run Keys.md",
+    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/2 Mimikatz.md",
+    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/1 Usuarios.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/7 Accesschk.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/GenericAll - Group.md",
+    "8 Active Directory/2 AD - CRTP CRTE/0 Attack Paths Lab/3 Metodología.md",
+    "Pasted image 20261113202035.png",
+    "Pasted image 20261113201624.png",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/6 PrivescCheck.md",
+    "7 Hacking Web/0 Web/2 Metodología.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Mov Lateral - Tools/RunasCs.md",
     "14 Red Teaming IA/0 Strix",
     "Pasted image 20261109190311.png",
     "Pasted image 20261109190045.png",
@@ -287,8 +303,6 @@
     "Pasted image 20261109134304.png",
     "Pasted image 20261109132916.png",
     "Pasted image 20261109131147.png",
-    "Pasted image 20261109130522.png",
-    "Pasted image 20261109014833.png",
     "9 C2 (Post Exploitation)/2 Sliver C2",
     "9 C2 (Post Exploitation)/1 Adaptix C2",
     "7 Hacking Web/2 Intermediate/3 Advanced Topics",
