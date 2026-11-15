@@ -2,5 +2,6 @@
   "baseFontSize": 17,
   "cssTheme": "Hipstersmoothie",
   "accentColor": "#8d67e4",
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "showRibbon": true
 }
