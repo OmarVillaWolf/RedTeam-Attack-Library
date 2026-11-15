@@ -179,6 +179,9 @@ Tags: #Fuzzing #Ffuf #Gobuster #Wfuzz #Feroxbuster #Dirb #Dirsearch #Dirbuster #
 
 ## 1. ENUMERACIÓN DE DIRECTORIOS Y ARCHIVOS
 
+NOTA:
+	- En un entorno real limitar los threads a 5 en todas las herramientas 
+
 ### feroxbuster
 ```bash
 ❯ feroxbuster -u http://<IP> -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -d 2
