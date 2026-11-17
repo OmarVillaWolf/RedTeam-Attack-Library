@@ -16,6 +16,7 @@ Tags: #MySQL #Servidor #Comandos #DB
 ```bash 
 # Fuera del server 
 ❯ mysql -u root -p -h <IP>     # Se debe tener el puerto expuesto 
+❯ mysql -u root -p -h <IP> --skip-ssl
 
 # Dentro del server            # Se debe tener el puerto interno ejecutandose 
 ❯ mysql -u root -p             <- Intentar siempre 
