@@ -182,7 +182,7 @@ NOTA:
 # Diseñado para evadir AMSI y soluciones AV
 ```
 
-### Revershell Go para Windows  - Evasión 
+### Revershell Go para Windows  - Evasión (MEJOR OPCIÓN)
 ```powershell 
 Paso 1:
 # Crear el archivo para compilar la reverhsell '0xb0b.go' en Kali
