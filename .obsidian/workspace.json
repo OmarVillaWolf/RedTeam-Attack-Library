@@ -8,31 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "345de52babfdbeb7",
+            "id": "db613000eb5b7615",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "6 Lenguajes Programacion/1 Python/7 Librerias comunes/1 Sys y os.md",
+                "file": "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 Sys y os"
-            }
-          },
-          {
-            "id": "07b3f7041d7c247f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "9 C2 (Post Exploitation)/2 Sliver C2/1 Instalación.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "1 Instalación"
+              "title": "Reverse Shells"
             }
           },
           {
@@ -90,9 +76,22 @@
               "icon": "lucide-file",
               "title": "2 Metodología"
             }
+          },
+          {
+            "id": "ca79a47bdfc1ec32",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 PrivEsc Lin & Win/1 Windows/3 Escalation/6 PrivescCheck.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "6 PrivescCheck"
+            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -264,36 +263,36 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "07b3f7041d7c247f",
+  "active": "db613000eb5b7615",
   "lastOpenFiles": [
-    "9 C2 (Post Exploitation)/2 Sliver C2/3 Implant & Listener.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/1 Instalación.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/2 Consola.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/7 Mimikatz Sliver C2 - Evasión Defender.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/6.4 Bypass - Staged vs Stageless Payloads.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/GenericAll - Group.md",
-    "6 Lenguajes Programacion/1 Python/7 Librerias comunes/1 Sys y os.md",
-    "4 PrivEsc Lin & Win/1 Windows/0 Evasión 1/7 Applocker.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/6.5 Bypass Windows Defender.md",
+    "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
     "9 C2 (Post Exploitation)/2 Sliver C2/4 Armory.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/3 Implant & Listener.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/2 Consola.md",
     "9 C2 (Post Exploitation)/2 Sliver C2/5 Pivoting.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/6 Introducción Evasión.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/6.1 Static Evasion.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/6.2 Runtime Evasion.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/6.3 Process Injection - Migration.md",
-    "4 PrivEsc Lin & Win/1 Windows/0 Evasión 1/3 Turn off - Defender.md",
-    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/3 Scheduled Tasks.md",
-    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/5 Service Creation.md",
-    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/4 Registry Run Keys.md",
-    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/2 Mimikatz.md",
-    "4 PrivEsc Lin & Win/1 Windows/5 Persistencia/1 Usuarios.md",
+    "2 Ports/4 Windows - Linux/5 Database/3306 - MYSQL.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/6.4 Bypass - Staged vs Stageless Payloads.md",
+    "9 C2 (Post Exploitation)/2 Sliver C2/1 Instalación.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Mov Lateral - Tools/RunasCs.md",
+    "5 Pivoting/3 Chisel.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/4 WinPEAS - Enum y PrivEsc.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/6 PrivescCheck.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5 PowerUp - PrivEsc.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5.1 PowerUp -Misconfigured Services.md",
+    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/7 Accesschk.md",
-    "8 Active Directory/2 AD - CRTP CRTE/0 Attack Paths Lab/3 Metodología.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Link.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/1 IMPORTANTE.md",
+    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/2 Group-Based Escalation.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Edge Snapper.md",
+    "4 PrivEsc Lin & Win/1 Windows/4 Appication PrivEsc/Xampp.md",
+    "2.1 Tools/Fuzzers.md",
+    "2.1 Tools/Password Cracking.md",
     "Pasted image 20261113202035.png",
     "Pasted image 20261113201624.png",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/6 PrivescCheck.md",
     "14 Red Teaming IA/0 Strix",
     "Pasted image 20261109190311.png",
     "Pasted image 20261109190045.png",
