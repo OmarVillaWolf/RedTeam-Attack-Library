@@ -69,12 +69,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/GenericAll - Group.md",
+                "file": "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/13 PrivEsc - LAPS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GenericAll - Group"
+              "title": "13 PrivEsc - LAPS"
             }
           },
           {
@@ -90,23 +90,9 @@
               "icon": "lucide-file",
               "title": "2 Metodología"
             }
-          },
-          {
-            "id": "ca79a47bdfc1ec32",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Reverse Shells"
-            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -278,34 +264,34 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "ca79a47bdfc1ec32",
+  "active": "c08eafa56f5cd49b",
   "lastOpenFiles": [
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
+    "8 Active Directory/2 AD - CRTP CRTE/0 Attack Paths Lab/3 Metodología.md",
+    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/13 PrivEsc - LAPS.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/4 Cross-Session Avtivate.md",
+    "8 Active Directory/2 AD - CRTP CRTE/2 Domain Enumeration/3 ACLs.md",
+    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/12 PrivEsc - Set SPN.md",
+    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/9 ACL - Security Descriptors DC.md",
+    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/8 ACL - Rights Abuse DC.md",
+    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/7 ACL - AdminSDHolder.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/2 Remoting & Tradecraft.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/3 WSMan - WinRM.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/6 Mimikatz - OPTH - PTH.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/5 Credential Extraction.md",
+    "7 Hacking Web/0 Web/2 Metodología.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/GenericAll - Group.md",
+    "2.1 Tools/Password Cracking.md",
     "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
     "2 Ports/4 Windows - Linux/5 Database/3306 - MYSQL.md",
-    "7 Hacking Web/0 Web/2 Metodología.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/6 PrivescCheck.md",
     "5 Pivoting/2 Ligolo.md",
     "9 C2 (Post Exploitation)/2 Sliver C2/6.4 Bypass - Staged vs Stageless Payloads.md",
-    "2.1 Tools/Password Cracking.md",
     "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Mov Lateral - Tools/Safetykatz - Mimikatz.md",
-    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/4 Mimikatz - OPTH - PTH.md",
     "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
     "9 C2 (Post Exploitation)/2 Sliver C2/4 Armory.md",
     "9 C2 (Post Exploitation)/2 Sliver C2/3 Implant & Listener.md",
     "9 C2 (Post Exploitation)/2 Sliver C2/2 Consola.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/5 Pivoting.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/1 Instalación.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Mov Lateral - Tools/RunasCs.md",
-    "5 Pivoting/3 Chisel.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/4 WinPEAS - Enum y PrivEsc.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5 PowerUp - PrivEsc.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/5.1 PowerUp -Misconfigured Services.md",
-    "2 Ports/3 DC (Domain Controller)/Metodología y más/1 Metodología - Server Windows y AD.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Windows Credential.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Procesos Internos.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Link.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/1 IMPORTANTE.md",
     "Pasted image 20261113202035.png",
     "Pasted image 20261113201624.png",
     "14 Red Teaming IA/0 Strix",
