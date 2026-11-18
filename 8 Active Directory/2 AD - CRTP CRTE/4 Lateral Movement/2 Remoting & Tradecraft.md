@@ -1,6 +1,6 @@
 # Powershell Remoting & Tradecraft 
 
-Tags: #AD #Windows #Powershell #Tradecraft #Winrs
+Tags: #AD #Windows #Powershell #Tradecraft #Winrs #CRTE 
 
 Piensa en Powershell Remoting (PSRemoting) como 'psexec' con esteroides pero mucho más silencioso y rápido. PSRemoting usa 'WinRM' el cual es una implementación de Microsoft de WS-Management. Es la manera recomendada para manejar Windows Core Servers. Escucha por el puerto 5985 (HTTP) o 5986 (HTTPS) y esta activado por default en el server 2012. Este proceso remoto corre como un proceso de integridad alto. Esto es, tu tienes una shell elevada.     
 
@@ -26,12 +26,12 @@ Piensa en Powershell Remoting (PSRemoting) como 'psexec' con esteroides pero muc
 ## Powershell Remoting 
 
 ```powershell 
-! Usuario de dominio (AD) con permisos de administrador 
+! Usuario de dominio (AD) con permisos de administrador en otro server 
 
 ❯ Invoke-Command -ScriptBlock {$env:computername;$env:username} -ComputerName hostname
 # Ejecutar un bloque de comandos en un equipo remoto vía WinRM, imprimir el nombre del equipo y usuario actual para verificar el contexto de ejecución remota.
 
-❯ Invoke-Command -ScriptBlock {$env:computername;$env:username} -ComputerName (cat C:\AD\servers.txt)  # The `Invoke-Command` reads the file (`servers.txt`) locally, then runs the script block remotely on each computer listed.
+❯ Invoke-Command -ScriptBlock {$env:computername;$env:username} -ComputerName (cat C:\servers.txt)  # The `Invoke-Command` reads the file (`servers.txt`) locally, then runs the script block remotely on each computer listed.
 
 ❯ Invoke-Command -ScriptBlock {Get-Process} -ComputerName (Get-Content <list_of_servers>)  # Ejecutar comandos o scriptblocks 
 
