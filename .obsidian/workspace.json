@@ -69,30 +69,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/13 PrivEsc - LAPS.md",
+                "file": "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/3 WSMan - WinRM.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "13 PrivEsc - LAPS"
+              "title": "3 WSMan - WinRM"
             }
           },
           {
-            "id": "24b0bd986d45c211",
+            "id": "9d5cca37268dd314",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "7 Hacking Web/0 Web/2 Metodología.md",
+                "file": "10 Red Team Operations/2 Cobalt Strike/2 Listeners.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2 Metodología"
+              "title": "2 Listeners"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -264,34 +264,43 @@
       "obsidian42-brat:BRAT": false
     }
   },
-  "active": "c08eafa56f5cd49b",
+  "active": "9d5cca37268dd314",
   "lastOpenFiles": [
+    "10 Red Team Operations/1 Fundamentos Malware/1 Introducción.md",
+    "10 Red Team Operations/1 Fundamentos Malware/2 Procesos.md",
+    "10 Red Team Operations/1 Fundamentos Malware/3 Inyección de procesos.md",
+    "10 Red Team Operations/1 Fundamentos Malware/4 .NET y P-Invoke.md",
+    "10 Red Team Operations/2 Cobalt Strike/1 Introducción.md",
+    "10 Red Team Operations/2 Cobalt Strike/2 Listeners.md",
+    "Pasted image 20261121161504.png",
+    "Pasted image 20261121161427.png",
+    "Pasted image 20261121161339.png",
+    "Pasted image 20261121160957.png",
+    "10 Red Team Operations/2 Cobalt Strike",
+    "11 Red Teaming IA/2 Labs/1 THM/1 Preguntas Iniciales.md",
+    "10 Red Team Operations/1 Fundamentos Malware",
+    "10 Red Team Operations",
     "1 Com Lin & Win/1 Hacking Commands/Transfer.md",
-    "8 Active Directory/2 AD - CRTP CRTE/0 Attack Paths Lab/3 Metodología.md",
-    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/13 PrivEsc - LAPS.md",
-    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/4 Cross-Session Avtivate.md",
-    "8 Active Directory/2 AD - CRTP CRTE/2 Domain Enumeration/3 ACLs.md",
-    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/12 PrivEsc - Set SPN.md",
-    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/9 ACL - Security Descriptors DC.md",
-    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/8 ACL - Rights Abuse DC.md",
-    "8 Active Directory/2 AD - CRTP CRTE/5 Domain Persistence/7 ACL - AdminSDHolder.md",
-    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/2 Remoting & Tradecraft.md",
-    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/3 WSMan - WinRM.md",
-    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/6 Mimikatz - OPTH - PTH.md",
-    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/5 Credential Extraction.md",
-    "7 Hacking Web/0 Web/2 Metodología.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Windows/GenericAll - Group.md",
     "2.1 Tools/Password Cracking.md",
-    "1 Com Lin & Win/1 Hacking Commands/Reverse Shells.md",
-    "2 Ports/4 Windows - Linux/5 Database/3306 - MYSQL.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/6 PrivescCheck.md",
     "5 Pivoting/2 Ligolo.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/6.4 Bypass - Staged vs Stageless Payloads.md",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Mov Lateral - Tools/Safetykatz - Mimikatz.md",
-    "4 PrivEsc Lin & Win/1 Windows/3 Escalation/1 Token Privileges.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/4 Armory.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/3 Implant & Listener.md",
-    "9 C2 (Post Exploitation)/2 Sliver C2/2 Consola.md",
+    "8 Active Directory/2 AD - CRTP CRTE/0 Attack Paths Lab/3 Metodología.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/3 WSMan - WinRM.md",
+    "7 Hacking Web/0 Web/2 Metodología.md",
+    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/DC - ACL - Kali/GenericAll - Domain.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/5 PrivEsc - LAPS.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/4 Cross-Session Avtivate.md",
+    "8 Active Directory/2 AD - CRTP CRTE/6 Evading Application Allowlisting/7 Applocker.md",
+    "8 Active Directory/2 AD - CRTP CRTE/3 Local PrivEsc/2 Leaked Handles.md",
+    "8 Active Directory/2 AD - CRTP CRTE/7 Domani PrivEsc",
+    "8 Active Directory/2 AD - CRTP CRTE/6 Evading Application Allowlisting",
+    "8 Active Directory/2 AD - CRTP CRTE/5 Credential Extraction and Replay",
+    "8 Active Directory/2 AD - CRTP CRTE/5 Credential Extraction and Replay.md",
+    "8 Active Directory/2 AD - CRTP CRTE/2 Domain Enumeration/3 ACLs.md",
+    "8 Active Directory/2 AD - CRTP CRTE/8 Domain Persistence/12 PrivEsc - Set SPN.md",
+    "8 Active Directory/2 AD - CRTP CRTE/8 Domain Persistence/9 ACL - Security Descriptors DC.md",
+    "8 Active Directory/2 AD - CRTP CRTE/8 Domain Persistence/8 ACL - Rights Abuse DC.md",
+    "8 Active Directory/2 AD - CRTP CRTE/8 Domain Persistence/7 ACL - AdminSDHolder.md",
+    "8 Active Directory/2 AD - CRTP CRTE/4 Lateral Movement/2 Remoting & Tradecraft.md",
     "Pasted image 20261113202035.png",
     "Pasted image 20261113201624.png",
     "14 Red Teaming IA/0 Strix",
@@ -299,18 +308,8 @@
     "Pasted image 20261109190045.png",
     "Pasted image 20261109181633.png",
     "Pasted image 20261109181608.png",
-    "Pasted image 20261109173209.png",
-    "Pasted image 20261109134304.png",
-    "Pasted image 20261109132916.png",
-    "Pasted image 20261109131147.png",
     "9 C2 (Post Exploitation)/2 Sliver C2",
     "9 C2 (Post Exploitation)/1 Adaptix C2",
-    "7 Hacking Web/2 Intermediate/3 Advanced Topics",
-    "7 Hacking Web/2 Intermediate/2 Client-Side Topics",
-    "7 Hacking Web/2 Intermediate/1 Server-Side Topics",
-    "14 Red Teaming IA/2 Labs/1",
-    "14 Red Teaming IA/1 Course",
-    "14 Red Teaming IA/2 Labs",
-    "4 PrivEsc Lin & Win/1 Windows/2 Mov Lateral/Mov Lateral - Tools"
+    "7 Hacking Web/2 Intermediate/3 Advanced Topics"
   ]
 }
