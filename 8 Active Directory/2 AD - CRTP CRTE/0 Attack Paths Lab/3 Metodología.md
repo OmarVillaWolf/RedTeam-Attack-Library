@@ -21,4 +21,5 @@ Tags: #CRTE #Windows
 	- ACLs 
 	- Identificar sesiones remotas 
 	- Certificados (Certify)
+	- LAPS 
 ```
