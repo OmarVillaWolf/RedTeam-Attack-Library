@@ -17,11 +17,12 @@ Tags: #OSINT
 ```
 ❯ https://jimpl.com/               # Mirar los datos EXIF
 ❯ https://www.dogpile.com/         # Busqueda de metadatos en paginas web
+❯ https://metadataremover.ai/metadata-viewer # Inspecciona metadatos EXIF en el navegador; los metadatos pueden modificarse o eliminarse, así que deben corroborarse
 ```
 
 ## Kali tools 
 
-```bash 
+```bash
 ❯ exiftool image.jpg               # Muestra los metadatos de la imagen 
 ❯ exiftool <img> > file.txt        # Guardar el resultado en un archivo 
 ```
